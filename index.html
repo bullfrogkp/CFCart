@@ -645,6 +645,44 @@
 			margin-left: -10px;
 			text-indent:10px;
 			}
+			
+			.recommendation {
+			width:218px;
+			-webkit-border-top-left-radius: 5px;
+			-webkit-border-top-right-radius: 5px;
+			-moz-border-radius-topleft: 5px;
+			-moz-border-radius-topright: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px; 
+			border: 1px solid #CCC;
+			font-size:13px;
+			padding:6px 0 6px 10px;
+			background: #fffcfc; /* Old browsers */
+background: -moz-linear-gradient(top,  #fffcfc 0%, #efefef 100%, #7db9e8 100%, #207cca 102%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fffcfc), color-stop(100%,#efefef), color-stop(100%,#7db9e8), color-stop(102%,#207cca)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* IE10+ */
+background: linear-gradient(to bottom,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffcfc', endColorstr='#207cca',GradientType=0 ); /* IE6-9 */
+
+			}
+			
+			.recommendation-list {
+			border: 1px solid #CCC;
+			padding: 0 8px 8px 8px;
+			margin-top:-1px;
+			}
+			
+			.recommendation-list ul {
+			list-style-type:none;
+			}
+			
+			.recommendation-list ul li {
+			border-bottom: 1px dashed #CCCCCC;
+			padding:8px 0 8px 0;
+			}
+			
 			.cat-thumbnail-title {
 			width:130px;
 			font-size:13px;
@@ -657,7 +695,7 @@
 			-moz-border-radius-topleft: 5px;
 			-moz-border-radius-topright: 5px;
 			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;
+			border-top-right-radius: 5px; 
 			}
 			.cat-thumbnail-link {
 			width:200px;
@@ -746,6 +784,32 @@
 			.hot-cat-title a:hover, .hot-cat-list a:hover  {
 			text-decoration:underline;
 			}
+			
+				.recommendation-list img {
+				width:80px;border:1px solid #CCC;float:left;
+				}
+				
+				.recommendation-list-detail {
+				float:right;font-size:12px;width:120px;
+				}
+				
+				.recommendation-list-detail a {
+				text-decoration:none;
+				}
+				
+				.recommendation-list-detail a:hover {
+				text-decoration:underline;
+				}
+				
+				.recommendation-list-price {
+				margin:6px 0 6px 0;color:#C20000;font-weight:bold;
+				}
+				
+				.recommendation-list-review {
+				height: 13px;background: url(images/breadcrub20140512.png);
+background-position: left -1500px;
+background-repeat: no-repeat;
+				}
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
@@ -1295,7 +1359,93 @@ background-repeat: no-repeat;">
 						</li>
 					</ul>
 				</div>
-				Best Seller
+				<div class="recommendation">
+					Best Sellers
+				</div>
+				<div class="recommendation-list">
+					<ul>
+						<li>
+							<img src="images/b1.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b2.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b3.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b4.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b5.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b6.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b7.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b1.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div style="clear:both;"></div>
