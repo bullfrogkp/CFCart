@@ -816,6 +816,45 @@ background-repeat: no-repeat;
 div.responsive img { width: auto; height: auto }
 .cycle-pager { position: static; margin-top: 5px }
 div.vertical { width: 100px }
+
+			.thumbnail-nav {
+				width:98px;
+				border: 1px solid #CCC;
+				text-decoration:none;
+				font-size:13px;
+				float:left;
+				padding:6px 0 6px 0;
+				text-align:center;
+				
+				background: #fffcfc; /* Old browsers */
+				background: -moz-linear-gradient(top,  #fffcfc 0%, #efefef 100%, #7db9e8 100%, #207cca 102%); /* FF3.6+ */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fffcfc), color-stop(100%,#efefef), color-stop(100%,#7db9e8), color-stop(102%,#207cca)); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* IE10+ */
+				background: linear-gradient(to bottom,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffcfc', endColorstr='#207cca',GradientType=0 ); /* IE6-9 */
+
+			}
+
+			#next {
+			-webkit-border-bottom-left-radius: 5px;
+				-webkit-border-bottom-right-radius: 5px;
+				-moz-border-radius-bottomleft: 5px;
+				-moz-border-radius-bottomright: 5px;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;margin-top:2px;
+			}
+			
+			#prev {
+			
+			-webkit-border-top-left-radius: 5px;
+			-webkit-border-top-right-radius: 5px;
+			-moz-border-radius-topleft: 5px;
+			-moz-border-radius-topright: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;margin-bottom:2px;
+			}
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
@@ -1014,26 +1053,14 @@ div.vertical { width: 100px }
 				<span style="vertical-align:middle">Keyboards</span> 
 			</div>
 			<div style="width:100px;float:left;">
-				<a href=# id=prev3 style="width:100px;
-				text-decoration:none;
-			font-size:13px;
-			float:left;
-			padding:6px 0 6px 0;
-			text-align:center;
-			background-color:#0387da;
-			-webkit-border-top-left-radius: 5px;
-			-webkit-border-top-right-radius: 5px;
-			-moz-border-radius-topleft: 5px;
-			-moz-border-radius-topright: 5px;
-			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;margin-bottom:2px;">Prev</a>
+				<a href="#" id="prev" class="thumbnail-nav">Prev</a>
 				<div class="slideshow vertical" 
 					data-cycle-fx=carousel
 					data-cycle-timeout=0
-					data-cycle-next="#next3"
-					data-cycle-prev="#prev3"
+					data-cycle-next="#next"
+					data-cycle-prev="#prev"
 					data-cycle-pager="#pager3"
-					data-cycle-carousel-visible=2
+					data-cycle-carousel-visible=4
 					data-cycle-carousel-vertical=true
 					>
 					<img src="http://malsup.github.io/images/beach1.jpg">
@@ -1043,28 +1070,7 @@ div.vertical { width: 100px }
 					<img src="http://malsup.github.io/images/beach5.jpg">
 					<img src="http://malsup.github.io/images/beach9.jpg">
 				</div>
-				<a href=# id=next3 style="width:100px;
-				border: 1px solid #CCC;
-				text-decoration:none;
-			font-size:13px;
-			float:left;
-			padding:6px 0 6px 0;
-			text-align:center;
-			-webkit-border-bottom-left-radius: 5px;
-			-webkit-border-bottom-right-radius: 5px;
-			-moz-border-radius-bottomleft: 5px;
-			-moz-border-radius-bottomright: 5px;
-			border-bottom-left-radius: 5px;
-			border-bottom-right-radius: 5px;margin-top:2px;
-			background: #fffcfc; /* Old browsers */
-background: -moz-linear-gradient(top,  #fffcfc 0%, #efefef 100%, #7db9e8 100%, #207cca 102%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fffcfc), color-stop(100%,#efefef), color-stop(100%,#7db9e8), color-stop(102%,#207cca)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* IE10+ */
-background: linear-gradient(to bottom,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffcfc', endColorstr='#207cca',GradientType=0 ); /* IE6-9 */
-">Next</a>
+				<a href="#" id="next" class="thumbnail-nav">Next</a>
 			</div>
 		</div>
 		
