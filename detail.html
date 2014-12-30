@@ -855,6 +855,9 @@ div.vertical { width: 100px }
 			border-top-left-radius: 5px;
 			border-top-right-radius: 5px;margin-bottom:2px;
 			}
+			
+			#gallery_01 img{border:2px solid white;} 
+	.active img{border:2px solid #333 !important;} 
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
@@ -863,6 +866,8 @@ div.vertical { width: 100px }
 <script src="js/jquery.cycle2.min.js"></script>
 <script src="js/jquery.cycle2.carousel.min.js"></script>
 <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
+<script src='js/jquery.elevatezoom.js'></script>
+	
 
 		<script type="text/javascript">
 			$(function() {
@@ -871,6 +876,9 @@ div.vertical { width: 100px }
 					autoplay	: true,
 					bgincrement	: 0
 				});
+				
+				$("#img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
+				$("#img_01").bind("click", function(e) { var ez = $('#img_01').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false; }); 
 			
 			});
 		</script>
@@ -1071,6 +1079,9 @@ div.vertical { width: 100px }
 					<img src="http://malsup.github.io/images/beach9.jpg">
 				</div>
 				<a href="#" id="next" class="thumbnail-nav">Next</a>
+			</div>
+			<div>
+				<img id="img_01" src="images/small/image1.png" data-zoom-image="images/large/image1.jpg"/> <div id="gallery_01"> <a href="#" data-image="images/small/image1.png" data-zoom-image="images/large/image1.jpg"> <img id="img_02" src="images/thumb/image1.jpg" /> </a> <a href="#" data-image="images/small/image2.png" data-zoom-image="images/large/image2.jpg"> <img id="img_03" src="images/thumb/image2.jpg" /> </a> <a href="#" data-image="images/small/image3.png" data-zoom-image="images/large/image3.jpg"> <img id="img_04" src="images/thumb/image3.jpg" /> </a> <a href="#" data-image="images/small/image4.png" data-zoom-image="images/large/image4.jpg"> <img id="img_05" src="images/thumb/image4.jpg" /> </a> </div>
 			</div>
 		</div>
 		
