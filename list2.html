@@ -645,6 +645,44 @@
 			margin-left: -10px;
 			text-indent:10px;
 			}
+			
+			.recommendation {
+			width:218px;
+			-webkit-border-top-left-radius: 5px;
+			-webkit-border-top-right-radius: 5px;
+			-moz-border-radius-topleft: 5px;
+			-moz-border-radius-topright: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px; 
+			border: 1px solid #CCC;
+			font-size:13px;
+			padding:6px 0 6px 10px;
+			background: #fffcfc; /* Old browsers */
+background: -moz-linear-gradient(top,  #fffcfc 0%, #efefef 100%, #7db9e8 100%, #207cca 102%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fffcfc), color-stop(100%,#efefef), color-stop(100%,#7db9e8), color-stop(102%,#207cca)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* IE10+ */
+background: linear-gradient(to bottom,  #fffcfc 0%,#efefef 100%,#7db9e8 100%,#207cca 102%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffcfc', endColorstr='#207cca',GradientType=0 ); /* IE6-9 */
+
+			}
+			
+			.recommendation-list {
+			border: 1px solid #CCC;
+			padding: 0 8px 8px 8px;
+			margin-top:-1px;
+			}
+			
+			.recommendation-list ul {
+			list-style-type:none;
+			}
+			
+			.recommendation-list ul li {
+			border-bottom: 1px dashed #CCCCCC;
+			padding:8px 0 8px 0;
+			}
+			
 			.cat-thumbnail-title {
 			width:130px;
 			font-size:13px;
@@ -657,7 +695,7 @@
 			-moz-border-radius-topleft: 5px;
 			-moz-border-radius-topright: 5px;
 			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;
+			border-top-right-radius: 5px; 
 			}
 			.cat-thumbnail-link {
 			width:200px;
@@ -746,6 +784,32 @@
 			.hot-cat-title a:hover, .hot-cat-list a:hover  {
 			text-decoration:underline;
 			}
+			
+				.recommendation-list img {
+				width:80px;border:1px solid #CCC;float:left;
+				}
+				
+				.recommendation-list-detail {
+				float:right;font-size:12px;width:120px;
+				}
+				
+				.recommendation-list-detail a {
+				text-decoration:none;
+				}
+				
+				.recommendation-list-detail a:hover {
+				text-decoration:underline;
+				}
+				
+				.recommendation-list-price {
+				margin:6px 0 6px 0;color:#C20000;font-weight:bold;
+				}
+				
+				.recommendation-list-review {
+				height: 13px;background: url(images/breadcrub20140512.png);
+background-position: left -1500px;
+background-repeat: no-repeat;
+				}
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
@@ -1028,65 +1092,424 @@
 			</div>
 		</div>
 		<div id="content-top" style="padding-top:2px;" class="container">
+		
 			<div id="slide-div" style="width:722px;float:right;">
-				<div calss="slide-container">
-					<div id="da-slider" class="da-slider">
-						<!--
-							<div class="da-slide">
-								<h2>Easy management</h2>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								<a href="#" class="da-link">Read more</a>
-								<div class="da-img"><img src="images/slider/2.png" alt="image01" /></div>
-							</div>
-							<div class="da-slide">
-								<h2>Revolution</h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-								<a href="#" class="da-link">Read more</a>
-								<div class="da-img"><img src="images/slider/3.png" alt="image01" /></div>
-							</div>-->
-						<div class="da-slide">
-							<h2>Christmas Painting</h2>
-							<p>Christmas paintings for sale. Choose your favorite christmas paintings from thousands of available designs.</p>
-							<a href="#" class="da-link">Read more</a>
-							<div class="da-img"><img src="images/slider/c.jpg" alt="image01" style="width:200px;" /></div>
-						</div>
-						<div class="da-slide">
-							<h2>Photographic Equipment On Sale!</h2>
-							<p>We carry a large inventory of both new and used photographic equipment to suit almost any photographer's need.</p>
-							<a href="#" class="da-link">Read more</a>
-							<div class="da-img"><img src="images/slider/4.png" alt="image01" /></div>
-						</div>
-						<nav class="da-arrows">
-							<span class="da-arrows-prev"></span>
-							<span class="da-arrows-next"></span>
-						</nav>
+				<div id="breadcrumb" style="font-size:12px;margin-top:8px;margin-bottom:13px;">
+				<div style="display: inline-block;
+width: 14px;
+height: 14px;
+margin-top: 1px;
+vertical-align: text-top;
+background-image: url(images/glyphicons-halflings.png);
+background-position: 0 -24px;
+background-repeat: no-repeat;">
+</div> <div style="display: inline-block;
+width: 14px;
+height: 14px;
+margin-top: 1px;
+vertical-align: text-top;
+background-image: url(images/next.png);
+background-position: 3px 1px;
+background-repeat: no-repeat;"></div> 
+<span style="vertical-align:middle">Computers / Networking</span> 
+<div style="display: inline-block;
+width: 14px;
+height: 14px;
+margin-top: 1px;
+vertical-align: text-top;
+background-image: url(images/next.png);
+background-position: 3px 1px;
+background-repeat: no-repeat;"></div> 
+<span style="vertical-align:middle">Keyboards</span> 
+			</div>
+				<img src="images/001_01_CpmtutersNetworking.jpg" style="width:100%;" />
+				<img src="images/001_02_NetworkingCommunications.jpg" style="width:32.9%;" />
+				<img src="images/001_03_WirelessNetworking.jpg" style="width:32.9%;" />
+				<img src="images/001_04_USBHubs.jpg" style="width:32.9%;" />
+				
+				<div class="cat-thumbnails" style="margin-top:10px;">
+					<div class="cat-thumbnail-title"><a href="">Top Selling</a></div>
+					<div class="cat-thumbnail-link"><a href="">More &gt;&gt;</a></div>
+					<div class="clear"></div>
+					<div class="cat-thumbnail-section">
+						<ul class="rig columns-4">
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t1.jpg">
+								<div class="thumbnail-name"><a href="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+								<div class="thumbnail-price">US$4.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+										<div class="thumbnail-overlay-price">$4.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t2.jpg">
+								<div class="thumbnail-name"><a href="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+								<div class="thumbnail-price">US$40.23</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+										<div class="thumbnail-overlay-price">$40.23</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t3.jpg">
+								<div class="thumbnail-name"><a href="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+								<div class="thumbnail-price">US$68.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+										<div class="thumbnail-overlay-price">$68.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t4.jpg">
+								<div class="thumbnail-name"><a href="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+								<div class="thumbnail-price">US$14.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+										<div class="thumbnail-overlay-price">$14.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t5.jpg">
+								<div class="thumbnail-name"><a href="">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+								<div class="thumbnail-price">US$2.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+										<div class="thumbnail-overlay-price">$2.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t6.jpg">
+								<div class="thumbnail-name"><a href="">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+								<div class="thumbnail-price">US$57.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+										<div class="thumbnail-overlay-price">$57.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t7.jpg">
+								<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+								<div class="thumbnail-price">US$22.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+										<div class="thumbnail-overlay-price">$22.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t8.jpg">
+								<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+								<div class="thumbnail-price">US$43.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+										<div class="thumbnail-overlay-price">$43.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t1.jpg">
+								<div class="thumbnail-name"><a href="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+								<div class="thumbnail-price">US$4.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+										<div class="thumbnail-overlay-price">$4.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t2.jpg">
+								<div class="thumbnail-name"><a href="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+								<div class="thumbnail-price">US$40.23</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+										<div class="thumbnail-overlay-price">$40.23</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t3.jpg">
+								<div class="thumbnail-name"><a href="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+								<div class="thumbnail-price">US$68.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+										<div class="thumbnail-overlay-price">$68.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t4.jpg">
+								<div class="thumbnail-name"><a href="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+								<div class="thumbnail-price">US$14.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+										<div class="thumbnail-overlay-price">$14.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t5.jpg">
+								<div class="thumbnail-name"><a href="">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+								<div class="thumbnail-price">US$2.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+										<div class="thumbnail-overlay-price">$2.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t6.jpg">
+								<div class="thumbnail-name"><a href="">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+								<div class="thumbnail-price">US$57.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+										<div class="thumbnail-overlay-price">$57.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t7.jpg">
+								<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+								<div class="thumbnail-price">US$22.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+										<div class="thumbnail-overlay-price">$22.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t8.jpg">
+								<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+								<div class="thumbnail-price">US$43.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+										<div class="thumbnail-overlay-price">$43.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t1.jpg">
+								<div class="thumbnail-name"><a href="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+								<div class="thumbnail-price">US$4.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+										<div class="thumbnail-overlay-price">$4.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t2.jpg">
+								<div class="thumbnail-name"><a href="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+								<div class="thumbnail-price">US$40.23</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+										<div class="thumbnail-overlay-price">$40.23</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t3.jpg">
+								<div class="thumbnail-name"><a href="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+								<div class="thumbnail-price">US$68.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+										<div class="thumbnail-overlay-price">$68.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t4.jpg">
+								<div class="thumbnail-name"><a href="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+								<div class="thumbnail-price">US$14.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+										<div class="thumbnail-overlay-price">$14.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t5.jpg">
+								<div class="thumbnail-name"><a href="">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+								<div class="thumbnail-price">US$2.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+										<div class="thumbnail-overlay-price">$2.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t6.jpg">
+								<div class="thumbnail-name"><a href="">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+								<div class="thumbnail-price">US$57.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+										<div class="thumbnail-overlay-price">$57.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t7.jpg">
+								<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+								<div class="thumbnail-price">US$22.51</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+										<div class="thumbnail-overlay-price">$22.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+							<li class="single-products">
+								<img class="thumbnail-img" src="images/t8.jpg">
+								<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+								<div class="thumbnail-price">US$43.51</div>
+								<img src="images/freeshipping.jpg" style="width:120px;">
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
+										<div class="thumbnail-overlay-price">$43.51</div>
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
+										<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
+										<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
-				<img src="images/story-feature-4-en.png" style="height:226px;" />
-				<img src="images/ipad.png" style="height:226px;" />
 			</div>
 			<div id="top-sidebar">
-				<!--
-					<form id="login">
-					
-						<div class="login-header">
-						
-							<h3>Newsletter Subscription</h3>
-							
-							<p>Get the latest product and promotion information</p>
-							
-						</div>
-						<div class="inputs">
-						
-							<input type="email" placeholder="Email" />
-							<input type="password" placeholder="Password" />
-							<a id="submit" href="#" style="width:80px;float:right;">LOGIN</a>
-						
-						</div>
-					
-					</form>
-					-->
-				<img src="images/week_deal.gif" style="width:230px;" />
 				<div id="sidenav">
 					<ul>
 						<li class="has-sub-menu first-level-menu" style="margin-top:6px;">
@@ -1290,7 +1713,7 @@
 								<div class="clear"></div>
 							</div>
 						</li>
-						<li class="has-sub-menu first-level-menu">
+						<li class="has-sub-menu first-level-menu" style="margin-bottom:6px;">
 							<a href="">Sports &amp; Outdoor</a>
 							<div class="cat-submenu">
 								<dl>
@@ -1332,390 +1755,100 @@
 								<img src="http://www.tomtop.com/images/sidebar/Outdoor_sidebar.jpg" alt="Sports &amp; Outdoor" border="0" style="width:400px;position:absolute;right:0;bottom:0;z-index:0;">
 							</div>
 						</li>
-						<li class="first-level-menu"><a href="">Lighting / Flashlights / LEDs</a></li>
-						<li class="first-level-menu"><a href="">Health / Beauty</a></li>
-						<li class="first-level-menu"><a href="">Clothing / Accessories</a></li>
-						<li class="first-level-menu"><a href="">Video &amp; Audio</a></li>
-						<li class="first-level-menu"><a href="">Car Accessories</a></li>
-						<li class="first-level-menu"><a href="">Cameras &amp; Photo Accessories</a></li>
-						<li class="first-level-menu"><a href="">RC Models and Accessories</a></li>
-						<li class="first-level-menu"><a href="">Toys / Hobbies</a></li>
-						<li class="first-level-menu"><a href="">Jewelry</a></li>
-						<li class="first-level-menu"><a href="">Video Games</a></li>
-						<li class="first-level-menu"><a href="">Musical Instruments</a></li>
-						<li class="first-level-menu" style="margin-bottom:6px;"><a href="">Test Equipment &amp; Tools</a></li>
 					</ul>
 				</div>
-			</div>
-		</div>
-		<div style="clear:both;"></div>
-		<div style="height: 34px;
-			width: 100%;
-			border-top:2px solid #3A3939;border-bottom:2px solid #3A3939;
-			margin-top:2px;
-			margin-bottom:7px;">
-			<div style="border-top:1px dotted #3A3939;margin:17px auto;width:100%;">
-				<div style="margin:-9px auto;width:74px;padding:0 15px 0 15px;font-size: 14px;background-color:#fff;
-					font-weight: bold;">DISCOVER</div>
-			</div>
-		</div>
-		<div id="content">
-			<div class="container">
-				<div id="category-list">
-					<div class="cat-thumbnails">
-						<div class="cat-thumbnail-title"><a href="">Top Selling</a></div>
-						<div class="cat-thumbnail-link"><a href="">More >></a></div>
-						<div class="clear"></div>
-						<div class="cat-thumbnail-section">
-							<ul class="rig columns-4">
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t1.jpg" />
-									<div class="thumbnail-name"><a href="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-									<div class="thumbnail-price">US$4.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-											<div class="thumbnail-overlay-price">$4.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t2.jpg" />
-									<div class="thumbnail-name"><a href="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-									<div class="thumbnail-price">US$40.23</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-											<div class="thumbnail-overlay-price">$40.23</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t3.jpg" />
-									<div class="thumbnail-name"><a href="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-									<div class="thumbnail-price">US$68.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-											<div class="thumbnail-overlay-price">$68.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t4.jpg" />
-									<div class="thumbnail-name"><a href="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-									<div class="thumbnail-price">US$14.51</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-											<div class="thumbnail-overlay-price">$14.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t5.jpg" />
-									<div class="thumbnail-name"><a href="">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-									<div class="thumbnail-price">US$2.51</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-											<div class="thumbnail-overlay-price">$2.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t6.jpg" />
-									<div class="thumbnail-name"><a href="">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-									<div class="thumbnail-price">US$57.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-											<div class="thumbnail-overlay-price">$57.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t7.jpg" />
-									<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-price">US$22.51</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-											<div class="thumbnail-overlay-price">$22.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t8.jpg" />
-									<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-price">US$43.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-											<div class="thumbnail-overlay-price">$43.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="cat-thumbnails">
-						<div class="cat-thumbnail-title"><a href="">Best Deals</a></div>
-						<div class="cat-thumbnail-link"><a href="">More >></a></div>
-						<div class="clear"></div>
-						<div class="cat-thumbnail-section">
-							<ul class="rig columns-4">
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t1.jpg" />
-									<div class="thumbnail-name"><a href="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-									<div class="thumbnail-price">US$4.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-											<div class="thumbnail-overlay-price">$4.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t2.jpg" />
-									<div class="thumbnail-name"><a href="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-									<div class="thumbnail-price">US$40.23</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-											<div class="thumbnail-overlay-price">$40.23</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t3.jpg" />
-									<div class="thumbnail-name"><a href="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-									<div class="thumbnail-price">US$68.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-											<div class="thumbnail-overlay-price">$68.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t4.jpg" />
-									<div class="thumbnail-name"><a href="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-									<div class="thumbnail-price">US$14.51</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-											<div class="thumbnail-overlay-price">$14.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t5.jpg" />
-									<div class="thumbnail-name"><a href="">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-									<div class="thumbnail-price">US$2.51</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-											<div class="thumbnail-overlay-price">$2.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t6.jpg" />
-									<div class="thumbnail-name"><a href="">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-									<div class="thumbnail-price">US$57.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-											<div class="thumbnail-overlay-price">$57.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t7.jpg" />
-									<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-price">US$22.51</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-											<div class="thumbnail-overlay-price">$22.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-								<li class="single-products">
-									<img class="thumbnail-img" src="images/t8.jpg" />
-									<div class="thumbnail-name"><a href="">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-price">US$43.51</div>
-									<img src="images/freeshipping.jpg" style="width:120px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-overlay-name"><a href="" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-											<div class="thumbnail-overlay-price">$43.51</div>
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
-											<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
-											<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="cat-thumbnails">
-						<div class="cat-thumbnail-title"><a href="">Hot Categories</a></div>
-						<div class="clear"></div>
-						<div class="cat-thumbnail-section">
-							<ul class="rig columns-3">
-								<li>
-									<img src="images/cat1.jpg" />
-									<div class="hot-cat-title"><a href="">RC Models and Accessories</a></div>
-									<div class="hot-cat-list"><a href="">Walkera</a></div>
-									<div class="hot-cat-list"><a href="">FPV system & Parts</a></div>
-									<div class="hot-cat-list"><a href="">RC Cars & Parts</a></div>
-									<div class="hot-cat-list"><a href="">Helicopters & Parts</a></div>
-								</li>
-								<li>
-									<img src="images/cat2.jpg" />
-									<div class="hot-cat-title"><a href="">Tablet PCs & Cell Phone</a></div>
-									<div class="hot-cat-list"><a href="">Accessories for iPhone</a></div>
-									<div class="hot-cat-list"><a href="">Accessories For iPad</a></div>
-									<div class="hot-cat-list"><a href="">Accessories for Tablet PC</a></div>
-									<div class="hot-cat-list"><a href="">Tablet PC</a></div>
-								</li>
-								<li>
-									<img src="images/cat3.jpg" />
-									<div class="hot-cat-title"><a href="">Lighting / Flashlights / LEDs</a></div>
-									<div class="hot-cat-list"><a href="">LED Light Bulbs</a></div>
-									<div class="hot-cat-list"><a href="">Wireless Presenters</a></div>
-									<div class="hot-cat-list"><a href="">Lamps</a></div>
-									<div class="hot-cat-list"><a href="">LED Strings & Decoration Lights</a></div>
-								</li>
-								<li>
-									<img src="images/cat4.jpg" />
-									<div class="hot-cat-title"><a href="">Sports & Outdoor</a></div>
-									<div class="hot-cat-list"><a href="">Golf Supplies</a></div>
-									<div class="hot-cat-list"><a href="">Outdoor & Traveling Supplies</a></div>
-									<div class="hot-cat-list"><a href="">Camping & Hiking</a></div>
-									<div class="hot-cat-list"><a href="">Fishing</a></div>
-								</li>
-								<li>
-									<img src="images/cat5.jpg" />
-									<div class="hot-cat-title"><a href="">Car Accessories</a></div>
-									<div class="hot-cat-list"><a href="">More Car Accessories</a></div>
-									<div class="hot-cat-list"><a href="">Car Alarms and Security</a></div>
-									<div class="hot-cat-list"><a href="">Car Audio & Speakers</a></div>
-									<div class="hot-cat-list"><a href="">Gadgets & Auto Parts</a></div>
-								</li>
-								<li>
-									<img src="images/cat6.jpg" />
-									<div class="hot-cat-title"><a href="">Video & Audio</a></div>
-									<div class="hot-cat-list"><a href="">Batteries & Chargers</a></div>
-									<div class="hot-cat-list"><a href="">Headphones, Headsets</a></div>
-									<div class="hot-cat-list"><a href="">Home Audio</a></div>
-									<div class="hot-cat-list"><a href="">MP3 Players & Accessories</a></div>
-								</li>
-								<li>
-									<img src="images/cat7.jpg" />
-									<div class="hot-cat-title"><a href="">Clothing / Accessories</a></div>
-									<div class="hot-cat-list"><a href="">Hip Scarves</a></div>
-									<div class="hot-cat-list"><a href="">Hats / Caps</a></div>
-									<div class="hot-cat-list"><a href="">Swimwear</a></div>
-									<div class="hot-cat-list"><a href="">Bags</a></div>
-								</li>
-								<li>
-									<img src="images/cat8.jpg" />
-									<div class="hot-cat-title"><a href="">Home, Garden & Tools</a></div>
-									<div class="hot-cat-list"><a href="">Gift & Lifestyle Gadgets</a></div>
-									<div class="hot-cat-list"><a href="">Home Electronics</a></div>
-									<div class="hot-cat-list"><a href="">Lighter & Cigar Supplies</a></div>
-									<div class="hot-cat-list"><a href="">Home Living</a></div>
-								</li>
-								<li>
-									<img src="images/cat1.jpg" />
-									<div class="hot-cat-title"><a href="">RC Models and Accessories</a></div>
-									<div class="hot-cat-list"><a href="">Walkera</a></div>
-									<div class="hot-cat-list"><a href="">FPV system & Parts</a></div>
-									<div class="hot-cat-list"><a href="">RC Cars & Parts</a></div>
-									<div class="hot-cat-list"><a href="">Helicopters & Parts</a></div>
-								</li>
-							</ul>
-						</div>
-					</div>
+				<div class="recommendation">
+					Best Sellers
 				</div>
-				<div id="sidebar-wrapper">
-					<img src="images/ad1.jpg" style="width:100%;border:1px solid #CCC">
-					<img src="images/ads2.jpg" style="width:100%;border:1px solid #CCC">
-					<img src="images/ads3.jpg" style="width:100%;border:1px solid #CCC">
-					<img src="images/ads4.jpg" style="width:100%;border:1px solid #CCC">
-					<img src="images/ads5.jpg" style="width:100%;border:1px solid #CCC">
-					<img src="images/ads3.jpg" style="width:100%;border:1px solid #CCC">
+				<div class="recommendation-list">
+					<ul>
+						<li>
+							<img src="images/b1.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b2.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b3.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b4.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b5.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b6.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b7.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+						<li>
+							<img src="images/b1.jpg" />
+							<div class="recommendation-list-detail">
+								<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
+								<div class="recommendation-list-price">US $4.08</div>
+								<div class="recommendation-list-review"></div>
+								<div><a href="">(26 Reviews)</a></div>
+							</div>
+							<div style="clear:both;"></div>
+						</li>
+					</ul>
+				</div>
+				<img src="images/ad1.jpg" style="width:228px;border:1px solid #CCC;margin-top:8px;">
+					<img src="images/ads2.jpg" style="width:228px;border:1px solid #CCC">
+					<img src="images/ads3.jpg" style="width:228px;border:1px solid #CCC">
+					<img src="images/ads4.jpg" style="width:228px;border:1px solid #CCC">
+					<img src="images/ads5.jpg" style="width:228px;border:1px solid #CCC">
 					<div id="information" style="margin-top:14px;border-bottom:1px dotted #3A3939;border-top:1px dotted #3A3939;padding-bottom:8px;">
 						<h2>INFORMATION</h2>
 						<table style="width:100%;border-collapse: collapse;">
@@ -1737,10 +1870,10 @@
 							</tr>
 						</table>
 					</div>
-				</div>
-				<div style="clear:both;"></div>
 			</div>
 		</div>
+		<div style="clear:both;"></div>
+		
 		<div id="company-info" style="background-color: #efefef;padding-top:10px;margin-top:15px;">
 			<div class="container">
 				<div id="about-us" style="margin-bottom:14px;width:550px;float:left;">
