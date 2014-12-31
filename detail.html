@@ -847,11 +847,18 @@
 			#img_01 {
 			border:1px solid #CCC;
 			}
+			
+			#product-description {
+			font-size:12px;
+			margin-top:20px;
+			}
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.cslider.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 		<!--
 		<script src="js/jquery.cycle2.min.js"></script>
 		<script src="js/jquery.cycle2.carousel.min.js"></script>
@@ -866,7 +873,7 @@
 					bgincrement	: 0
 				});
 				
-				$("#img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
+				$("#img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', borderSize: '1', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
 				$("#img_01").bind("click", function(e) { var ez = $('#img_01').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false; }); 
 			
 				var valueElement = $('#value');
@@ -878,7 +885,8 @@
 				$('#plus').bind('click', {increment: 1}, incrementValue);
 
 				$('#minus').bind('click', {increment: -1}, incrementValue);
-
+				
+				$( "#product-description" ).tabs();
 			});
 		</script>
 	</head>
@@ -1138,6 +1146,48 @@
 				</div>
 				<div id="product-contactus" style="margin-top:30px;">
 					<a href="#" class="btn" style="padding-right:13px;">Contact Us</a>
+				</div>
+				
+				<div id="product-description">
+				  <ul>
+					<li><a href="#tabs-1">Product Description</a></li>
+					<li><a href="#tabs-2">Reviews</a></li>
+				  </ul>
+				  <div id="tabs-1">
+					<p>Wanna use your PSX controller to play PC games without waste extra money? Wanna find the easiest and fastest way to use your PS/PS2 Controller on your PC? Now, you get it! The worlds first support Real vibration PS &amp; ps2 USB Adaptor for the PC is available now, It supports Dual Player Games Win95/98/ME/2000/XP &amp; Real vibration &amp; even the most popular DDR dancing controller! Go to share it now!</p><p><strong>Features:</strong></p><p>1. Convert all the PSX controller to be used on PC.</p><p>2. Easy and convenient to use, simply hot-plug the C USB socket and install the driver, then it works perfectly.</p><p>3. Real vibration feedback function</p><p>4. Both Digital &amp; Analog modes are available.</p><p>5. Support all vibration types.</p><p>6. Compatible with Win98, Win98SE, WinME, Win2000&amp;the newly announced WinXP, together with the Direct X 7.0 a or above.</p><p>7. DDR dancing controller is compatible.</p><p>8. Build-in flashing signal indicator.<br>&nbsp;<br><strong>Item included:</strong><br>1* TWO PORT Cable</p>
+				  </div>
+				  <div id="tabs-2">
+					<div style="border-bottom: 1px dashed #CCCCCC;">
+						<p style="font-weight:bold;">wonderful gift for christmas! Review by Linda</p>
+						<p style="width:200px;height: 13px;
+background: url(images/breadcrub20140512.png);
+background-position: left -1500px;
+background-repeat: no-repeat;"></p>
+						<p>
+							Pros:The surface touches very soft and dressed body perfectly.So hot ,and so cute.Love it!
+						</p>
+						<p>	Cons: a exact size would be more perfect. </p>
+
+						<p>	Bottomline:nice item,and good price,highly recommended!</p>
+							<p>(Posted on 11/20/10)</p>
+						</p>
+					</div>
+					<div style="border-bottom: 1px dashed #CCCCCC;">
+						<p style="font-weight:bold;">wonderful gift for christmas! Review by Linda</p>
+						<p style="width:200px;height: 13px;
+background: url(images/breadcrub20140512.png);
+background-position: left -1500px;
+background-repeat: no-repeat;"></p>
+						<p>
+							Pros:The surface touches very soft and dressed body perfectly.So hot ,and so cute.Love it!
+						</p>
+						<p>	Cons: a exact size would be more perfect. </p>
+
+						<p>	Bottomline:nice item,and good price,highly recommended!</p>
+							<p>(Posted on 11/20/10)</p>
+						</p>
+					</div>
+				  </div>
 				</div>
 			</div>
 		</div>
