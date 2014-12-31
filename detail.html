@@ -869,6 +869,16 @@
 				$("#img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
 				$("#img_01").bind("click", function(e) { var ez = $('#img_01').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false; }); 
 			
+				var valueElement = $('#value');
+				function incrementValue(e){
+					valueElement.val(Math.max(parseInt(valueElement.val()) + e.data.increment, 0));
+					return false;
+				}
+
+				$('#plus').bind('click', {increment: 1}, incrementValue);
+
+				$('#minus').bind('click', {increment: -1}, incrementValue);
+
 			});
 		</script>
 	</head>
@@ -1098,6 +1108,36 @@
 					<a href="#" data-image="images/small/image4.png" data-zoom-image="images/large/image4.jpg"> 
 						<img id="img_09" src="images/thumb/image4.jpg" /> 
 					</a> 
+				</div>
+			</div>
+			<div style="width:523px;float:right;">
+				<div id="product-name" style="font-size:13px;font-weight:bold;">
+					USB TO PC Game Controller Adapter Converter For PS2
+				</div>
+				<div id="product-share" style="margin-top:10px;">
+					<img class="logo facebook-logo" onclick="affShareOnFacebook('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Facebook" src="http://skin.tomtop.com/skin/frontend/default-mongo/a033/css/magestore/images/p_facebook-color.png">
+					<img class="logo twitter-logo" onclick="affShareOnTwitter('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Twitter" src="http://skin.tomtop.com/skin/frontend/default-mongo/a033/css/magestore/images/p_tweet.png">
+					<img class="logo google-logo" onclick="affShareGooglePlus('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Google Plus" src="http://skin.tomtop.com/skin/frontend/default-mongo/a033/css/magestore/images/p_gplus-color.png">
+					<img src="http://skin.tomtop.com/skin/frontend/default-mongo/a033/css/magestore/images/p_pinterest.png">
+				</div>
+				<div id="product-sku" style="font-size:12px;margin-top:10px;">
+					SKU:GAME006
+				</div>
+				<div id="product-price" style="font-size:14px;font-weight:bold;color:#C20000;margin-top:10px;">
+					US $6.04
+				</div>
+				<div id="product-qty" style="font-size:13px;margin-top:10px;">
+					Qty: 
+					<button id="minus">-</button>
+					<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
+					<button id="plus">+</button>
+				</div>
+				<div id="product-addtocart" style="margin-top:30px;">
+					<a href="#" class="btn" style="padding-right:13px;">Add to Cart</a>
+					<a href="#" class="btn" style="padding-right:13px;">Add to Wishlist</a>
+				</div>
+				<div id="product-contactus" style="margin-top:30px;">
+					<a href="#" class="btn" style="padding-right:13px;">Contact Us</a>
 				</div>
 			</div>
 		</div>
