@@ -239,39 +239,102 @@
 			height:310px;
 			text-align:center;
 			}
-			@media (max-width: 480px) {
-			.cat-thumbnails ul.grid-nav li {
-			display: block;
-			margin: 0 0 5px;
-			}
-			.cat-thumbnails ul.grid-nav li a {
-			display: block;
-			}
-			.cat-thumbnails ul.rig {
-			margin-left: 0;
-			}
-			.cat-thumbnails ul.rig li {
-			width: 100% !important; /* over-ride all li styles */
-			margin: 0 0 20px;
-			}
-			}
+			
 			.cat-thumbnails {
 			width:715px;
+			margin-top:10px;
 			border-radius: 4px;
 			margin-bottom:10px;
 			}
-			.thumbnail-name {
+			
+			.related-thumbnails {
+			margin-top:10px;
+			 width:100%
+			}
+			
+			.related-thumbnails ul li {
+			display: inline-block;
+			padding: 10px;
+			background: #fff;
+			border: 1px solid #ddd;
+			font-size: 16px;
+			font-size: 1rem;
+			vertical-align: top;
+			box-sizing: border-box;
+			}
+			.related-thumbnails ul li img {
+			max-width: 100%;
+			height: auto;
+			margin: 0 0 10px;
+			}
+			.related-thumbnails ul.rig {
+			list-style: none;
+			font-size: 0px;
+			margin-left: -1%; /* should match li left margin */
+			}
+			.related-thumbnails ul.rig li {
+			display: inline-block;
+			padding: 10px;
+			margin: 0 0 1% 1%;
+			background: #fff;
+			border: 1px solid #ddd;
+			font-size: 16px;
+			font-size: 1rem;
+			vertical-align: top;
+			box-sizing: border-box;
+			}
+			.related-thumbnails ul.rig li img {
+			width: 100%;
+			height: auto;
+			margin: 0 0 10px;
+			}
+			.related-thumbnails ul.rig li h3 {
+			margin: 0 0 5px;
+			}
+			.related-thumbnails ul.rig li p {
+			font-size: 11px;
+			color: #999;
+			padding:0;
+			margin:0;
+			text-align:center;
+			}
+			.related-thumbnails ul.rig.columns-4 li {
+			width: 13.28%; /* this value + 2.5 should = 25% */
+			height:260px;
+			text-align:center;
+			}
+			.related-thumbnails ul.rig.columns-3 li {
+			width: 32.3%; /* this value + 2.5 should = 25% */
+			height:310px;
+			text-align:center;
+			}
+			
+			.cat-thumbnails .thumbnail-name {
 			color:#016CB3;font-size:12px;margin-bottom:10px;height:42px;
 			}
-			.thumbnail-name a {
+			.cat-thumbnails .thumbnail-name a {
 			text-decoration:none;
 			}
-			.thumbnail-name a:hover {
+			.cat-thumbnails .thumbnail-name a:hover {
 			text-decoration:underline;
 			}
-			.thumbnail-price {
+			.cat-thumbnails .thumbnail-price {
 			color:#C20000;font-size:14px;font-weight:bold;margin-bottom:6px;
 			}
+			
+			.related-thumbnails .thumbnail-name {
+			color:#016CB3;font-size:12px;margin-bottom:30px;height:42px;
+			}
+			.related-thumbnails .thumbnail-name a {
+			text-decoration:none;
+			}
+			.related-thumbnails .thumbnail-name a:hover {
+			text-decoration:underline;
+			}
+			.related-thumbnails .thumbnail-price {
+			color:#C20000;font-size:14px;font-weight:bold;margin-bottom:6px;
+			}
+			
 			#category-list {
 			float:left;
 			padding-top:10px;
@@ -1236,7 +1299,7 @@ background-repeat: no-repeat;"></p>
 		</div>
 		<div style="clear:both;"></div>
 		<div class="container">
-			<div class="cat-thumbnails" style="margin-top:10px;width:100%">
+			<div class="related-thumbnails">
 				<div class="cat-thumbnail-title"><a href="">Related Products</a></div>
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
@@ -1248,9 +1311,9 @@ background-repeat: no-repeat;"></p>
 							<img src="images/freeshipping.jpg" style="width:120px;">
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
 									<div class="thumbnail-overlay-price">$4.51</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
@@ -1263,9 +1326,9 @@ background-repeat: no-repeat;"></p>
 							<div class="thumbnail-price">US$40.23</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
 									<div class="thumbnail-overlay-price">$40.23</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
@@ -1279,9 +1342,9 @@ background-repeat: no-repeat;"></p>
 							<img src="images/freeshipping.jpg" style="width:120px;">
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
 									<div class="thumbnail-overlay-price">$68.51</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
@@ -1294,9 +1357,9 @@ background-repeat: no-repeat;"></p>
 							<div class="thumbnail-price">US$14.51</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
 									<div class="thumbnail-overlay-price">$14.51</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
@@ -1309,9 +1372,9 @@ background-repeat: no-repeat;"></p>
 							<div class="thumbnail-price">US$2.51</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
 									<div class="thumbnail-overlay-price">$2.51</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
@@ -1325,9 +1388,9 @@ background-repeat: no-repeat;"></p>
 							<img src="images/freeshipping.jpg" style="width:120px;">
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
 									<div class="thumbnail-overlay-price">$57.51</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
@@ -1341,9 +1404,9 @@ background-repeat: no-repeat;"></p>
 							<img src="images/freeshipping.jpg" style="width:120px;">
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
+									<div class="thumbnail-overlay-name" style="margin-top:10px;width:100%"><a href="" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
 									<div class="thumbnail-overlay-price">$57.51</div>
-									<div class="thumbnail-rating"></div>
+									<div class="thumbnail-rating" style="background-position: 32px -1512px;"></div>
 									<div class="thumbnail-review"><a href="">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="">In Home Living</a></div>
 									<div class="thumbnail-cart"><a href="#" class="btn" style="padding-right:13px;">Add to cart</a></div>
