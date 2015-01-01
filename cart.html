@@ -1123,6 +1123,16 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 			width:250px;
 			float:right;
 			}
+			
+			.single_field select {
+			background: #F0F0E9;
+border: 0;
+color: #696763;
+padding: 5px;
+width: 100%;
+border-radius: 0;
+resize: none;
+			}
 			</style>
 		
 			<div id="cart-detail">
@@ -1221,13 +1231,54 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 			<div id="shipping-estimate">
 				<h2>ESTIMATE SHIPPING AND TAX</h2>
 				<p>Enter your destination to get a shipping estimate.</p>
+				<ul class="user_info">
+					<li class="single_field">
+						<label>Country:</label>
+						<select>
+							<option>United States</option>
+							<option>Bangladesh</option>
+							<option>UK</option>
+							<option>India</option>
+							<option>Pakistan</option>
+							<option>Ucrane</option>
+							<option>Canada</option>
+							<option>Dubai</option>
+						</select>
+						
+					</li>
+					<li class="single_field">
+						<label>Region / State:</label>
+						<select>
+							<option>Select</option>
+							<option>Dhaka</option>
+							<option>London</option>
+							<option>Dillih</option>
+							<option>Lahore</option>
+							<option>Alaska</option>
+							<option>Canada</option>
+							<option>Dubai</option>
+						</select>
+					
+					</li>
+					<li class="single_field zip-field">
+						<label>Zip Code:</label>
+						<input type="text">
+					</li>
+				</ul>
 			</div>
 			<div id="coupon">
-				<h2>Checkout</h2>
-				<p>PayPal securely processes payments for TomTop</p>
-				<img src="images/checkout_paypal.gif" />
+				<h2>DISCOUNT CODES</h2>
+				<p>Enter your coupon code if you have one.</p>
+				<input class="input-text left" id="coupon_code" name="coupon_code" value="">
+				<button class="form-button-alt" type="button" value="Apply Coupon"><span>Apply Coupon</span></button>
 			</div>
 			<div id="checkout">
+				<ul>
+					<li>Cart Sub Total <span>$59</span></li>
+					<li>Eco Tax <span>$2</span></li>
+					<li>Shipping Cost <span>Free</span></li>
+					<li>Total <span>$61</span></li>
+				</ul>
 				<h2>Checkout</h2>
 				<p>PayPal securely processes payments for TomTop</p>
 				<img src="images/checkout_paypal.gif" />
