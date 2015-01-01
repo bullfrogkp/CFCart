@@ -1092,6 +1092,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 			<style>
 			#cart-detail {
 				width:100%;
+				font-size:12px;
 			}
 			#cart-detail table {
 			width:100%;
@@ -1111,28 +1112,47 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 			
 			
 			#shipping-estimate {
-			width:300px;
+			width:266px;
+			margin-top:4px;
 			float:left;
 			border: 1px solid#E6E4DF;
+			font-size:12px;
+			padding:15px;
 			}
 			#coupon {
-			width:300px;
+			width:276px;
 			float:left;
-			margin-left:20px;
+			margin-top:4px;
+			margin-left:4px;
 			border: 1px solid#E6E4DF;
+			font-size:12px;
+			padding:15px;
 			}
 			#checkout {
-			width:250px;
+			width:314px;
+			margin-top:4px;
 			float:right;
 			border: 1px solid#E6E4DF;
+			font-size:12px;
+			padding:15px;
 			}
 			
-			.single_field select {
+			.single_field select  {
 			background: #F0F0E9;
 border: 0;
 color: #696763;
 padding: 5px;
-width: 100%;
+width: 266px;
+border-radius: 0;
+resize: none;
+			}
+			
+			.single_field input[type=text]  {
+			background: #F0F0E9;
+border: 0;
+color: #696763;
+padding: 5px;
+width: 256px;
 border-radius: 0;
 resize: none;
 			}
@@ -1141,7 +1161,7 @@ resize: none;
 			list-style-type: none;
 background: #E6E4DF;
 color: #696763;
-margin-top: 10px;
+margin-bottom: 10px;
 padding: 7px 20px;
 }
 
@@ -1150,6 +1170,11 @@ float: right;
 }
 #shipping-estimate ul li {
 			list-style-type: none;}
+			
+			.single_field .label {
+			margin:10px 0 6px 0;
+			}
+			
 			</style>
 		
 			<div id="cart-detail">
@@ -1246,11 +1271,11 @@ float: right;
 			</div>
 			
 			<div id="shipping-estimate">
-				<h2>ESTIMATE SHIPPING AND TAX</h2>
+				<div style="font-weight:bold;">Estimate Shipping and Tax</div>
 				<p>Enter your destination to get a shipping estimate.</p>
 				<ul class="user_info">
 					<li class="single_field">
-						<label>Country:</label>
+						<div class="label">Country:</div>
 						<select>
 							<option>United States</option>
 							<option>Bangladesh</option>
@@ -1264,7 +1289,7 @@ float: right;
 						
 					</li>
 					<li class="single_field">
-						<label>Region / State:</label>
+						<div class="label">State / Province:</div>
 						<select>
 							<option>Select</option>
 							<option>Dhaka</option>
@@ -1277,17 +1302,20 @@ float: right;
 						</select>
 					
 					</li>
-					<li class="single_field zip-field">
-						<label>Zip Code:</label>
+					<li class="single_field">
+						<div class="label">Zip/Postal Code:</div>
 						<input type="text">
+					</li>
+					<li class="single_field">
+						<input type="button" value="Get Estimate" class="btn-signup" style="margin-top:10px;font-size:12px;">
 					</li>
 				</ul>
 			</div>
 			<div id="coupon">
-				<h2>DISCOUNT CODES</h2>
+				<div style="font-weight:bold;">Discount Codes</div>
 				<p>Enter your coupon code if you have one.</p>
-				<input class="input-text left" id="coupon_code" name="coupon_code" value="">
-				<button class="form-button-alt" type="button" value="Apply Coupon"><span>Apply Coupon</span></button>
+				<input class="input-text left" id="coupon_code" name="coupon_code" value="" style="width:275px">
+				<div style="margin-top:10px;"><button class="btn-signup" type="button" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button></div>
 			</div>
 			<div id="checkout">
 				<ul>
@@ -1296,9 +1324,8 @@ float: right;
 					<li>Shipping Cost <span>Free</span></li>
 					<li>Total <span>$61</span></li>
 				</ul>
-				<h2>Checkout</h2>
-				<p>PayPal securely processes payments for TomTop</p>
-				<img src="images/checkout_paypal.gif" />
+				<p style="float:right;font-weight:bold;">PayPal securely processes payments for TomTop</p>
+				<img src="images/checkout_paypal.gif" style="float:right;" />
 			</div>
 		</div>
 		<div style="clear:both;"></div>
