@@ -904,6 +904,112 @@ border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de',endColorstr='#ff2f96b4',GradientType=0);
 filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
+			#cart-detail {
+				width:100%;
+				font-size:12px;
+				margin-top:10px;
+			}
+			#cart-detail table {
+			width:100%;
+			border-collapse: collapse;
+			border-spacing: 0;
+			border: 1px solid #E6E4DF;
+			}
+			
+			#cart-detail table thead tr {
+			background: #FE980F;
+			color: #fff;
+			font-weight:bold;
+			font-size:13px;
+			}
+			
+			#cart-detail table tbody tr {
+			border-bottom: 1px solid#E6E4DF;
+			}
+			
+			#cart-detail table tr td {
+			padding:10px;
+			}
+			
+			
+			#shipping-estimate {
+			width:266px;
+			margin-top:4px;
+			float:left;
+			border: 1px solid#E6E4DF;
+			font-size:12px;
+			padding:15px;
+			height:253px;
+			}
+			#coupon {
+			width:276px;
+			float:left;
+			margin-top:4px;
+			margin-left:4px;
+			border: 1px solid#E6E4DF;
+			font-size:12px;
+			padding:15px;
+			height:253px;
+			}
+			#checkout {
+			width:314px;
+			margin-top:4px;
+			float:right;
+			border: 1px solid#E6E4DF;
+			font-size:12px;
+			padding:15px;
+			height:253px;
+			}
+			
+			.single_field select  {
+			background: #F0F0E9;
+border: 0;
+color: #696763;
+padding: 5px;
+width: 266px;
+border-radius: 0;
+resize: none;
+			}
+			
+			.single_field input[type=text]  {
+			background: #F0F0E9;
+border: 0;
+color: #696763;
+padding: 5px;
+width: 256px;
+border-radius: 0;
+resize: none;
+			}
+			
+			#coupon input[type=text]  {
+			background: #F0F0E9;
+border: 0;
+color: #696763;
+padding: 5px;
+width: 256px;
+border-radius: 0;
+resize: none;
+			}
+			
+			#checkout ul li {
+			list-style-type: none;
+background: #E6E4DF;
+color: #696763;
+margin-bottom: 10px;
+padding: 7px 20px;
+}
+
+#checkout span {
+float: right;
+}
+#shipping-estimate ul li {
+			list-style-type: none;}
+			
+			.single_field .label {
+			margin:10px 0 6px 0;
+			}
+			
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
@@ -1088,113 +1194,33 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 			</div>
 		</div>
 		<div id="content-top" style="padding-top:2px;" class="container">
-		
-			<style>
-			#cart-detail {
-				width:100%;
-				font-size:12px;
-			}
-			#cart-detail table {
-			width:100%;
-			border-collapse: collapse;
-			border-spacing: 0;
-			border: 1px solid #E6E4DF;
-			}
-			
-			#cart-detail table thead tr {
-			background: #FE980F;
-			color: #fff;
-			}
-			
-			#cart-detail table tbody tr {
-			border-bottom: 1px solid#E6E4DF;
-			}
-			
-			
-			#shipping-estimate {
-			width:266px;
-			margin-top:4px;
-			float:left;
-			border: 1px solid#E6E4DF;
-			font-size:12px;
-			padding:15px;
-			height:253px;
-			}
-			#coupon {
-			width:276px;
-			float:left;
-			margin-top:4px;
-			margin-left:4px;
-			border: 1px solid#E6E4DF;
-			font-size:12px;
-			padding:15px;
-			height:253px;
-			}
-			#checkout {
-			width:314px;
-			margin-top:4px;
-			float:right;
-			border: 1px solid#E6E4DF;
-			font-size:12px;
-			padding:15px;
-			height:253px;
-			}
-			
-			.single_field select  {
-			background: #F0F0E9;
-border: 0;
-color: #696763;
-padding: 5px;
-width: 266px;
-border-radius: 0;
-resize: none;
-			}
-			
-			.single_field input[type=text]  {
-			background: #F0F0E9;
-border: 0;
-color: #696763;
-padding: 5px;
-width: 256px;
-border-radius: 0;
-resize: none;
-			}
-			
-			#coupon input[type=text]  {
-			background: #F0F0E9;
-border: 0;
-color: #696763;
-padding: 5px;
-width: 256px;
-border-radius: 0;
-resize: none;
-			}
-			
-			#checkout ul li {
-			list-style-type: none;
-background: #E6E4DF;
-color: #696763;
-margin-bottom: 10px;
-padding: 7px 20px;
-}
-
-#checkout span {
-float: right;
-}
-#shipping-estimate ul li {
-			list-style-type: none;}
-			
-			.single_field .label {
-			margin:10px 0 6px 0;
-			}
-			
-			</style>
+			<div id="breadcrumb" style="font-size:12px;margin-top:8px;margin-bottom:13px;">
+				<div style="display: inline-block;
+					width: 14px;
+					height: 14px;
+					margin-top: 1px;
+					vertical-align: text-top;
+					background-image: url(images/glyphicons-halflings.png);
+					background-position: 0 -24px;
+					background-repeat: no-repeat;">
+				</div>
+				<div style="display: inline-block;
+					width: 14px;
+					height: 14px;
+					margin-top: 1px;
+					vertical-align: text-top;
+					background-image: url(images/next.png);
+					background-position: 3px 1px;
+					background-repeat: no-repeat;">
+				</div>
+				<span style="vertical-align:middle">Shopping Cart</span> 
+			</div>
 		
 			<div id="cart-detail">
 				<table>
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td class="image">Product</td>
 							<td class="description"></td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
@@ -1209,23 +1235,23 @@ float: right;
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<p>SKU: 1089772</p>
 							</td>
 							<td class="cart_price">
 								<p>$59</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<button id="minus">-</button>
+									<input id="value" type="text" value="2" style="width:30px;text-align:center;" size="2" />
+									<button id="plus">+</button>
 								</div>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<img src="images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 
@@ -1235,23 +1261,23 @@ float: right;
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<p>SKU: 1089772</p>
 							</td>
 							<td class="cart_price">
 								<p>$59</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<button id="minus">-</button>
+									<input id="value" type="text" value="1" style="width:30px;text-align:center;" size="2" />
+									<button id="plus">+</button>
 								</div>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<img src="images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 						<tr>
@@ -1260,23 +1286,23 @@ float: right;
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<p>SKU: 1089772</p>
 							</td>
 							<td class="cart_price">
 								<p>$59</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<button id="minus">-</button>
+									<input id="value" type="text" value="0" style="width:30px;text-align:center;" size="2" />
+									<button id="plus">+</button>
 								</div>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<img src="images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 					</tbody>
