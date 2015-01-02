@@ -1213,85 +1213,183 @@ float: right;
 					background-position: 3px 1px;
 					background-repeat: no-repeat;">
 				</div>
-				<span style="vertical-align:middle">Checkout</span> 
-				<div style="display: inline-block;
-					width: 14px;
-					height: 14px;
-					margin-top: 1px;
-					vertical-align: text-top;
-					background-image: url(images/next.png);
-					background-position: 3px 1px;
-					background-repeat: no-repeat;">
-				</div>
-				<span style="vertical-align:middle">Shipping & Billing Addresses</span> 
+				<span style="vertical-align:middle">Order Confirmation</span> 
 			</div>
 			<style>
-			#shipping-info {
+			#order-confirmation {
 			font-size:12px;
 			}
 			</style>
-			<div id="shipping-info" class="single_field">
-				<div id="checkout-steps">
-					Addresses
-					Shipping
-					Confirmation
+			<div id="order-confirmation" class="single_field" style="margin-top:20px;">
+				<div id="shipping-addresses" style="width:33%;float:left;">
+					<table>
+						<tr>
+						<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Address</th>
+						</tr>
+							<tbody><tr>
+								<td class="first-col">First Name:</td>
+								<td>fff</td>
+							</tr>
+							
+							<tr>
+								<td class="first-col">Last Name:</td>
+								<td>ffff</td>
+							</tr>
+							
+							<tr>
+								<td class="first-col">Phnoe:</td>
+								<td>6476666666</td>
+							</tr>
+							
+							<tr>
+								<td style="padding-top:3px;padding-bottom:3px;" class="first-col">Street:</td>
+								<td style="padding-top:3px;padding-bottom:3px;">6087A yonge st.</td>
+							</tr>
+
+							<tr>
+								<td class="first-col">City:</td>
+								<td>north york</td>
+							</tr>
+
+							<tr>
+								<td class="first-col">Province:</td>
+								<td>Ontario</td>
+							</tr>
+							<tr>
+								<td class="first-col">Postal Code:</td>
+								<td>m2m 3w2</td>
+							</tr>
+							<tr>
+								<td class="first-col">Country:</td>
+								<td>Canada</td>
+							</tr>
+							
+						</tbody>
+					</table>
 				</div>
-				
-				<table>
-					<tbody><tr>
-						<th id="shipping-header" colspan="2" align="left">
-							<div style="padding-bottom:30px;line-height:18px;">
-							<img src="http://www.soofanphotography.com/images/ups.jpg" width="38" style="float:left;margin-right:15px;">
-							The shipping cost is calculate by using the UPS API. UPS shipping will allow customers to get up-to-the-minute access to UPS shipping services while checking out orders, based on the cart and location.
-							</div>
-							<div class="clear"></div>
-						</th>
-					</tr>
-					<tr>
-						<th id="shipping-header" colspan="2" align="left">
-							<h1 style="float:left;height:30px;">Choose Shipping Method</h1>
-							<div align="center" class="validation-falied" style="margin-left:20px;float:left;padding:3px 4px 3px 4px;width:240px;color:white;display:none;background-color:red;font-size:12px;font-weight:bold;" id="shipping-validation">Please select your shipping method</div>
-							<div style="clear:both;height:10px;"></div>	
-						</th>
-					</tr>
-					
-					
+				<div id="billing-addresses" style="width:33%;float:left;">
+					<table>
 						<tr>
-							<td style="padding-top:4px;width:20px;">
-								<input name="shipping_method_id" type="radio" value="1" id="shipping_method_id_1" class="shipping-method-radio"> 
-							</td>
-							<td>
-								<strong>UPS Standard</strong>
-							</td>
+							<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Address</th>
 						</tr>
-						<tr>
-							<td></td>
+							<tbody><tr>
+								<td class="first-col">First Name:</td>
+								<td>fff</td>
+							</tr>
 							
-								<td style="padding-bottom:10px;line-height:18px;">
-							Rely on guaranteed economical ground delivery for your less-urgent shipments.</td>
-						</tr>
-					
-						<tr>
-							<td style="padding-top:4px;width:20px;">
-								<input name="shipping_method_id" type="radio" value="2" id="shipping_method_id_2" class="shipping-method-radio"> 
-							</td>
-							<td>
-								<strong>UPS Express</strong>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
+							<tr>
+								<td class="first-col">Last Name:</td>
+								<td>ffff</td>
+							</tr>
 							
-								<td style="line-height:18px;">
-							Take advantage of this faster one-to-three day shipping service with guaranteed morning delivery times throughout the world</td>
+							<tr>
+								<td class="first-col">Phnoe:</td>
+								<td>6476666666</td>
+							</tr>
+							
+							<tr>
+								<td style="padding-top:3px;padding-bottom:3px;" class="first-col">Street:</td>
+								<td style="padding-top:3px;padding-bottom:3px;">6087A yonge st.</td>
+							</tr>
+
+							<tr>
+								<td class="first-col">City:</td>
+								<td>north york</td>
+							</tr>
+
+							<tr>
+								<td class="first-col">Province:</td>
+								<td>Ontario</td>
+							</tr>
+							<tr>
+								<td class="first-col">Postal Code:</td>
+								<td>m2m 3w2</td>
+							</tr>
+							<tr>
+								<td class="first-col">Country:</td>
+								<td>Canada</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<div id="shipping-info" style="width:33%;float:right;">
+					<table>
+						<tr>
+						<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Method</th>
+					</tr>
+						<tbody><tr>
+							<td>UPS Standard</td>
 						</tr>
-					
-						
-					</tbody>
-				</table>
-				<input type="button" value="Get Estimate" class="btn-signup" style="margin-top:10px;font-size:12px;">
+						<tr>
+							<td style="line-height:20px;">Rely on guaranteed economical ground delivery for your less-urgent shipments.</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="cart-detail" style="width:60%;float:left;margin-top:30px;">
+					<table>
+						<thead>
+							<tr class="cart_menu">
+								<td class="image">Product</td>
+								<td class="quantity">Quantity</td>
+								<td class="total">Total</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="cart_description">
+									<h4><a href="">Colorblock Scuba</a></h4>
+									<p>SKU: 1089772</p>
+								</td>
+								<td class="cart_price">
+									<p>5</p>
+								</td>
+								<td class="cart_total">
+									<p class="cart_total_price">$59</p>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="cart_description">
+									<h4><a href="">Colorblock Scuba</a></h4>
+									<p>SKU: 1089772</p>
+								</td>
+								<td class="cart_price">
+									<p>5</p>
+								</td>
+								<td class="cart_total">
+									<p class="cart_total_price">$59</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="cart_description">
+									<h4><a href="">Colorblock Scuba</a></h4>
+									<p>SKU: 1089772</p>
+								</td>
+								<td class="cart_price">
+									<p>5</p>
+								</td>
+								<td class="cart_total">
+									<p class="cart_total_price">$59</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="checkout" style="height:auto;margin-top:30px;">
+					<ul>
+						<li>Cart Sub Total <span>$59</span></li>
+						<li>Eco Tax <span>$2</span></li>
+						<li>Shipping Cost <span>Free</span></li>
+						<li>Total <span>$61</span></li>
+					</ul>
+				</div>
 			</div>
-		
+			<div style="clear:both;"></div>
+			<div  style="border-top:1px solid #000;text-align:right;margin-top:20px;">
+				<input type="button" value="Place Order" class="btn-signup" style="margin-top:10px;font-size:12px;">
+			</div>
 		</div>
 		<div style="clear:both;"></div>
 		<div id="company-info" style="background-color: #efefef;padding-top:10px;margin-top:15px;">
