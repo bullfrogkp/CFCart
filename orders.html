@@ -1012,6 +1012,123 @@ float: right;
 			#order-confirmation {
 			font-size:12px;
 			}
+			
+			#myaccount-sidenav a {
+			text-decoration:none;
+			color:#000;
+			}
+			
+			#myaccount-sidenav a:hover {
+			text-decoration:underline;
+			}
+			
+			#myaccount-content {
+			width:750px;float:right;font-size:12px;
+			line-height:18px;
+			}
+			#myaccount-content a {
+			text-decoration:none;
+			color:#000;
+			}
+			
+			#myaccount-content a:hover {
+			text-decoration:underline;
+			}
+			
+			.myaccount-table {
+	margin:0px;padding:0px;
+	width:100%;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.myaccount-table table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.myaccount-table tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.myaccount-table table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.myaccount-table table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.myaccount-table tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.myaccount-table tr:hover td{
+	
+}
+.myaccount-table tr:nth-child(odd){ background-color:#e5e5e5; }
+.myaccount-table tr:nth-child(even)    { background-color:#ffffff; }.myaccount-table td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:6px;
+	font-size:11px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.myaccount-table tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.myaccount-table tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.myaccount-table tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.myaccount-table tr:first-child td{
+		background:-o-linear-gradient(bottom, #dddddd 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dddddd), color-stop(1, #b2b2b2) );
+	background:-moz-linear-gradient( center top, #dddddd 5%, #b2b2b2 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#dddddd", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#dddddd,b2b2b2);
+
+	background-color:#dddddd;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:11px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#000000;
+}
+.myaccount-table tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #dddddd 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dddddd), color-stop(1, #b2b2b2) );
+	background:-moz-linear-gradient( center top, #dddddd 5%, #b2b2b2 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#dddddd", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#dddddd,b2b2b2);
+
+	background-color:#dddddd;
+}
+.myaccount-table tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.myaccount-table tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
 		</style>
 		<link rel="stylesheet" type="text/css" href="css/style2.css" />
 		<script type="text/javascript" src="js/modernizr.custom.28468.js"></script>
@@ -1227,16 +1344,6 @@ float: right;
 				</div>
 				<span style="vertical-align:middle">Dashboard</span> 
 			</div>
-			<style>
-			#myaccount-sidenav a {
-			text-decoration:none;
-			color:#000;
-			}
-			
-			#myaccount-sidenav a:hover {
-			text-decoration:underline;
-			}
-			</style>
 			<div id="myaccount-sidenav" style="width:200px;float:left;">
 				<div class="recommendation" style="width:188px;">
 					My Account
@@ -1270,44 +1377,175 @@ float: right;
 					</ul>
 				</div>
 			</div>
-			<div style="width:750px;float:right;font-size:12px;">
-				<div style="line-height:18px;">
-				<strong>Hello, Kevin !</strong>
-<p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.
-Tomtop forums is online now: http://www.tomtop.com/forums/</p>
-				</div>
-				<div style="background-color:#F2F2F2;padding:20px;">
-					<ul style="margin-left:-0.5%;list-style-type:none;">
-						<li style="width:29%;float:left;margin-left:0.5%;padding-right:20px;height:171px;">
-							<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid #CCC;line-height:20px;">
-								Contact Information
-								<button style="float:right;font-size:12px;">Edit</button>
-							</div>
-							
-							<p>Name: Kevin Pan</p>
-							<p>Email: pqhitpan@gmail.com</p>
-							<p>You are currently subscribed to 'General Subscription'.</p>
-							<p>Change Password</p>
-						</li>
-						<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid #CCC;height:171px;">
-							
-							<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid #CCC;line-height:20px;">
-								Primary Billing Address
-								<button style="float:right;font-size:12px;">Edit</button>
-							</div>
-							<p>366 Adelaide Street West, Suite 701</p>
-							<p>Toronto, ON M5V 1R9</p>
-						</li>
-						<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:171px;border-left:1px solid #CCC;">
-							
-							<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid #CCC;line-height:20px;">
-								Primary Shipping Address
-								<button style="float:right;font-size:12px;">Edit</button>
-							</div>
-							<p>366 Adelaide Street West, Suite 701</p>
-							<p>Toronto, ON M5V 1R9</p>
-						</li>
-					</ul>
+			<div id="myaccount-content">
+				<strong>My Orders</strong>
+				<div style="margin-top:20px;">
+					<div class="myaccount-table" >
+						<table >
+							<tr>
+								<td>
+									Order No.
+								</td>
+								<td >
+										Email
+								</td>
+								<td>
+										Name
+								</td>
+								<td >
+									Total	
+								</td>
+								<td >
+										Create Datetime	
+								</td>
+								<td >
+										Status	
+								</td>
+								<td >
+										Invoice
+								</td>
+							</tr>
+							<tr>
+								<td >
+									OR20141227227 
+								</td>
+								<td>
+									michelle@aaa.com
+								</td>
+								<td>
+									Michell
+								</td>
+								<td>
+									700
+								</td>
+								<td>
+									2014 Dec 27 02:14:32
+								</td>
+								<td>
+									Shipped
+								</td>
+								<td>
+									<a href="">Invoice</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									OR20141227227 
+								</td>
+								<td>
+									michelle@aaa.com
+								</td>
+								<td>
+									Michell
+								</td>
+								<td>
+									700
+								</td>
+								<td>
+									2014 Dec 27 02:14:32
+								</td>
+								<td>
+									Shipped
+								</td>
+								<td>
+									<a href="">Invoice</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									OR20141227227 
+								</td>
+								<td>
+									michelle@aaa.com
+								</td>
+								<td>
+									Michell
+								</td>
+								<td>
+									700
+								</td>
+								<td>
+									2014 Dec 27 02:14:32
+								</td>
+								<td>
+									Shipped
+								</td>
+								<td>
+									<a href="">Invoice</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									OR20141227227 
+								</td>
+								<td>
+									michelle@aaa.com
+								</td>
+								<td>
+									Michell
+								</td>
+								<td>
+									700
+								</td>
+								<td>
+									2014 Dec 27 02:14:32
+								</td>
+								<td>
+									Shipped
+								</td>
+								<td>
+									<a href="">Invoice</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									OR20141227227 
+								</td>
+								<td>
+									michelle@aaa.com
+								</td>
+								<td>
+									Michell
+								</td>
+								<td>
+									700
+								</td>
+								<td>
+									2014 Dec 27 02:14:32
+								</td>
+								<td>
+									Shipped
+								</td>
+								<td>
+									<a href="">Invoice</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									OR20141227227 
+								</td>
+								<td>
+									michelle@aaa.com
+								</td>
+								<td>
+									Michell
+								</td>
+								<td>
+									700
+								</td>
+								<td>
+									2014 Dec 27 02:14:32
+								</td>
+								<td>
+									Shipped
+								</td>
+								<td>
+									<a href="">Invoice</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
 					<div style="clear:both;"></div>
 				</div>
 			</div>
