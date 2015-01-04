@@ -5,11 +5,11 @@
 	<title>China Wholesale</title>
 	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style2.css" />
 	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style1.css" />
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	<script type="text/javascript" src="#SESSION.absolute_url_theme##SESSION.absolute_url_theme#js/modernizr.custom.28468.js"></script>
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="#SESSION.absolute_url_theme##SESSION.absolute_url_theme#js/jquery.cslider.js"></script>
-	<script src="#SESSION.absolute_url_theme#//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/jquery-ui.css">
+	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.min.js"></script>
+	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.cslider.js"></script>
+	<script src="#SESSION.absolute_url_theme#js/jquery-ui.js"></script>
 	<script src='#SESSION.absolute_url_theme#js/jquery.elevatezoom.js'></script>
 	<script type="text/javascript">
 		$(function() {
@@ -103,10 +103,10 @@
 				<option value="0">Test Equipment &amp; Tools</option>
 			</select>
 			<input id="search-text" type="text" placeholder="Search..." />
-			<img src="#SESSION.absolute_url_theme#images/search-img-up.png" style="height:28px;margin-top:1px;" />
+			<img id="search-img" src="#SESSION.absolute_url_theme#images/search-img-up.png" />
 		</div>
 	</div>
-	<div style="border-top:1px solid ##3A3939;border-bottom:1px solid ##3A3939;">
+	<div id="nav-wrapper">
 		<div id="nav">
 			<div class="container">
 				<ul>
@@ -168,13 +168,11 @@
 						Contact Us
 					</li>
 				</ul>
-				<div style="float:right;margin-top:5px;padding-right:8px;z-index:30;position:relative;">
-				</div>
 			</div>
 		</div>
 	</div>
-	<div id="content-top" style="padding-top:2px;" class="container">
-		<div id="breadcrumb" style="font-size:12px;margin-top:8px;margin-bottom:13px;">
+	<div id="content-top" class="container">
+		<div id="breadcrumb">
 			<div class="breadcrumb-home-icon">
 			</div>
 			<div class="breadcrumb-arrow-icon">
@@ -391,9 +389,9 @@
 		</div>
 	</div>
 	<div style="clear:both;"></div>
-	<div id="company-info" style="background-color: ##efefef;padding-top:10px;margin-top:15px;">
+	<div id="company-info">
 		<div class="container">
-			<div id="about-us" style="margin-bottom:14px;width:550px;float:left;">
+			<div id="about-us">
 				<h2>About Us</h2>
 				<p style="font-size:12px;line-height:18px;margin:0;padding:0;">
 					As a new and growing company in Canada, TOMTOP is dedicated to be one of the best supplier of high quality products. We have our own manufactory in China with more than 15-year history and our company goal is to have the larger selection of photographic supplies around at the best prices you will find anywhere. 
