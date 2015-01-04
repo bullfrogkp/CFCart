@@ -20,7 +20,7 @@
                 <cfset THIS[ "$Config" ].ormenabled = "true" />
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
-                <cfset THIS[ "$Config" ].ormsettings.cfclocation = "/CFCartNew/core/db/" />
+                <cfset THIS[ "$Config" ].ormsettings.cfclocation = "/cfcart/core/db/" />
                 <cfset THIS[ "$Config" ].datasource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionmanagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
@@ -33,7 +33,7 @@
 				<cfset THIS[ "$Config" ].env.email_info = "info@#THIS[ "$Config" ].env.domain#">
 				
 				<!--- customized local vars --->
-				<cfset var folder_name = "CFCartNew" />
+				<cfset var folder_name = "cfcart" />
 				<cfset THIS[ "$Config" ].env.url_root = "127.0.0.1:8500">	
 				
 				<!--- absolute url --->
@@ -120,6 +120,7 @@
 		<!--- add code for only admin can do it --->
 		<cfif StructKeyExists(URL,"resetappvars")>
 			<cfset StructAppend(APPLICATION, Config(reload = true).env,true) />
+			<cfset _setSessionTheme() />
 		</cfif>
 		
 		<!--- exclude ajax request --->
