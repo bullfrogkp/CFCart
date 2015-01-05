@@ -1,12 +1,9 @@
 ﻿<cfoutput>
 <div id="breadcrumb">
-	<div class="breadcrumb-home-icon">
-	</div>
-	<div class="breadcrumb-arrow-icon">
-	</div>
+	<div class="breadcrumb-home-icon"></div>
+	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">My Account</span> 
-	<div class="breadcrumb-arrow-icon">
-	</div>
+	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">Dashboard</span> 
 </div>
 <div id="myaccount-sidenav">
