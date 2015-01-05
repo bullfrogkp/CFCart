@@ -1222,3 +1222,11 @@ margin-bottom:14px;width:550px;float:left;
 #order-confirmation {
 			font-size:12px;
 			}
+#myaccount-sidenav a {
+			text-decoration:none;
+			color:#000;
+			}
+			
+			#myaccount-sidenav a:hover {
+			text-decoration:underline;
+			}
