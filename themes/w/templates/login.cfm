@@ -1,37 +1,93 @@
 ﻿<cfoutput>
-	<section id="form"><!--form-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
-						<form action="##">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>
-							<button type="submit" class="btn btn-default">Login</button>
-						</form>
-					</div><!--/login form-->
-				</div>
-				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
-				</div>
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="##">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
-					</div><!--/sign up form-->
-				</div>
-			</div>
-		</div>
-	</section><!--/form-->
-</cfoutput>	
+<div id="breadcrumb">
+	<div class="breadcrumb-home-icon"></div>
+	<div class="breadcrumb-arrow-icon"></div>
+	<span style="vertical-align:middle">Login / Register</span> 
+</div>
+				
 	
+			
+			<div id="login-wrapper">
+				<div id="login-form"><!--login form-->
+					<form action="##">
+						<h2>Login to your account</h2>
+						<table>
+							<tr>
+								<td colspan="2">
+									<input type="text" placeholder="Name">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="email" placeholder="Email Address">
+								</td>
+							</tr>
+							<tr>
+								<td style="width:20px;">
+									<input type="checkbox" class="checkbox">
+								</td>
+								<td style="font-size: 12px;">
+									<div style="margin-left:-40px">Keep me signed in</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10px;">
+									<button type="submit" class="btn-signup">Login</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div id="or" style="font-size:14px;text-align:center;line-height:60px;float:left;margin:50px 50px 0 66px;width: 60px;
+    height: 60px;
+   border: 1px solid ##bbb;
+	border-radius: 50%;-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+color: ##fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: ##49afcd;
+background-image: -moz-linear-gradient(top,##5bc0de,##2f96b4);
+background-image: -webkit-gradient(linear,0 0,0 100%,from(##5bc0de),to(##2f96b4));
+background-image: -webkit-linear-gradient(top,##5bc0de,##2f96b4);
+background-image: -o-linear-gradient(top,##5bc0de,##2f96b4);
+background-image: linear-gradient(to bottom,##5bc0de,##2f96b4);
+background-repeat: repeat-x;
+border-color: ##2f96b4 ##2f96b4 ##1f6377;
+border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='##ff5bc0de',endColorstr='##ff2f96b4',GradientType=0);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
+					OR
+				</div>
+				<div id="signup-form"><!--sign up form-->
+					<form action="##">
+						<h2>New User Signup</h2>
+						<table>
+							<tr>
+								<td>
+									<input type="text" placeholder="Name">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="email" placeholder="Email Address">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="password" placeholder="Password">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button type="submit" class="btn-signup">Signup</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+				
+		
+</cfoutput>
