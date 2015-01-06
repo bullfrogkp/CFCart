@@ -835,7 +835,7 @@ margin-top:20px;
 margin-bottom:40px;
 }
 
-#login-wrapper input[type=text],#login-wrapper input[type=email],#login-wrapper input[type=password] {
+#login-wrapper input[type=text],#login-wrapper input[type=email],#login-wrapper input[type=password], #login-wrapper textarea {
 background:#F0F0E9;
 border:medium none;
 color:#696763;
