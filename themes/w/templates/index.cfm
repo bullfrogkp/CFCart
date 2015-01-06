@@ -692,16 +692,17 @@
 					<tr>
 						<td>
 							<ul>
-								<li>Order Tracking</li>
-								<li>Wholesale</li>
-								<li>Shipping</li>
-								<li>Returns</li>
-								<li>Privacy Policy</li>
-								<li>Contact Us</li>
-								<li>About Us</li>
-								<li>What We Sell</li>
-								<li>Why choose TOMTOP</li>
-								<li>FAQ's</li>
+								<li><a href="">Payment Info</a></li>
+								<li><a href="">Shipping Info</a></li>
+								<li><a href="">Delivery Estimate</a></li>
+								<li><a href="">Locations</a></li>
+								<li><a href="">Privacy Policy</a></li>
+								<li><a href="">Terms of Use</a></li>
+								<li><a href="">Return Policy</a></li>
+								<li><a href="">Wholesale</a></li>
+								<li><a href="">About Us</a></li>
+								<li><a href="">Contact Us</a></li>
+								<li><a href="">FAQs</a></li>
 							</ul>
 						</td>
 					</tr>

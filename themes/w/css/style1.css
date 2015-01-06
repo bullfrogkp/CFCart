@@ -392,6 +392,15 @@ background-position:0 5px;
 font-size:12px;
 }
 
+#information ul li a {
+text-decoration:none;
+color:#999;
+}
+
+#information ul li a:hover {
+text-decoration:underline;
+}
+
 #sidebar-wrapper {
 width:234px;
 float:right;
@@ -459,6 +468,15 @@ margin-top:7px;
 color:#fff;
 font-size:12px;
 padding:20px;
+}
+
+#footer table td a {
+text-decoration:none;
+color:#fff;
+}
+
+#footer table td a:hover {
+text-decoration:underline;
 }
 
 .container {

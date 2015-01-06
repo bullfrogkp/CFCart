@@ -223,19 +223,29 @@
 					<td style="padding-bottom:10px;"><strong>CONNECT</strong></td>
 				</tr>
 				<tr>
-					<td>Payment Info</td>
+					<td><a href="">Payment Info</a></td>
 					<td></td>
-					<td>Privacy Policy</td>
+					<td><a href="">Privacy Policy</a></td>
 					<td></td>
-					<td>About Us</td>
+					<td><a href="">About Us</a></td>
 					<td></td>
 					<td rowspan="5" valign="top">
 						<div>
+							<a href="">
 							<img src="#SESSION.absolute_url_theme#images/facebook.png" style="width:24px;margin-right:10px;">
+							</a>
+							<a href="">
 							<img src="#SESSION.absolute_url_theme#images/google.png" style="width:24px;margin-right:10px;">
+							</a>
+							<a href="">
 							<img src="#SESSION.absolute_url_theme#images/YouTube2.png" style="width:24px;margin-right:10px;">
+							</a>
+							<a href="">
 							<img src="#SESSION.absolute_url_theme#images/Linkedein.png" style="width:24px;margin-right:10px;">
+							</a>
+							<a href="">
 							<img src="#SESSION.absolute_url_theme#images/Instagram.png" style="width:24px;">
+							</a>
 						</div>
 						<div style="margin-top:20px;font-weight:bold;">CUSTOMER SERVICE:&nbsp;&nbsp;<span style="letter-spacing:1px;">416.666.6666</span></div>
 						<div style="margin:20px 0 10px 0;">Get the latest product information!</div>
@@ -243,27 +253,27 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Shipping Info</td>
+					<td><a href="">Shipping Info</a></td>
 					<td></td>
-					<td>Terms of Use</td>
+					<td><a href="">Terms of Use</a></td>
 					<td></td>
-					<td>Contact Us</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Delivery Estimated</td>
-					<td></td>
-					<td>Return Policy</td>
-					<td></td>
-					<td>FAQs</td>
+					<td><a href="">Contact Us</a></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Locations</td>
+					<td><a href="">Delivery Estimate</a></td>
 					<td></td>
-					<td>Wholesale</td>
+					<td><a href="">Return Policy</a></td>
 					<td></td>
-					<td>Report Problems</td>
+					<td><a href="">FAQs</a></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="">Locations</a></td>
+					<td></td>
+					<td><a href="">Wholesale</a></td>
+					<td></td>
+					<td><a href="">Report Problems</a></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -281,7 +291,7 @@
 				</tr>
 				<tr>
 					<td colspan="6" style="padding-top:15px;">
-						1998 - 2014, TOMTOP, Inc. | Conditions of Use | Site Index
+						1998 - 2014, TOMTOP, Inc. | <a href="">Conditions of Use</a> | <a href="">Site Index</a>
 					</td>
 					<td>
 					</td>
