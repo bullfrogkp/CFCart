@@ -130,6 +130,15 @@ margin:0 auto;
 padding:8px 8px 0;
 }
 
+#nav ul li a {
+text-decoration:none;
+color:#fff;
+}
+
+#nav ul li a:hover {
+text-decoration:underline;
+}
+
 #nav ul ul {
 display:none;
 margin-left:-18px;
@@ -1019,6 +1028,10 @@ margin-bottom:10px;
 #top-nav a,#sidenav dl a {
 text-decoration:none;
 color:#3A3939;
+}
+
+#top-nav a:hover,#sidenav dl a:hover {
+text-decoration:underline;
 }
 
 #cart,#checkout span {

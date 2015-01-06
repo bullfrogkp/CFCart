@@ -111,27 +111,27 @@
 			<div class="container">
 				<ul>
 					<li>
-						Home
+						<a href="">Home</a>
 					</li>
 					<li>|</li>
 					<li>
-						New Arrivals
+						<a href="">New Arrivals</a>
 					</li>
 					<li>|</li>
 					<li>
-						Specials
+						<a href="">Specials</a>
 					</li>
 					<li>|</li>
 					<li>
-						Daily Deals
+						<a href="">Daily Deals</a>
 					</li>
 					<li>|</li>
 					<li>
-						Clearance
+						<a href="">Clearance</a>
 					</li>
 					<li>|</li>
 					<li>
-						Top Sellers
+						<a href="">Top Sellers</a>
 					</li>
 					<li>|</li>
 					<li>
@@ -161,11 +161,11 @@
 					</li>
 					<li>|</li>
 					<li>
-						About Us
+						<a href="">About Us</a>
 					</li>
 					<li>|</li>
 					<li>
-						Contact Us
+						<a href="">Contact Us</a>
 					</li>
 				</ul>
 			</div>
