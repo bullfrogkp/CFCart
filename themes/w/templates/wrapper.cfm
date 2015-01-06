@@ -214,16 +214,16 @@
 		<div class="container">
 			<table>
 				<tr>
-					<td style="padding-bottom:10px;"><strong>CUSTOMER CARE</strong></td>
+					<td style="padding-bottom:10px;"><strong>INFORMATION</strong></td>
 					<td style="width:60px;"></td>
 					<td></td>
 					<td style="width:60px;"></td>
-					<td style="padding-bottom:10px;"><strong>INFORMATION</strong></td>
+					<td style="padding-bottom:10px;"><strong>COMPANY INFO</strong></td>
 					<td style="width:200px;"></td>
 					<td style="padding-bottom:10px;"><strong>CONNECT</strong></td>
 				</tr>
 				<tr>
-					<td>Contact Us</td>
+					<td>Payment Info</td>
 					<td></td>
 					<td>Privacy Policy</td>
 					<td></td>
@@ -243,27 +243,27 @@
 					</td>
 				</tr>
 				<tr>
-					<td>FAQs</td>
+					<td>Shipping Info</td>
 					<td></td>
 					<td>Terms of Use</td>
 					<td></td>
-					<td>Careers</td>
+					<td>Contact Us</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Shipping & Returns</td>
+					<td>Delivery Estimated</td>
 					<td></td>
-					<td>Feedback</td>
+					<td>Return Policy</td>
 					<td></td>
-					<td>Affiliate</td>
+					<td>FAQs</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Guarantee</td>
+					<td>Locations</td>
 					<td></td>
-					<td>Gift Certificates</td>
+					<td>Wholesale</td>
 					<td></td>
-					<td>Press</td>
+					<td>Report Problems</td>
 					<td></td>
 				</tr>
 				<tr>
