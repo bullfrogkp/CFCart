@@ -1028,7 +1028,7 @@ float:right;
 .cat-thumbnails ul li,.related-thumbnails ul li {
 display:inline-block;
 background:#fff;
-border:1px solid #ddd;
+/*border:1px solid #ddd;*/
 font-size:1rem;
 vertical-align:top;
 box-sizing:border-box;
@@ -1050,7 +1050,7 @@ margin-left:-1%;
 .cat-thumbnails ul.rig li,.related-thumbnails ul.rig li {
 display:inline-block;
 background:#fff;
-border:1px solid #ddd;
+/*border:1px solid #ddd;*/
 font-size:1rem;
 vertical-align:top;
 box-sizing:border-box;
