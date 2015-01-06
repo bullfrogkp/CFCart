@@ -67,7 +67,7 @@
 						<td>
 							<div id="top-faq-icon"></div>
 						</td>
-						<td><a href="">FAQ</a></td>
+						<td><a href="">FAQs</a></td>
 					</tr>
 				</table>
 			</div>

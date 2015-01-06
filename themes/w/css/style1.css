@@ -1261,3 +1261,23 @@ margin-bottom:14px;width:550px;float:left;
 			#myaccount-sidenav a:hover {
 			text-decoration:underline;
 			}
+			
+#faq {
+margin-top:10px;
+font-size:12px;
+line-height:25px;
+}
+
+#faq ul {
+margin-left:20px;
+}
+
+#faq ul li a {
+color:#000;
+text-decoration:none;
+}
+
+#faq ul li a:hover {
+
+text-decoration:underline;
+}
