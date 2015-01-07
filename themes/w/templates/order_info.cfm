@@ -15,14 +15,12 @@
 		<p>Michelle Samek, ##13 495 W.T. Hill Blvd. S. Lethbridge, Alberta, T1j 1Y6, Canada</p>
 		<div class="myaccount-table" >
 		<table class="wp-list-table widefat fixed bookmarks" cellspacing="0">
-				<thead>
 				<tr>
-					<th scope="col" id="categories" class="manage-column column-categories">Status</th>
-					<th scope="col" id="categories" class="manage-column column-categories">Create Datetime</th>
-					<th scope="col" id="categories" class="manage-column column-categories">End Datetime</th>
-					<th scope="col" id="categories" class="manage-column column-categories">Comment</th>
+					<td scope="col" id="categories" class="manage-column column-categories">Status</th>
+					<td scope="col" id="categories" class="manage-column column-categories">Create Datetime</th>
+					<td scope="col" id="categories" class="manage-column column-categories">End Datetime</th>
+					<td scope="col" id="categories" class="manage-column column-categories">Comment</th>
 				</tr>
-			</thead>
 				<tr id="link-1" valign="middle" class="alternate">
 					<td class="column-categories">Order Placed</td>
 					<td class="column-categories">2014 Dec 27 02:15:27</td>
