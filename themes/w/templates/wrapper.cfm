@@ -49,7 +49,7 @@
 						<td style="padding-left:10px;">
 							<div id="top-signin-icon"></div>
 						</td>
-						<td><a href="">Sign In</a> / <a href="">Create Account</a></td>
+						<td><a href="login.cfm">Sign In</a> / <a href="login.cfm">Create Account</a></td>
 					</tr>
 				</table>
 			</div>
@@ -59,25 +59,25 @@
 						<td>
 							<div id="top-order-tracking-icon"></div>
 						</td>
-						<td><a href="">Order Tracking</a>&nbsp;&nbsp;&nbsp;</td>
+						<td><a href="order_tracking.cfm">Order Tracking</a>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<div id="top-myaccount-icon"></div>
 						</td>
-						<td><a href="">My Account</a>&nbsp;&nbsp;&nbsp;</td>
+						<td><a href="myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<div id="top-faq-icon"></div>
 						</td>
-						<td><a href="">FAQs</a></td>
+						<td><a href="faq.cfm">FAQs</a></td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
 	<div id="header" class="container">
-		<div id="logo"></div>
+		<a href="index.cfm"><div id="logo"></div></a>
 		<div id="minicart">
 			<div style="position:relative;">
-				<a class="btn" href="">Shopping Cart </a>
+				<a class="btn" href="cart.cfm">Shopping Cart </a>
 				<div id="cart-info">12</div>
 			</div>
 		</div>
@@ -111,61 +111,39 @@
 			<div class="container">
 				<ul>
 					<li>
-						<a href="">Home</a>
+						<a href="index.cfm">Home</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">New Arrivals</a>
+						<a href="new_arrivals.cfm">New Arrivals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">Specials</a>
+						<a href="specials.cfm">Specials</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">Daily Deals</a>
+						<a href="daily_deals.cfm">Daily Deals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">Clearance</a>
+						<a href="clearance.cfm">Clearance</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">Top Sellers</a>
+						<a href="top_sellers.cfm">Top Sellers</a>
 					</li>
 					<li>|</li>
 					<li>
-						Your Account
-						<ul>
-							<li style="padding:0;">
-								<div class="submenu" id="your-account">
-									<table>
-										<tbody>
-											<tr>
-												<td><a href="">Sign In</a></td>
-											</tr>
-											<tr>
-												<td><a href="">New Customer Sign Up</a></td>
-											</tr>
-											<tr>
-												<td><a href="">Order Tracking</a></td>
-											</tr>
-											<tr>
-												<td><a href="">View History</a></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</li>
-						</ul>
+						<a href="about_us.cfm">About Us</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">About Us</a>
+						<a href="contact_us.cfm">Contact Us</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="">Contact Us</a>
+						<a href="view_history.cfm">View History</a>
 					</li>
 				</ul>
 			</div>
@@ -285,13 +263,13 @@
 							<img src="#SESSION.absolute_url_theme#images/paypal.gif">
 						</div>
 						<div id="bottom-secure-shopping">
-							SECURE SHOPPING
+							<a href="secure_shopping.cfm" style="color:##333;">SECURE SHOPPING</a>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="6" style="padding-top:15px;">
-						1998 - 2014, TOMTOP, Inc. | <a href="">Conditions of Use</a> | <a href="">Site Index</a>
+						1998 - 2014, TOMTOP, Inc. | <a href="conditions_of_use.cfm">Conditions of Use</a> | <a href="site_index.cfm">Site Index</a>
 					</td>
 					<td>
 					</td>
