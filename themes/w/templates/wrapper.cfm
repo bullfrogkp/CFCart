@@ -49,7 +49,7 @@
 						<td style="padding-left:10px;">
 							<div id="top-signin-icon"></div>
 						</td>
-						<td><a href="login.cfm">Sign In</a> / <a href="login.cfm">Create Account</a></td>
+						<td><a href="#APPLICATION.absolute_url_web#login.cfm">Sign In</a> / <a href="#APPLICATION.absolute_url_web#login.cfm">Create Account</a></td>
 					</tr>
 				</table>
 			</div>
@@ -59,22 +59,22 @@
 						<td>
 							<div id="top-order-tracking-icon"></div>
 						</td>
-						<td><a href="order_tracking.cfm">Order Tracking</a>&nbsp;&nbsp;&nbsp;</td>
+						<td><a href="#APPLICATION.absolute_url_web#order_tracking.cfm">Order Tracking</a>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<div id="top-myaccount-icon"></div>
 						</td>
-						<td><a href="myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;</td>
+						<td><a href="#APPLICATION.absolute_url_web#myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<div id="top-faq-icon"></div>
 						</td>
-						<td><a href="faq.cfm">FAQs</a></td>
+						<td><a href="#APPLICATION.absolute_url_web#faq.cfm">FAQs</a></td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
 	<div id="header" class="container">
-		<a href="index.cfm"><div id="logo"></div></a>
+		<a href="#APPLICATION.absolute_url_web#index.cfm"><div id="logo"></div></a>
 		<div id="minicart">
 			<div style="position:relative;">
 				<a class="btn" href="cart.cfm">Shopping Cart </a>
@@ -111,39 +111,39 @@
 			<div class="container">
 				<ul>
 					<li>
-						<a href="index.cfm">Home</a>
+						<a href="#APPLICATION.absolute_url_web#index.cfm">Home</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="new_arrivals.cfm">New Arrivals</a>
+						<a href="#APPLICATION.absolute_url_web#new_arrivals.cfm">New Arrivals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="specials.cfm">Specials</a>
+						<a href="#APPLICATION.absolute_url_web#specials.cfm">Specials</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="daily_deals.cfm">Daily Deals</a>
+						<a href="#APPLICATION.absolute_url_web#daily_deals.cfm">Daily Deals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="clearance.cfm">Clearance</a>
+						<a href="#APPLICATION.absolute_url_web#clearance.cfm">Clearance</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="top_sellers.cfm">Top Sellers</a>
+						<a href="#APPLICATION.absolute_url_web#top_sellers.cfm">Top Sellers</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="about_us.cfm">About Us</a>
+						<a href="#APPLICATION.absolute_url_web#about_us.cfm">About Us</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="contact_us.cfm">Contact Us</a>
+						<a href="#APPLICATION.absolute_url_web#contact_us.cfm">Contact Us</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="view_history.cfm">View History</a>
+						<a href="#APPLICATION.absolute_url_web#view_history.cfm">View History</a>
 					</li>
 				</ul>
 			</div>
@@ -201,27 +201,27 @@
 					<td style="padding-bottom:10px;"><strong>CONNECT</strong></td>
 				</tr>
 				<tr>
-					<td><a href="payment_info.cfm">Payment Info</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#payment_info.cfm">Payment Info</a></td>
 					<td></td>
-					<td><a href="privacy.cfm">Privacy Policy</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#privacy.cfm">Privacy Policy</a></td>
 					<td></td>
-					<td><a href="about_us.cfm">About Us</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#about_us.cfm">About Us</a></td>
 					<td></td>
 					<td rowspan="5" valign="top">
 						<div>
-							<a href="">
+							<a href="#APPLICATION.absolute_url_web#">
 							<img src="#SESSION.absolute_url_theme#images/facebook.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="">
+							<a href="#APPLICATION.absolute_url_web#">
 							<img src="#SESSION.absolute_url_theme#images/google.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="">
+							<a href="#APPLICATION.absolute_url_web#">
 							<img src="#SESSION.absolute_url_theme#images/YouTube2.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="">
+							<a href="#APPLICATION.absolute_url_web#">
 							<img src="#SESSION.absolute_url_theme#images/Linkedein.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="">
+							<a href="#APPLICATION.absolute_url_web#">
 							<img src="#SESSION.absolute_url_theme#images/Instagram.png" style="width:24px;">
 							</a>
 						</div>
@@ -231,27 +231,27 @@
 					</td>
 				</tr>
 				<tr>
-					<td><a href="shipping_info.cfm">Shipping Info</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#shipping_info.cfm">Shipping Info</a></td>
 					<td></td>
-					<td><a href="term_of_use.cfm">Terms of Use</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#term_of_use.cfm">Terms of Use</a></td>
 					<td></td>
-					<td><a href="contact_us.cfm">Contact Us</a></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><a href="estimate.cfm">Delivery Estimate</a></td>
-					<td></td>
-					<td><a href="return_policy.cfm">Return Policy</a></td>
-					<td></td>
-					<td><a href="faq.cfm">FAQs</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#contact_us.cfm">Contact Us</a></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td><a href="locations.cfm">Locations</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#estimate.cfm">Delivery Estimate</a></td>
 					<td></td>
-					<td><a href="wholesale.cfm">Wholesale</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#return_policy.cfm">Return Policy</a></td>
 					<td></td>
-					<td><a href="report_problem.cfm">Report Problems</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#faq.cfm">FAQs</a></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="#APPLICATION.absolute_url_web#locations.cfm">Locations</a></td>
+					<td></td>
+					<td><a href="#APPLICATION.absolute_url_web#wholesale.cfm">Wholesale</a></td>
+					<td></td>
+					<td><a href="#APPLICATION.absolute_url_web#report_problem.cfm">Report Problems</a></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -263,13 +263,13 @@
 							<img src="#SESSION.absolute_url_theme#images/paypal.gif">
 						</div>
 						<div id="bottom-secure-shopping">
-							<a href="secure_shopping.cfm" style="color:##333;">SECURE SHOPPING</a>
+							<a href="#APPLICATION.absolute_url_web#secure_shopping.cfm" style="color:##333;">SECURE SHOPPING</a>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="6" style="padding-top:15px;">
-						1998 - 2014, TOMTOP, Inc. | <a href="conditions_of_use.cfm">Conditions of Use</a> | <a href="site_index.cfm">Site Index</a>
+						1998 - 2014, TOMTOP, Inc. | <a href="#APPLICATION.absolute_url_web#conditions_of_use.cfm">Conditions of Use</a> | <a href="#APPLICATION.absolute_url_web#site_index.cfm">Site Index</a>
 					</td>
 					<td>
 					</td>

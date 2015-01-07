@@ -7,39 +7,7 @@
 	<span style="vertical-align:middle">Dashboard</span> 
 </div>
 				
-			<div id="myaccount-sidenav" style="width:200px;float:left;">
-				<div class="recommendation" style="width:188px;">
-					My Account
-				</div>
-				<div class="recommendation-list" style="font-size:12px;padding-bottom:0;">
-					<ul>
-						<li>
-							<a href="">Dashboard</a>
-						</li>
-						<li>
-							<a href="">My Orders</a>
-						</li>
-						<li>
-							<a href="">My Addresses</a>
-						</li>
-						<li>
-							<a href="">My Product Reviews</a>
-						</li>
-						<li>
-							<a href="">My Wishlist</a>
-						</li>
-						<li>
-							<a href="">My Coupons</a>
-						</li>
-						<li>
-							<a href="">My Subscriptions</a>
-						</li>
-						<li style="border-bottom:none;">
-							<a href="">Change Password</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<cfinclude template="myaccount_sidenav.cfm" />
 			<div style="width:750px;float:right;font-size:12px;">
 				<div style="line-height:18px;">
 				<strong>Hello, Kevin !</strong>
