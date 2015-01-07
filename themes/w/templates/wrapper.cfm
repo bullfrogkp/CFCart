@@ -201,11 +201,11 @@
 					<td style="padding-bottom:10px;"><strong>CONNECT</strong></td>
 				</tr>
 				<tr>
-					<td><a href="">Payment Info</a></td>
+					<td><a href="payment_info.cfm">Payment Info</a></td>
 					<td></td>
-					<td><a href="">Privacy Policy</a></td>
+					<td><a href="privacy.cfm">Privacy Policy</a></td>
 					<td></td>
-					<td><a href="">About Us</a></td>
+					<td><a href="about_us.cfm">About Us</a></td>
 					<td></td>
 					<td rowspan="5" valign="top">
 						<div>
@@ -231,27 +231,27 @@
 					</td>
 				</tr>
 				<tr>
-					<td><a href="">Shipping Info</a></td>
+					<td><a href="shipping_info.cfm">Shipping Info</a></td>
 					<td></td>
-					<td><a href="">Terms of Use</a></td>
+					<td><a href="term_of_use.cfm">Terms of Use</a></td>
 					<td></td>
-					<td><a href="">Contact Us</a></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><a href="">Delivery Estimate</a></td>
-					<td></td>
-					<td><a href="">Return Policy</a></td>
-					<td></td>
-					<td><a href="">FAQs</a></td>
+					<td><a href="contact_us.cfm">Contact Us</a></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td><a href="">Locations</a></td>
+					<td><a href="estimate.cfm">Delivery Estimate</a></td>
 					<td></td>
-					<td><a href="">Wholesale</a></td>
+					<td><a href="return_policy.cfm">Return Policy</a></td>
 					<td></td>
-					<td><a href="">Report Problems</a></td>
+					<td><a href="faq.cfm">FAQs</a></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="locations.cfm">Locations</a></td>
+					<td></td>
+					<td><a href="wholesale.cfm">Wholesale</a></td>
+					<td></td>
+					<td><a href="report_problem.cfm">Report Problems</a></td>
 					<td></td>
 				</tr>
 				<tr>
