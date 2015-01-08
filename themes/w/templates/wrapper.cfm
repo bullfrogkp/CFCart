@@ -77,7 +77,7 @@
 		<a href="#APPLICATION.absolute_url_web#index.cfm"><div id="logo"></div></a>
 		<div id="minicart">
 			<div style="position:relative;">
-				<a class="btn" href="cart.cfm">Shopping Cart </a>
+				<a class="btn" href="#APPLICATION.absolute_url_web#cart.cfm">Shopping Cart </a>
 				<div id="cart-info">12</div>
 			</div>
 		</div>
