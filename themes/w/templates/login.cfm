@@ -9,17 +9,17 @@
 			
 			<div id="login-wrapper">
 				<div id="login-form"><!--login form-->
-					<form action="##">
+					<form method="post">
 						<h2>Login to your account</h2>
 						<table>
 							<tr>
 								<td colspan="2">
-									<input type="text" placeholder="Name">
+									<input type="text" name="username" placeholder="Username">
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="email" placeholder="Email Address">
+									<input type="password" name="userpass" placeholder="Password">
 								</td>
 							</tr>
 							<tr>
@@ -32,7 +32,7 @@
 							</tr>
 							<tr>
 								<td style="padding-top:10px;">
-									<button type="submit" class="btn-signup">Login</button>
+									<input type="submit" class="btn-signup" value="Login">
 								</td>
 							</tr>
 						</table>
@@ -60,27 +60,27 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
 					OR
 				</div>
 				<div id="signup-form"><!--sign up form-->
-					<form action="##">
+					<form method="post">
 						<h2>New User Signup</h2>
 						<table>
 							<tr>
 								<td>
-									<input type="text" placeholder="Name">
+									<input type="email" name="email_address" placeholder="Email Address">
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="email" placeholder="Email Address">
+									<input type="password" name="new_password" placeholder="Password">
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="password" placeholder="Password">
+									<input type="password" name="confirm_password" placeholder="Confirm Password">
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<button type="submit" class="btn-signup">Signup</button>
+									<input type="submit" class="btn-signup" value="Signup">
 								</td>
 							</tr>
 						</table>
