@@ -1283,7 +1283,24 @@ text-decoration:underline;
 }
 
 .info-section {
-margin-top:30px;
+margin-top:0;
 margin-bottom:30px;
 font-size:12px;
+width:590px;
+float:left;
+line-height:18px;
+}
+
+.info-sidebar {
+float: right;
+margin-top:10px;
+margin-bottom:30px;
+width: 307px;
+padding: 15px;
+background: url(./../images/sos.png) repeat;
+font-size:12px;
+}
+
+.info-detail {
+margin-top:20px;
 }

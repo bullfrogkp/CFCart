@@ -692,17 +692,17 @@
 					<tr>
 						<td>
 							<ul>
-								<li><a href="">Payment Info</a></li>
-								<li><a href="">Shipping Info</a></li>
-								<li><a href="">Delivery Estimate</a></li>
-								<li><a href="">Locations</a></li>
-								<li><a href="">Privacy Policy</a></li>
-								<li><a href="">Terms of Use</a></li>
-								<li><a href="">Return Policy</a></li>
-								<li><a href="">Wholesale</a></li>
-								<li><a href="">About Us</a></li>
-								<li><a href="">Contact Us</a></li>
-								<li><a href="">FAQs</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#payment_info.cfm">Payment Info</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#shipping_info.cfm">Shipping Info</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#estimate.cfm">Delivery Estimate</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#locations.cfm">Locations</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#privacy.cfm">Privacy Policy</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#term_of_use.cfm">Terms of Use</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#return_policy.cfm">Return Policy</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#wholesale.cfm">Wholesale</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#about_us.cfm">About Us</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#contact_us.cfm">Contact Us</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#faq.cfm">FAQs</a></li>
 							</ul>
 						</td>
 					</tr>
