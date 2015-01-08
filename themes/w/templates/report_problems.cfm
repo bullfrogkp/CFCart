@@ -1,22 +1,42 @@
 ﻿<cfoutput>
-<div id="breadcrumb">
-	<div class="breadcrumb-home-icon"></div>
-	<div class="breadcrumb-arrow-icon"></div>
-	<span style="vertical-align:middle">Report Problem</span> 
-</div>
-				
 	<div class="info-section">
-		<h2>Report Problem</h2>
-		<p>
-			As a new and growing company in Canada, TOMTOP is dedicated to be one of the best supplier of high quality products. We have our own manufactory in China with more than 15-year history and our company goal is to have the larger selection of photographic supplies around at the best prices you will find anywhere.
-		</p>
-		<p><strong>Address</strong></p>
-		<p>9030 Leslie st. unit 3</p>
-		<p>Richmond Hill, ON</p>
-		<p><strong>Contact</strong></p>
-		<p>Phone: 416.666.6666</p>
-		<p>Email: info@pinmydeals.com</p>
-		<br/>
-		</div>			
-		
+		<div id="breadcrumb">
+			<div class="breadcrumb-home-icon"></div>
+			<div class="breadcrumb-arrow-icon"></div>
+			<span style="vertical-align:middle">Report Problems</span> 
+		</div>
+		<div class="info-detail">
+			<h2>Report Problems</h2>
+			<div id="login-wrapper">
+				<div id="login-form"><!--login form-->
+					<form action="##">
+						<table>
+							<tr>
+								<td colspan="2">
+									<input type="text" placeholder="Name">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="email" placeholder="Email Address">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<textarea placeholder="Message" style="height:150px;"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10px;">
+									<button type="submit" class="btn-signup">Send</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+	</div>		
+	<cfinclude template="info_sidebar.cfm" />
 </cfoutput>

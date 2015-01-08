@@ -1,16 +1,15 @@
 ﻿<cfoutput>
-<div id="breadcrumb">
-	<div class="breadcrumb-home-icon"></div>
-	<div class="breadcrumb-arrow-icon"></div>
-	<span style="vertical-align:middle">Contact Us</span> 
-</div>
-				
-	
-			
+	<div class="info-section">
+		<div id="breadcrumb">
+			<div class="breadcrumb-home-icon"></div>
+			<div class="breadcrumb-arrow-icon"></div>
+			<span style="vertical-align:middle">Contact Us</span> 
+		</div>
+		<div class="info-detail">
+			<h2>Contact Us</h2>
 			<div id="login-wrapper">
 				<div id="login-form"><!--login form-->
 					<form action="##">
-						<h2>Contact Us</h2>
 						<table>
 							<tr>
 								<td colspan="2">
@@ -37,6 +36,7 @@
 				</div>
 				<div style="clear:both;"></div>
 			</div>
-				
-		
+		</div>
+	</div>		
+	<cfinclude template="info_sidebar.cfm" />
 </cfoutput>

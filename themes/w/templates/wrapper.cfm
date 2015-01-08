@@ -251,7 +251,7 @@
 					<td></td>
 					<td><a href="#APPLICATION.absolute_url_web#wholesale.cfm">Wholesale</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#report_problem.cfm">Report Problems</a></td>
+					<td><a href="#APPLICATION.absolute_url_web#report_problems.cfm">Report Problems</a></td>
 					<td></td>
 				</tr>
 				<tr>
