@@ -44,7 +44,7 @@
 									Approved
 								</td>
 								<td>
-									<a href="">Detail</a>
+									<a href="review_detail.cfm">Detail</a>
 								</td>
 							</tr>
 							<tr>
@@ -61,7 +61,7 @@
 									Approved
 								</td>
 								<td>
-									<a href="">Detail</a>
+									<a href="review_detail.cfm">Detail</a>
 								</td>
 							</tr>
 							<tr>
@@ -78,7 +78,7 @@
 									Approved
 								</td>
 								<td>
-									<a href="">Detail</a>
+									<a href="review_detail.cfm">Detail</a>
 								</td>
 							</tr>
 						</table>
