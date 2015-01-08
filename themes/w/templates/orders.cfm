@@ -34,51 +34,7 @@
 					<td >
 							Invoice
 					</td>
-				</tr>
-				<tr>
 					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
 					</td>
 				</tr>
 				<tr>
@@ -103,6 +59,9 @@
 					<td>
 						<a href="">Invoice</a>
 					</td>
+					<td>
+						<a href="order_detail.cfm">Detail</a>
+					</td>
 				</tr>
 				<tr>
 					<td >
@@ -126,6 +85,9 @@
 					<td>
 						<a href="">Invoice</a>
 					</td>
+					<td>
+						<a href="order_detail.cfm">Detail</a>
+					</td>
 				</tr>
 				<tr>
 					<td >
@@ -149,6 +111,9 @@
 					<td>
 						<a href="">Invoice</a>
 					</td>
+					<td>
+						<a href="order_detail.cfm">Detail</a>
+					</td>
 				</tr>
 				<tr>
 					<td >
@@ -171,6 +136,61 @@
 					</td>
 					<td>
 						<a href="">Invoice</a>
+					</td>
+					<td>
+						<a href="order_detail.cfm">Detail</a>
+					</td>
+				</tr>
+				<tr>
+					<td >
+						OR20141227227 
+					</td>
+					<td>
+						michelle@aaa.com
+					</td>
+					<td>
+						Michell
+					</td>
+					<td>
+						700
+					</td>
+					<td>
+						2014 Dec 27 02:14:32
+					</td>
+					<td>
+						Shipped
+					</td>
+					<td>
+						<a href="">Invoice</a>
+					</td>
+					<td>
+						<a href="order_detail.cfm">Detail</a>
+					</td>
+				</tr>
+				<tr>
+					<td >
+						OR20141227227 
+					</td>
+					<td>
+						michelle@aaa.com
+					</td>
+					<td>
+						Michell
+					</td>
+					<td>
+						700
+					</td>
+					<td>
+						2014 Dec 27 02:14:32
+					</td>
+					<td>
+						Shipped
+					</td>
+					<td>
+						<a href="">Invoice</a>
+					</td>
+					<td>
+						<a href="order_detail.cfm">Detail</a>
 					</td>
 				</tr>
 			</table>
