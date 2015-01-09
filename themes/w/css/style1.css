@@ -1304,3 +1304,16 @@ font-size:12px;
 .info-detail {
 margin-top:20px;
 }
+
+.minicart-link {
+cursor:hand;
+cursor:pointer;
+}
+
+.close-overlay {
+width:100px;
+height:100px;
+background-color:red;
+margin:100px auto;
+opacity:1;
+}
