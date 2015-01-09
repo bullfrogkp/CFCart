@@ -37,26 +37,6 @@
 	<img src="#SESSION.absolute_url_theme#images/ipad.png" style="height:226px;" />
 </div>
 <div id="top-sidebar">
-	<!--
-		<form id="login">
-		
-			<div class="login-header">
-			
-				<h3>Newsletter Subscription</h3>
-				
-				<p>Get the latest product and promotion information</p>
-				
-			</div>
-			<div class="inputs">
-			
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
-				<a id="submit" href="##" style="width:80px;float:right;">LOGIN</a>
-			
-			</div>
-		
-		</form>
-		-->
 	<img src="#SESSION.absolute_url_theme#images/week_deal.gif" style="width:230px;" />
 	<div id="sidenav">
 		<ul>

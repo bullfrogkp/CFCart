@@ -111,14 +111,12 @@
  
     dialog = $( "##dialog-form" ).dialog({
       autoOpen: false,
-      height: 300,
-      width: 350,
+      height: 500,
+      width: 550,
       modal: true,
       buttons: {
-        "Create an account": addUser,
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
+        "Continute Shopping": addUser,
+        "Checkout": addUser
       },
       close: function() {
         form[ 0 ].reset();
@@ -141,7 +139,7 @@
 
 <body>
 
-	<div id="dialog-form" title="Create new user">
+	<div id="dialog-form" title="Product has been added to shopping cart">
   <p class="validateTips">All form fields are required.</p>
  
   <form>
@@ -160,26 +158,6 @@
 </div>
  
  
-<div id="users-contain" class="ui-widget">
-  <h1>Existing Users:</h1>
-  <table id="users" class="ui-widget ui-widget-content">
-    <thead>
-      <tr class="ui-widget-header ">
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>john.doe@example.com</td>
-        <td>johndoe1</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 
 	<div id="top-nav">
 		<div class="container">
