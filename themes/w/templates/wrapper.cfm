@@ -6,16 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style2.css" />
 	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style1.css" />
 	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/jquery-ui.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	<style>
-    fieldset { padding:0; border:0; margin-top:25px; }
-    div##users-contain { width: 350px; margin: 20px 0; }
-    div##users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-    div##users-contain table td, div##users-contain table th { border: 1px solid ##eee; padding: .6em 10px; text-align: left; }
-    .ui-dialog .ui-state-error { padding: .3em; }
-    .validateTips { border: 1px solid transparent; padding: 0.3em; }
-	</style>
-	
+		
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/modernizr.custom.28468.js"></script>
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.min.js"></script>
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.cslider.js"></script>
@@ -111,17 +102,30 @@
  
     dialog = $( "##dialog-form" ).dialog({
       autoOpen: false,
-      height: 500,
-      width: 550,
+      height: 360,
+      width: 300,
       modal: true,
-      buttons: {
-        "Continute Shopping": addUser,
-        "Checkout": addUser
-      },
+	  show: 'fade',
+	  hide: 'fade',
+	  dialogClass: 'main-dialog-class',
+      buttons: [
+        {
+            text: "Continute Shopping",
+            "class": 'continuteButtonClass',
+            click: function() {
+            }
+        },
+        {
+            text: "Checkout",
+            "class": 'checkoutButtonClass',
+            click: function() {
+            }
+        }
+    ],
       close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
+       
+      },
+	
     });
  
     form = dialog.find( "form" ).on( "submit", function( event ) {
@@ -129,7 +133,7 @@
       addUser();
     });
  
-    $( ".create-user" ).button().on( "click", function() {
+    $( ".create-user" ).on( "click", function() {
       dialog.dialog( "open" );
     });
 	
@@ -139,23 +143,14 @@
 
 <body>
 
-	<div id="dialog-form" title="Product has been added to shopping cart">
-  <p class="validateTips">All form fields are required.</p>
- 
-  <form>
-    <fieldset>
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
- 
-      <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    </fieldset>
-  </form>
-</div>
+	<div id="dialog-form" title="Product has been added to the cart">
+		<div style="margin-top:10px;text-align:center;">
+			
+			<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg" style="margin:0 auto;" />
+		
+			<p>7 Colors Changing Glow LED Light Water Stream Faucet Tap</p>
+		</div>
+	</div>
  
  
 

@@ -1305,15 +1305,17 @@ font-size:12px;
 margin-top:20px;
 }
 
-.minicart-link {
+.create-user {
 cursor:hand;
 cursor:pointer;
 }
 
-.close-overlay {
-width:100px;
-height:100px;
-background-color:red;
-margin:100px auto;
-opacity:1;
+.continuteButtonClass {
+color:red;
+float:left;
+}
+
+.checkoutButtonClass {
+color:red;
+float:right;
 }

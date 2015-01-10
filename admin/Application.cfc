@@ -179,7 +179,7 @@
 				<cfset REQUEST.page_data.template_path = current_page_name & ".cfm" />
 			<!---	
 				<cfcatch type="any">
-					<cfset new "#APPLICATION.component_path_root#core.utils.utils().handleError(cfcatch = cfcatch) />
+					<cfset new "#APPLICATION.component_path_root#core.util.utils().handleError(cfcatch = cfcatch) />
 					<cflocation url="#APPLICATION.absolute_url_web#error.cfm" addtoken="false" />
 				</cfcatch>
 			</cftry>
@@ -221,7 +221,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setUser"  access="private" returnType="void" output="false">
-		<cfinvoke component="#APPLICATION.component_path_root#core.utils.user" method="getUser" returnvariable="SESSION.user" />
+		<cfinvoke component="#APPLICATION.component_path_root#core.util.user" method="getUser" returnvariable="SESSION.user" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_getCurrentURL" output="false" access="private" returnType="string">
