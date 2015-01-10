@@ -114,12 +114,14 @@
             text: "Checkout",
             "class": 'checkoutButtonClass',
             click: function() {
+			window.location.href='#APPLICATION.absolute_url_web#cart.cfm';
             }
         },
 		{
             text: "Continute Shopping",
             "class": 'continuteButtonClass',
             click: function() {
+			dialog.dialog('close');
             }
         }
     ],
@@ -134,7 +136,7 @@
       addUser();
     });
  
-    $( ".create-user" ).on( "click", function() {
+    $( ".add-to-cart" ).on( "click", function() {
       dialog.dialog( "open" );
     });
 	

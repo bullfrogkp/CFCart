@@ -330,7 +330,7 @@
 									<div class="thumbnail-rating"></div>
 									<div class="thumbnail-review"><a href="#APPLICATION.absolute_url_web#product_detail.cfm">(13 Reviews)</a></div>
 									<div class="thumbnail-cat-name"><a href="#APPLICATION.absolute_url_web#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a class="btn create-user" style="padding-right:13px;">Add to cart</a></div>
+									<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
 								</div>
 							</div>
 						</li>
