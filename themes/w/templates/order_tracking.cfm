@@ -9,17 +9,17 @@
 			
 			<div id="login-wrapper">
 				<div id="login-form">
-					<form action="##">
+					<form method="post">
 						<h2>Track your order</h2>
 						<table>
 							<tr>
 								<td colspan="2">
-									<input type="text" placeholder="Order Number">
+									<input type="text" name="order_number" placeholder="Order Number">
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="email" placeholder="Email Address">
+									<input type="email" name="email" placeholder="Email Address">
 								</td>
 							</tr>
 							<tr>

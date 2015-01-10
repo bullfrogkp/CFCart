@@ -57,7 +57,7 @@
 		<button id="minus">-</button>
 		<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
 		<button id="plus">+</button>
-		<a href="##" class="btn" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
+		<a href="##" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
 		<a href="##" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
 	</div>
 	
