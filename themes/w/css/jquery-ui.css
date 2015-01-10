@@ -435,6 +435,9 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
 	float: right;
 }
+.ui-dialog-buttonset {
+	width:100%;
+}
 .ui-dialog .ui-dialog-buttonpane button {
 	margin: .5em .4em .5em 0;
 	cursor: pointer;

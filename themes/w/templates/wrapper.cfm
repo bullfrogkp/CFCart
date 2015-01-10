@@ -102,22 +102,23 @@
  
     dialog = $( "##dialog-form" ).dialog({
       autoOpen: false,
-      height: 360,
+      height: 350,
       width: 300,
       modal: true,
 	  show: 'fade',
 	  hide: 'fade',
 	  dialogClass: 'main-dialog-class',
       buttons: [
-        {
-            text: "Continute Shopping",
-            "class": 'continuteButtonClass',
-            click: function() {
-            }
-        },
+        
         {
             text: "Checkout",
             "class": 'checkoutButtonClass',
+            click: function() {
+            }
+        },
+		{
+            text: "Continute Shopping",
+            "class": 'continuteButtonClass',
             click: function() {
             }
         }
@@ -146,7 +147,7 @@
 	<div id="dialog-form" title="Product has been added to the cart">
 		<div style="margin-top:10px;text-align:center;">
 			
-			<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg" style="margin:0 auto;" />
+			<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg" />
 		
 			<p>7 Colors Changing Glow LED Light Water Stream Faucet Tap</p>
 		</div>

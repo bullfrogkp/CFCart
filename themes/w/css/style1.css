@@ -1312,10 +1312,10 @@ cursor:pointer;
 
 .continuteButtonClass {
 color:red;
-float:left;
+float:right;
 }
 
 .checkoutButtonClass {
 color:red;
-float:right;
+float:left;
 }
