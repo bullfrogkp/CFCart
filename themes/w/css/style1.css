@@ -380,6 +380,7 @@ background:0 to(#b9c5dd));
 float:left;
 width:230px;
 margin-top:4px;
+position:relative;
 }
 
 #information ul li {
@@ -408,12 +409,16 @@ color:#999;
 }
 
 #sidenav {
-position:relative;
+position:absolute;
+width:228px;
+top:43px;
+left:0;
 z-index:15;
 margin-bottom:4px;
 border:1px solid #bbb;
 border-radius:4px;
 background-color:#f0f0f0;
+display:none;
 }
 
 #sidenav ul {
@@ -451,6 +456,10 @@ width:620px;
 background-color:#fff;
 border:1px solid #bbb;
 padding:10px 20px 20px;
+}
+
+#all-categories li:hover > div{
+display:block;
 }
 
 #sidenav li:hover > div {
@@ -568,16 +577,29 @@ margin-left:-10px;
 text-indent:10px;
 }
 
-#all-categories {
+#all-categories ul{
+list-style-type:none;
+}
+
+#all-categories > ul > li {
 width:210px;
+padding:12px 0 12px 18px;
+}
+
+#all-category-text {
+
+font-size:13px;
+font-weight:bold;
+}
+
+#all-categories {
+
 margin-bottom:4px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
 border: 1px solid #CCC;
-font-size:13px;
-font-weight:bold;
-padding:12px 0 12px 18px;
+
 background: rgba(252,234,187,1);
 background: -moz-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(255,210,97,1) 100%);
 background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(252,234,187,1)), color-stop(100%, rgba(255,210,97,1)));

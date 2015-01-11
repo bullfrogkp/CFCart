@@ -398,10 +398,11 @@
 </div>
 <div id="top-sidebar">
 	<div id="all-categories">
-		All Categories
-		<img src="#SESSION.absolute_url_theme#images/arrow_down.png" style="float:right;margin-right:10px;margin-top:-6px;width:28px;" />
-	</div>
-	<div id="sidenav">
+		<ul>
+		<li>
+		<span id="all-category-text">All Categories</span>
+		<img src="#SESSION.absolute_url_theme#images/arrow_down.png" style="float:right;margin-right:10px;margin-top:-5px;width:28px;" />
+		<div id="sidenav">
 		<ul>
 			<li class="has-sub-menu first-level-menu" style="margin-top:6px;">
 				<a href="">Computers / Networking</a>
@@ -646,6 +647,9 @@
 					<img src="#SESSION.absolute_url_theme#images/Outdoor_sidebar.jpg" alt="Sports &amp; Outdoor" border="0" style="width:400px;position:absolute;right:0;bottom:0;z-index:0;">
 				</div>
 			</li>
+		</ul>
+	</div>
+	</li>
 		</ul>
 	</div>
 	<div class="recommendation">

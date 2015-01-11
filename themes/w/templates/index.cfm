@@ -38,7 +38,7 @@
 </div>
 <div id="top-sidebar">
 	<img src="#SESSION.absolute_url_theme#images/week_deal.gif" style="width:230px;" />
-	<div id="sidenav">
+	<div id="sidenav" style="display:block;position:relative;top:0;">
 		<ul>
 			<li class="has-sub-menu first-level-menu" style="margin-top:6px;">
 				<a href="">Computers / Networking</a>
