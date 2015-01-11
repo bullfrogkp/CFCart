@@ -111,16 +111,20 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="cart-detail" style="width:60%;float:left;margin-top:30px;">
+				<style>
+			.myaccount-table td {
+			text-align:center;
+			}
+			</style>
+				<div class="myaccount-table" style="width:60%;float:left;margin-top:30px;">
 					<table>
-						<thead>
+						
 							<tr class="cart_menu">
 								<td class="image">Product</td>
 								<td class="quantity">Quantity</td>
 								<td class="total">Total</td>
 							</tr>
-						</thead>
-						<tbody>
+					
 							<tr>
 								<td class="cart_description">
 									<h4><a href="">Colorblock Scuba</a></h4>
@@ -158,7 +162,7 @@
 									<p class="cart_total_price">$59</p>
 								</td>
 							</tr>
-						</tbody>
+						
 					</table>
 				</div>
 				<div id="checkout" style="height:auto;margin-top:30px;">
@@ -171,7 +175,7 @@
 				</div>
 			</div>
 			<div style="clear:both;"></div>
-			<div  style="border-top:1px solid ##000;text-align:right;margin-top:20px;">
+			<div  style="border-top:1px solid ##CCC;text-align:right;margin-top:20px;">
 				<input type="button" value="Place Order" class="btn-signup" style="margin-top:10px;font-size:12px;">
 			</div>
 		

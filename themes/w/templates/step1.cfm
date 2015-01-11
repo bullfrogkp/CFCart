@@ -4,6 +4,7 @@
 	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">Checkout</span> 
 </div>
+	<form method="post">
 	<div id="checkout-info" class="single_field">
 		<div id="checkout-addresses" style="width:40%;float:left;margin-top:20px;">
 		<table style="width:100%;">	
@@ -481,8 +482,9 @@
 		</div>
 	</div>
 	<div style="clear:both;"></div>
-	<div  style="border-top:1px solid ##000;text-align:right;margin-top:20px;">
-	<input type="button" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
+	<div  style="border-top:1px solid ##CCC;text-align:right;margin-top:20px;">
+	<input type="submit" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
 	</div>
+	</form>
 
 </cfoutput>

@@ -4,10 +4,15 @@
 	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">Shopping Cart</span> 
 </div>
-					
-			<div id="cart-detail">
+			<style>
+			.myaccount-table td {
+			text-align:center;
+			}
+			</style>
+			<form method="post">
+			<div class="myaccount-table">
 				<table>
-					<thead>
+					
 						<tr class="cart_menu">
 							<td class="image">Product</td>
 							<td class="description"></td>
@@ -16,8 +21,7 @@
 							<td class="total">Total</td>
 							<td></td>
 						</tr>
-					</thead>
-					<tbody>
+					
 						<tr>
 							<td class="cart_product">
 								<a href=""><img src="#SESSION.absolute_url_theme#images/one.png" alt=""></a>
@@ -32,7 +36,7 @@
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<button id="minus">-</button>
-									<input id="value" type="text" value="2" style="width:30px;text-align:center;" size="2" />
+									<input id="value" name="count" type="text" value="2" style="width:30px;text-align:center;" size="2" />
 									<button id="plus">+</button>
 								</div>
 							</td>
@@ -94,7 +98,7 @@
 								<img src="#SESSION.absolute_url_theme#images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
-					</tbody>
+					
 				</table>
 			</div>
 			
@@ -153,7 +157,7 @@
 					<li>Total <span>$61</span></li>
 				</ul>
 				<p style="float:right;font-weight:bold;">PayPal securely processes payments for TomTop</p>
-				<img src="#SESSION.absolute_url_theme#images/checkout_paypal.gif" style="float:right;" />
+				<input type="image" src="#SESSION.absolute_url_theme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
 			</div>
-		
+			</form>
 </cfoutput>
