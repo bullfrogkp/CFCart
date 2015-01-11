@@ -201,7 +201,9 @@
 			</div>
 		</div>
 		<div id="search">
+			<form method="post">
 			<div id="search-label">Search: </div>
+			
 			<select id="search-category" name="search_category_id">
 				<option value="0">All Categories</option>
 				<option value="0">Computers / Networking</option>
@@ -222,7 +224,8 @@
 				<option value="0">Test Equipment &amp; Tools</option>
 			</select>
 			<input id="search-text" type="text" placeholder="Search..." />
-			<img id="search-img" src="#SESSION.absolute_url_theme#images/search-img-up.png" />
+			<input type="image" id="search-img" name="search" src="#SESSION.absolute_url_theme#images/search-img-up.png" />
+			</form>
 		</div>
 	</div>
 	<div id="nav-wrapper">

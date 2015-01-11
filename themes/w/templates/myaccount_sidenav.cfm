@@ -24,10 +24,10 @@
 				<a href="#APPLICATION.absolute_url_web#myaccount/coupons.cfm">My Coupons</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/profile.cfm">My Subscriptions</a>
+				<a href="#APPLICATION.absolute_url_web#myaccount/profile.cfm">My Profile</a>
 			</li>
 			<li style="#APPLICATION.absolute_url_web#myaccount/border-bottom:none;">
-				<a href="profile.cfm">Change Password</a>
+				<a href="#APPLICATION.absolute_url_web#myaccount/change_password.cfm">Change Password</a>
 			</li>
 		</ul>
 	</div>

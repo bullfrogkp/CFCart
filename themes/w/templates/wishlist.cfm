@@ -25,15 +25,12 @@
 										Price
 								</td>
 								<td>
-										Status
-								</td>
-								<td>
 										
 								</td>
 							</tr>
 							<tr>
 								<td >
-									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png">RE20141227227 
+									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png"> 
 								</td>
 								<td>
 									100Pcs Sandpaper Clip Gauze Needle Emery Cloth Clip Needle 
@@ -41,16 +38,14 @@
 								<td>
 									Good product
 								</td>
-								<td>
-									Approved
-								</td>
+								
 								<td>
 									<a href="">Detail</a>
 								</td>
 							</tr>
 							<tr>
 								<td >
-									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png">RE20141227227 
+									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png"> 
 								</td>
 								<td>
 									100Pcs Sandpaper Clip Gauze Needle Emery Cloth Clip Needle 
@@ -58,16 +53,14 @@
 								<td>
 									Good product
 								</td>
-								<td>
-									Approved
-								</td>
+								
 								<td>
 									<a href="">Detail</a>
 								</td>
 							</tr>
 							<tr>
 								<td >
-									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png">RE20141227227 
+									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png"> 
 								</td>
 								<td>
 									100Pcs Sandpaper Clip Gauze Needle Emery Cloth Clip Needle 
@@ -75,9 +68,7 @@
 								<td>
 									Good product
 								</td>
-								<td>
-									Approved
-								</td>
+								
 								<td>
 									<a href="">Detail</a>
 								</td>

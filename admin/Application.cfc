@@ -20,7 +20,7 @@
                 <cfset THIS[ "$Config" ].ormenabled = "false" />
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
-                <cfset THIS[ "$Config" ].ormsettings.cfclocation = "/cfcart/core/db/" />
+                <cfset THIS[ "$Config" ].ormsettings.cfclocation = "/cfcart/core/entity/" />
                 <cfset THIS[ "$Config" ].datasource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionmanagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
@@ -52,7 +52,7 @@
                 <cfset THIS[ "$Config" ].ormenabled = "false" />
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
-				<cfset THIS[ "$Config" ].ormsettings.cfclocation = "/core/db/" />
+				<cfset THIS[ "$Config" ].ormsettings.cfclocation = "/core/entity/" />
                 <cfset THIS[ "$Config" ].datasource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionmanagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
