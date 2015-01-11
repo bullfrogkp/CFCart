@@ -175,8 +175,9 @@
 				</div>
 			</div>
 			<div style="clear:both;"></div>
+			<form method="post">
 			<div  style="border-top:1px solid ##CCC;text-align:right;margin-top:20px;">
-				<input type="button" value="Place Order" class="btn-signup" style="margin-top:10px;font-size:12px;">
+				<input type="submit" name="submit_order" value="Place Order" class="btn-signup" style="margin-top:10px;font-size:12px;">
 			</div>
-		
+			</form>
 </cfoutput>

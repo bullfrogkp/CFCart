@@ -3,10 +3,10 @@
 		<div id="breadcrumb">
 			<div class="breadcrumb-home-icon"></div>
 			<div class="breadcrumb-arrow-icon"></div>
-			<span style="vertical-align:middle">Conditions of Use</span> 
+			<span style="vertical-align:middle">Thank you</span> 
 		</div>
 		<div class="info-detail">
-		<h2>Conditions of Use</h2>
+		<h2>Thank you for your order!</h2>
 		<p>
 			As a new and growing company in Canada, TOMTOP is dedicated to be one of the best supplier of high quality products. We have our own manufactory in China with more than 15-year history and our company goal is to have the larger selection of photographic supplies around at the best prices you will find anywhere.
 		</p>
