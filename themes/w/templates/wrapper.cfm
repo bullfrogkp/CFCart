@@ -233,7 +233,7 @@
 			<div class="container">
 				<ul>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#index.cfm">Home</a>
+						<a href="#APPLICATION.absolute_url_web#index.cfm">All Categories</a>
 					</li>
 					<li>|</li>
 					<li>
