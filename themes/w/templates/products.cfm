@@ -397,6 +397,10 @@
 	</div>
 </div>
 <div id="top-sidebar">
+	<div id="all-categories">
+		All Categories
+		<img src="#SESSION.absolute_url_theme#images/arrow_down.png" style="float:right;margin-right:10px;margin-top:-6px;width:28px;" />
+	</div>
 	<div id="sidenav">
 		<ul>
 			<li class="has-sub-menu first-level-menu" style="margin-top:6px;">
