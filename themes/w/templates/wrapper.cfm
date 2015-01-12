@@ -6,12 +6,14 @@
 	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style2.css" />
 	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style1.css" />
 	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/jquery-ui.css">
+	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/ui.easytree.css">
 		
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/modernizr.custom.28468.js"></script>
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.min.js"></script>
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.cslider.js"></script>
 	<script src="#SESSION.absolute_url_theme#js/jquery-ui.js"></script>
 	<script src='#SESSION.absolute_url_theme#js/jquery.elevatezoom.js'></script>
+	<script src='#SESSION.absolute_url_theme#js/jquery.easytree.min.js'></script>
 	<script type="text/javascript">
 		$(function() {
 		

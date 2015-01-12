@@ -584,6 +584,8 @@ list-style-type:none;
 #all-categories > ul > li {
 width:210px;
 padding:12px 0 12px 18px;
+cursor:hand;
+cursor:pointer;
 }
 
 #all-category-text {
