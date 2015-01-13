@@ -5,8 +5,6 @@
 		<div class="breadcrumb-home-icon"></div>
 		<div class="breadcrumb-arrow-icon"></div>
 		<span style="vertical-align:middle">Computers / Networking</span> 
-		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Keyboards</span> 
 	</div>
 	
 	<img src="#SESSION.absolute_url_theme#images/001_01_CpmtutersNetworking.jpg" style="width:100%;" />
