@@ -1,6 +1,6 @@
 ﻿<cfoutput>
 
-<div id="slide-div" style="width:722px;float:right;">
+<div id="slide-div" style="width:712px;float:right;">
 	<div id="breadcrumb">
 		<div class="breadcrumb-home-icon"></div>
 		<div class="breadcrumb-arrow-icon"></div>
