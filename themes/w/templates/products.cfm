@@ -38,7 +38,7 @@
 		
 		##filters ul li:hover {
 		color:##fff;
-		background-color:red;
+		background-color:##F2A000;
 		}
 		
 		.price td ul li {
@@ -66,7 +66,7 @@
 				<td>Price:</td>
 				<td>
 					<ul>
-						<li style="color:##fff;background-color:red;">$0.00 - $24.99</li>
+						<li style="color:##fff;background-color:##F2A000;">$0.00 - $24.99</li>
 						<li>$25.00 - $49.99</li>
 						<li>$50.00 - $74.99</li>
 						<li>$75.00 - $99.99</li>
@@ -79,7 +79,7 @@
 					<ul>
 						<li>Bestbuy</li>
 						<li>Futureshop</li>
-						<li style="color:##fff;background-color:red;">Walmart</li>
+						<li style="color:##fff;background-color:##F2A000;">Walmart</li>
 						<li>Amazon</li>
 						<li>Home Depot</li>
 						<li>Loblaws</li>
@@ -124,7 +124,7 @@
 	
 	##sort-by ul li:hover {
 	color:##fff;
-	background-color:blue;
+	background-color:##ccc;
 	}
 	
 	##sort-by ul li {
@@ -154,7 +154,7 @@
 	
 	##pages ul li:hover {
 	color:##fff;
-	background-color:blue;
+	background-color:##CCC;
 	}
 	
 	##pages ul li {
@@ -176,7 +176,7 @@
 	</div>
 	<div id="pages">
 		<ul>
-			<li style="color:##fff;background-color:blue;">1</li>
+			<li style="color:##fff;background-color:##CCC;">1</li>
 			<li>2</li>
 			<li>3</li>
 			<li>4</li>
