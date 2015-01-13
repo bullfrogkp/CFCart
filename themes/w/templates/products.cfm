@@ -1,6 +1,6 @@
 ﻿<cfoutput>
 
-<div id="slide-div" style="width:722px;float:right;">
+<div id="slide-div" style="width:712px;float:right;">
 	<div id="breadcrumb">
 		<div class="breadcrumb-home-icon"></div>
 		<div class="breadcrumb-arrow-icon"></div>
@@ -11,7 +11,7 @@
 	
 	
 	
-	<div style="border:1px solid ##CCC;width:100%;padding:10px;">
+	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
 		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(185 total)</span></h1> 
 		<style>
 		##filters {
@@ -101,6 +101,91 @@
 			</tr>
 		</table>
 	</div>
+	
+	<style>
+	##sort-by {
+	 font-size:12px;
+	 margin-top:20px;
+	 float:left;
+	}
+	
+	##sort-by ul {
+	 margin-left:-5px;
+	 list-style-type:none;
+	 float:left;
+	}
+	
+	##sort-by ul li {
+	 float:left;
+	 margin-left:10px;
+	 cursor:hand;
+	 cursor:pointer;
+	}
+	
+	##sort-by ul li:hover {
+	color:##fff;
+	background-color:blue;
+	}
+	
+	##sort-by ul li {
+	border:1px solid ##ccc;
+	padding:4px 7px;
+	}
+	
+	
+	##pages {
+	 font-size:12px;
+	 margin-top:20px;
+	 float:right;
+	}
+	
+	##pages ul {
+	 margin-left:-5px;
+	 list-style-type:none;
+	 float:left;
+	}
+	
+	##pages ul li {
+	 float:left;
+	 margin-left:10px;
+	 cursor:hand;
+	 cursor:pointer;
+	}
+	
+	##pages ul li:hover {
+	color:##fff;
+	background-color:blue;
+	}
+	
+	##pages ul li {
+	border:1px solid ##ccc;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	}
+	</style>
+	<div id="sort-by">
+		<ul>
+			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
+			<li>Reviews</li>
+			<li>Top Selling</li>
+			<li>Price</li>
+			<li>New Arrivals</li>
+		</ul>
+	</div>
+	<div id="pages">
+		<ul>
+			<li style="color:##fff;background-color:blue;">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>></li>
+			<li>>></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
 	
 	<div class="cat-thumbnails" style="margin-top:10px;">
 		
