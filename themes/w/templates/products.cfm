@@ -22,6 +22,7 @@
 		##filters tr td:first-child { 
 		width:60px;
 		height:40px;
+		color:##F2A000;
 		}
 		
 		##filters ul {
