@@ -4,21 +4,200 @@
 	<div id="breadcrumb">
 		<div class="breadcrumb-home-icon"></div>
 		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Computers / Networking</span> 
-		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Keyboards</span> 
+		<span style="vertical-align:middle">New  Arrivals</span> 
 	</div>
 	
-	<img src="#SESSION.absolute_url_theme#images/001_01_CpmtutersNetworking.jpg" style="width:100%;" />
-	<img src="#SESSION.absolute_url_theme#images/001_02_NetworkingCommunications.jpg" style="width:32.9%;" />
-	<img src="#SESSION.absolute_url_theme#images/001_03_WirelessNetworking.jpg" style="width:32.9%;" />
-	<img src="#SESSION.absolute_url_theme#images/001_04_USBHubs.jpg" style="width:32.9%;" />
+	
+	
+	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
+		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">New Arrivals <span style="font-size:12px;">(185 total)</span></h1> 
+		<style>
+		##filters {
+		 font-size:12px;
+		 font-weight:bold;
+		 width:100%;
+		}
+		
+		##filters tr td:first-child { 
+		width:60px;
+		height:40px;
+		color:##F2A000;
+		}
+		
+		##filters ul {
+		 margin-left:-5px;
+		 list-style-type:none;
+		}
+		
+		##filters ul li {
+		 float:left;
+		 margin-left:10px;
+		 cursor:hand;
+		 cursor:pointer;
+		 margin-bottom:5px;
+		}
+		
+		##filters ul li a {
+		color:##333;
+		text-decoration:none;
+		padding:6px 10px;
+		}
+		
+		##filters ul li a:hover {
+		color:##fff;
+		background-color:##F2A000;
+		}
+		
+		.price td ul li {
+		border:1px solid ##ccc;
+		padding:6px 0 6px 0;
+		}
+		</style>
+		<table id="filters">
+			<tr class="price">
+				<td>
+					<ul>                                               
+                       
+						<li><a title="Computers / Networking" href="/new?cate=13">Computers / Networking(57)</a></li>
+																							  
+
+						<li><a title="Tablet PCs &amp; Cell Phone" href="/new?cate=351">Tablet PCs &amp; Cell Phone(69)</a></li>
+																							  
+
+						<li><a title="Home, Garden &amp; Tools" href="/new?cate=18">Home, Garden &amp; Tools(160)</a></li>
+																							  
+
+						<li><a title="Sports &amp; Outdoor" href="/new?cate=244">Sports &amp; Outdoor(125)</a></li>
+																							  
+
+						<li><a title="Lighting / Flashlights / LEDs" href="/new?cate=324">Lighting / Flashlights / LEDs(62)</a></li>
+																							  
+
+						<li><a title="Health / Beauty " href="/new?cate=77">Health / Beauty (247)</a></li>
+																							  
+
+						<li><a title="Clothing / Accessories" href="/new?cate=81">Clothing / Accessories(98)</a></li>
+																							  
+
+						<li><a title="Video &amp; Audio" href="/new?cate=92">Video &amp; Audio(49)</a></li>
+																							  
+
+						<li><a title="Car Accessories " href="/new?cate=99">Car Accessories (90)</a></li>
+																							  
+
+						<li><a title="Cameras &amp; Photo Accessories" href="/new?cate=86">Cameras &amp; Photo Accessories(97)</a></li>
+																							  
+
+						<li><a title="RC Models and Accessories" href="/new?cate=456">RC Models and Accessories(160)</a></li>
+																							  
+
+						<li><a title="Toys / Hobbies" href="/new?cate=104">Toys / Hobbies(0)</a></li>
+																							  
+
+						<li><a title="Jewelry" href="/new?cate=112">Jewelry(24)</a></li>
+																							  
+
+						<li><a title="Video Games" href="/new?cate=10">Video Games(0)</a></li>
+																							  
+
+						<li><a title="Musical Instruments" href="/new?cate=126">Musical Instruments(97)</a></li>
+																							  
+
+						<li><a title="Test Equipment &amp; Tools" href="/new?cate=682">Test Equipment &amp; Tools(123)</a></li>
+                    </ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<style>
+	##sort-by {
+	 font-size:12px;
+	 margin-top:20px;
+	 float:left;
+	}
+	
+	##sort-by ul {
+	 margin-left:-5px;
+	 list-style-type:none;
+	 float:left;
+	}
+	
+	##sort-by ul li {
+	 float:left;
+	 margin-left:10px;
+	 cursor:hand;
+	 cursor:pointer;
+	}
+	
+	##sort-by ul li:hover {
+	color:##fff;
+	background-color:##ccc;
+	}
+	
+	##sort-by ul li {
+	border:1px solid ##ccc;
+	padding:4px 7px;
+	}
+	
+	
+	##pages {
+	 font-size:12px;
+	 margin-top:20px;
+	 float:right;
+	}
+	
+	##pages ul {
+	 margin-left:-5px;
+	 list-style-type:none;
+	 float:left;
+	}
+	
+	##pages ul li {
+	 float:left;
+	 margin-left:10px;
+	 cursor:hand;
+	 cursor:pointer;
+	}
+	
+	##pages ul li:hover {
+	color:##fff;
+	background-color:##CCC;
+	}
+	
+	##pages ul li {
+	border:1px solid ##ccc;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	}
+	</style>
+	<div id="sort-by">
+		<ul>
+			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
+			<li>Reviews</li>
+			<li>Top Selling</li>
+			<li>Price</li>
+			<li>New Arrivals</li>
+		</ul>
+	</div>
+	<div id="pages">
+		<ul>
+			<li style="color:##fff;background-color:##CCC;">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>></li>
+			<li>>></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
 	
 	<div class="cat-thumbnails" style="margin-top:10px;">
-		<div class="cat-thumbnail-title"><a href="">Top Selling</a></div>
-		<div class="cat-thumbnail-link"><a href="">More &gt;&gt;</a></div>
-		<div class="clear"></div>
-		<div class="cat-thumbnail-section">
+		
+		<div class="cat-thumbnail-section" style="border-top:none;">
 			<ul class="rig columns-4">
 				<li class="single-products">
 					<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg">
