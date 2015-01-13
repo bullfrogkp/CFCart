@@ -237,23 +237,23 @@
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#new_arrivals.cfm">New Arrivals</a>
+						<a href="#APPLICATION.absolute_url_web#products_new.cfm">New Arrivals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#specials.cfm">Specials</a>
+						<a href="#APPLICATION.absolute_url_web#products_specials.cfm">Specials</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#daily_deals.cfm">Daily Deals</a>
+						<a href="#APPLICATION.absolute_url_web#products_deals.cfm">Daily Deals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#clearance.cfm">Clearance</a>
+						<a href="#APPLICATION.absolute_url_web#products_clearance.cfm">Clearance</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#top_sellers.cfm">Top Sellers</a>
+						<a href="#APPLICATION.absolute_url_web#products_top.cfm">Top Sellers</a>
 					</li>
 					<li>|</li>
 					<li>

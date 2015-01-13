@@ -12,24 +12,23 @@
 	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
 		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">New Arrivals <span style="font-size:12px;">(185 total)</span></h1> 
 		<style>
-		##filters {
+		##new-products {
 		 font-size:12px;
 		 font-weight:bold;
 		 width:100%;
 		}
 		
-		##filters tr td:first-child { 
+		##new-products tr td:first-child { 
 		width:60px;
 		height:40px;
 		color:##F2A000;
 		}
 		
-		##filters ul {
-		 margin-left:-5px;
-		 list-style-type:none;
+		##new-products ul {
+		 margin-left:10px;
 		}
 		
-		##filters ul li {
+		##new-products ul li {
 		 float:left;
 		 margin-left:10px;
 		 cursor:hand;
@@ -37,24 +36,24 @@
 		 margin-bottom:5px;
 		}
 		
-		##filters ul li a {
+		##new-products ul li a {
 		color:##333;
 		text-decoration:none;
-		padding:6px 10px;
+		padding:6px  0 6px 0;
 		}
 		
-		##filters ul li a:hover {
-		color:##fff;
-		background-color:##F2A000;
+		##new-products ul li a:hover {
+		text-decoration:underline;
 		}
 		
-		.price td ul li {
-		border:1px solid ##ccc;
+		.categories td ul li {
 		padding:6px 0 6px 0;
+		width:30%;
+		margin-right:12px;
 		}
 		</style>
-		<table id="filters">
-			<tr class="price">
+		<table id="new-products">
+			<tr class="categories">
 				<td>
 					<ul>                                               
                        
