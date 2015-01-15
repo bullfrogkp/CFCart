@@ -53,7 +53,7 @@
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
 				<cfset THIS[ "$Config" ].ormsettings.cfclocation = "/core/entity/" />
-                <cfset THIS[ "$Config" ].datasource = "db_eshop" />
+                <cfset THIS[ "$Config" ].datasource = "bullfrog" />
                 <cfset THIS[ "$Config" ].sessionmanagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
@@ -64,7 +64,7 @@
 				<cfset THIS[ "$Config" ].env.email_development = "dev@#THIS[ "$Config" ].env.domain#">
 				<cfset THIS[ "$Config" ].env.email_info = "info@#THIS[ "$Config" ].env.domain#">
 				<!--- absolute url --->
-				<cfset THIS[ "$Config" ].env.absolute_url_web = "/">	
+				<cfset THIS[ "$Config" ].env.absolute_url_web = "/cfcart/">	
 				<!--- absolute path --->	
 				<cfset THIS[ "$Config" ].env.absolute_path_root = ExpandPath(THIS[ "$Config" ].env.absolute_url_web) >
 				<!--- url --->
@@ -72,7 +72,7 @@
 				<cfset THIS[ "$Config" ].env.url_web = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absolute_url_web#">
 				<cfset THIS[ "$Config" ].env.url_https_web = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absolute_url_web#">
 				<!--- component --->
-				<cfset THIS[ "$Config" ].env.component_path_root = "">
+				<cfset THIS[ "$Config" ].env.component_path_root = "cfcart.">
             </cfif>
         </cfif>
        
@@ -110,6 +110,14 @@
 		<cfreturn page_obj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
+		<cfargument type="String" name="current_page_name" required="true"/>
+		
+		<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.global"(page_name = ARGUMENTS.current_page_name) />
+		
+		<cfreturn page_obj />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
 		<cfargument type="String" name="targetPage" required="true"/>
 
@@ -129,7 +137,7 @@
 			<!---
 			<cftry>		
 			--->
-				<cfset var global_page_obj = _initPageObject(current_page_name = "global") />
+				<cfset var global_page_obj = _initGlobalPageObject(current_page_name = current_page_name) />
 				<cfset var page_obj = _initPageObject(current_page_name = current_page_name) />
 				<cfset var return_struct = {} />
 				

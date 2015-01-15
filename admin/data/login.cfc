@@ -1,7 +1,7 @@
 ﻿<cfcomponent extends="master">	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		
+		<!---
 		<cfinvoke component="#APPLICATION.component_path_root#core.db.users" method="authUser" returnvariable="LOCAL.login_correct">
 			<cfinvokeargument name="username" value="#FORM.username#">
 			<cfinvokeargument name="password" value="#FORM.password#">
@@ -13,7 +13,11 @@
 			<cfset SESSION.admin_user = "rona" />
 			<cfset LOCAL.redirect_url = "index.cfm" />
 		</cfif>
+		--->
 		
+		<cfset SESSION.admin_user = "rona" />
+		<cfset LOCAL.redirect_url = "index.cfm" />
+			
 		<cfreturn LOCAL />	
 	</cffunction>	
 </cfcomponent>

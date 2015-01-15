@@ -1,4 +1,14 @@
 ﻿<cfcomponent>	
+	<cfset VARIABLES.page_name = "" />
+	
+	<cffunction name="init" access="public" output="false" returntype="any">
+		<cfargument name="page_name" type="string" required="true" />
+		
+		<cfset VARIABLES.page_name = ARGUMENTS.page_name />
+		
+		<cfreturn this />
+	</cffunction>
+	
 	<cffunction name="validateGlobalAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirect_url = "" />
