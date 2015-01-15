@@ -125,6 +125,9 @@
             }
         }
     ],
+	open: function(event) {
+     $('.ui-dialog-buttonpane').find('button:contains("Continute Shopping")').css("margin-right","-9px");
+ },
       close: function() {
        
       },
