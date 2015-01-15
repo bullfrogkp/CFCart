@@ -9,11 +9,4 @@
 		
 		<cfreturn LOCAL.page_data />	
 	</cffunction>
-	
-	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "#APPLICATION.absolute_url_web#search_results.cfm" />
-		
-		<cfreturn LOCAL />	
-	</cffunction>	
 </cfcomponent>

@@ -227,7 +227,7 @@
 				<option value="0">Test Equipment &amp; Tools</option>
 			</select>
 			<input id="search-text" type="text" placeholder="Search..." />
-			<input type="image" id="search-img" name="search" src="#SESSION.absolute_url_theme#images/search-img-up.png" />
+			<input type="image" id="search-img" name="search_product" src="#SESSION.absolute_url_theme#images/search-img-up.png" />
 			</form>
 		</div>
 	</div>
@@ -405,3 +405,4 @@
 </body>
 </html>
 </cfoutput>
+<cfset SESSION.temp = {} />

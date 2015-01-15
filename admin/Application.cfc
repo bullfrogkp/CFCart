@@ -129,6 +129,7 @@
 			<!---
 			<cftry>		
 			--->
+				<cfset var global_page_obj = _initPageObject(current_page_name = "global") />
 				<cfset var page_obj = _initPageObject(current_page_name = current_page_name) />
 				<cfset var return_struct = {} />
 				
@@ -144,6 +145,23 @@
 				--->
 			
 				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM)>
+					<!--- global data handler --->
+					<cfset return_struct = global_page_obj.processGlobalFormDataBeforeValidation() />
+					<cfif return_struct.redirect_url NEQ "">
+						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					</cfif>
+					
+					<cfset return_struct = global_page_obj.validateGlobalFormData() />
+					<cfif return_struct.redirect_url NEQ "">
+						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					</cfif>
+					
+					<cfset return_struct = global_page_obj.processGlobalFormDataAfterValidation() />
+					<cfif return_struct.redirect_url NEQ "">
+						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					</cfif>
+				
+					<!--- page data handler --->
 					<cfset return_struct = page_obj.processFormDataBeforeValidation() />
 					<cfif return_struct.redirect_url NEQ "">
 						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
@@ -161,18 +179,18 @@
 					
 					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
 				</cfif>
-			
-				<cfset return_struct = page_obj.validateCommonAccessData() />
+						
+				<cfset return_struct = global_page_obj.validateGlobalAccessData() />
 				<cfif return_struct.redirect_url NEQ "">
 					<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
-				</cfif>
-			
+				</cfif>		
+						
 				<cfset return_struct = page_obj.validateAccessData() />
 				<cfif return_struct.redirect_url NEQ "">
 					<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.page_data = page_obj.loadCommonPageData() />
+				<cfset REQUEST.page_data = global_page_obj.loadGlobalPageData() />
 				<cfset StructAppend(REQUEST.page_data,page_obj.loadPageData()) />
 			
 				<cfset REQUEST.page_data.current_page_name = current_page_name />

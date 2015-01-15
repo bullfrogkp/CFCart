@@ -8,17 +8,6 @@
 		
 		<cfreturn this />
 	</cffunction>
-
-	<cffunction name="validateCommonAccessData" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
-		
-		<cfif NOT StructKeyExists(SESSION,"admin_user") AND VARIABLES.page_name NEQ "login">
-			<cfset LOCAL.redirect_url = "login.cfm" />
-		</cfif>
-		
-		<cfreturn LOCAL />
-	</cffunction>
 	
 	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
@@ -55,12 +44,5 @@
 		<cfset LOCAL.page_data = {} />
 				
 		<cfreturn LOCAL.page_data />	
-	</cffunction>
-	
-	<cffunction name="loadCommonPageData" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.page_data = {} />
-		
-		<cfreturn LOCAL.page_data />
 	</cffunction>
 </cfcomponent>
