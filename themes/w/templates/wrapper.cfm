@@ -245,7 +245,7 @@
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_deals.cfm">Daily Deals</a>
+						<a href="#APPLICATION.absolute_url_web#products_deals.cfm">Weekly Deals</a>
 					</li>
 					<li>|</li>
 					<li>
