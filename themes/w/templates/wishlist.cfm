@@ -30,7 +30,7 @@
 							</tr>
 							<tr>
 								<td >
-									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png"> 
+									<img src="#SESSION.absolute_url_theme#images/one.png"> 
 								</td>
 								<td>
 									100Pcs Sandpaper Clip Gauze Needle Emery Cloth Clip Needle 
@@ -45,7 +45,7 @@
 							</tr>
 							<tr>
 								<td >
-									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png"> 
+									<img src="#SESSION.absolute_url_theme#images/one.png"> 
 								</td>
 								<td>
 									100Pcs Sandpaper Clip Gauze Needle Emery Cloth Clip Needle 
@@ -60,7 +60,7 @@
 							</tr>
 							<tr>
 								<td >
-									<img src="http://127.0.0.1:8500/shop/themes/w/images/cart/one.png"> 
+									<img src="#SESSION.absolute_url_theme#images/one.png"> 
 								</td>
 								<td>
 									100Pcs Sandpaper Clip Gauze Needle Emery Cloth Clip Needle 

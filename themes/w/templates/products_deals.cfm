@@ -9,16 +9,188 @@
 		<span style="vertical-align:middle">Keyboards</span> 
 	</div>
 	
-	<img src="#SESSION.absolute_url_theme#images/001_01_CpmtutersNetworking.jpg" style="width:100%;" />
-	<img src="#SESSION.absolute_url_theme#images/001_02_NetworkingCommunications.jpg" style="width:32.9%;" />
-	<img src="#SESSION.absolute_url_theme#images/001_03_WirelessNetworking.jpg" style="width:32.9%;" />
-	<img src="#SESSION.absolute_url_theme#images/001_04_USBHubs.jpg" style="width:32.9%;" />
+	
+	
+	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
+		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(185 total)</span></h1> 
+		<style>
+		##filters {
+		 font-size:12px;
+		 font-weight:bold;
+		}
+		
+		##filters tr td:first-child { 
+		width:60px;
+		height:40px;
+		color:##F2A000;
+		}
+		
+		##filters ul {
+		 margin-left:-5px;
+		 list-style-type:none;
+		}
+		
+		##filters ul li {
+		 float:left;
+		 margin-left:10px;
+		 cursor:hand;
+		 cursor:pointer;
+		}
+		
+		##filters ul li:hover {
+		color:##fff;
+		background-color:##F2A000;
+		}
+		
+		.price td ul li {
+		border:1px solid ##ccc;
+		padding:4px 7px;
+		}
+		
+		.brand td ul li {
+		border:1px solid ##ccc;
+		padding:4px 7px;
+		}
+		
+		.color td ul li {
+		border:1px solid ##ccc;
+		width:20px;
+		height:20px;
+		}
+		
+		.color td ul li:hover {
+		border:1px solid blue;
+		}
+		</style>
+		<table id="filters">
+			<tr class="price">
+				<td>Price:</td>
+				<td>
+					<ul>
+						<li style="color:##fff;background-color:##F2A000;">$0.00 - $24.99</li>
+						<li>$25.00 - $49.99</li>
+						<li>$50.00 - $74.99</li>
+						<li>$75.00 - $99.99</li>
+					</ul>
+				</td>
+			</tr>
+			<tr class="brand">
+				<td>Brand:</td>
+				<td>
+					<ul>
+						<li>Bestbuy</li>
+						<li>Futureshop</li>
+						<li style="color:##fff;background-color:##F2A000;">Walmart</li>
+						<li>Amazon</li>
+						<li>Home Depot</li>
+						<li>Loblaws</li>
+					</ul>
+				</td>
+			</tr>
+			<tr class="color">
+				<td>Color:</td>
+				<td>
+					<ul>
+						<li style="background-color:red;"></li>
+						<li style="background-color:yellow;"></li>
+						<li style="background-color:green;border:1px solid blue;"></li>
+						<li style="background-color:blue;"></li>
+						<li style="background-color:black;"></li>
+						<li style="background-color:white;"></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<style>
+	##sort-by {
+	 font-size:12px;
+	 margin-top:20px;
+	 float:left;
+	}
+	
+	##sort-by ul {
+	 margin-left:-5px;
+	 list-style-type:none;
+	 float:left;
+	}
+	
+	##sort-by ul li {
+	 float:left;
+	 margin-left:10px;
+	 cursor:hand;
+	 cursor:pointer;
+	}
+	
+	##sort-by ul li:hover {
+	color:##fff;
+	background-color:##ccc;
+	}
+	
+	##sort-by ul li {
+	border:1px solid ##ccc;
+	padding:4px 7px;
+	}
+	
+	
+	##pages {
+	 font-size:12px;
+	 margin-top:20px;
+	 float:right;
+	}
+	
+	##pages ul {
+	 margin-left:-5px;
+	 list-style-type:none;
+	 float:left;
+	}
+	
+	##pages ul li {
+	 float:left;
+	 margin-left:10px;
+	 cursor:hand;
+	 cursor:pointer;
+	}
+	
+	##pages ul li:hover {
+	color:##fff;
+	background-color:##CCC;
+	}
+	
+	##pages ul li {
+	border:1px solid ##ccc;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	}
+	</style>
+	<div id="sort-by">
+		<ul>
+			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
+			<li>Reviews</li>
+			<li>Top Selling</li>
+			<li>Price</li>
+			<li>New Arrivals</li>
+		</ul>
+	</div>
+	<div id="pages">
+		<ul>
+			<li style="color:##fff;background-color:##CCC;">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>></li>
+			<li>>></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
 	
 	<div class="cat-thumbnails" style="margin-top:10px;">
-		<div class="cat-thumbnail-title"><a href="">Top Selling</a></div>
-		<div class="cat-thumbnail-link"><a href="">More &gt;&gt;</a></div>
-		<div class="clear"></div>
-		<div class="cat-thumbnail-section">
+		
+		<div class="cat-thumbnail-section" style="border-top:none;">
 			<ul class="rig columns-4">
 				<li class="single-products">
 					<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg">

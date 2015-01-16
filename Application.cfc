@@ -11,7 +11,14 @@
 		
 		<cfreturn page_obj />
 	</cffunction>	
-	
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
+		<cfargument type="String" name="current_page_name" required="true"/>
+		
+		<cfset var page_obj = new "#APPLICATION.component_path_root#data.global"(page_name = ARGUMENTS.current_page_name) />
+		
+		<cfreturn page_obj />
+	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">
 		<cfargument type="string" name="folder_name_theme" required=true /> 
