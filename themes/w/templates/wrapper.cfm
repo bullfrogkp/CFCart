@@ -244,6 +244,10 @@
 					</li>
 					<li>|</li>
 					<li>
+						<a href="#APPLICATION.absolute_url_web#products_top.cfm">Top Sellers</a>
+					</li>
+					<li>|</li>
+					<li>
 						<a href="#APPLICATION.absolute_url_web#products_specials.cfm">Specials</a>
 					</li>
 					<li>|</li>
@@ -256,15 +260,7 @@
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_top.cfm">Top Sellers</a>
-					</li>
-					<li>|</li>
-					<li>
-						<a href="#APPLICATION.absolute_url_web#about_us.cfm">About Us</a>
-					</li>
-					<li>|</li>
-					<li>
-						<a href="#APPLICATION.absolute_url_web#contact_us.cfm">Contact Us</a>
+						<a href="#APPLICATION.absolute_url_web#products_clearance.cfm">Group Buying</a>
 					</li>
 					<li>|</li>
 					<li>

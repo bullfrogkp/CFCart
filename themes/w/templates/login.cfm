@@ -27,7 +27,8 @@
 									<input type="checkbox" class="checkbox">
 								</td>
 								<td style="font-size: 12px;">
-									<div style="margin-left:-40px">Keep me signed in</div>
+									<div style="margin-left:-40px;float:left;">Keep me signed in</div>
+									<div style="float:right;"><a href="#APPLICATION.absolute_url_web#forget_password.cfm">Forget Password?</a></div>
 								</td>
 							</tr>
 							<tr>
@@ -64,22 +65,30 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
 						<h2>New User Signup</h2>
 						<table>
 							<tr>
-								<td>
+								<td colspan="2">
 									<input type="email" name="email_address" placeholder="Email Address">
 								</td>
 							</tr>
 							<tr>
-								<td>
+								<td colspan="2">
 									<input type="password" name="new_password" placeholder="Password">
 								</td>
 							</tr>
 							<tr>
-								<td>
+								<td colspan="2">
 									<input type="password" name="confirm_password" placeholder="Confirm Password">
 								</td>
 							</tr>
 							<tr>
-								<td>
+								<td style="width:20px;">
+									<input type="checkbox" class="checkbox" checked>
+								</td>
+								<td style="font-size: 12px;">
+									<div>Sign Up for Product Newsletter</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding-top:10px;">
 									<input type="submit" class="btn-signup" value="Signup">
 								</td>
 							</tr>

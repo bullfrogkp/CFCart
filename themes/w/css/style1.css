@@ -879,6 +879,15 @@ margin-top:20px;
 margin-bottom:40px;
 }
 
+#login-wrapper a {
+text-decoration:none;
+color:#333;
+}
+
+#login-wrapper a:hover {
+text-decoration:underline;
+}
+
 #login-wrapper input[type=text],#login-wrapper input[type=email],#login-wrapper input[type=password], #login-wrapper textarea {
 background:#F0F0E9;
 border:medium none;

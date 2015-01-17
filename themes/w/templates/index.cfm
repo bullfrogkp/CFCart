@@ -446,7 +446,7 @@
 				</div>
 			</div>
 			<div class="cat-thumbnails">
-				<div class="cat-thumbnail-title"><a href="#APPLICATION.absolute_url_web#product_detail.cfm">Best Deals</a></div>
+				<div class="cat-thumbnail-title"><a href="#APPLICATION.absolute_url_web#product_detail.cfm">Group Buying</a></div>
 				<div class="cat-thumbnail-link"><a href="#APPLICATION.absolute_url_web#product_detail.cfm">More >></a></div>
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
