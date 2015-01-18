@@ -24,9 +24,6 @@
 										Subject
 								</td>
 								<td>
-										Status
-								</td>
-								<td>
 										
 								</td>
 							</tr>
@@ -40,9 +37,7 @@
 								<td>
 									Good product
 								</td>
-								<td>
-									Approved
-								</td>
+								
 								<td>
 									<a href="review_detail.cfm">Detail</a>
 								</td>
@@ -57,9 +52,7 @@
 								<td>
 									Good product
 								</td>
-								<td>
-									Approved
-								</td>
+								
 								<td>
 									<a href="review_detail.cfm">Detail</a>
 								</td>
@@ -74,9 +67,7 @@
 								<td>
 									Good product
 								</td>
-								<td>
-									Approved
-								</td>
+								
 								<td>
 									<a href="review_detail.cfm">Detail</a>
 								</td>

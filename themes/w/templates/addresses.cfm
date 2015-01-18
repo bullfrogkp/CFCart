@@ -13,11 +13,11 @@
 			<cfinclude template="myaccount_sidenav.cfm" />
 			<div id="myaccount-content">
 				<h1>My Addresses</h1>
-				<div style="margin-top:20px;" class="single_field">
+				<div style="margin-top:25px;" class="single_field">
 					<div style="width:49%;float:left;">
-						<table id="current-address-table" class="shipping-address-selected" style="width:100%;margin-top:20px;">	
+						<table id="current-address-table" class="shipping-address-selected" style="width:100%;">	
 							<tr>
-								<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Information
+								<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:30px;">Shipping Information
 								</th>
 							</tr>
 							<tbody>
@@ -197,11 +197,14 @@
 				
 					</div>
 					<div style="width:49%;float:right;">
-						<table id="current-address-table" class="shipping-address-selected" style="width:100%;margin-top:20px;">	
+						<table id="current-address-table" class="shipping-address-selected" style="width:100%;">	
 							<tr>
-								<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Information</th>
+								<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:5px;">Billing Information</th>
 							</tr>
 							<tbody>
+							<tr>
+								<td colspan="2" style="font-weight:bold;vertical-align:top;"><input type="checkbox" class="checkbox" checked> Same as shipping information.</td>
+							</tr>
 							<tr>
 								<td style="font-weight:bold;">Street: </td>
 								<td>
@@ -376,8 +379,9 @@
 						</tbody>
 					</table>
 					</div>
-					<div style="clear:both;"></div>
+					
 				</div>
+				<div style="clear:both;"></div>
 			</div>
 		
 </cfoutput>
