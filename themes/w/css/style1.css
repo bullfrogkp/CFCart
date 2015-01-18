@@ -861,6 +861,16 @@ border:1px solid #CCC;
 width:97.9px;
 }
 
+#videos {
+font-size:12px;
+margin-top:20px;
+}
+
+#videos img {
+border:1px solid #CCC;
+width:97.9px;
+}
+
 .active img {
 border:1px solid #333!important;
 }
@@ -1166,7 +1176,7 @@ height:310px;
 text-align:center;
 }
 
-.cat-thumbnails .thumbnail-name a,.related-thumbnails .thumbnail-name a,.recommendation-list-detail a,#gallery_01 a {
+.cat-thumbnails .thumbnail-name a,.related-thumbnails .thumbnail-name a,.recommendation-list-detail a,#gallery_01 a ,#videos a{
 text-decoration:none;
 }
 

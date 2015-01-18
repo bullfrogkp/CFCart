@@ -35,6 +35,21 @@
 			<img id="img_09" src="#SESSION.absolute_url_theme#images/thumb/image4.jpg" /> 
 		</a> 
 	</div>
+	<div id="videos"> 
+		<div style="padding-bottom:5px;">Videos:</div>
+		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
+			<img id="img_02" src="#SESSION.absolute_url_theme#images/thumb/image1.jpg" /> 
+		</a> 
+		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
+			<img id="img_03" src="#SESSION.absolute_url_theme#images/thumb/image2.jpg" /> 
+		</a> 
+		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
+			<img id="img_04" src="#SESSION.absolute_url_theme#images/thumb/image3.jpg" /> 
+		</a> 
+		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
+			<img id="img_05" src="#SESSION.absolute_url_theme#images/thumb/image4.jpg" /> 
+		</a> 
+	</div>
 </div>
 <div style="width:523px;float:right;">
 	<div id="product-name" style="font-size:18px;font-weight:bold;">
@@ -57,8 +72,8 @@
 		<button id="minus">-</button>
 		<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
 		<button id="plus">+</button>
-		<a href="##" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
-		<a href="##" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
+		<a class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
+		<a class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
 	</div>
 	
 	<div id="product-description">

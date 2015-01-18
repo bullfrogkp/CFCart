@@ -9,11 +9,16 @@
 	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/ui.easytree.css">
 		
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/modernizr.custom.28468.js"></script>
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.min.js"></script>
+	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.cslider.js"></script>
 	<script src="#SESSION.absolute_url_theme#js/jquery-ui.js"></script>
 	<script src='#SESSION.absolute_url_theme#js/jquery.elevatezoom.js'></script>
 	<script src='#SESSION.absolute_url_theme#js/jquery.easytree.min.js'></script>
+	
+	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/jquery.fancybox.css?v=2.1.5" media="screen" />
+	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.fancybox-media.js?v=1.0.6"></script>
+	
 	<script type="text/javascript">
 		$(function() {
 		
@@ -37,6 +42,18 @@
 			
 			$( "##product-description" ).tabs();
 		
+			$(".fancybox").fancybox();
+			$(".various").fancybox({
+				maxWidth	: 800,
+				maxHeight	: 600,
+				fitToView	: false,
+				width		: '70%',
+				height		: '70%',
+				autoSize	: false,
+				closeClick	: false,
+				openEffect	: 'none',
+				closeEffect	: 'none'
+			});
 		
     var dialog, form,
  
