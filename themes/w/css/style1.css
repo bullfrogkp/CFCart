@@ -529,6 +529,8 @@ color:#fff;
 font-size:14px;
 text-decoration:none;
 padding:10px 41px 10px 42px;
+cursor:hand;
+cursor:pointer;
 }
 
 #cart-info {
@@ -1219,10 +1221,17 @@ padding:3px;
 
 .btn:hover,.btn-wish:hover {
 background:#fa3c55;
-background-image:url(./../images/shopping_cart_red.png);
 background-repeat:no-repeat;
 background-position:11px 6px;
 text-decoration:none;
+}
+
+.btn:hover {
+background-image:url(./../images/shopping_cart_red.png);
+}
+
+.btn-wish:hover {
+background-image:url(./../images/knewstuff.png);
 }
 
 .recommendation-list ul,.user_info {
