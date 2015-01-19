@@ -319,17 +319,16 @@
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
 						<li class="single-products">
+							<a href="#APPLICATION.absolute_url_web#product_detail.cfm">
 							<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg" />
+							</a>
 							<div class="thumbnail-name"><a href="#APPLICATION.absolute_url_web#product_detail.cfm">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
 							<div class="thumbnail-price">US$4.51</div>
-							<img src="#SESSION.absolute_url_theme#images/freeshipping.jpg" style="width:120px;" />
+							<img class="free-shipping-icon" src="#SESSION.absolute_url_theme#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 							<div class="product-overlay">
 								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absolute_url_web#product_detail.cfm" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-									<div class="thumbnail-overlay-price">$4.51</div>
 									<div class="thumbnail-rating"></div>
 									<div class="thumbnail-review"><a href="#APPLICATION.absolute_url_web#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absolute_url_web#products.cfm">In Home Living</a></div>
 									<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
 								</div>
 							</div>
