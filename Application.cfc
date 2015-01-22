@@ -19,15 +19,6 @@
 		
 		<cfreturn page_obj />
 	</cffunction>
-	<!------------------------------------------------------------------------------->
-	<cffunction name="_setTheme"  access="private" returnType="void" output="false">
-		<cfargument type="string" name="folder_name_theme" required=true /> 
-		
-		<cfset SESSION.folder_name_theme = ARGUMENTS.folder_name_theme>		
-		<cfset SESSION.url_theme = "#APPLICATION.url_web#themes/#SESSION.folder_name_theme#/">
-		<cfset SESSION.absolute_url_theme = "#APPLICATION.absolute_url_web#themes/#SESSION.folder_name_theme#/">
-		<cfset SESSION.absolute_path_theme = "#APPLICATION.absolute_path_root#themes\#SESSION.folder_name_theme#\">
-	</cffunction>
 	<!----------------------------------------------------------------------------
 	<cffunction name="onMissingTemplate" returnType="any">
 	    <cfargument name="targetPage" type="string" required=true/>

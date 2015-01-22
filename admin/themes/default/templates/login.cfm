@@ -1,3 +1,4 @@
+<cfoutput>
 <!DOCTYPE html>
 <html class="bg-black">
     <head>
@@ -5,11 +6,11 @@
         <title>AdminLTE | Log in</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
-        <link href="themes/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absolute_url_theme_admin#css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="themes/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absolute_url_theme_admin#css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
-        <link href="themes/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absolute_url_theme_admin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,3 +49,4 @@
 
     </body>
 </html>
+</cfoutput>
