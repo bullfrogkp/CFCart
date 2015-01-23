@@ -40,10 +40,10 @@
 			<div class="small-box bg-green">
 				<div class="inner">
 					<h3>
-						53<sup style="font-size: 20px">%</sup>
+						53
 					</h3>
 					<p>
-						Bounce Rate
+						New Reviews
 					</p>
 				</div>
 				<div class="icon">
