@@ -41,10 +41,10 @@
 							<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="1" />
 						</div>
 						 <div class="form-group">
-							<label>Active</label>
+							<label>Status</label>
 							 <select class="form-control" name="active">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
+								<option value="1">Enabled</option>
+								<option value="0">Disabled</option>
 							</select>
 						</div>
 					</div><!-- /.box-body -->
