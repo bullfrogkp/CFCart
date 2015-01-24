@@ -20,8 +20,8 @@
 					<h3 class="box-title">Contact Information</h3>
 				</div><!-- /.box-header -->
 				<!-- form start -->
-				<form role="form">
-					<div class="box-body">
+				<div class="box-body">
+					<form role="form">
 						<div class="form-group">
 							<label>Category</label>
 							<select class="form-control" name="parent_category_id">
@@ -72,8 +72,11 @@
 								<option>option 5</option>
 							</select>
 						</div>
-					</div><!-- /.box-body -->
-				</form>
+					</form>
+				</div><!-- /.box-body -->
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->
 		<!-- right column -->
@@ -126,27 +129,33 @@
 					<form role="form">
 						<!-- text input -->
 						<div class="form-group">
-							<label>Beneficiary Account</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.beneficiary_account#"/>
+							<label>Attribute Groups</label>
+							 <select class="form-control" name="active">
+								<option value="1">Group 1</option>
+								<option value="2">Group 2</option>
+								<option value="3">Group 3</option>
+								<option value="4">Group 4</option>
+							</select>
 						</div>
-						<div class="form-group">
-							<label>Beneficiary Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.beneficiary_name#"/>
-						</div>
-						<div class="form-group">
-							<label>Beneficiary Bank</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.beneficiary_bank#"/>
-						</div>
-						<div class="form-group">
-							<label>Beneficiary Bank Address</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.beneficiary_bank_address#"/>
-						</div>
-						<div class="form-group">
-							<label>SWIFT Code</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.beneficiary_swift_code#"/>
-						</div>
+						<table class="table table-bordered" style="margin-top:30px;">
+							<tr>
+								<th>Attribute Name</th>
+								<th>Attribute Values</th>
+							</tr>
+							<tr>
+								<td>Color</td>
+								<td>Red,Blue,White,Black</td>
+							</tr>
+							<tr>
+								<td>Size</td>
+								<td>Large,Medium,Small</td>
+							</tr>
+						</table>
 					</form>
 				</div><!-- /.box-body -->
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
 			</div><!-- /.box -->
 		</div><!--/.col (right) -->
 	</div>   <!-- /.row -->
