@@ -23,6 +23,8 @@
         <link href="#SESSION.absolute_url_theme_admin#css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="#SESSION.absolute_url_theme_admin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
+		
+		<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme_admin#css/jquery.ui.plupload.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -284,7 +286,7 @@
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
-                    <!-- Sidebar user panel -->
+                    <!-- Sidebar user panel 
                     <div class="user-panel">
                         <div class="pull-left image">
                             <img src="#SESSION.absolute_url_theme_admin#img/avatar3.png" class="img-circle" alt="User Image" />
@@ -294,7 +296,7 @@
 
                             <a href="##"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- search form -->
                     <form action="##" method="get" class="sidebar-form">
                         <div class="input-group">
@@ -395,6 +397,67 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="#SESSION.absolute_url_theme_admin#js/AdminLTE/demo.js" type="text/javascript"></script>
+		
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+		
+		<script type='text/javascript' src="#SESSION.absolute_url_theme_admin#js/plupload.full.min.js"></script>
+		<script type='text/javascript' src="#SESSION.absolute_url_theme_admin#js/jquery.ui.plupload.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("##uploader").plupload({
+					// General settings
+					runtimes: 'html5,flash,silverlight,html4',
+					
+					url: "upload.cfm",
+
+					// Maximum file size
+					max_file_size: '1000mb',
+
+					// User can upload no more then 20 files in one go (sets multiple_queues to false)
+					max_file_count: 20,
+					
+					chunk_size: '1mb',
+
+					// Resize images on clientside if we can
+					resize : {
+						width: 200, 
+						height: 200, 
+						quality: 90,
+						crop: true // crop to exact dimensions
+					},
+
+					// Specify what files to browse for
+					filters: [
+						{ title: "Image files", extensions: "jpg,gif,png" }
+					],
+
+					// Rename files by clicking on their titles
+					rename: true,
+					
+					// Sort files
+					sortable: true,
+
+					// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+					dragdrop: true,
+
+					// Views to activate
+					views: {
+						thumbs: true,
+						list: false,
+						active: 'thumbs'
+					},
+
+					// Flash settings
+					flash_swf_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
+
+					// Silverlight settings
+					silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
+				});
+			});
+		  </script>
     </body>
 </html>
 </cfoutput>

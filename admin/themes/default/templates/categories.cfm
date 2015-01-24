@@ -135,7 +135,7 @@
 					<table id="example2" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Category Name</th>
+								<th>Name</th>
 								<th>Rank</th>
 								<th>Active</th>
 								<th>Action</th>
@@ -241,7 +241,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Category Name</th>
+								<th>Name</th>
 								<th>Active</th>
 								<th>Rank</th>
 								<th>Action</th>
