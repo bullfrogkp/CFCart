@@ -40,11 +40,30 @@
 							<label>Rank</label>
 							<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="1" />
 						</div>
+						<div class="form-group">
+							<label>Title</label>
+							<input type="text" class="form-control" placeholder="Enter ..." name="display_name"  value="Computers / Networking"/>
+						</div>
+						<div class="form-group">
+							<label>Keywords</label>
+							<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+						</div>
 						 <div class="form-group">
 							<label>Status</label>
 							 <select class="form-control" name="active">
 								<option value="1">Enabled</option>
 								<option value="0">Disabled</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Show on Navigation</label>
+							 <select class="form-control" name="active">
+								<option value="1">Yes</option>
+								<option value="0">No</option>
 							</select>
 						</div>
 					</div><!-- /.box-body -->

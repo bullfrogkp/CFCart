@@ -342,6 +342,9 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Emails</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Filters</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Attributes</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/location.cfm"><i class="fa fa-angle-double-right"></i> Location</a></li>
                             </ul>

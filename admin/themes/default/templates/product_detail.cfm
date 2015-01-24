@@ -17,7 +17,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">Contact Information</h3>
+					<h3 class="box-title">Product Information</h3>
 				</div><!-- /.box-header -->
 				<!-- form start -->
 				<div class="box-body">
@@ -47,13 +47,22 @@
 							<label>Price</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value="32.22"/>
 						</div>
+						
 						<div class="form-group">
-							<label>Short Description</label>
+							<label>Product Detail</label>
+							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+						</div>
+						 <div class="form-group">
+							<label>Title</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="Computer"/>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
 							<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
 						</div>
 						<div class="form-group">
-							<label>Full Description</label>
-							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+							<label>Keywords</label>
+							<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
 						</div>
 						 <div class="form-group">
 							<label>Status</label>
