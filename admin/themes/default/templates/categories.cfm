@@ -1,4 +1,4 @@
-﻿
+﻿<cfoutput>
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
@@ -6,7 +6,7 @@
 		<small>all categories information</small>
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Categories</li>
 	</ol>
 </section>
@@ -22,9 +22,104 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<ul>
-						<li><a href="category_detail.cfm?category_id=#i.category_id#">#i.category_name#</a>
+						<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computers / Networking</a>
 							<ul>
-								<li><a href="category_detail.cfm?category_id=#k.category_id#">#k.category_name#</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a>
+									<ul>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+									</ul>
+								</li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a>
+									<ul>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+									</ul>
+								</li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+							</ul>
+						</li>
+						<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Tablet PCs & Cell Phone</a>
+							<ul>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cell Phones</a>
+									<ul>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+									</ul>
+								</li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Accessories For iPad</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Accessories for iPhone</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Accessories for Tablet PC</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Accessories for Cell Ph</a>
+									<ul>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+									</ul>
+								</li>
+								
+							</ul>
+						</li>
+						<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Home, Garden & Tools</a>
+							<ul>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Gift & Lifestyle Gadgets</a>
+									<ul>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+									</ul>
+								</li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Baby Supplies</a>
+									<ul>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
+										<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+									</ul>
+								</li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Tools</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Security</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Pet Supplies</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Home Living</a></li>
+								<li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">Home Electronics</a></li>
+								
 							</ul>
 						</li>
 					</ul>
@@ -41,17 +136,107 @@
 						<thead>
 							<tr>
 								<th>Category Name</th>
-								<th>Active</th>
 								<th>Rank</th>
+								<th>Active</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>#REQUEST.categories.name#</td>
-								<td>#REQUEST.categories.is_active#</td>
-								<td>#REQUEST.categories.rank#</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=#REQUEST.categories.category_id#">View Detail</a></td>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Computers / Networking</td>
+								<td>1</td>
+								<td>Yes</td>
+								<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 						</tbody>
 						<tfoot>
@@ -69,3 +254,4 @@
 		</div><!-- ./col -->
 	</div><!-- /.row -->
 </section><!-- /.content -->
+</cfoutput>
