@@ -144,24 +144,6 @@
 									<td>Shipping</td>
 									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
-							</tbody>
-						</table>
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-									<th>Type</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
 								<tr>
 									<td>Kevin</td>
 									<td>Pan</td>
@@ -174,24 +156,6 @@
 									<td>Shipping</td>
 									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
-							</tbody>
-						</table>
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-									<th>Type</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
 								<tr>
 									<td>Kevin</td>
 									<td>Pan</td>
