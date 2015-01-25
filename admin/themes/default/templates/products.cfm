@@ -15,7 +15,7 @@
 <section class="content">
 	 <div class="row">
 		<div class="col-md-4">
-			<div class="box box-solid">
+			<div class="box box-primary">
 				<div class="box-header">
 					<i class="fa fa-text-width"></i>
 					<h3 class="box-title">Categories</h3>
@@ -127,7 +127,7 @@
 			</div><!-- /.box -->
 		</div><!-- ./col -->
 		<div class="col-md-8">
-			<div class="box">
+			<div class="box box-warning">
 				<div class="box-header">
 					<h3 class="box-title">Products</h3>
 					<a class="btn btn-default pull-right" style="margin: 10px 10px 0 0;">Add New Product</a>
