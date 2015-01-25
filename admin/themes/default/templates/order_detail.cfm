@@ -126,31 +126,91 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
+						<table id="example2" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Product Name</th>
+									<th>Attriubtes</th>
+									<th>Price</th>
+									<th>Quantity</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Product 1</td>
+									<td>Red</td>
+									<td>22.22</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>Product 1</td>
+									<td>Red</td>
+									<td>22.22</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>Product 1</td>
+									<td>Red</td>
+									<td>22.22</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>Product 1</td>
+									<td>Red</td>
+									<td>22.22</td>
+									<td>2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane" id="tab_4">
+						<table id="example2" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Transaction Type</th>
+									<th>Transaction ID</th>
+									<th>Create Datetime</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>purchase</td>
+									<td>3VE01719SL0474839</td>
+									<td>2014 Dec 27 02:15:27</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane" id="tab_5">
 						<form role="form">
-							<!-- text input -->
+							 <div class="form-group">
+								<label>Tracking Number</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab_6">
+						<form role="form">
+							 <div class="form-group">
+								<label>Transaction ID</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" disabled/>
+							</div>
 							<div class="form-group">
-								<label>Attribute Groups</label>
-								 <select class="form-control" name="active">
-									<option value="1">Group 1</option>
-									<option value="2">Group 2</option>
-									<option value="3">Group 3</option>
-									<option value="4">Group 4</option>
+								<label>Refund Type</label>
+								<select class="form-control" name="parent_category_id">
+									<option value="0">Full</option>
+									<option value="">Partial</option>
 								</select>
 							</div>
-							<table class="table table-bordered" style="margin-top:30px;">
-								<tr>
-									<th>Attribute Name</th>
-									<th>Attribute Values</th>
-								</tr>
-								<tr>
-									<td>Color</td>
-									<td>Red,Blue,White,Black</td>
-								</tr>
-								<tr>
-									<td>Size</td>
-									<td>Large,Medium,Small</td>
-								</tr>
-							</table>
+							<div class="form-group">
+								<label>Amount</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="22.22" />
+							</div>
+							<div class="form-group">
+								<label>Memo</label>
+								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div>
