@@ -1,9 +1,10 @@
-﻿<section class="content-header">
+﻿<cfoutput>
+<section class="content-header">
 	<h1>
 		Address Detail
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Address Detail</li>
 	</ol>
 </section>
@@ -17,23 +18,23 @@
 					<div class="box-body">
 						<div class="form-group">
 							<label>First Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.category_name#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						 <div class="form-group">
 							<label>Last Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.company_name#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						 <div class="form-group">
 							<label>Phone</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.company_address#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						 <div class="form-group">
 							<label>Street</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.phone#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						 <div class="form-group">
 							<label>City</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.email#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						 <div class="form-group">
 							<label>Province</label>
@@ -44,7 +45,7 @@
 						</div>
 						<div class="form-group">
 							<label>Postal Code</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.qq#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						<div class="form-group">
 							<label>Country</label>
@@ -75,3 +76,4 @@
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</cfoutput>

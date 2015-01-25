@@ -1,10 +1,11 @@
-﻿<section class="content-header">
+﻿<cfoutput>
+<section class="content-header">
 	<h1>
 		Customer Detail
 		<small>customer information</small>
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Customer Detail</li>
 	</ol>
 </section>
@@ -16,9 +17,9 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab_1" data-toggle="tab">General Information</a></li>
-					<li><a href="#tab_2" data-toggle="tab">Addresses</a></li>
-					<li><a href="#tab_3" data-toggle="tab">Reset Password</a></li>
+					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Addresses</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Reset Password</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -47,7 +48,7 @@
 							</div>
 							<div class="form-group">
 								<label>Comments</label>
-								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
@@ -194,3 +195,4 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</cfoutput>
