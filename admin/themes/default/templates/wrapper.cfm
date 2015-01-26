@@ -353,7 +353,18 @@
                                 <li><a href="#APPLICATION.absolute_url_web#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Promotion</a></li>
                             </ul>
-                        </li>	
+                        </li>
+						<li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-bullhorn"></i>
+                                <span>Newsletters</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> All Newsletters</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Newsletter</a></li>
+                            </ul>
+                        </li>						
 						<li>
                             <a href="#APPLICATION.absolute_url_web#admin/shipping_methods.cfm">
                                 <i class="fa fa-file-text"></i> <span>Shipping Methods</span>
@@ -370,8 +381,8 @@
                             </a>
                         </li>
 						<li>
-                            <a href="#APPLICATION.absolute_url_web#admin/comments.cfm">
-                                <i class="fa fa-comment"></i> <span>Comments</span>
+                            <a href="#APPLICATION.absolute_url_web#admin/reviews.cfm">
+                                <i class="fa fa-comment"></i> <span>Reviews</span>
                             </a>
                         </li>
                         <li class="treeview">
@@ -384,6 +395,19 @@
                                 <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Emails</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
+                            </ul>
+                        </li>
+						<li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-bullhorn"></i>
+                                <span>Reports</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> Sales</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Customers</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Products</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Reviews</a></li>
                             </ul>
                         </li>
 						 <li>
