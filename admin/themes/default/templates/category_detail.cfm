@@ -1,9 +1,10 @@
-﻿<section class="content-header">
+﻿<cfoutput>
+<section class="content-header">
 	<h1>
 		Category Detail
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Category Detail</li>
 	</ol>
 </section>
@@ -15,8 +16,9 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab_1" data-toggle="tab">General Information</a></li>
-					<li><a href="#tab_2" data-toggle="tab">Filters</a></li>
+					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Filters</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Custom Design</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -96,9 +98,23 @@
 						</form>
 					
 					</div><!-- /.tab-pane -->
+					<div class="tab-pane" id="tab_3">
+						<form role="form">
+							<div class="form-group">
+								<label>Preview</label>
+							</div>
+							<div class="form-group">
+								<label>HTML Code</label>
+								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					
+					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
 		</div><!-- /.col -->
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</cfoutput>
