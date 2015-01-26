@@ -83,6 +83,16 @@
 									<option>option 5</option>
 								</select>
 							</div>
+							<div class="form-group">
+								<label>Tax Category</label>
+								<select multiple="" class="form-control">
+									<option>option 1</option>
+									<option>option 2</option>
+									<option>option 3</option>
+									<option>option 4</option>
+									<option>option 5</option>
+								</select>
+							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div><!-- /.tab-pane -->

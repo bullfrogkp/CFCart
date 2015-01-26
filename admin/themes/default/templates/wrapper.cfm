@@ -319,16 +319,32 @@
                                 <i class="fa fa-bars"></i> <span>Categories</span>
                             </a>
                         </li>
-						 <li>
-                            <a href="#APPLICATION.absolute_url_web#admin/products.cfm">
-                                <i class="fa fa-shopping-cart"></i> <span>Products</span>
+						<li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Products</span>
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#APPLICATION.absolute_url_web#admin/products.cfm"><i class="fa fa-angle-double-right"></i> All Products</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Product</a></li>
+                            </ul>
                         </li>
-						 <li>
-                            <a href="#APPLICATION.absolute_url_web#admin/customers.cfm">
-                                <i class="fa fa-users"></i> <span>Customers</span>
+						
+						 <li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-gear"></i>
+                                <span>Customers</span>
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#APPLICATION.absolute_url_web#admin/customers.cfm"><i class="fa fa-angle-double-right"></i> All Customers</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/customer_groups.cfm"><i class="fa fa-angle-double-right"></i> Customer Groups</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Customer</a></li>
+                            </ul>
                         </li>
+						
+						
 						 <li>
                             <a href="#APPLICATION.absolute_url_web#admin/orders.cfm">
                                 <i class="fa fa-file-text"></i> <span>Orders</span>
@@ -342,11 +358,8 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Emails</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Filters</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> Attributes</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/location.cfm"><i class="fa fa-angle-double-right"></i> Location</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
                             </ul>
                         </li>
 						 <li>

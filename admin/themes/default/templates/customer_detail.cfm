@@ -33,6 +33,13 @@
 								<input type="text" class="form-control" placeholder="Enter ..." value="kp@kp.ca"/>
 							</div>
 							 <div class="form-group">
+								<label>Customer Group</label>
+								<select class="form-control" name="parent_category_id">
+									<option value="0">Retailer</option>
+									<option value="">Wholesaler</option>
+								</select>
+							</div>
+							 <div class="form-group">
 								<label>Subscribed</label>
 								<select class="form-control" name="parent_category_id">
 									<option value="0">Yes</option>

@@ -24,6 +24,7 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Phone</th>
+								<th>Group</th>
 								<th>Subscribed</th>
 								<th>Create Datetime</th>
 								<th>Action</th>
@@ -34,6 +35,7 @@
 								<td>Kevin Pan</td>
 								<td>pppgiaa@gmail.com</td>
 								<td>4166666666</td>
+								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
@@ -42,6 +44,7 @@
 								<td>Kevin Pan</td>
 								<td>pppgiaa@gmail.com</td>
 								<td>4166666666</td>
+								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
@@ -50,6 +53,7 @@
 								<td>Kevin Pan</td>
 								<td>pppgiaa@gmail.com</td>
 								<td>4166666666</td>
+								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
@@ -58,6 +62,7 @@
 								<td>Kevin Pan</td>
 								<td>pppgiaa@gmail.com</td>
 								<td>4166666666</td>
+								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
@@ -66,6 +71,7 @@
 								<td>Kevin Pan</td>
 								<td>pppgiaa@gmail.com</td>
 								<td>4166666666</td>
+								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
@@ -74,6 +80,7 @@
 								<td>Kevin Pan</td>
 								<td>pppgiaa@gmail.com</td>
 								<td>4166666666</td>
+								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
@@ -84,6 +91,7 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Phone</th>
+								<th>Group</th>
 								<th>Subscribed</th>
 								<th>Create Datetime</th>
 								<th>Action</th>

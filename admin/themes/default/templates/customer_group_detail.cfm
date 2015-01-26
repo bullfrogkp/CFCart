@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Email Detail
+		Customer Group Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Email Detail</li>
+		<li class="active">Customer Group Detail</li>
 	</ol>
 </section>
 
@@ -18,16 +18,22 @@
 				<form role="form">
 					<div class="box-body">
 						<div class="form-group">
-							<label>Subject</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
-						</div>
-						 <div class="form-group">
-							<label>Name</label>
+							<label>Group Name</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						<div class="form-group">
-							<label>Content</label>
-							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							<label>Tax Class</label>
+							<select class="form-control" name="parent_category_id">
+								<option value="0">Retailer</option>
+								<option value="">Wholesaler</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Discount Type</label>
+							<select class="form-control" name="parent_category_id">
+								<option value="0">Type 1</option>
+								<option value="">Type 2</option>
+							</select>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.box-body -->

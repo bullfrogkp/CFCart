@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Email Detail
+		Site Information
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Email Detail</li>
+		<li class="active">Site Info</li>
 	</ol>
 </section>
 
@@ -18,16 +18,34 @@
 				<form role="form">
 					<div class="box-body">
 						<div class="form-group">
-							<label>Subject</label>
+							<label>Street Address</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						 <div class="form-group">
-							<label>Name</label>
+							<label>City</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						<div class="form-group">
-							<label>Content</label>
-							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							<label>Province</label>
+							<select class="form-control" name="parent_category_id">
+								<option value="0">Ontario</option>
+								<option value="">Alberta</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Postal Code</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
+						</div>
+						<div class="form-group">
+							<label>Country</label>
+							<select class="form-control" name="parent_category_id">
+								<option value="0">Canada</option>
+								<option value="">US</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Map</label>
+							<textarea class="form-control" rows="6" placeholder="Enter ..."></textarea>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.box-body -->
