@@ -400,8 +400,9 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="#SESSION.absolute_url_theme_admin#js/AdminLTE/demo.js" type="text/javascript"></script>
-		
+		 <!-- 
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		-->
 		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
