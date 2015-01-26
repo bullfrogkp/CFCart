@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Shipping Methods
+		Comments
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Shipping Methods</li>
+		<li class="active">Comments</li>
 	</ol>
 </section>
 <section class="content">
@@ -26,7 +26,7 @@
 							<tr>
 								<td>Test email 1</td>
 								<td>This is a new email</td>
-								<td><a href="shipping_method_detail.cfm?request_id=1">View Detail</a></td>
+								<td><a href="comment_detail.cfm?request_id=1">View Detail</a></td>
 							</tr>
 							
 						</tbody>

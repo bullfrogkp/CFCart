@@ -333,7 +333,7 @@
 						
 						 <li class="treeview">
                             <a href="##">
-                                <i class="fa fa-gear"></i>
+                                <i class="fa fa-users"></i>
                                 <span>Customers</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -343,11 +343,35 @@
                                 <li><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Customer</a></li>
                             </ul>
                         </li>
-						
-						
+						<li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-bullhorn"></i>
+                                <span>Promotions</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#APPLICATION.absolute_url_web#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Promotion</a></li>
+                            </ul>
+                        </li>	
+						<li>
+                            <a href="#APPLICATION.absolute_url_web#admin/shipping_methods.cfm">
+                                <i class="fa fa-file-text"></i> <span>Shipping Methods</span>
+                            </a>
+                        </li>
+						<li>
+                            <a href="#APPLICATION.absolute_url_web#admin/payment_methods.cfm">
+                                <i class="fa fa-file-text"></i> <span>Payment Methods</span>
+                            </a>
+                        </li>						
 						 <li>
                             <a href="#APPLICATION.absolute_url_web#admin/orders.cfm">
                                 <i class="fa fa-file-text"></i> <span>Orders</span>
+                            </a>
+                        </li>
+						<li>
+                            <a href="#APPLICATION.absolute_url_web#admin/comments.cfm">
+                                <i class="fa fa-comment"></i> <span>Comments</span>
                             </a>
                         </li>
                         <li class="treeview">
