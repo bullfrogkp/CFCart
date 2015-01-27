@@ -51,6 +51,8 @@
 			// Silverlight settings
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
+		
+		$('##reservation').daterangepicker();
 	});
 </script>
 
@@ -73,9 +75,12 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Images</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Attributes</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Reviews</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Price</a></li>
+					<li><a href="##tab_4" data-toggle="tab">Images</a></li>
+					<li><a href="##tab_5" data-toggle="tab">Attributes</a></li>
+					<li><a href="##tab_6" data-toggle="tab">Related Products</a></li>
+					<li><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -101,6 +106,10 @@
 								<label>Product Name</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="Computer"/>
 							</div>
+							<div class="form-group">
+								<label>SKU</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="OR1234"/>
+							</div>
 							 <div class="form-group">
 								<label>Price</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="32.22"/>
@@ -110,6 +119,18 @@
 								<label>Product Detail</label>
 								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
 							</div>
+							 <div class="form-group">
+								<label>Status</label>
+								<select class="form-control" name="parent_category_id">
+									<option value="0">Enabled</option>
+									<option value="">Disabled</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane active" id="tab_2">
+						<form role="form">
 							 <div class="form-group">
 								<label>Title</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="Computer"/>
@@ -122,23 +143,41 @@
 								<label>Keywords</label>
 								<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
 							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane" id="tab_3">
+						<form role="form">
 							 <div class="form-group">
-								<label>Status</label>
-								<select class="form-control" name="parent_category_id">
-									<option value="0">Enabled</option>
-									<option value="">Disabled</option>
-								</select>
+								<label>Price</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="100.00"/>
 							</div>
 							<div class="form-group">
-								<label>Featured Categories</label>
-								<select multiple="" class="form-control">
-									<option>option 1</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
-								</select>
+								<label>Group Price</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="OR1234"/>
 							</div>
+							 <div class="form-group">
+								<label>Special Price</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="32.22"/>
+							</div>
+							 <div class="form-group">
+								<label>Special Price From Date</label>
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input type="text" class="form-control pull-right" id="reservation"/>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
+							<div class="form-group">
+								<label>Special Price To Date</label>
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input type="text" class="form-control pull-right" id="reservation"/>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
 							<div class="form-group">
 								<label>Tax Category</label>
 								<select class="form-control">
@@ -152,7 +191,8 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_2">
+					
+					<div class="tab-pane" id="tab_4">
 						<form role="form">
 							<div class="row">
 								<div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -184,7 +224,7 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3">
+					<div class="tab-pane" id="tab_5">
 						<form role="form">
 							<!-- text input -->
 							<div class="form-group">
@@ -197,6 +237,47 @@
 								</select>
 							</div>
 							<table class="table table-bordered" style="margin-top:30px;">
+								<tr>
+									<th>Attribute Name</th>
+									<th>Attribute Values</th>
+								</tr>
+								<tr>
+									<td>Color</td>
+									<td>Red,Blue,White,Black</td>
+								</tr>
+								<tr>
+									<td>Size</td>
+									<td>Large,Medium,Small</td>
+								</tr>
+							</table>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab_6">
+						<form role="form">
+							<table class="table table-bordered table-striped">
+								<tr>
+									<th>Product Name</th>
+									<th>Category</th>
+									<th>Price</th>
+								</tr>
+								<tr>
+									<td>Color</td>
+									<td>Red,Blue,White,Black</td>
+									<td>Red,Blue,White,Black</td>
+								</tr>
+								<tr>
+									<td>Size</td>
+									<td>Large,Medium,Small</td>
+									<td>Large,Medium,Small</td>
+								</tr>
+							</table>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab_7">
+						<form role="form">
+							<table class="table table-bordered table-striped">
 								<tr>
 									<th>Attribute Name</th>
 									<th>Attribute Values</th>
