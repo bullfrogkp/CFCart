@@ -137,114 +137,78 @@
 						<thead>
 							<tr>
 								<th>Name</th>
+								<th>Type</th>
 								<th>Category</th>
+								<th>Attribute Set</th>
 								<th>Price</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>Computers / Networking</td>
+								<td>Simple</td>
+								<td>Computer</td>
 								<td>1</td>
-								<td>Yes</td>
+								<td>$100.00</td>
+								<td>Enabled</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Computers / Networking</td>
+								<td>Simple</td>
+								<td>Computer</td>
 								<td>1</td>
-								<td>Yes</td>
+								<td>$100.00</td>
+								<td>Enabled</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Computers / Networking</td>
+								<td>Simple</td>
+								<td>Computer</td>
 								<td>1</td>
-								<td>Yes</td>
+								<td>$100.00</td>
+								<td>Enabled</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Computers / Networking</td>
+								<td>Simple</td>
+								<td>Computer</td>
 								<td>1</td>
-								<td>Yes</td>
+								<td>$100.00</td>
+								<td>Enabled</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Computers / Networking</td>
+								<td>Simple</td>
+								<td>Computer</td>
 								<td>1</td>
-								<td>Yes</td>
+								<td>$100.00</td>
+								<td>Enabled</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Computers / Networking</td>
+								<td>Simple</td>
+								<td>Computer</td>
 								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Yes</td>
+								<td>$100.00</td>
+								<td>Enabled</td>
 								<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>Name</th>
+								<th>Type</th>
 								<th>Category</th>
+								<th>Attribute Set</th>
 								<th>Price</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</tfoot>
