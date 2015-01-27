@@ -215,37 +215,37 @@
 				<div class="box-body no-padding">
 					<table class="table table-striped">
 						<tr>
-							<th>Customer</th>
-							<th>Items</th>
-							<th>Grand Total</th>
+							<th>Product</th>
+							<th>Information</th>
+							<th>Sold</th>
 							<th></th>
 						</tr>
 						<tr>
-							<td>Kevin</td>
+							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
 							<td><a href="">Detail</a></td>
 						</tr>
 						<tr>
-							<td>Kevin</td>
+							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
 							<td><a href="">Detail</a></td>
 						</tr>
 						<tr>
-							<td>Kevin</td>
+							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
 							<td><a href="">Detail</a></td>
 						</tr>
 						<tr>
-							<td>Kevin</td>
+							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
 							<td><a href="">Detail</a></td>
 						</tr>
 						<tr>
-							<td>Kevin</td>
+							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
 							<td><a href="">Detail</a></td>
@@ -264,7 +264,7 @@
 					<table class="table table-striped">
 						<tr>
 							<th>Product</th>
-							<th>Review</th>
+							<th>Viewed</th>
 							<th></th>
 						</tr>
 						<tr>
