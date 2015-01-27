@@ -75,6 +75,7 @@
 					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
 					<li><a href="##tab_2" data-toggle="tab">Images</a></li>
 					<li><a href="##tab_3" data-toggle="tab">Attributes</a></li>
+					<li><a href="##tab_4" data-toggle="tab">Reviews</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -140,7 +141,7 @@
 							</div>
 							<div class="form-group">
 								<label>Tax Category</label>
-								<select multiple="" class="form-control">
+								<select class="form-control">
 									<option>option 1</option>
 									<option>option 2</option>
 									<option>option 3</option>
