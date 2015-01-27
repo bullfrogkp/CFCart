@@ -31,7 +31,7 @@
 								<label>Parent Category</label>
 								<select class="form-control" name="parent_category_id">
 									<option value="0">Root</option>
-									<option value="#REQUEST.categories.category_id#">Computers / Networking</option>
+									<option value="">Computers / Networking</option>
 								</select>
 							</div>
 							 <div class="form-group">
