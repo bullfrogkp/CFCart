@@ -17,7 +17,6 @@
 		<div class="col-md-4">
 			<div class="box box-primary">
 				<div class="box-header">
-					<i class="fa fa-text-width"></i>
 					<h3 class="box-title">Categories</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body">
