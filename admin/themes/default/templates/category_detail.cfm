@@ -74,6 +74,7 @@
 					<li><a href="##tab_2" data-toggle="tab">Filters</a></li>
 					<li><a href="##tab_3" data-toggle="tab">Custom Design</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Thumbnail Image</a></li>
+					<li><a href="##tab_5" data-toggle="tab">Products</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -182,6 +183,124 @@
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane" id="tab_5">
+						<table id="example2" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>SKU</th>
+									<th>Price</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+								<tr>
+									<td>Computers / Networking</td>
+									<td>1</td>
+									<td>Yes</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Name</th>
+									<th>Active</th>
+									<th>Rank</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
+						</table>
 					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
