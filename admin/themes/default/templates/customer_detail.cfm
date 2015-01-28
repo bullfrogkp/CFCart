@@ -17,11 +17,12 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Addresses</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Reset Password</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Shopping Cart</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Wishlist</a></li>
+					<li class="active"><a href="##tab_1" data-toggle="tab">Activities</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Account Information</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Addresses</a></li>
+					<li><a href="##tab_4" data-toggle="tab">Reset Password</a></li>
+					<li><a href="##tab_5" data-toggle="tab">Shopping Cart</a></li>
+					<li><a href="##tab_6" data-toggle="tab">Wishlist</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -59,7 +60,8 @@
 								<label>Comments</label>
 								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
 							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn btn-danger pull-right">Delete User</button>
 						</form>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">
