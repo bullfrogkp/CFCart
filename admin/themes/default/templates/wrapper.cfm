@@ -347,6 +347,7 @@
                                 <li><a href="#APPLICATION.absolute_url_web#admin/customers.cfm"><i class="fa fa-angle-double-right"></i> All Customers</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/customer_groups.cfm"><i class="fa fa-angle-double-right"></i> Customer Groups</a></li>
                                 <li><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer Group</a></li>
                             </ul>
                         </li>
 						<li class="treeview">

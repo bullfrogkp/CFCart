@@ -129,7 +129,7 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane active" id="tab_2">
+					<div class="tab-pane" id="tab_2">
 						<form role="form">
 							 <div class="form-group">
 								<label>Title</label>
@@ -279,15 +279,21 @@
 						<form role="form">
 							<table class="table table-bordered table-striped">
 								<tr>
-									<th>Attribute Name</th>
-									<th>Attribute Values</th>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Rating</th>
+									<th>Create Datetime</th>
 								</tr>
 								<tr>
 									<td>Color</td>
 									<td>Red,Blue,White,Black</td>
+									<td>Red,Blue,White,Black</td>
+									<td>Red,Blue,White,Black</td>
 								</tr>
 								<tr>
 									<td>Size</td>
+									<td>Large,Medium,Small</td>
+									<td>Large,Medium,Small</td>
 									<td>Large,Medium,Small</td>
 								</tr>
 							</table>
