@@ -31,7 +31,8 @@
 					<li><a href="##tab_6" data-toggle="tab">Wishlist</a></li>
 					<li><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 					<li><a href="##tab_8" data-toggle="tab">Newsletters</a></li>
-					<li><a href="##tab_9" data-toggle="tab">Reset Password</a></li>
+					<li><a href="##tab_9" data-toggle="tab">Change Password</a></li>
+					<li class="pull-right"><button type="submit" class="btn btn-danger pull-right" style="margin-top:2px;">Delete User</button></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -121,10 +122,9 @@
 							</div>
 							<div class="form-group">
 								<label>Comments</label>
-								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+								<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 							</div>
 							<button type="submit" class="btn btn-primary">Save</button>
-							<button type="submit" class="btn btn-danger pull-right">Delete User</button>
 						</form>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
@@ -454,7 +454,7 @@
 								<label>Confirm New Password</label>
 								<input type="password" class="form-control" placeholder="Enter ..." value=""/>
 							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-primary">Change Password</button>
 						</form>
 					</div>
 				</div><!-- /.tab-content -->
