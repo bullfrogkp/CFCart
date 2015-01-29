@@ -129,7 +129,7 @@
 			<div class="box box-warning">
 				<div class="box-header">
 					<h3 class="box-title">Products</h3>
-					<a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm" class="btn btn-default pull-right" style="margin: 10px 10px 0 0;">Add New Product</a>
+					<a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Product</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table id="example2" class="table table-bordered table-striped">

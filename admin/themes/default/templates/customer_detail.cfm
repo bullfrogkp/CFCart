@@ -27,12 +27,12 @@
 					<li><a href="##tab_2" data-toggle="tab">Account Information</a></li>
 					<li><a href="##tab_3" data-toggle="tab">Orders</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Addresses</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Shopping Cart</a></li>
-					<li><a href="##tab_6" data-toggle="tab">Wishlist</a></li>
-					<li><a href="##tab_7" data-toggle="tab">Reviews</a></li>
-					<li><a href="##tab_8" data-toggle="tab">Newsletters</a></li>
-					<li><a href="##tab_9" data-toggle="tab">Change Password</a></li>
-					<li class="pull-right"><button type="submit" class="btn btn-danger pull-right" style="margin-top:2px;">Delete User</button></li>
+					<li><a href="##tab_5" data-toggle="tab">Reviews</a></li>
+					<li><a href="##tab_6" data-toggle="tab">Newsletters</a></li>
+					<li><a href="##tab_7" data-toggle="tab">Change Password</a></li>
+					<li class="pull-right"><button type="submit" class="btn btn-sm btn-danger pull-right top-nav-button">Delete Customer</button></li>
+					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Save Customer</button></li>
+					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Add Order</button></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -51,6 +51,94 @@
 						 <div class="form-group">
 							<label>Account Created IP Address</label>
 							<input disabled type="text" class="form-control" placeholder="Enter ..." value="65.57.67.112"/>
+						</div>
+						<div class="form-group">
+							<label>Shopping Cart</label>
+							<table id="example2" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Information</th>
+										<th>Quantity</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Kevin</td>
+										<td>Pan</td>
+										<td>4166666666</td>
+										<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>Product</th>
+										<th>Information</th>
+										<th>Quantity</th>
+										<th>Action</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div class="form-group">
+							<label>Buy Later</label>
+							<table id="example2" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Information</th>
+										<th>Quantity</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Kevin</td>
+										<td>Pan</td>
+										<td>4166666666</td>
+										<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>Product</th>
+										<th>Information</th>
+										<th>Quantity</th>
+										<th>Action</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						
+						<div class="form-group">
+							<label>Wishlist</label>
+							<table id="example2" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th>Information</th>
+										<th>Quantity</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Kevin</td>
+										<td>Pan</td>
+										<td>4166666666</td>
+										<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>Product</th>
+										<th>Information</th>
+										<th>Quantity</th>
+										<th>Action</th>
+									</tr>
+								</tfoot>
+							</table>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">
@@ -124,7 +212,7 @@
 								<label>Comments</label>
 								<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 							</div>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn btn-primary">Save Customer</button>
 						</form>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
@@ -295,13 +383,14 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_5">
-						<label>Shopping Cart</label>
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Product</th>
-									<th>Information</th>
-									<th>Quantity</th>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Rating</th>
+									<th>Create Datetime</th>
+									<th>Create User</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -310,31 +399,6 @@
 									<td>Kevin</td>
 									<td>Pan</td>
 									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Product</th>
-									<th>Information</th>
-									<th>Quantity</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
-						<label>Buy Later</label>
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Product</th>
-									<th>Information</th>
-									<th>Quantity</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Kevin</td>
 									<td>Pan</td>
 									<td>4166666666</td>
 									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
@@ -342,9 +406,11 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Product</th>
-									<th>Information</th>
-									<th>Quantity</th>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Rating</th>
+									<th>Create Datetime</th>
+									<th>Create User</th>
 									<th>Action</th>
 								</tr>
 							</tfoot>
@@ -354,9 +420,9 @@
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Product</th>
-									<th>Information</th>
-									<th>Quantity</th>
+									<th>Name</th>
+									<th>Subscribe Datetime</th>
+									<th>Subscribe User</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -370,77 +436,15 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Product</th>
-									<th>Information</th>
-									<th>Quantity</th>
+									<th>Name</th>
+									<th>Subscribe Datetime</th>
+									<th>Subscribe User</th>
 									<th>Action</th>
 								</tr>
 							</tfoot>
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_7">
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Create User</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Create User</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_8">
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Subscribe Datetime</th>
-									<th>Subscribe User</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Name</th>
-									<th>Subscribe Datetime</th>
-									<th>Subscribe User</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_9">
 						<form role="form">
 							 <div class="form-group">
 								<label>Current Password</label>
