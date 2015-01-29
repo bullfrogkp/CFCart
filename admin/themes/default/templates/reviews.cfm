@@ -18,11 +18,11 @@
 							<tr>
 								<th>Name</th>
 								<th>Subject</th>
-								<th>Create Datetime</th>
 								<th>Status</th>
 								<th>Review</th>
 								<th>Type</th>
 								<th>Product</th>
+								<th>Create Datetime</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -44,11 +44,11 @@
 							<tr>
 								<th>Name</th>
 								<th>Subject</th>
-								<th>Create Datetime</th>
 								<th>Status</th>
 								<th>Review</th>
 								<th>Type</th>
 								<th>Product</th>
+								<th>Create Datetime</th>
 								<th>Action</th>
 							</tr>
 						</tfoot>
