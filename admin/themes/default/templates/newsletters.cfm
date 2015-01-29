@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Shipping Methods
+		Newsletters
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Shipping Methods</li>
+		<li class="active">Newsletters</li>
 	</ol>
 </section>
 <section class="content">
@@ -16,8 +16,11 @@
 					<table id="example2" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th>Template Name</th>
+								<th>Date Added</th>
+								<th>Date Updated</th>
 								<th>Subject</th>
+								<th>Type</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -26,14 +29,20 @@
 							<tr>
 								<td>Test email 1</td>
 								<td>This is a new email</td>
-								<td><a href="shipping_method_detail.cfm?request_id=1">View Detail</a></td>
+								<td>Test email 1</td>
+								<td>This is a new email</td>
+								<td>Test email 1</td>
+								<td><a href="newsletter_detail.cfm?request_id=1">View Detail</a></td>
 							</tr>
 							
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Name</th>
+								<th>Template Name</th>
+								<th>Date Added</th>
+								<th>Date Updated</th>
 								<th>Subject</th>
+								<th>Type</th>
 								<th>Action</th>
 							</tr>
 						</tfoot>

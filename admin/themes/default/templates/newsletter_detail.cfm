@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Email Detail
+		Newsletter Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Email Detail</li>
+		<li class="active">Newsletter Detail</li>
 	</ol>
 </section>
 
@@ -29,7 +29,7 @@
 							<label>Content</label>
 							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary">Save Newsletter</button>
 					</div><!-- /.box-body -->
 				</form>
 			</div><!-- /.box -->
