@@ -19,7 +19,6 @@
 								<th>Name</th>
 								<th>Subject</th>
 								<th>Status</th>
-								<th>Review</th>
 								<th>Type</th>
 								<th>Product</th>
 								<th>Create Datetime</th>
@@ -32,7 +31,6 @@
 								<td>Test email 1</td>
 								<td>This is a new email</td>
 								<td>Test email 1</td>
-								<td>This is a new email</td>
 								<td>Test email 1</td>
 								<td>This is a new email</td>
 								<td>Test email 1</td>
@@ -45,7 +43,6 @@
 								<th>Name</th>
 								<th>Subject</th>
 								<th>Status</th>
-								<th>Review</th>
 								<th>Type</th>
 								<th>Product</th>
 								<th>Create Datetime</th>
