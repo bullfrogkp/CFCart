@@ -52,7 +52,8 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		$('##reservation').daterangepicker();
+		$('##from_date').datepicker();
+		$('##to_date').datepicker();
 	});
 </script>
 
@@ -167,7 +168,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
-									<input type="text" class="form-control pull-right" id="reservation"/>
+									<input type="text" class="form-control pull-right" id="from_date"/>
 								</div><!-- /.input group -->
 							</div><!-- /.form group -->
 							<div class="form-group">
@@ -176,7 +177,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
-									<input type="text" class="form-control pull-right" id="reservation"/>
+									<input type="text" class="form-control pull-right" id="to_date"/>
 								</div><!-- /.input group -->
 							</div><!-- /.form group -->
 							<div class="form-group">

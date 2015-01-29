@@ -1,4 +1,11 @@
 ﻿<cfoutput>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(document).ready(function() {
+		$('##from_date').datepicker();
+		$('##to_date').datepicker();
+	});
+</script>
 <section class="content-header">
 	<h1>
 		Promotion Detail
@@ -17,18 +24,46 @@
 			<div class="box box-primary">
 				<form role="form">
 					<div class="box-body">
-						<div class="form-group">
-							<label>Subject</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
-						</div>
 						 <div class="form-group">
 							<label>Name</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						<div class="form-group">
-							<label>Content</label>
-							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							<label>Description</label>
+							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 						</div>
+						<div class="form-group">
+							<label>Status</label>
+							<select class="form-control" name="parent_category_id">
+								<option value="0">Pending</option>
+								<option value="">Approved</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Customer Groups</label>
+							<select multiple class="form-control" name="parent_category_id">
+								<option value="0">Retailer</option>
+								<option value="">Wholeseller</option>
+							</select>
+						</div>
+						 <div class="form-group">
+							<label>From Date</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right" id="from_date"/>
+							</div><!-- /.input group -->
+						</div><!-- /.form group -->
+						 <div class="form-group">
+							<label>To Date</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right" id="to_date"/>
+							</div><!-- /.input group -->
+						</div><!-- /.form group -->
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.box-body -->
 				</form>

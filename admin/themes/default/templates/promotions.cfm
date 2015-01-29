@@ -17,7 +17,9 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Subject</th>
+								<th>Date Start</th>
+								<th>Date Expire</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -26,6 +28,8 @@
 							<tr>
 								<td>Test email 1</td>
 								<td>This is a new email</td>
+								<td>This is a new email</td>
+								<td>This is a new email</td>
 								<td><a href="promotion_detail.cfm?request_id=1">View Detail</a></td>
 							</tr>
 							
@@ -33,7 +37,9 @@
 						<tfoot>
 							<tr>
 								<th>Name</th>
-								<th>Subject</th>
+								<th>Date Start</th>
+								<th>Date Expire</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</tfoot>

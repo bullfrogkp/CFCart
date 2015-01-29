@@ -18,10 +18,10 @@
 							<tr>
 								<th>Name</th>
 								<th>Subject</th>
-								<th>Status</th>
 								<th>Type</th>
 								<th>Product</th>
 								<th>Create Datetime</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -42,10 +42,10 @@
 							<tr>
 								<th>Name</th>
 								<th>Subject</th>
-								<th>Status</th>
 								<th>Type</th>
 								<th>Product</th>
 								<th>Create Datetime</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</tfoot>

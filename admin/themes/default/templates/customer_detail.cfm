@@ -2,7 +2,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(document).ready(function() {
-		$('##reservation').daterangepicker();
+		$('##reservation').datepicker();
 	});
 </script>
 <section class="content-header">
