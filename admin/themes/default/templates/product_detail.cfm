@@ -81,6 +81,7 @@
 					<li><a href="##tab_5" data-toggle="tab">Attributes</a></li>
 					<li><a href="##tab_6" data-toggle="tab">Related Products</a></li>
 					<li><a href="##tab_7" data-toggle="tab">Reviews</a></li>
+					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Save Product</button></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">

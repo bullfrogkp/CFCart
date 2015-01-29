@@ -75,6 +75,7 @@
 					<li><a href="##tab_3" data-toggle="tab">Custom Design</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Thumbnail Image</a></li>
 					<li><a href="##tab_5" data-toggle="tab">Products</a></li>
+					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Save Category</button></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">

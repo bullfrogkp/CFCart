@@ -25,6 +25,7 @@
         <link href="#SESSION.absolute_url_theme_admin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
 		
 		<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme_admin#css/jquery.ui.plupload.css">
+		<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme_admin#css/custom.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
