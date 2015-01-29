@@ -380,7 +380,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#APPLICATION.absolute_url_web#admin/orders.cfm"><i class="fa fa-angle-double-right"></i> All Orders</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
+                                <li><a href="#APPLICATION.absolute_url_web#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
                             </ul>
                         </li>
 						<li>

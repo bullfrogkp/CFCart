@@ -17,7 +17,7 @@
 				<div class="box-header">
 					<h3 class="box-title">Items Ordered</h3>
 				</div><!-- /.box-header -->
-				<div class="box-body no-padding">
+				<div class="box-body">
 					<table class="table table-bordered table-striped">
 						<thead>
 							<th>Product</th>
@@ -59,22 +59,19 @@
 		</section>
 	</div><!-- /.row (main row) -->
 	<div class="row">
-		<!-- Left col -->
-		<section class="col-lg-2"> 
-			 <div class="form-group">
-				<label>Apply Coupon Code</label>
+		<section class="col-lg-12"> 
+			<div class="box box-warning">
+				<div class="box-header">
+					<h3 class="box-title">Coupon Code</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" />
+					</div>
+				</div>
 			</div>
-		</section>
-		<section class="col-lg-8"> 
-			 <div class="form-group">
-				<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" />
-			</div>
-		</section>
-		<section class="col-lg-2"> 
-			 <div class="form-group">
-				<button type="submit" class="btn btn-primary">Apply</button>
-			</div>
-		</section>
+			<!-- /.box -->
+		</section><!-- right col -->
 	</div><!-- /.row (main row) -->
 	<div class="row">
 		<section class="col-lg-12"> 
@@ -172,12 +169,12 @@
 			<div class="box box-warning">
 				<div class="box-header">
 					<h3 class="box-title">Shipping Address</h3>
+					<div class="form-group pull-right" style="margin:10px 10px 0 0;">
+						<input type="checkbox" class="form-control" checked />
+						<label>Same As Billing Address</label>
+					</div>
 				</div><!-- /.box-header -->
 				<div class="box-body">
-					<div class="form-group">
-						<label>Same As Billing Address</label>
-						<input type="checkbox" class="form-control" checked />
-					</div>
 					<div class="form-group">
 						<label>Prefix</label>
 						<input type="text" class="form-control" placeholder="Enter ..." value="" />
@@ -287,7 +284,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
+						<textarea class="form-control" rows="8" placeholder="Enter ..."></textarea>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -300,8 +297,14 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						
+						<label>Subtotal</label>
+						<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
 					</div>
+					<div class="form-group">
+						<label>Grand Total</label>
+						<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit Order</button>
 				</div>
 			</div>
 			<!-- /.box -->
