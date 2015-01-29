@@ -24,6 +24,7 @@
 					<li><a href="##tab_5" data-toggle="tab">Payment</a></li>
 					<li><a href="##tab_6" data-toggle="tab">Shipping</a></li>
 					<li><a href="##tab_7" data-toggle="tab">Refund</a></li>
+					<li><a href="##tab_8" data-toggle="tab">Customer</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -254,6 +255,11 @@
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
+					</div>
+					<div class="tab-pane" id="tab_8">
+						 <div class="form-group">
+							<a href="customer_detail.cfm">Customer Detail</a>
+						</div>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
