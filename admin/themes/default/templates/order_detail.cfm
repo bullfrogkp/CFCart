@@ -24,7 +24,11 @@
 					<li><a href="##tab_5" data-toggle="tab">Payment</a></li>
 					<li><a href="##tab_6" data-toggle="tab">Shipping</a></li>
 					<li><a href="##tab_7" data-toggle="tab">Refund</a></li>
-					<li><a href="##tab_8" data-toggle="tab">Customer</a></li>
+					<li class="pull-right">
+						<button type="submit" class="btn btn-default pull-right" style="margin-top:2px;margin-left:10px;">Invoice</button>
+						<button type="submit" class="btn btn-default pull-right" style="margin-top:2px;">Customer Detail</button>
+						
+					</li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -251,15 +255,10 @@
 							</div>
 							<div class="form-group">
 								<label>Memo</label>
-								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+								<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
-					</div>
-					<div class="tab-pane" id="tab_8">
-						 <div class="form-group">
-							<a href="customer_detail.cfm">Customer Detail</a>
-						</div>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
