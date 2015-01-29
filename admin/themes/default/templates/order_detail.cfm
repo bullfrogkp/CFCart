@@ -17,15 +17,44 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="##tab_1" data-toggle="tab">Address</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Status</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Products</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Transactions</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Tracking No.</a></li>
-					<li><a href="##tab_6" data-toggle="tab">Refund</a></li>
+					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Addresses</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Status</a></li>
+					<li><a href="##tab_4" data-toggle="tab">Products</a></li>
+					<li><a href="##tab_5" data-toggle="tab">Payment</a></li>
+					<li><a href="##tab_6" data-toggle="tab">Shipping</a></li>
+					<li><a href="##tab_7" data-toggle="tab">Refund</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
+						<form role="form">
+							<div class="form-group">
+								<label>Order Date</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="Jan 19, 2015" disabled/>
+							</div>
+							<div class="form-group">
+								<label>Order Status</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="Pending" disabled/>
+							</div>
+							<div class="form-group">
+								<label>Purchased From</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="192.168.0.1" disabled/>
+							</div>
+							<div class="form-group">
+								<label>Customer Name</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan" disabled/>
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="kp@kp.ca" disabled/>
+							</div>
+							<div class="form-group">
+								<label>Customer Group</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="Wholesale" disabled/>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab_2">
 						<label>Billing Address:</label>
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
@@ -38,6 +67,7 @@
 									<th>Province</th>
 									<th>Postal Code</th>
 									<th>Country</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -50,6 +80,7 @@
 									<td>Ontario</td>
 									<td>L4L 4L4</td>
 									<td>Canada</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -65,6 +96,7 @@
 									<th>Province</th>
 									<th>Postal Code</th>
 									<th>Country</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -77,11 +109,12 @@
 									<td>Ontario</td>
 									<td>L4L 4L4</td>
 									<td>Canada</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_2">
+					<div class="tab-pane" id="tab_3">
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -121,11 +154,11 @@
 						</div>
 						<div class="form-group">
 							<label>Comments</label>
-							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3">
+					<div class="tab-pane" id="tab_4">
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -161,9 +194,17 @@
 									<td>2</td>
 								</tr>
 							</tbody>
+							<tfoot>
+								<tr>
+									<th></th>
+									<th></th>
+									<th>Total</th>
+									<th>Total Quantity</th>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
-					<div class="tab-pane" id="tab_4">
+					<div class="tab-pane" id="tab_5">
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -181,7 +222,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="tab-pane" id="tab_5">
+					<div class="tab-pane" id="tab_6">
 						<form role="form">
 							 <div class="form-group">
 								<label>Tracking Number</label>
@@ -190,7 +231,7 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div>
-					<div class="tab-pane" id="tab_6">
+					<div class="tab-pane" id="tab_7">
 						<form role="form">
 							 <div class="form-group">
 								<label>Transaction ID</label>
