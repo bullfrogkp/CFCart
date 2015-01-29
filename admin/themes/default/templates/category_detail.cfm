@@ -71,10 +71,11 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Filters</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Custom Design</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Thumbnail Image</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Products</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Filters</a></li>
+					<li><a href="##tab_4" data-toggle="tab">Custom Design</a></li>
+					<li><a href="##tab_5" data-toggle="tab">Thumbnail Image</a></li>
+					<li><a href="##tab_6" data-toggle="tab">Products</a></li>
 					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Save Category</button></li>
 				</ul>
 				<div class="tab-content">
@@ -95,18 +96,6 @@
 								<label>Rank</label>
 								<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="1" />
 							</div>
-							<div class="form-group">
-								<label>Title</label>
-								<input type="text" class="form-control" placeholder="Enter ..." name="display_name"  value="Computers / Networking"/>
-							</div>
-							<div class="form-group">
-								<label>Keywords</label>
-								<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-							</div>
-							<div class="form-group">
-								<label>Description</label>
-								<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-							</div>
 							 <div class="form-group">
 								<label>Status</label>
 								 <select class="form-control" name="active">
@@ -126,6 +115,23 @@
 					
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">
+						<form role="form" method="post">
+							<div class="form-group">
+								<label>Title</label>
+								<input type="text" class="form-control" placeholder="Enter ..." name="display_name"  value="Computers / Networking"/>
+							</div>
+							<div class="form-group">
+								<label>Keywords</label>
+								<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+							</div>
+							<div class="form-group">
+								<label>Description</label>
+								<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane" id="tab_3">
 						<form role="form">
 							<!-- text input -->
 							<div class="form-group">
@@ -155,7 +161,7 @@
 						</form>
 					
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3">
+					<div class="tab-pane" id="tab_4">
 						<form role="form">
 							<div class="form-group">
 								<label>Preview</label>
@@ -168,7 +174,7 @@
 						</form>
 					
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_4">
+					<div class="tab-pane" id="tab_5">
 						<form role="form">
 							<div class="row">
 								<div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -185,7 +191,7 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_5">
+					<div class="tab-pane" id="tab_6">
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
 								<tr>
