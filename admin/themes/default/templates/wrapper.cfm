@@ -328,7 +328,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li id="categories"><a href="#APPLICATION.absolute_url_web#admin/categories.cfm"><i class="fa fa-angle-double-right"></i> All Categories</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Category</a></li>
+                                <li id="category_detail"><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Category</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
@@ -338,8 +338,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/products.cfm"><i class="fa fa-angle-double-right"></i> All Products</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product</a></li>
+                                <li id="products"><a href="#APPLICATION.absolute_url_web#admin/products.cfm"><i class="fa fa-angle-double-right"></i> All Products</a></li>
+                                <li id="product_detail"><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product</a></li>
                             </ul>
                         </li>
 						
@@ -350,10 +350,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/customers.cfm"><i class="fa fa-angle-double-right"></i> All Customers</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/customer_groups.cfm"><i class="fa fa-angle-double-right"></i> Customer Groups</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer Group</a></li>
+                                <li id="customers"><a href="#APPLICATION.absolute_url_web#admin/customers.cfm"><i class="fa fa-angle-double-right"></i> All Customers</a></li>
+                                <li id="customer_groups"><a href="#APPLICATION.absolute_url_web#admin/customer_groups.cfm"><i class="fa fa-angle-double-right"></i> Customer Groups</a></li>
+                                <li id="customer_detail"><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer</a></li>
+                                <li id="customer_group_detail"><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer Group</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
@@ -363,8 +363,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Promotion</a></li>
+                                <li id="promotions"><a href="#APPLICATION.absolute_url_web#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
+                                <li id="promotion_detail"><a href="#APPLICATION.absolute_url_web#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Promotion</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
@@ -374,8 +374,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> All Newsletters</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Newsletter</a></li>
+                                <li id="newsletters"><a href="#APPLICATION.absolute_url_web#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> All Newsletters</a></li>
+                                <li id="newsletter_detail"><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Newsletter</a></li>
                             </ul>
                         </li>		
 						<li class="treeview">
@@ -385,11 +385,11 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/orders.cfm"><i class="fa fa-angle-double-right"></i> All Orders</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
+                                <li id="orders"><a href="#APPLICATION.absolute_url_web#admin/orders.cfm"><i class="fa fa-angle-double-right"></i> All Orders</a></li>
+                                <li id="order_detail"><a href="#APPLICATION.absolute_url_web#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
                             </ul>
                         </li>
-						<li>
+						<li id="reviews">
                             <a href="#APPLICATION.absolute_url_web#admin/reviews.cfm">
                                 <i class="fa fa-comment"></i> <span>Reviews</span>
                             </a>
