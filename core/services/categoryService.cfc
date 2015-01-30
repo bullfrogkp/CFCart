@@ -18,8 +18,8 @@
 
     <cffunction name="init" output="false" access="public" returntype="BrownPeanut" hint="Constructor">
        
-		<cfargument name="categoryId" type="integer" required="false"> 
-		<cfargument name="parentPategoryId" type="integer" required="false"> 
+		<cfargument name="categoryId" type="integer" required="false" default="0"> 
+		<cfargument name="parentPategoryId" type="integer" required="false" default="0"> 
 		<cfargument name="categoryName" type="string" required="false"> 
 		<cfargument name="categoryDisplayName" type="integer" required="false"> 
 		<cfargument name="rank" type="float" required="false"> 
