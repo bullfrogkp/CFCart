@@ -263,16 +263,19 @@
 									<th>Product Name</th>
 									<th>Category</th>
 									<th>Price</th>
+									<th>Action</th>
 								</tr>
 								<tr>
 									<td>Color</td>
 									<td>Red,Blue,White,Black</td>
 									<td>Red,Blue,White,Black</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?request_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Size</td>
 									<td>Large,Medium,Small</td>
 									<td>Large,Medium,Small</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?request_id=1">View Detail</a></td>
 								</tr>
 							</table>
 							<button type="submit" class="btn btn-primary">Submit</button>
@@ -286,18 +289,21 @@
 									<th>Message</th>
 									<th>Rating</th>
 									<th>Create Datetime</th>
+									<th>Action</th>
 								</tr>
 								<tr>
 									<td>Color</td>
 									<td>Red,Blue,White,Black</td>
 									<td>Red,Blue,White,Black</td>
 									<td>Red,Blue,White,Black</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm?request_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Size</td>
 									<td>Large,Medium,Small</td>
 									<td>Large,Medium,Small</td>
 									<td>Large,Medium,Small</td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm?request_id=1">View Detail</a></td>
 								</tr>
 							</table>
 							<button type="submit" class="btn btn-primary">Submit</button>

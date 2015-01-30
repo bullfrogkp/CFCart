@@ -68,17 +68,9 @@
 										<td>Kevin</td>
 										<td>Pan</td>
 										<td>4166666666</td>
-										<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+										<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 									</tr>
 								</tbody>
-								<tfoot>
-									<tr>
-										<th>Product</th>
-										<th>Information</th>
-										<th>Quantity</th>
-										<th>Action</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 						<div class="form-group">
@@ -97,17 +89,9 @@
 										<td>Kevin</td>
 										<td>Pan</td>
 										<td>4166666666</td>
-										<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+										<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 									</tr>
 								</tbody>
-								<tfoot>
-									<tr>
-										<th>Product</th>
-										<th>Information</th>
-										<th>Quantity</th>
-										<th>Action</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 						
@@ -127,17 +111,9 @@
 										<td>Kevin</td>
 										<td>Pan</td>
 										<td>4166666666</td>
-										<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+										<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 									</tr>
 								</tbody>
-								<tfoot>
-									<tr>
-										<th>Product</th>
-										<th>Information</th>
-										<th>Quantity</th>
-										<th>Action</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 					</div><!-- /.tab-pane -->
@@ -212,7 +188,7 @@
 								<label>Comments</label>
 								<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 							</div>
-							<button type="submit" class="btn btn-primary">Save Customer</button>
+							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
@@ -234,7 +210,7 @@
 									<td>4166666666</td>
 									<td>123 street</td>
 									<td>Toronto</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>
@@ -401,7 +377,7 @@
 									<td>4166666666</td>
 									<td>Pan</td>
 									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>
@@ -431,7 +407,7 @@
 									<td>Kevin</td>
 									<td>Pan</td>
 									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>
