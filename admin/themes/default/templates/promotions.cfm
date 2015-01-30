@@ -11,7 +11,7 @@
 <section class="content">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box">
+			<div class="box box-primary">
 				<div class="box-body table-responsive">
 					<table id="example2" class="table table-bordered table-striped">
 						<thead>

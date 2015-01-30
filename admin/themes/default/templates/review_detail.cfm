@@ -18,7 +18,7 @@
 				<form role="form">
 					<div class="box-body">
 						<div class="form-group">
-							<label>Product <a href="" class="form-link">Computer</a></label>
+							<label>Product <a href="" class="form-link" style="margin-left:18px;">Computer</a></label>
 						</div>
 						<div class="form-group">
 							<label>Post By <a href="" class="form-link">Kevin Pan (Customer)</a></label>

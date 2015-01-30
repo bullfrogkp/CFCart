@@ -60,7 +60,7 @@
 	</div><!-- /.row (main row) -->
 	<div class="row">
 		<section class="col-lg-12"> 
-			<div class="box box-warning">
+			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Coupon Code</h3>
 				</div><!-- /.box-header -->
@@ -166,7 +166,7 @@
 		</section><!-- /.Left col -->
 		<!-- right col (We are only adding the ID to make the widgets sortable)-->
 		<section class="col-lg-6"> 
-			<div class="box box-warning">
+			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Shipping Address</h3>
 					<div class="form-group pull-right" style="margin:10px 10px 0 0;">
@@ -259,7 +259,7 @@
 		</section><!-- /.Left col -->
 		<!-- right col (We are only adding the ID to make the widgets sortable)-->
 		<section class="col-lg-6"> 
-			<div class="box box-warning">
+			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Shipping Method</h3>
 				</div><!-- /.box-header -->
@@ -291,7 +291,7 @@
 		</section><!-- /.Left col -->
 		<!-- right col (We are only adding the ID to make the widgets sortable)-->
 		<section class="col-lg-6"> 
-			<div class="box box-warning">
+			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Order Totals</h3>
 				</div><!-- /.box-header -->

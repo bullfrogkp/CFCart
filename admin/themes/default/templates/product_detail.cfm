@@ -239,7 +239,7 @@
 									<option value="4">Group 4</option>
 								</select>
 							</div>
-							<table class="table table-bordered" style="margin-top:30px;">
+							<table class="table table-bordered table-striped" style="margin-top:30px;">
 								<tr>
 									<th>Attribute Name</th>
 									<th>Attribute Values</th>

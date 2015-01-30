@@ -24,15 +24,14 @@
 					<li><a href="##tab_5" data-toggle="tab">Payment</a></li>
 					<li><a href="##tab_6" data-toggle="tab">Shipping</a></li>
 					<li><a href="##tab_7" data-toggle="tab">Refund</a></li>
-					<li class="pull-right">
-						<button type="submit" class="btn btn-default pull-right" style="margin-top:2px;margin-left:10px;">Invoice</button>
-						<button type="submit" class="btn btn-default pull-right" style="margin-top:2px;">Customer Detail</button>
-						
-					</li>
+					<li><a href="##tab_8" data-toggle="tab">Invoice</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
 						<form role="form">
+							<div class="form-group">
+								<label>Customer <a href="" class="form-link">Kevin</a></label>
+							</div>
 							<div class="form-group">
 								<label>Order Date</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="Jan 19, 2015" disabled/>
@@ -259,6 +258,8 @@
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
+					</div>
+					<div class="tab-pane" id="tab_8">
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
