@@ -16,7 +16,7 @@
             <cfif Find( "127.0.0.1", CGI.server_name ) OR Find( "localhost", CGI.server_name )>
                 <!--- Set development environment. --->
                 <cfset THIS[ "$Config" ].islive = false />
-                <cfset THIS[ "$Config" ].name = "threestar" />
+                <cfset THIS[ "$Config" ].name = "PinMyDeals" />
                 <cfset THIS[ "$Config" ].ormenabled = "false" />
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
@@ -48,7 +48,7 @@
             <cfelse>
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].islive = true />
-                <cfset THIS[ "$Config" ].name = "eshop" />
+                <cfset THIS[ "$Config" ].name = "PinMyDeals" />
                 <cfset THIS[ "$Config" ].ormenabled = "false" />
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />

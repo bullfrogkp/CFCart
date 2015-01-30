@@ -3,7 +3,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Dashboard</title>
+        <title>#REQUEST.page_data.title#</title>
+		<meta name="description" content="#REQUEST.page_data.description#">
+		<meta name="keywords" content="#REQUEST.page_data.keywords#">
+		<meta name="author" content="Bullfrog Design">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="#SESSION.absolute_url_theme_admin#css/bootstrap.min.css" rel="stylesheet" type="text/css" />
