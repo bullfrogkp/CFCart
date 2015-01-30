@@ -320,7 +320,7 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li class="treeview active">
+						<li class="treeview">
                             <a href="##">
                                 <i class="fa fa-bars"></i>
                                 <span>Categories</span>
@@ -474,6 +474,8 @@
 		<script>
 			$(document).ready(function() {
 				$('###REQUEST.page_data.current_page_name#').addClass('active');
+				$('###REQUEST.page_data.current_page_name#').parent('.treeview-menu').css('display','block');
+				$('###REQUEST.page_data.current_page_name#').parent().parent('.treeview').addClass('active');
 			});
 		</script>
     </body>
