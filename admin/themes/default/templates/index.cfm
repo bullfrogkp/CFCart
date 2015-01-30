@@ -1,4 +1,11 @@
 <cfoutput>
+
+ <!-- Morris.js charts -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="#SESSION.absolute_url_theme_admin#js/plugins/morris/morris.min.js" type="text/javascript"></script>
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="#SESSION.absolute_url_theme_admin#js/AdminLTE/dashboard.js" type="text/javascript"></script>
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
