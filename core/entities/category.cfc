@@ -10,6 +10,7 @@
 	<cfproperty name="categoryKeywords" column="category_keywords" ormtype="string"> 
 	<cfproperty name="categoryDescription" column="category_description" ormtype="string"> 
 	<cfproperty name="categoryCustomDesign" column="category_custom_design" ormtype="text"> 
+	<cfproperty name="filterGroupId" column="filter_group_id" ormtype="integer"> 
     <cfproperty name="createDatetime" column="create_datetime" ormtype="date"> 
     <cfproperty name="createUser" column="create_user" ormtype="string"> 
     <cfproperty name="updateDatetime" column="update_datetime" ormtype="date"> 
