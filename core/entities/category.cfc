@@ -1,5 +1,5 @@
 ﻿<cfcomponent persistent="true"> 
-    <cfproperty name="categoryId" column="category_id" fieldtype="id" generator="increment"> 
+    <cfproperty name="categoryId" column="category_id" fieldtype="id" generator="native"> 
     <cfproperty name="parentCategoryId" column="parent_category_id" ormtype="integer"> 
     <cfproperty name="categoryName" column="category_name" ormtype="string"> 
     <cfproperty name="categoryDisplayName" column="category_display_name" ormtype="string"> 

@@ -17,7 +17,7 @@
                 <!--- Set development environment. --->
                 <cfset THIS[ "$Config" ].islive = false />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
-                <cfset THIS[ "$Config" ].ormenabled = "false" />
+                <cfset THIS[ "$Config" ].ormenabled = "true" />
                 <cfset THIS[ "$Config" ].ormsettings = {} />
                 <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
                 <cfset THIS[ "$Config" ].ormsettings.cfclocation = "/cfcart/core/entities/" />
