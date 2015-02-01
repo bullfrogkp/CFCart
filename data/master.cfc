@@ -1,10 +1,16 @@
 ﻿<cfcomponent>	
-	<cfset VARIABLES.page_name = "" />
+	<cfproperty name="pageName" type="integer"> 
+    <cfproperty name="URLStruct" type="struct"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
-		<cfargument name="page_name" type="string" required="true" />
+		<cfargument name="pageName" type="string" required="true" />
+		<cfargument name="URLStruct" type="struct" required="false" />
 		
-		<cfset VARIABLES.page_name = ARGUMENTS.page_name />
+		<cfset setPageName(ARGUMENTS.pageName) />
+		
+		<cfif StructKeyExists(ARGUMENTS,"URLStruct")>
+			<cfset setURLStruct(ARGUMENTS.URLStruct) />
+		</cfif>
 		
 		<cfreturn this />
 	</cffunction>

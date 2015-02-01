@@ -13,7 +13,7 @@
 	<cfproperty name="categoryCustomDesign" column="category_custom_design" ormtype="text"> 
 	<cfproperty name="filterGroupId" column="filter_group_id" ormtype="integer"> 
     <cfproperty name="createdDatetime" column="created_datetime" ormtype="date"> 
-    <cfproperty name="createUser" column="create_user" ormtype="string"> 
+    <cfproperty name="createdUser" column="create_user" ormtype="string"> 
     <cfproperty name="updatedDatetime" column="updated_datetime" ormtype="date"> 
-    <cfproperty name="updateUser" column="update_user" ormtype="string"> 
+    <cfproperty name="updatedUser" column="update_user" ormtype="string"> 
 </cfcomponent>

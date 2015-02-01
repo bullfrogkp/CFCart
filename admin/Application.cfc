@@ -100,21 +100,23 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
-		<cfargument type="String" name="current_page_name" required="true"/>
+		<cfargument type="string" name="currentPageName" required="true"/>
+		<cfargument type="struct" name="URLStruct" required="true"/>
 		
-		<cfif FileExists("#APPLICATION.absolute_path_root#admin\data\#ARGUMENTS.current_page_name#.cfc")>
-			<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.#current_page_name#"(page_name = ARGUMENTS.current_page_name) />
+		<cfif FileExists("#APPLICATION.absolute_path_root#admin\data\#ARGUMENTS.currentPageName#.cfc")>
+			<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.#ARGUMENTS.currentPageName#"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
 		<cfelse>
-			<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.master"(page_name = ARGUMENTS.current_page_name) />
+			<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.master"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
 		</cfif>
 		
 		<cfreturn page_obj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="String" name="current_page_name" required="true"/>
+		<cfargument type="string" name="currentPageName" required="true"/>
+		<cfargument type="struct" name="URLStruct" required="true"/>
 		
-		<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.global"(page_name = ARGUMENTS.current_page_name) />
+		<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.global"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
 		
 		<cfreturn page_obj />
 	</cffunction>
@@ -154,8 +156,12 @@
 			<!---
 			<cftry>		
 			--->
-				<cfset var global_page_obj = _initGlobalPageObject(current_page_name = current_page_name) />
-				<cfset var page_obj = _initPageObject(current_page_name = current_page_name) />
+				<cfset var args = {} />
+				<cfset args.current_page_name = current_page_name />
+				<cfset args.URLStruct = URL />
+				
+				<cfset var global_page_obj = _initGlobalPageObject(argumentCollection = args) />
+				<cfset var page_obj = _initPageObject(argumentCollection = args) />
 				<cfset var return_struct = {} />
 				
 				<!---
