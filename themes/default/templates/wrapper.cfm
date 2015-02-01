@@ -289,7 +289,7 @@
 	</div>
 	
 	<div id="content-top" class="container">
-		<cfinclude template="#REQUEST.pageData.template_path#" />
+		<cfinclude template="#REQUEST.pageData.templatePath#" />
 	</div>
 	
 	<div style="clear:both;"></div>

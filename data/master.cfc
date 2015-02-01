@@ -1,5 +1,5 @@
 ﻿<cfcomponent output="false" accessors="true">
-	<cfproperty name="pageName" type="integer"> 
+	<cfproperty name="pageName" type="string"> 
     <cfproperty name="URLStruct" type="struct"> 
     <cfproperty name="FORMStruct" type="struct"> 
 	

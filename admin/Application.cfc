@@ -41,8 +41,8 @@
 				<!--- absolute path --->	
 				<cfset THIS[ "$Config" ].env.absolutePathRoot = ExpandPath(THIS[ "$Config" ].env.absoluteUrlWeb) >
 				<!--- url --->
-				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
-				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
+				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#">
+				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#">
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "#folder_name#.">
             <cfelse>
@@ -69,8 +69,8 @@
 				<cfset THIS[ "$Config" ].env.absolutePathRoot = ExpandPath(THIS[ "$Config" ].env.absoluteUrlWeb) >
 				<!--- url --->
 				<cfset THIS[ "$Config" ].env.urlRoot = "www.#THIS[ "$Config" ].env.domain#">	
-				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
-				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
+				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#">
+				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#">
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "cfcart.">
             </cfif>
@@ -100,23 +100,25 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="currentPageName" required="true"/>
-		<cfargument type="struct" name="URLStruct" required="true"/>
+		<cfargument type="string" name="pageName" required="true"/>
+		<cfargument type="struct" name="URLStruct" required="false"/>
+		<cfargument type="struct" name="FORMStruct" required="false"/>
 		
-		<cfif FileExists("#APPLICATION.absolutePathRoot#admin\data\#ARGUMENTS.currentPageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.currentPageName#"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
+		<cfif FileExists("#APPLICATION.absolutePathRoot#admin\data\#ARGUMENTS.pageName#.cfc")>
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(argumentCollection = ARGUMENTS) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(argumentCollection = ARGUMENTS) />
 		</cfif>
 		
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="currentPageName" required="true"/>
-		<cfargument type="struct" name="URLStruct" required="true"/>
+		<cfargument type="string" name="pageName" required="true"/>
+		<cfargument type="struct" name="URLStruct" required="false"/>
+		<cfargument type="struct" name="FORMStruct" required="false"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(argumentCollection = ARGUMENTS) />
 		
 		<cfreturn pageObj />
 	</cffunction>
@@ -157,7 +159,7 @@
 			<cftry>		
 			--->
 				<cfset var args = {} />
-				<cfset args.currentPageName = currentPageName />
+				<cfset args.pageName = currentPageName />
 				<cfif IsDefined("URL") AND NOT StructIsEmpty(URL)>
 					<cfset args.URLStruct = URL />
 				</cfif>

@@ -19,10 +19,10 @@
 		<cfset LOCAL.category.setCategoryKeywords(Trim(FORM.category_keywords)) />
 		<cfset LOCAL.category.setCategoryDescription(Trim(FORM.category_description)) />
 		<cfset LOCAL.category.setCategoryCustomDesign(Trim(FORM.category_custom_design)) />
-		<cfset LOCAL.category.setCreateDatetime(Now()) />
-		<cfset LOCAL.category.setCreateUser(SESSION.adminUser) />
-		<cfset LOCAL.category.setUpdateDatetime(Now()) />
-		<cfset LOCAL.category.setUpdateUser(SESSION.adminUser) />
+		<cfset LOCAL.category.setCreatedDatetime(Now()) />
+		<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
+		<cfset LOCAL.category.setUpdatedDatetime(Now()) />
+		<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 		<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
 		
 		<cfset EntitySave(LOCAL.category) />

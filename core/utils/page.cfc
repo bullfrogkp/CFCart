@@ -37,7 +37,7 @@
 		
 		<cfset var include_category_template = APPLICATION.pageSupport
 								.includeTemplate(	cache_file_path = APPLICATION.cache_system_path & "sidebar/index.html"
-												,	cache_template_path = "cache/sidebar/index.html"
+												,	cache_templatePath = "cache/sidebar/index.html"
 												,	template_name = "include_category.cfm") />
 												
 		<cfsavecontent variable="LOCAL.page_content">
@@ -198,13 +198,13 @@
 	<!--------------------------------------------------------------------------------------------------------------->	
 	<cffunction name="includeTemplate" returntype="string" access="public" output="false">
 		<cfargument name="cache_file_path" type="string" required="true">
-		<cfargument name="cache_template_path" type="string" required="true">
+		<cfargument name="cache_templatePath" type="string" required="true">
 		<cfargument name="template_name" type="string" required="true">
 		
 		<cfset var loc = {} />
 		
 		<cfif APPLICATION.enable_cache EQ TRUE AND FileExists(ARGUMENTS.cache_file_path)>
-			<cfset loc.include_template = ARGUMENTS.cache_template_path />
+			<cfset loc.include_template = ARGUMENTS.cache_templatePath />
 		<cfelse>
 			<!---
 			<cfif APPLICATION.enable_cache EQ TRUE>

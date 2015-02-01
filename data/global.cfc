@@ -1,5 +1,5 @@
 ﻿<cfcomponent output="false" accessors="true">
-	<cfproperty name="pageName" type="integer"> 
+	<cfproperty name="pageName" type="string"> 
     <cfproperty name="URLStruct" type="struct"> 
     <cfproperty name="FORMStruct" type="struct"> 
 	
@@ -56,7 +56,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 	
 		<cfif StructKeyExists(FORM,"search_category_id")>
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlTheme#search_results.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

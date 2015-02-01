@@ -434,7 +434,7 @@
 
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
-                <cfinclude template="#REQUEST.pageData.template_path#" />
+                <cfinclude template="#REQUEST.pageData.templatePath#" />
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
 
@@ -473,9 +473,9 @@
 		<script type='text/javascript' src="#SESSION.absoluteUrlThemeAdmin#js/jquery.ui.plupload.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('###REQUEST.pageData.current_pageName#').addClass('active');
-				$('###REQUEST.pageData.current_pageName#').parent('.treeview-menu').css('display','block');
-				$('###REQUEST.pageData.current_pageName#').parent().parent('.treeview').addClass('active');
+				$('###REQUEST.pageData.currentPageName#').addClass('active');
+				$('###REQUEST.pageData.currentPageName#').parent('.treeview-menu').css('display','block');
+				$('###REQUEST.pageData.currentPageName#').parent().parent('.treeview').addClass('active');
 			});
 		</script>
     </body>

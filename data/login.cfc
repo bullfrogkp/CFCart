@@ -12,7 +12,7 @@
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlTheme#myaccount/dashboard.cfm" />
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
