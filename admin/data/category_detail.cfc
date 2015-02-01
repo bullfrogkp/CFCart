@@ -3,27 +3,29 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirect_url = "" />
 		
-		<cfset LOCAL.new_category = EntityNew("category") />
 		<cfif IsNumeric(FORM.category_id)>
-			<cfset LOCAL.new_category.setCategoryId(FORM.category_id) />
+			<cfset LOCAL.category = EntityLoad("category", 1, true)> 
+		<cfelse>
+			<cfset LOCAL.category = EntityNew("category") />
 		</cfif>
-		<cfset LOCAL.new_category.setParentCategoryId(FORM.parent_category_id) />
-		<cfset LOCAL.new_category.setCategoryName(Trim(FORM.category_display_name)) />
-		<cfset LOCAL.new_category.setCategoryDisplayName(Trim(FORM.category_display_name)) />
-		<cfset LOCAL.new_category.setRank(Trim(FORM.rank)) />
-		<cfset LOCAL.new_category.setCategoryIsEnabled(FORM.category_is_enabled) />
-		<cfset LOCAL.new_category.setShowCategoryOnNav(FORM.show_category_on_nav) />
-		<cfset LOCAL.new_category.setCategoryTitle(Trim(FORM.category_title)) />
-		<cfset LOCAL.new_category.setCategoryKeywords(Trim(FORM.category_keywords)) />
-		<cfset LOCAL.new_category.setCategoryDescription(Trim(FORM.category_description)) />
-		<cfset LOCAL.new_category.setCategoryCustomDesign(Trim(FORM.category_custom_design)) />
-		<cfset LOCAL.new_category.setCreateDatetime(Now()) />
-		<cfset LOCAL.new_category.setCreateUser(SESSION.admin_user) />
-		<cfset LOCAL.new_category.setUpdateDatetime(Now()) />
-		<cfset LOCAL.new_category.setUpdateUser(SESSION.admin_user) />
-		<cfset LOCAL.new_category.setFilterGroupId(FORM.filter_group_id) />
 		
-		<cfset EntitySave(LOCAL.new_category) />
+		<cfset LOCAL.category.setParentCategoryId(FORM.parent_category_id) />
+		<cfset LOCAL.category.setCategoryName(Trim(FORM.category_display_name)) />
+		<cfset LOCAL.category.setCategoryDisplayName(Trim(FORM.category_display_name)) />
+		<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
+		<cfset LOCAL.category.setCategoryIsEnabled(FORM.category_is_enabled) />
+		<cfset LOCAL.category.setShowCategoryOnNav(FORM.show_category_on_nav) />
+		<cfset LOCAL.category.setCategoryTitle(Trim(FORM.category_title)) />
+		<cfset LOCAL.category.setCategoryKeywords(Trim(FORM.category_keywords)) />
+		<cfset LOCAL.category.setCategoryDescription(Trim(FORM.category_description)) />
+		<cfset LOCAL.category.setCategoryCustomDesign(Trim(FORM.category_custom_design)) />
+		<cfset LOCAL.category.setCreateDatetime(Now()) />
+		<cfset LOCAL.category.setCreateUser(SESSION.admin_user) />
+		<cfset LOCAL.category.setUpdateDatetime(Now()) />
+		<cfset LOCAL.category.setUpdateUser(SESSION.admin_user) />
+		<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
+		
+		<cfset EntitySave(LOCAL.category) />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	

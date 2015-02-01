@@ -65,7 +65,7 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="category_id" value="" />
+<input type="hidden" name="category_id" value="1" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
