@@ -1,11 +1,11 @@
 ﻿<cfcomponent output="false">
 	<!------------------------------------------------------------------------------->
 	<cfset this.name = Config().name>
-	<cfset this.ormenabled = Config().ormenabled> 
-	<cfset this.ormsettings.dbCreate = Config().ormsettings.dbCreate>
-	<cfset this.ormsettings.cfclocation = Config().ormsettings.cfclocation>
-	<cfset this.datasource = Config().datasource> 
-	<cfset this.sessionmanagement = Config().sessionmanagement>
+	<cfset this.ormEnabled = Config().ormEnabled> 
+	<cfset this.ormSettings.dbCreate = Config().ormSettings.dbCreate>
+	<cfset this.ormSettings.cfcLocation = Config().ormSettings.cfcLocation>
+	<cfset this.dataSource = Config().dataSource> 
+	<cfset this.sessionManagement = Config().sessionManagement>
 	<cfset this.sessionTimeout = Config().sessionTimeout>
  
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
@@ -15,64 +15,64 @@
             <cfset THIS[ "$Config" ] = {} />
             <cfif Find( "127.0.0.1", CGI.server_name ) OR Find( "localhost", CGI.server_name )>
                 <!--- Set development environment. --->
-                <cfset THIS[ "$Config" ].islive = false />
+                <cfset THIS[ "$Config" ].isLive = false />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
-                <cfset THIS[ "$Config" ].ormenabled = "true" />
-                <cfset THIS[ "$Config" ].ormsettings = {} />
-                <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
-                <cfset THIS[ "$Config" ].ormsettings.cfclocation = "/cfcart/core/entities/" />
-                <cfset THIS[ "$Config" ].datasource = "db_eshop" />
-                <cfset THIS[ "$Config" ].sessionmanagement = "yes" />
+                <cfset THIS[ "$Config" ].ormEnabled = "true" />
+                <cfset THIS[ "$Config" ].ormSettings = {} />
+                <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
+                <cfset THIS[ "$Config" ].ormSettings.cfcLocation = "/cfcart/core/entities/" />
+                <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
+                <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com">
-				<cfset THIS[ "$Config" ].env.email_customer_service = "customerservice@#THIS[ "$Config" ].env.domain#">
-				<cfset THIS[ "$Config" ].env.email_admin = "admin@#THIS[ "$Config" ].env.domain#">
-				<cfset THIS[ "$Config" ].env.email_development = "dev@#THIS[ "$Config" ].env.domain#">
-				<cfset THIS[ "$Config" ].env.email_info = "info@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailCustomerService = "customerservice@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailAdmin = "admin@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailDevelopment = "dev@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailInfo = "info@#THIS[ "$Config" ].env.domain#">
 				
 				<!--- customized local vars --->
 				<cfset var folder_name = "cfcart" />
-				<cfset THIS[ "$Config" ].env.url_root = "127.0.0.1:8500">	
+				<cfset THIS[ "$Config" ].env.urlRoot = "127.0.0.1:8500">	
 				
 				<!--- absolute url --->
-				<cfset THIS[ "$Config" ].env.absolute_url_web = "/#folder_name#/">	
+				<cfset THIS[ "$Config" ].env.absoluteUrlWeb = "/#folder_name#/">	
 				<!--- absolute path --->	
-				<cfset THIS[ "$Config" ].env.absolute_path_root = ExpandPath(THIS[ "$Config" ].env.absolute_url_web) >
+				<cfset THIS[ "$Config" ].env.absolutePathRoot = ExpandPath(THIS[ "$Config" ].env.absoluteUrlWeb) >
 				<!--- url --->
-				<cfset THIS[ "$Config" ].env.url_web = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absolute_url_web#">
-				<cfset THIS[ "$Config" ].env.url_https_web = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absolute_url_web#">
+				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
+				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
 				<!--- component --->
-				<cfset THIS[ "$Config" ].env.component_path_root = "#folder_name#.">
+				<cfset THIS[ "$Config" ].env.componentPathRoot = "#folder_name#.">
             <cfelse>
                 <!--- Set production environment. --->
-                <cfset THIS[ "$Config" ].islive = true />
+                <cfset THIS[ "$Config" ].isLive = true />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
-                <cfset THIS[ "$Config" ].ormenabled = "false" />
-                <cfset THIS[ "$Config" ].ormsettings = {} />
-                <cfset THIS[ "$Config" ].ormsettings.dbCreate = "update" />
-				<cfset THIS[ "$Config" ].ormsettings.cfclocation = "/core/entities/" />
-                <cfset THIS[ "$Config" ].datasource = "bullfrog" />
-                <cfset THIS[ "$Config" ].sessionmanagement = "yes" />
+                <cfset THIS[ "$Config" ].ormEnabled = "false" />
+                <cfset THIS[ "$Config" ].ormSettings = {} />
+                <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
+				<cfset THIS[ "$Config" ].ormSettings.cfclocation = "/core/entities/" />
+                <cfset THIS[ "$Config" ].dataSource = "bullfrog" />
+                <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "bullfrogdesign.ca">
-				<cfset THIS[ "$Config" ].env.email_customer_service = "customerservice@#THIS[ "$Config" ].env.domain#">
-				<cfset THIS[ "$Config" ].env.email_admin = "admin@#THIS[ "$Config" ].env.domain#">
-				<cfset THIS[ "$Config" ].env.email_development = "dev@#THIS[ "$Config" ].env.domain#">
-				<cfset THIS[ "$Config" ].env.email_info = "info@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailCustomerService = "customerservice@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailAdmin = "admin@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailDevelopment = "dev@#THIS[ "$Config" ].env.domain#">
+				<cfset THIS[ "$Config" ].env.emailInfo = "info@#THIS[ "$Config" ].env.domain#">
 				<!--- absolute url --->
-				<cfset THIS[ "$Config" ].env.absolute_url_web = "/cfcart/">	
+				<cfset THIS[ "$Config" ].env.absoluteUrlWeb = "/cfcart/">	
 				<!--- absolute path --->	
-				<cfset THIS[ "$Config" ].env.absolute_path_root = ExpandPath(THIS[ "$Config" ].env.absolute_url_web) >
+				<cfset THIS[ "$Config" ].env.absolutePathRoot = ExpandPath(THIS[ "$Config" ].env.absoluteUrlWeb) >
 				<!--- url --->
-				<cfset THIS[ "$Config" ].env.url_root = "www.#THIS[ "$Config" ].env.domain#">	
-				<cfset THIS[ "$Config" ].env.url_web = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absolute_url_web#">
-				<cfset THIS[ "$Config" ].env.url_https_web = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absolute_url_web#">
+				<cfset THIS[ "$Config" ].env.urlRoot = "www.#THIS[ "$Config" ].env.domain#">	
+				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
+				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.url_root##THIS[ "$Config" ].env.absoluteUrlWeb#">
 				<!--- component --->
-				<cfset THIS[ "$Config" ].env.component_path_root = "cfcart.">
+				<cfset THIS[ "$Config" ].env.componentPathRoot = "cfcart.">
             </cfif>
         </cfif>
        
@@ -103,22 +103,22 @@
 		<cfargument type="string" name="currentPageName" required="true"/>
 		<cfargument type="struct" name="URLStruct" required="true"/>
 		
-		<cfif FileExists("#APPLICATION.absolute_path_root#admin\data\#ARGUMENTS.currentPageName#.cfc")>
-			<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.#ARGUMENTS.currentPageName#"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
+		<cfif FileExists("#APPLICATION.absolutePathRoot#admin\data\#ARGUMENTS.currentPageName#.cfc")>
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.currentPageName#"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
 		<cfelse>
-			<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.master"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
 		</cfif>
 		
-		<cfreturn page_obj />
+		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="currentPageName" required="true"/>
 		<cfargument type="struct" name="URLStruct" required="true"/>
 		
-		<cfset var page_obj = new "#APPLICATION.component_path_root#admin.data.global"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.currentPageName, URLStruct = ARGUMENTS.URLStruct) />
 		
-		<cfreturn page_obj />
+		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
@@ -152,84 +152,89 @@
 		
 		<!--- exclude ajax request --->
 		<cfif NOT StructKeyExists(URL,"method")>
-			<cfset var current_page_name = Replace(Replace(CGI.SCRIPT_NAME,GetDirectoryFromPath(CGI.SCRIPT_NAME),""),".cfm","") />
+			<cfset var currentPageName = Replace(Replace(CGI.SCRIPT_NAME,GetDirectoryFromPath(CGI.SCRIPT_NAME),""),".cfm","") />
 			<!---
 			<cftry>		
 			--->
 				<cfset var args = {} />
-				<cfset args.current_page_name = current_page_name />
-				<cfset args.URLStruct = URL />
+				<cfset args.currentPageName = currentPageName />
+				<cfif IsDefined("URL") AND NOT StructIsEmpty(URL)>
+					<cfset args.URLStruct = URL />
+				</cfif>
+				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM)>
+					<cfset args.FORMStruct = FORM />
+				</cfif>
 				
-				<cfset var global_page_obj = _initGlobalPageObject(argumentCollection = args) />
-				<cfset var page_obj = _initPageObject(argumentCollection = args) />
-				<cfset var return_struct = {} />
+				<cfset var globalPageObj = _initGlobalPageObject(argumentCollection = args) />
+				<cfset var pageObj = _initPageObject(argumentCollection = args) />
+				<cfset var returnStruct = {} />
 				
 				<!---
-				<cfif StructKeyExists(APPLICATION.support_objs,current_page_name)>
-					<cfset var page_obj = StructFind(APPLICATION.support_objs,current_page_name) />
+				<cfif StructKeyExists(APPLICATION.support_objs,currentPageName)>
+					<cfset var pageObj = StructFind(APPLICATION.support_objs,currentPageName) />
 				<cfelse>
 				--->
 					
 				<!---
-					<cfset StructInsert(APPLICATION.support_objs,current_page_name) />
+					<cfset StructInsert(APPLICATION.support_objs,currentPageName) />
 				</cfif>
 				--->
 			
 				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM)>
 					<!--- global data handler --->
-					<cfset return_struct = global_page_obj.processGlobalFormDataBeforeValidation() />
-					<cfif return_struct.redirect_url NEQ "">
-						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
-					<cfset return_struct = global_page_obj.validateGlobalFormData() />
-					<cfif return_struct.redirect_url NEQ "">
-						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					<cfset returnStruct = globalPageObj.validateGlobalFormData() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
-					<cfset return_struct = global_page_obj.processGlobalFormDataAfterValidation() />
-					<cfif return_struct.redirect_url NEQ "">
-						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					<cfset returnStruct = globalPageObj.processGlobalFormDataAfterValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 				
 					<!--- page data handler --->
-					<cfset return_struct = page_obj.processFormDataBeforeValidation() />
-					<cfif return_struct.redirect_url NEQ "">
-						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					<cfset returnStruct = pageObj.processFormDataBeforeValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
-					<cfset return_struct = page_obj.validateFormData() />
-					<cfif return_struct.redirect_url NEQ "">
-						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					<cfset returnStruct = pageObj.validateFormData() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
-					<cfset return_struct = page_obj.processFormDataAfterValidation() />
-					<cfif return_struct.redirect_url NEQ "">
-						<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+					<cfset returnStruct = pageObj.processFormDataAfterValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
 					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
 				</cfif>
 						
-				<cfset return_struct = global_page_obj.validateGlobalAccessData() />
-				<cfif return_struct.redirect_url NEQ "">
-					<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+				<cfset returnStruct = globalPageObj.validateGlobalAccessData() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		
 						
-				<cfset return_struct = page_obj.validateAccessData() />
-				<cfif return_struct.redirect_url NEQ "">
-					<cflocation url = "#return_struct.redirect_url#" addToken = "no" />
+				<cfset returnStruct = pageObj.validateAccessData() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.page_data = global_page_obj.loadGlobalPageData() />
-				<cfset StructAppend(REQUEST.page_data,page_obj.loadPageData()) />
+				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
+				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
 			
-				<cfset REQUEST.page_data.current_page_name = current_page_name />
-				<cfset REQUEST.page_data.template_path = current_page_name & ".cfm" />
+				<cfset REQUEST.pageData.currentPageName = currentPageName />
+				<cfset REQUEST.pageData.templatePath = currentPageName & ".cfm" />
 			<!---	
 				<cfcatch type="any">
-					<cfset new "#APPLICATION.component_path_root#core.utils.utils().handleError(cfcatch = cfcatch) />
-					<cflocation url="#APPLICATION.absolute_url_web#error.cfm" addtoken="false" />
+					<cfset new "#APPLICATION.componentPathRoot#core.utils.utils().handleError(cfcatch = cfcatch) />
+					<cflocation url="#APPLICATION.absoluteUrlWeb#error.cfm" addtoken="false" />
 				</cfcatch>
 			</cftry>
 			--->
@@ -239,25 +244,25 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">
-		<cfargument type="string" name="folder_name_theme" required=true /> 
+		<cfargument type="string" name="folderNameTheme" required=true /> 
 		
-		<cfset SESSION.folder_name_theme = ARGUMENTS.folder_name_theme>		
-		<cfset SESSION.url_theme = "#APPLICATION.url_web#themes/#SESSION.folder_name_theme#/">
-		<cfset SESSION.absolute_url_theme = "#APPLICATION.absolute_url_web#themes/#SESSION.folder_name_theme#/">
-		<cfset SESSION.absolute_path_theme = "#APPLICATION.absolute_path_root#themes\#SESSION.folder_name_theme#\">
+		<cfset SESSION.folderNameTheme = ARGUMENTS.folderNameTheme>		
+		<cfset SESSION.urlTheme = "#APPLICATION.urlWeb#themes/#SESSION.folderNameTheme#/">
+		<cfset SESSION.absoluteUrlTheme = "#APPLICATION.absoluteUrlWeb#themes/#SESSION.folderNameTheme#/">
+		<cfset SESSION.absolutePathTheme = "#APPLICATION.absolutePathRoot#themes\#SESSION.folderNameTheme#\">
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setAdminTheme"  access="private" returnType="void" output="false">
-		<cfargument type="string" name="folder_name_theme" required=true /> 
+		<cfargument type="string" name="folderNameTheme" required=true /> 
 		
-		<cfset SESSION.folder_name_theme_admin = ARGUMENTS.folder_name_theme>		
-		<cfset SESSION.url_theme_admin = "#APPLICATION.url_web#admin/themes/#SESSION.folder_name_theme_admin#/">
-		<cfset SESSION.absolute_url_theme_admin = "#APPLICATION.absolute_url_web#admin/themes/#SESSION.folder_name_theme_admin#/">
-		<cfset SESSION.absolute_path_theme_admin = "#APPLICATION.absolute_path_root#admin\themes\#SESSION.folder_name_theme_admin#\">
+		<cfset SESSION.folderNameTheme_admin = ARGUMENTS.folderNameTheme>		
+		<cfset SESSION.urlTheme_admin = "#APPLICATION.urlWeb#admin/themes/#SESSION.folderNameTheme_admin#/">
+		<cfset SESSION.absoluteUrlTheme_admin = "#APPLICATION.absoluteUrlWeb#admin/themes/#SESSION.folderNameTheme_admin#/">
+		<cfset SESSION.absolutePathTheme_admin = "#APPLICATION.absolutePathRoot#admin\themes\#SESSION.folderNameTheme_admin#\">
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setUser"  access="private" returnType="void" output="false">
-		<cfinvoke component="#APPLICATION.component_path_root#core.utils.user" method="getUser" returnvariable="SESSION.user" />
+		<cfinvoke component="#APPLICATION.componentPathRoot#core.utils.user" method="getUser" returnvariable="SESSION.user" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_getCurrentURL" output="false" access="private" returnType="string">
@@ -273,7 +278,7 @@
    
 		<cflog text="cannot find page: #ARGUMENTS.targetPage#" />
 		
-		<cflocation url="#APPLICATION.absolute_url_web#admin/error.cfm" addtoken="false" />
+		<cflocation url="#APPLICATION.absoluteUrlWeb#admin/error.cfm" addtoken="false" />
 	</cffunction>--->
 	<!------------------------------------------------------------------------------->
 </cfcomponent>

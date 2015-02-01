@@ -1,31 +1,43 @@
-﻿<cfcomponent>	
-	<cfset VARIABLES.page_name = "" />
+﻿<cfcomponent output="false" accessors="true">
+	<cfproperty name="pageName" type="integer"> 
+    <cfproperty name="URLStruct" type="struct"> 
+    <cfproperty name="FORMStruct" type="struct"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
-		<cfargument name="page_name" type="string" required="true" />
+		<cfargument name="pageName" type="string" required="true" />
+		<cfargument name="URLStruct" type="struct" required="false" />
+		<cfargument name="FORMStruct" type="struct" required="false" />
 		
-		<cfset VARIABLES.page_name = ARGUMENTS.page_name />
+		<cfset setPageName(ARGUMENTS.pageName) />
+		
+		<cfif StructKeyExists(ARGUMENTS,"URLStruct")>
+			<cfset setURLStruct(ARGUMENTS.URLStruct) />
+		</cfif>
+		
+		<cfif StructKeyExists(ARGUMENTS,"FORMStruct")>
+			<cfset setFORMStruct(ARGUMENTS.FORMStruct) />
+		</cfif>
 		
 		<cfreturn this />
 	</cffunction>
 	
 	<cffunction name="validateGlobalAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 				
 		<cfreturn LOCAL />
 	</cffunction>
 	
 	<cffunction name="loadGlobalPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.page_data = {} />
+		<cfset LOCAL.pageData = {} />
 		
-		<cfreturn LOCAL.page_data />
+		<cfreturn LOCAL.pageData />
 	</cffunction>
 	
 	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset SESSION.temp.formdata = Duplicate(FORM) />
 		
@@ -34,17 +46,17 @@
 	
 	<cffunction name="validateGlobalFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />
 	</cffunction>
 	
 	<cffunction name="processGlobalFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 	
 		<cfif StructKeyExists(FORM,"search_category_id")>
-			<cfset LOCAL.redirect_url = "#APPLICATION.absolute_url_web#search_results.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absolute_url_web#search_results.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

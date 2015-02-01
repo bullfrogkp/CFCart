@@ -1,23 +1,23 @@
 ﻿<cfcomponent extends="admin.application">
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
-		<cfargument type="String" name="current_page_name" required="true"/>
+		<cfargument type="string" name="currentPageName" required="true"/>
 		
-		<cfif FileExists("#APPLICATION.absolute_path_root#data\#ARGUMENTS.current_page_name#.cfc")>
-			<cfset var page_obj = new "#APPLICATION.component_path_root#data.#current_page_name#"(page_name = ARGUMENTS.current_page_name) />
+		<cfif FileExists("#APPLICATION.absolutePathRoot#data\#ARGUMENTS.currentPageName#.cfc")>
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#currentPageName#"(pageName = ARGUMENTS.currentPageName) />
 		<cfelse>
-			<cfset var page_obj = new "#APPLICATION.component_path_root#data.master"(page_name = ARGUMENTS.current_page_name) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.currentPageName) />
 		</cfif>
 		
-		<cfreturn page_obj />
+		<cfreturn pageObj />
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="String" name="current_page_name" required="true"/>
+		<cfargument type="string" name="currentPageName" required="true"/>
 		
-		<cfset var page_obj = new "#APPLICATION.component_path_root#data.global"(page_name = ARGUMENTS.current_page_name) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.currentPageName) />
 		
-		<cfreturn page_obj />
+		<cfreturn pageObj />
 	</cffunction>
 	<!----------------------------------------------------------------------------
 	<cffunction name="onMissingTemplate" returnType="any">
