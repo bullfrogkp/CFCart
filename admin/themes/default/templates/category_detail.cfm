@@ -192,42 +192,42 @@
 									<td>1</td>
 									<td>$100.00</td>
 									<td>Enabled</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Computers / Networking</td>
 									<td>1</td>
 									<td>$100.00</td>
 									<td>Enabled</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Computers / Networking</td>
 									<td>1</td>
 									<td>$100.00</td>
 									<td>Enabled</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Computers / Networking</td>
 									<td>1</td>
 									<td>$100.00</td>
 									<td>Enabled</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Computers / Networking</td>
 									<td>1</td>
 									<td>$100.00</td>
 									<td>Enabled</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Computers / Networking</td>
 									<td>1</td>
 									<td>$100.00</td>
 									<td>Enabled</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>

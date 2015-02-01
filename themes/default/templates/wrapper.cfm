@@ -3,21 +3,21 @@
 <html>
 <head>
 	<title>China Wholesale</title>
-	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style2.css" />
-	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/style1.css" />
-	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/jquery-ui.css">
-	<link rel="stylesheet" href="#SESSION.absolute_url_theme#css/ui.easytree.css">
+	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/style2.css" />
+	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/style1.css" />
+	<link rel="stylesheet" href="#SESSION.absoluteUrlTheme#css/jquery-ui.css">
+	<link rel="stylesheet" href="#SESSION.absoluteUrlTheme#css/ui.easytree.css">
 		
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/modernizr.custom.28468.js"></script>
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.cslider.js"></script>
-	<script src="#SESSION.absolute_url_theme#js/jquery-ui.js"></script>
-	<script src='#SESSION.absolute_url_theme#js/jquery.elevatezoom.js'></script>
-	<script src='#SESSION.absolute_url_theme#js/jquery.easytree.min.js'></script>
+	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery.cslider.js"></script>
+	<script src="#SESSION.absoluteUrlTheme#js/jquery-ui.js"></script>
+	<script src='#SESSION.absoluteUrlTheme#js/jquery.elevatezoom.js'></script>
+	<script src='#SESSION.absoluteUrlTheme#js/jquery.easytree.min.js'></script>
 	
-	<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme#css/jquery.fancybox.css?v=2.1.5" media="screen" />
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.fancybox.pack.js?v=2.1.5"></script>
-	<script type="text/javascript" src="#SESSION.absolute_url_theme#js/jquery.fancybox-media.js?v=1.0.6"></script>
+	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/jquery.fancybox.css?v=2.1.5" media="screen" />
+	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery.fancybox-media.js?v=1.0.6"></script>
 	
 	<script type="text/javascript">
 		$(function() {
@@ -27,7 +27,7 @@
 				bgincrement	: 0
 			});
 			
-			$("##img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', borderSize: '1', imageCrossfade: true, loadingIcon: '#SESSION.absolute_url_theme#images/loader.gif'}); 
+			$("##img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', borderSize: '1', imageCrossfade: true, loadingIcon: '#SESSION.absoluteUrlTheme#images/loader.gif'}); 
 			$("##img_01").bind("click", function(e) { var ez = $('##img_01').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false; }); 
 		
 			var valueElement = $('##value');
@@ -131,7 +131,7 @@
             text: "Checkout",
             "class": 'checkoutButtonClass',
             click: function() {
-			window.location.href='#APPLICATION.absolute_url_web#cart.cfm';
+			window.location.href='#APPLICATION.absoluteUrlWeb#cart.cfm';
             }
         },
 		{
@@ -169,7 +169,7 @@
 	<div id="dialog-form" title="Product has been added to the cart">
 		<div style="margin-top:10px;text-align:center;">
 			
-			<img class="thumbnail-img" src="#SESSION.absolute_url_theme#images/t1.jpg" />
+			<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t1.jpg" />
 		
 			<p>7 Colors Changing Glow LED Light Water Stream Faucet Tap</p>
 		</div>
@@ -188,7 +188,7 @@
 						<td style="padding-left:10px;">
 							<div id="top-signin-icon"></div>
 						</td>
-						<td><a href="#APPLICATION.absolute_url_web#login.cfm">Sign In</a> / <a href="#APPLICATION.absolute_url_web#login.cfm">Create Account</a></td>
+						<td><a href="#APPLICATION.absoluteUrlWeb#login.cfm">Sign In</a> / <a href="#APPLICATION.absoluteUrlWeb#login.cfm">Create Account</a></td>
 					</tr>
 				</table>
 			</div>
@@ -198,25 +198,25 @@
 						<td>
 							<div id="top-order-tracking-icon"></div>
 						</td>
-						<td><a href="#APPLICATION.absolute_url_web#order_tracking.cfm">Order Tracking</a>&nbsp;&nbsp;&nbsp;</td>
+						<td><a href="#APPLICATION.absoluteUrlWeb#order_tracking.cfm">Order Tracking</a>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<div id="top-myaccount-icon"></div>
 						</td>
-						<td><a href="#APPLICATION.absolute_url_web#myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;</td>
+						<td><a href="#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<div id="top-faq-icon"></div>
 						</td>
-						<td><a href="#APPLICATION.absolute_url_web#faq.cfm">FAQs</a></td>
+						<td><a href="#APPLICATION.absoluteUrlWeb#faq.cfm">FAQs</a></td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
 	<div id="header" class="container">
-		<a href="#APPLICATION.absolute_url_web#index.cfm"><div id="logo"></div></a>
+		<a href="#APPLICATION.absoluteUrlWeb#index.cfm"><div id="logo"></div></a>
 		<div id="minicart">
 			<div style="position:relative;">
-				<a class="btn" href="#APPLICATION.absolute_url_web#cart.cfm">Shopping Cart </a>
+				<a class="btn" href="#APPLICATION.absoluteUrlWeb#cart.cfm">Shopping Cart </a>
 				<div id="cart-info">12</div>
 			</div>
 		</div>
@@ -244,7 +244,7 @@
 				<option value="0">Test Equipment &amp; Tools</option>
 			</select>
 			<input id="search-text" type="text" placeholder="Search..." />
-			<input type="image" id="search-img" name="search_product" src="#SESSION.absolute_url_theme#images/search-img-up.png" />
+			<input type="image" id="search-img" name="search_product" src="#SESSION.absoluteUrlTheme#images/search-img-up.png" />
 			</form>
 		</div>
 	</div>
@@ -253,35 +253,35 @@
 			<div class="container">
 				<ul>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#index.cfm">Home</a>
+						<a href="#APPLICATION.absoluteUrlWeb#index.cfm">Home</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_new.cfm">New Arrivals</a>
+						<a href="#APPLICATION.absoluteUrlWeb#products_new.cfm">New Arrivals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_top.cfm">Top Sellers</a>
+						<a href="#APPLICATION.absoluteUrlWeb#products_top.cfm">Top Sellers</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_specials.cfm">Specials</a>
+						<a href="#APPLICATION.absoluteUrlWeb#products_specials.cfm">Specials</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_deals.cfm">Weekly Deals</a>
+						<a href="#APPLICATION.absoluteUrlWeb#products_deals.cfm">Weekly Deals</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_clearance.cfm">Clearance</a>
+						<a href="#APPLICATION.absoluteUrlWeb#products_clearance.cfm">Clearance</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#products_clearance.cfm">Group Buying</a>
+						<a href="#APPLICATION.absoluteUrlWeb#products_clearance.cfm">Group Buying</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absolute_url_web#view_history.cfm">View History</a>
+						<a href="#APPLICATION.absoluteUrlWeb#view_history.cfm">View History</a>
 					</li>
 				</ul>
 			</div>
@@ -289,7 +289,7 @@
 	</div>
 	
 	<div id="content-top" class="container">
-		<cfinclude template="#REQUEST.page_data.template_path#" />
+		<cfinclude template="#REQUEST.pageData.template_path#" />
 	</div>
 	
 	<div style="clear:both;"></div>
@@ -318,10 +318,10 @@
 				<p style="font-size:12px;line-height:18px;margin:0;padding:0;margin-bottom:12px;">
 					We want you to have peace of mind when shopping online at TOMTOP. If you are not an existing TOMTOP customer, rest assured that shopping here is safe. Our security systems use up-to-date technology embodying industry standards, and secure shopping is our priority. The TOMTOP Secure Shopping Guarantee is our commitment to you. 
 				</p>
-				<img src="#SESSION.absolute_url_theme#images/visa1.gif">
-				<img src="#SESSION.absolute_url_theme#images/mastercard1.gif">
-				<img src="#SESSION.absolute_url_theme#images/amex1.gif">
-				<img src="#SESSION.absolute_url_theme#images/paypal.gif" style="height:31px;">
+				<img src="#SESSION.absoluteUrlTheme#images/visa1.gif">
+				<img src="#SESSION.absoluteUrlTheme#images/mastercard1.gif">
+				<img src="#SESSION.absoluteUrlTheme#images/amex1.gif">
+				<img src="#SESSION.absoluteUrlTheme#images/paypal.gif" style="height:31px;">
 			</div>
 			<div style="clear:both;"></div>
 		</div>
@@ -339,28 +339,28 @@
 					<td style="padding-bottom:10px;"><strong>CONNECT</strong></td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absolute_url_web#payment_info.cfm">Payment Info</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#payment_info.cfm">Payment Info</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#privacy.cfm">Privacy Policy</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#privacy.cfm">Privacy Policy</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#about_us.cfm">About Us</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#about_us.cfm">About Us</a></td>
 					<td></td>
 					<td rowspan="5" valign="top">
 						<div>
-							<a href="#APPLICATION.absolute_url_web#">
-							<img src="#SESSION.absolute_url_theme#images/facebook.png" style="width:24px;margin-right:10px;">
+							<a href="#APPLICATION.absoluteUrlWeb#">
+							<img src="#SESSION.absoluteUrlTheme#images/facebook.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="#APPLICATION.absolute_url_web#">
-							<img src="#SESSION.absolute_url_theme#images/google.png" style="width:24px;margin-right:10px;">
+							<a href="#APPLICATION.absoluteUrlWeb#">
+							<img src="#SESSION.absoluteUrlTheme#images/google.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="#APPLICATION.absolute_url_web#">
-							<img src="#SESSION.absolute_url_theme#images/YouTube2.png" style="width:24px;margin-right:10px;">
+							<a href="#APPLICATION.absoluteUrlWeb#">
+							<img src="#SESSION.absoluteUrlTheme#images/YouTube2.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="#APPLICATION.absolute_url_web#">
-							<img src="#SESSION.absolute_url_theme#images/Linkedein.png" style="width:24px;margin-right:10px;">
+							<a href="#APPLICATION.absoluteUrlWeb#">
+							<img src="#SESSION.absoluteUrlTheme#images/Linkedein.png" style="width:24px;margin-right:10px;">
 							</a>
-							<a href="#APPLICATION.absolute_url_web#">
-							<img src="#SESSION.absolute_url_theme#images/Instagram.png" style="width:24px;">
+							<a href="#APPLICATION.absoluteUrlWeb#">
+							<img src="#SESSION.absoluteUrlTheme#images/Instagram.png" style="width:24px;">
 							</a>
 						</div>
 						<div style="margin-top:20px;font-weight:bold;">CUSTOMER SERVICE:&nbsp;&nbsp;<span style="letter-spacing:1px;">416.666.6666</span></div>
@@ -369,45 +369,45 @@
 					</td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absolute_url_web#shipping_info.cfm">Shipping Info</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#shipping_info.cfm">Shipping Info</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#term_of_use.cfm">Terms of Use</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#term_of_use.cfm">Terms of Use</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#contact_us.cfm">Contact Us</a></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><a href="#APPLICATION.absolute_url_web#estimate.cfm">Delivery Estimate</a></td>
-					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#return_policy.cfm">Return Policy</a></td>
-					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#faq.cfm">FAQs</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#contact_us.cfm">Contact Us</a></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absolute_url_web#locations.cfm">Locations</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#estimate.cfm">Delivery Estimate</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#wholesale.cfm">Wholesale</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#return_policy.cfm">Return Policy</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absolute_url_web#report_problems.cfm">Report Problems</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#faq.cfm">FAQs</a></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="#APPLICATION.absoluteUrlWeb#locations.cfm">Locations</a></td>
+					<td></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#wholesale.cfm">Wholesale</a></td>
+					<td></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#report_problems.cfm">Report Problems</a></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td colspan="6">
 						<div id="cards">
-							<img src="#SESSION.absolute_url_theme#images/visa1.gif">
-							<img src="#SESSION.absolute_url_theme#images/mastercard1.gif">
-							<img src="#SESSION.absolute_url_theme#images/amex1.gif">
-							<img src="#SESSION.absolute_url_theme#images/paypal.gif">
+							<img src="#SESSION.absoluteUrlTheme#images/visa1.gif">
+							<img src="#SESSION.absoluteUrlTheme#images/mastercard1.gif">
+							<img src="#SESSION.absoluteUrlTheme#images/amex1.gif">
+							<img src="#SESSION.absoluteUrlTheme#images/paypal.gif">
 						</div>
 						<div id="bottom-secure-shopping">
-							<a href="#APPLICATION.absolute_url_web#secure_shopping.cfm" style="color:##333;">SECURE SHOPPING</a>
+							<a href="#APPLICATION.absoluteUrlWeb#secure_shopping.cfm" style="color:##333;">SECURE SHOPPING</a>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="6" style="padding-top:15px;">
-						1998 - 2014, TOMTOP, Inc. | <a href="#APPLICATION.absolute_url_web#conditions_of_use.cfm">Conditions of Use</a> | <a href="#APPLICATION.absolute_url_web#site_index.cfm">Site Index</a>
+						1998 - 2014, TOMTOP, Inc. | <a href="#APPLICATION.absoluteUrlWeb#conditions_of_use.cfm">Conditions of Use</a> | <a href="#APPLICATION.absoluteUrlWeb#site_index.cfm">Site Index</a>
 					</td>
 					<td>
 					</td>

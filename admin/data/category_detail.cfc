@@ -1,7 +1,7 @@
 ﻿<cfcomponent extends="master">
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif IsNumeric(FORM.category_id)>
 			<cfset LOCAL.category = EntityLoad("category", 1, true)> 
@@ -20,9 +20,9 @@
 		<cfset LOCAL.category.setCategoryDescription(Trim(FORM.category_description)) />
 		<cfset LOCAL.category.setCategoryCustomDesign(Trim(FORM.category_custom_design)) />
 		<cfset LOCAL.category.setCreateDatetime(Now()) />
-		<cfset LOCAL.category.setCreateUser(SESSION.admin_user) />
+		<cfset LOCAL.category.setCreateUser(SESSION.adminUser) />
 		<cfset LOCAL.category.setUpdateDatetime(Now()) />
-		<cfset LOCAL.category.setUpdateUser(SESSION.admin_user) />
+		<cfset LOCAL.category.setUpdateUser(SESSION.adminUser) />
 		<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
 		
 		<cfset EntitySave(LOCAL.category) />
@@ -32,12 +32,12 @@
 	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.page_data = {} />
+		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.page_data.title = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.page_data.keywords = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.page_data.description = "Dashboard | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
 		
-		<cfreturn LOCAL.page_data />	
+		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>

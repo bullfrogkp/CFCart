@@ -68,7 +68,7 @@
 										<td>Kevin</td>
 										<td>Pan</td>
 										<td>4166666666</td>
-										<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -89,7 +89,7 @@
 										<td>Kevin</td>
 										<td>Pan</td>
 										<td>4166666666</td>
-										<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -111,7 +111,7 @@
 										<td>Kevin</td>
 										<td>Pan</td>
 										<td>4166666666</td>
-										<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -210,7 +210,7 @@
 									<td>4166666666</td>
 									<td>123 street</td>
 									<td>Toronto</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>
@@ -253,7 +253,7 @@
 									<td>L4L 4L4</td>
 									<td>Canada</td>
 									<td>Billing</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -284,7 +284,7 @@
 									<td>L4L 4L4</td>
 									<td>Canada</td>
 									<td>Shipping</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -315,7 +315,7 @@
 									<td>L4L 4L4</td>
 									<td>Canada</td>
 									<td>Shipping</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Kevin</td>
@@ -327,7 +327,7 @@
 									<td>L4L 4L4</td>
 									<td>Canada</td>
 									<td>Shipping</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 								<tr>
 									<td>Kevin</td>
@@ -339,7 +339,7 @@
 									<td>L4L 4L4</td>
 									<td>Canada</td>
 									<td>Shipping</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>
@@ -377,7 +377,7 @@
 									<td>4166666666</td>
 									<td>Pan</td>
 									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>
@@ -407,7 +407,7 @@
 									<td>Kevin</td>
 									<td>Pan</td>
 									<td>4166666666</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 							<tfoot>

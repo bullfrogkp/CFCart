@@ -1,38 +1,38 @@
 ﻿<cfcomponent>
 	<cffunction name="sendRequest" access="remote" returntype="string" output="false">
-		<cfargument name="contact_name" type="string" required="true">
-		<cfargument name="contact_phone" type="string" required="true">
-		<cfargument name="contact_email" type="string" required="true">
+		<cfargument name="contactName" type="string" required="true">
+		<cfargument name="contactPhone" type="string" required="true">
+		<cfargument name="contactEmail" type="string" required="true">
 		<cfargument name="user" type="string" required="true">
-		<cfargument name="contact_message" type="string" required="false" default="">
+		<cfargument name="contactMessage" type="string" required="false" default="">
 		 
 		<cfset var LOCAL = {} />
-		<cfset var LOCAL.ret_val = "0" />
+		<cfset var LOCAL.retVal = "0" />
 		
-		<cfif IsValid("email",ARGUMENTS.contact_email) AND Trim(ARGUMENTS.contact_phone) NEQ "" AND Trim(ARGUMENTS.contact_name) NEQ "">
+		<cfif IsValid("email",ARGUMENTS.contactEmail) AND Trim(ARGUMENTS.contactPhone) NEQ "" AND Trim(ARGUMENTS.contactName) NEQ "">
 		
-			<cfset sendDirectEmail(	from_email = APPLICATION.customer_service_email
-								,	to_email = APPLICATION.customer_service_email
-								,	email_subject = "客户咨询 (#Trim(ARGUMENTS.contact_name)#:#Trim(ARGUMENTS.contact_phone)#)"
-								,	email_content = Trim(ARGUMENTS.contact_message)
-								,	email_type = "html") />							
-			<cfset LOCAL.ret_val = "1" />
+			<cfset sendDirectEmail(	fromEmail = APPLICATION.customerServiceEmail
+								,	toEmail = APPLICATION.customerServiceEmail
+								,	emailSubject = "(#Trim(ARGUMENTS.contactName)#:#Trim(ARGUMENTS.contactPhone)#)"
+								,	emailContent = Trim(ARGUMENTS.contactMessage)
+								,	emailType = "html") />							
+			<cfset LOCAL.retVal = "1" />
 		</cfif>
 						
-		<cfreturn LOCAL.ret_val /> 
+		<cfreturn LOCAL.retVal /> 
 	</cffunction>
 	
 	<cffunction name="sendDirectEmail" access="public" returntype="void">
-	    <cfargument name="from_email" type="string" required="true" />
-	    <cfargument name="to_email" type="string" required="true" />
-		<cfargument name="email_subject" type="string" required="true" />
-		<cfargument name="email_content" type="string" required="true" />
-		<cfargument name="email_type" type="string" required="true" />
+	    <cfargument name="fromEmail" type="string" required="true" />
+	    <cfargument name="toEmail" type="string" required="true" />
+		<cfargument name="emailSubject" type="string" required="true" />
+		<cfargument name="emailContent" type="string" required="true" />
+		<cfargument name="emailType" type="string" required="true" />
 				
-		<cfmail from="#Trim(ARGUMENTS.from_email)#" 
-				to="#Trim(ARGUMENTS.to_email)#" 
-				type="#ARGUMENTS.email_type#"
-				subject="#Trim(ARGUMENTS.email_subject)#">#Trim(ARGUMENTS.email_content)#</cfmail>
+		<cfmail from="#Trim(ARGUMENTS.fromEmail)#" 
+				to="#Trim(ARGUMENTS.toEmail)#" 
+				type="#ARGUMENTS.emailType#"
+				subject="#Trim(ARGUMENTS.emailSubject)#">#Trim(ARGUMENTS.emailContent)#</cfmail>
 		
 	</cffunction>
 </cfcomponent>

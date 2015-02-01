@@ -25,7 +25,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif NOT StructKeyExists(SESSION,"admin_user") AND VARIABLES.pageName NEQ "login">
+		<cfif NOT StructKeyExists(SESSION,"adminUser") AND VARIABLES.pageName NEQ "login">
 			<cfset LOCAL.redirectUrl = "login.cfm" />
 		</cfif>
 		
@@ -34,9 +34,9 @@
 	
 	<cffunction name="loadGlobalPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.page_data = {} />
+		<cfset LOCAL.pageData = {} />
 		
-		<cfreturn LOCAL.page_data />
+		<cfreturn LOCAL.pageData />
 	</cffunction>
 	
 	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">

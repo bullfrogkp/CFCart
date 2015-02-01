@@ -3,32 +3,32 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>#REQUEST.page_data.title#</title>
-		<meta name="description" content="#REQUEST.page_data.description#">
-		<meta name="keywords" content="#REQUEST.page_data.keywords#">
+        <title>#REQUEST.pageData.title#</title>
+		<meta name="description" content="#REQUEST.pageData.description#">
+		<meta name="keywords" content="#REQUEST.pageData.keywords#">
 		<meta name="author" content="Bullfrog Design">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
-        <link href="#SESSION.absolute_url_theme_admin#css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="#SESSION.absolute_url_theme_admin#css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
-        <link href="#SESSION.absolute_url_theme_admin#css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
-        <link href="#SESSION.absolute_url_theme_admin#css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/morris/morris.css" rel="stylesheet" type="text/css" />
         <!-- jvectormap -->
-        <link href="#SESSION.absolute_url_theme_admin#css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
         <!-- Date Picker -->
-        <link href="#SESSION.absolute_url_theme_admin#css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
-        <link href="#SESSION.absolute_url_theme_admin#css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
-        <link href="#SESSION.absolute_url_theme_admin#css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
-        <link href="#SESSION.absolute_url_theme_admin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
 		
-		<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme_admin#css/jquery.ui.plupload.css">
-		<link rel="stylesheet" type="text/css" href="#SESSION.absolute_url_theme_admin#css/custom.css">
+		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/jquery.ui.plupload.css">
+		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/custom.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,7 +71,7 @@
                                         <li><!-- start message -->
                                             <a href="##">
                                                 <div class="pull-left">
-                                                    <img src="#SESSION.absolute_url_theme_admin#img/avatar3.png" class="img-circle" alt="User Image"/>
+                                                    <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar3.png" class="img-circle" alt="User Image"/>
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -83,7 +83,7 @@
                                         <li>
                                             <a href="##">
                                                 <div class="pull-left">
-                                                    <img src="#SESSION.absolute_url_theme_admin#img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar2.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -95,7 +95,7 @@
                                         <li>
                                             <a href="##">
                                                 <div class="pull-left">
-                                                    <img src="#SESSION.absolute_url_theme_admin#img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -107,7 +107,7 @@
                                         <li>
                                             <a href="##">
                                                 <div class="pull-left">
-                                                    <img src="#SESSION.absolute_url_theme_admin#img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar2.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -119,7 +119,7 @@
                                         <li>
                                             <a href="##">
                                                 <div class="pull-left">
-                                                    <img src="#SESSION.absolute_url_theme_admin#img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -254,7 +254,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="#SESSION.absolute_url_theme_admin#img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar3.png" class="img-circle" alt="User Image" />
                                     <p>
                                         Kevin - Administrator
                                         <small>Member since Nov. 2012</small>
@@ -295,7 +295,7 @@
                     <!-- Sidebar user panel 
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="#SESSION.absolute_url_theme_admin#img/avatar3.png" class="img-circle" alt="User Image" />
+                            <img src="#SESSION.absoluteUrlThemeAdmin#img/avatar3.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p>Hello, Rona</p>
@@ -316,7 +316,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                      <ul class="sidebar-menu">
                         <li id="index">
-                            <a href="#APPLICATION.absolute_url_web#admin/index.cfm">
+                            <a href="#APPLICATION.absoluteUrlWeb#admin/index.cfm">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
@@ -327,8 +327,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="categories"><a href="#APPLICATION.absolute_url_web#admin/categories.cfm"><i class="fa fa-angle-double-right"></i> All Categories</a></li>
-                                <li id="category_detail"><a href="#APPLICATION.absolute_url_web#admin/category_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Category</a></li>
+                                <li id="categories"><a href="#APPLICATION.absoluteUrlWeb#admin/categories.cfm"><i class="fa fa-angle-double-right"></i> All Categories</a></li>
+                                <li id="category_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm"><i class="fa fa-angle-double-right"></i> Add New Category</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
@@ -338,8 +338,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="products"><a href="#APPLICATION.absolute_url_web#admin/products.cfm"><i class="fa fa-angle-double-right"></i> All Products</a></li>
-                                <li id="product_detail"><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product</a></li>
+                                <li id="products"><a href="#APPLICATION.absoluteUrlWeb#admin/products.cfm"><i class="fa fa-angle-double-right"></i> All Products</a></li>
+                                <li id="product_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product</a></li>
                             </ul>
                         </li>
 						
@@ -350,10 +350,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="customers"><a href="#APPLICATION.absolute_url_web#admin/customers.cfm"><i class="fa fa-angle-double-right"></i> All Customers</a></li>
-                                <li id="customer_groups"><a href="#APPLICATION.absolute_url_web#admin/customer_groups.cfm"><i class="fa fa-angle-double-right"></i> Customer Groups</a></li>
-                                <li id="customer_detail"><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer</a></li>
-                                <li id="customer_group_detail"><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer Group</a></li>
+                                <li id="customers"><a href="#APPLICATION.absoluteUrlWeb#admin/customers.cfm"><i class="fa fa-angle-double-right"></i> All Customers</a></li>
+                                <li id="customer_groups"><a href="#APPLICATION.absoluteUrlWeb#admin/customer_groups.cfm"><i class="fa fa-angle-double-right"></i> Customer Groups</a></li>
+                                <li id="customer_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer</a></li>
+                                <li id="customer_group_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Customer Group</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
@@ -363,8 +363,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="promotions"><a href="#APPLICATION.absolute_url_web#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
-                                <li id="promotion_detail"><a href="#APPLICATION.absolute_url_web#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Promotion</a></li>
+                                <li id="promotions"><a href="#APPLICATION.absoluteUrlWeb#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
+                                <li id="promotion_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Promotion</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
@@ -374,8 +374,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="newsletters"><a href="#APPLICATION.absolute_url_web#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> All Newsletters</a></li>
-                                <li id="newsletter_detail"><a href="#APPLICATION.absolute_url_web#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Newsletter</a></li>
+                                <li id="newsletters"><a href="#APPLICATION.absoluteUrlWeb#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> All Newsletters</a></li>
+                                <li id="newsletter_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Newsletter</a></li>
                             </ul>
                         </li>		
 						<li class="treeview">
@@ -385,12 +385,12 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="orders"><a href="#APPLICATION.absolute_url_web#admin/orders.cfm"><i class="fa fa-angle-double-right"></i> All Orders</a></li>
-                                <li id="new_order"><a href="#APPLICATION.absolute_url_web#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
+                                <li id="orders"><a href="#APPLICATION.absoluteUrlWeb#admin/orders.cfm"><i class="fa fa-angle-double-right"></i> All Orders</a></li>
+                                <li id="new_order"><a href="#APPLICATION.absoluteUrlWeb#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
                             </ul>
                         </li>
 						<li id="reviews">
-                            <a href="#APPLICATION.absolute_url_web#admin/reviews.cfm">
+                            <a href="#APPLICATION.absoluteUrlWeb#admin/reviews.cfm">
                                 <i class="fa fa-comment"></i> <span>Reviews</span>
                             </a>
                         </li>	
@@ -401,11 +401,11 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> System Emails</a></li>	
-                                <li><a href="#APPLICATION.absolute_url_web#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping Methods</a></li>			
-                                <li><a href="#APPLICATION.absolute_url_web#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment Methods</a></li>	
-                                <li><a href="#APPLICATION.absolute_url_web#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>		
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> System Emails</a></li>	
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping Methods</a></li>			
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment Methods</a></li>	
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>		
                             </ul>
                         </li>
 						<li class="treeview">
@@ -415,10 +415,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absolute_url_web#admin/"><i class="fa fa-angle-double-right"></i> Sales</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/"><i class="fa fa-angle-double-right"></i> Customers</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/"><i class="fa fa-angle-double-right"></i> Products</a></li>
-                                <li><a href="#APPLICATION.absolute_url_web#admin/"><i class="fa fa-angle-double-right"></i> Reviews</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/"><i class="fa fa-angle-double-right"></i> Sales</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/"><i class="fa fa-angle-double-right"></i> Customers</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/"><i class="fa fa-angle-double-right"></i> Products</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/"><i class="fa fa-angle-double-right"></i> Reviews</a></li>
                             </ul>
                         </li>
 						 <li>
@@ -434,48 +434,48 @@
 
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
-                <cfinclude template="#REQUEST.page_data.template_path#" />
+                <cfinclude template="#REQUEST.pageData.template_path#" />
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
 
 
       
         <!-- jQuery UI 1.10.3 -->
-        <script src="#SESSION.absolute_url_theme_admin#js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
-        <script src="#SESSION.absolute_url_theme_admin#js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/bootstrap.min.js" type="text/javascript"></script>
        
         <!-- Sparkline -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
         <!-- jvectormap -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
         <!-- jQuery Knob Chart -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
         <!-- daterangepicker -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
         <!-- datepicker -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
         <!-- Bootstrap WYSIHTML5 -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
         <!-- iCheck -->
-        <script src="#SESSION.absolute_url_theme_admin#js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 
         <!-- AdminLTE App -->
-        <script src="#SESSION.absolute_url_theme_admin#js/AdminLTE/app.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/AdminLTE/app.js" type="text/javascript"></script>
 
 		
 		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 		
-		<script type='text/javascript' src="#SESSION.absolute_url_theme_admin#js/plupload.full.min.js"></script>
-		<script type='text/javascript' src="#SESSION.absolute_url_theme_admin#js/jquery.ui.plupload.min.js"></script>
+		<script type='text/javascript' src="#SESSION.absoluteUrlThemeAdmin#js/plupload.full.min.js"></script>
+		<script type='text/javascript' src="#SESSION.absoluteUrlThemeAdmin#js/jquery.ui.plupload.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('###REQUEST.page_data.current_page_name#').addClass('active');
-				$('###REQUEST.page_data.current_page_name#').parent('.treeview-menu').css('display','block');
-				$('###REQUEST.page_data.current_page_name#').parent().parent('.treeview').addClass('active');
+				$('###REQUEST.pageData.current_pageName#').addClass('active');
+				$('###REQUEST.pageData.current_pageName#').parent('.treeview-menu').css('display','block');
+				$('###REQUEST.pageData.current_pageName#').parent().parent('.treeview').addClass('active');
 			});
 		</script>
     </body>

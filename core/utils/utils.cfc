@@ -2,31 +2,31 @@
 	<cffunction name="handleError" access="public" returntype="void" output="false">
 		<cfargument type="any" name="cfcatch" required=true /> 
 		
-		<cfset var error_string = "" />
-		<cfset var exception_string = "" />
-		<cfset var session_string = "" />
+		<cfset var errorString = "" />
+		<cfset var exceptionString = "" />
+		<cfset var sessionString = "" />
 			
 		<cfif IsDefined("SESSION")>
-			<cfinvoke component="#APPLICATION.component_path_root#core.utils" method="struct2string" returnvariable="session_string">
-				<cfinvokeargument name="input_struct" value="#SESSION#">
+			<cfinvoke component="#APPLICATION.componentPathRoot#core.utils" method="struct2string" returnvariable="sessionString">
+				<cfinvokeargument name="inputStruct" value="#SESSION#">
 			</cfinvoke>
 		</cfif>
 
-		<cfinvoke component="#APPLICATION.component_path_root#core.utils" method="exception2string" returnvariable="exception_string">
+		<cfinvoke component="#APPLICATION.componentPathRoot#core.utils" method="exception2string" returnvariable="exceptionString">
 			<cfinvokeargument name="ex" value="#cfcatch#">
 		</cfinvoke>
 		
-		<cfset error_string = exception_string & session_string />
+		<cfset errorString = exceptionString & session_string />
 		
-		<cflog text="#error_string#" />
+		<cflog text="#errorString#" />
 		
-		<cfif cfcatch.type NEQ "url_error">
-			<cfinvoke component="#APPLICATION.component_path_root#core.utils.email" method="sendDirectEmail">
-				<cfinvokeargument name="from_email" value="#APPLICATION.email_development#">
-				<cfinvokeargument name="to_email" value="#APPLICATION.email_admin#">
-				<cfinvokeargument name="email_subject" value="Exception">
-				<cfinvokeargument name="email_content" value="#error_string#">
-				<cfinvokeargument name="email_type" value="text">
+		<cfif cfcatch.type NEQ "urlSrror">
+			<cfinvoke component="#APPLICATION.componentPathRoot#core.utils.email" method="sendDirectEmail">
+				<cfinvokeargument name="fromEmail" value="#APPLICATION.emailDevelopment#">
+				<cfinvokeargument name="toEmail" value="#APPLICATION.emailAdmin#">
+				<cfinvokeargument name="emailSubject" value="Exception">
+				<cfinvokeargument name="emailContent" value="#errorString#">
+				<cfinvokeargument name="emailType" value="text">
 			</cfinvoke>	
 		</cfif>
 	</cffunction>

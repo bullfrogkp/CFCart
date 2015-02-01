@@ -56,7 +56,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 	
 		<cfif StructKeyExists(FORM,"search_category_id")>
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absolute_url_web#search_results.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlTheme#search_results.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

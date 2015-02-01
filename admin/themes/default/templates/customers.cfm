@@ -15,7 +15,7 @@
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Customers</h3>
-					<a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer</a>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table id="example2" class="table table-bordered table-striped">
@@ -38,7 +38,7 @@
 								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Kevin Pan</td>
@@ -47,7 +47,7 @@
 								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Kevin Pan</td>
@@ -56,7 +56,7 @@
 								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Kevin Pan</td>
@@ -65,7 +65,7 @@
 								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Kevin Pan</td>
@@ -74,7 +74,7 @@
 								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Kevin Pan</td>
@@ -83,7 +83,7 @@
 								<td>Wholesaler</td>
 								<td>Yes</td>
 								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 						</tbody>
 						<tfoot>

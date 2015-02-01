@@ -2,10 +2,10 @@
 
  <!-- Morris.js charts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="#SESSION.absolute_url_theme_admin#js/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/morris/morris.min.js" type="text/javascript"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="#SESSION.absolute_url_theme_admin#js/AdminLTE/dashboard.js" type="text/javascript"></script>
+<script src="#SESSION.absoluteUrlThemeAdmin#js/AdminLTE/dashboard.js" type="text/javascript"></script>
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
@@ -137,31 +137,31 @@
 							<td>Kevin</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Kevin</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Kevin</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Kevin</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Kevin</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/order_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
 						</tr>
 					</table>
 				</div>
@@ -183,27 +183,27 @@
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/review_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
 						</tr>
 					</table>
 				</div>
@@ -231,31 +231,31 @@
 							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>Box</td>
 							<td>Red,Blue,White,Black</td>
 							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 					</table>
 				</div>
@@ -277,27 +277,27 @@
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 						<tr>
 							<td>New Product</td>
 							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absolute_url_web#admin/product_detail.cfm">Detail</a></td>
+							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
 						</tr>
 					</table>
 				</div>

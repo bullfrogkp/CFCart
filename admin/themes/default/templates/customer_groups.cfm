@@ -14,7 +14,7 @@
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Customer Groups</h3>
-					<a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer Group</a>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table id="example2" class="table table-bordered table-striped">
@@ -31,25 +31,25 @@
 								<td>Group 1</td>
 								<td>First Class</td>
 								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Group 1</td>
 								<td>First Class</td>
 								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Group 1</td>
 								<td>First Class</td>
 								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 							<tr>
 								<td>Group 1</td>
 								<td>First Class</td>
 								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absolute_url_web#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
 							</tr>
 						</tbody>
 						<tfoot>

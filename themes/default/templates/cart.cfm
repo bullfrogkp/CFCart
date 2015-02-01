@@ -24,7 +24,7 @@
 					
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="#SESSION.absolute_url_theme#images/one.png" alt=""></a>
+								<a href=""><img src="#SESSION.absoluteUrlTheme#images/one.png" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
@@ -44,13 +44,13 @@
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<img src="#SESSION.absolute_url_theme#images/delete2.png" style="width:20px;" />
+								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="#SESSION.absolute_url_theme#images/two.png" alt=""></a>
+								<a href=""><img src="#SESSION.absoluteUrlTheme#images/two.png" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
@@ -70,12 +70,12 @@
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<img src="#SESSION.absolute_url_theme#images/delete2.png" style="width:20px;" />
+								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="#SESSION.absolute_url_theme#images/three.png" alt=""></a>
+								<a href=""><img src="#SESSION.absoluteUrlTheme#images/three.png" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
@@ -95,7 +95,7 @@
 								<p class="cart_total_price">$59</p>
 							</td>
 							<td class="cart_delete">
-								<img src="#SESSION.absolute_url_theme#images/delete2.png" style="width:20px;" />
+								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 					
@@ -157,7 +157,7 @@
 					<li>Total <span>$61</span></li>
 				</ul>
 				<p style="float:right;font-weight:bold;">PayPal securely processes payments for TomTop</p>
-				<input type="image" src="#SESSION.absolute_url_theme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
+				<input type="image" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
 			</div>
 			</form>
 </cfoutput>

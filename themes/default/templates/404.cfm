@@ -17,20 +17,20 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="#SESSION.absolute_url_theme#images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="#SESSION.absolute_url_theme#images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#SESSION.absolute_url_theme#images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#SESSION.absolute_url_theme#images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="#SESSION.absolute_url_theme#images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="#SESSION.absoluteUrlTheme#images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="#SESSION.absoluteUrlTheme#images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#SESSION.absoluteUrlTheme#images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#SESSION.absoluteUrlTheme#images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="#SESSION.absoluteUrlTheme#images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
 <body>
 	<div class="container text-center">
 		<div class="logo-404">
-			<a href="index.html"><img src="#SESSION.absolute_url_theme#images/home/logo.png" alt="" /></a>
+			<a href="index.html"><img src="#SESSION.absoluteUrlTheme#images/home/logo.png" alt="" /></a>
 		</div>
 		<div class="content-404">
-			<img src="#SESSION.absolute_url_theme#images/404/404.png" class="img-responsive" alt="" />
+			<img src="#SESSION.absoluteUrlTheme#images/404/404.png" class="img-responsive" alt="" />
 			<h1><b>OPPS!</b> We Couldn’t Find this Page</h1>
 			<p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
 			<h2><a href="index.html">Bring me back Home</a></h2>

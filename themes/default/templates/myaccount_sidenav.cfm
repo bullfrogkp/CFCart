@@ -6,28 +6,28 @@
 	<div class="recommendation-list" style="font-size:12px;padding-bottom:0;">
 		<ul>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/dashboard.cfm">Dashboard</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm">Dashboard</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/orders.cfm">My Orders</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/orders.cfm">My Orders</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/addresses.cfm">My Addresses</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/addresses.cfm">My Addresses</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/reviews.cfm">My Product Reviews</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/reviews.cfm">My Product Reviews</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/wishlist.cfm">My Wishlist</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/wishlist.cfm">My Wishlist</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/coupons.cfm">My Coupons</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/coupons.cfm">My Coupons</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absolute_url_web#myaccount/profile.cfm">My Profile</a>
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/profile.cfm">My Profile</a>
 			</li>
-			<li style="#APPLICATION.absolute_url_web#myaccount/border-bottom:none;">
-				<a href="#APPLICATION.absolute_url_web#myaccount/change_password.cfm">Change Password</a>
+			<li style="#APPLICATION.absoluteUrlWeb#myaccount/border-bottom:none;">
+				<a href="#APPLICATION.absoluteUrlWeb#myaccount/change_password.cfm">Change Password</a>
 			</li>
 		</ul>
 	</div>

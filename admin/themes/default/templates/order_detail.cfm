@@ -84,7 +84,7 @@
 									<td>Ontario</td>
 									<td>L4L 4L4</td>
 									<td>Canada</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -113,7 +113,7 @@
 									<td>Ontario</td>
 									<td>L4L 4L4</td>
 									<td>Canada</td>
-									<td><a href="#APPLICATION.absolute_url_web#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
 								</tr>
 							</tbody>
 						</table>

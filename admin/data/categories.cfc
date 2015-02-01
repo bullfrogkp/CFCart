@@ -7,7 +7,7 @@
 		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
 		
-		<cfset LOCAL.categoryService = new #APPLICATION.component_path_root#core.services.categoryService() />
+		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
 		<cfif StructKeyExists()
 		<cfset LOCAL.categoryService.
