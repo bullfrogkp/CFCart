@@ -101,13 +101,11 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
-		<cfargument type="struct" name="URLStruct" required="false"/>
-		<cfargument type="struct" name="FORMStruct" required="false"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin\data\#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(argumentCollection = ARGUMENTS) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(argumentCollection = ARGUMENTS) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -115,10 +113,8 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
-		<cfargument type="struct" name="URLStruct" required="false"/>
-		<cfargument type="struct" name="FORMStruct" required="false"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(argumentCollection = ARGUMENTS) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName) />
 		
 		<cfreturn pageObj />
 	</cffunction>
@@ -160,16 +156,6 @@
 			--->
 				<cfset var args = {} />
 				<cfset args.pageName = currentPageName />
-				<cfif IsDefined("URL") AND NOT StructIsEmpty(URL)>
-					<cfset args.URLStruct = URL />
-				<cfelse>
-					<cfset args.URLStruct = {} />
-				</cfif>
-				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM)>
-					<cfset args.FORMStruct = FORM />
-				<cfelse>
-					<cfset args.FORMStruct = {} />
-				</cfif>
 				
 				<cfset var globalPageObj = _initGlobalPageObject(argumentCollection = args) />
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />

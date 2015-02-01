@@ -49,11 +49,11 @@
 			SELECT	*
 			FROM	category
 			WHERE	1=1
-			<cfif getCategoryId() NEQ "">
+			<cfif NOT IsNull(getCategoryId())>
 			AND		category_id = <cfqueryparam value="#getCategoryId()#" cfsqltype="cf_sql_integer" />
 			</cfif>
 	   </cfquery>
-<cfdump var="#getCategoryId()#" abort>	   
+	   
 	   <cfreturn LOCAL.categories />
     </cffunction>
 </cfcomponent>

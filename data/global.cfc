@@ -1,22 +1,10 @@
 ﻿<cfcomponent output="false" accessors="true">
 	<cfproperty name="pageName" type="string" required="true"> 
-    <cfproperty name="URLStruct" type="struct" required="false"> 
-    <cfproperty name="FORMStruct" type="struct" required="false"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
-		<cfargument name="URLStruct" type="struct" required="false" />
-		<cfargument name="FORMStruct" type="struct" required="false" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
-		
-		<cfif StructKeyExists(ARGUMENTS,"URLStruct")>
-			<cfset setURLStruct(ARGUMENTS.URLStruct) />
-		</cfif>
-		
-		<cfif StructKeyExists(ARGUMENTS,"FORMStruct")>
-			<cfset setFORMStruct(ARGUMENTS.FORMStruct) />
-		</cfif>
 		
 		<cfreturn this />
 	</cffunction>
