@@ -1,1 +1,1 @@
-﻿<cfinclude template="#SESSION.absolute_url_theme_admin#templates/login.cfm" />
+﻿<cfinclude template="#SESSION.absoluteUrlThemeAdmin#templates/login.cfm" />

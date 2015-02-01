@@ -23,10 +23,10 @@
 	
 	<cffunction name="validateGlobalAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif NOT StructKeyExists(SESSION,"admin_user") AND VARIABLES.page_name NEQ "login">
-			<cfset LOCAL.redirect_url = "login.cfm" />
+		<cfif NOT StructKeyExists(SESSION,"admin_user") AND VARIABLES.pageName NEQ "login">
+			<cfset LOCAL.redirectUrl = "login.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />
@@ -41,7 +41,7 @@
 	
 	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset SESSION.temp.formdata = Duplicate(FORM) />
 		
@@ -50,14 +50,14 @@
 	
 	<cffunction name="validateGlobalFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />
 	</cffunction>
 	
 	<cffunction name="processGlobalFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirect_url = "" />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	

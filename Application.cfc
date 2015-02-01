@@ -25,7 +25,7 @@
    
 		<cflog text="cannot find page: #ARGUMENTS.targetPage#" />
 		
-		<cflocation url="#APPLICATION.absolute_url_web#error.cfm" addtoken="false" />
+		<cflocation url="#APPLICATION.absoluteUrlTheme#error.cfm" addtoken="false" />
 	</cffunction>--->
 	<!------------------------------------------------------------------------------->
 </cfcomponent>

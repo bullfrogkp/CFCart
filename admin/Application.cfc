@@ -255,10 +255,10 @@
 	<cffunction name="_setAdminTheme"  access="private" returnType="void" output="false">
 		<cfargument type="string" name="folderNameTheme" required=true /> 
 		
-		<cfset SESSION.folderNameTheme_admin = ARGUMENTS.folderNameTheme>		
-		<cfset SESSION.urlTheme_admin = "#APPLICATION.urlWeb#admin/themes/#SESSION.folderNameTheme_admin#/">
-		<cfset SESSION.absoluteUrlTheme_admin = "#APPLICATION.absoluteUrlWeb#admin/themes/#SESSION.folderNameTheme_admin#/">
-		<cfset SESSION.absolutePathTheme_admin = "#APPLICATION.absolutePathRoot#admin\themes\#SESSION.folderNameTheme_admin#\">
+		<cfset SESSION.folderNameThemeAdmin = ARGUMENTS.folderNameTheme>		
+		<cfset SESSION.urlThemeAdmin = "#APPLICATION.urlWeb#admin/themes/#SESSION.folderNameThemeAdmin#/">
+		<cfset SESSION.absoluteUrlThemeAdmin = "#APPLICATION.absoluteUrlWeb#admin/themes/#SESSION.folderNameThemeAdmin#/">
+		<cfset SESSION.absolutePathThemeAdmin = "#APPLICATION.absolutePathRoot#admin\themes\#SESSION.folderNameThemeAdmin#\">
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setUser"  access="private" returnType="void" output="false">
