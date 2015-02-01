@@ -3,7 +3,6 @@
 <section class="content-header">
 	<h1>
 		Categories
-		<small>all categories information</small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -142,102 +141,14 @@
 							</tr>
 						</thead>
 						<tbody>
+							<cfloop query="REQUEST.pageData.categories">
 							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
+								<td>#REQUEST.pageData.categories.category_display_name#</td>
+								<td>#REQUEST.pageData.categories.rank#</td>
+								<td>#REQUEST.pageData.categories.category_is_enabled#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#REQUEST.pageData.categories.category_id#">View Detail</a></td>
 							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>1</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>

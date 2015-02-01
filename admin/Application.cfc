@@ -162,9 +162,13 @@
 				<cfset args.pageName = currentPageName />
 				<cfif IsDefined("URL") AND NOT StructIsEmpty(URL)>
 					<cfset args.URLStruct = URL />
+				<cfelse>
+					<cfset args.URLStruct = {} />
 				</cfif>
 				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM)>
 					<cfset args.FORMStruct = FORM />
+				<cfelse>
+					<cfset args.FORMStruct = {} />
 				</cfif>
 				
 				<cfset var globalPageObj = _initGlobalPageObject(argumentCollection = args) />

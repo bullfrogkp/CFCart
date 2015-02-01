@@ -1,5 +1,5 @@
 ﻿<cfcomponent output="false" accessors="true">
-    <cfproperty name="categoryId" type="integer"> 
+    <cfproperty name="categoryId" type="numeric"> 
     <cfproperty name="parentCategoryId" type="integer"> 
     <cfproperty name="categoryName" type="string"> 
     <cfproperty name="categoryDisplayName" type="string"> 
@@ -7,9 +7,9 @@
     <cfproperty name="categoryIsDeleted" type="boolean"> 
     <cfproperty name="showCategoryOnNav" type="boolean"> 
 
-    <cffunction name="init" output="false" access="public" returntype="BrownPeanut" hint="Constructor">
+    <cffunction name="init" output="false" access="public" returntype="any" hint="Constructor">
        
-		<cfargument name="categoryId" type="integer" required="false"> 
+		<cfargument name="categoryId" type="numeric" required="false"> 
 		<cfargument name="parentPategoryId" type="integer" required="false"> 
 		<cfargument name="categoryName" type="string" required="false"> 
 		<cfargument name="categoryDisplayName" type="integer" required="false"> 
@@ -47,11 +47,13 @@
 	   
 	   <cfquery name="LOCAL.categories">
 			SELECT	*
-			FROM	categories
+			FROM	category
 			WHERE	1=1
 			<cfif getCategoryId() NEQ "">
 			AND		category_id = <cfqueryparam value="#getCategoryId()#" cfsqltype="cf_sql_integer" />
 			</cfif>
 	   </cfquery>
+<cfdump var="#getCategoryId()#" abort>	   
+	   <cfreturn LOCAL.categories />
     </cffunction>
 </cfcomponent>

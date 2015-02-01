@@ -9,8 +9,12 @@
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
-		<cfif StructKeyExists()
-		<cfset LOCAL.categoryService.
+		<cfif IsDefined(getURLStruct().category_id)>
+			
+			<cfset LOCAL.categoryService.setCategoryId(getURLStruct().category_id) />
+		</cfif>
+		
+		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

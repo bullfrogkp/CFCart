@@ -1,7 +1,7 @@
 ﻿<cfcomponent output="false" accessors="true">
-	<cfproperty name="pageName" type="string"> 
-    <cfproperty name="URLStruct" type="struct"> 
-    <cfproperty name="FORMStruct" type="struct"> 
+	<cfproperty name="pageName" type="string" required="true"> 
+    <cfproperty name="URLStruct" type="struct" required="false"> 
+    <cfproperty name="FORMStruct" type="struct" required="false"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
