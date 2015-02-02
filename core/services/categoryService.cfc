@@ -42,17 +42,14 @@
         <cfreturn this/>
     </cffunction>
 
-    <cffunction name="getCategories" output="false" access="public" returntype="query">
+    <cffunction name="getCategories" output="false" access="public" returntype="array">
 	   <cfset LOCAL = {} />
 	   
-	   <cfquery name="LOCAL.categories">
-			SELECT	*
-			FROM	category
-			WHERE	1=1
-			<cfif NOT IsNull(getCategoryId())>
-			AND		category_id = <cfqueryparam value="#getCategoryId()#" cfsqltype="cf_sql_integer" />
-			</cfif>
-	   </cfquery>
+	   <cfset LOCAL.filter = {} />
+	   <cfif NOT IsNull(getCategoryId())>
+			<cfset LOCAL.filter.categoryId = getCategoryId() />
+		</cfif>
+	   <cfset LOCAL.categories = EntityLoad('category',LOCAL.filter)> 
 	   
 	   <cfreturn LOCAL.categories />
     </cffunction>

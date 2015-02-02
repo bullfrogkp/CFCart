@@ -141,12 +141,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<cfloop query="REQUEST.pageData.categories">
+							<cfloop array="#REQUEST.pageData.categories#" index="category">
 							<tr>
-								<td>#REQUEST.pageData.categories.category_display_name#</td>
-								<td>#REQUEST.pageData.categories.rank#</td>
-								<td>#REQUEST.pageData.categories.category_is_enabled#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#REQUEST.pageData.categories.category_id#">View Detail</a></td>
+								<td>#category.getCategoryDisplayName()#</td>
+								<td>#category.getRank()#</td>
+								<td>#category.getCategoryIsEnabled()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#category.getCategoryId()#">View Detail</a></td>
 							</tr>
 							</cfloop>
 						</tbody>
