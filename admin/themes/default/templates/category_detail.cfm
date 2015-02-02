@@ -84,46 +84,48 @@
 					<div class="tab-pane active" id="tab_1">
 						<div class="form-group">
 							<label>Category Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="category_display_name"  value="Computers / Networking"/>
+							<input type="text" class="form-control" placeholder="Enter ..." name="category_display_name" value="#REQUEST.pageData.category.getCategoryDisplayName()#"/>
 						</div>
 						<div class="form-group">
 							<label>Parent Category</label>
 							<select class="form-control" name="parent_category_id">
 								<option value="0">Root</option>
+								
+								
 								<option value="1">Computers / Networking</option>
 							</select>
 						</div>
 						 <div class="form-group">
 							<label>Rank</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="1" />
+							<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="#REQUEST.pageData.category.getRank()#" />
 						</div>
 						 <div class="form-group">
 							<label>Status</label>
 							 <select class="form-control" name="category_is_enabled">
-								<option value="1">Enabled</option>
-								<option value="0">Disabled</option>
+								<option value="1" <cfif REQUEST.pageData.category.getCategoryIsEnabled() EQ TRUE>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.category.getCategoryIsEnabled() EQ FALSE>selected</cfif>>Disabled</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Show on Navigation</label>
 							 <select class="form-control" name="show_category_on_nav">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
+								<option value="1" <cfif REQUEST.pageData.category.getShowCategoryOnNav() EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.category.getShowCategoryOnNav() EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="category_title"  value="Computers / Networking"/>
+							<input type="text" class="form-control" placeholder="Enter ..." name="category_title" value="#REQUEST.pageData.category.getCategoryTitle()#"/>
 						</div>
 						<div class="form-group">
 							<label>Keywords</label>
-							<textarea name="category_keywords" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+							<textarea name="category_keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getCategoryKeywords()#</textarea>
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<textarea name="category_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+							<textarea name="category_description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getCategoryDescription()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
@@ -158,7 +160,9 @@
 						</div>
 						<div class="form-group">
 							<label>HTML Code</label>
-							<textarea name="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
+							<textarea name="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">
+							#REQUEST.pageData.category.getCategoryCustomDesign()#
+							</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_5">

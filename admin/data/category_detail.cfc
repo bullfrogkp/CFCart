@@ -38,6 +38,10 @@
 		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
 		
+		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
+			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
+		</cfif>
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
