@@ -136,6 +136,8 @@
 				<cfset _setTheme("default") />
 				<cfset _setAdminTheme("default") />
 			</cfif>
+		<cfelseif StructKeyExists(URL,"ormreload")>
+			<cfset ORMReload() />
 		<cfelseif StructKeyExists(URL,"sitetheme")>
 			<cfset _setTheme(URL.sitetheme) />
 			<cfif StructKeyExists(URL,"page") AND Trim(URL.page) NEQ "">

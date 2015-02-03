@@ -8,5 +8,5 @@
     <cfproperty name="createdUser" column="create_user" ormtype="string"> 
     <cfproperty name="updatedDatetime" column="updated_datetime" ormtype="date"> 
     <cfproperty name="updatedUser" column="update_user" ormtype="string"> 
-	<cfproperty name="filters" fieldtype="many-to-many" cfc="filter" linktable="filter_group_filer_rela" fkcolumn="filter_group_id" inversejoincolumn="filter_id" orderby="filterId">
+	<cfproperty name="filters" fieldtype="many-to-many" cfc="filter" linktable="filter_group_filter_rela" fkcolumn="filter_group_id" inversejoincolumn="filter_id" orderby="filterId">
 </cfcomponent>
