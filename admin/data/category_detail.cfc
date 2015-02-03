@@ -38,9 +38,11 @@
 		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
 		
-		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
-			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
-		</cfif>
+		
+		<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
+		<cfset LOCAL.pageData.filter_groups = EntityLoad("filter_group", 1)> 
+		
+		<cfdump var="#LOCAL.pageData.filter_groups[1].getFilters()#" abort>
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
