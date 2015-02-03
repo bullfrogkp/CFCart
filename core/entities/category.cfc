@@ -16,4 +16,5 @@
     <cfproperty name="createdUser" column="create_user" ormtype="string"> 
     <cfproperty name="updatedDatetime" column="updated_datetime" ormtype="date"> 
     <cfproperty name="updatedUser" column="update_user" ormtype="string"> 
+	<cfproperty name="categoryImage" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="category_id">
 </cfcomponent>
