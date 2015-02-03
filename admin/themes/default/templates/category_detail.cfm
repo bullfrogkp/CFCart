@@ -90,9 +90,9 @@
 							<label>Parent Category</label>
 							<select class="form-control" name="parent_category_id">
 								<option value="0">Root</option>
-								
-								
-								<option value="1">Computers / Networking</option>
+								<cfloop array="#REQUEST.pageData.allCategories#" index="c">
+									<option value="#c.getCategoryId()#">#c.getCategoryDisplayName()#</option>
+								</cfloop>
 							</select>
 						</div>
 						 <div class="form-group">
@@ -131,13 +131,12 @@
 					<div class="tab-pane" id="tab_3">
 						<!-- text input -->
 						<div class="form-group">
-							<label>Filter Groups</label>
-							 <select class="form-control" name="filter_group_id">
-								<option value="1">Group 1</option>
-								<option value="2">Group 2</option>
-								<option value="3">Group 3</option>
-								<option value="4">Group 4</option>
-							</select>
+							<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
+								<label>#fg.getFilterGroupDisplayName()#</label>
+								<cfloop array="#fg.getFilters()#" index="f">
+									#f.getFilterDisplayName()#,
+								</cfloop>
+							</cfloop>
 						</div>
 						<table class="table table-bordered" style="margin-top:30px;">
 							<tr>

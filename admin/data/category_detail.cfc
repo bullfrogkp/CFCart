@@ -14,6 +14,7 @@
 		<cfset LOCAL.category.setCategoryDisplayName(Trim(FORM.category_display_name)) />
 		<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
 		<cfset LOCAL.category.setCategoryIsEnabled(FORM.category_is_enabled) />
+		<cfset LOCAL.category.setCategoryIsDeleted(FORM.category_is_deleted) />
 		<cfset LOCAL.category.setShowCategoryOnNav(FORM.show_category_on_nav) />
 		<cfset LOCAL.category.setCategoryTitle(Trim(FORM.category_title)) />
 		<cfset LOCAL.category.setCategoryKeywords(Trim(FORM.category_keywords)) />
@@ -40,9 +41,9 @@
 		
 		
 		<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
-		<cfset LOCAL.pageData.filter_groups = EntityLoad("filter_group", 1)> 
-		
-		<cfdump var="#LOCAL.pageData.filter_groups[1].getFilters()#" abort>
+		<cfset LOCAL.pageData.allCategories = EntityLoad("category", {categoryIsDeleted = false})> 
+		<cfset LOCAL.pageData.allImages = EntityLoad("category_image", {imageIsDeleted = false})> 
+		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

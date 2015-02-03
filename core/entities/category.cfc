@@ -1,4 +1,4 @@
-﻿<cfcomponent persistent="true"> 
+﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="categoryId" column="category_id" fieldtype="id" generator="native"> 
     <cfproperty name="parentCategoryId" column="parent_category_id" ormtype="integer"> 
     <cfproperty name="categoryName" column="category_name" ormtype="string"> 
@@ -12,9 +12,5 @@
 	<cfproperty name="categoryDescription" column="category_description" ormtype="string"> 
 	<cfproperty name="categoryCustomDesign" column="category_custom_design" ormtype="text"> 
 	<cfproperty name="filterGroupId" column="filter_group_id" ormtype="integer"> 
-    <cfproperty name="createdDatetime" column="created_datetime" ormtype="date"> 
-    <cfproperty name="createdUser" column="create_user" ormtype="string"> 
-    <cfproperty name="updatedDatetime" column="updated_datetime" ormtype="date"> 
-    <cfproperty name="updatedUser" column="update_user" ormtype="string"> 
-	<cfproperty name="categoryImage" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="category_id">
+	<cfproperty name="categoryImage" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="categoryId">
 </cfcomponent>
