@@ -65,7 +65,7 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="category_id" value="1" />
+<input type="hidden" name="category_id" value="#REQUEST.pageData.category.getCategoryId()#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -131,6 +131,7 @@
 					<div class="tab-pane" id="tab_3">
 						<!-- text input -->
 						<div class="form-group">
+							<input type="text" name="filter_group_id" value="1" />
 							<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
 								<label>#fg.getFilterGroupDisplayName()#</label>
 								<cfloop array="#fg.getFilters()#" index="f">
@@ -248,8 +249,8 @@
 			</div><!-- nav-tabs-custom -->
 		
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary top-nav-button">Save Category</button>
-				<button type="submit" class="btn btn-danger top-nav-button">Delete Category</button>
+				<button name="save_category" type="submit" class="btn btn-primary top-nav-button">Save Category</button>
+				<button name="delete_category" type="submit" class="btn btn-danger top-nav-button">Delete Category</button>
 			</div>
 		</div><!-- /.col -->
 	</div>   <!-- /.row -->
