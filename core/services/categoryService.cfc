@@ -1,11 +1,13 @@
 ﻿<cfcomponent output="false" accessors="true">
-    <cfproperty name="categoryId" type="numeric"> 
+    <cfproperty name="categoryId" type="integer"> 
     <cfproperty name="parentCategoryId" type="integer"> 
     <cfproperty name="categoryName" type="string"> 
     <cfproperty name="categoryDisplayName" type="string"> 
     <cfproperty name="categoryIsEnabled" type="boolean"> 
     <cfproperty name="categoryIsDeleted" type="boolean"> 
     <cfproperty name="showCategoryOnNav" type="boolean"> 
+    <cfproperty name="offset" type="integer"> 
+    <cfproperty name="limit" type="integer"> 
 
     <cffunction name="init" output="false" access="public" returntype="any" hint="Constructor">
        
@@ -43,14 +45,30 @@
     </cffunction>
 
     <cffunction name="getCategories" output="false" access="public" returntype="array">
-	   <cfset LOCAL = {} />
+		<cfset LOCAL = {} />
 	   
-	   <cfset LOCAL.filter = {} />
-	   <cfif NOT IsNull(getCategoryId())>
-			<cfset LOCAL.filter.categoryId = getCategoryId() />
+	    <cfif getSearchCategoryKeyword() NEQ "">
+			<cfset LOCAL.qry = "from category and (category_display_name like '#getSearchCategoryKeyword()#' or category_keyword like '#getSearchCategoryKeyword()#' or category_description like '#getSearchCategoryKeyword()#' )" > 
+			
+			<cfif NOT IsNull(getCategoryId())>
+				<cfset LOCAL.qry = LOCAL.qry & "and category_id = '#getCategoryId()#' " />
+			</cfif>
+			<cfif NOT IsNull(getCategoryIsEnabled())>
+				<cfset LOCAL.qry = LOCAL.qry & "and category_is_enabled = '#getCategoryIsEnabled()#' " />
+			</cfif>
+			<cfif NOT IsNull(getCategoryIsDeleted())>
+				<cfset LOCAL.qry = LOCAL.qry & "and category_is_deleted = '#getCategoryIsDeleted()#' " />
+			</cfif>
+			
+			<cfset LOCAL.categories = ORMExecuteQuery(LOCAL.qry)> 
+		<cfelse>
+			<cfset LOCAL.filter = {} />
+			<cfif NOT IsNull(getCategoryId())>
+				<cfset LOCAL.filter.categoryId = getCategoryId() />
+			</cfif>
+			<cfset LOCAL.categories = EntityLoad('category',LOCAL.filter)> 
 		</cfif>
-	   <cfset LOCAL.categories = EntityLoad('category',LOCAL.filter)> 
 	   
-	   <cfreturn LOCAL.categories />
+		<cfreturn LOCAL.categories />
     </cffunction>
 </cfcomponent>

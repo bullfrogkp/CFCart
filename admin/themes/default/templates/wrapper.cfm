@@ -4,8 +4,6 @@
     <head>
         <meta charset="UTF-8">
         <title>#REQUEST.pageData.title#</title>
-		<meta name="description" content="#REQUEST.pageData.description#">
-		<meta name="keywords" content="#REQUEST.pageData.keywords#">
 		<meta name="author" content="Bullfrog Design">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->

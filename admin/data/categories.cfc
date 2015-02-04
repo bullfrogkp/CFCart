@@ -3,14 +3,21 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.title = "Categories | #APPLICATION.applicationName#" />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.categoryService.setCategoryId(URL.category_id) />
+		</cfif>
+		<cfif StructKeyExists(URL,"category_is_enabled") AND IsNumeric(URL.category_is_enabled)>
+			<cfset LOCAL.categoryService.setCategoryIsEnabled(URL.category_is_enabled) />
+		</cfif>
+		<cfif StructKeyExists(URL,"category_is_deleted") AND IsNumeric(URL.category_is_deleted)>
+			<cfset LOCAL.categoryService.setCategoryIsDeleted(URL.category_is_deleted) />
+		</cfif>
+		<cfif StructKeyExists(URL,"search_keyword") AND Trim(URL.search_keyword) NEQ "">
+			<cfset LOCAL.categoryService.setCategorSearchKeyword(Trim(URL.search_keyword)) />
 		</cfif>
 		
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />

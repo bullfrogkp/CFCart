@@ -13,4 +13,5 @@
 	<cfproperty name="categoryCustomDesign" column="category_custom_design" ormtype="text" default=""> 
 	<cfproperty name="filterGroupId" column="filter_group_id" ormtype="integer" default="-1"> 
 	<cfproperty name="categoryImage" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="categoryId">
+	<cfproperty name="categorySearchKeyword" default="" persistent="false"> 
 </cfcomponent>
