@@ -45,10 +45,6 @@
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
-		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
-		
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
 			<cfset LOCAL.pageData.allImages = EntityLoad("category_image", {imageIsDeleted = false})> 
@@ -57,6 +53,10 @@
 		</cfif>
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group",{filterGroupIsEnabled = true, filterGroupIsDeleted = false}, "filterGroupDisplayName ASC")> 
+		
+		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getCategoryDisplayName()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.keywords = "#LOCAL.pageData.category.getCategoryKeywords()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.description = "#LOCAL.pageData.category.getCategoryDescription()# | #APPLICATION.applicationName#" />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
