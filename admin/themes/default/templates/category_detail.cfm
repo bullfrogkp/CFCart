@@ -90,8 +90,16 @@
 							<label>Parent Category</label>
 							<select class="form-control" name="parent_category_id">
 								<option value="0">Root</option>
-								<cfloop array="#REQUEST.pageData.allCategories#" index="c">
-									<option value="#c.getCategoryId()#">#c.getCategoryDisplayName()#</option>
+								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+									<option value="#cat.getCategoryId()#">#RepeatString("&nbsp;",10)##cat.getCategoryDisplayName()#</option>
+									<cfloop array="#cat.getSubCategories()#" index="subCat">
+										<option value="#subCat.getCategoryId()#">#RepeatString("&nbsp;",20)##subCat.getCategoryDisplayName()#</option>
+										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+											<option value="#thirdCat.getCategoryId()#">#RepeatString("&nbsp;",30)##thirdCat.getCategoryDisplayName()#</option>
+										</cfloop>
+										</li>
+									</cfloop>
+									</li>
 								</cfloop>
 							</select>
 						</div>

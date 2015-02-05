@@ -43,6 +43,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
+		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
+		
 		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
@@ -53,7 +55,7 @@
 		<cfelse>
 			<cfset LOCAL.pageData.category = EntityNew("category") />
 		</cfif>
-		<cfset LOCAL.pageData.allCategories = EntityLoad("category", {categoryIsDeleted = false})> 
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		
 		<cfreturn LOCAL.pageData />	

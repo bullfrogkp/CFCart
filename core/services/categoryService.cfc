@@ -75,14 +75,17 @@
     </cffunction>
 	
 	<cffunction name="getCategoryTree" access="public" returntype="array">
-		<cfargument name="parent_category_id" type="numeric" required="false" default="0" />
+		<cfargument name="parentCategoryId" type="numeric" required="false" default="0" />
+		<cfargument name="categoryIsEnabled" type="boolean" required="false" default="true" />
+		<cfargument name="showCategoryOnNav" type="boolean" required="false" default="true" />
+		<cfargument name="orderBy" type="string" required="false" default="categoryDisplayName ASC" />
 		
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.categories = EntityLoad("category", {parentCategoryId=ARGUMENTS.parent_category_id, categoryIsEnabled = true, categoryIsDeleted = false, showCategoryOnNav = true}, "categoryDisplayName ASC") />
+		<cfset LOCAL.categories = EntityLoad("category", {parentCategoryId=ARGUMENTS.parentCategoryId, categoryIsEnabled = ARGUMENTS.categoryIsEnabled, categoryIsDeleted = false, showCategoryOnNav = ARGUMENTS.showCategoryOnNav}, ARGUMENTS.orderBy) />
 	
 		<cfloop array="#LOCAL.categories#" index="LOCAL.c">
-			<cfset LOCAL.c.setSubCategories(getCategoryTree(parent_category_id = LOCAL.c.getCategoryId())) />
+			<cfset LOCAL.c.setSubCategories(getCategoryTree(parentCategoryId = LOCAL.c.getCategoryId())) />
 		</cfloop>
 		
         <cfreturn LOCAL.categories />
