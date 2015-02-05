@@ -1,5 +1,5 @@
 ﻿<cfoutput>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
 <script>
 	$(document).ready(function() {
 		$("##uploader").plupload({
@@ -50,6 +50,38 @@
 
 			// Silverlight settings
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
+		});
+		
+		var filtergroups = new Object();
+		var filtergroup, filter, key;
+		
+		<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
+			
+			key = 'filter_group_' + '#fg.getFilterGroupId()#';
+			
+			filters = new Array();
+			
+			<cfloop array="#fg.getFilters()#" index="f">
+				filter = new Object();
+				filter.name = '#f.getFilterDisplayName()#';
+				filters.push(filter);
+			</cfloop>
+			
+			filtergroups[key] = filters;
+		</cfloop>
+		
+		$( "##filter_group" ).change(function() {
+		
+			$('##filter').empty();
+		
+			$("##filter_group option:selected").each(function() {
+				current_key = 'filter_group_' + $(this).val();
+				
+				for(var i=0;i<filtergroups[current_key].length;i++)
+				{
+					$('##filter').append($('<option></option>').html(filtergroups[current_key][i].name)); 
+				}
+			});
 		});
 	});
 </script>
@@ -137,32 +169,20 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
-						<!-- text input -->
-						<div class="form-group">
-							<div class="form-group">
-								<label>Filter Group</label>
-								<select class="form-control" name="filter_group_id">
-									<option value="0">Please Select...</option>
+					
+						<div class="row">
+							<div class="col-md-4">
+								<select class="form-control" name="filter_group_id" id="filter_group" multiple>
 									<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
 										<option value="#fg.getFilterGroupId()#">#fg.getFilterGroupDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>
+							<div class="col-md-8">
+								<select class="form-control" name="filter" id="filter" multiple>
+								</select>
+							</div>
 						</div>
-						<table class="table table-bordered" style="margin-top:30px;">
-							<tr>
-								<th>Filter Name</th>
-								<th>Filter Values</th>
-							</tr>
-							<tr>
-								<td>Color</td>
-								<td>Red,Blue,White,Black</td>
-							</tr>
-							<tr>
-								<td>Size</td>
-								<td>Large,Medium,Small</td>
-							</tr>
-						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_4">
 						<div class="form-group">
@@ -170,9 +190,7 @@
 						</div>
 						<div class="form-group">
 							<label>HTML Code</label>
-							<textarea name="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">
-							#REQUEST.pageData.category.getCategoryCustomDesign()#
-							</textarea>
+							<textarea name="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCategoryCustomDesign()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_5">
