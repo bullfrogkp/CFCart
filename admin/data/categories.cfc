@@ -13,11 +13,8 @@
 		<cfif StructKeyExists(URL,"category_is_enabled") AND IsNumeric(URL.category_is_enabled)>
 			<cfset LOCAL.categoryService.setCategoryIsEnabled(URL.category_is_enabled) />
 		</cfif>
-		<cfif StructKeyExists(URL,"category_is_deleted") AND IsNumeric(URL.category_is_deleted)>
-			<cfset LOCAL.categoryService.setCategoryIsDeleted(URL.category_is_deleted) />
-		</cfif>
 		<cfif StructKeyExists(URL,"search_keyword") AND Trim(URL.search_keyword) NEQ "">
-			<cfset LOCAL.categoryService.setCategorSearchKeyword(Trim(URL.search_keyword)) />
+			<cfset LOCAL.categoryService.setCategorySearchKeywords(Trim(URL.search_keyword)) />
 		</cfif>
 		
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />

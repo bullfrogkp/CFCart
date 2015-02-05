@@ -125,6 +125,31 @@
 			</div><!-- /.box -->
 		</div><!-- ./col -->
 		<div class="col-md-8">
+			<form>
+				<div class="box box-success">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-xs-2">
+								<input type="text" name="category_id" class="form-control" placeholder="ID">
+							</div>
+							<div class="col-xs-3">
+								<select class="form-control" name="category_is_enabled">
+									<option value="">All Status</option>
+									<option value="1" <cfif StructKeyExists(URL,"category_is_enabled") AND URL.category_is_enabled EQ 1>selected</cfif>>Enabled</option>
+									<option value="0" <cfif StructKeyExists(URL,"category_is_enabled") AND URL.category_is_enabled EQ 0>selected</cfif>>Disabled</option>
+								</select>
+							</div>
+							<div class="col-xs-5">
+								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords">
+							</div>
+							<div class="col-xs-2">
+								<button name="search_category" type="submit" class="btn btn-sm btn-primary search-button">Search</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			
 			<div class="box box-warning">
 				<div class="box-header">
 					<h3 class="box-title">Categories</h3>
