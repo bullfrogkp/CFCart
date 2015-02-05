@@ -139,13 +139,15 @@
 					<div class="tab-pane" id="tab_3">
 						<!-- text input -->
 						<div class="form-group">
-							<input type="text" name="filter_group_id" value="1" />
-							<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
-								<label>#fg.getFilterGroupDisplayName()#</label>
-								<cfloop array="#fg.getFilters()#" index="f">
-									#f.getFilterDisplayName()#,
-								</cfloop>
-							</cfloop>
+							<div class="form-group">
+								<label>Filter Group</label>
+								<select class="form-control" name="filter_group_id">
+									<option value="0">Please Select...</option>
+									<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
+										<option value="#fg.getFilterGroupId()#">#fg.getFilterGroupDisplayName()#</option>
+									</cfloop>
+								</select>
+							</div>
 						</div>
 						<table class="table table-bordered" style="margin-top:30px;">
 							<tr>

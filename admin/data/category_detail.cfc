@@ -56,7 +56,7 @@
 			<cfset LOCAL.pageData.category = EntityNew("category") />
 		</cfif>
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
+		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group",{filterGroupIsEnabled = true, filterGroupIsDeleted = false}, "filterGroupDisplayName ASC")> 
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

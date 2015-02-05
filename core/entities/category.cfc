@@ -6,7 +6,7 @@
     <cfproperty name="rank" column="rank" ormtype="float" default="0"> 
     <cfproperty name="categoryIsEnabled" column="category_is_enabled" ormtype="boolean" default="true"> 
     <cfproperty name="categoryIsDeleted" column="category_is_deleted" ormtype="boolean" default="false"> 
-    <cfproperty name="showCategoryOnNav" column="show_category_on_nav" ormtype="boolean" default="false"> 
+    <cfproperty name="showCategoryOnNav" column="show_category_on_nav" ormtype="boolean" default="true"> 
 	<cfproperty name="categoryTitle" column="category_title" ormtype="string" default=""> 
 	<cfproperty name="categoryKeywords" column="category_keywords" ormtype="string" default=""> 
 	<cfproperty name="categoryDescription" column="category_description" ormtype="string" default=""> 
