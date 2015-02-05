@@ -18,6 +18,7 @@
 		</cfif>
 		
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

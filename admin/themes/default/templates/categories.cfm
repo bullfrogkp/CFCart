@@ -20,106 +20,29 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<ul>
-						<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computers / Networking</a>
-							<ul>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a>
+						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getCategoryDisplayName()#</a>
+							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
+								<ul>
+							</cfif>
+							<cfloop array="#cat.getSubCategories()#" index="subCat">
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getCategoryDisplayName()#</a>
+								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
+								</cfif>
+								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getCategoryDisplayName()#</a>
+								</cfloop>
+								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									</ul>
+								</cfif>
 								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
-							</ul>
-						</li>
-						<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Tablet PCs & Cell Phone</a>
-							<ul>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cell Phones</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Accessories For iPad</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Accessories for iPhone</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Accessories for Tablet PC</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Accessories for Cell Ph</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								
-							</ul>
-						</li>
-						<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Home, Garden & Tools</a>
-							<ul>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Gift & Lifestyle Gadgets</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Baby Supplies</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Tools</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Security</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Pet Supplies</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Home Living</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=1">Home Electronics</a></li>
-								
-							</ul>
-						</li>
+							</cfloop>
+							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
+								</ul>
+							</cfif>
+							</li>
+						</cfloop>
 					</ul>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

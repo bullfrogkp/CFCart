@@ -25,7 +25,7 @@
 			<cfset LOCAL.category.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
-			
+		
 			<cfset EntitySave(LOCAL.category) />
 		<cfelseif StructKeyExists(FORM,"delete_category")>
 			<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
