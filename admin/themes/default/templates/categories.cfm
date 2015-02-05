@@ -130,7 +130,7 @@
 					<div class="box-body">
 						<div class="row">
 							<div class="col-xs-2">
-								<input type="text" name="category_id" class="form-control" placeholder="ID">
+								<input type="text" name="category_id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"category_id")>value="#URL.category_id#"</cfif>>
 							</div>
 							<div class="col-xs-3">
 								<select class="form-control" name="category_is_enabled">
@@ -140,7 +140,7 @@
 								</select>
 							</div>
 							<div class="col-xs-5">
-								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords">
+								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords" <cfif StructKeyExists(URL,"search_keyword")>value="#URL.search_keyword#"</cfif>>
 							</div>
 							<div class="col-xs-2">
 								<button name="search_category" type="submit" class="btn btn-sm btn-primary search-button">Search</button>
@@ -156,9 +156,10 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Category</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Name</th>
 								<th>Rank</th>
 								<th>Status</th>
@@ -166,17 +167,25 @@
 							</tr>
 						</thead>
 						<tbody>
-							<cfloop array="#REQUEST.pageData.categories#" index="category">
-							<tr>
-								<td>#category.getCategoryDisplayName()#</td>
-								<td>#category.getRank()#</td>
-								<td>#category.getCategoryIsEnabled()#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#category.getCategoryId()#">View Detail</a></td>
-							</tr>
-							</cfloop>
+							<cfif ArrayLen(REQUEST.pageData.categories) NEQ 0>
+								<cfloop array="#REQUEST.pageData.categories#" index="category">
+								<tr>
+									<td>#category.getCategoryId()#</td>
+									<td>#category.getCategoryDisplayName()#</td>
+									<td>#category.getRank()#</td>
+									<td>#category.getCategoryIsEnabled()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#category.getCategoryId()#">View Detail</a></td>
+								</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="5">No result found.</td>
+								</tr>
+							</cfif>
 						</tbody>
 						<tfoot>
 							<tr>
+								<th>ID</th>
 								<th>Name</th>
 								<th>Rank</th>
 								<th>Status</th>
