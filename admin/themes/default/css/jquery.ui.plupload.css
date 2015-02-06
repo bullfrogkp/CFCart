@@ -111,7 +111,7 @@
 }
 
 .plupload_file_loading .plupload_file_thumb {
-	background: #eee url(../images/loading.gif) center no-repeat;
+	background: #eee url(../img/loading.gif) center no-repeat;
 }
 
 .plupload_file_name {

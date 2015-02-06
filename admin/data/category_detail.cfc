@@ -57,7 +57,7 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getCategoryDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.keywords = "#LOCAL.pageData.category.getCategoryKeywords()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "#LOCAL.pageData.category.getCategoryDescription()# | #APPLICATION.applicationName#" />
-		
+				
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>

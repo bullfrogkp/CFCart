@@ -13,7 +13,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif NOT StructKeyExists(SESSION,"adminUser") AND VARIABLES.pageName NEQ "login">
+		<cfif NOT StructKeyExists(SESSION,"adminUser") AND getPageName() NEQ "login">
 			<cfset LOCAL.redirectUrl = "login.cfm" />
 		</cfif>
 		

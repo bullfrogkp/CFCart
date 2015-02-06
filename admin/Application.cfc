@@ -174,7 +174,8 @@
 				</cfif>
 				--->
 			
-				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM)>
+				<!--- form.file is image upload plugin --->
+				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM) AND NOT StructKeyExists(FORM,"file")>
 					<!--- global data handler --->
 					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
