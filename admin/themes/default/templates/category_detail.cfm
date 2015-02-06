@@ -2,6 +2,8 @@
 
 <script>
 	$(document).ready(function() {
+		CKEDITOR.replace('category_custom_design');
+		
 		$("##uploader").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
@@ -190,7 +192,7 @@
 						</div>
 						<div class="form-group">
 							<label>HTML Code</label>
-							<textarea name="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCategoryCustomDesign()#</textarea>
+							<textarea name="category_custom_design" id="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCategoryCustomDesign()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_5">

@@ -2,6 +2,8 @@
 
 <script>
 	$(document).ready(function() {
+		CKEDITOR.replace('product_detail_text');
+		
 		$("##uploader").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
@@ -118,17 +120,16 @@
 								<label>Price</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="32.22"/>
 							</div>
-							
-							<div class="form-group">
-								<label>Product Detail</label>
-								<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
-							</div>
 							 <div class="form-group">
 								<label>Status</label>
 								<select class="form-control" name="parent_category_id">
 									<option value="0">Enabled</option>
 									<option value="">Disabled</option>
 								</select>
+							</div>
+							<div class="form-group">
+								<label>Product Detail</label>
+								<textarea name="product_detail_text" id="product_detail_text" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;"></textarea>
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>

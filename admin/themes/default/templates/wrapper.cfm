@@ -20,8 +20,6 @@
         <link href="#SESSION.absoluteUrlThemeAdmin#css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
         <link href="#SESSION.absoluteUrlThemeAdmin#css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link href="#SESSION.absoluteUrlThemeAdmin#css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="#SESSION.absoluteUrlThemeAdmin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
 		
@@ -476,6 +474,9 @@
 				$('###REQUEST.pageData.currentPageName#').parent().parent('.treeview').addClass('active');
 			});
 		</script>
+		
+		<!-- CK Editor -->
+		<script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
     </body>
 </html>
 </cfoutput>
