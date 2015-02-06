@@ -1,4 +1,6 @@
-﻿<cfif NOT IsDefined("SESSION.temp.uploads")>
+﻿<!--- use uuid for new image's name, otherwise same name image will be overwritten --->
+
+<cfif NOT IsDefined("SESSION.temp.uploads")>
 	<cfset SESSION.temp.uploads = "" />
 </cfif>
 
