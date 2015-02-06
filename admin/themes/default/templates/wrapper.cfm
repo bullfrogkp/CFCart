@@ -22,6 +22,8 @@
         <link href="#SESSION.absoluteUrlThemeAdmin#css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="#SESSION.absoluteUrlThemeAdmin#css/AdminLTE.css" rel="stylesheet" type="text/css" />
+		 <!-- DATA TABLES -->
+        <link href="#SESSION.absoluteUrlThemeAdmin#css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 		
 		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/jquery.ui.plupload.css">
 		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/custom.css">
@@ -459,7 +461,7 @@
 
         <!-- AdminLTE App -->
         <script src="#SESSION.absoluteUrlThemeAdmin#js/AdminLTE/app.js" type="text/javascript"></script>
-
+		
 		
 		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
@@ -477,6 +479,9 @@
 		
 		<!-- CK Editor -->
 		<script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+		 <!-- DATA TABES SCRIPT -->
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
     </body>
 </html>
 </cfoutput>
