@@ -30,9 +30,20 @@
 				<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
 					<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
 					<cfif StructFind(SESSION.temp.formdata,LOCAL.key) EQ "done">
+					
+						<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#admin/uploads/category/")
+					
+						<cfif NOT DirectoryExists(LOCAL.imagePath & #LOCAL.category.getCategoryId()#/)>
+							<cfdirectory action = "create" directory = "#LOCAL.imagePath# #LOCAL.category.getCategoryId()#/" >
+						</cfif>
+						
 						<cfset LOCAL.imgName = StructFind(SESSION.temp.formdata,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+						<cfset LOCAL.newImgName = CreateUUID() &  />
+						
+						<cffile action = "move" source = "LOCAL.imagePath\#LOCAL.imgName#)" destination = "#LOCAL.imagePath# #LOCAL.category.getCategoryId()#/\#LOCAL.newImgName#">
+					
 						<cfset LOCAL.categoryImage = EntityNew("category_image") />
-						<cfset LOCAL.categoryImage.setImageName(LOCAL.imgName) />
+						<cfset LOCAL.categoryImage.setImageName(LOCAL.newImgName) />
 						<cfset EntitySave(LOCAL.categoryImage) />
 						<cfset LOCAL.category.addCategoryImages(LOCAL.categoryImage) />
 					</cfif>
