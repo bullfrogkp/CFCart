@@ -2,6 +2,12 @@
 
 <script>
 	$(document).ready(function() {
+	
+		$(".tab-title").click(function() {
+		  $("##tab_id").val($(this).attr('tabid'));
+		  console.log($("##tab_id").val());
+		});
+	
 		CKEDITOR.replace('category_custom_design');
 		$("##products_table").dataTable();
 		
@@ -100,23 +106,23 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="category_id" value="#REQUEST.pageData.category.getCategoryId()#" />
+<input type="hidden" name="category_id" id="category_id" value="#REQUEST.pageData.category.getCategoryId()#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="##tab_1" data-toggle="tab">General Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Filters</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Custom Design</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Thumbnail Image</a></li>
-					<li><a href="##tab_6" data-toggle="tab">Products</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Filters</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Custom Design</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Thumbnail Image</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Products</a></li>
 				</ul>
 				<div class="tab-content">
-					
-					<div class="tab-pane active" id="tab_1">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						<div class="form-group">
 							<label>Category Name</label>
 							<input type="text" class="form-control" placeholder="Enter ..." name="category_display_name" value="#REQUEST.pageData.category.getCategoryDisplayName()#"/>
@@ -157,7 +163,7 @@
 							</select>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_2">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">
 							<label>Title</label>
 							<input type="text" class="form-control" placeholder="Enter ..." name="category_title" value="#REQUEST.pageData.category.getCategoryTitle()#"/>
@@ -171,7 +177,7 @@
 							<textarea name="category_description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getCategoryDescription()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 					
 						<div class="row">
 							<div class="col-md-4">
@@ -191,7 +197,7 @@
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_4">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
 							<label>Preview</label>
 						</div>
@@ -200,7 +206,7 @@
 							<textarea name="category_custom_design" id="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCategoryCustomDesign()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_5">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
 						<div class="row">
 							<cfloop array="#REQUEST.pageData.category.getCategoryImages()#" index="img">
 								<div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -216,7 +222,7 @@
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_6">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="box">

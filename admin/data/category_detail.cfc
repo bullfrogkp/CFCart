@@ -57,7 +57,7 @@
 			<cfset EntitySave(LOCAL.category) />
 		</cfif>
 		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#" />
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=#FORM.tab_id#" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
@@ -81,6 +81,23 @@
 		<cfset LOCAL.pageData.keywords = "#LOCAL.pageData.category.getCategoryKeywords()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "#LOCAL.pageData.category.getCategoryDescription()# | #APPLICATION.applicationName#" />
 				
+		<cfset LOCAL.pageData.tabs = {} />
+		<cfset LOCAL.pageData.tabs["tab_1"] = "" />
+		<cfset LOCAL.pageData.tabs["tab_2"] = "" />
+		<cfset LOCAL.pageData.tabs["tab_3"] = "" />
+		<cfset LOCAL.pageData.tabs["tab_4"] = "" />
+		<cfset LOCAL.pageData.tabs["tab_5"] = "" />
+		<cfset LOCAL.pageData.tabs["tab_6"] = "" />
+		<cfset LOCAL.pageData.tabs["tab_7"] = "" />
+				
+		<cfif StructKeyExists(URL,"active_tab_id")>	
+			<cfset LOCAL.pageData.activeTabId = URL.active_tab_id />
+			<cfset LOCAL.pageData.tabs["#LOCAL.pageData.activeTabId#"] = "active" />
+		<cfelse>
+			<cfset LOCAL.pageData.activeTabId = "tab_1" />
+			<cfset LOCAL.pageData.tabs["tab_1"] = "active" />
+		</cfif>
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
