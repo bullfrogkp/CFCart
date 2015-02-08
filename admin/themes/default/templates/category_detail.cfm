@@ -205,7 +205,7 @@
 							<cfloop array="#REQUEST.pageData.category.getCategoryImages()#" index="img">
 								<div class="col-lg-3 col-md-4 col-xs-6 thumb">
 									<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" target="_blank">
-										<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#img.getImageName()#" />
+										<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" />
 									</a>
 								</div>
 							</cfloop>
