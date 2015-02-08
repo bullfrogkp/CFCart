@@ -1,11 +1,4 @@
-﻿<!--- use uuid for new image's name, otherwise same name image will be overwritten --->
-
-<cfif NOT IsDefined("SESSION.temp.uploads")>
-	<cfset SESSION.temp.uploads = "" />
-</cfif>
-
-<cfscript>
-
+﻿<cfscript>
 	// If the file is being uploaded as a single upload, the FORM post will contain the fields,
 	// "name" and "file," which will contain the contents of the upload.
 	// --
@@ -18,16 +11,15 @@
 	if ( isNull( form.chunks ) ) {
 		fileMove(
 			form.file,
-			expandPath( "#APPLICATION.absoluteUrlWeb#admin/uploads/#form.name#" )
+			expandPath( "#APPLICATION.absoluteUrlWeb#admin/uploads/#folder#/#form.name#" )
 		);
-		SESSION.temp.uploads = ListAppend(SESSION.temp.uploads,form.name,";");
 	// We are executing a chunked upload.
 	} else {
 
 		// Since we are dealing with chunks, instead of a full file, we'll be appending each
 		// chunk to the known file. However, for the demo, let's keep the transient file out
 		// of the uploads until the chunking has been completed.
-		upload = fileOpen( expandPath( "#APPLICATION.absoluteUrlWeb#admin/chunks/#form.name#" ), "append" );
+		upload = fileOpen( expandPath( "#APPLICATION.absoluteUrlWeb#admin/chunks/#folder#/#form.name#" ), "append" );
 
 		// Append the current chunk to the end of the transient file.
 		fileWrite( upload, fileReadBinary( form.file ) );
@@ -37,10 +29,9 @@
 		// completed uploads folder (with a unique name).
 		if ( form.chunk == ( form.chunks - 1 ) ) {
 			fileMove(
-				expandPath( "#APPLICATION.absoluteUrlWeb#admin/chunks/#form.name#" ),
-				expandPath( "#APPLICATION.absoluteUrlWeb#admin/uploads/#form.name#" )
+				expandPath( "#APPLICATION.absoluteUrlWeb#admin/chunks/#folder#/#form.name#" ),
+				expandPath( "#APPLICATION.absoluteUrlWeb#admin/uploads/#folder#/#form.name#" )
 			);
-			SESSION.temp.uploads = ListAppend(SESSION.temp.uploads,form.name,";");
 		}
 	}
 
@@ -49,5 +40,5 @@
 <!--- Reset the content buffer. --->
 <cfcontent
 	type="text/plain"
-	variable="#charsetDecode( '#SESSION.temp.uploads#', 'utf-8' )#"
+	variable="#charsetDecode( 'success', 'utf-8' )#"
 	/>

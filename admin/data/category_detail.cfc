@@ -26,7 +26,21 @@
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
 		
+			<cfloop collection="#SESSION.temp.formdata#" item="LOCAL.key">
+				<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
+					<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
+					<cfif StructFind(SESSION.temp.formdata,LOCAL.key) EQ "done">
+						<cfset LOCAL.imgName = StructFind(SESSION.temp.formdata,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+						<cfset LOCAL.categoryImage = EntityNew("category_image") />
+						<cfset LOCAL.categoryImage.setImageName(LOCAL.imgName) />
+						<cfset EntitySave(LOCAL.categoryImage) />
+						<cfset LOCAL.category.addCategoryImages(LOCAL.categoryImage) />
+					</cfif>
+				</cfif>
+			</cfloop>
+			
 			<cfset EntitySave(LOCAL.category) />
+			
 		<cfelseif StructKeyExists(FORM,"delete_category")>
 			<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
 			<cfset LOCAL.category.setCategoryIsDeleted(true) />
