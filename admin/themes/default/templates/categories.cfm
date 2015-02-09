@@ -13,6 +13,14 @@
 <!-- Main content -->
 <section class="content">
 	 <div class="row">
+		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message")>
+				<div class="alert #REQUEST.pageData.message_type# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					#REQUEST.pageData.message#
+				</div>
+			</cfif>
+		</div>
 		<div class="col-md-4">
 			<div class="box box-primary">
 				<div class="box-header">

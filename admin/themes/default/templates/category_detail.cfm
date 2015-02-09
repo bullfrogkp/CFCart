@@ -111,10 +111,12 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
-			 <div class="alert alert-success alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				Category has been saved successfully.
-			</div>
+			<cfif IsDefined("REQUEST.pageData.message")>
+				<div class="alert #REQUEST.pageData.message_type# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					#REQUEST.pageData.message#
+				</div>
+			</cfif>
 		</div>
 		<div class="col-md-12">
 			<!-- Custom Tabs -->

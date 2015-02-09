@@ -25,39 +25,50 @@
 			<cfset LOCAL.category.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
+			<cfset LOCAL.category.setCategoryImages([]) />
 		
-			<cfloop collection="#SESSION.temp.formdata#" item="LOCAL.key">
-				<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
-					<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
-					<cfif StructFind(SESSION.temp.formdata,LOCAL.key) EQ "done">
-						<cfset LOCAL.imgName = StructFind(SESSION.temp.formdata,"UPLOADER_#LOCAL.currentIndex#_NAME") />
-						<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#admin/uploads/category/") />
-					
-						<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.category.getCategoryId() />
-						<cfif NOT DirectoryExists(LOCAL.imageDir)>
-							<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-						</cfif>
+			<cfdump var="#SESSION.temp.formdata#" abort>
+			<cfif SESSION.temp.formdata["uploader_count"] NEQ 0>
+				<cfloop collection="#SESSION.temp.formdata#" item="LOCAL.key">
+					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
+						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
+						<cfif StructFind(SESSION.temp.formdata,LOCAL.key) EQ "done">
+							<cfset LOCAL.imgName = StructFind(SESSION.temp.formdata,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#admin/uploads/category/") />
 						
-						<cffile action = "move" source = "#LOCAL.imagePath##LOCAL.imgName#" destination = "#LOCAL.imagePath##LOCAL.category.getCategoryId()#\#LOCAL.imgName#">
-					
-						<cfset LOCAL.categoryImage = EntityNew("category_image") />
-						<cfset LOCAL.categoryImage.setImageName(LOCAL.imgName) />
-						<cfset EntitySave(LOCAL.categoryImage) />
-						<cfset LOCAL.category.addCategoryImages(LOCAL.categoryImage) />
+							<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.category.getCategoryId() />
+							<cfif NOT DirectoryExists(LOCAL.imageDir)>
+								<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+							</cfif>
+							
+							<cffile action = "move" source = "#LOCAL.imagePath##LOCAL.imgName#" destination = "#LOCAL.imagePath##LOCAL.category.getCategoryId()#\#LOCAL.imgName#">
+						
+							<cfset LOCAL.categoryImage = EntityNew("category_image") />
+							<cfset LOCAL.categoryImage.setImageName(LOCAL.imgName) />
+							<cfset EntitySave(LOCAL.categoryImage) />
+							<cfset LOCAL.category.addCategoryImages(LOCAL.categoryImage) />
+						</cfif>
 					</cfif>
-				</cfif>
-			</cfloop>
+				</cfloop>
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.category) />
 			
+			<cfset SESSION.temp.message = "Category has been saved successfully." />
+			<cfset SESSION.temp.message_type = "alert-success" />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=#FORM.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_category")>
 			<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
 			<cfset LOCAL.category.setCategoryIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.category) />
+			
+			<cfset SESSION.temp.message = "Category: #LOCAL.category.getCategoryDisplayName()# has been deleted." />
+			<cfset SESSION.temp.message_type = "alert-success" />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
 		</cfif>
-		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=#FORM.tab_id#" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
@@ -96,6 +107,11 @@
 		<cfelse>
 			<cfset LOCAL.pageData.activeTabId = "tab_1" />
 			<cfset LOCAL.pageData.tabs["tab_1"] = "active" />
+		</cfif>
+		
+		<cfif IsDefined("SESSION.temp.message")>
+			<cfset LOCAL.pageData.message = SESSION.temp.message />
+			<cfset LOCAL.pageData.message_type = SESSION.temp.message_type />
 		</cfif>
 		
 		<cfreturn LOCAL.pageData />	
