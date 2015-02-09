@@ -201,9 +201,11 @@
 							</div>
 							<div class="col-md-8">
 								<select class="form-control" name="filter" id="filter" multiple>
-									<cfloop array="#REQUEST.pageData.filterGroup.getFilters#" index="f">
-										<option value="#f.getFilterId()#">#fg.getFilterDisplayName()#</option>
-									</cfloop>
+									<cfif IsDefined("REQUEST.pageData.filterGroup")>
+										<cfloop array="#REQUEST.pageData.filterGroup.getFilters()#" index="f">
+											<option value="#f.getFilterId()#">#f.getFilterDisplayName()#</option>
+										</cfloop>
+									</cfif>
 								</select>
 							</div>
 						</div>
@@ -216,13 +218,15 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
 						<div class="row">
-							<cfloop array="#REQUEST.pageData.category.getCategoryImages()#" index="img">
-								<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-									<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" target="_blank">
-										<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" />
-									</a>
-								</div>
-							</cfloop>
+							<cfif IsDefined("REQUEST.pageData.categoryImages")>
+								<cfloop array="#REQUEST.pageData.categoryImages#" index="img">
+									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" target="_blank">
+											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" />
+										</a>
+									</div>
+								</cfloop>
+							</cfif>
 						</div>
 						<div class="form-group">
 							<div id="uploader">

@@ -6,8 +6,10 @@
 		<cfif StructKeyExists(FORM,"save_category")>
 			<cfif IsNumeric(FORM.category_id)>
 				<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
+				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.category = EntityNew("category") />
+				<cfset LOCAL.tab_id = "tab_1" />
 			</cfif>
 			
 			<cfset LOCAL.category.setParentCategoryId(FORM.parent_category_id) />
@@ -25,9 +27,7 @@
 			<cfset LOCAL.category.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
-			<cfset LOCAL.category.setCategoryImages([]) />
 		
-			<cfdump var="#SESSION.temp.formdata#" abort>
 			<cfif SESSION.temp.formdata["uploader_count"] NEQ 0>
 				<cfloop collection="#SESSION.temp.formdata#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -57,7 +57,7 @@
 			<cfset SESSION.temp.message = "Category has been saved successfully." />
 			<cfset SESSION.temp.message_type = "alert-success" />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=#FORM.tab_id#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_category")>
 			<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
 			<cfset LOCAL.category.setCategoryIsDeleted(true) />
@@ -81,18 +81,18 @@
 		
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
-			<cfset LOCAL.pageData.filterGroup = EntityLoad("filter_group",{filterGroupId = LOCAL.pageData.getCategoryFilterGroupId()}, true)>
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getCategoryDisplayName()# | #APPLICATION.applicationName#" />
 		<cfelse>
 			<cfset LOCAL.pageData.category = EntityNew("category") />
-			<cfset LOCAL.pageData.category.setCategoryImages([]) />
+			<cfset LOCAL.pageData.title = "New Category | #APPLICATION.applicationName#" />
 		</cfif>
+		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group",{filterGroupIsEnabled = true, filterGroupIsDeleted = false}, "filterGroupDisplayName ASC")> 
 		
-		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getCategoryDisplayName()# | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.keywords = "#LOCAL.pageData.category.getCategoryKeywords()# | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.description = "#LOCAL.pageData.category.getCategoryDescription()# | #APPLICATION.applicationName#" />
-				
+		<cfset LOCAL.pageData.filterGroup = EntityLoad("filter_group",{filterGroupId = LOCAL.pageData.category.getFilterGroupId()}, true) />
+		<cfset LOCAL.pageData.categoryImages = LOCAL.pageData.category.getCategoryImages() />
+					
 		<cfset LOCAL.pageData.tabs = {} />
 		<cfset LOCAL.pageData.tabs["tab_1"] = "" />
 		<cfset LOCAL.pageData.tabs["tab_2"] = "" />
