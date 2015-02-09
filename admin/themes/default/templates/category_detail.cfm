@@ -111,6 +111,12 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			 <div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				Category has been saved successfully.
+			</div>
+		</div>
+		<div class="col-md-12">
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">

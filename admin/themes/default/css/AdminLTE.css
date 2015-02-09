@@ -2081,8 +2081,7 @@ Component: timeline
 ------------------------
 */
 .alert {
-  padding-left: 30px;
-  margin-left: 15px;
+  padding-left: 20px;
   position: relative;
 }
 .alert > .fa,
