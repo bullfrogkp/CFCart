@@ -201,14 +201,14 @@
 							</div>
 							<div class="col-md-8">
 								<select class="form-control" name="filter" id="filter" multiple>
+									<cfloop array="#REQUEST.pageData.filterGroup.getFilters#" index="f">
+										<option value="#f.getFilterId()#">#fg.getFilterDisplayName()#</option>
+									</cfloop>
 								</select>
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
-						<div class="form-group">
-							<label>Preview</label>
-						</div>
 						<div class="form-group">
 							<label>HTML Code</label>
 							<textarea name="category_custom_design" id="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCategoryCustomDesign()#</textarea>

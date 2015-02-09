@@ -81,6 +81,7 @@
 		
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
+			<cfset LOCAL.pageData.filterGroup = EntityLoad("filter_group",{filterGroupId = LOCAL.pageData.getCategoryFilterGroupId()}, true)>
 		<cfelse>
 			<cfset LOCAL.pageData.category = EntityNew("category") />
 			<cfset LOCAL.pageData.category.setCategoryImages([]) />
