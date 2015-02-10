@@ -1,18 +1,14 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="categoryId" column="category_id" fieldtype="id" generator="native"> 
     <cfproperty name="parentCategoryId" column="parent_category_id" ormtype="integer" default="-1"> 
-    <cfproperty name="categoryName" column="category_name" ormtype="string" default=""> 
-    <cfproperty name="categoryDisplayName" column="category_display_name" ormtype="string" default=""> 
     <cfproperty name="rank" column="rank" ormtype="float" default="0"> 
-    <cfproperty name="categoryIsEnabled" column="category_is_enabled" ormtype="boolean" default="true"> 
-    <cfproperty name="categoryIsDeleted" column="category_is_deleted" ormtype="boolean" default="false"> 
-    <cfproperty name="showCategoryOnNav" column="show_category_on_nav" ormtype="boolean" default="true"> 
-	<cfproperty name="categoryTitle" column="category_title" ormtype="string" default=""> 
-	<cfproperty name="categoryKeywords" column="category_keywords" ormtype="string" default=""> 
-	<cfproperty name="categoryDescription" column="category_description" ormtype="string" default=""> 
-	<cfproperty name="categoryCustomDesign" column="category_custom_design" ormtype="text" default=""> 
+    <cfproperty name="showCategoryOnNavigation" column="show_category_on_navigation" ormtype="boolean" default="true"> 
+	<cfproperty name="title" column="title" ormtype="string" default=""> 
+	<cfproperty name="keywords" column="keywords" ormtype="string" default=""> 
+	<cfproperty name="customDesign" column="custom_design" ormtype="text" default=""> 
 	<cfproperty name="filterGroupId" column="filter_group_id" ormtype="integer" default="-1"> 
-	<cfproperty name="categoryImages" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="categoryId">
-	<cfproperty name="categorySearchKeyword" type="string" persistent="false"> 
+	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="categoryId">
+	<cfproperty name="products" fieldtype="many-to-many" cfc="product" inverse="true" linktable="category_product_rela" fkcolumn="category_id" inversejoincolumn="product_id" orderby="productId">
+	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	<cfproperty name="subCategories" type="array" persistent="false"> 
 </cfcomponent>
