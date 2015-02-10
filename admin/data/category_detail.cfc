@@ -82,9 +82,11 @@
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getCategoryDisplayName()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.deleteButtonClass = "" />
 		<cfelse>
 			<cfset LOCAL.pageData.category = EntityNew("category") />
 			<cfset LOCAL.pageData.title = "New Category | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 		</cfif>
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />

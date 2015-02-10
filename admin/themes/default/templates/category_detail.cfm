@@ -674,7 +674,7 @@
 		
 			<div class="form-group">
 				<button name="save_category" type="submit" class="btn btn-primary top-nav-button">Save Category</button>
-				<button name="delete_category" type="submit" class="btn btn-danger top-nav-button">Delete Category</button>
+				<button name="delete_category" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Delete Category</button>
 			</div>
 		</div><!-- /.col -->
 	</div>   <!-- /.row -->
