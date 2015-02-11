@@ -7,7 +7,15 @@
 			<cfset SESSION.temp.message = "Please enter a valid category name." />
 			<cfset SESSION.temp.message_type = "alert-danger" />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm" />
+			<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>	
+				<cfif StructKeyExists(URL,"active_tab_id")>	
+					<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#URL.category_id#&active_tab_id=#URL.active_tab_id#" />
+				<cfelse>
+					<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#URL.category_id#" />
+				</cfif>
+			<cfelse>
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm" />
+			</cfif>
 		</cfif>
 		
 		<cfreturn LOCAL />
@@ -131,7 +139,20 @@
 			<cfset LOCAL.pageData.message_type = SESSION.temp.message_type />
 		</cfif>
 		
-		<cfset LOCAL.formFields = "display_name,parent_category_id" />
+		<cfif IsDefined("SESSION.temp.formData")>
+			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+		<cfelse>
+			<cfset LOCAL.pageData.formData.display_name = LOCAL.pageData.category.getDisplayName() />
+			<cfset LOCAL.pageData.formData.parent_category_id = LOCAL.pageData.category.getParentCategoryId() />
+			<cfset LOCAL.pageData.formData.rank = LOCAL.pageData.category.getRank() />
+			<cfset LOCAL.pageData.formData.is_enabled = LOCAL.pageData.category.getIsEnabled() />
+			<cfset LOCAL.pageData.formData.show_category_on_navigation = LOCAL.pageData.category.getShowCategoryOnNavigation() />
+			<cfset LOCAL.pageData.formData.title = LOCAL.pageData.category.getTitle() />
+			<cfset LOCAL.pageData.formData.keywords = LOCAL.pageData.category.getKeywords() />
+			<cfset LOCAL.pageData.formData.description = LOCAL.pageData.category.getDescription() />
+			<cfset LOCAL.pageData.formData.filter_group_id = LOCAL.pageData.category.getFilterGroupId() />
+			<cfset LOCAL.pageData.formData.custom_design = LOCAL.pageData.category.getCustomDesign() />
+		</cfif>
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

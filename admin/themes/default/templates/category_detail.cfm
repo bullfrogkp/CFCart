@@ -133,18 +133,30 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						<div class="form-group">
 							<label>Category Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value="#REQUEST.pageData.category.getDisplayName()#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Parent Category</label>
 							<select class="form-control" name="parent_category_id">
 								<option value="0">Root</option>
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-									<option value="#cat.getCategoryId()#">#RepeatString("&nbsp;",10)##cat.getDisplayName()#</option>
+									<option value="#cat.getCategoryId()#"
+									<cfif REQUEST.pageData.formData.parent_category_id EQ cat.getCategoryId()>
+									selected
+									</cfif>
+									>#RepeatString("&nbsp;",10)##cat.getDisplayName()#</option>
 									<cfloop array="#cat.getSubCategories()#" index="subCat">
-										<option value="#subCat.getCategoryId()#">#RepeatString("&nbsp;",20)##subCat.getDisplayName()#</option>
+										<option value="#subCat.getCategoryId()#"
+										<cfif REQUEST.pageData.formData.parent_category_id EQ subCat.getCategoryId()>
+										selected
+										</cfif>
+										>#RepeatString("&nbsp;",20)##subCat.getDisplayName()#</option>
 										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-											<option value="#thirdCat.getCategoryId()#">#RepeatString("&nbsp;",30)##thirdCat.getDisplayName()#</option>
+											<option value="#thirdCat.getCategoryId()#"
+											<cfif REQUEST.pageData.formData.parent_category_id EQ thirdCat.getCategoryId()>
+											selected
+											</cfif>
+											>#RepeatString("&nbsp;",30)##thirdCat.getDisplayName()#</option>
 										</cfloop>
 										</li>
 									</cfloop>
@@ -154,35 +166,35 @@
 						</div>
 						 <div class="form-group">
 							<label>Rank</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="#REQUEST.pageData.category.getRank()#" />
+							<input type="text" class="form-control" placeholder="Enter ..." name="rank" value="#REQUEST.pageData.formData.rank#" />
 						</div>
 						 <div class="form-group">
 							<label>Status</label>
 							 <select class="form-control" name="is_enabled">
-								<option value="1" <cfif REQUEST.pageData.category.getIsEnabled() EQ TRUE>selected</cfif>>Enabled</option>
-								<option value="0" <cfif REQUEST.pageData.category.getIsEnabled() EQ FALSE>selected</cfif>>Disabled</option>
+								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Show on Navigation</label>
 							 <select class="form-control" name="show_category_on_navigation">
-								<option value="1" <cfif REQUEST.pageData.category.getShowCategoryOnNavigation() EQ TRUE>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.category.getShowCategoryOnNavigation() EQ FALSE>selected</cfif>>No</option>
+								<option value="1" <cfif REQUEST.pageData.formData.show_category_on_navigation EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.show_category_on_navigation EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="title" value="#REQUEST.pageData.category.getTitle()#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." name="title" value="#REQUEST.pageData.formData.title#"/>
 						</div>
 						<div class="form-group">
 							<label>Keywords</label>
-							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getKeywords()#</textarea>
+							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getDescription()#</textarea>
+							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
@@ -192,7 +204,7 @@
 								<select class="form-control" name="filter_group_id" id="filter_group" multiple>
 									<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
 										<option value="#fg.getFilterGroupId()#"
-										<cfif fg.getFilterGroupId() EQ REQUEST.pageData.category.getFilterGroupId()>
+										<cfif fg.getFilterGroupId() EQ REQUEST.pageData.formData.filter_group_id>
 										selected
 										</cfif>
 										>#fg.getDisplayName()#</option>
@@ -213,7 +225,7 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
 							<label>HTML Code</label>
-							<textarea name="custom_design" id="custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCustomDesign()#</textarea>
+							<textarea name="custom_design" id="custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.custom_design#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
