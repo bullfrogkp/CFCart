@@ -1,4 +1,18 @@
 ﻿<cfcomponent extends="master">
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfif Trim(FORM.display_name) EQ "">
+			<cfset SESSION.temp.message = "Please enter a valid category name." />
+			<cfset SESSION.temp.message_type = "alert-danger" />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm" />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
