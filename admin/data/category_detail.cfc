@@ -42,12 +42,12 @@
 				<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
 			</cfif>
 		
-			<cfif SESSION.temp.formdata["uploader_count"] NEQ 0>
-				<cfloop collection="#SESSION.temp.formdata#" item="LOCAL.key">
+			<cfif FORM["uploader_count"] NEQ 0>
+				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
 						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
-						<cfif StructFind(SESSION.temp.formdata,LOCAL.key) EQ "done">
-							<cfset LOCAL.imgName = StructFind(SESSION.temp.formdata,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+						<cfif StructFind(FORM,LOCAL.key) EQ "done">
+							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
 							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#admin/uploads/category/") />
 						
 							<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.category.getCategoryId() />
@@ -130,6 +130,8 @@
 			<cfset LOCAL.pageData.message = SESSION.temp.message />
 			<cfset LOCAL.pageData.message_type = SESSION.temp.message_type />
 		</cfif>
+		
+		<cfset LOCAL.formFields = "display_name,parent_category_id" />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
