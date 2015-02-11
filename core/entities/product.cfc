@@ -1,4 +1,5 @@
-﻿<cfcomponent extends="entity" persistent="true"> 
+﻿<!---
+<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="productId" column="category_id" fieldtype="id" generator="native"> 
 	<cfproperty name="title" column="title" ormtype="string" default=""> 
 	<cfproperty name="keywords" column="keywords" ormtype="string" default=""> 
@@ -9,3 +10,4 @@
 	<cfproperty name="categories" fieldtype="many-to-many" cfc="category" linktable="category_product_rela" fkcolumn="product_id" inversejoincolumn="category_id" orderby="productId">
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 </cfcomponent>
+--->

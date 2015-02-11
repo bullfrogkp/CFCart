@@ -29,17 +29,17 @@
 				<div class="box-body">
 					<ul>
 						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getCategoryDisplayName()#</a>
+							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getDisplayName()#</a>
 							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 								<ul>
 							</cfif>
 							<cfloop array="#cat.getSubCategories()#" index="subCat">
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getCategoryDisplayName()#</a>
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getDisplayName()#</a>
 								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									<ul>
 								</cfif>
 								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getCategoryDisplayName()#</a>
+									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a>
 								</cfloop>
 								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									</ul>
@@ -64,10 +64,10 @@
 								<input type="text" name="category_id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"category_id")>value="#URL.category_id#"</cfif>>
 							</div>
 							<div class="col-xs-3">
-								<select class="form-control" name="category_is_enabled">
+								<select class="form-control" name="is_enabled">
 									<option value="">All Status</option>
-									<option value="1" <cfif StructKeyExists(URL,"category_is_enabled") AND URL.category_is_enabled EQ 1>selected</cfif>>Enabled</option>
-									<option value="0" <cfif StructKeyExists(URL,"category_is_enabled") AND URL.category_is_enabled EQ 0>selected</cfif>>Disabled</option>
+									<option value="1" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 1>selected</cfif>>Enabled</option>
+									<option value="0" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 0>selected</cfif>>Disabled</option>
 								</select>
 							</div>
 							<div class="col-xs-5">
@@ -102,9 +102,9 @@
 								<cfloop array="#REQUEST.pageData.categories#" index="category">
 								<tr>
 									<td>#category.getCategoryId()#</td>
-									<td>#category.getCategoryDisplayName()#</td>
+									<td>#category.getDisplayName()#</td>
 									<td>#category.getRank()#</td>
-									<td>#category.getCategoryIsEnabled()#</td>
+									<td>#category.getIsEnabled()#</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#category.getCategoryId()#">View Detail</a></td>
 								</tr>
 								</cfloop>

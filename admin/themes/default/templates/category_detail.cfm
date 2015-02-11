@@ -8,7 +8,7 @@
 		  console.log($("##tab_id").val());
 		});
 	
-		CKEDITOR.replace('category_custom_design');
+		CKEDITOR.replace('custom_design');
 		$("##products_table").dataTable();
 		
 		$("##uploader").plupload({
@@ -72,7 +72,7 @@
 			
 			<cfloop array="#fg.getFilters()#" index="f">
 				filter = new Object();
-				filter.name = '#f.getFilterDisplayName()#';
+				filter.name = '#f.getDisplayName()#';
 				filters.push(filter);
 			</cfloop>
 			
@@ -133,18 +133,18 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						<div class="form-group">
 							<label>Category Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="category_display_name" value="#REQUEST.pageData.category.getCategoryDisplayName()#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value="#REQUEST.pageData.category.getDisplayName()#"/>
 						</div>
 						<div class="form-group">
 							<label>Parent Category</label>
 							<select class="form-control" name="parent_category_id">
 								<option value="0">Root</option>
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-									<option value="#cat.getCategoryId()#">#RepeatString("&nbsp;",10)##cat.getCategoryDisplayName()#</option>
+									<option value="#cat.getCategoryId()#">#RepeatString("&nbsp;",10)##cat.getDisplayName()#</option>
 									<cfloop array="#cat.getSubCategories()#" index="subCat">
-										<option value="#subCat.getCategoryId()#">#RepeatString("&nbsp;",20)##subCat.getCategoryDisplayName()#</option>
+										<option value="#subCat.getCategoryId()#">#RepeatString("&nbsp;",20)##subCat.getDisplayName()#</option>
 										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-											<option value="#thirdCat.getCategoryId()#">#RepeatString("&nbsp;",30)##thirdCat.getCategoryDisplayName()#</option>
+											<option value="#thirdCat.getCategoryId()#">#RepeatString("&nbsp;",30)##thirdCat.getDisplayName()#</option>
 										</cfloop>
 										</li>
 									</cfloop>
@@ -158,31 +158,31 @@
 						</div>
 						 <div class="form-group">
 							<label>Status</label>
-							 <select class="form-control" name="category_is_enabled">
-								<option value="1" <cfif REQUEST.pageData.category.getCategoryIsEnabled() EQ TRUE>selected</cfif>>Enabled</option>
-								<option value="0" <cfif REQUEST.pageData.category.getCategoryIsEnabled() EQ FALSE>selected</cfif>>Disabled</option>
+							 <select class="form-control" name="is_enabled">
+								<option value="1" <cfif REQUEST.pageData.category.getIsEnabled() EQ TRUE>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.category.getIsEnabled() EQ FALSE>selected</cfif>>Disabled</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Show on Navigation</label>
-							 <select class="form-control" name="show_category_on_nav">
-								<option value="1" <cfif REQUEST.pageData.category.getShowCategoryOnNav() EQ TRUE>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.category.getShowCategoryOnNav() EQ FALSE>selected</cfif>>No</option>
+							 <select class="form-control" name="show_category_on_navigation">
+								<option value="1" <cfif REQUEST.pageData.category.getShowCategoryOnNavigation() EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.category.getShowCategoryOnNavigation() EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" placeholder="Enter ..." name="category_title" value="#REQUEST.pageData.category.getCategoryTitle()#"/>
+							<input type="text" class="form-control" placeholder="Enter ..." name="title" value="#REQUEST.pageData.category.getTitle()#"/>
 						</div>
 						<div class="form-group">
 							<label>Keywords</label>
-							<textarea name="category_keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getCategoryKeywords()#</textarea>
+							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getKeywords()#</textarea>
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<textarea name="category_description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getCategoryDescription()#</textarea>
+							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.category.getDescription()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
@@ -195,7 +195,7 @@
 										<cfif fg.getFilterGroupId() EQ REQUEST.pageData.category.getFilterGroupId()>
 										selected
 										</cfif>
-										>#fg.getFilterGroupDisplayName()#</option>
+										>#fg.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>
@@ -203,7 +203,7 @@
 								<select class="form-control" name="filter" id="filter" multiple>
 									<cfif IsDefined("REQUEST.pageData.filterGroup")>
 										<cfloop array="#REQUEST.pageData.filterGroup.getFilters()#" index="f">
-											<option value="#f.getFilterId()#">#f.getFilterDisplayName()#</option>
+											<option value="#f.getFilterId()#">#f.getDisplayName()#</option>
 										</cfloop>
 									</cfif>
 								</select>
@@ -213,7 +213,7 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
 							<label>HTML Code</label>
-							<textarea name="category_custom_design" id="category_custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCategoryCustomDesign()#</textarea>
+							<textarea name="custom_design" id="custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.category.getCustomDesign()#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
@@ -221,8 +221,8 @@
 							<cfif IsDefined("REQUEST.pageData.categoryImages")>
 								<cfloop array="#REQUEST.pageData.categoryImages#" index="img">
 									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" target="_blank">
-											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getImageName()#" />
+										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" target="_blank">
+											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" />
 										</a>
 									</div>
 								</cfloop>
