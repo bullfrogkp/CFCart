@@ -13,7 +13,6 @@
 		
 		<cfset setCreatedDatetime(Now()) />
 		<cfset setUpdatedDatetime(Now()) />
-		<cfset setIsEnabled(true) />
 		<cfset setIsDeleted(false) />
 		
 		<cfreturn this>
