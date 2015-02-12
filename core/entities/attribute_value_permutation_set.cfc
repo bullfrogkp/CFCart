@@ -1,7 +1,5 @@
-﻿<!---
-<cfcomponent extends="entity" persistent="true"> 
-    <cfproperty name="attributeId" column="filter_id" fieldtype="id" generator="native"> 
-    <cfproperty name="value" column="filter_value" ormtype="string">
-	<cfproperty name="attributeGroups" fieldtype="many-to-many" cfc="attribute_group" linktable="attribute_group_attribute_rela" fkcolumn="attribute_id" inversejoincolumn="attribute_group_id" orderby="attributeId">
+﻿<cfcomponent extends="entity" persistent="true"> 
+    <cfproperty name="attributeValuePermutationId" column="attribute_value_permutation_id" fieldtype="id" generator="native"> 
+	<cfproperty name="attributeSetId" column="attribute_set_id" ormtype="integer">
+	<cfproperty name="attributeValuePermutationItems" type="array" fieldtype="one-to-many" cfc="attribute_value_permutation_item" fkcolumn="attributeValuePermutationId">
 </cfcomponent>
---->
