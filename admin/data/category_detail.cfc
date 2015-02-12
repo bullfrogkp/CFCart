@@ -114,7 +114,9 @@
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group",{isEnabled = true, isDeleted = false}, "displayName ASC")> 
 		
-		<cfset LOCAL.pageData.filterGroup = EntityLoad("filter_group",{filterGroupId = LOCAL.pageData.category.getFilterGroupId()}, true) />
+		<cfif NOT IsNULL(LOCAL.pageData.category.getFilterGroupId())>
+			<cfset LOCAL.pageData.filterGroup = EntityLoad("filter_group",{filterGroupId = LOCAL.pageData.category.getFilterGroupId()}, true) />
+		</cfif>
 		<cfset LOCAL.pageData.categoryImages = LOCAL.pageData.category.getImages() />
 					
 		<cfset LOCAL.pageData.tabs = {} />
