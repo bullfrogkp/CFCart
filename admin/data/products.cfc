@@ -1,0 +1,25 @@
+﻿<cfcomponent extends="master">	
+	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
+		
+		<cfset LOCAL.pageData.title = "Products | #APPLICATION.applicationName#" />
+		
+		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+		
+		<cfif StructKeyExists(URL,"product_id") AND IsNumeric(URL.product_id)>
+			<cfset LOCAL.productService.setProductId(URL.product_id) />
+		</cfif>
+		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
+			<cfset LOCAL.productService.setIsEnabled(URL.is_enabled) />
+		</cfif>
+		<cfif StructKeyExists(URL,"search_keyword") AND Trim(URL.search_keyword) NEQ "">
+			<cfset LOCAL.productService.setSearchKeywords(Trim(URL.search_keyword)) />
+		</cfif>
+		
+		<cfset LOCAL.pageData.categories = LOCAL.productService.getCategories() />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.productService.getCategoryTree() />
+		
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+</cfcomponent>
