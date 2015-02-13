@@ -120,7 +120,7 @@
 		
 		<cfset LOCAL.pageData.attributeSet = LOCAL.attributeSetService.getAttributeSets(attributeSetId = LOCAL.pageData.product.getAttributeSetId()) />
 		<cfset LOCAL.pageData.attributeValueSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.product.getAttributeValueSetId()) />
-		<cfset LOCAL.pageData.attributeValuePermutationSet = LOCAL.attributeSetService.getAttributeValuePermutationSets(attributeValueSetId = LOCAL.pageData.product.getAttributeValueSetId()) />
+		<cfset LOCAL.pageData.attributeValuePermutationSet = LOCAL.attributeSetService.getAttributeValuePermutationSets(attributeValuePermutationSetId = LOCAL.pageData.product.getAttributeValuePermutationSetId()) />
 		<cfset LOCAL.pageData.attributeValuePermutationSetAttributeSet = LOCAL.attributeSetService.getAttributeSets(attributeSetId = LOCAL.pageData.attributeValuePermutationSet.getAttributeSetId()) />
 		<cfset LOCAL.pageData.attributeValuePermutationSetAttributeValueSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.attributeValuePermutationSet.getAttributeValueSetId()) />
 					
