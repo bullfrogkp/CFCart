@@ -230,8 +230,8 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
 						<div class="row">
-							<cfif IsDefined("REQUEST.pageData.categoryImages")>
-								<cfloop array="#REQUEST.pageData.categoryImages#" index="img">
+							<cfif IsDefined("REQUEST.pageData.category.getImages()")>
+								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">
 									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
 										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" target="_blank">
 											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" />

@@ -17,7 +17,7 @@
 			<cfset LOCAL.productService.setSearchKeywords(Trim(URL.search_keyword)) />
 		</cfif>
 		
-		<cfset LOCAL.pageData.categories = LOCAL.productService.getCategories() />
+		<cfset LOCAL.pageData.categories = LOCAL.productService.getProducts() />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.productService.getCategoryTree() />
 		
 		<cfreturn LOCAL.pageData />	

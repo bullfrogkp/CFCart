@@ -117,7 +117,6 @@
 		<cfif NOT IsNULL(LOCAL.pageData.category.getFilterGroupId())>
 			<cfset LOCAL.pageData.filterGroup = EntityLoad("filter_group",{filterGroupId = LOCAL.pageData.category.getFilterGroupId()}, true) />
 		</cfif>
-		<cfset LOCAL.pageData.categoryImages = LOCAL.pageData.category.getImages() />
 					
 		<cfset LOCAL.pageData.tabs = {} />
 		<cfset LOCAL.pageData.tabs["tab_1"] = "" />

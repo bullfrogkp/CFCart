@@ -1,5 +1,6 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="productId" column="product_id" fieldtype="id" generator="native"> 
+	<cfproperty name="sku" column="title" ormtype="string"> 
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
 	<cfproperty name="detail" column="detail" ormtype="text"> 

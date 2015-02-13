@@ -25,19 +25,19 @@
 				<cfset LOCAL.qry = LOCAL.qry & "and p.is_enabled = '#getIsEnabled()#' " />
 			</cfif>
 			
-			<cfset LOCAL.categories = ORMExecuteQuery(LOCAL.qry)> 
+			<cfset LOCAL.products = ORMExecuteQuery(LOCAL.qry)> 
 		<cfelse>
 			<cfset LOCAL.filter = {} />
 			<cfif NOT IsNull(getProductId())>
-				<cfset LOCAL.filter.categoryId = getProductId() />
+				<cfset LOCAL.filter.productId = getProductId() />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
 			</cfif>
 			
-			<cfset LOCAL.categories = EntityLoad('product',LOCAL.filter)> 
+			<cfset LOCAL.products = EntityLoad('product',LOCAL.filter)> 
 		</cfif>
 	   
-		<cfreturn LOCAL.categories />
+		<cfreturn LOCAL.products />
     </cffunction>
 </cfcomponent>
