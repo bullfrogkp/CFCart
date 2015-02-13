@@ -117,9 +117,12 @@
 		<cfset LOCAL.pageData.customerGroups = LOCAL.customerService.getCustomerGroups() />
 		<cfset LOCAL.pageData.taxCategories = LOCAL.taxService.getTaxCategories() />
 		<cfset LOCAL.pageData.attributeSets = LOCAL.attributeSetService.getAttributeSets() />
+		
 		<cfset LOCAL.pageData.attributeSet = LOCAL.attributeSetService.getAttributeSets(attributeSetId = LOCAL.pageData.product.getAttributeSetId()) />
 		<cfset LOCAL.pageData.attributeValueSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.product.getAttributeValueSetId()) />
-		<cfset LOCAL.pageData.attributeValuePermutationSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.product.getAttributeValueSetId()) />
+		<cfset LOCAL.pageData.attributeValuePermutationSet = LOCAL.attributeSetService.getAttributeValuePermutationSets(attributeValueSetId = LOCAL.pageData.product.getAttributeValueSetId()) />
+		<cfset LOCAL.pageData.attributeValuePermutationSetAttributeSet = LOCAL.attributeSetService.getAttributeSets(attributeSetId = LOCAL.pageData.attributeValuePermutationSet.getAttributeSetId()) />
+		<cfset LOCAL.pageData.attributeValuePermutationSetAttributeValueSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.attributeValuePermutationSet.getAttributeValueSetId()) />
 					
 		<cfset LOCAL.pageData.tabs = {} />
 		<cfset LOCAL.pageData.tabs["tab_1"] = "" />
