@@ -485,4 +485,3 @@
     </body>
 </html>
 </cfoutput>
-<cfset SESSION.temp = {} />

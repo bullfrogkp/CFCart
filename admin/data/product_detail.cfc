@@ -3,6 +3,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
+		<cfset SESSION.temp.messageArray = [] />
+		
 		<cfif Trim(FORM.display_name) EQ "">
 			<cfset ArrayAppend(SESSION.temp.messageArray,"Please enter a valid product name." />
 		</cfif>
@@ -20,8 +22,8 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif IsNumeric(FORM.product_id)>
-				<cfset LOCAL.product = EntityLoad("product", FORM.product_id, true)> 
+			<cfif IsNumeric(FORM.id)>
+				<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
 				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.product = EntityNew("product") />
@@ -71,7 +73,7 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_product")>
-			<cfset LOCAL.product = EntityLoad("product", FORM.product_id, true)> 
+			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
 			<cfset LOCAL.product.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.product) />
@@ -91,10 +93,9 @@
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-		<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
 		
-		<cfif StructKeyExists(URL,"product_id") AND IsNumeric(URL.product_id)>
-			<cfset LOCAL.pageData.product = EntityLoad("product", URL.product_id, true)> 
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.pageData.product = EntityLoad("product", URL.id, true)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 		<cfelse>
@@ -104,36 +105,16 @@
 		</cfif>
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.customerGroups = LOCAL.customerService.getCustomerGroups() />
-		<cfset LOCAL.pageData.taxCategories = LOCAL.taxService.getTaxCategories() />
-		<cfset LOCAL.pageData.attributeSets = LOCAL.attributeSetService.getAttributeSets() />
+		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group") />
+		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
+		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set") />
 		
-		<cfset LOCAL.pageData.attributeSet = LOCAL.attributeSetService.getAttributeSets(attributeSetId = LOCAL.pageData.product.getAttributeSetId()) />
-		<cfset LOCAL.pageData.attributeValueSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.product.getAttributeValueSetId()) />
-		<cfset LOCAL.pageData.attributeValuePermutationSet = LOCAL.attributeSetService.getAttributeValuePermutationSets(attributeValuePermutationSetId = LOCAL.pageData.product.getAttributeValuePermutationSetId()) />
-		<cfset LOCAL.pageData.attributeValuePermutationSetAttributeSet = LOCAL.attributeSetService.getAttributeSets(attributeSetId = LOCAL.pageData.attributeValuePermutationSet.getAttributeSetId()) />
-		<cfset LOCAL.pageData.attributeValuePermutationSetAttributeValueSet = LOCAL.attributeSetService.getAttributeValueSets(attributeValueSetId = LOCAL.pageData.attributeValuePermutationSet.getAttributeValueSetId()) />
-					
-		<cfset LOCAL.pageData.tabs = {} />
-		<cfset LOCAL.pageData.tabs["tab_1"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_2"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_3"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_4"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_5"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_6"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_7"] = "" />
-				
-		<cfif StructKeyExists(URL,"active_tab_id")>	
-			<cfset LOCAL.pageData.activeTabId = URL.active_tab_id />
-			<cfset LOCAL.pageData.tabs["#LOCAL.pageData.activeTabId#"] = "active" />
-		<cfelse>
-			<cfset LOCAL.pageData.activeTabId = "tab_1" />
-			<cfset LOCAL.pageData.tabs["tab_1"] = "active" />
+		<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSetId())>
+			<cfset LOCAL.pageData.attributeSet = EntityLoad("attribute_set",LOCAL.pageData.product.getAttributeSetId(),true) />
 		</cfif>
 		
-		<cfif IsDefined("SESSION.temp.message")>
-			<cfset LOCAL.pageData.message = SESSION.temp.message />
-			<cfset LOCAL.pageData.message_type = SESSION.temp.message_type />
+		<cfif NOT IsNull(LOCAL.pageData.product.getAttributeValueSetId())>
+			<cfset LOCAL.pageData.attributeValueSet = EntityLoad("attribute_set",LOCAL.pageData.product.getAttributeValueSetId(),true) />
 		</cfif>
 		
 		<cfif IsDefined("SESSION.temp.formData")>
@@ -148,6 +129,9 @@
 			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescription())?"":LOCAL.pageData.product.getDescription() />
 		</cfif>
+		
+		<cfset LOCAL.pageData.tabs = _setActiveTab() />
+		<cfset LOCAL.pageData.message = _setTempMessage() />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

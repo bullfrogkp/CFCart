@@ -5,7 +5,6 @@
 		<cfargument name="pageName" type="string" required="true" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
-		<cfset SESSION.temp.messageArray = [] />
 		
 		<cfreturn this />
 	</cffunction>
@@ -44,10 +43,6 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.keywords = "Dashboard | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
-		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
@@ -63,5 +58,41 @@
 		</cfif>
 		
 		<cfreturn LOCAL.redirectUrl />	
+	</cffunction>
+	
+	<cffunction name="_setActiveTab" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+	
+		<cfset LOCAL.tabs = {} />
+		<cfset LOCAL.tabs["tab_1"] = "" />
+		<cfset LOCAL.tabs["tab_2"] = "" />
+		<cfset LOCAL.tabs["tab_3"] = "" />
+		<cfset LOCAL.tabs["tab_4"] = "" />
+		<cfset LOCAL.tabs["tab_5"] = "" />
+		<cfset LOCAL.tabs["tab_6"] = "" />
+		<cfset LOCAL.tabs["tab_7"] = "" />
+				
+		<cfif StructKeyExists(URL,"active_tab_id")>	
+			<cfset LOCAL.tabs.["activeTabId"] = URL.active_tab_id />
+			<cfset LOCAL.tabs["#LOCAL.activeTabId#"] = "active" />
+		<cfelse>
+			<cfset LOCAL.tabs.["activeTabId"] = "tab_1" />
+			<cfset LOCAL.tabs["tab_1"] = "active" />
+		</cfif>
+		
+		<cfreturn LOCAL.tabs /> 
+	</cffunction>
+	
+	<cffunction name="_setTempMessage" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+	
+		<cfif IsDefined("SESSION.temp.messageArray")>
+			<cfset LOCAL.message.messageArray = SESSION.temp.messageArray />
+			<cfset LOCAL.message.message_type = SESSION.temp.message_type />
+		</cfif>
+			
+		<cfset SESSION.temp = {} />
+		
+		<cfreturn LOCAL.message /> 
 	</cffunction>
 </cfcomponent>
