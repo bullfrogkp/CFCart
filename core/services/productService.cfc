@@ -1,5 +1,6 @@
 ﻿<cfcomponent output="false" accessors="true">
     <cfproperty name="productId" type="numeric"> 
+    <cfproperty name="typeId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
     <cfproperty name="name" type="string"> 
     <cfproperty name="searchKeywords" type="string"> 
@@ -18,6 +19,9 @@
 			<cfif NOT IsNull(getProductId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getProductId()#' " />
 			</cfif>
+			<cfif NOT IsNull(getTypeId())>
+				<cfset LOCAL.qry = LOCAL.qry & "and p.type_id = '#getTypeId()#' " />
+			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and exists(from category_product_rela cpr where cpr.category_id = '#getCategoryId()#' and cpr.product_id = p.product_id) " />
 			</cfif>
@@ -30,6 +34,9 @@
 			<cfset LOCAL.filter = {} />
 			<cfif NOT IsNull(getProductId())>
 				<cfset LOCAL.filter.productId = getProductId() />
+			</cfif>
+			<cfif NOT IsNull(getTypeId())>
+				<cfset LOCAL.filter.typeId = getTypeId() />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />

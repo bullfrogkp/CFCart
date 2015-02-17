@@ -10,10 +10,17 @@
 		<li class="active">Products</li>
 	</ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
 	 <div class="row">
+		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message")>
+				<div class="alert #REQUEST.pageData.message_type# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					#REQUEST.pageData.message#
+				</div>
+			</cfif>
+		</div>
 		<div class="col-md-4">
 			<div class="box box-primary">
 				<div class="box-header">
@@ -21,191 +28,95 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<ul>
-						<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computers / Networking</a>
-							<ul>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a>
+						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getDisplayName()#</a>
+							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
+								<ul>
+							</cfif>
+							<cfloop array="#cat.getSubCategories()#" index="subCat">
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getDisplayName()#</a>
+								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
+								</cfif>
+								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a>
+								</cfloop>
+								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									</ul>
+								</cfif>
 								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
-							</ul>
-						</li>
-						<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Tablet PCs & Cell Phone</a>
-							<ul>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cell Phones</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Accessories For iPad</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Accessories for iPhone</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Accessories for Tablet PC</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Accessories for Cell Ph</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								
-							</ul>
-						</li>
-						<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Home, Garden & Tools</a>
-							<ul>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Gift & Lifestyle Gadgets</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Baby Supplies</a>
-									<ul>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Keyboards, Mice & Input</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Computer Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Flash Drives & Storage</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Cables & Connectors</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Laptops, Notebooks</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Networking & Communications</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Printer Supplies & Accessories</a></li>
-										<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">USB Gadgets</a></li>
-									</ul>
-								</li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Tools</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Security</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Pet Supplies</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Home Living</a></li>
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">Home Electronics</a></li>
-								
-							</ul>
-						</li>
+							</cfloop>
+							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
+								</ul>
+							</cfif>
+							</li>
+						</cfloop>
 					</ul>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
 		</div><!-- ./col -->
 		<div class="col-md-8">
+			<form>
+				<div class="box box-success">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-xs-2">
+								<input type="text" name="product_id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"product_id")>value="#URL.product_id#"</cfif>>
+							</div>
+							<div class="col-xs-3">
+								<select class="form-control" name="is_enabled">
+									<option value="">All Status</option>
+									<option value="1" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 1>selected</cfif>>Enabled</option>
+									<option value="0" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 0>selected</cfif>>Disabled</option>
+								</select>
+							</div>
+							<div class="col-xs-5">
+								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords" <cfif StructKeyExists(URL,"search_keyword")>value="#URL.search_keyword#"</cfif>>
+							</div>
+							<div class="col-xs-2">
+								<button name="search_item" type="submit" class="btn btn-sm btn-primary search-button">Search</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			
 			<div class="box box-warning">
 				<div class="box-header">
 					<h3 class="box-title">Products</h3>
 					<a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Product</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>Name</th>
 								<th>Type</th>
-								<th>Category</th>
-								<th>Attribute Set</th>
 								<th>Price</th>
 								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>Simple</td>
-								<td>Computer</td>
-								<td>1</td>
-								<td>$100.00</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>Simple</td>
-								<td>Computer</td>
-								<td>1</td>
-								<td>$100.00</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>Simple</td>
-								<td>Computer</td>
-								<td>1</td>
-								<td>$100.00</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>Simple</td>
-								<td>Computer</td>
-								<td>1</td>
-								<td>$100.00</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>Simple</td>
-								<td>Computer</td>
-								<td>1</td>
-								<td>$100.00</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Computers / Networking</td>
-								<td>Simple</td>
-								<td>Computer</td>
-								<td>1</td>
-								<td>$100.00</td>
-								<td>Enabled</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
+							<cfif ArrayLen(REQUEST.pageData.products) NEQ 0>
+								<cfloop array="#REQUEST.pageData.products#" index="product">
+								<tr>
+									<td>#category.getProductId()#</td>
+									<td>#category.getDisplayName()#</td>
+									<td>#category.getIsEnabled()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?product_id=#product.getProductId()#">View Detail</a></td>
+								</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="5">No result found.</td>
+								</tr>
+							</cfif>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>Name</th>
 								<th>Type</th>
-								<th>Category</th>
-								<th>Attribute Set</th>
 								<th>Price</th>
 								<th>Status</th>
 								<th>Action</th>

@@ -6,7 +6,9 @@
 		<cfset LOCAL.pageData.title = "Products | #APPLICATION.applicationName#" />
 		
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
+		<cfset LOCAL.productService.setTypeId("1") />
 		<cfif StructKeyExists(URL,"product_id") AND IsNumeric(URL.product_id)>
 			<cfset LOCAL.productService.setProductId(URL.product_id) />
 		</cfif>
@@ -17,8 +19,8 @@
 			<cfset LOCAL.productService.setSearchKeywords(Trim(URL.search_keyword)) />
 		</cfif>
 		
-		<cfset LOCAL.pageData.categories = LOCAL.productService.getProducts() />
-		<cfset LOCAL.pageData.categoryTree = LOCAL.productService.getCategoryTree() />
+		<cfset LOCAL.pageData.products = LOCAL.productService.getProducts() />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
