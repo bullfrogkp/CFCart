@@ -242,14 +242,16 @@
 									<th>Attribute Name</th>
 									<th>Attribute Values</th>
 								</tr>
-								<tr>
-									<td>Color</td>
-									<td>Red,Blue,White,Black</td>
-								</tr>
-								<tr>
-									<td>Size</td>
-									<td>Large,Medium,Small</td>
-								</tr>
+								<cfloop array="#REQUEST.pageData.attributeSet.getAttributes()#" index="attribute">
+									<tr>
+										<td>Color</td>
+										<td>
+											<cfloop array="##" index="attributeValue">
+											
+											</cfloop>
+										</td>
+									</tr>
+								</cfloop>
 							</table>
 							
 						</form>
