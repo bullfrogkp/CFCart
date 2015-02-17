@@ -91,13 +91,17 @@
 						<form role="form">
 							 <div class="form-group">
 								<label>Product Name</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Computer"/>
+								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 							</div>
 							<div class="form-group">
 								<label>Category</label>
 								<select name="category_id" multiple class="form-control">
-									<cfloop array="#REQUEST.pageData.product.getCategories()#" index="cat">
-										<option value="#cat.getCategoryId()#">#cat.getDisplayName()#</option>
+									<cfloop array="#REQUEST.pageData.formData.categories()#" index="cat">
+										<option value="#cat.getCategoryId()#"
+										<cfif Find(cat.getCategoryId(),LOCAL.pageData.currentCategoryList)>
+										selected
+										</cfif>
+										>#cat.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>

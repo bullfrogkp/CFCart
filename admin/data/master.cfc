@@ -90,8 +90,6 @@
 			<cfset LOCAL.message.messageArray = SESSION.temp.message.messageArray />
 			<cfset LOCAL.message.messageType = SESSION.temp.message.messageType />
 		</cfif>
-			
-		<cfset SESSION.temp = {} />
 		
 		<cfreturn LOCAL.message /> 
 	</cffunction>
