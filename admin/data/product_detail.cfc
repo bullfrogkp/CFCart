@@ -4,18 +4,12 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif Trim(FORM.display_name) EQ "">
-			<cfset SESSION.temp.message = "Please enter a valid product name." />
+			<cfset ArrayAppend(SESSION.temp.messageArray,"Please enter a valid product name." />
+		</cfif>
+		
+		<cfif ArrayLen(SESSION.temp.messageArray) GT 1>
 			<cfset SESSION.temp.message_type = "alert-danger" />
-			
-			<cfif StructKeyExists(URL,"product_id") AND IsNumeric(URL.product_id)>	
-				<cfif StructKeyExists(URL,"active_tab_id")>	
-					<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?product_id=#URL.product_id#&active_tab_id=#URL.active_tab_id#" />
-				<cfelse>
-					<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?product_id=#URL.product_id#" />
-				</cfif>
-			<cfelse>
-				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm" />
-			</cfif>
+			<cfset LOCAL.redirectUrl = _setRedirectURL() />
 		</cfif>
 		
 		<cfreturn LOCAL />
@@ -25,29 +19,25 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif StructKeyExists(FORM,"save_product")>
+		<cfif StructKeyExists(FORM,"save_item")>
 			<cfif IsNumeric(FORM.product_id)>
 				<cfset LOCAL.product = EntityLoad("product", FORM.product_id, true)> 
 				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.product = EntityNew("product") />
+				<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 				<cfset LOCAL.tab_id = "tab_1" />
 			</cfif>
 			
-			<cfset LOCAL.product.setParentproductId(FORM.parent_product_id) />
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.product.setRank(Trim(FORM.rank)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
-			<cfset LOCAL.product.setShowproductOnNavigation(FORM.show_product_on_navigation) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
-			<cfset LOCAL.product.setCustomDesign(Trim(FORM.custom_design)) />
-			<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
-			<cfif StructKeyExists(FORM,"filter_group_id")>
-				<cfset LOCAL.product.setFilterGroupId(FORM.filter_group_id) />
+			<cfif StructKeyExists(FORM,"attribute_set_id")>
+				<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
 			</cfif>
 		
 			<cfif FORM["uploader_count"] NEQ 0>
@@ -58,12 +48,12 @@
 							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
 							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#admin/uploads/product/") />
 						
-							<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.product.getCategoryId() />
+							<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.product.getProductId() />
 							<cfif NOT DirectoryExists(LOCAL.imageDir)>
 								<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
 							</cfif>
 							
-							<cffile action = "move" source = "#LOCAL.imagePath##LOCAL.imgName#" destination = "#LOCAL.imagePath##LOCAL.product.getCategoryId()#\#LOCAL.imgName#">
+							<cffile action = "move" source = "#LOCAL.imagePath##LOCAL.imgName#" destination = "#LOCAL.imagePath##LOCAL.product.getProductId()#\#LOCAL.imgName#">
 						
 							<cfset LOCAL.productImage = EntityNew("product_image") />
 							<cfset LOCAL.productImage.setName(LOCAL.imgName) />
@@ -76,20 +66,20 @@
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset SESSION.temp.message = "Category has been saved successfully." />
+			<cfset ArrayAppend(SESSION.temp.messageArray,"Category has been saved successfully." />
 			<cfset SESSION.temp.message_type = "alert-success" />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?product_id=#LOCAL.product.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_product")>
 			<cfset LOCAL.product = EntityLoad("product", FORM.product_id, true)> 
 			<cfset LOCAL.product.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset SESSION.temp.message = "Category: #LOCAL.product.getDisplayName()# has been deleted." />
+			<cfset ArrayAppend(SESSION.temp.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted." />
 			<cfset SESSION.temp.message_type = "alert-success" />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

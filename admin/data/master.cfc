@@ -5,6 +5,7 @@
 		<cfargument name="pageName" type="string" required="true" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
+		<cfset SESSION.temp.messageArray = [] />
 		
 		<cfreturn this />
 	</cffunction>
@@ -48,5 +49,19 @@
 		<cfset LOCAL.pageData.description = "Dashboard | #APPLICATION.applicationName#" />
 		
 		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="_setRedirectURL" access="private" output="false" returnType="string">
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>	
+			<cfif StructKeyExists(URL,"active_tab_id")>	
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#URL.id#&active_tab_id=#URL.active_tab_id#" />
+			<cfelse>
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#URL.id#" />
+			</cfif>
+		<cfelse>
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
+		</cfif>
+		
+		<cfreturn LOCAL.redirectUrl />	
 	</cffunction>
 </cfcomponent>
