@@ -102,7 +102,7 @@
 			<cfset LOCAL.pageData.product = EntityLoad("product", URL.id, true)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
-			<cfset LOCAL.pageData.specialPriceGroups = EntityLoad("special_price", {product_id = URL.id}) />
+			<cfset LOCAL.pageData.groupPrices = EntityLoad("group_price", {product_id = URL.id}) />
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
@@ -130,7 +130,9 @@
 			<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.product.getDisplayName())?"":LOCAL.pageData.product.getDisplayName() />
 			<cfset LOCAL.pageData.formData.sku = isNull(LOCAL.pageData.product.getSku())?"":LOCAL.pageData.product.getSku() />
 			<cfset LOCAL.pageData.formData.price = isNull(LOCAL.pageData.product.getPrice())?"":LOCAL.pageData.product.getPrice() />
-			
+			<cfset LOCAL.pageData.formData.special_price = isNull(LOCAL.pageData.product.getSpecialPrice())?"":LOCAL.pageData.product.getSpecialPrice() />
+			<cfset LOCAL.pageData.formData.from_date = isNull(LOCAL.pageData.product.getFromDate())?"":LOCAL.pageData.product.getFromDate() />
+			<cfset LOCAL.pageData.formData.to_date = isNull(LOCAL.pageData.product.getToDate())?"":LOCAL.pageData.product.getToDate() />
 			<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.product.getIsEnabled())?"":LOCAL.pageData.product.getIsEnabled() />
 			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitle())?"":LOCAL.pageData.product.getTitle() />
 			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />

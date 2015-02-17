@@ -144,18 +144,24 @@
 								<label>Price</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 							</div>
-							<div class="form-group">
-								<label>Group Price</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.specialPrice#"/>
-							</div>
-							<div class="form-group">
-								<label>Group</label>
-								<select name="category_id" multiple class="form-control">
-									<cfloop array="#REQUEST.pageData.formData.customerGroups#" index="group">
-										<option value="#group.getGroupId()#">#cat.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
+							<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
+								<div class="form-group">
+									<label>Group Price</label>
+									<input type="text" class="form-control" placeholder="Enter ..." value="#gp.getPrice()#"/>
+								</div>
+								<div class="form-group">
+									<label>Group</label>
+									<select name="category_id" multiple class="form-control">
+										<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+											<option value="#group.getGroupId()#"
+											<cfif ArrayFind(gp.getCustomerGroups(),group)>
+											selected
+											</cfif>
+											>#cat.getDisplayName()#</option>
+										</cfloop>
+									</select>
+								</div>
+							</cfloop>
 							 <div class="form-group">
 								<label>Special Price</label>
 								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
@@ -182,7 +188,13 @@
 								<label>Tax Category</label>
 								<select name="tax_category_id" class="form-control">
 									<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
-										<option value="#tc.getTaxCategoryId()#">#cat.getDisplayName()#</option>
+										<option value="#tc.getTaxCategoryId()#"
+										
+										<cfif tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategoryId()>
+										selected
+										</cfif>
+										
+										>#tc.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>
@@ -215,7 +227,13 @@
 								<label>Attribute Set</label>
 								<select name="attribute_set_id" class="form-control">
 									<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
-										<option value="#tc.getAttributeSetId()#">#as.getDisplayName()#</option>
+										<option value="#tc.getAttributeSetId()#"
+										
+										<cfif tc.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSetId()>
+										selected
+										</cfif>
+										
+										>#as.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>
