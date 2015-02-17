@@ -221,40 +221,37 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_5">
-						<form role="form">
-							<!-- text input -->
-							<div class="form-group">
-								<label>Attribute Set</label>
-								<select name="attribute_set_id" class="form-control">
-									<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
-										<option value="#tc.getAttributeSetId()#"
-										
-										<cfif tc.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSetId()>
-										selected
-										</cfif>
-										
-										>#as.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
-							<table class="table table-bordered table-striped" style="margin-top:30px;">
-								<tr>
-									<th>Attribute Name</th>
-									<th>Attribute Values</th>
-								</tr>
-								<cfloop array="#REQUEST.pageData.attributeSet.getAttributes()#" index="attribute">
-									<tr>
-										<td>#attribute.getDisplayName()#</td>
-										<td>
-											<cfloop array="#REQUEST.pageData.attributeValueSet.getAttributeValues(attributeId = attribute.getAttributeId())#" index="attributeValue">
-											
-											</cfloop>
-										</td>
-									</tr>
+						<!-- text input -->
+						<div class="form-group">
+							<label>Attribute Set</label>
+							<select name="attribute_set_id" class="form-control">
+								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
+									<option value="#tc.getAttributeSetId()#"
+									
+									<cfif tc.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSetId()>
+									selected
+									</cfif>
+									
+									>#as.getDisplayName()#</option>
 								</cfloop>
-							</table>
-							
-						</form>
+							</select>
+						</div>
+						<table class="table table-bordered table-striped" style="margin-top:30px;">
+							<tr>
+								<th>Attribute Name</th>
+								<th>Attribute Values</th>
+							</tr>
+							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+								<tr>
+									<td>#attribute.getDisplayName()#</td>
+									<td>
+										<cfloop array="#attribute.getAttributeValues()#" index="attributeValue">
+											#attributeValue.getValue#
+										</cfloop>
+									</td>
+								</tr>
+							</cfloop>
+						</table>
 					</div>
 					<div class="tab-pane" id="tab_6">
 						<form role="form">
