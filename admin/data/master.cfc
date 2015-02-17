@@ -86,9 +86,9 @@
 	<cffunction name="_setTempMessage" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 	
-		<cfif IsDefined("SESSION.temp.messageArray")>
-			<cfset LOCAL.message.messageArray = SESSION.temp.messageArray />
-			<cfset LOCAL.message.message_type = SESSION.temp.message_type />
+		<cfif IsDefined("SESSION.temp.message.messageArray")>
+			<cfset LOCAL.message.messageArray = SESSION.temp.message.messageArray />
+			<cfset LOCAL.message.messageType = SESSION.temp.message.messageType />
 		</cfif>
 			
 		<cfset SESSION.temp = {} />

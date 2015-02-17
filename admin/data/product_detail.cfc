@@ -3,14 +3,16 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfset SESSION.temp.messageArray = [] />
+		<cfset LOCAL.messageArray = [] />
 		
 		<cfif Trim(FORM.display_name) EQ "">
-			<cfset ArrayAppend(SESSION.temp.messageArray,"Please enter a valid product name." />
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product name." />
 		</cfif>
 		
-		<cfif ArrayLen(SESSION.temp.messageArray) GT 1>
-			<cfset SESSION.temp.message_type = "alert-danger" />
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset SESSION.temp.message.messageType = "alert-danger" />
 			<cfset LOCAL.redirectUrl = _setRedirectURL() />
 		</cfif>
 		
@@ -20,6 +22,8 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset SESSION.temp.message = {} />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			<cfif IsNumeric(FORM.id)>
@@ -68,8 +72,8 @@
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset ArrayAppend(SESSION.temp.messageArray,"Category has been saved successfully." />
-			<cfset SESSION.temp.message_type = "alert-success" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully." />
+			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_product")>
@@ -78,8 +82,8 @@
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset ArrayAppend(SESSION.temp.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted." />
-			<cfset SESSION.temp.message_type = "alert-success" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted." />
+			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
 		</cfif>
