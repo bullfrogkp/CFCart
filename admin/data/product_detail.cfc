@@ -118,10 +118,10 @@
 		
 		<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSetId())>
 			<cfset LOCAL.pageData.attributeSet = EntityLoad("attribute_set",LOCAL.pageData.product.getAttributeSetId(),true) />
-		</cfif>
-		
-		<cfif NOT IsNull(LOCAL.pageData.product.getAttributeValueSetId())>
-			<cfset LOCAL.pageData.attributeValueSet = EntityLoad("attribute_value_set",LOCAL.pageData.product.getAttributeValueSetId(),true) />
+			<cfset LOCAL.pageData.attributes = LOCAL.pageData.attributeSet.getAttributes() />
+			<cfloop array="#LOCAL.pageData.attributes#" index="LOCAL.attribute">
+				<cfset LOCAL.attribute.setAttributeValues(EntityLoad("attribute_value",{product_id = URL.id, attribute_id = LOCAL.attribute.getAttributeId()})) />
+			</cfloop>
 		</cfif>
 		
 		<cfif IsDefined("SESSION.temp.formData")>

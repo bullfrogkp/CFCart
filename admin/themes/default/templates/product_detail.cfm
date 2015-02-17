@@ -244,9 +244,9 @@
 								</tr>
 								<cfloop array="#REQUEST.pageData.attributeSet.getAttributes()#" index="attribute">
 									<tr>
-										<td>Color</td>
+										<td>#attribute.getDisplayName()#</td>
 										<td>
-											<cfloop array="##" index="attributeValue">
+											<cfloop array="#REQUEST.pageData.attributeValueSet.getAttributeValues(attributeId = attribute.getAttributeId())#" index="attributeValue">
 											
 											</cfloop>
 										</td>
