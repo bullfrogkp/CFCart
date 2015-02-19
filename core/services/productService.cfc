@@ -69,4 +69,35 @@
 	   
 		<cfreturn LOCAL.priceArray />
     </cffunction>
+	
+	<cffunction name="getProductAttributes" output="false" access="public" returntype="array">
+		<cfset LOCAL = {} />
+	   
+	    <cfquery name="LOCAL.getProductAttributes">
+			SELECT	attr.attribute_id, attr.display_name, av.value, av.min_value, av.max_value
+			FROM	attribute attr
+			JOIN	attribute_value av ON av.attribute_id = attr.attribute_id
+			WHERE	av.product_id = <cfqueryparam type="cf_sql_integer" value="#getProductId()#" />
+		</cfquery>
+		
+		<cfset LOCAL.attributeArray = [] />
+		
+		<cfoutput query="LOCAL.getProductAttributes" group="attribute_id">
+			<cfset LOCAL.attributeStruct = {} />
+			<cfset LOCAL.attributeStruct.name = LOCAL.getProductAttributes.display_name />
+			
+			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
+			
+			<cfoutput>
+				<cfset LOCAL.attributeValueStruct.value = LOCAL.getProductGroupPrices.value />
+				<cfset LOCAL.attributeValueStruct.minValue = LOCAL.getProductGroupPrices.min_value />
+				<cfset LOCAL.attributeValueStruct.maxValue = LOCAL.getProductGroupPrices.max_value />
+				<cfset ArrayAppend(LOCAL.attributeStruct.attributeValueArray, LOCAL.attributeValueStruct) />
+			</cfoutput>
+			
+			<cfset ArrayAppend(LOCAL.attributeArray, LOCAL.attributeStruct) />
+		</cfoutput>
+	   
+		<cfreturn LOCAL.attributeArray />
+    </cffunction>
 </cfcomponent>

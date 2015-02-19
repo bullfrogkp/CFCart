@@ -88,118 +88,113 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
-						<form role="form">
-							 <div class="form-group">
-								<label>Product Name</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-							</div>
-							<div class="form-group">
-								<label>Category</label>
-								<select name="category_id" multiple class="form-control">
-									<cfloop array="#REQUEST.pageData.formData.categories()#" index="cat">
-										<option value="#cat.getCategoryId()#"
-										<cfif Find(cat.getCategoryId(),LOCAL.pageData.currentCategoryList)>
-										selected
-										</cfif>
-										>#cat.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>SKU</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
-							</div>
-							<div class="form-group">
-								<label>Status</label>
-								 <select class="form-control" name="is_enabled">
-									<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
-									<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Product Detail</label>
-								<textarea name="product_detail_text" id="product_detail_text" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
-							</div>
-						</form>
+						 <div class="form-group">
+							<label>Product Name</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						</div>
+						<div class="form-group">
+							<label>Category</label>
+							<select name="category_id" multiple class="form-control">
+								<cfloop array="#REQUEST.pageData.formData.categories()#" index="cat">
+									<option value="#cat.getCategoryId()#"
+									<cfif Find(cat.getCategoryId(),LOCAL.pageData.currentCategoryList)>
+									selected
+									</cfif>
+									>#cat.getDisplayName()#</option>
+								</cfloop>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>SKU</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+						</div>
+						<div class="form-group">
+							<label>Status</label>
+							 <select class="form-control" name="is_enabled">
+								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Product Detail</label>
+							<textarea name="product_detail_text" id="product_detail_text" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">
-						<form role="form">
-							 <div class="form-group">
-								<label>Title</label>
-								<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
-							</div>
-							<div class="form-group">
-								<label>Description</label>
-								<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
-							</div>
-							<div class="form-group">
-								<label>Keywords</label>
-								<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
-							</div>
-						</form>
+						
+						 <div class="form-group">
+							<label>Title</label>
+							<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
+						</div>
+						<div class="form-group">
+							<label>Keywords</label>
+							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
+						</div>
+						
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
-						<form role="form">
-							 <div class="form-group">
-								<label>Price</label>
-								<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
-							</div>
-							<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
-								<div class="form-group">
-									<label>Group Price</label>
-									<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
-								</div>
-								<div class="form-group">
-									<label>Group</label>
-									<select name="customer_group_id" multiple class="form-control">
-										<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-											<option value="#group.getGroupId()#"
-											<cfif ListFind(gp.customer_group_id_list,group.getGroupId())>
-											selected
-											</cfif>
-											>#group.getDisplayName()#</option>
-										</cfloop>
-									</select>
-								</div>
-							</cfloop>
-							 <div class="form-group">
-								<label>Special Price</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
-							</div>
-							 <div class="form-group">
-								<label>Special Price From Date</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</div>
-									<input type="text" class="form-control pull-right" name="from_date" id="from_date" value="#REQUEST.pageData.formData.from_date#"/>
-								</div><!-- /.input group -->
-							</div><!-- /.form group -->
+						<div class="form-group">
+							<label>Price</label>
+							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+						</div>
+						<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
 							<div class="form-group">
-								<label>Special Price To Date</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</div>
-									<input type="text" class="form-control pull-right" name="to_date" id="to_date" value="#REQUEST.pageData.formData.to_date#"/>
-								</div><!-- /.input group -->
-							</div><!-- /.form group -->
+								<label>Group Price</label>
+								<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+							</div>
 							<div class="form-group">
-								<label>Tax Category</label>
-								<select name="tax_category_id" class="form-control">
-									<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
-										<option value="#tc.getTaxCategoryId()#"
-										
-										<cfif tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategoryId()>
+								<label>Group</label>
+								<select name="customer_group_id" multiple class="form-control">
+									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+										<option value="#group.getGroupId()#"
+										<cfif ListFind(gp.customer_group_id_list,group.getGroupId())>
 										selected
 										</cfif>
-										
-										>#tc.getDisplayName()#</option>
+										>#group.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>
-							
-						</form>
+						</cfloop>
+						 <div class="form-group">
+							<label>Special Price</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+						</div>
+						 <div class="form-group">
+							<label>Special Price From Date</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right" name="from_date" id="from_date" value="#REQUEST.pageData.formData.from_date#"/>
+							</div><!-- /.input group -->
+						</div><!-- /.form group -->
+						<div class="form-group">
+							<label>Special Price To Date</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right" name="to_date" id="to_date" value="#REQUEST.pageData.formData.to_date#"/>
+							</div><!-- /.input group -->
+						</div><!-- /.form group -->
+						<div class="form-group">
+							<label>Tax Category</label>
+							<select name="tax_category_id" class="form-control">
+								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
+									<option value="#tc.getTaxCategoryId()#"
+									
+									<cfif tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategoryId()>
+									selected
+									</cfif>
+									
+									>#tc.getDisplayName()#</option>
+								</cfloop>
+							</select>
+						</div>
 					</div><!-- /.tab-pane -->
 					
 					<div class="tab-pane" id="tab_4">
@@ -243,10 +238,14 @@
 							</tr>
 							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 								<tr>
-									<td>#attribute.getDisplayName()#</td>
+									<td>#attribute.name#</td>
 									<td>
-										<cfloop array="#attribute.getAttributeValues()#" index="attributeValue">
-											#attributeValue.getValue#
+										<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
+											<cfif attributeValue.value NEQ "">
+												#attributeValue.value#
+											<cfelse>
+												#attributeValue.min_value# - #attributeValue.max_value#
+											</cfif>
 										</cfloop>
 									</td>
 								</tr>
@@ -254,57 +253,51 @@
 						</table>
 					</div>
 					<div class="tab-pane" id="tab_6">
-						<form role="form">
-							<table class="table table-bordered table-striped">
-								<tr>
-									<th>Product Name</th>
-									<th>Category</th>
-									<th>Price</th>
-									<th>Action</th>
-								</tr>
-								<tr>
-									<td>Color</td>
-									<td>Red,Blue,White,Black</td>
-									<td>Red,Blue,White,Black</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?request_id=1">View Detail</a></td>
-								</tr>
-								<tr>
-									<td>Size</td>
-									<td>Large,Medium,Small</td>
-									<td>Large,Medium,Small</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?request_id=1">View Detail</a></td>
-								</tr>
-							</table>
-							
-						</form>
+						<table class="table table-bordered table-striped">
+							<tr>
+								<th>Product Name</th>
+								<th>Category</th>
+								<th>Price</th>
+								<th>Action</th>
+							</tr>
+							<tr>
+								<td>Color</td>
+								<td>Red,Blue,White,Black</td>
+								<td>Red,Blue,White,Black</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?request_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Size</td>
+								<td>Large,Medium,Small</td>
+								<td>Large,Medium,Small</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?request_id=1">View Detail</a></td>
+							</tr>
+						</table>
 					</div>
 					<div class="tab-pane" id="tab_7">
-						<form role="form">
-							<table class="table table-bordered table-striped">
-								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Action</th>
-								</tr>
-								<tr>
-									<td>Color</td>
-									<td>Red,Blue,White,Black</td>
-									<td>Red,Blue,White,Black</td>
-									<td>Red,Blue,White,Black</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
-								</tr>
-								<tr>
-									<td>Size</td>
-									<td>Large,Medium,Small</td>
-									<td>Large,Medium,Small</td>
-									<td>Large,Medium,Small</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
-								</tr>
-							</table>
-							
-						</form>
+						<table class="table table-bordered table-striped">
+							<tr>
+								<th>Subject</th>
+								<th>Message</th>
+								<th>Rating</th>
+								<th>Create Datetime</th>
+								<th>Action</th>
+							</tr>
+							<tr>
+								<td>Color</td>
+								<td>Red,Blue,White,Black</td>
+								<td>Red,Blue,White,Black</td>
+								<td>Red,Blue,White,Black</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
+							</tr>
+							<tr>
+								<td>Size</td>
+								<td>Large,Medium,Small</td>
+								<td>Large,Medium,Small</td>
+								<td>Large,Medium,Small</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
+							</tr>
+						</table>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->

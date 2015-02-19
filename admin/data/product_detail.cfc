@@ -104,6 +104,10 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
+			
+			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
+				<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributes() />
+			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
@@ -116,15 +120,7 @@
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group") />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set") />
-		
-		<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
-			<cfset LOCAL.pageData.attributeSet = LOCAL.pageData.product.getAttributeSet().getAttributeSetId() />
-			<cfset LOCAL.pageData.attributes = LOCAL.pageData.product.getAttributeSet().getAttributes() />
-			<cfloop array="#LOCAL.pageData.attributes#" index="LOCAL.attribute">
-				<cfset LOCAL.attribute.setAttributeValues(EntityLoad("attribute_value",{product_id = URL.id, attribute_id = LOCAL.attribute.getAttributeId()})) />
-			</cfloop>
-		</cfif>
-		
+				
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
