@@ -664,6 +664,13 @@ body > .header .logo .icon {
 .sidebar .sidebar-menu .treeview-menu > li {
   margin: 0;
 }
+
+
+.sidebar .sidebar-menu .treeview-menu > li:last-child {
+    padding-bottom:15px;
+}
+
+
 .sidebar .sidebar-menu .treeview-menu > li > a {
   padding: 5px 5px 5px 15px;
   display: block;

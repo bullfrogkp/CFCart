@@ -73,10 +73,10 @@
 		<cfset LOCAL.tabs["tab_7"] = "" />
 				
 		<cfif StructKeyExists(URL,"active_tab_id")>	
-			<cfset LOCAL.tabs.["activeTabId"] = URL.active_tab_id />
+			<cfset LOCAL.tabs["activeTabId"] = URL.active_tab_id />
 			<cfset LOCAL.tabs["#LOCAL.activeTabId#"] = "active" />
 		<cfelse>
-			<cfset LOCAL.tabs.["activeTabId"] = "tab_1" />
+			<cfset LOCAL.tabs["activeTabId"] = "tab_1" />
 			<cfset LOCAL.tabs["tab_1"] = "active" />
 		</cfif>
 		

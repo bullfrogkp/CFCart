@@ -1,6 +1,6 @@
 ﻿<cfcomponent output="false" accessors="true">
     <cfproperty name="productId" type="numeric"> 
-    <cfproperty name="typeId" type="numeric"> 
+    <cfproperty name="productTypeId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
     <cfproperty name="name" type="string"> 
     <cfproperty name="searchKeywords" type="string"> 
@@ -19,8 +19,8 @@
 			<cfif NOT IsNull(getProductId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getProductId()#' " />
 			</cfif>
-			<cfif NOT IsNull(getTypeId())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.type_id = '#getTypeId()#' " />
+			<cfif NOT IsNull(getProductTypeId())>
+				<cfset LOCAL.qry = LOCAL.qry & "and p.product_type_id = '#getProductTypeId()#' " />
 			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and exists(from category_product_rela cpr where cpr.category_id = '#getCategoryId()#' and cpr.product_id = p.product_id) " />
@@ -35,8 +35,8 @@
 			<cfif NOT IsNull(getProductId())>
 				<cfset LOCAL.filter.productId = getProductId() />
 			</cfif>
-			<cfif NOT IsNull(getTypeId())>
-				<cfset LOCAL.filter.typeId = getTypeId() />
+			<cfif NOT IsNull(getProductTypeId())>
+				<cfset LOCAL.filter.productTypeId = getProductTypeId() />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
@@ -55,7 +55,7 @@
 			SELECT	pcgr.price, cg.customer_group_id
 			FROM	product_customer_group_rela pcgr
 			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
-			WHERE	pcgr.product_id = <cfqueryparam type="cf_sql_integer" value="#getProductId()#" />
+			WHERE	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 		</cfquery>
 		
 		<cfset LOCAL.priceArray = {} />
@@ -77,7 +77,7 @@
 			SELECT	attr.attribute_id, attr.display_name, av.value, av.min_value, av.max_value
 			FROM	attribute attr
 			JOIN	attribute_value av ON av.attribute_id = attr.attribute_id
-			WHERE	av.product_id = <cfqueryparam type="cf_sql_integer" value="#getProductId()#" />
+			WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 		</cfquery>
 		
 		<cfset LOCAL.attributeArray = [] />
