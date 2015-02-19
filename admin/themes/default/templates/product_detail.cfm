@@ -95,7 +95,7 @@
 						<div class="form-group">
 							<label>Category</label>
 							<select name="category_id" multiple class="form-control">
-								<cfloop array="#REQUEST.pageData.formData.categories()#" index="cat">
+								<cfloop array="#REQUEST.pageData.categories#" index="cat">
 									<option value="#cat.getCategoryId()#"
 									<cfif ArrayContains(REQUEST.pageData.currentCategories,cat)>
 									selected
@@ -141,6 +141,7 @@
 							<label>Price</label>
 							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 						</div>
+						<cfif IsDefined("REQUEST.pageData.groupPrices")>
 						<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
 							<div class="form-group">
 								<label>Group Price</label>
@@ -159,6 +160,7 @@
 								</select>
 							</div>
 						</cfloop>
+						</cfif>
 						 <div class="form-group">
 							<label>Special Price</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
@@ -199,7 +201,7 @@
 					
 					<div class="tab-pane" id="tab_4">
 						<div class="row">
-							<cfif IsDefined("REQUEST.pageData.product.getImages()")>
+							<cfif NOT IsNull(REQUEST.pageData.product.getImages())>
 								<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">
 									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
 										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" target="_blank">
@@ -236,6 +238,7 @@
 								<th>Attribute Name</th>
 								<th>Attribute Values</th>
 							</tr>
+							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
 							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 								<tr>
 									<td>#attribute.name#</td>
@@ -250,6 +253,7 @@
 									</td>
 								</tr>
 							</cfloop>
+							</cfif>
 						</table>
 					</div>
 					<div class="tab-pane" id="tab_6">
