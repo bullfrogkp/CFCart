@@ -142,22 +142,22 @@
 						<form role="form">
 							 <div class="form-group">
 								<label>Price</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+								<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 							</div>
 							<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
 								<div class="form-group">
 									<label>Group Price</label>
-									<input type="text" class="form-control" placeholder="Enter ..." value="#gp.getPrice()#"/>
+									<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
 								</div>
 								<div class="form-group">
 									<label>Group</label>
-									<select name="category_id" multiple class="form-control">
+									<select name="customer_group_id" multiple class="form-control">
 										<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 											<option value="#group.getGroupId()#"
-											<cfif ArrayFind(gp.getCustomerGroups(),group)>
+											<cfif ListFind(gp.customer_group_id_list,group.getGroupId())>
 											selected
 											</cfif>
-											>#cat.getDisplayName()#</option>
+											>#group.getDisplayName()#</option>
 										</cfloop>
 									</select>
 								</div>

@@ -47,4 +47,26 @@
 	   
 		<cfreturn LOCAL.products />
     </cffunction>
+	
+	<cffunction name="getProductGroupPrices" output="false" access="public" returntype="array">
+		<cfset LOCAL = {} />
+	   
+	    <cfquery name="LOCAL.getProductGroupPrices">
+			SELECT	pcgr.price, cg.customer_group_id
+			FROM	product_customer_group_rela pcgr
+			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
+			WHERE	pcgr.product_id = <cfqueryparam type="cf_sql_integer" value="#getProductId()#" />
+		</cfquery>
+		
+		<cfset LOCAL.priceArray = {} />
+		
+		<cfoutput query="LOCAL.getProductGroupPrices" group="price">
+			<cfset LOCAL.priceStruct = {} />
+			<cfset LOCAL.priceStruct.price = LOCAL.getProductGroupPrices.price />
+			<cfset LOCAL.priceStruct.customer_group_id_list = ValueList(LOCAL.getProductGroupPrices.customer_group_id) />
+			<cfset ArrayAppend(LOCAL.priceArray, LOCAL.priceStruct) />
+		</cfoutput>
+	   
+		<cfreturn LOCAL.priceArray />
+    </cffunction>
 </cfcomponent>
