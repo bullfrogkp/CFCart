@@ -97,7 +97,7 @@
 							<select name="category_id" multiple class="form-control">
 								<cfloop array="#REQUEST.pageData.formData.categories()#" index="cat">
 									<option value="#cat.getCategoryId()#"
-									<cfif Find(cat.getCategoryId(),LOCAL.pageData.currentCategoryList)>
+									<cfif ArrayContains(REQUEST.pageData.currentCategories,cat)>
 									selected
 									</cfif>
 									>#cat.getDisplayName()#</option>

@@ -6,7 +6,7 @@
 		<cfset LOCAL.messageArray = [] />
 		
 		<cfif Trim(FORM.display_name) EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product name." />
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product name.") />
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -72,7 +72,7 @@
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully." />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully.") />
 			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
@@ -82,7 +82,7 @@
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted." />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted.") />
 			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
@@ -104,7 +104,7 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
-			
+			<cfset LOCAL.pageData.currentCategories = EntityLoad("category", {product_id = URL.id}) />
 			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
 				<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributes() />
 			</cfif>
@@ -116,7 +116,6 @@
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
-		<cfset LOCAL.pageData.currentCategoryList = ValueList(EntityToQuery(EntityLoad("category", {product_id = URL.id})),"category_id") />
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group") />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set") />
