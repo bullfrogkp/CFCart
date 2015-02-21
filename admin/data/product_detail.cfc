@@ -101,6 +101,7 @@
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.productService.setProductId(URL.id) />
 			<cfset LOCAL.pageData.product = EntityLoad("product", URL.id, true)> 
+			<cfset LOCAL.productService.setAttributeSetId(LOCAL.pageData.product.getAttributeSetId()) />
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />

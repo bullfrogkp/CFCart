@@ -1,5 +1,6 @@
 ﻿<cfcomponent output="false" accessors="true">
     <cfproperty name="productId" type="numeric"> 
+    <cfproperty name="attributeSetId" type="numeric"> 
     <cfproperty name="productTypeId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
     <cfproperty name="name" type="string"> 
@@ -81,10 +82,11 @@
 			FROM	attribute attr
 			JOIN	attribute_value av ON av.attribute_id = attr.attribute_id
 			WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
+			AND		av.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" />
 		</cfquery>
 		
 		<cfset LOCAL.attributeArray = [] />
-		
+	
 		<cfoutput query="LOCAL.getProductAttributes" group="attribute_id">
 			<cfset LOCAL.attributeStruct = {} />
 			<cfset LOCAL.attributeStruct.name = LOCAL.getProductAttributes.display_name />
@@ -92,6 +94,7 @@
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
 			<cfoutput>
+				<cfset LOCAL.attributeValueStruct = {} />
 				<cfset LOCAL.attributeValueStruct.value = LOCAL.getProductAttributes.value />
 				<cfset LOCAL.attributeValueStruct.minValue = LOCAL.getProductAttributes.min_value />
 				<cfset LOCAL.attributeValueStruct.maxValue = LOCAL.getProductAttributes.max_value />
