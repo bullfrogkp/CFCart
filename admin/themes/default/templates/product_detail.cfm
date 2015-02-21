@@ -8,7 +8,7 @@
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
 			
-			url: "upload.cfm",
+			url: "#APPLICATION.absoluteUrlWeb#admin/ajax/upload_product_images.cfm",
 
 			// Maximum file size
 			max_file_size: '1000mb',
