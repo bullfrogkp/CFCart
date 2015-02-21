@@ -76,7 +76,7 @@
 			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
-		<cfelseif StructKeyExists(FORM,"delete_product")>
+		<cfelseif StructKeyExists(FORM,"delete_item")>
 			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
 			<cfset LOCAL.product.setIsDeleted(true) />
 			

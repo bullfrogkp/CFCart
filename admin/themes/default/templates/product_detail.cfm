@@ -308,6 +308,10 @@
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
+			<div class="form-group">
+				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
+				<button name="delete_item" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Delete Product</button>
+			</div>
 		</div><!-- /.col -->
 		
 	</div>   <!-- /.row -->
