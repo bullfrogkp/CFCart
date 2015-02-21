@@ -95,12 +95,12 @@
 						<div class="form-group">
 							<label>Category</label>
 							<select name="category_id" multiple class="form-control">
-								<cfloop array="#REQUEST.pageData.categories#" index="cat">
-									<option value="#cat.getCategoryId()#"
-									<cfif IsDefined("REQUEST.pageData.currentCategories") AND ArrayContains(REQUEST.pageData.currentCategories,cat)>
+								<cfloop array="#REQUEST.pageData.categories#" index="category">
+									<option value="#category.getCategoryId()#"
+									<cfif IsDefined("REQUEST.pageData.currentCategories") AND ArrayContains(REQUEST.pageData.currentCategories,category)>
 									selected
 									</cfif>
-									>#cat.getDisplayName()#</option>
+									>#category.getDisplayName()#</option>
 								</cfloop>
 							</select>
 						</div>
@@ -151,8 +151,8 @@
 								<label>Group</label>
 								<select name="customer_group_id" multiple class="form-control">
 									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-										<option value="#group.getGroupId()#"
-										<cfif ListFind(gp.customer_group_id_list,group.getGroupId())>
+										<option value="#group.getCustomerGroupId()#"
+										<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
 										selected
 										</cfif>
 										>#group.getDisplayName()#</option>

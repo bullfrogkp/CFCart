@@ -61,7 +61,7 @@
 					<div class="box-body">
 						<div class="row">
 							<div class="col-xs-2">
-								<input type="text" name="product_id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"product_id")>value="#URL.product_id#"</cfif>>
+								<input type="text" name="id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"id")>value="#URL.id#"</cfif>>
 							</div>
 							<div class="col-xs-3">
 								<select class="form-control" name="is_enabled">
@@ -91,7 +91,6 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Type</th>
 								<th>Price</th>
 								<th>Status</th>
 								<th>Action</th>
@@ -101,10 +100,10 @@
 							<cfif ArrayLen(REQUEST.pageData.products) NEQ 0>
 								<cfloop array="#REQUEST.pageData.products#" index="product">
 								<tr>
-									<td>#category.getProductId()#</td>
-									<td>#category.getDisplayName()#</td>
-									<td>#category.getIsEnabled()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?product_id=#product.getProductId()#">View Detail</a></td>
+									<td>#product.getProductId()#</td>
+									<td>#product.getDisplayName()#</td>
+									<td>#product.getIsEnabled()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
 							<cfelse>
@@ -116,7 +115,6 @@
 						<tfoot>
 							<tr>
 								<th>Name</th>
-								<th>Type</th>
 								<th>Price</th>
 								<th>Status</th>
 								<th>Action</th>

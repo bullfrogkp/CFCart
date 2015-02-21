@@ -104,10 +104,8 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
-			<cfset LOCAL.pageData.currentCategories = EntityLoad("category", {product_id = URL.id}) />
-			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
-				<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributes() />
-			</cfif>
+			<cfset LOCAL.pageData.currentCategories = LOCAL.pageData.product.getCategories() />
+			<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributes() />
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
@@ -138,7 +136,7 @@
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
-		
+	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>

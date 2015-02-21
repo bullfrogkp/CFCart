@@ -47,7 +47,7 @@
 	   
 		<cfreturn LOCAL.products />
     </cffunction>
-	
+		
 	<cffunction name="getProductGroupPrices" output="false" access="public" returntype="array">
 		<cfset LOCAL = {} />
 	   
@@ -58,7 +58,7 @@
 			WHERE	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 		</cfquery>
 		
-		<cfset LOCAL.priceArray = {} />
+		<cfset LOCAL.priceArray = [] />
 		
 		<cfoutput query="LOCAL.getProductGroupPrices" group="price">
 			<cfset LOCAL.priceStruct = {} />
@@ -66,7 +66,7 @@
 			<cfset LOCAL.priceStruct.customer_group_id_list = ValueList(LOCAL.getProductGroupPrices.customer_group_id) />
 			<cfset ArrayAppend(LOCAL.priceArray, LOCAL.priceStruct) />
 		</cfoutput>
-	   
+ 
 		<cfreturn LOCAL.priceArray />
     </cffunction>
 	
@@ -89,9 +89,9 @@
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
 			<cfoutput>
-				<cfset LOCAL.attributeValueStruct.value = LOCAL.getProductGroupPrices.value />
-				<cfset LOCAL.attributeValueStruct.minValue = LOCAL.getProductGroupPrices.min_value />
-				<cfset LOCAL.attributeValueStruct.maxValue = LOCAL.getProductGroupPrices.max_value />
+				<cfset LOCAL.attributeValueStruct.value = LOCAL.getProductAttributes.value />
+				<cfset LOCAL.attributeValueStruct.minValue = LOCAL.getProductAttributes.min_value />
+				<cfset LOCAL.attributeValueStruct.maxValue = LOCAL.getProductAttributes.max_value />
 				<cfset ArrayAppend(LOCAL.attributeStruct.attributeValueArray, LOCAL.attributeValueStruct) />
 			</cfoutput>
 			
