@@ -2,7 +2,7 @@
 
 <script>
 	$(document).ready(function() {
-		CKEDITOR.replace('product_detail_text');
+		CKEDITOR.replace('detail');
 		
 		$("##uploader").plupload({
 			// General settings
@@ -90,14 +90,14 @@
 					<div class="tab-pane active" id="tab_1">
 						 <div class="form-group">
 							<label>Product Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Category</label>
 							<select name="category_id" multiple class="form-control">
 								<cfloop array="#REQUEST.pageData.categories#" index="cat">
 									<option value="#cat.getCategoryId()#"
-									<cfif ArrayContains(REQUEST.pageData.currentCategories,cat)>
+									<cfif IsDefined("REQUEST.pageData.currentCategories") AND ArrayContains(REQUEST.pageData.currentCategories,cat)>
 									selected
 									</cfif>
 									>#cat.getDisplayName()#</option>
@@ -106,7 +106,7 @@
 						</div>
 						<div class="form-group">
 							<label>SKU</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+							<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
 						</div>
 						<div class="form-group">
 							<label>Status</label>
@@ -117,7 +117,7 @@
 						</div>
 						<div class="form-group">
 							<label>Product Detail</label>
-							<textarea name="product_detail_text" id="product_detail_text" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
+							<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">

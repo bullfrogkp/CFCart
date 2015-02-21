@@ -224,6 +224,10 @@
 				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
 				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
 			
+				<cfif StructKeyExists(SESSION,"temp")>	
+					<cfset StructDelete(SESSION,"temp") />
+				</cfif>
+			
 				<cfset REQUEST.pageData.currentPageName = currentPageName />
 				<cfset REQUEST.pageData.templatePath = currentPageName & ".cfm" />
 			<!---	

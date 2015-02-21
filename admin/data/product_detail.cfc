@@ -138,8 +138,6 @@
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
-			
-		<cfset SESSION.temp = {} />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

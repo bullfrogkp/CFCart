@@ -20,7 +20,9 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfset SESSION.temp.formdata = Duplicate(FORM) />
+		<cfif NOT StructIsEmpty(FORM)>
+			<cfset SESSION.temp.formdata = Duplicate(FORM) />
+		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	

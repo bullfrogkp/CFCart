@@ -11,6 +11,7 @@
 	<cfproperty name="specialPriceFromDate" column="special_price_from_date" ormtype="date"> 
 	<cfproperty name="specialPriceToDate" column="special_price_to_date" ormtype="date"> 
 	<cfproperty name="detail" column="detail" ormtype="text"> 
+	<cfproperty name="attributeValues" type="array" fieldtype="one-to-many" cfc="attribute_value" fkcolumn="productId">
 	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="product_image" fkcolumn="productId">
 	<cfproperty name="productCustomerGroupRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="productId">
 	<cfproperty name="categories" fieldtype="many-to-many" cfc="category" linktable="category_product_rela" fkcolumn="product_id" inversejoincolumn="category_id" orderby="productId">
