@@ -49,8 +49,8 @@
     </cffunction>
 		
 	<cffunction name="getProductGroupPrices" output="false" access="public" returntype="array">
-		<cfset LOCAL = {} />
-	   
+		<cfset var LOCAL = {} />
+			   
 	    <cfquery name="LOCAL.getProductGroupPrices">
 			SELECT	pcgr.price, cg.customer_group_id
 			FROM	product_customer_group_rela pcgr
@@ -63,7 +63,10 @@
 		<cfoutput query="LOCAL.getProductGroupPrices" group="price">
 			<cfset LOCAL.priceStruct = {} />
 			<cfset LOCAL.priceStruct.price = LOCAL.getProductGroupPrices.price />
-			<cfset LOCAL.priceStruct.customer_group_id_list = ValueList(LOCAL.getProductGroupPrices.customer_group_id) />
+			<cfset LOCAL.priceStruct.customer_group_id_list = "" />
+			<cfoutput>
+				<cfset LOCAL.priceStruct.customer_group_id_list &= LOCAL.getProductGroupPrices.customer_group_id />
+			</cfoutput>
 			<cfset ArrayAppend(LOCAL.priceArray, LOCAL.priceStruct) />
 		</cfoutput>
  

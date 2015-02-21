@@ -142,24 +142,24 @@
 							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 						</div>
 						<cfif IsDefined("REQUEST.pageData.groupPrices")>
-						<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
-							<div class="form-group">
-								<label>Group Price</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
-							</div>
-							<div class="form-group">
-								<label>Group</label>
-								<select name="customer_group_id" multiple class="form-control">
-									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-										<option value="#group.getCustomerGroupId()#"
-										<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
-										selected
-										</cfif>
-										>#group.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
-						</cfloop>
+							<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
+								<div class="form-group">
+									<label>Group Price</label>
+									<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+								</div>
+								<div class="form-group">
+									<label>Group</label>
+									<select name="customer_group_id" multiple class="form-control">
+										<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+											<option value="#group.getCustomerGroupId()#"
+											<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
+											selected
+											</cfif>
+											>#group.getDisplayName()#</option>
+										</cfloop>
+									</select>
+								</div>
+							</cfloop>
 						</cfif>
 						 <div class="form-group">
 							<label>Special Price</label>
