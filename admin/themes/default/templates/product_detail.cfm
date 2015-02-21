@@ -223,9 +223,9 @@
 							<label>Attribute Set</label>
 							<select name="attribute_set_id" class="form-control">
 								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
-									<option value="#tc.getAttributeSetId()#"
+									<option value="#as.getAttributeSetId()#"
 									
-									<cfif tc.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSetId()>
+									<cfif as.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSetId()>
 									selected
 									</cfif>
 									
