@@ -71,6 +71,9 @@
 </section>
 
 <!-- Main content -->
+<form method="post">
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.category.getProductId()#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -309,4 +312,5 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</form>
 </cfoutput>
