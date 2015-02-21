@@ -72,8 +72,8 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="id" id="id" value="#REQUEST.pageData.category.getProductId()#" />
-<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.activeTabId#" />
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -100,7 +100,7 @@
 							<select name="category_id" multiple class="form-control">
 								<cfloop array="#REQUEST.pageData.categories#" index="category">
 									<option value="#category.getCategoryId()#"
-									<cfif IsDefined("REQUEST.pageData.currentCategories") AND ArrayContains(REQUEST.pageData.currentCategories,category)>
+									<cfif NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),category)>
 									selected
 									</cfif>
 									>#category.getDisplayName()#</option>
