@@ -166,6 +166,7 @@
 									<cfloop from="0" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="i">
 										<li class="tab-title tabid="group_price_tab_#i#"><a href="##tab_#i#" data-toggle="tab">Group #i#</a></li>
 									</cfloop>
+									<li class="tab-title tabid="group_price_tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#"><a href="##tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#" data-toggle="tab">New Group Price</a></li>
 								</ul>
 								<div class="tab-content">
 									<cfloop from="0" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="j">
@@ -173,7 +174,7 @@
 										<div class="tab-pane" id="tab_#j#">
 											<div class="form-group">
 												<label>Group Price</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+												<input type="text" name="group_price" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
 											</div>
 											<div class="form-group">
 												<label>Group</label>
@@ -189,7 +190,34 @@
 											</div>
 										</div>
 									</cfloop>
+									<div class="tab-pane" id="tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#">
+										<div class="form-group">
+											<label>Group Price</label>
+											<input name="new_group_price" type="text" class="form-control" placeholder="Enter ..." value=""/>
+										</div>
+										<div class="form-group">
+											<label>Group</label>
+											<select name="customer_group_id" multiple class="form-control">
+												<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+													<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+												</cfloop>
+											</select>
+										</div>
+									</div>
 								</div>
+							</div>
+						<cfelse>
+							<div class="form-group">
+								<label>Group Price</label>
+								<input name="new_group_price" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Group</label>
+								<select name="customer_group_id" multiple class="form-control">
+									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+										<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+									</cfloop>
+								</select>
 							</div>
 						</cfif>
 						 <div class="form-group">
