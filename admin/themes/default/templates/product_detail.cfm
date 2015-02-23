@@ -322,27 +322,38 @@
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<table class="table table-bordered table-striped">
-							<tr>
-								<th>Subject</th>
-								<th>Message</th>
-								<th>Rating</th>
-								<th>Create Datetime</th>
-								<th>Action</th>
-							</tr>
-							<tr>
-								<td>Color</td>
-								<td>Red,Blue,White,Black</td>
-								<td>Red,Blue,White,Black</td>
-								<td>Red,Blue,White,Black</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Size</td>
-								<td>Large,Medium,Small</td>
-								<td>Large,Medium,Small</td>
-								<td>Large,Medium,Small</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Component</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<cfloop array="#REQUEST.pageData.shippingMethods#" index="shipping">
+								<tr>
+									<td>#shipping.getDisplayName()#</td>
+									<td>#shipping.getDescription()#</td>
+									<td>#shipping.getCfc()#</td>
+									<td><input type="checkbox" class="form-control" 
+
+									<cfif REQUEST.pageData.shippingMethod.getShippingMethodId() EQ shipping.getShippingMethodId>
+									checked
+									</cfif>
+	
+									/></td>
+								</tr>
+								</cfloop>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Component</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 				</div><!-- /.tab-content -->
