@@ -77,6 +77,16 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
+		<div class="col-md-12">
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
@@ -166,7 +176,7 @@
 						</cfif>
 						 <div class="form-group">
 							<label>Special Price</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+							<input name="special_price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
 						</div>
 						 <div class="form-group">
 							<label>Special Price From Date</label>

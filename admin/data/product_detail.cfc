@@ -9,6 +9,10 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product name.") />
 		</cfif>
 		
+		<cfif Trim(FORM.sku) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid SKU.") />
+		</cfif>
+		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
