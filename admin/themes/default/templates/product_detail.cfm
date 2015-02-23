@@ -161,24 +161,36 @@
 							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 						</div>
 						<cfif IsDefined("REQUEST.pageData.groupPrices")>
-							<cfloop array="#REQUEST.pageData.groupPrices#" index="gp">
-								<div class="form-group">
-									<label>Group Price</label>
-									<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+							<div class="nav-tabs-custom">
+								<ul class="nav nav-tabs">
+									<cfloop from="0" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="i">
+										<li class="tab-title tabid="group_price_tab_#i#"><a href="##tab_#i#" data-toggle="tab">Group #i#</a></li>
+									</cfloop>
+								</ul>
+								<div class="tab-content">
+									<cfloop from="0" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="j">
+										<cfset gp = REQUEST.pageData.groupPrices[j] />
+										<div class="tab-pane" id="tab_#j#">
+											<div class="form-group">
+												<label>Group Price</label>
+												<input type="text" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+											</div>
+											<div class="form-group">
+												<label>Group</label>
+												<select name="customer_group_id" multiple class="form-control">
+													<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+														<option value="#group.getCustomerGroupId()#"
+														<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
+														selected
+														</cfif>
+														>#group.getDisplayName()#</option>
+													</cfloop>
+												</select>
+											</div>
+										</div>
+									</cfloop>
 								</div>
-								<div class="form-group">
-									<label>Group</label>
-									<select name="customer_group_id" multiple class="form-control">
-										<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-											<option value="#group.getCustomerGroupId()#"
-											<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
-											selected
-											</cfif>
-											>#group.getDisplayName()#</option>
-										</cfloop>
-									</select>
-								</div>
-							</cfloop>
+							</div>
 						</cfif>
 						 <div class="form-group">
 							<label>Special Price</label>
@@ -293,6 +305,7 @@
 												</tr>
 											</thead>
 											<tbody>
+												<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
 												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
 													<tr>
 														<td>#product.getDisplayName()#</td>
@@ -304,6 +317,7 @@
 														<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
 													</tr>
 												</cfloop>
+												</cfif>
 											</tbody>
 											<tfoot>
 												<tr>
@@ -334,6 +348,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<cfif NOT IsNull(REQUEST.pageData.product.getReviews())>
 								<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
 								<tr>
 									<td>#review.getSubject()#</td>
@@ -343,6 +358,7 @@
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
+								</cfif>
 							</tbody>
 							<tfoot>
 								<tr>
