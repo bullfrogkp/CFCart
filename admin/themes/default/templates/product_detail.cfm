@@ -4,6 +4,8 @@
 	$(document).ready(function() {
 		CKEDITOR.replace('detail');
 		
+		$("##products_table").dataTable();
+		
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
@@ -274,50 +276,83 @@
 						</table>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-						<table class="table table-bordered table-striped">
-							<tr>
-								<th>Product Name</th>
-								<th>Category</th>
-								<th>Price</th>
-								<th>Action</th>
-							</tr>
-							<tr>
-								<td>Color</td>
-								<td>Red,Blue,White,Black</td>
-								<td>Red,Blue,White,Black</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Size</td>
-								<td>Large,Medium,Small</td>
-								<td>Large,Medium,Small</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-						</table>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="box">
+									<div class="box-body table-responsive">
+										<table id="products_table" class="table table-bordered table-striped">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Create Datetime</th>
+													<th>SKU</th>
+													<th>Status</th>
+													<th>Link</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+													<tr>
+														<td>#product.getDisplayName()#</td>
+														<td>#product.getPrice()#</td>
+														<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#product.getSku()#</td>
+														<td>#product.getIsEnabled()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+														<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
+													</tr>
+												</cfloop>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Create Datetime</th>
+													<th>SKU</th>
+													<th>Status</th>
+													<th>Link</th>
+													<th>Action</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div><!-- /.box-body -->
+								</div><!-- /.box -->
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
 						<table class="table table-bordered table-striped">
-							<tr>
-								<th>Subject</th>
-								<th>Message</th>
-								<th>Rating</th>
-								<th>Create Datetime</th>
-								<th>Action</th>
-							</tr>
-							<tr>
-								<td>Color</td>
-								<td>Red,Blue,White,Black</td>
-								<td>Red,Blue,White,Black</td>
-								<td>Red,Blue,White,Black</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Size</td>
-								<td>Large,Medium,Small</td>
-								<td>Large,Medium,Small</td>
-								<td>Large,Medium,Small</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
+							<thead>
+								<tr>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Rating</th>
+									<th>Create Datetime</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
+								<tr>
+									<td>#review.getSubject()#</td>
+									<td>#review.getMessage()#</td>
+									<td>#review.getRating()#</td>
+									<td>#review.getCreatedDatetime()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+								</tr>
+								</cfloop>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Subject</th>
+									<th>Message</th>
+									<th>Rating</th>
+									<th>Create Datetime</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">

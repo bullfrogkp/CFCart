@@ -249,43 +249,43 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="box">
-							<div class="box-body table-responsive">
-								<table id="products_table" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Price</th>
-											<th>Create Datetime</th>
-											<th>SKU</th>
-											<th>Status</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
-											<tr>
-												<td>#product.getDisplayName()#</td>
-												<td>#product.getPrice()#</td>
-												<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-												<td>#product.getSku()#</td>
-												<td>#product.getIsEnabled()#</td>
-												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-											</tr>
-										</cfloop>
-									</tbody>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Price</th>
-											<th>Create Datetime</th>
-											<th>SKU</th>
-											<th>Status</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
-								</table>
-							</div><!-- /.box-body -->
-						</div><!-- /.box -->
+									<div class="box-body table-responsive">
+										<table id="products_table" class="table table-bordered table-striped">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Create Datetime</th>
+													<th>SKU</th>
+													<th>Status</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
+													<tr>
+														<td>#product.getDisplayName()#</td>
+														<td>#product.getPrice()#</td>
+														<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#product.getSku()#</td>
+														<td>#product.getIsEnabled()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+													</tr>
+												</cfloop>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Create Datetime</th>
+													<th>SKU</th>
+													<th>Status</th>
+													<th>Action</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div><!-- /.box-body -->
+								</div><!-- /.box -->
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
