@@ -90,7 +90,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.message = {} />
 	
-		<cfif IsDefined("SESSION.temp.message")>
+		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
 			<cfset LOCAL.message.messageArray = SESSION.temp.message.messageArray />
 			<cfset LOCAL.message.messageType = SESSION.temp.message.messageType />
 		</cfif>

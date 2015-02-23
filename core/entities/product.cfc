@@ -16,4 +16,10 @@
 	<cfproperty name="productCustomerGroupRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="product_id">
 	<cfproperty name="categories" fieldtype="many-to-many" cfc="category" linktable="category_product_rela" fkcolumn="product_id" inversejoincolumn="category_id" singularname="category">
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
+	
+	<cffunction name="removeAllCategories" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getCategories())>
+			<cfset ArrayClear(getCategories()) />
+		</cfif>
+	</cffunction>
 </cfcomponent>

@@ -52,9 +52,7 @@
 				<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
 			</cfif>
 			
-			<cfloop array="#LOCAL.product.getCategories()#" index="LOCAL.category">
-				<cfset LOCAL.product.removeCategory(LOCAL.category) />
-			</cfloop>
+			<cfset LOCAL.product.removeAllCategories() />
 			
 			<cfloop list="#FORM.category_id#" index="LOCAL.category_id">
 				<cfset LOCAL.newCategory = EntityLoad("category",LOCAL.category_id,true) />
