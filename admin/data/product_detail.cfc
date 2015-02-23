@@ -29,6 +29,7 @@
 		
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
+		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			<cfif IsNumeric(FORM.id)>
@@ -50,6 +51,15 @@
 			<cfif StructKeyExists(FORM,"attribute_set_id")>
 				<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
 			</cfif>
+			
+			<cfloop array="#LOCAL.product.getCategories()#" index="LOCAL.category">
+				<cfset LOCAL.product.removeCategory(LOCAL.category) />
+			</cfloop>
+			
+			<cfloop list="#FORM.category_id#" index="LOCAL.category_id">
+				<cfset LOCAL.newCategory = EntityLoad("category",LOCAL.category_id,true) />
+				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
+			</cfloop>
 		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
@@ -78,7 +88,6 @@
 			<cfset EntitySave(LOCAL.product) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
-			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_item")>
@@ -88,7 +97,6 @@
 			<cfset EntitySave(LOCAL.product) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted.") />
-			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
 		</cfif>
