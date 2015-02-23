@@ -373,7 +373,7 @@
 									<td>#shipping.getCfc()#</td>
 									<td><input type="checkbox" class="form-control" 
 
-									<cfif REQUEST.pageData.shippingMethod.getShippingMethodId() EQ shipping.getShippingMethodId>
+									<cfif REQUEST.pageData.product.getShippingMethodId() EQ shipping.getShippingMethodId>
 									checked
 									</cfif>
 	
