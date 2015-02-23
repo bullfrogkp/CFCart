@@ -5,7 +5,6 @@
 	
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
-		  console.log($("##tab_id").val());
 		});
 	
 		CKEDITOR.replace('custom_design');

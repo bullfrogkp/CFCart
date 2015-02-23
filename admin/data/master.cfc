@@ -73,6 +73,7 @@
 		<cfset LOCAL.tabs["tab_5"] = "" />
 		<cfset LOCAL.tabs["tab_6"] = "" />
 		<cfset LOCAL.tabs["tab_7"] = "" />
+		<cfset LOCAL.tabs["tab_8"] = "" />
 				
 		<cfif StructKeyExists(URL,"active_tab_id")>	
 			<cfset LOCAL.tabs["activeTabId"] = URL.active_tab_id />
