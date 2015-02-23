@@ -28,6 +28,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset SESSION.temp.message = {} />
+		<cfset SESSION.temp.message.messageArray = [] />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			<cfif IsNumeric(FORM.id)>
@@ -76,7 +77,7 @@
 			
 			<cfset EntitySave(LOCAL.product) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully.") />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset SESSION.temp.message.messageType = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
