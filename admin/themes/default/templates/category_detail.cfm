@@ -262,16 +262,18 @@
 												</tr>
 											</thead>
 											<tbody>
-												<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
-													<tr>
-														<td>#product.getDisplayName()#</td>
-														<td>#product.getPrice()#</td>
-														<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-														<td>#product.getSku()#</td>
-														<td>#product.getIsEnabled()#</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-													</tr>
-												</cfloop>
+												<cfif NOT IsNull(REQUEST.pageData.category.getProducts())>
+													<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
+														<tr>
+															<td>#product.getDisplayName()#</td>
+															<td>#product.getPrice()#</td>
+															<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+															<td>#product.getSku()#</td>
+															<td>#product.getIsEnabled()#</td>
+															<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+														</tr>
+													</cfloop>
+												</cfif>
 											</tbody>
 											<tfoot>
 												<tr>

@@ -66,7 +66,7 @@
 			<cfset LOCAL.priceStruct.price = LOCAL.getProductGroupPrices.price />
 			<cfset LOCAL.priceStruct.customer_group_id_list = "" />
 			<cfoutput>
-				<cfset LOCAL.priceStruct.customer_group_id_list &= LOCAL.getProductGroupPrices.customer_group_id />
+				<cfset LOCAL.priceStruct.customer_group_id_list = LOCAL.priceStruct.customer_group_id_list & LOCAL.getProductGroupPrices.customer_group_id & "," />
 			</cfoutput>
 			<cfset ArrayAppend(LOCAL.priceArray, LOCAL.priceStruct) />
 		</cfoutput>

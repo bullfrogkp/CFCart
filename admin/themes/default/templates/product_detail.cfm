@@ -177,11 +177,11 @@
 										<div class="tab-pane" id="group_price_tab_#j#">
 											<div class="form-group">
 												<label>Group Price</label>
-												<input type="text" name="group_price" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+												<input type="text" name="group_price_#gp.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
 											</div>
 											<div class="form-group">
 												<label>Group</label>
-												<select name="customer_group_id" multiple class="form-control">
+												<select name="customer_group_id_#gp.getCustomerGroupId()#" multiple class="form-control">
 													<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<option value="#group.getCustomerGroupId()#"
 														<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
@@ -190,6 +190,9 @@
 														>#group.getDisplayName()#</option>
 													</cfloop>
 												</select>
+											</div>
+											<div class="form-group">
+												<input type="checkbox" name="delete_group_price_#gp.getCustomerGroupId()#" class="form-control" /><span style="margin-left:10px;color:red;">Delete This Group Price</span>
 											</div>
 										</div>
 									</cfloop>
@@ -200,7 +203,7 @@
 										</div>
 										<div class="form-group">
 											<label>Group</label>
-											<select name="customer_group_id" multiple class="form-control">
+											<select name="new_customer_group_id" multiple class="form-control">
 												<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 													<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
 												</cfloop>
@@ -216,7 +219,7 @@
 							</div>
 							<div class="form-group">
 								<label>Group</label>
-								<select name="customer_group_id" multiple class="form-control">
+								<select name="new_customer_group_id" multiple class="form-control">
 									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 										<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
 									</cfloop>
@@ -325,7 +328,7 @@
 										<input type="file" id="exampleInputFile">
 									</td>
 									<td>
-										<button name="add_option" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option</button>
+										<button name="add_option" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option</button>
 									</td>
 								</tr>
 							</cfloop>

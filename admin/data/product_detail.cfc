@@ -27,6 +27,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
+		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+		
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
@@ -47,7 +49,9 @@
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
-			<cfset LOCAL.product.setShippingMethodId(FORM.shipping_method_id) />
+			<cfif StructKeyExists(FORM,"shipping_method_id")>
+				<cfset LOCAL.product.setShippingMethodId(FORM.shipping_method_id) />
+			</cfif>
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
 			<cfif StructKeyExists(FORM,"attribute_set_id")>
 				<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
@@ -55,8 +59,8 @@
 			
 			<cfset LOCAL.product.removeAllCategories() />
 			
-			<cfloop list="#FORM.category_id#" index="LOCAL.category_id">
-				<cfset LOCAL.newCategory = EntityLoad("category",LOCAL.category_id,true) />
+			<cfloop list="#FORM.category_id#" index="LOCAL.categoryId">
+				<cfset LOCAL.newCategory = EntityLoad("category",LOCAL.categoryId,true) />
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
 			</cfloop>
 		
@@ -83,6 +87,29 @@
 					</cfif>
 				</cfloop>
 			</cfif>
+			
+			<cfif IsNumeric(FORM.new_group_price) AND ListLen(FORM.new_customer_group_id) NEQ 0>
+				<cfloop list="#FORM.new_customer_group_id#" index="LOCAL.customerGroupId">
+					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+					<cfset LOCAL.groupPrice.setProductId(LOCAL.product.getProductId()) />
+					<cfset LOCAL.groupPrice.setCustomerGroupId(LOCAL.customerGroupId) />
+					<cfset LOCAL.groupPrice.setPrice(FORM.new_group_price) />
+					
+					<cfset EntitySave(LOCAL.groupPrice) />
+				</cfloop>
+			</cfif>
+			
+			<cfset LOCAL.productService.setProductId(LOCAL.product.getProductId()) />
+			<cfset LOCAL.groupPrices = LOCAL.productService.getProductGroupPrices() />
+			
+			<cfloop array="#LOCAL.groupPrices#" index="groupPrice">
+				<cfif StructKeyExists(FORM,"delete_group_price_#groupPrice.getCustomerGroupId()#")>
+					<cfset LOCAL.productCustomerGroupRela = EntityLoad('product_customer_group_rela', {price = groupPrice.getPrice()})> 
+					<cfloop array="#LOCAL.productCustomerGroupRela#" index="LOCAL.rela">
+						<cfset EntityDelete(LOCAL.rela) />
+					</cfloop>
+				</cfif>
+			</cfloop>
 			
 			<cfset EntitySave(LOCAL.product) />
 			
