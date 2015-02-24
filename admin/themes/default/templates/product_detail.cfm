@@ -299,6 +299,7 @@
 							<tr>
 								<th>Attribute Name</th>
 								<th>Attribute Values</th>
+								<th>Required</th>
 								<th colspan="3">Action</th>
 							</tr>
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
@@ -313,6 +314,9 @@
 												#attributeValue.min_value# - #attributeValue.max_value#
 											</cfif>
 										</cfloop>
+									</td>
+									<td>
+										Yes
 									</td>
 									<td>
 										<input type="text" value="">
