@@ -47,6 +47,7 @@
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
+			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
 			<cfif StructKeyExists(FORM,"shipping_method_id")>
@@ -102,9 +103,9 @@
 			<cfset LOCAL.productService.setProductId(LOCAL.product.getProductId()) />
 			<cfset LOCAL.groupPrices = LOCAL.productService.getProductGroupPrices() />
 			
-			<cfloop array="#LOCAL.groupPrices#" index="groupPrice">
-				<cfif StructKeyExists(FORM,"delete_group_price_#groupPrice.getCustomerGroupId()#")>
-					<cfset LOCAL.productCustomerGroupRela = EntityLoad('product_customer_group_rela', {price = groupPrice.getPrice()})> 
+			<cfloop from="1" to="#ArrayLen(LOCAL.groupPrices)#" index="LOCAL.i">
+				<cfif StructKeyExists(FORM,"delete_group_price_#LOCAL.i#")>
+					<cfset LOCAL.productCustomerGroupRela = EntityLoad('product_customer_group_rela', {productId = LOCAL.product.getProductId(), price = LOCAL.groupPrices[i].price})> 
 					<cfloop array="#LOCAL.productCustomerGroupRela#" index="LOCAL.rela">
 						<cfset EntityDelete(LOCAL.rela) />
 					</cfloop>

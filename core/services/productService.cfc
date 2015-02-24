@@ -57,6 +57,7 @@
 			FROM	product_customer_group_rela pcgr
 			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
 			WHERE	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
+			ORDER BY pcgr.price
 		</cfquery>
 		
 		<cfset LOCAL.priceArray = [] />

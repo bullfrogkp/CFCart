@@ -6,7 +6,7 @@
 		
 		$("##products_table").dataTable();
 		
-		$(".tab-title").click(function() {
+		$(".top-level-tab").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
 		
@@ -99,14 +99,14 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Price</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Attributes</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Price</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Attributes</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
@@ -177,11 +177,11 @@
 										<div class="tab-pane" id="group_price_tab_#j#">
 											<div class="form-group">
 												<label>Group Price</label>
-												<input type="text" name="group_price_#gp.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
+												<input type="text" name="group_price_#j#" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
 											</div>
 											<div class="form-group">
 												<label>Group</label>
-												<select name="customer_group_id_#gp.getCustomerGroupId()#" multiple class="form-control">
+												<select name="customer_group_id_#j#" multiple class="form-control">
 													<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<option value="#group.getCustomerGroupId()#"
 														<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
@@ -192,7 +192,7 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<input type="checkbox" name="delete_group_price_#gp.getCustomerGroupId()#" class="form-control" /><span style="margin-left:10px;color:red;">Delete This Group Price</span>
+												<input type="checkbox" name="delete_group_price_#j#" class="form-control" /><span style="margin-left:10px;color:red;">Delete This Group Price</span>
 											</div>
 										</div>
 									</cfloop>
