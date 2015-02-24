@@ -10,6 +10,9 @@
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
 		
+		$("##group_price_tabs li:first-child").addClass("active");
+		$("##group_price_tab_content div:first-child").addClass("active");
+		
 		$("##uploader").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
@@ -162,16 +165,16 @@
 						</div>
 						<cfif IsDefined("REQUEST.pageData.groupPrices")>
 							<div class="nav-tabs-custom">
-								<ul class="nav nav-tabs">
-									<cfloop from="0" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="i">
-										<li class="tab-title tabid="group_price_tab_#i#"><a href="##tab_#i#" data-toggle="tab">Group #i#</a></li>
+								<ul class="nav nav-tabs" id="group_price_tabs">
+									<cfloop from="1" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="i">
+										<li class="tab-title"><a href="##group_price_tab_#i#" data-toggle="tab">Group #i#</a></li>
 									</cfloop>
-									<li class="tab-title tabid="group_price_tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#"><a href="##tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#" data-toggle="tab">New Group Price</a></li>
+									<li class="tab-title"><a href="##group_price_tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#" data-toggle="tab">New Group Price</a></li>
 								</ul>
-								<div class="tab-content">
-									<cfloop from="0" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="j">
+								<div class="tab-content" id="group_price_tab_content">
+									<cfloop from="1" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="j">
 										<cfset gp = REQUEST.pageData.groupPrices[j] />
-										<div class="tab-pane" id="tab_#j#">
+										<div class="tab-pane" id="group_price_tab_#j#">
 											<div class="form-group">
 												<label>Group Price</label>
 												<input type="text" name="group_price" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
@@ -190,7 +193,7 @@
 											</div>
 										</div>
 									</cfloop>
-									<div class="tab-pane" id="tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#">
+									<div class="tab-pane" id="group_price_tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#">
 										<div class="form-group">
 											<label>Group Price</label>
 											<input name="new_group_price" type="text" class="form-control" placeholder="Enter ..." value=""/>
