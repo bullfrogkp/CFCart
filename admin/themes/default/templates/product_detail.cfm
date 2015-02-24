@@ -334,6 +334,44 @@
 							</cfloop>
 							</cfif>
 						</table>
+						
+						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
+						<table class="table table-bordered table-striped" style="margin-top:30px;">
+							<tr>
+								<th>Attribute Values</th>
+								<th>Price</th>
+								<th>Stock</th>
+								<th>Action</th>
+							</tr>
+							<tr>
+								<td>
+									<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+										<select name="#attribute.display_name#">
+											<option value="">#attribute.display_name#</option>
+											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
+												<option value="#attributeValue.attributeValueId#">
+													<cfif attributeValue.value NEQ "">
+														#attributeValue.value#
+													<cfelse>
+														#attributeValue.minvalue# - #attributeValue.maxvalue#
+													</cfif>
+												</option>
+											</cfloop>
+										</select>
+									</cfloop>
+								</td>
+								<td>
+									<input name="" type="text" value="" />
+								</td>
+								<td>
+									<input name="" type="text" value="" />
+								</td>
+								<td>
+									<button name="add_value" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Value</button>
+								</td>
+							</tr>
+						</table>
+						</cfif>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 						<div class="row">
