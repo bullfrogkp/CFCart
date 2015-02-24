@@ -299,6 +299,7 @@
 							<tr>
 								<th>Attribute Name</th>
 								<th>Attribute Values</th>
+								<th colspan="3">Action</th>
 							</tr>
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
 							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
@@ -312,6 +313,15 @@
 												#attributeValue.min_value# - #attributeValue.max_value#
 											</cfif>
 										</cfloop>
+									</td>
+									<td>
+										<input type="text" value="">
+									</td>
+									<td>
+										<input type="file" id="exampleInputFile">
+									</td>
+									<td>
+										<button name="add_option" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;margin-top:-3px;">Add Option</button>
 									</td>
 								</tr>
 							</cfloop>
