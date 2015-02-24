@@ -321,7 +321,7 @@
 										<input type="file" id="exampleInputFile">
 									</td>
 									<td>
-										<button name="add_option" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;margin-top:-3px;">Add Option</button>
+										<button name="add_option" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option</button>
 									</td>
 								</tr>
 							</cfloop>
