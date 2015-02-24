@@ -78,33 +78,39 @@
 	<cffunction name="getProductAttributes" output="false" access="public" returntype="array">
 		<cfset LOCAL = {} />
 	   
-	    <cfquery name="LOCAL.getProductAttributes">
-			SELECT	attr.attribute_id, attr.display_name, av.value, av.min_value, av.max_value
+		<cfquery name="LOCAL.getAttributes">
+			SELECT	attr.attribute_id
+			,		attr.display_name
 			FROM	attribute attr
-			JOIN	attribute_value av ON av.attribute_id = attr.attribute_id
-			WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
-			AND		av.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" />
+			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
+			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
 		</cfquery>
 		
 		<cfset LOCAL.attributeArray = [] />
-	
-		<cfoutput query="LOCAL.getProductAttributes" group="attribute_id">
+		<cfloop query="LOCAL.getAttributes">
 			<cfset LOCAL.attributeStruct = {} />
-			<cfset LOCAL.attributeStruct.name = LOCAL.getProductAttributes.display_name />
+			<cfset LOCAL.attributeStruct.name = LOCAL.getAttributes.display_name />
 			
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
-			<cfoutput>
+			 <cfquery name="LOCAL.getAttributeValues">
+				SELECT	av.value, av.min_value, av.max_value
+				FROM	attribute_value av
+				WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
+				AND		av.attribute_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.getAttributes.attribute_id#" />
+			</cfquery>
+			
+			<cfloop query="LOCAL.getAttributeValues">
 				<cfset LOCAL.attributeValueStruct = {} />
 				<cfset LOCAL.attributeValueStruct.value = LOCAL.getProductAttributes.value />
 				<cfset LOCAL.attributeValueStruct.minValue = LOCAL.getProductAttributes.min_value />
 				<cfset LOCAL.attributeValueStruct.maxValue = LOCAL.getProductAttributes.max_value />
 				<cfset ArrayAppend(LOCAL.attributeStruct.attributeValueArray, LOCAL.attributeValueStruct) />
-			</cfoutput>
+			</cfloop>
 			
 			<cfset ArrayAppend(LOCAL.attributeArray, LOCAL.attributeStruct) />
-		</cfoutput>
-	   
+		</cfloop>
+ 
 		<cfreturn LOCAL.attributeArray />
     </cffunction>
 </cfcomponent>

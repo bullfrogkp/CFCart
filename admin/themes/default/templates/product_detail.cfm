@@ -314,7 +314,7 @@
 											<cfif attributeValue.value NEQ "">
 												#attributeValue.value#
 											<cfelse>
-												#attributeValue.min_value# - #attributeValue.max_value#
+												#attributeValue.minvalue# - #attributeValue.maxvalue#
 											</cfif>
 										</cfloop>
 									</td>
