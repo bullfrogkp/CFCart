@@ -53,10 +53,8 @@
 			<cfif StructKeyExists(FORM,"shipping_method_id")>
 				<cfset LOCAL.product.setShippingMethodId(FORM.shipping_method_id) />
 			</cfif>
+			<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
-			<cfif StructKeyExists(FORM,"attribute_set_id")>
-				<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
-			</cfif>
 			
 			<cfset LOCAL.product.removeAllCategories() />
 			
@@ -109,6 +107,30 @@
 					<cfloop array="#LOCAL.productCustomerGroupRela#" index="LOCAL.rela">
 						<cfset EntityDelete(LOCAL.rela) />
 					</cfloop>
+				</cfif>
+			</cfloop>
+			
+			<!--- attribute valus --->
+			<cfset LOCAL.attributes = LOCAL.productService.getProductAttributes() />
+			<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
+				<cfif Trim(FORM["new_attribute_value_#LOCAL.attribute.attribute_id#"]) NEQ "">
+					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.product.getProductId()) />
+					<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attribute_id) />
+					<cfset LOCAL.newAttributeValue.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
+					<cfset LOCAL.newAttributeValue.setValue(Trim(FORM["new_attribute_value_#LOCAL.attribute.attribute_id#"])) />
+					
+					<cfif Trim(FORM["new_image_#LOCAL.attribute.attribute_id#"]) NEQ "">
+					
+						<cffile action = "upload"  
+								fileField = Trim(FORM["new_image_#LOCAL.attribute.attribute_id#"]  
+								destination = APPLICATION.imagePath 
+								nameConflict = "MakeUnique"> 
+						
+						<cfset LOCAL.newAttributeValue.setImageURL(cffile.serverFile) />
+					</cfif>
+					
+					<cfset EntitySave(LOCAL.newAttributeValue) />
 				</cfif>
 			</cfloop>
 			

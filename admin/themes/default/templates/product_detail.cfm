@@ -80,7 +80,7 @@
 </section>
 
 <!-- Main content -->
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
@@ -303,7 +303,7 @@
 								<th>Attribute Name</th>
 								<th>Attribute Values</th>
 								<th>Required</th>
-								<th colspan="3">Action</th>
+								<th colspan="2">New Option</th>
 							</tr>
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
 							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
@@ -322,13 +322,10 @@
 										#YesNoFormat(attribute.required)#
 									</td>
 									<td>
-										<input type="text" value="">
+										<input name="new_attribute_value_#attribute.attribute_id#" type="text" value="">
 									</td>
 									<td>
-										<input type="file" id="exampleInputFile">
-									</td>
-									<td>
-										<button name="add_option" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option</button>
+										<input name="new_image_#attribute.attribute_id#" type="file">
 									</td>
 								</tr>
 							</cfloop>
