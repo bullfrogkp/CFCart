@@ -184,7 +184,7 @@
 												<select name="customer_group_id_#j#" multiple class="form-control">
 													<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<option value="#group.getCustomerGroupId()#"
-														<cfif ListFind(gp.customer_group_id_list,group.getCustomerGroupId())>
+														<cfif ListFind(gp.customerGroupIdList,group.getCustomerGroupId())>
 														selected
 														</cfif>
 														>#group.getDisplayName()#</option>
@@ -311,21 +311,19 @@
 									<td>#attribute.name#</td>
 									<td>
 										<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-											<cfif attributeValue.value NEQ "">
-												#attributeValue.value# <i class="fa fa-fw fa-times-circle"></i>
-											<cfelse>
-												#attributeValue.minvalue# - #attributeValue.maxvalue#
-											</cfif>
+											#attributeValue.value#
+											<input type="checkbox" name="remove_attribute_value_#attributeValue.attributeValueId#" class="form-control" /><span style="margin-left:10px;color:red;">Delete This Value</span>
+											<br/>
 										</cfloop>
 									</td>
 									<td>
 										#YesNoFormat(attribute.required)#
 									</td>
 									<td>
-										<input name="new_attribute_value_#attribute.attribute_id#" type="text" value="">
+										<input name="new_attribute_value_#attribute.attributeId#" type="text" value="">
 									</td>
 									<td>
-										<input name="new_image_#attribute.attribute_id#" type="file">
+										<input name="new_image_#attribute.attributeId#" type="file">
 									</td>
 								</tr>
 							</cfloop>

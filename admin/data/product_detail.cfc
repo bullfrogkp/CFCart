@@ -120,11 +120,12 @@
 					<cfset LOCAL.newAttributeValue.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
 					<cfset LOCAL.newAttributeValue.setValue(Trim(FORM["new_attribute_value_#LOCAL.attribute.attribute_id#"])) />
 					
-					<cfif Trim(FORM["new_image_#LOCAL.attribute.attribute_id#"]) NEQ "">
+					<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attribute_id#"]) />
 					
+					<cfif LOCAL.filename NEQ "">
 						<cffile action = "upload"  
-								fileField = Trim(FORM["new_image_#LOCAL.attribute.attribute_id#"]  
-								destination = APPLICATION.imagePath 
+								fileField = "#LOCAL.filename#" 
+								destination = "#APPLICATION.absolutePathRoot#images\"
 								nameConflict = "MakeUnique"> 
 						
 						<cfset LOCAL.newAttributeValue.setImageURL(cffile.serverFile) />
@@ -132,6 +133,12 @@
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 				</cfif>
+				
+				<cfloop array="#attribute.attributeValueArray#" index="LOCAL.attributeValue">
+					<cfif StructKeyExists(FORM,"remove_attribute_value_#LOCAL.attributeValue.attributeValueId#")>	
+						<cfset EntityDelete(EntityLoad("attribute_value",LOCAL.attributeValue.attributeValueId,true)) />
+					</cfif>
+				</cfloop>
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.product) />

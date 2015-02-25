@@ -65,9 +65,9 @@
 		<cfoutput query="LOCAL.getProductGroupPrices" group="price">
 			<cfset LOCAL.priceStruct = {} />
 			<cfset LOCAL.priceStruct.price = LOCAL.getProductGroupPrices.price />
-			<cfset LOCAL.priceStruct.customer_group_id_list = "" />
+			<cfset LOCAL.priceStruct.customerGroupIdList = "" />
 			<cfoutput>
-				<cfset LOCAL.priceStruct.customer_group_id_list = LOCAL.priceStruct.customer_group_id_list & LOCAL.getProductGroupPrices.customer_group_id & "," />
+				<cfset LOCAL.priceStruct.customerGroupIdList = LOCAL.priceStruct.customerGroupIdList & LOCAL.getProductGroupPrices.customer_group_id & "," />
 			</cfoutput>
 			<cfset ArrayAppend(LOCAL.priceArray, LOCAL.priceStruct) />
 		</cfoutput>
@@ -92,6 +92,7 @@
 			<cfset LOCAL.attributeStruct = {} />
 			<cfset LOCAL.attributeStruct.name = LOCAL.getAttributes.display_name />
 			<cfset LOCAL.attributeStruct.required = LOCAL.getAttributes.required />
+			<cfset LOCAL.attributeStruct.attributeId = LOCAL.getAttributes.attribute_id />
 			
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
