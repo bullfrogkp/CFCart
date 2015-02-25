@@ -310,17 +310,46 @@
 								<tr>
 									<td>#attribute.name#</td>
 									<td>
-										<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-											#attributeValue.value#
-											<input type="checkbox" name="remove_attribute_value_#attributeValue.attributeValueId#" class="form-control" /><span style="margin-left:10px;color:red;">Delete This Value</span>
-											<br/>
-										</cfloop>
+										<table>
+											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
+											<tr>
+												<td style="padding-right:20px;">
+													<cfif attribute.name EQ "color">
+														<cfif attributeValue.imageName NEQ "">
+															<div style="width:20px;height:20px;border:1px solid ##CCC;margin-top:3px;">
+																<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;" />
+															</div>
+														<cfelse>
+															<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#attributeValue.value#;margin-top:3px;"></div>
+														</cfif>
+													<cfelse>
+														<div style="padding:3px 10px;border:1px solid ##CCC;">
+														#attributeValue.value#
+														</div>
+													</cfif>
+												</td>
+												<td>
+													<input type="checkbox" name="remove_attribute_value_#attributeValue.attributeValueId#" class="form-control" />
+												</td>
+												<td>
+													<span style="margin-left:10px;color:red;">Delete This Value</span>
+												</td>
+											</tr>
+											</cfloop>
+										</table>
 									</td>
 									<td>
 										#YesNoFormat(attribute.required)#
 									</td>
 									<td>
-										<input name="new_attribute_value_#attribute.attributeId#" type="text" value="">
+										<input name="new_attribute_value_#attribute.attributeId#" id="new_attribute_value_#attribute.attributeId#" type="text" value="">
+										<cfif attribute.name EQ "color">
+											<script>
+											$(function(){
+												$('##new_attribute_value_#attribute.attributeId#').colorpicker();
+											});
+											</script>
+										</cfif>
 									</td>
 									<td>
 										<input name="new_image_#attribute.attributeId#" type="file">

@@ -69,7 +69,7 @@
 						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
 						<cfif StructFind(FORM,LOCAL.key) EQ "done">
 							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
-							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#admin/uploads/product/") />
+							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#images/uploads/product/") />
 						
 							<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.product.getProductId() />
 							<cfif NOT DirectoryExists(LOCAL.imageDir)>
@@ -111,24 +111,32 @@
 			</cfloop>
 			
 			<!--- attribute valus --->
+			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
 			<cfset LOCAL.attributes = LOCAL.productService.getProductAttributes() />
 			<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
-				<cfif Trim(FORM["new_attribute_value_#LOCAL.attribute.attribute_id#"]) NEQ "">
+				<cfset LOCAL.formAttributeValue = Trim(FORM["new_attribute_value_#LOCAL.attribute.attributeId#"]) />
+				<cfif LOCAL.formAttributeValue NEQ "">
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.product.getProductId()) />
-					<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attribute_id) />
+					<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attributeId) />
 					<cfset LOCAL.newAttributeValue.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
-					<cfset LOCAL.newAttributeValue.setValue(Trim(FORM["new_attribute_value_#LOCAL.attribute.attribute_id#"])) />
+					<cfset LOCAL.newAttributeValue.setValue(LOCAL.formAttributeValue) />
 					
-					<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attribute_id#"]) />
+					<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attributeId#"]) />
+					
+					<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\products\#LOCAL.product.getProductId()#\attributes\#LOCAL.attribute.attributeId#" />
+					
+					<cfif NOT DirectoryExists(LOCAL.imageDir)>
+						<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+					</cfif>
 					
 					<cfif LOCAL.filename NEQ "">
 						<cffile action = "upload"  
-								fileField = "#LOCAL.filename#" 
-								destination = "#APPLICATION.absolutePathRoot#images\"
+								fileField = "new_image_#LOCAL.attribute.attributeId#"
+								destination = "#LOCAL.imageDir#"
 								nameConflict = "MakeUnique"> 
 						
-						<cfset LOCAL.newAttributeValue.setImageURL(cffile.serverFile) />
+						<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
 					</cfif>
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />

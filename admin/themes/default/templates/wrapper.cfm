@@ -27,6 +27,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/jquery.ui.plupload.css">
 		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/custom.css">
+		<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlThemeAdmin#css/bootstrap-colorpicker.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -482,6 +483,7 @@
 		 <!-- DATA TABES SCRIPT -->
         <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="#SESSION.absoluteUrlThemeAdmin#js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+        <script src="#SESSION.absoluteUrlThemeAdmin#js/bootstrap-colorpicker.js" type="text/javascript"></script>
     </body>
 </html>
 </cfoutput>
