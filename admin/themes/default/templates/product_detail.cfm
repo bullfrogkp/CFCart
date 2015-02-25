@@ -312,7 +312,7 @@
 									<td>
 										<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
 											<cfif attributeValue.value NEQ "">
-												#attributeValue.value#
+												#attributeValue.value# <i class="fa fa-fw fa-times-circle"></i>
 											<cfelse>
 												#attributeValue.minvalue# - #attributeValue.maxvalue#
 											</cfif>
