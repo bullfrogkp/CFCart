@@ -319,7 +319,7 @@
 										</cfloop>
 									</td>
 									<td>
-										Yes
+										#YesNoFormat(attribute.required)#
 									</td>
 									<td>
 										<input type="text" value="">
@@ -346,8 +346,9 @@
 							<tr>
 								<td>
 									<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-										<select name="#attribute.display_name#">
-											<option value="">#attribute.display_name#</option>
+										<cfif attribute.required EQ true>
+										<select name="#attribute.name#">
+											<option value="">#attribute.name#</option>
 											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
 												<option value="#attributeValue.attributeValueId#">
 													<cfif attributeValue.value NEQ "">
@@ -358,6 +359,7 @@
 												</option>
 											</cfloop>
 										</select>
+										</cfif>
 									</cfloop>
 								</td>
 								<td>

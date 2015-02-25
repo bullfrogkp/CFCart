@@ -81,6 +81,7 @@
 		<cfquery name="LOCAL.getAttributes">
 			SELECT	attr.attribute_id
 			,		attr.display_name
+			,		asar.required
 			FROM	attribute attr
 			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
 			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
@@ -90,6 +91,7 @@
 		<cfloop query="LOCAL.getAttributes">
 			<cfset LOCAL.attributeStruct = {} />
 			<cfset LOCAL.attributeStruct.name = LOCAL.getAttributes.display_name />
+			<cfset LOCAL.attributeStruct.required = LOCAL.getAttributes.required />
 			
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
