@@ -171,11 +171,12 @@
 			
 			<cfset LOCAL.newProduct = DUPLICATE(LOCAL.product)>
 			<cfset LOCAL.newProduct.removeProductId()>
-			<cfset LOCAL.newProduct.removeAttributeValues()>
 			<cfset LOCAL.newProduct.setParentProductId(FORM.id) />
 			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
+			<cfset EntitySave(LOCAL.newProduct) />
+			<cfset LOCAL.newProduct.removeAttributeValues()>
 			<cfset EntitySave(LOCAL.newProduct) />
 			
 			<cfloop query="LOCAL.productAttributes">
