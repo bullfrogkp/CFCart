@@ -39,7 +39,7 @@
 				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.product = EntityNew("product") />
-				<cfset LOCAL.product.setProductTypeId(2) />
+				<cfset LOCAL.product.setParentProductId(0) />
 				<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 				<cfset LOCAL.tab_id = "tab_1" />
 			</cfif>
@@ -166,12 +166,12 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
 		<cfelseif StructKeyExists(FORM,"add_option_value")>
 			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
-			<cfset LOCAL.productService.setProductId(LOCAL.product.getProductId()) />
+			<cfset LOCAL.productService.setProductId(FORM.id) />
 			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
 			
 			<cfset LOCAL.newProduct = DUPLICATE(LOCAL.product)>
 			<cfset LOCAL.newProduct.setId("")>
-			<cfset LOCAL.newProduct.setProductTypeId(2) />
+			<cfset LOCAL.newProduct.setParentProductId(FORM.id) />
 			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
@@ -208,6 +208,10 @@
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
 			<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributeAndValues() />
 			<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
+			
+			<cfset LOCAL.productService.removeProductId() />
+			<cfset LOCAL.productService.setParentProductId(URL.id) />
+			<cfset LOCAL.pageData.subProducts = LOCAL.productService.getProducts() />
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />

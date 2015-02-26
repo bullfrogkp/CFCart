@@ -359,6 +359,10 @@
 							</cfif>
 						</table>
 						
+						<cfif NOT IsNull(REQUEST.pageData.subProducts)>
+						
+						</cfif>
+						
 						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
 						<table class="table table-bordered table-striped" style="margin-top:30px;">
 							<tr>

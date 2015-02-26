@@ -7,7 +7,7 @@
 	<cfproperty name="stock" column="price" ormtype="integer"> 
 	<cfproperty name="specialPrice" column="special_price" ormtype="float"> 
 	<cfproperty name="taxCategoryId" column="tax_category_id" ormtype="integer"> 
-	<cfproperty name="productTypeId" column="product_type_id" ormtype="integer"> 
+	<cfproperty name="parentProductId" column="parent_product_id" ormtype="integer"> 
 	<cfproperty name="attributeSetId" column="attribute_set_id" ormtype="integer"> 
 	<cfproperty name="specialPriceFromDate" column="special_price_from_date" ormtype="date"> 
 	<cfproperty name="specialPriceToDate" column="special_price_to_date" ormtype="date"> 
