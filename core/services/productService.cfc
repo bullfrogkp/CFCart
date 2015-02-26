@@ -142,7 +142,7 @@
 			FROM	attribute attr
 			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
 			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
-			AND		asar.required = true
+			AND		asar.required
 		</cfquery>
 		
 		<cfquery name="LOCAL.getAttributeValues">
@@ -150,8 +150,8 @@
 			FROM	attribute_value
 			WHERE	product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 		</cfquery>
-		
-		<cfif LOCAL.getAttributes.recordCount EQ LOCAL.getAttributeValues.recordCount>
+
+		<cfif Find(ListSort(ValueList(LOCAL.getAttributes.attribute_id),"numeric"),ListSort(ValueList(LOCAL.getAttributeValues.attribute_id),"numeric"))>
 			<cfset LOCAL.retValue = true />
 		<cfelse>
 			<cfset LOCAL.retValue = false />

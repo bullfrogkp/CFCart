@@ -111,7 +111,7 @@
 				</cfif>
 			</cfloop>
 			
-			<!--- attribute valus --->
+			<!--- attribute values --->
 			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
 			<cfset LOCAL.attributes = LOCAL.productService.getProductAttributeAndValues() />
 			<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
@@ -167,20 +167,22 @@
 		<cfelseif StructKeyExists(FORM,"add_option_value")>
 			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
+			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
 			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
 			
-			<cfset LOCAL.newProduct = DUPLICATE(LOCAL.product)>
-			<cfset LOCAL.newProduct.removeProductId()>
+			<cfset LOCAL.newProduct = EntityNew("product")>
+			<cfset LOCAL.newProduct.setSku(LOCAL.product.getSku()) />
+			<cfset LOCAL.newProduct.setTaxCategoryId(LOCAL.product.getTaxCategoryId()) />
+			<cfset LOCAL.newProduct.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
+			<cfset LOCAL.newProduct.setShippingMethodId(LOCAL.product.getShippingMethodId()) />
 			<cfset LOCAL.newProduct.setParentProductId(FORM.id) />
 			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
+			<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
-			<cfset EntitySave(LOCAL.newProduct) />
-			<cfset LOCAL.newProduct.removeAttributeValues()>
-			<cfset EntitySave(LOCAL.newProduct) />
-			
+		
 			<cfloop query="LOCAL.productAttributes">
-				<cfif LOCAL.productAttributes.required EQ true>
+				<cfif LOCAL.productAttributes.required>
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.newProduct.getProductId()) />
 					<cfset LOCAL.newAttributeValue.setValue(FORM["new_option_#LOCAL.productAttributes.attribute_id#"]) />
@@ -189,6 +191,8 @@
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
 				</cfif>
 			</cfloop>
+			
+			<cfset EntitySave(LOCAL.newProduct) />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -225,9 +229,9 @@
 				<cfset LOCAL.subProductStruct.productId = LOCAL.subProduct.getProductId() />
 				
 				<cfset LOCAL.subProductStruct.optionValues = [] />
-				
-				<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">
-					<cfif LOCAL.attribute.required EQ true>
+		
+				<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">		
+					<cfif LOCAL.attribute.required AND ArrayLen(LOCAL.attribute.attributeValueArray) EQ 1>
 						<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeValueArray[1].value) />
 					</cfif>
 				</cfloop>

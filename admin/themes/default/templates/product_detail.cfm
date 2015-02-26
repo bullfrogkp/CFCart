@@ -314,25 +314,26 @@
 											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
 											<tr>
 												<td style="padding-right:20px;">
-													<cfif attribute.name EQ "color">
-														<cfif attributeValue.imageName NEQ "">
-															<div style="width:20px;height:20px;border:1px solid ##CCC;margin-top:3px;">
-																<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;" />
-															</div>
-														<cfelse>
-															<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#attributeValue.value#;margin-top:3px;"></div>
-														</cfif>
-													<cfelse>
-														<div style="padding:3px 10px;border:1px solid ##CCC;">
-														#attributeValue.value#
+													<div style="padding:3px 10px;border:1px solid ##CCC;">
+													#attributeValue.value#
+													</div>
+												</td>
+												<cfif attribute.name EQ "color">
+												<td>
+													<cfif attributeValue.imageName NEQ "">
+														<div style="width:20px;height:20px;border:1px solid ##CCC;margin-top:3px;">
+															<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;" />
 														</div>
+													<cfelse>
+														<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#attributeValue.value#;margin-top:3px;"></div>
 													</cfif>
 												</td>
-												<td>
+												</cfif>
+												<td style="padding-left:20px;">
 													<input type="checkbox" name="remove_attribute_value_#attributeValue.attributeValueId#" class="form-control" />
 												</td>
 												<td>
-													<span style="margin-left:10px;color:red;">Delete This Value</span>
+													<span style="margin-left:10px;color:red;">Delete</span>
 												</td>
 											</tr>
 											</cfloop>
@@ -403,7 +404,7 @@
 										<select name="new_option_#attribute.attributeId#">
 											<option value="">#attribute.name#</option>
 											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-												<option value="#attributeValue.attributeValueId#">
+												<option value="#attributeValue.value#">
 													#attributeValue.value#
 												</option>
 											</cfloop>
