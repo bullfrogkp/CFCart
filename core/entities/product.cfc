@@ -26,4 +26,12 @@
 			<cfset ArrayClear(getCategories()) />
 		</cfif>
 	</cffunction>
+	
+	<cffunction name="removeProductId" access="public" output="false" returnType="void">
+		<cfset StructDelete(VARIABLES,"productId") />
+	</cffunction>
+	
+	<cffunction name="removeAttributeValues" access="public" output="false" returnType="void">
+		<cfset StructDelete(VARIABLES,"attributeValues") />
+	</cffunction>
 </cfcomponent>

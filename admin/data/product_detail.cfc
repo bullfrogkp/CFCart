@@ -170,7 +170,8 @@
 			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
 			
 			<cfset LOCAL.newProduct = DUPLICATE(LOCAL.product)>
-			<cfset LOCAL.newProduct.setId("")>
+			<cfset LOCAL.newProduct.removeProductId()>
+			<cfset LOCAL.newProduct.removeAttributeValues()>
 			<cfset LOCAL.newProduct.setParentProductId(FORM.id) />
 			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
@@ -225,7 +226,9 @@
 				<cfset LOCAL.subProductStruct.optionValues = [] />
 				
 				<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">
-					<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeArray[1]) />
+					<cfif LOCAL.attribute.required EQ true>
+						<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeValueArray[1].value) />
+					</cfif>
 				</cfloop>
 				
 				<cfset LOCAL.subProductStruct.price = LOCAL.subProduct.getPrice() />
