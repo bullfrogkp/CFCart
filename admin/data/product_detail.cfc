@@ -172,8 +172,8 @@
 			<cfset LOCAL.newProduct = DUPLICATE(LOCAL.product)>
 			<cfset LOCAL.newProduct.setId("")>
 			<cfset LOCAL.newProduct.setProductTypeId(2) />
-			<cfset LOCAL.newProduct.setPrice(FORM.) />
-			<cfset LOCAL.newProduct.setStock(FORM.) />
+			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
+			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
 			<cfset EntitySave(LOCAL.newProduct) />
 			
@@ -181,7 +181,7 @@
 				<cfif LOCAL.productAttributes.required EQ true>
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.newProduct.getProductId()) />
-					<cfset LOCAL.newAttributeValue.setValue(LOCAL.newProduct.getProductId()) />
+					<cfset LOCAL.newAttributeValue.setValue(FORM["new_option_#LOCAL.productAttributes.attribute_id#"]) />
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
