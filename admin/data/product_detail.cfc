@@ -212,6 +212,11 @@
 			<cfset LOCAL.productService.removeProductId() />
 			<cfset LOCAL.productService.setParentProductId(URL.id) />
 			<cfset LOCAL.pageData.subProducts = LOCAL.productService.getProducts() />
+			
+			<cfloop array="#LOCAL.pageData.subProducts#" index="LOCAL.subProduct">
+				<cfset LOCAL.productService.setProductId(LOCAL.subProduct.getProductId()) />
+				<cfset LOCAL.pageData.subProductAttributes = LOCAL.productService.getProductAttributeAndValues() />
+			</cfloop>
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
