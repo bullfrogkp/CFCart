@@ -4,7 +4,7 @@
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
 	<cfproperty name="price" column="price" ormtype="float"> 
-	<cfproperty name="stock" column="price" ormtype="integer"> 
+	<cfproperty name="stock" column="stock" ormtype="integer"> 
 	<cfproperty name="specialPrice" column="special_price" ormtype="float"> 
 	<cfproperty name="taxCategoryId" column="tax_category_id" ormtype="integer"> 
 	<cfproperty name="parentProductId" column="parent_product_id" ormtype="integer"> 

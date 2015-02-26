@@ -213,9 +213,25 @@
 			<cfset LOCAL.productService.setParentProductId(URL.id) />
 			<cfset LOCAL.pageData.subProducts = LOCAL.productService.getProducts() />
 			
+			<cfset LOCAL.pageData.subProductArray = [] />
+			
 			<cfloop array="#LOCAL.pageData.subProducts#" index="LOCAL.subProduct">
 				<cfset LOCAL.productService.setProductId(LOCAL.subProduct.getProductId()) />
 				<cfset LOCAL.pageData.subProductAttributes = LOCAL.productService.getProductAttributeAndValues() />
+				
+				<cfset LOCAL.subProductStruct = {} />
+				<cfset LOCAL.subProductStruct.productId = LOCAL.subProduct.getProductId() />
+				
+				<cfset LOCAL.subProductStruct.optionValues = [] />
+				
+				<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">
+					<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeArray[1]) />
+				</cfloop>
+				
+				<cfset LOCAL.subProductStruct.price = LOCAL.subProduct.getPrice() />
+				<cfset LOCAL.subProductStruct.stock = LOCAL.subProduct.getStock() />
+				
+				<cfset ArrayAppend(LOCAL.pageData.subProductArray, LOCAL.subProductStruct) />
 			</cfloop>
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />

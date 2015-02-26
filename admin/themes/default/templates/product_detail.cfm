@@ -359,8 +359,33 @@
 							</cfif>
 						</table>
 						
-						<cfif NOT IsNull(REQUEST.pageData.subProducts)>
-						
+						<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
+						<table class="table table-bordered table-striped" style="margin-top:30px;">
+							<tr>
+								<th>Attribute Values</th>
+								<th>Price</th>
+								<th>Stock</th>
+								<th>Action</th>
+							</tr>
+							<cfloop array="#REQUEST.pageData.subProductArray#" index="subProduct">
+							<tr>
+								<td>
+									<cfloop array="#subProduct.optionValues#" index="optionValue">
+										#optionValue#&nbsp;&nbsp;
+									</cfloop>
+								</td>
+								<td>
+									<input name="option_price_#subProduct.productId#" type="text" value="#subProduct.price#" />
+								</td>
+								<td>
+									<input name="option_stock_#subProduct.productId#" type="text" value="#subProduct.stock#" />
+								</td>
+								<td>
+									<button name="option_value_#subProduct.productId#" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Update Option Value</button>
+								</td>
+							</tr>
+							</cfloop>
+						</table>
 						</cfif>
 						
 						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
