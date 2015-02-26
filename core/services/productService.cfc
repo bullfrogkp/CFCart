@@ -12,7 +12,7 @@
     <cfproperty name="limit" type="numeric"> 
 
     <cffunction name="getProducts" output="false" access="public" returntype="array">
-		<cfset LOCAL = {} />
+		<cfset var LOCAL = {} />
 	   
 	    <cfif getSearchKeywords() NEQ "">
 			<cfset LOCAL.qry = "from products p where (p.display_name like '%#getSearchKeywords()#%' or p.keywords like '%#getSearchKeywords()#%' or p.description like '%#getSearchKeywords()#%' )" > 
@@ -75,8 +75,8 @@
 		<cfreturn LOCAL.priceArray />
     </cffunction>
 	
-	<cffunction name="getProductAttributes" output="false" access="public" returntype="array">
-		<cfset LOCAL = {} />
+	<cffunction name="getProductAttributeAndValues" output="false" access="public" returntype="array">
+		<cfset var LOCAL = {} />
 	   
 		<cfquery name="LOCAL.getAttributes">
 			SELECT	attr.attribute_id
@@ -119,8 +119,23 @@
 		<cfreturn LOCAL.attributeArray />
     </cffunction>
 	
+	<cffunction name="getProductAttributes" output="false" access="public" returntype="query">
+		<cfset var LOCAL = {} />
+	   
+		<cfquery name="LOCAL.getAttributes">
+			SELECT	attr.attribute_id
+			,		attr.display_name
+			,		asar.required
+			FROM	attribute attr
+			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
+			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
+		</cfquery>
+		 
+		<cfreturn LOCAL.getAttributes />
+    </cffunction>
+	
 	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
-		<cfset LOCAL = {} />
+		<cfset var LOCAL = {} />
 	   
 		<cfquery name="LOCAL.getAttributes">
 			SELECT	attr.attribute_id

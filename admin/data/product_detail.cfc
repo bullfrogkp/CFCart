@@ -39,6 +39,7 @@
 				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.product = EntityNew("product") />
+				<cfset LOCAL.product.setProductTypeId(2) />
 				<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 				<cfset LOCAL.tab_id = "tab_1" />
 			</cfif>
@@ -112,7 +113,7 @@
 			
 			<!--- attribute valus --->
 			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
-			<cfset LOCAL.attributes = LOCAL.productService.getProductAttributes() />
+			<cfset LOCAL.attributes = LOCAL.productService.getProductAttributeAndValues() />
 			<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
 				<cfset LOCAL.formAttributeValue = Trim(FORM["new_attribute_value_#LOCAL.attribute.attributeId#"]) />
 				<cfif LOCAL.formAttributeValue NEQ "">
@@ -163,6 +164,29 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
+		<cfelseif StructKeyExists(FORM,"add_option_value")>
+			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
+			<cfset LOCAL.productService.setProductId(LOCAL.product.getProductId()) />
+			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
+			
+			<cfset LOCAL.newProduct = DUPLICATE(LOCAL.product)>
+			<cfset LOCAL.newProduct.setId("")>
+			<cfset LOCAL.newProduct.setProductTypeId(2) />
+			<cfset LOCAL.newProduct.setPrice(FORM.) />
+			<cfset LOCAL.newProduct.setStock(FORM.) />
+			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
+			<cfset EntitySave(LOCAL.newProduct) />
+			
+			<cfloop query="LOCAL.productAttributes">
+				<cfif LOCAL.productAttributes.required EQ true>
+					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.newProduct.getProductId()) />
+					<cfset LOCAL.newAttributeValue.setValue(LOCAL.newProduct.getProductId()) />
+					<cfset EntitySave(LOCAL.newAttributeValue) />
+					
+					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
+				</cfif>
+			</cfloop>
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -182,7 +206,7 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
-			<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributes() />
+			<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributeAndValues() />
 			<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />

@@ -371,15 +371,11 @@
 								<td>
 									<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 										<cfif attribute.required EQ true>
-										<select name="#attribute.name#">
+										<select name="new_option_#attribute.attributeId#">
 											<option value="">#attribute.name#</option>
 											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
 												<option value="#attributeValue.attributeValueId#">
-													<cfif attributeValue.value NEQ "">
-														#attributeValue.value#
-													<cfelse>
-														#attributeValue.minvalue# - #attributeValue.maxvalue#
-													</cfif>
+													#attributeValue.value#
 												</option>
 											</cfloop>
 										</select>
@@ -387,13 +383,13 @@
 									</cfloop>
 								</td>
 								<td>
-									<input name="" type="text" value="" />
+									<input name="new_option_price" type="text" value="" />
 								</td>
 								<td>
-									<input name="" type="text" value="" />
+									<input name="new_option_stock" type="text" value="" />
 								</td>
 								<td>
-									<button name="add_value" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Value</button>
+									<button name="add_option_value" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option Value</button>
 								</td>
 							</tr>
 						</table>
