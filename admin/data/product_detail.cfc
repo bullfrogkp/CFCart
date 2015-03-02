@@ -90,6 +90,7 @@
 						
 							<cfset LOCAL.productImage = EntityNew("product_image") />
 							<cfset LOCAL.productImage.setName(LOCAL.imgName) />
+							<cfset EntitySave(LOCAL.productImage) />
 							<cfset LOCAL.product.addImage(LOCAL.productImage) />
 						</cfif>
 					</cfif>
@@ -103,6 +104,7 @@
 					<cfset LOCAL.groupPrice.setCustomerGroupId(LOCAL.customerGroupId) />
 					<cfset LOCAL.groupPrice.setPrice(FORM.new_group_price) />
 					
+					<cfset EntitySave(LOCAL.groupPrice) />
 					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
 				</cfloop>
 			</cfif>
@@ -118,7 +120,7 @@
 					</cfloop>
 				</cfif>
 			</cfloop>
-			
+		
 			<!--- attribute values --->
 			<cfif NOT IsNull(LOCAL.product.getAttributeSet())>
 				<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
@@ -150,7 +152,7 @@
 								
 								<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
 							</cfif>
-							
+							<cfset EntitySave(LOCAL.newAttributeValue) />
 							<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
 						</cfif>
 						
