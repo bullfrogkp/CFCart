@@ -4,7 +4,7 @@
 	$(document).ready(function() {
 		CKEDITOR.replace('detail');
 		
-		$("##products_table").dataTable();
+		$(".data-table").dataTable();
 		
 		$(".top-level-tab").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
@@ -287,10 +287,11 @@
 						<div class="form-group">
 							<label>Attribute Set</label>
 							<select name="attribute_set_id" class="form-control">
+								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
 									<option value="#as.getAttributeSetId()#"
 									
-									<cfif as.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSetId()>
+									<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND as.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
 									selected
 									</cfif>
 									
@@ -426,56 +427,48 @@
 						</cfif>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="box">
-									<div class="box-body table-responsive">
-										<table id="products_table" class="table table-bordered table-striped">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Price</th>
-													<th>Create Datetime</th>
-													<th>SKU</th>
-													<th>Status</th>
-													<th>Link</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
-												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
-													<tr>
-														<td>#product.getDisplayName()#</td>
-														<td>#product.getPrice()#</td>
-														<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-														<td>#product.getSku()#</td>
-														<td>#product.getIsEnabled()#</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-														<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
-													</tr>
-												</cfloop>
-												</cfif>
-											</tbody>
-											<tfoot>
-												<tr>
-													<th>Name</th>
-													<th>Price</th>
-													<th>Create Datetime</th>
-													<th>SKU</th>
-													<th>Status</th>
-													<th>Link</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
-										</table>
-									</div><!-- /.box-body -->
-								</div><!-- /.box -->
-							</div>
-						</div>
+						<table class="table table-bordered table-striped data-table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Create Datetime</th>
+									<th>SKU</th>
+									<th>Status</th>
+									<th>Link</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
+								<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+									<tr>
+										<td>#product.getDisplayName()#</td>
+										<td>#product.getPrice()#</td>
+										<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+										<td>#product.getSku()#</td>
+										<td>#product.getIsEnabled()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+										<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
+									</tr>
+								</cfloop>
+								</cfif>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Create Datetime</th>
+									<th>SKU</th>
+									<th>Status</th>
+									<th>Link</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
+						</table>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
-						<table class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped data-table">
 							<thead>
 								<tr>
 									<th>Subject</th>
@@ -510,7 +503,7 @@
 						</table>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
-						<table class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped data-table">
 							<thead>
 								<tr>
 									<th>Name</th>

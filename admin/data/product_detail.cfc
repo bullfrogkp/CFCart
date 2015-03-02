@@ -41,11 +41,11 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
+				<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfelse>
 				<cfset LOCAL.product = EntityNew("product") />
-				<cfset LOCAL.product.setParentProductId(0) />
 				<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
+				<cfset LOCAL.product.setCreatedDatetime(Now()) />
 			</cfif>
 			
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
@@ -55,16 +55,21 @@
 			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
-			<cfif StructKeyExists(FORM,"shipping_method_id")>
-				<cfset LOCAL.product.setShippingMethodId(FORM.shipping_method_id) />
-			</cfif>
-			<cfset LOCAL.product.setAttributeSetId(FORM.attribute_set_id) />
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.product.setUpdatedDatetime(Now()) />
+			
+			<cfif StructKeyExists(FORM,"shipping_method_id")>
+				<cfset LOCAL.product.setShippingMethod(EntityLoadByPK("shipping_method", FORM.shipping_method_id)) />
+			</cfif>
+			
+			<cfif IsNumeric(FORM.attribute_set_id)>
+				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
+			</cfif>
 			
 			<cfset LOCAL.product.removeAllCategories() />
 			
 			<cfloop list="#FORM.category_id#" index="LOCAL.categoryId">
-				<cfset LOCAL.newCategory = EntityLoad("category",LOCAL.categoryId,true) />
+				<cfset LOCAL.newCategory = EntityLoadByPK("category",LOCAL.categoryId) />
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
 			</cfloop>
 		
@@ -85,8 +90,7 @@
 						
 							<cfset LOCAL.productImage = EntityNew("product_image") />
 							<cfset LOCAL.productImage.setName(LOCAL.imgName) />
-							<cfset EntitySave(LOCAL.productImage) />
-							<cfset LOCAL.product.addImages(LOCAL.productImage) />
+							<cfset LOCAL.product.addImage(LOCAL.productImage) />
 						</cfif>
 					</cfif>
 				</cfloop>
@@ -99,7 +103,7 @@
 					<cfset LOCAL.groupPrice.setCustomerGroupId(LOCAL.customerGroupId) />
 					<cfset LOCAL.groupPrice.setPrice(FORM.new_group_price) />
 					
-					<cfset EntitySave(LOCAL.groupPrice) />
+					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
 				</cfloop>
 			</cfif>
 			
@@ -116,43 +120,48 @@
 			</cfloop>
 			
 			<!--- attribute values --->
-			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
-			<cfset LOCAL.attributes = LOCAL.productService.getProductAttributeAndValues() />
-			<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
-				<cfset LOCAL.formAttributeValue = Trim(FORM["new_attribute_value_#LOCAL.attribute.attributeId#"]) />
-				<cfif LOCAL.formAttributeValue NEQ "">
-					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.product.getProductId()) />
-					<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attributeId) />
-					<cfset LOCAL.newAttributeValue.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
-					<cfset LOCAL.newAttributeValue.setValue(LOCAL.formAttributeValue) />
-					
-					<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attributeId#"]) />
-					
-					<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\products\#LOCAL.product.getProductId()#\attributes\#LOCAL.attribute.attributeId#" />
-					
-					<cfif NOT DirectoryExists(LOCAL.imageDir)>
-						<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-					</cfif>
-					
-					<cfif LOCAL.filename NEQ "">
-						<cffile action = "upload"  
-								fileField = "new_image_#LOCAL.attribute.attributeId#"
-								destination = "#LOCAL.imageDir#"
-								nameConflict = "MakeUnique"> 
+			<cfif NOT IsNull(LOCAL.product.getAttributeSet())>
+				<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
+				<cfset LOCAL.attributes = LOCAL.productService.getProductAttributeAndValues() />
+				<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
+					<cfif StructKeyExists(FORM,"new_attribute_value_#LOCAL.attribute.attributeId#")>
+						<cfset LOCAL.formAttributeValue = Trim(FORM["new_attribute_value_#LOCAL.attribute.attributeId#"]) />
+						<cfif LOCAL.formAttributeValue NEQ "">
+							<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+							<cfset LOCAL.newAttributeValue.setProductId(LOCAL.product.getProductId()) />
+							<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attributeId) />
+							<cfset LOCAL.newAttributeValue.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
+							<cfset LOCAL.newAttributeValue.setValue(LOCAL.formAttributeValue) />
+							
+							<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attributeId#"]) />
+							
+							<cfif LOCAL.filename NEQ "">
+							
+								<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\products\#LOCAL.product.getProductId()#\attributes\#LOCAL.attribute.attributeId#" />
+								
+								<cfif NOT DirectoryExists(LOCAL.imageDir)>
+									<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+								</cfif>
+								
+								<cffile action = "upload"  
+										fileField = "new_image_#LOCAL.attribute.attributeId#"
+										destination = "#LOCAL.imageDir#"
+										nameConflict = "MakeUnique"> 
+								
+								<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+							</cfif>
+							
+							<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
+						</cfif>
 						
-						<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-					</cfif>
-					
-					<cfset EntitySave(LOCAL.newAttributeValue) />
-				</cfif>
-				
-				<cfloop array="#attribute.attributeValueArray#" index="LOCAL.attributeValue">
-					<cfif StructKeyExists(FORM,"remove_attribute_value_#LOCAL.attributeValue.attributeValueId#")>	
-						<cfset EntityDelete(EntityLoad("attribute_value",LOCAL.attributeValue.attributeValueId,true)) />
+						<cfloop array="#attribute.attributeValueArray#" index="LOCAL.attributeValue">
+							<cfif StructKeyExists(FORM,"remove_attribute_value_#LOCAL.attributeValue.attributeValueId#")>	
+								<cfset LOCAL.product.removeAttributeValue(EntityLoad("attribute_value",LOCAL.attributeValue.attributeValueId,true)) />
+							</cfif>
+						</cfloop>
 					</cfif>
 				</cfloop>
-			</cfloop>
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.product) />
 			
@@ -160,7 +169,7 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
+			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.product.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.product) />
@@ -169,35 +178,37 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
 		<cfelseif StructKeyExists(FORM,"add_option_value")>
-			<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
+			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
-			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
+			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getgetAttributeSetId()) />
 			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
 			
 			<cfset LOCAL.newProduct = EntityNew("product")>
 			<cfset LOCAL.newProduct.setSku(LOCAL.product.getSku()) />
-			<cfset LOCAL.newProduct.setTaxCategoryId(LOCAL.product.getTaxCategoryId()) />
-			<cfset LOCAL.newProduct.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
-			<cfset LOCAL.newProduct.setShippingMethodId(LOCAL.product.getShippingMethodId()) />
-			<cfset LOCAL.newProduct.setParentProductId(FORM.id) />
+			<cfset LOCAL.newProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
+			<cfset LOCAL.newProduct.setAttributeSet(LOCAL.product.getAttributeSet()) />
+			<cfset LOCAL.newProduct.setShippingMethod(LOCAL.product.getShippingMethod()) />
+			<cfset LOCAL.newProduct.setParentProduct(LOCAL.product) />
 			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
 			<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.newProduct.setUpdatedDatetime(Now()) />
+		
+			<cfset EntitySave(LOCAL.newProduct) />
 		
 			<cfloop query="LOCAL.productAttributes">
 				<cfif LOCAL.productAttributes.required>
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.newProduct.getProductId()) />
-					<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.productAttributes.attribute_id) />
+					<cfset LOCAL.newAttributeValue.setProduct(LOCAL.newProduct) />
+					<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",LOCAL.productAttributes.attribute_id)) />
 					<cfset LOCAL.newAttributeValue.setValue(FORM["new_option_#LOCAL.productAttributes.attribute_id#"]) />
-					<cfset EntitySave(LOCAL.newAttributeValue) />
 					
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
 				</cfif>
 			</cfloop>
 			
-			<cfset EntitySave(LOCAL.newProduct) />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		</cfif>
 		
@@ -213,40 +224,43 @@
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.productService.setProductId(URL.id) />
-			<cfset LOCAL.pageData.product = EntityLoad("product", URL.id, true)> 
-			<cfset LOCAL.productService.setAttributeSetId(LOCAL.pageData.product.getAttributeSetId()) />
+			<cfset LOCAL.pageData.product = EntityLoadByPK("product", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
-			<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributeAndValues() />
-			<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
 			
-			<cfset LOCAL.productService.removeProductId() />
-			<cfset LOCAL.productService.setParentProductId(URL.id) />
-			<cfset LOCAL.pageData.subProducts = LOCAL.productService.getProducts() />
+			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
+				<cfset LOCAL.productService.setAttributeSetId(LOCAL.pageData.product.getAttributeSet().getAttributeSetId()) />
+				<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributeAndValues() />
+				<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
 			
-			<cfset LOCAL.pageData.subProductArray = [] />
-			
-			<cfloop array="#LOCAL.pageData.subProducts#" index="LOCAL.subProduct">
-				<cfset LOCAL.productService.setProductId(LOCAL.subProduct.getProductId()) />
-				<cfset LOCAL.pageData.subProductAttributes = LOCAL.productService.getProductAttributeAndValues() />
+				<cfset LOCAL.productService.removeProductId() />
+				<cfset LOCAL.productService.setParentProductId(URL.id) />
+				<cfset LOCAL.pageData.subProducts = LOCAL.productService.getProducts() />
 				
-				<cfset LOCAL.subProductStruct = {} />
-				<cfset LOCAL.subProductStruct.productId = LOCAL.subProduct.getProductId() />
+				<cfset LOCAL.pageData.subProductArray = [] />
 				
-				<cfset LOCAL.subProductStruct.optionValues = [] />
+				<cfloop array="#LOCAL.pageData.subProducts#" index="LOCAL.subProduct">
+					<cfset LOCAL.productService.setProductId(LOCAL.subProduct.getProductId()) />
+					<cfset LOCAL.pageData.subProductAttributes = LOCAL.productService.getProductAttributeAndValues() />
+					
+					<cfset LOCAL.subProductStruct = {} />
+					<cfset LOCAL.subProductStruct.productId = LOCAL.subProduct.getProductId() />
+					
+					<cfset LOCAL.subProductStruct.optionValues = [] />
 
-				<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">		
-					<cfif LOCAL.attribute.required AND ArrayLen(LOCAL.attribute.attributeValueArray) EQ 1>
-						<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeValueArray[1].value) />
-					</cfif>
+					<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">		
+						<cfif LOCAL.attribute.required AND ArrayLen(LOCAL.attribute.attributeValueArray) EQ 1>
+							<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeValueArray[1].value) />
+						</cfif>
+					</cfloop>
+					
+					<cfset LOCAL.subProductStruct.price = LOCAL.subProduct.getPrice() />
+					<cfset LOCAL.subProductStruct.stock = LOCAL.subProduct.getStock() />
+					
+					<cfset ArrayAppend(LOCAL.pageData.subProductArray, LOCAL.subProductStruct) />
 				</cfloop>
-				
-				<cfset LOCAL.subProductStruct.price = LOCAL.subProduct.getPrice() />
-				<cfset LOCAL.subProductStruct.stock = LOCAL.subProduct.getStock() />
-				
-				<cfset ArrayAppend(LOCAL.pageData.subProductArray, LOCAL.subProductStruct) />
-			</cfloop>
+			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
@@ -255,10 +269,10 @@
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
-		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group") />
-		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
-		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set") />
-		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method") />
+		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
+		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category",{isDeleted = false, isEnabled = true}) />
+		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false, isEnabled = true}) />
+		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method",{isDeleted = false, isEnabled = true}) />
 				
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
@@ -274,7 +288,8 @@
 			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitle())?"":LOCAL.pageData.product.getTitle() />
 			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescription())?"":LOCAL.pageData.product.getDescription() />
-			<cfset LOCAL.pageData.formData.shipping_method_id = isNull(LOCAL.pageData.product.getShippingMethodId())?"":LOCAL.pageData.product.getShippingMethodId() />
+			<cfset LOCAL.pageData.formData.shipping_method_id = isNull(LOCAL.pageData.product.getShippingMethod())?"":LOCAL.pageData.product.getShippingMethod().getShippingMethodId() />
+			<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.product.getTaxCategory())?"":LOCAL.pageData.product.getTaxCategory().getTaxCategoryId() />
 		</cfif>
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
