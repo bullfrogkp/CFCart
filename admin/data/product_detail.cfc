@@ -33,15 +33,19 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.tab_id = FORM.tab_id />
+		<cfelse>
+			<cfset LOCAL.tab_id = "tab_1" />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"save_item")>
 			<cfif IsNumeric(FORM.id)>
 				<cfset LOCAL.product = EntityLoad("product", FORM.id, true)> 
-				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.product = EntityNew("product") />
 				<cfset LOCAL.product.setParentProductId(0) />
 				<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.tab_id = "tab_1" />
 			</cfif>
 			
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
@@ -185,6 +189,7 @@
 				<cfif LOCAL.productAttributes.required>
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductId(LOCAL.newProduct.getProductId()) />
+					<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.productAttributes.attribute_id) />
 					<cfset LOCAL.newAttributeValue.setValue(FORM["new_option_#LOCAL.productAttributes.attribute_id#"]) />
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					
@@ -193,6 +198,7 @@
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.newProduct) />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -229,7 +235,7 @@
 				<cfset LOCAL.subProductStruct.productId = LOCAL.subProduct.getProductId() />
 				
 				<cfset LOCAL.subProductStruct.optionValues = [] />
-		
+
 				<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">		
 					<cfif LOCAL.attribute.required AND ArrayLen(LOCAL.attribute.attributeValueArray) EQ 1>
 						<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeValueArray[1].value) />
