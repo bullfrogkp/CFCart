@@ -182,7 +182,7 @@
 		<cfelseif StructKeyExists(FORM,"add_option_value")>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
-			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getgetAttributeSetId()) />
+			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
 			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
 			
 			<cfset LOCAL.newProduct = EntityNew("product")>
@@ -207,6 +207,7 @@
 					<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",LOCAL.productAttributes.attribute_id)) />
 					<cfset LOCAL.newAttributeValue.setValue(FORM["new_option_#LOCAL.productAttributes.attribute_id#"]) />
 					
+					<cfset EntitySave(LOCAL.newAttributeValue) />
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
 				</cfif>
 			</cfloop>
@@ -258,7 +259,11 @@
 					</cfloop>
 					
 					<cfset LOCAL.subProductStruct.price = LOCAL.subProduct.getPrice() />
-					<cfset LOCAL.subProductStruct.stock = LOCAL.subProduct.getStock() />
+					<cfif NOT IsNull(LOCAL.subProduct.getStock())>
+						<cfset LOCAL.subProductStruct.stock = LOCAL.subProduct.getStock() />
+					<cfelse>
+						<cfset LOCAL.subProductStruct.stock = 0 />
+					</cfif>
 					
 					<cfset ArrayAppend(LOCAL.pageData.subProductArray, LOCAL.subProductStruct) />
 				</cfloop>

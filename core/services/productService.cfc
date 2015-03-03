@@ -20,9 +20,6 @@
 			<cfif NOT IsNull(getProductId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getProductId()#' " />
 			</cfif>
-			<cfif NOT IsNull(getParentProductId())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.product_type_id = '#getParentProductId()#' " />
-			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and exists(from category_product_rela cpr where cpr.category_id = '#getCategoryId()#' and cpr.product_id = p.product_id) " />
 			</cfif>
@@ -35,9 +32,6 @@
 			<cfset LOCAL.filter = {} />
 			<cfif NOT IsNull(getProductId())>
 				<cfset LOCAL.filter.productId = getProductId() />
-			</cfif>
-			<cfif NOT IsNull(getParentProductId())>
-				<cfset LOCAL.filter.parentProductId = getParentProductId() />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
@@ -142,7 +136,7 @@
 			FROM	attribute attr
 			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
 			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
-			AND		asar.required
+			AND		asar.required = <cfqueryparam cfsqltype="cf_sql_boolean" value="1" /> 
 		</cfquery>
 		
 		<cfquery name="LOCAL.getAttributeValues">
