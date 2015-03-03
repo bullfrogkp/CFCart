@@ -8,7 +8,6 @@
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
-		<cfset LOCAL.productService.setParentProductId("0") />
 		<cfif StructKeyExists(URL,"product_id") AND IsNumeric(URL.product_id)>
 			<cfset LOCAL.productService.setProductId(URL.product_id) />
 		</cfif>
