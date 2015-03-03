@@ -251,6 +251,7 @@
 						<div class="form-group">
 							<label>Tax Category</label>
 							<select name="tax_category_id" class="form-control">
+								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
 									<option value="#tc.getTaxCategoryId()#"
 									
