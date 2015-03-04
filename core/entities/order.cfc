@@ -1,34 +1,31 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="orderId" column="order_id" fieldtype="id" generator="native">
-	<cfproperty name="sku" column="sku" ormtype="string"> 
-	<cfproperty name="title" column="title" ormtype="string"> 
-	<cfproperty name="keywords" column="keywords" ormtype="string"> 
-	<cfproperty name="price" column="price" ormtype="float"> 
-	<cfproperty name="stock" column="stock" ormtype="integer"> 
-	<cfproperty name="specialPrice" column="special_price" ormtype="float"> 
-	<cfproperty name="specialPriceFromDate" column="special_price_from_date" ormtype="date"> 
-	<cfproperty name="specialPriceToDate" column="special_price_to_date" ormtype="date"> 
-	<cfproperty name="detail" column="detail" ormtype="text"> 
+	<cfproperty name="coupon" column="coupon" ormtype="string"> 
+	<cfproperty name="total" column="total" ormtype="string"> 
 	
-	<cfproperty name="attributeSet" fieldtype="many-to-one" cfc="attribute_set" fkcolumn="attribute_set_id">
-	<cfproperty name="parentProduct" fieldtype="many-to-one" cfc="product" fkcolumn="parent_product_id">
-	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">
-	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">
+	<cfproperty name="shippingFirstName" column="shipping_first_name" ormtype="string"> 
+	<cfproperty name="shippingMiddleName" column="shipping_middle_name" ormtype="string"> 
+	<cfproperty name="shippingLastName" column="shipping_last_name" ormtype="string">
+	<cfproperty name="shippingPhone" column="shipping_phone" ormtype="string"> 
+    <cfproperty name="shippingStreet" column="shipping_street" ormtype="string"> 
+    <cfproperty name="shippingCity" column="shipping_city" ormtype="string"> 
+    <cfproperty name="shippingPostalCode" column="shipping_postal_code" ormtype="string"> 
+	<cfproperty name="shippingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
+	<cfproperty name="shippingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">	
 	
-	<cfproperty name="attributeValues" type="array" fieldtype="one-to-many" cfc="attribute_value" fkcolumn="product_id" singularname="attributeValue">
-	<cfproperty name="relatedProducts" type="array" fieldtype="one-to-many" cfc="related_product" fkcolumn="product_id" singularname="relatedProduct">
-	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="product_id" singularname="review">
-	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="product_image" fkcolumn="product_id" singularname="image">
+	<cfproperty name="billingFirstName" column="billing_first_name" ormtype="string"> 
+	<cfproperty name="billingMiddleName" column="billing_middle_name" ormtype="string"> 
+	<cfproperty name="billingLastName" column="billing_last_name" ormtype="string">
+	<cfproperty name="billingPhone" column="billing_phone" ormtype="string"> 
+    <cfproperty name="billingStreet" column="billing_street" ormtype="string"> 
+    <cfproperty name="billingCity" column="billing_city" ormtype="string"> 
+    <cfproperty name="billingPostalCode" column="billing_postal_code" ormtype="string"> 
+	<cfproperty name="billingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
+	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">	
 	
-	<cfproperty name="categories" fieldtype="many-to-many" cfc="category" linktable="category_product_rela" fkcolumn="product_id" inversejoincolumn="category_id" singularname="category">
+	<cfproperty name="paymentMethod" fieldtype="many-to-one" cfc="payment_method" fkcolumn="payment_method_id">	
+	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">	
+	<cfproperty name="status" fieldtype="many-to-one" cfc="order_status" fkcolumn="order_status_id">	
 	
-	<cfproperty name="productCustomerGroupRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="product_id" singularname="productCustomerGroupRela">
-	
-	<cfproperty name="searchKeyword" type="string" persistent="false"> 
-	
-	<cffunction name="removeAllCategories" access="public" output="false" returnType="void">
-		<cfif NOT IsNull(getCategories())>
-			<cfset ArrayClear(getCategories()) />
-		</cfif>
-	</cffunction>
+	<cfproperty name="products" type="array" fieldtype="one-to-many" cfc="order_product" fkcolumn="order_product_id" singularname="product">
 </cfcomponent>
