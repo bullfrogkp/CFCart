@@ -9,7 +9,7 @@
 	<cfproperty name="middleName" column="middle_name" ormtype="string"> 
 	<cfproperty name="lastName" column="last_name" ormtype="string"> 
 	<cfproperty name="suffix " column="suffix" ormtype="string"> 
-	<cfproperty name="DateofBirth " column="date_of_birth" ormtype="string"> 
+	<cfproperty name="dateOfBirth " column="date_of_birth" ormtype="string"> 
 	<cfproperty name="gender" column="gender" ormtype="string"> 
 	<cfproperty name="website" column="website" ormtype="string"> 
 	<cfproperty name="subscribed" column="subscribed" ormtype="boolean"> 
