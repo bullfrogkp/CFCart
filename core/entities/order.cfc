@@ -10,8 +10,8 @@
     <cfproperty name="shippingStreet" column="shipping_street" ormtype="string"> 
     <cfproperty name="shippingCity" column="shipping_city" ormtype="string"> 
     <cfproperty name="shippingPostalCode" column="shipping_postal_code" ormtype="string"> 
-	<cfproperty name="shippingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
-	<cfproperty name="shippingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">	
+	<cfproperty name="shippingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="shipping_country_id">
+	<cfproperty name="shippingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="shipping_province_id">	
 	
 	<cfproperty name="billingFirstName" column="billing_first_name" ormtype="string"> 
 	<cfproperty name="billingMiddleName" column="billing_middle_name" ormtype="string"> 
@@ -20,8 +20,8 @@
     <cfproperty name="billingStreet" column="billing_street" ormtype="string"> 
     <cfproperty name="billingCity" column="billing_city" ormtype="string"> 
     <cfproperty name="billingPostalCode" column="billing_postal_code" ormtype="string"> 
-	<cfproperty name="billingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
-	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">	
+	<cfproperty name="billingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="billing_country_id">
+	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="billing_province_id">	
 	
 	<cfproperty name="paymentMethod" fieldtype="many-to-one" cfc="payment_method" fkcolumn="payment_method_id">	
 	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">	

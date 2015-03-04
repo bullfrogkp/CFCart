@@ -18,7 +18,7 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
 								<th>Name</th>
@@ -31,60 +31,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Kevin Pan</td>
-								<td>pppgiaa@gmail.com</td>
-								<td>4166666666</td>
-								<td>Wholesaler</td>
-								<td>Yes</td>
-								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Kevin Pan</td>
-								<td>pppgiaa@gmail.com</td>
-								<td>4166666666</td>
-								<td>Wholesaler</td>
-								<td>Yes</td>
-								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Kevin Pan</td>
-								<td>pppgiaa@gmail.com</td>
-								<td>4166666666</td>
-								<td>Wholesaler</td>
-								<td>Yes</td>
-								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Kevin Pan</td>
-								<td>pppgiaa@gmail.com</td>
-								<td>4166666666</td>
-								<td>Wholesaler</td>
-								<td>Yes</td>
-								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Kevin Pan</td>
-								<td>pppgiaa@gmail.com</td>
-								<td>4166666666</td>
-								<td>Wholesaler</td>
-								<td>Yes</td>
-								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Kevin Pan</td>
-								<td>pppgiaa@gmail.com</td>
-								<td>4166666666</td>
-								<td>Wholesaler</td>
-								<td>Yes</td>
-								<td>Jan 13, 2015</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
+							<cfloop array="#REQUEST.pageData.customers#" index="c">
+								<tr>
+									<td>#c.getFirstName()# #c.getMiddleName()# #c.getLastName()#</td>
+									<td>#c.getEmail()#</td>
+									<td>#c.getPhone()#</td>
+									<td>#c.getGroup()#</td>
+									<td>#c.getSubscribed()#</td>
+									<td>#DateFormat(c.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#c.getCustomerId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>

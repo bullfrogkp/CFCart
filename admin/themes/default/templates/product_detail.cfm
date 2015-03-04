@@ -4,8 +4,6 @@
 	$(document).ready(function() {
 		CKEDITOR.replace('detail');
 		
-		$(".data-table").dataTable();
-		
 		$(".top-level-tab").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});

@@ -475,6 +475,7 @@
 				$('###REQUEST.pageData.currentPageName#').addClass('active');
 				$('###REQUEST.pageData.currentPageName#').parent('.treeview-menu').css('display','block');
 				$('###REQUEST.pageData.currentPageName#').parent().parent('.treeview').addClass('active');
+				$(".data-table").dataTable();
 			});
 		</script>
 		

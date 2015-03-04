@@ -8,8 +8,8 @@
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
-		<cfif StructKeyExists(URL,"product_id") AND IsNumeric(URL.product_id)>
-			<cfset LOCAL.productService.setProductId(URL.product_id) />
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.productService.setProductId(URL.id) />
 		</cfif>
 		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
 			<cfset LOCAL.productService.setIsEnabled(URL.is_enabled) />

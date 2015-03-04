@@ -7,8 +7,8 @@
 		
 		<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
 		
-		<cfif StructKeyExists(URL,"customer_id") AND IsNumeric(URL.customer_id)>
-			<cfset LOCAL.customerService.setCustomerId(URL.customer_id) />
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.customerService.setCustomerId(URL.id) />
 		</cfif>
 		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
 			<cfset LOCAL.customerService.setIsEnabled(URL.is_enabled) />
