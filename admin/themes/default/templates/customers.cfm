@@ -36,7 +36,7 @@
 									<td>#c.getFirstName()# #c.getMiddleName()# #c.getLastName()#</td>
 									<td>#c.getEmail()#</td>
 									<td>#c.getPhone()#</td>
-									<td>#c.getGroup()#</td>
+									<td>#c.getCustomerGroup().getDisplayName()#</td>
 									<td>#c.getSubscribed()#</td>
 									<td>#DateFormat(c.getCreatedDatetime(),"mmm dd,yyyy")#</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#c.getCustomerId()#">View Detail</a></td>

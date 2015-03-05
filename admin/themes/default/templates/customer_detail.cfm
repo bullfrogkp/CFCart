@@ -28,91 +28,87 @@
 					<li><a href="##tab_3" data-toggle="tab">Orders</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Addresses</a></li>
 					<li><a href="##tab_5" data-toggle="tab">Reviews</a></li>
-					<li><a href="##tab_6" data-toggle="tab">Newsletters</a></li>
-					<li><a href="##tab_7" data-toggle="tab">Change Password</a></li>
-					<li class="pull-right"><button type="submit" class="btn btn-sm btn-danger pull-right top-nav-button">Delete Customer</button></li>
-					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Save Customer</button></li>
-					<li class="pull-right"><button type="submit" class="btn btn-sm btn-primary pull-right top-nav-button">Add Order</button></li>
+					<li><a href="##tab_6" data-toggle="tab">Change Password</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
 						 <div class="form-group">
 							<label>Last Logged In Time</label>
-							<input disabled type="text" class="form-control" placeholder="Enter ..." value="27 Jan 2015 07:05:49"/>
+							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.last_login_datetime#"/>
 						</div>
 						 <div class="form-group">
 							<label>Last Logged In IP Address</label>
-							<input disabled type="text" class="form-control" placeholder="Enter ..." value="65.57.67.112"/>
+							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.last_login_ip#"/>
 						</div>
 						 <div class="form-group">
 							<label>Account Created Time</label>
-							<input disabled type="text" class="form-control" placeholder="Enter ..." value="27 Jan 2015 07:05:49"/>
+							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.created_datetime#"/>
 						</div>
 						 <div class="form-group">
 							<label>Account Created IP Address</label>
-							<input disabled type="text" class="form-control" placeholder="Enter ..." value="65.57.67.112"/>
+							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.created_user#"/>
 						</div>
 						<div class="form-group">
 							<label>Shopping Cart</label>
-							<table id="example2" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Product</th>
-										<th>Information</th>
-										<th>Quantity</th>
+										<th>Description</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
+									<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
 									<tr>
-										<td>Kevin</td>
-										<td>Pan</td>
-										<td>4166666666</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+										<td>#product.getDisplayName()#</td>
+										<td>#product.getDescription()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 									</tr>
+									</cfloop>
 								</tbody>
 							</table>
 						</div>
 						<div class="form-group">
 							<label>Buy Later</label>
-							<table id="example2" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Product</th>
-										<th>Information</th>
-										<th>Quantity</th>
+										<th>Description</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
+									<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
 									<tr>
-										<td>Kevin</td>
-										<td>Pan</td>
-										<td>4166666666</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+										<td>#product.getDisplayName()#</td>
+										<td>#product.getDescription()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 									</tr>
+									</cfloop>
 								</tbody>
 							</table>
 						</div>
 						
 						<div class="form-group">
 							<label>Wishlist</label>
-							<table id="example2" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Product</th>
-										<th>Information</th>
-										<th>Quantity</th>
+										<th>Description</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
+									<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
 									<tr>
-										<td>Kevin</td>
-										<td>Pan</td>
-										<td>4166666666</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=1">View Detail</a></td>
+										<td>#product.getDisplayName()#</td>
+										<td>#product.getDescription()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 									</tr>
+									</cfloop>
 								</tbody>
 							</table>
 						</div>
@@ -121,23 +117,23 @@
 						<form role="form">
 							<div class="form-group">
 								<label>Prefix</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan"/>
+								<input type="text" name="prefix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.prefix#"/>
 							</div>
 							 <div class="form-group">
 								<label>First Name</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan"/>
+								<input type="text" name="first_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.firstName#"/>
 							</div>
 							<div class="form-group">
 								<label>Middle Name</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan"/>
+								<input type="text" name="middle_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.middleName#"/>
 							</div>
 							<div class="form-group">
 								<label>Last Name</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan"/>
+								<input type="text" name="last_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.lastName#"/>
 							</div>
 							<div class="form-group">
 								<label>Suffix</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan"/>
+								<input type="text" name="suffix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.suffix#"/>
 							</div>
 							 <div class="form-group">
 								<label>Date of Birth</label>
@@ -145,29 +141,32 @@
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
-									<input type="text" class="form-control pull-right" id="reservation"/>
+									<input type="text" name="date_of_birth" class="form-control pull-right" id="reservation" value="#REQUEST.pageData.formData.dateOfBirth#"/>
 								</div><!-- /.input group -->
 							</div><!-- /.form group -->
 							<div class="form-group">
 								<label>Gender</label>
-								<select class="form-control" name="parent_category_id">
-									<option value="0">Male</option>
-									<option value="">Female</option>
+								<select class="form-control" name="gender">
+									<option value="">Please Select...</option>
+									<option value="Male" <cfif REQUEST.pageData.formData.gender EQ "Male">selected</cfif>>Male</option>
+									<option value="Female" <cfif REQUEST.pageData.formData.gender EQ "Female">selected</cfif>>Female</option>
 								</select>
 							</div>
 							 <div class="form-group">
 								<label>Email</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="kp@kp.ca"/>
+								<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
 							</div>
 							<div class="form-group">
 								<label>Website</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="kp@kp.ca"/>
+								<input type="text" name="website" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.website#"/>
 							</div>
 							 <div class="form-group">
 								<label>Customer Group</label>
-								<select class="form-control" name="parent_category_id">
-									<option value="0">Retailer</option>
-									<option value="">Wholesaler</option>
+								<select class="form-control" name="customer_group_id">
+									<option value="">Please Select...</option>
+									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+									<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+									</cfloop>
 								</select>
 							</div>
 							 <div class="form-group">
@@ -192,7 +191,7 @@
 						</form>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
-						<table id="example2" class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>Order No.</th>
@@ -227,7 +226,7 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_4">
 						<label>Current Billing Address</label>
-						<table id="example2" class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>First Name</th>
@@ -258,7 +257,7 @@
 							</tbody>
 						</table>
 						<label>Current Shipping Address</label>
-						<table id="example2" class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>First Name</th>
@@ -289,7 +288,7 @@
 							</tbody>
 						</table>
 						<label>Inactive Addresses</label>
-						<table id="example2" class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>First Name</th>
@@ -359,7 +358,7 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_5">
-						<table id="example2" class="table table-bordered table-striped">
+						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>Subject</th>
@@ -393,34 +392,6 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_6">
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Subscribe Datetime</th>
-									<th>Subscribe User</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Name</th>
-									<th>Subscribe Datetime</th>
-									<th>Subscribe User</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_7">
 						<form role="form">
 							 <div class="form-group">
 								<label>Current Password</label>
@@ -439,6 +410,10 @@
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
+			<div class="form-group">
+				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Customer</button>
+				<button name="delete_item" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Delete Customer</button>
+			</div>
 		</div><!-- /.col -->
 		
 	</div>   <!-- /.row -->

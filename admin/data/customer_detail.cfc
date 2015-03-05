@@ -5,7 +5,7 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif IsValid(Trim(FORM.email)) EQ true>
+		<cfif IsValid("email",Trim(FORM.email)) EQ true>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
 		</cfif>
 		
@@ -84,7 +84,7 @@
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getDisplayName()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getFirstName()# #LOCAL.pageData.customer.getMiddleName()# #LOCAL.pageData.customer.getLastName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 		<cfelse>
 			<cfset LOCAL.pageData.customer = EntityNew("customer") />
@@ -93,7 +93,7 @@
 		</cfif>
 		
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
-				
+			
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
@@ -105,13 +105,13 @@
 			<cfset LOCAL.pageData.formData.email = isNull(LOCAL.pageData.customer.getEmail())?"":LOCAL.pageData.customer.getEmail() />
 			<cfset LOCAL.pageData.formData.gender = isNull(LOCAL.pageData.customer.getGender())?"":LOCAL.pageData.customer.getGender() />
 			<cfset LOCAL.pageData.formData.website = isNull(LOCAL.pageData.customer.getWebsite())?"":LOCAL.pageData.customer.getWebsite() />
-			<cfset LOCAL.pageData.formData.to_date = isNull(LOCAL.pageData.customer.getSpecialPriceToDate())?"":DateFormat(LOCAL.pageData.customer.getSpecialPriceToDate(),"mm/dd/yyyy") />
 			<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.customer.getIsEnabled())?"":LOCAL.pageData.customer.getIsEnabled() />
-			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.customer.getTitle())?"":LOCAL.pageData.customer.getTitle() />
-			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.customer.getKeywords())?"":LOCAL.pageData.customer.getKeywords() />
+			<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.customer.getPhone())?"":LOCAL.pageData.customer.getPhone() />
+			<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.customer.getLastLoginDatetime())?"":LOCAL.pageData.customer.getLastLoginDatetime() />
+			<cfset LOCAL.pageData.formData.last_login_ip = isNull(LOCAL.pageData.customer.getLastLoginIp())?"":LOCAL.pageData.customer.getLastLoginIp() />
+			<cfset LOCAL.pageData.formData.date_of_birth = isNull(LOCAL.pageData.customer.getDateOfBirth())?"":LOCAL.pageData.customer.getDateOfBirth() />
+			<cfset LOCAL.pageData.formData.subscribed = isNull(LOCAL.pageData.customer.getSubscribed())?"":LOCAL.pageData.customer.getSubscribed() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.customer.getDescription())?"":LOCAL.pageData.customer.getDescription() />
-			<cfset LOCAL.pageData.formData.shipping_method_id = isNull(LOCAL.pageData.customer.getShippingMethod())?"":LOCAL.pageData.customer.getShippingMethod().getShippingMethodId() />
-			<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.customer.getTaxCategory())?"":LOCAL.pageData.customer.getTaxCategory().getTaxCategoryId() />
 		</cfif>
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
