@@ -114,81 +114,81 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_2">
-						<form role="form">
-							<div class="form-group">
-								<label>Prefix</label>
-								<input type="text" name="prefix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.prefix#"/>
-							</div>
-							 <div class="form-group">
-								<label>First Name</label>
-								<input type="text" name="first_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.firstName#"/>
-							</div>
-							<div class="form-group">
-								<label>Middle Name</label>
-								<input type="text" name="middle_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.middleName#"/>
-							</div>
-							<div class="form-group">
-								<label>Last Name</label>
-								<input type="text" name="last_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.lastName#"/>
-							</div>
-							<div class="form-group">
-								<label>Suffix</label>
-								<input type="text" name="suffix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.suffix#"/>
-							</div>
-							 <div class="form-group">
-								<label>Date of Birth</label>
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</div>
-									<input type="text" name="date_of_birth" class="form-control pull-right" id="reservation" value="#REQUEST.pageData.formData.dateOfBirth#"/>
-								</div><!-- /.input group -->
-							</div><!-- /.form group -->
-							<div class="form-group">
-								<label>Gender</label>
-								<select class="form-control" name="gender">
-									<option value="">Please Select...</option>
-									<option value="Male" <cfif REQUEST.pageData.formData.gender EQ "Male">selected</cfif>>Male</option>
-									<option value="Female" <cfif REQUEST.pageData.formData.gender EQ "Female">selected</cfif>>Female</option>
-								</select>
-							</div>
-							 <div class="form-group">
-								<label>Email</label>
-								<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
-							</div>
-							<div class="form-group">
-								<label>Website</label>
-								<input type="text" name="website" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.website#"/>
-							</div>
-							 <div class="form-group">
-								<label>Customer Group</label>
-								<select class="form-control" name="customer_group_id">
-									<option value="">Please Select...</option>
-									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-									<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
-							 <div class="form-group">
-								<label>Subscribed</label>
-								<select class="form-control" name="parent_category_id">
-									<option value="0">Yes</option>
-									<option value="">No</option>
-								</select>
-							</div>
-							 <div class="form-group">
-								<label>Status</label>
-								<select class="form-control" name="parent_category_id">
-									<option value="0">Enabled</option>
-									<option value="">Disabled</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Comments</label>
-								<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</form>
+					
+						<div class="form-group">
+							<label>Prefix</label>
+							<input type="text" name="prefix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.prefix#"/>
+						</div>
+						 <div class="form-group">
+							<label>First Name</label>
+							<input type="text" name="first_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.firstName#"/>
+						</div>
+						<div class="form-group">
+							<label>Middle Name</label>
+							<input type="text" name="middle_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.middleName#"/>
+						</div>
+						<div class="form-group">
+							<label>Last Name</label>
+							<input type="text" name="last_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.lastName#"/>
+						</div>
+						<div class="form-group">
+							<label>Suffix</label>
+							<input type="text" name="suffix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.suffix#"/>
+						</div>
+						 <div class="form-group">
+							<label>Date of Birth</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" name="date_of_birth" class="form-control pull-right" id="reservation" value="#REQUEST.pageData.formData.dateOfBirth#"/>
+							</div><!-- /.input group -->
+						</div><!-- /.form group -->
+						<div class="form-group">
+							<label>Gender</label>
+							<select class="form-control" name="gender">
+								<option value="">Please Select...</option>
+								<option value="Male" <cfif REQUEST.pageData.formData.gender EQ "Male">selected</cfif>>Male</option>
+								<option value="Female" <cfif REQUEST.pageData.formData.gender EQ "Female">selected</cfif>>Female</option>
+							</select>
+						</div>
+						 <div class="form-group">
+							<label>Email</label>
+							<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
+						</div>
+						<div class="form-group">
+							<label>Website</label>
+							<input type="text" name="website" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.website#"/>
+						</div>
+						 <div class="form-group">
+							<label>Customer Group</label>
+							<select class="form-control" name="customer_group_id">
+								<option value="">Please Select...</option>
+								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+								<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+								</cfloop>
+							</select>
+						</div>
+						 <div class="form-group">
+							<label>Subscribed</label>
+							<select class="form-control" name="subscribed">
+								<option value="">Please Select...</option>
+								<option value="1" <cfif REQUEST.pageData.formData.subscribed EQ 1>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.subscribed EQ 0>selected</cfif>>No</option>
+							</select>
+						</div>
+						 <div class="form-group">
+							<label>Status</label>
+							<select class="form-control" name="is_enabled">
+								<option value="">Please Select...</option>
+								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ 1>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ 0>selected</cfif>>Disabled</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Comments</label>
+							<textarea class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.comments#</textarea>
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
 						<table class="table table-bordered table-striped">
@@ -203,6 +203,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 								<tr>
 									<td>Kevin</td>
 									<td>Pan</td>
