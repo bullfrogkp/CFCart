@@ -17,10 +17,7 @@
 	
 	<cfproperty name="customerGroup" fieldtype="many-to-one" cfc="customer_group" fkcolumn="customer_group_id">
 	
-	<cfproperty name="currentBillingAddress" fieldtype="one-to-one" cfc="address" fkcolumn="current_billing_address_id">
-	<cfproperty name="currentShippingAddress" fieldtype="one-to-one" cfc="address" fkcolumn="current_shipping_address_id">
-	
-	<cfproperty name="inactiveAddresses" type="array" fieldtype="one-to-many" cfc="address" fkcolumn="customer_id" singularname="address">
+	<cfproperty name="addresses" type="array" fieldtype="one-to-many" cfc="address" fkcolumn="customer_id" singularname="address">
 	<cfproperty name="orders" type="array" fieldtype="one-to-many" cfc="order" fkcolumn="order_id" singularname="order">
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="review_id" singularname="review">
 	

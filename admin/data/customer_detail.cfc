@@ -85,7 +85,10 @@
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getFirstName()# #LOCAL.pageData.customer.getMiddleName()# #LOCAL.pageData.customer.getLastName()# | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "" />			
+			<cfset LOCAL.pageData.deleteButtonClass = "" />	
+			<cfset LOCAL.pageData.currentBillingAddress = EntityLoad("address",{customerId = LOCAL.pageData.customer.getCustomerId(), isDefault = true, isDeleted = false, type = 1}, true) />	
+			<cfset LOCAL.pageData.currentBillingAddress = EntityLoad("address",{customerId = LOCAL.pageData.customer.getCustomerId(), isDefault = true, isDeleted = false, type = 2}, true) />	
+			<cfset LOCAL.pageData.inactiveAddress = EntityLoad("address",{customerId = LOCAL.pageData.customer.getCustomerId(), isDefault = false, isDeleted = false}) />	
 		<cfelse>
 			<cfset LOCAL.pageData.customer = EntityNew("customer") />
 			<cfset LOCAL.pageData.title = "New Customer | #APPLICATION.applicationName#" />

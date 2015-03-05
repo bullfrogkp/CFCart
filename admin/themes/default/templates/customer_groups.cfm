@@ -17,7 +17,7 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>Group Name</th>

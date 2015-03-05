@@ -267,16 +267,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getCurrentBillingAddress())>
+								<cfif NOT IsNull(REQUEST.pageData.currentBillingAddress)>
 									<tr>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getFirstName()# #REQUEST.pageData.customer.getCurrentBillingAddress().getMiddleName()# #REQUEST.pageData.customer.getCurrentBillingAddress().getLastName()#</td>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getPhone()#</td>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getStreet()#</td>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getCity()#</td>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getProvince().getDisplayName()#</td>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getPostalCode()#</td>
-									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getCountry().getDisplayName()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentBillingAddress().getAddressId()#">View Detail</a></td>
+									<td>#REQUEST.pageData.currentBillingAddress.getFirstName()# #REQUEST.pageData.currentBillingAddress.getMiddleName()# #REQUEST.pageData.currentBillingAddress.getLastName()#</td>
+									<td>#REQUEST.pageData.currentBillingAddress.getPhone()#</td>
+									<td>#REQUEST.pageData.currentBillingAddress.getStreet()#</td>
+									<td>#REQUEST.pageData.currentBillingAddress.getCity()#</td>
+									<td>#REQUEST.pageData.currentBillingAddress.getProvince().getDisplayName()#</td>
+									<td>#REQUEST.pageData.currentBillingAddress.getPostalCode()#</td>
+									<td>#REQUEST.pageData.currentBillingAddress.getCountry().getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.currentBillingAddress.getAddressId()#">View Detail</a></td>
 								</tr>
 								<cfelse>
 									<tr>
@@ -300,16 +300,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getCurrentShippingAddress())>
+								<cfif NOT IsNull(REQUEST.pageData.currentShippingAddress)>
 									<tr>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getFirstName()# #REQUEST.pageData.customer.getCurrentShippingAddress().getMiddleName()# #REQUEST.pageData.customer.getCurrentShippingAddress().getLastName()#</td>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getPhone()#</td>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getStreet()#</td>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getCity()#</td>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getProvince().getDisplayName()#</td>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getPostalCode()#</td>
-										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getCountry().getDisplayName()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentShippingAddress().getAddressId()#">View Detail</a></td>
+										<td>#REQUEST.pageData.currentShippingAddress.getFirstName()# #REQUEST.pageData.currentShippingAddress.getMiddleName()# #REQUEST.pageData.currentShippingAddress.getLastName()#</td>
+										<td>#REQUEST.pageData.currentShippingAddress.getPhone()#</td>
+										<td>#REQUEST.pageData.currentShippingAddress.getStreet()#</td>
+										<td>#REQUEST.pageData.currentShippingAddress.getCity()#</td>
+										<td>#REQUEST.pageData.currentShippingAddress.getProvince().getDisplayName()#</td>
+										<td>#REQUEST.pageData.currentShippingAddress.getPostalCode()#</td>
+										<td>#REQUEST.pageData.currentShippingAddress.getCountry().getDisplayName()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.currentShippingAddress.getAddressId()#">View Detail</a></td>
 									</tr>
 								<cfelse>
 									<tr>
@@ -334,8 +334,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getInactiveAddresses()) AND ArrayLen(REQUEST.pageData.customer.getInactiveAddresses()) NEQ 0>
-									<cfloop array="#REQUEST.pageData.customer.getInactiveAddresses()#" index="address">
+								<cfif NOT IsNull(REQUEST.pageData.inactiveAddresses) AND ArrayLen(REQUEST.pageData.inactiveAddresses) NEQ 0>
+									<cfloop array="#REQUEST.pageData.inactiveAddresses#" index="address">
 										<tr>
 											<td>#address.getFirstName()# #address.getMiddleName()# #address.getLastName()#</td>
 											<td>#address.getPhone()#</td>
