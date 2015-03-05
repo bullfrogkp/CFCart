@@ -22,13 +22,6 @@
 							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						<div class="form-group">
-							<label>Tax Class</label>
-							<select class="form-control" name="parent_category_id">
-								<option value="0">Retailer</option>
-								<option value="">Wholesaler</option>
-							</select>
-						</div>
-						<div class="form-group">
 							<label>Discount Type</label>
 							<select class="form-control" name="parent_category_id">
 								<option value="0">Type 1</option>
