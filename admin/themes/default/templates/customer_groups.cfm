@@ -17,45 +17,26 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
 								<th>Group Name</th>
-								<th>Tax Class</th>
 								<th>Discount Type</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Group 1</td>
-								<td>First Class</td>
-								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Group 1</td>
-								<td>First Class</td>
-								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Group 1</td>
-								<td>First Class</td>
-								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
-							<tr>
-								<td>Group 1</td>
-								<td>First Class</td>
-								<td>10 dollor off</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?category_id=1">View Detail</a></td>
-							</tr>
+							<cfloop array="#REQUEST.pageData.customerGroups()#" index="group">
+								<tr>
+									<td>#group.getDisplayName()#</td>
+									<td>#group.getDiscountType()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?id=#group.getCustomerGroupId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>Group Name</th>
-								<th>Tax Class</th>
 								<th>Discount Type</th>
 								<th>Action</th>
 							</tr>
