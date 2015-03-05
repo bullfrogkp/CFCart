@@ -85,8 +85,7 @@
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getFirstName()# #LOCAL.pageData.customer.getMiddleName()# #LOCAL.pageData.customer.getLastName()# | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "" />
-			
+			<cfset LOCAL.pageData.deleteButtonClass = "" />			
 		<cfelse>
 			<cfset LOCAL.pageData.customer = EntityNew("customer") />
 			<cfset LOCAL.pageData.title = "New Customer | #APPLICATION.applicationName#" />
@@ -111,6 +110,8 @@
 			<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.customer.getLastLoginDatetime())?"":LOCAL.pageData.customer.getLastLoginDatetime() />
 			<cfset LOCAL.pageData.formData.last_login_ip = isNull(LOCAL.pageData.customer.getLastLoginIp())?"":LOCAL.pageData.customer.getLastLoginIp() />
 			<cfset LOCAL.pageData.formData.date_of_birth = isNull(LOCAL.pageData.customer.getDateOfBirth())?"":LOCAL.pageData.customer.getDateOfBirth() />
+			<cfset LOCAL.pageData.formData.created_datetime = isNull(LOCAL.pageData.customer.getCreatedDatetime())?"":LOCAL.pageData.customer.getCreatedDatetime() />
+			<cfset LOCAL.pageData.formData.created_user = isNull(LOCAL.pageData.customer.getCreatedUser())?"":LOCAL.pageData.customer.getCreatedUser() />
 			<cfset LOCAL.pageData.formData.subscribed = isNull(LOCAL.pageData.customer.getSubscribed())?"":LOCAL.pageData.customer.getSubscribed() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.customer.getDescription())?"":LOCAL.pageData.customer.getDescription() />
 		</cfif>

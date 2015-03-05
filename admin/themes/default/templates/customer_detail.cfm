@@ -62,13 +62,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
-									<tr>
-										<td>#product.getDisplayName()#</td>
-										<td>#product.getDescription()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-									</tr>
-									</cfloop>
+									<cfif NOT IsNull(REQUEST.pageData.customer.getShoppingCartProducts()) AND ArrayLen(REQUEST.pageData.customer.getShoppingCartProducts()) NEQ 0>
+										<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
+										<tr>
+											<td>#product.getDisplayName()#</td>
+											<td>#product.getDescription()#</td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+										</tr>
+										</cfloop>
+									<cfelse>
+										<tr>
+											<td colspan="3">No result found</td>
+										</tr>
+									</cfif>
 								</tbody>
 							</table>
 						</div>
@@ -83,13 +89,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
-									<tr>
-										<td>#product.getDisplayName()#</td>
-										<td>#product.getDescription()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-									</tr>
-									</cfloop>
+									<cfif NOT IsNull(REQUEST.pageData.customer.getBuyLaterProducts()) AND ArrayLen(REQUEST.pageData.customer.getBuyLaterProducts()) NEQ 0>
+										<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
+											<tr>
+												<td>#product.getDisplayName()#</td>
+												<td>#product.getDescription()#</td>
+												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+											</tr>
+										</cfloop>
+									<cfelse>
+										<tr>
+											<td colspan="3">No result found</td>
+										</tr>
+									</cfif>
 								</tbody>
 							</table>
 						</div>
@@ -105,13 +117,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
-									<tr>
-										<td>#product.getDisplayName()#</td>
-										<td>#product.getDescription()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-									</tr>
-									</cfloop>
+									<cfif NOT IsNull(REQUEST.pageData.customer.getWishListProducts()) AND ArrayLen(REQUEST.pageData.customer.getWishListProducts()) NEQ 0>
+										<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
+											<tr>
+												<td>#product.getDisplayName()#</td>
+												<td>#product.getDescription()#</td>
+												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+											</tr>
+										</cfloop>
+									<cfelse>
+										<tr>
+											<td colspan="3">No result found</td>
+										</tr>
+									</cfif>
 								</tbody>
 							</table>
 						</div>
@@ -124,15 +142,15 @@
 						</div>
 						 <div class="form-group">
 							<label>First Name</label>
-							<input type="text" name="first_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.firstName#"/>
+							<input type="text" name="first_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.first_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Middle Name</label>
-							<input type="text" name="middle_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.middleName#"/>
+							<input type="text" name="middle_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.middle_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Last Name</label>
-							<input type="text" name="last_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.lastName#"/>
+							<input type="text" name="last_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.last_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Suffix</label>
@@ -144,7 +162,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" name="date_of_birth" class="form-control pull-right" id="reservation" value="#REQUEST.pageData.formData.dateOfBirth#"/>
+								<input type="text" name="date_of_birth" class="form-control pull-right" id="reservation" value="#REQUEST.pageData.formData.date_of_birth#"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -188,7 +206,7 @@
 						</div>
 						<div class="form-group">
 							<label>Comments</label>
-							<textarea class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.comments#</textarea>
+							<textarea class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_3">
@@ -204,16 +222,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfloop array="#REQUEST.pageData.orders#" index="order">
-								<tr>
-									<td>#order.getTrackingNumber()#</td>
-									<td>#order.getCreatedDatetime()#</td>
-									<td>#order.getBillingFirstName()# #order.getBillingMiddleName()# #order.getBillingLastName()#</td>
-									<td>#order.getShippingFirstName()# #order.getShippingMiddleName()# #order.getShippingLastName()#</td>
-									<td>#order.getTotal()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
-								</tr>
-								</cfloop>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getOrders()) AND ArrayLen(REQUEST.pageData.customer.getOrders()) NEQ 0>
+									<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
+										<tr>
+											<td>#order.getTrackingNumber()#</td>
+											<td>#order.getCreatedDatetime()#</td>
+											<td>#order.getBillingFirstName()# #order.getBillingMiddleName()# #order.getBillingLastName()#</td>
+											<td>#order.getShippingFirstName()# #order.getShippingMiddleName()# #order.getShippingLastName()#</td>
+											<td>#order.getTotal()#</td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
+										</tr>
+									</cfloop>
+								<cfelse>
+									<tr>
+										<td colspan="6">No result found</td>
+									</tr>
+								</cfif>
 							</tbody>
 							<tfoot>
 								<tr>
@@ -252,11 +276,11 @@
 									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getProvince().getDisplayName()#</td>
 									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getPostalCode()#</td>
 									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getCountry().getDisplayName()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentBillingAddress().getAddressId()()#">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentBillingAddress().getAddressId()#">View Detail</a></td>
 								</tr>
 								<cfelse>
 									<tr>
-										<td colspan="8">No address found</td>
+										<td colspan="8">No result found</td>
 									</tr>
 								</cfif>
 							</tbody>
@@ -285,11 +309,11 @@
 										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getProvince().getDisplayName()#</td>
 										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getPostalCode()#</td>
 										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getCountry().getDisplayName()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentShippingAddress().getAddressId()()#">View Detail</a></td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentShippingAddress().getAddressId()#">View Detail</a></td>
 									</tr>
 								<cfelse>
 									<tr>
-										<td colspan="8">No address found</td>
+										<td colspan="8">No result found</td>
 									</tr>
 								</cfif>
 							</tbody>
@@ -310,8 +334,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getCurrentShippingAddress())>
-									<cfloop array="#REQUEST.pageData.inactiveAddresses#" index="address">
+								<cfif NOT IsNull(REQUEST.pageData.customer.getInactiveAddresses()) AND ArrayLen(REQUEST.pageData.customer.getInactiveAddresses()) NEQ 0>
+									<cfloop array="#REQUEST.pageData.customer.getInactiveAddresses()#" index="address">
 										<tr>
 											<td>#address.getFirstName()# #address.getMiddleName()# #address.getLastName()#</td>
 											<td>#address.getPhone()#</td>
@@ -321,12 +345,12 @@
 											<td>#address.getPostalCode()#</td>
 											<td>#address.getCountry().getDisplayName()#</td>
 											<td>#address.getAddressType()#</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#address.getAddressId()()#">View Detail</a></td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#address.getAddressId()#">View Detail</a></td>
 										</tr>
 									</cfloop>
 								<cfelse>
 									<tr>
-										<td colspan="9">No address found</td>
+										<td colspan="9">No result found</td>
 									</tr>
 								</cfif>
 							</tbody>
@@ -358,7 +382,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getReviews())>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getReviews()) AND ArrayLen(REQUEST.pageData.customer.getReviews()) NEQ 0>
 									<cfloop array="#REQUEST.pageData.customer.getReviews()#" index="review">
 										<tr>
 											<td>#review.getSubject()#</td>
@@ -371,7 +395,7 @@
 									</cfloop>
 								<cfelse>
 									<tr>
-										<td colspan="6">No review found</td>
+										<td colspan="6">No result found</td>
 									</tr>
 								</cfif>
 							</tbody>
