@@ -7,6 +7,7 @@
     <cfproperty name="street" column="street" ormtype="string"> 
     <cfproperty name="city" column="city" ormtype="string"> 
     <cfproperty name="postalCode" column="postal_code" ormtype="string"> 
+    <cfproperty name="isDefault" column="is_default" ormtype="boolean"> 
 	
 	<cfproperty name="country" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
 	<cfproperty name="province" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">

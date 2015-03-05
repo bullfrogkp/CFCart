@@ -17,8 +17,11 @@
 	
 	<cfproperty name="customerGroup" fieldtype="many-to-one" cfc="customer_group" fkcolumn="customer_group_id">
 	
+	<cfproperty name="currentBillingAddress" fieldtype="one-to-one" cfc="address" fkcolumn="current_billing_address_id">
+	<cfproperty name="currentShippingAddress" fieldtype="one-to-one" cfc="address" fkcolumn="current_shipping_address_id">
+	<cfproperty name="inactiveAddresses" type="array" fieldtype="one-to-many" cfc="address" fkcolumn="customer_id" singularname="address">
+	
 	<cfproperty name="orders" type="array" fieldtype="one-to-many" cfc="order" fkcolumn="customer_id" singularname="order">
-	<cfproperty name="addresses" type="array" fieldtype="one-to-many" cfc="address" fkcolumn="customer_id" singularname="address">
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="customer_id" singularname="review">
 	
 	<cfproperty name="shoppingCartProducts" fieldtype="many-to-many" cfc="product" linktable="customer_product_shopping_cart_rela" fkcolumn="customer_id" inversejoincolumn="product_id">

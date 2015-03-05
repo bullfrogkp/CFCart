@@ -1,5 +1,6 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="orderId" column="order_id" fieldtype="id" generator="native">
+	<cfproperty name="trackingNumber" column="tracking_number" ormtype="string"> 
 	<cfproperty name="coupon" column="coupon" ormtype="string"> 
 	<cfproperty name="total" column="total" ormtype="string"> 
 	

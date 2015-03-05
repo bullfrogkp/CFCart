@@ -86,6 +86,7 @@
 			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getFirstName()# #LOCAL.pageData.customer.getMiddleName()# #LOCAL.pageData.customer.getLastName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
+			
 		<cfelse>
 			<cfset LOCAL.pageData.customer = EntityNew("customer") />
 			<cfset LOCAL.pageData.title = "New Customer | #APPLICATION.applicationName#" />

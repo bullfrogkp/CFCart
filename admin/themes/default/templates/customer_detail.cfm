@@ -17,6 +17,9 @@
 </section>
 
 <!-- Main content -->
+<form method="post">
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.customer.getCustomerId()#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -172,15 +175,13 @@
 						 <div class="form-group">
 							<label>Subscribed</label>
 							<select class="form-control" name="subscribed">
-								<option value="">Please Select...</option>
 								<option value="1" <cfif REQUEST.pageData.formData.subscribed EQ 1>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.formData.subscribed EQ 0>selected</cfif>>No</option>
+								<option value="0" <cfif REQUEST.pageData.formData.subscribed NEQ 1>selected</cfif>>No</option>
 							</select>
 						</div>
 						 <div class="form-group">
 							<label>Status</label>
 							<select class="form-control" name="is_enabled">
-								<option value="">Please Select...</option>
 								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ 1>selected</cfif>>Enabled</option>
 								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ 0>selected</cfif>>Disabled</option>
 							</select>
@@ -203,15 +204,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+								<cfloop array="#REQUEST.pageData.orders#" index="order">
 								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?category_id=1">View Detail</a></td>
+									<td>#order.getTrackingNumber()#</td>
+									<td>#order.getCreatedDatetime()#</td>
+									<td>#order.getBillingFirstName()# #order.getBillingMiddleName()# #order.getBillingLastName()#</td>
+									<td>#order.getShippingFirstName()# #order.getShippingMiddleName()# #order.getShippingLastName()#</td>
+									<td>#order.getTotal()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
 								</tr>
+								</cfloop>
 							</tbody>
 							<tfoot>
 								<tr>
@@ -230,70 +232,73 @@
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
+									<th>Name</th>
 									<th>Phone</th>
 									<th>Street</th>
 									<th>City</th>
 									<th>Province</th>
 									<th>Postal Code</th>
 									<th>Country</th>
-									<th>Type</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-									<td>Billing</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getCurrentBillingAddress())>
+									<tr>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getFirstName()# #REQUEST.pageData.customer.getCurrentBillingAddress().getMiddleName()# #REQUEST.pageData.customer.getCurrentBillingAddress().getLastName()#</td>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getPhone()#</td>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getStreet()#</td>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getCity()#</td>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getProvince().getDisplayName()#</td>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getPostalCode()#</td>
+									<td>#REQUEST.pageData.customer.getCurrentBillingAddress().getCountry().getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentBillingAddress().getAddressId()()#">View Detail</a></td>
 								</tr>
+								<cfelse>
+									<tr>
+										<td colspan="8">No address found</td>
+									</tr>
+								</cfif>
 							</tbody>
 						</table>
 						<label>Current Shipping Address</label>
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
+									<th>Name</th>
 									<th>Phone</th>
 									<th>Street</th>
 									<th>City</th>
 									<th>Province</th>
 									<th>Postal Code</th>
 									<th>Country</th>
-									<th>Type</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-									<td>Shipping</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getCurrentShippingAddress())>
+									<tr>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getFirstName()# #REQUEST.pageData.customer.getCurrentShippingAddress().getMiddleName()# #REQUEST.pageData.customer.getCurrentShippingAddress().getLastName()#</td>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getPhone()#</td>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getStreet()#</td>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getCity()#</td>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getProvince().getDisplayName()#</td>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getPostalCode()#</td>
+										<td>#REQUEST.pageData.customer.getCurrentShippingAddress().getCountry().getDisplayName()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.customer.getCurrentShippingAddress().getAddressId()()#">View Detail</a></td>
+									</tr>
+								<cfelse>
+									<tr>
+										<td colspan="8">No address found</td>
+									</tr>
+								</cfif>
 							</tbody>
 						</table>
 						<label>Inactive Addresses</label>
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
+									<th>Name</th>
 									<th>Phone</th>
 									<th>Street</th>
 									<th>City</th>
@@ -305,47 +310,29 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-									<td>Shipping</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-									<td>Shipping</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-									<td>Shipping</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getCurrentShippingAddress())>
+									<cfloop array="#REQUEST.pageData.inactiveAddresses#" index="address">
+										<tr>
+											<td>#address.getFirstName()# #address.getMiddleName()# #address.getLastName()#</td>
+											<td>#address.getPhone()#</td>
+											<td>#address.getStreet()#</td>
+											<td>#address.getCity()#</td>
+											<td>#address.getProvince().getDisplayName()#</td>
+											<td>#address.getPostalCode()#</td>
+											<td>#address.getCountry().getDisplayName()#</td>
+											<td>#address.getAddressType()#</td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#address.getAddressId()()#">View Detail</a></td>
+										</tr>
+									</cfloop>
+								<cfelse>
+									<tr>
+										<td colspan="9">No address found</td>
+									</tr>
+								</cfif>
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
+									<th>Name</th>
 									<th>Phone</th>
 									<th>Street</th>
 									<th>City</th>
@@ -371,14 +358,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?category_id=1">View Detail</a></td>
-								</tr>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getReviews())>
+									<cfloop array="#REQUEST.pageData.customer.getReviews()#" index="review">
+										<tr>
+											<td>#review.getSubject()#</td>
+											<td>#review.getMessage()#</td>
+											<td>#review.getRating()#</td>
+											<td>#review.getCreatedDatetime()#</td>
+											<td>#review.getCreatedUser()#</td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+										</tr>
+									</cfloop>
+								<cfelse>
+									<tr>
+										<td colspan="6">No review found</td>
+									</tr>
+								</cfif>
 							</tbody>
 							<tfoot>
 								<tr>
@@ -393,21 +388,18 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_6">
-						<form role="form">
-							 <div class="form-group">
-								<label>Current Password</label>
-								<input type="password" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							 <div class="form-group">
-								<label>New Password</label>
-								<input type="password" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							  <div class="form-group">
-								<label>Confirm New Password</label>
-								<input type="password" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<button type="submit" class="btn btn-primary">Change Password</button>
-						</form>
+						 <div class="form-group">
+							<label>Current Password</label>
+							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
+						</div>
+						 <div class="form-group">
+							<label>New Password</label>
+							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
+						</div>
+						  <div class="form-group">
+							<label>Confirm New Password</label>
+							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
+						</div>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
@@ -419,4 +411,5 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</form>
 </cfoutput>
