@@ -26,7 +26,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<cfloop array="#REQUEST.pageData.customerGroups()#" index="group">
+							<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 								<tr>
 									<td>#group.getDisplayName()#</td>
 									<td>#group.getDiscountType()#</td>
