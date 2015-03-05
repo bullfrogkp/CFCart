@@ -8,13 +8,4 @@
     <cfproperty name="createdUser" column="create_user" ormtype="string"> 
     <cfproperty name="updatedDatetime" column="updated_datetime" ormtype="date"> 
     <cfproperty name="updatedUser" column="update_user" ormtype="string"> 
-	
-	<cffunction name="init" output="false">
-		
-		<cfset setCreatedDatetime(Now()) />
-		<cfset setUpdatedDatetime(Now()) />
-		<cfset setIsDeleted(false) />
-		
-		<cfreturn this>
-	</cffunction>
 </cfcomponent>

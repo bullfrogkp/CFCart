@@ -107,10 +107,10 @@
 			<cfset LOCAL.pageData.formData.website = isNull(LOCAL.pageData.customer.getWebsite())?"":LOCAL.pageData.customer.getWebsite() />
 			<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.customer.getIsEnabled())?"":LOCAL.pageData.customer.getIsEnabled() />
 			<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.customer.getPhone())?"":LOCAL.pageData.customer.getPhone() />
-			<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.customer.getLastLoginDatetime())?"":LOCAL.pageData.customer.getLastLoginDatetime() />
+			<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.customer.getLastLoginDatetime())?"":DateFormat(LOCAL.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy") />
 			<cfset LOCAL.pageData.formData.last_login_ip = isNull(LOCAL.pageData.customer.getLastLoginIp())?"":LOCAL.pageData.customer.getLastLoginIp() />
-			<cfset LOCAL.pageData.formData.date_of_birth = isNull(LOCAL.pageData.customer.getDateOfBirth())?"":LOCAL.pageData.customer.getDateOfBirth() />
-			<cfset LOCAL.pageData.formData.created_datetime = isNull(LOCAL.pageData.customer.getCreatedDatetime())?"":LOCAL.pageData.customer.getCreatedDatetime() />
+			<cfset LOCAL.pageData.formData.date_of_birth = isNull(LOCAL.pageData.customer.getDateOfBirth())?"":DateFormat(LOCAL.pageData.customer.getDateOfBirth(),"mmm dd, yyyy") />
+			<cfset LOCAL.pageData.formData.created_datetime = isNull(LOCAL.pageData.customer.getCreatedDatetime())?"":DateFormat(LOCAL.pageData.customer.getCreatedDatetime(),"mmm dd, yyyy") />
 			<cfset LOCAL.pageData.formData.created_user = isNull(LOCAL.pageData.customer.getCreatedUser())?"":LOCAL.pageData.customer.getCreatedUser() />
 			<cfset LOCAL.pageData.formData.subscribed = isNull(LOCAL.pageData.customer.getSubscribed())?"":LOCAL.pageData.customer.getSubscribed() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.customer.getDescription())?"":LOCAL.pageData.customer.getDescription() />
