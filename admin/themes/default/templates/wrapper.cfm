@@ -362,8 +362,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li id="promotions"><a href="#APPLICATION.absoluteUrlWeb#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Promotions</a></li>
-                                <li id="promotion_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Promotion</a></li>
+                                <li id="promotions"><a href="#APPLICATION.absoluteUrlWeb#admin/promotions.cfm"><i class="fa fa-angle-double-right"></i> All Coupons</a></li>
+                                <li id="promotion_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/promotion_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Coupon</a></li>
+								<li id="promotions"><a href="#APPLICATION.absoluteUrlWeb#admin/discount_types.cfm"><i class="fa fa-angle-double-right"></i> All Discount Types</a></li>
+                                <li id="promotion_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Discount Type</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
