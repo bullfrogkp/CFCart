@@ -33,7 +33,13 @@
 							<select class="form-control" name="discount_type_id">
 								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
-									<option value="#type.getDiscountTypeId()#">#type.getDisplayName()#</option>
+									<option value="#type.getDiscountTypeId()#"
+									
+									<cfif type.getDiscountTypeId() EQ REQUEST.pageData.coupon.getDiscountType().getDiscountTypeId()>
+									selected
+									</cfif>
+									
+									>#type.getDisplayName()#</option>
 								</cfloop>
 							</select>
 						</div>
@@ -42,7 +48,13 @@
 							<select class="form-control" name="coupon_status_id">
 								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.couponStatus#" index="status">
-									<option value="#status.getCouponStatusId()#">#status.getDisplayName()#</option>
+									<option value="#status.getCouponStatusId()#"
+									
+									<cfif status.getCouponStatusId() EQ REQUEST.pageData.review.getStatus().getCouponStatusId()>
+									selected
+									</cfif>
+									
+									>#status.getDisplayName()#</option>
 								</cfloop>
 							</select>
 						</div>
