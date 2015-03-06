@@ -13,7 +13,7 @@
 		<div class="col-xs-12">
 			<div class="box box-primary">
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
 								<th>Code</th>
@@ -24,19 +24,19 @@
 							</tr>
 						</thead>
 						<tbody>
-						
-							<tr>
-								<td>Test email 1</td>
-								<td>This is a new email</td>
-								<td>This is a new email</td>
-								<td>This is a new email</td>
-								<td><a href="promotion_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-							
+							<cfloop array="#REQUEST.pageData.coupons#" index="coupon">
+								<tr>
+									<td>#coupon.getCode()#</td>
+									<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
+									<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
+									<td>#coupon.getStatus().getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/coupon_detail.cfm?id=#coupon.getCouponId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Name</th>
+								<th>Code</th>
 								<th>Date Start</th>
 								<th>Date Expire</th>
 								<th>Status</th>

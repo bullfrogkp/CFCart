@@ -2,17 +2,17 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(document).ready(function() {
-		$('##from_date').datepicker();
-		$('##to_date').datepicker();
+		$('##start_date').datepicker();
+		$('##end_date').datepicker();
 	});
 </script>
 <section class="content-header">
 	<h1>
-		Promotion Detail
+		Coupon Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Promotion Detail</li>
+		<li class="active">Coupon Detail</li>
 	</ol>
 </section>
 
@@ -25,43 +25,49 @@
 				<form role="form">
 					<div class="box-body">
 						 <div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
+							<label>Code</label>
+							<input type="text" name="code" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.code#"/>
 						</div>
 						<div class="form-group">
-							<label>Description</label>
-							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
+							<label>Discount Type</label>
+							<select class="form-control" name="discount_type_id">
+								<option value="">Please Select...</option>
+								<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
+									<option value="#type.getDiscountTypeId()#">#type.getDisplayName()#</option>
+								</cfloop>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Status</label>
-							<select class="form-control" name="parent_category_id">
-								<option value="0">Pending</option>
-								<option value="">Approved</option>
+							<select class="form-control" name="coupon_status_id">
+								<option value="">Please Select...</option>
+								<cfloop array="#REQUEST.pageData.couponStatus#" index="status">
+									<option value="#status.getCouponStatusId()#">#status.getDisplayName()#</option>
+								</cfloop>
 							</select>
 						</div>
 						<div class="form-group">
-							<label>Customer Groups</label>
-							<select multiple class="form-control" name="parent_category_id">
-								<option value="0">Retailer</option>
-								<option value="">Wholeseller</option>
-							</select>
+							<label>Customer</label>
+							<a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#REQUEST.pageData.coupon.getCustomer().getCustomerId()#" target="_blank">
+							#REQUEST.pageData.coupon.getCustomer().getFirstName()# #REQUEST.pageData.coupon.getCustomer().getMiddleName()# #REQUEST.pageData.coupon.getCustomer().getLastName()#
+							</a>
 						</div>
 						 <div class="form-group">
-							<label>From Date</label>
+							<label>Start Date</label>
 							<div class="input-group">
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" id="from_date"/>
+								<input type="text" class="form-control pull-right" id="start_date"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						 <div class="form-group">
-							<label>To Date</label>
+							<label>End Date</label>
 							<div class="input-group">
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" id="to_date"/>
+								<input type="text" class="form-control pull-right" id="end_date"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<button type="submit" class="btn btn-primary">Submit</button>
