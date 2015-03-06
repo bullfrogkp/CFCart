@@ -13,37 +13,34 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
-								<th>Name</th>
 								<th>Subject</th>
-								<th>Type</th>
 								<th>Product</th>
+								<th>Message</th>
 								<th>Create Datetime</th>
 								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-						
-							<tr>
-								<td>Test email 1</td>
-								<td>This is a new email</td>
-								<td>Test email 1</td>
-								<td>Test email 1</td>
-								<td>This is a new email</td>
-								<td>Test email 1</td>
-								<td><a href="review_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-							
+							<cfloop array="#REQUEST.pageData.reviews#" index="review">
+								<tr>
+									<td>#review.getSubject()#</td>
+									<td>#review.getProduct().getDisplayName()#</td>
+									<td>#review.getMessage()#</td>
+									<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+									<td>#review.getStatus().getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Name</th>
 								<th>Subject</th>
-								<th>Type</th>
 								<th>Product</th>
+								<th>Message</th>
 								<th>Create Datetime</th>
 								<th>Status</th>
 								<th>Action</th>
