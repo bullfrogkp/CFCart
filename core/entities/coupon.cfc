@@ -4,5 +4,7 @@
     <cfproperty name="startDate" column="start_date" ormtype="date"> 
     <cfproperty name="endDate" column="end_date" ormtype="date"> 
 	
+	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">
 	<cfproperty name="discountType" fieldtype="many-to-one" cfc="discount_type" fkcolumn="discount_type_id">
+	<cfproperty name="discountStatus" fieldtype="many-to-one" cfc="discount_status" fkcolumn="discount_status_id">
 </cfcomponent>

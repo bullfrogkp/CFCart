@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Promotions
+		Coupons
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Promotions</li>
+		<li class="active">Coupons</li>
 	</ol>
 </section>
 <section class="content">
@@ -16,7 +16,7 @@
 					<table id="example2" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th>Code</th>
 								<th>Date Start</th>
 								<th>Date Expire</th>
 								<th>Status</th>
