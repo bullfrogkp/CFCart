@@ -82,6 +82,9 @@
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 		</cfif>
 		
+		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type") />
+		<cfset LOCAL.pageData.couponStatus = EntityLoad("coupon_status") />
+		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>

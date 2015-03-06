@@ -60,9 +60,13 @@
 						</div>
 						<div class="form-group">
 							<label>Customer</label>
+							<cfif NOT IsNull(REQUEST.pageData.coupon.getCustomer())>
 							<a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#REQUEST.pageData.coupon.getCustomer().getCustomerId()#" target="_blank">
 							#REQUEST.pageData.coupon.getCustomer().getFirstName()# #REQUEST.pageData.coupon.getCustomer().getMiddleName()# #REQUEST.pageData.coupon.getCustomer().getLastName()#
 							</a>
+							<cfelse>
+							Not assigned
+							</cfif>
 						</div>
 						 <div class="form-group">
 							<label>Start Date</label>

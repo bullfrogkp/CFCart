@@ -5,8 +5,8 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif Trim(FORM.component) EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid component name.") />
+		<cfif Trim(FORM.amount) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid amount.") />
 		</cfif>
 		
 		<cfif Trim(FORM.display_name) EQ "">
@@ -41,22 +41,14 @@
 			</cfif>
 			
 			<cfset LOCAL.discountType.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.discountType.setComponent(Trim(FORM.component)) />
+			<cfset LOCAL.discountType.setCalculationType(EntityLoadByPK("calculation_type",FORM.calculation_type_id)) />
+			<cfset LOCAL.discountType.setAmount(Trim(FORM.amount)) />
 			
 			<cfset EntitySave(LOCAL.discountType) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Discount type has been saved successfully.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.discountType.getDiscountTypeId()#" />
-		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.discountType = EntityLoadByPK("discount_type", FORM.id)>
-			<cfset LOCAL.discountType.setIsDeleted(true) />
-			
-			<cfset EntitySave(LOCAL.discountType) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Discount type #LOCAL.discountType.getDisplayName()# has been deleted.") />
-			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/discount_types.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -76,11 +68,13 @@
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 		</cfif>
 		
+		<cfset LOCAL.pageData.CalculationTypes = EntityLoad("calculation_type") />
+		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
 			<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.discountType.getDisplayName())?"":LOCAL.pageData.discountType.getDisplayName() />
-			<cfset LOCAL.pageData.formData.component = isNull(LOCAL.pageData.discountType.getComponent())?"":LOCAL.pageData.discountType.getDiscountType().getComponent() />
+			<cfset LOCAL.pageData.formData.amount = isNull(LOCAL.pageData.discountType.getAmount())?"":LOCAL.pageData.discountType.getAmount() />
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />

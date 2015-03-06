@@ -4,7 +4,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.title = "Discount Types | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type",{isDeleted = false}) />
+		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type") />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
