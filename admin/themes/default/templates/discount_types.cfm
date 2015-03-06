@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Promotions
+		Discount Types
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Promotions</li>
+		<li class="active">Discount Types</li>
 	</ol>
 </section>
 <section class="content">
@@ -13,33 +13,30 @@
 		<div class="col-xs-12">
 			<div class="box box-primary">
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Date Start</th>
-								<th>Date Expire</th>
-								<th>Status</th>
+								<th>Calculation Type</th>
+								<th>Amount</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-						
-							<tr>
-								<td>Test email 1</td>
-								<td>This is a new email</td>
-								<td>This is a new email</td>
-								<td>This is a new email</td>
-								<td><a href="promotion_detail.cfm?request_id=1">View Detail</a></td>
-							</tr>
-							
+							<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
+								<tr>
+									<td>#type.getDisplayName()#</td>
+									<td>#type.getCalculationType().getDisplayName()#</td>
+									<td>#type.getAmount()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm?id=#type.getDiscountTypeId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>Name</th>
-								<th>Date Start</th>
-								<th>Date Expire</th>
-								<th>Status</th>
+								<th>Calculation Type</th>
+								<th>Amount</th>
 								<th>Action</th>
 							</tr>
 						</tfoot>

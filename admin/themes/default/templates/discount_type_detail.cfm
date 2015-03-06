@@ -1,18 +1,11 @@
 ﻿<cfoutput>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-	$(document).ready(function() {
-		$('##from_date').datepicker();
-		$('##to_date').datepicker();
-	});
-</script>
 <section class="content-header">
 	<h1>
-		Promotion Detail
+		Discount Type Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Promotion Detail</li>
+		<li class="active">Discount Type Detail</li>
 	</ol>
 </section>
 
@@ -24,47 +17,29 @@
 			<div class="box box-primary">
 				<form role="form">
 					<div class="box-body">
-						 <div class="form-group">
+						<div class="form-group">
 							<label>Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 						<div class="form-group">
-							<label>Description</label>
-							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
-						</div>
-						<div class="form-group">
-							<label>Status</label>
-							<select class="form-control" name="parent_category_id">
-								<option value="0">Pending</option>
-								<option value="">Approved</option>
+							<label>Calculation Type</label>
+							<select name="Calculation_type_id" class="form-control">
+								<cfloop array="#REQUEST.pageData.CalculationTypes#" index="type">
+									<option value="#type.getCalculationTypeId()#"
+									
+									<cfif type.getCalculationTypeId() EQ REQUEST.pageData.discountType.getCalculationType().getCalculationTypeId()>
+									selected
+									</cfif>
+									
+									>#type.getDisplayName()#</option>
+								</cfloop>
 							</select>
 						</div>
 						<div class="form-group">
-							<label>Customer Groups</label>
-							<select multiple class="form-control" name="parent_category_id">
-								<option value="0">Retailer</option>
-								<option value="">Wholeseller</option>
-							</select>
+							<label>Amount</label>
+							<input name="amount" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.amount#"/>
 						</div>
-						 <div class="form-group">
-							<label>From Date</label>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right" id="from_date"/>
-							</div><!-- /.input group -->
-						</div><!-- /.form group -->
-						 <div class="form-group">
-							<label>To Date</label>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right" id="to_date"/>
-							</div><!-- /.input group -->
-						</div><!-- /.form group -->
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.box-body -->
 				</form>
 			</div><!-- /.box -->
