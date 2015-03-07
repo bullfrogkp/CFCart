@@ -5,12 +5,8 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif FORM.discount_type_id EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please choose a valid discount type.") />
-		</cfif>
-		
-		<cfif Trim(FORM.code) EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid coupon code.") />
+		<cfif StructKeyExists(FORM,"save_tracking_number") AND Trim(FORM.tracking_number) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid tracking number.") />
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -31,30 +27,25 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)> 
-			<cfelse>
-				<cfset LOCAL.coupon = EntityNew("coupon") />
-				<cfset LOCAL.coupon.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.coupon.setCreatedDatetime(Now()) />
-			</cfif>
+		<cfif StructKeyExists(FORM,"save_status")>
+			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id)> 
 			
-			<cfset LOCAL.coupon.setCode(Trim(FORM.code)) />
-			<cfset LOCAL.coupon.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
-			<cfif IsDate(Trim(FORM.start_date))>
-				<cfset LOCAL.coupon.setStartDate(Trim(FORM.start_date)) />
-			</cfif>
-			<cfif IsDate(Trim(FORM.end_date))>
-				<cfset LOCAL.coupon.setEndDate(Trim(FORM.end_date)) />
-			</cfif>
+			<cfset LOCAL.currentStatus = EntityLoad("order_status",{orderId = FORM.id, endDatetime = JavaCast("NULL","")}) />
 			
-			<cfset EntitySave(LOCAL.coupon) />
+			<cfset LOCAL.currentStatus.setEndDatetime(Now()) />
+			<cfset EntitySave(LOCAL.currentStatus) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Coupon has been saved successfully.") />
+			<cfset LOCAL.newStatus = EntityNew("order_status") />
+			<cfset LOCAL.newStatus.setStatusType(EntityLoad("order_status_type", FORM.order_status_type_id)) />
+			<cfset LOCAL.newStatus.setStartDatetime(LOCAL.currentStatus.getEndDatetime()) />
+			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.coupon.getCouponId()#" />
-		<cfelseif StructKeyExists(FORM,"delete_item")>
+			<cfset EntitySave(LOCAL.order) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order status has been saved successfully.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=3" />
+		<cfelseif StructKeyExists(FORM,"save_tracking_number")>
 			<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)>
 			<cfset LOCAL.coupon.setIsDeleted(true) />
 			

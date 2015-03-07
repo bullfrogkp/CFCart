@@ -14,7 +14,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
 								<th>Order No.</th>
@@ -28,62 +28,17 @@
 							</tr>
 						</thead>
 						<tbody>
-						
-							<tr>
-								<td>OR20141227227 </td>
-								<td>michelle@axsimages.com</td>
-								<td>Michelle Samek</td>
-								<td>$ 700.00</td>
-								<td>2014 Dec 27 02:14:32</td>
-								<td>Shipped</td>
-								<td><a href="invoice_detail.cfm?request_id=">Invoice</a></td>
-								<td><a href="order_detail.cfm?request_id=">View Detail</a></td>
-							</tr>
-							
-							<tr>
-								<td>OR20141227227 </td>
-								<td>michelle@axsimages.com</td>
-								<td>Michelle Samek</td>
-								<td>$ 700.00</td>
-								<td>2014 Dec 27 02:14:32</td>
-								<td>Shipped</td>
-								<td><a href="invoice_detail.cfm?request_id=">Invoice</a></td>
-								<td><a href="order_detail.cfm?request_id=">View Detail</a></td>
-							</tr>
-							
-							<tr>
-								<td>OR20141227227 </td>
-								<td>michelle@axsimages.com</td>
-								<td>Michelle Samek</td>
-								<td>$ 700.00</td>
-								<td>2014 Dec 27 02:14:32</td>
-								<td>Shipped</td>
-								<td><a href="invoice_detail.cfm?request_id=">Invoice</a></td>
-								<td><a href="order_detail.cfm?request_id=">View Detail</a></td>
-							</tr>
-							
-							<tr>
-								<td>OR20141227227 </td>
-								<td>michelle@axsimages.com</td>
-								<td>Michelle Samek</td>
-								<td>$ 700.00</td>
-								<td>2014 Dec 27 02:14:32</td>
-								<td>Shipped</td>
-								<td><a href="invoice_detail.cfm?request_id=">Invoice</a></td>
-								<td><a href="order_detail.cfm?request_id=">View Detail</a></td>
-							</tr>
-							
-							<tr>
-								<td>OR20141227227 </td>
-								<td>michelle@axsimages.com</td>
-								<td>Michelle Samek</td>
-								<td>$ 700.00</td>
-								<td>2014 Dec 27 02:14:32</td>
-								<td>Shipped</td>
-								<td><a href="invoice_detail.cfm?request_id=">Invoice</a></td>
-								<td><a href="order_detail.cfm?request_id=">View Detail</a></td>
-							</tr>
-							
+							<cfloop array="#REQUEST.pageData.orders#" index="order">
+								<tr>
+									<td>#order.getTrackingNumber()#</td>
+									<td>#order.getCustomer().getEmail()#</td>
+									<td>#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#</td>
+									<td>#order.getTotal()#</td>
+									<td>#DateFormat(order.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/invoice_detail.cfm?id=#order.getOrderId()#">Invoice</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>

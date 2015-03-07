@@ -11,6 +11,9 @@
 </section>
 
 <!-- Main content -->
+<form method="post">
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.order.getOrderId()#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -28,35 +31,35 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
-						<form role="form">
-							<div class="form-group">
-								<label>Customer <a href="" class="form-link">Kevin</a></label>
-							</div>
-							<div class="form-group">
-								<label>Order Date</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Jan 19, 2015" disabled/>
-							</div>
-							<div class="form-group">
-								<label>Order Status</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Pending" disabled/>
-							</div>
-							<div class="form-group">
-								<label>Purchased From</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="192.168.0.1" disabled/>
-							</div>
-							<div class="form-group">
-								<label>Customer Name</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan" disabled/>
-							</div>
-							<div class="form-group">
-								<label>Email</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="kp@kp.ca" disabled/>
-							</div>
-							<div class="form-group">
-								<label>Customer Group</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="Wholesale" disabled/>
-							</div>
-						</form>
+					
+						<div class="form-group">
+							<label>Customer <a href="" class="form-link">Kevin</a></label>
+						</div>
+						<div class="form-group">
+							<label>Order Date</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="Jan 19, 2015" disabled/>
+						</div>
+						<div class="form-group">
+							<label>Order Status</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="Pending" disabled/>
+						</div>
+						<div class="form-group">
+							<label>Purchased From</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="192.168.0.1" disabled/>
+						</div>
+						<div class="form-group">
+							<label>Customer Name</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="Kevin Pan" disabled/>
+						</div>
+						<div class="form-group">
+							<label>Email</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="kp@kp.ca" disabled/>
+						</div>
+						<div class="form-group">
+							<label>Customer Group</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="Wholesale" disabled/>
+						</div>
+						
 					</div>
 					<div class="tab-pane" id="tab_2">
 						<label>Billing Address:</label>
@@ -160,7 +163,7 @@
 							<label>Comments</label>
 							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button name="save_status" type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane" id="tab_4">
 						<table id="example2" class="table table-bordered table-striped">
@@ -227,37 +230,37 @@
 						</table>
 					</div>
 					<div class="tab-pane" id="tab_6">
-						<form role="form">
-							 <div class="form-group">
-								<label>Tracking Number</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</form>
+					
+						<div class="form-group">
+							<label>Tracking Number</label>
+							<input name="tracking_number" type="text" class="form-control" placeholder="Enter ..." value=""/>
+						</div>
+						<button name="save_tracking_number" type="submit" class="btn btn-primary">Submit</button>
+						
 					</div>
 					<div class="tab-pane" id="tab_7">
-						<form role="form">
-							 <div class="form-group">
-								<label>Transaction ID</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" disabled/>
-							</div>
-							<div class="form-group">
-								<label>Refund Type</label>
-								<select class="form-control" name="parent_category_id">
-									<option value="0">Full</option>
-									<option value="">Partial</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Amount</label>
-								<input type="text" class="form-control" placeholder="Enter ..." value="22.22" />
-							</div>
-							<div class="form-group">
-								<label>Memo</label>
-								<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</form>
+					
+						 <div class="form-group">
+							<label>Transaction ID</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" disabled/>
+						</div>
+						<div class="form-group">
+							<label>Refund Type</label>
+							<select class="form-control" name="parent_category_id">
+								<option value="0">Full</option>
+								<option value="">Partial</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Amount</label>
+							<input type="text" class="form-control" placeholder="Enter ..." value="22.22" />
+						</div>
+						<div class="form-group">
+							<label>Memo</label>
+							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
+						</div>
+						<button name="refund" type="submit" class="btn btn-primary">Submit</button>
+					
 					</div>
 					<div class="tab-pane" id="tab_8">
 					</div>
@@ -267,4 +270,5 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</form>
 </cfoutput>
