@@ -68,7 +68,7 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getTrackingNumber()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		<cfelse>
-			<cfset LOCAL.pageData.coupon = EntityNew("order") />
+			<cfset LOCAL.pageData.order = EntityNew("order") />
 			<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 		</cfif>
@@ -84,6 +84,7 @@
 		--->
 		</cfif>
 		
+		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
