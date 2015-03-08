@@ -20,13 +20,9 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Addresses</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Status</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Products</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Payment</a></li>
-					<li><a href="##tab_6" data-toggle="tab">Shipping</a></li>
-					<li><a href="##tab_7" data-toggle="tab">Refund</a></li>
-					<li><a href="##tab_8" data-toggle="tab">Invoice</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Tracking</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Transaction</a></li>
+					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
@@ -161,6 +157,34 @@
 														<td>$1000.00</td>
 														<td>$1000.00</td>
 													</tr>
+													<tr>
+														<td>
+															juta
+															SKU: fvvdx
+														</td>
+														<td>$1000.00</td>
+														<td>1</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+													</tr>
+													<tr>
+														<td>
+															juta
+															SKU: fvvdx
+														</td>
+														<td>$1000.00</td>
+														<td>1</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+														<td>$1000.00</td>
+													</tr>
 												</tbody>
 											</table>
 										</div>
@@ -183,218 +207,56 @@
 								</section><!-- right col -->
 							</div><!-- /.row (main row) -->
 							<div class="row">
-								<section class="col-lg-12"> 
+								<!-- Left col -->
+								<section class="col-lg-6"> 
 									<div class="box box-primary">
 										<div class="box-header">
-											<h3 class="box-title">Account Information</h3>
+											<h3 class="box-title">Status</h3>
 										</div><!-- /.box-header -->
+										
 										<div class="box-body">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>Status</th>
+														<th>Create Datetime</th>
+														<th>End Datetime</th>
+														<th>Comment</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Order Placed</td>
+														<td>2014 Dec 27 02:15:27</td>
+														<td>2014 Dec 27 02:15:27</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>Pending Shipment</td>
+														<td>2014 Dec 27 02:15:27</td>
+														<td>2015 Jan 02 08:25:02</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>Shipped</td>
+														<td>2015 Jan 02 08:25:02</td>
+														<td></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
 											<div class="form-group">
-												<label>Group</label>
+												<label>Status</label>
 												<select class="form-control" name="parent_category_id">
 													<option value="0">Shipped</option>
 													<option value="">Preparing</option>
 												</select>
 											</div>
 											<div class="form-group">
-												<label>Email</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" />
-											</div>
-										</div>
-									</div><!-- /.box (chat box) -->   
-								</section>
-							</div><!-- /.row (main row) -->
-							<div class="row">
-								<!-- Left col -->
-								<section class="col-lg-6"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Billing Address</h3>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<div class="form-group">
-												<label>Prefix</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>First Name</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Middle Name/Initial</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Last Name</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Suffix</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Company</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Street Address</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>City</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Country</label>
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Canada</option>
-													<option value="">US</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>State/Province</label>
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Ontario</option>
-													<option value="">Alberta</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Zip/Postal Code</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Phone</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Fax</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-										</div>
-									</div><!-- /.box (chat box) -->   
-								</section><!-- /.Left col -->
-								<!-- right col (We are only adding the ID to make the widgets sortable)-->
-								<section class="col-lg-6"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Shipping Address</h3>
-											<div class="form-group pull-right" style="margin:10px 10px 0 0;">
-												<input type="checkbox" class="form-control" checked />
-												<label>Same As Billing Address</label>
-											</div>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<div class="form-group">
-												<label>Prefix</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>First Name</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Middle Name/Initial</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Last Name</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Suffix</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Company</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Street Address</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>City</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Country</label>
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Canada</option>
-													<option value="">US</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>State/Province</label>
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Ontario</option>
-													<option value="">Alberta</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Zip/Postal Code</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Phone</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-											<div class="form-group">
-												<label>Fax</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-										</div>
-									</div>
-									<!-- /.box -->
-
-								</section><!-- right col -->
-							</div><!-- /.row (main row) -->
-
-							<div class="row">
-								<!-- Left col -->
-								<section class="col-lg-6"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Payment Method</h3>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<div class="form-group">
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Check / Money order</option>
-													<option value=""> Credit Card (saved)</option>
-												</select>
-											</div>
-										</div>
-									</div><!-- /.box (chat box) -->   
-								</section><!-- /.Left col -->
-								<!-- right col (We are only adding the ID to make the widgets sortable)-->
-								<section class="col-lg-6"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Shipping Method</h3>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<div class="form-group">
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Flat Rate</option>
-													<option value="">Express</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<!-- /.box -->
-								</section><!-- right col -->
-							</div><!-- /.row (main row) -->
-							<div class="row">
-								<!-- Left col -->
-								<section class="col-lg-6"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Comments</h3>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<div class="form-group">
+												<label>Comments</label>
 												<textarea class="form-control" rows="8" placeholder="Enter ..."></textarea>
 											</div>
+											<button type="submit" class="btn btn-primary">Submit</button>
 										</div>
 									</div><!-- /.box (chat box) -->   
 								</section><!-- /.Left col -->
@@ -410,10 +272,25 @@
 												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
 											</div>
 											<div class="form-group">
+												<label>Shipping & Handling</label>
+												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+											</div>
+											<div class="form-group">
 												<label>Grand Total</label>
 												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
 											</div>
-											<button type="submit" class="btn btn-primary">Submit Order</button>
+											<div class="form-group">
+												<label>Total Paid</label>
+												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+											</div>
+											<div class="form-group">
+												<label>Total Refunded</label>
+												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+											</div>
+											<div class="form-group">
+												<label>Total Due</label>
+												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+											</div>
 										</div>
 									</div>
 									<!-- /.box -->
@@ -423,153 +300,16 @@
 						
 					</div>
 					<div class="tab-pane" id="tab_2">
-						<label>Billing Address:</label>
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-								</tr>
-							</tbody>
-						</table>
-						<label>Shipping Address:</label>
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Kevin</td>
-									<td>Pan</td>
-									<td>4166666666</td>
-									<td>123 street</td>
-									<td>Toronto</td>
-									<td>Ontario</td>
-									<td>L4L 4L4</td>
-									<td>Canada</td>
-								</tr>
-							</tbody>
-						</table>
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3">
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Status</th>
-									<th>Create Datetime</th>
-									<th>End Datetime</th>
-									<th>Comment</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Order Placed</td>
-									<td>2014 Dec 27 02:15:27</td>
-									<td>2014 Dec 27 02:15:27</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Pending Shipment</td>
-									<td>2014 Dec 27 02:15:27</td>
-									<td>2015 Jan 02 08:25:02</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Shipped</td>
-									<td>2015 Jan 02 08:25:02</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
+					
 						<div class="form-group">
-							<label>Status</label>
-							<select class="form-control" name="parent_category_id">
-								<option value="0">Shipped</option>
-								<option value="">Preparing</option>
-							</select>
+							<label>Tracking Number</label>
+							<input name="tracking_number" type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
-						<div class="form-group">
-							<label>Comments</label>
-							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
-						</div>
-						<button name="save_status" type="submit" class="btn btn-primary">Submit</button>
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_4">
-						<table id="example2" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Product Name</th>
-									<th>Attriubtes</th>
-									<th>Price</th>
-									<th>Quantity</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Product 1</td>
-									<td>Red</td>
-									<td>22.22</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>Product 1</td>
-									<td>Red</td>
-									<td>22.22</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>Product 1</td>
-									<td>Red</td>
-									<td>22.22</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>Product 1</td>
-									<td>Red</td>
-									<td>22.22</td>
-									<td>2</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th></th>
-									<th></th>
-									<th>Total</th>
-									<th>Total Quantity</th>
-								</tr>
-							</tfoot>
-						</table>
+						<button name="save_tracking_number" type="submit" class="btn btn-primary">Submit</button>
+						
 					</div>
-					<div class="tab-pane" id="tab_5">
-						<table id="example2" class="table table-bordered table-striped">
+					<div class="tab-pane" id="tab_3">
+						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>Transaction Type</th>
@@ -585,18 +325,6 @@
 								</tr>
 							</tbody>
 						</table>
-					</div>
-					<div class="tab-pane" id="tab_6">
-					
-						<div class="form-group">
-							<label>Tracking Number</label>
-							<input name="tracking_number" type="text" class="form-control" placeholder="Enter ..." value=""/>
-						</div>
-						<button name="save_tracking_number" type="submit" class="btn btn-primary">Submit</button>
-						
-					</div>
-					<div class="tab-pane" id="tab_7">
-					
 						 <div class="form-group">
 							<label>Transaction ID</label>
 							<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" disabled/>
@@ -619,7 +347,7 @@
 						<button name="refund" type="submit" class="btn btn-primary">Submit</button>
 					
 					</div>
-					<div class="tab-pane" id="tab_8">
+					<div class="tab-pane" id="tab_4">
 						<!-- Main content -->
 						<section class="content invoice">
 							<!-- title row -->
