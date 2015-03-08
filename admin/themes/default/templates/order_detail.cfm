@@ -30,7 +30,6 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab_1">
-					
 						<section class="content">
 							<div class="row">
 								<div class="col-md-6">
@@ -98,6 +97,36 @@
 									</div><!-- /.box -->
 								</div><!-- ./col -->
 							</div><!-- /.row -->
+							
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="box box-primary">
+										<div class="box-header">
+											<h3 class="box-title">Payment Information</h3>
+										</div><!-- /.box-header -->
+										<div class="box-body">
+											<dl>
+												<dd>Credit Card</dd>
+											</dl>
+										</div><!-- /.box-body -->
+									</div><!-- /.box -->
+								</div><!-- ./col -->
+								<div class="col-md-6">
+									<div class="box box-primary">
+										<div class="box-header">
+											<h3 class="box-title">Shipping Information</h3>
+										</div><!-- /.box-header -->
+										<div class="box-body">
+											<dl>
+												<dd>Flat Rate - Fixed £5.00</dd>
+											</dl>
+										</div><!-- /.box-body -->
+									</div><!-- /.box -->
+								</div><!-- ./col -->
+							</div><!-- /.row -->
+							
+							
 							<div class="row">
 								<section class="col-lg-12"> 
 									<div class="box box-primary">
@@ -108,38 +137,31 @@
 											<table class="table table-bordered table-striped">
 												<thead>
 													<th>Product</th>
+													<th>Item Status</th>
+													<th>Original Price</th>
 													<th>Price</th>
 													<th>Qty</th>
 													<th>Subtotal</th>
+													<th>Tax Amount</th>
+													<th>Tax Percentage</th>
+													<th>Row Total</th>
 												</thead>
 												<tbody>
 													<tr>
-														<td>Box</td>
+														<td>
+															juta
+															SKU: fvvdx
+														</td>
 														<td>$1000.00</td>
 														<td>1</td>
 														<td>$1000.00</td>
-													</tr>
-													<tr>
-														<td>Box</td>
 														<td>$1000.00</td>
-														<td>1</td>
 														<td>$1000.00</td>
-													</tr>
-													<tr>
-														<td>Box</td>
 														<td>$1000.00</td>
-														<td>1</td>
+														<td>$1000.00</td>
 														<td>$1000.00</td>
 													</tr>
 												</tbody>
-												<tfoot>
-													<tr>
-														<th>Total Product</th>
-														<th></th>
-														<th>Total Quantity</th>
-														<th>Subtotal</th>
-													</tr>
-												</tfoot>
 											</table>
 										</div>
 									</div><!-- /.box (chat box) -->   
