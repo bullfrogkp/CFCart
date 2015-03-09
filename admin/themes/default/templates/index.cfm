@@ -10,7 +10,6 @@
 <section class="content-header">
 	<h1>
 		Dashboard
-		<small>Control panel</small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -88,7 +87,7 @@
 						65
 					</h3>
 					<p>
-						Unique Visitors
+						Contact Requests
 					</p>
 				</div>
 				<div class="icon">
