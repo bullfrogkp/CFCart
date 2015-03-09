@@ -75,7 +75,7 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.formData.group_name = isNull(LOCAL.pageData.customerGroup.getGroupName())?"":LOCAL.pageData.customerGroup.getGroupName() />
+			<cfset LOCAL.pageData.formData.group_name = isNull(LOCAL.pageData.customerGroup.getDisplayName())?"":LOCAL.pageData.customerGroup.getDisplayName() />
 			<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.customerGroup.getDiscountType())?"":LOCAL.pageData.customerGroup.getDiscountType().getDiscountTypeId() />
 		</cfif>
 		

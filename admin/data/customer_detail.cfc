@@ -86,9 +86,9 @@
 			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getFirstName()# #LOCAL.pageData.customer.getMiddleName()# #LOCAL.pageData.customer.getLastName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
-			<cfset LOCAL.pageData.currentBillingAddress = EntityLoad("address",{customerId = LOCAL.pageData.customer.getCustomerId(), isDefault = true, isDeleted = false, type = 1}, true) />	
-			<cfset LOCAL.pageData.currentBillingAddress = EntityLoad("address",{customerId = LOCAL.pageData.customer.getCustomerId(), isDefault = true, isDeleted = false, type = 2}, true) />	
-			<cfset LOCAL.pageData.inactiveAddress = EntityLoad("address",{customerId = LOCAL.pageData.customer.getCustomerId(), isDefault = false, isDeleted = false}) />	
+			<cfset LOCAL.pageData.currentBillingAddress = EntityLoad("address",{customer = LOCAL.pageData.customer, isDefault = true, isDeleted = false, type = EntityLoad("address_type",{displayName = "billing"},true)}, true) />	
+			<cfset LOCAL.pageData.currentShippingAddress = EntityLoad("address",{customer = LOCAL.pageData.customer, isDefault = true, isDeleted = false, type = EntityLoad("address_type",{displayName = "shipping"},true)}, true) />	
+			<cfset LOCAL.pageData.inactiveAddress = EntityLoad("address",{customer = LOCAL.pageData.customer, isDefault = false, isDeleted = false}) />	
 		<cfelse>
 			<cfset LOCAL.pageData.customer = EntityNew("customer") />
 			<cfset LOCAL.pageData.title = "New Customer | #APPLICATION.applicationName#" />

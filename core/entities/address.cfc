@@ -9,6 +9,7 @@
     <cfproperty name="postalCode" column="postal_code" ormtype="string"> 
     <cfproperty name="isDefault" column="is_default" ormtype="boolean"> 
 	
+	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">
 	<cfproperty name="country" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
 	<cfproperty name="province" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">
 	<cfproperty name="type" fieldtype="many-to-one" cfc="address_type" fkcolumn="address_type_id">

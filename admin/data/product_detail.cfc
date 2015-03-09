@@ -278,7 +278,7 @@
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
-		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category",{isDeleted = false, isEnabled = true}) />
+		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false, isEnabled = true}) />
 		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method",{isDeleted = false, isEnabled = true}) />
 				
