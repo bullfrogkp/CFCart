@@ -21,8 +21,9 @@
 	<cfproperty name="orders" type="array" fieldtype="one-to-many" cfc="order" fkcolumn="order_id" singularname="order">
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="review_id" singularname="review">
 	
-	<cfproperty name="shoppingCartProducts" fieldtype="many-to-many" cfc="product" linktable="customer_product_shopping_cart_rela" fkcolumn="customer_id" inversejoincolumn="product_id">
-	<cfproperty name="buyLaterProducts" fieldtype="many-to-many" cfc="product" linktable="customer_product_buy_later_rela" fkcolumn="customer_id" inversejoincolumn="product_id">
-	<cfproperty name="wishListProducts" fieldtype="many-to-many" cfc="product" linktable="customer_product_wishlist_rela" fkcolumn="customer_id" inversejoincolumn="product_id">
+	<cfproperty name="shoppingCartProducts" type="array" fieldtype="one-to-many" cfc="shopping_cart_product" fkcolumn="shopping_cart_product_id" singularname="shoppingCartProduct">
+	<cfproperty name="buyLaterProducts" type="array" fieldtype="one-to-many" cfc="buy_later_product" fkcolumn="buy_later_product_id" singularname="buyLaterProduct">
+	<cfproperty name="wishListProducts" type="array" fieldtype="one-to-many" cfc="wishlist_product" fkcolumn="wishlist_product_id" singularname="wishListProduct">
+	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 </cfcomponent>
