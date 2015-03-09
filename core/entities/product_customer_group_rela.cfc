@@ -1,6 +1,7 @@
 ﻿<cfcomponent persistent="true"> 
     <cfproperty name="productCustomerGroupRelaId" column="product_customer_group_rela_id" fieldtype="id" generator="native">
-	<cfproperty name="productId" column="product_id" ormtype="integer"> 
-	<cfproperty name="customerGroupId" column="customer_group_id" ormtype="integer"> 
 	<cfproperty name="price" column="price" ormtype="float"> 
+	
+	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
+	<cfproperty name="customerGroup" fieldtype="many-to-one" cfc="customer_group" fkcolumn="customer_group_id">
 </cfcomponent>
