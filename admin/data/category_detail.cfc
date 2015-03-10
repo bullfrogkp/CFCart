@@ -100,11 +100,15 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
+		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
+			
+			<cfset LOCAL.productService.setCategoryId(URL.category_id) />
+			<cfset LOCAL.pageData.products = LOCAL.productService.getProducts() />
 		<cfelse>
 			<cfset LOCAL.pageData.category = EntityNew("category") />
 			<cfset LOCAL.pageData.title = "New Category | #APPLICATION.applicationName#" />
