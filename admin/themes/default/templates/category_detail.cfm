@@ -69,7 +69,7 @@
 			
 			filters = new Array();
 			
-			<cfloop array="#fg.getFilterGroupFilterRela()#" index="f">
+			<cfloop array="#fg.getFilterGroupFilterRelas()#" index="f">
 				filter = new Object();
 				filter.name = '#f.getFilter().getDisplayName()#';
 				filters.push(filter);
@@ -212,9 +212,9 @@
 							</div>
 							<div class="col-md-8">
 								<select class="form-control" name="filter" id="filter" multiple>
-									<cfif IsDefined("REQUEST.pageData.filterGroup")>
-										<cfloop array="#REQUEST.pageData.filterGroup.getFilters()#" index="f">
-											<option value="#f.getFilterId()#">#f.getDisplayName()#</option>
+									<cfif NOT IsNull(REQUEST.pageData.category.getFilterGroup())>
+										<cfloop array="#REQUEST.pageData.category.getFilterGroup().getFilterGroupFilterRelas()#" index="f">
+											<option value="#f.getFilter().getFilterId()#">#f.getFilter().getDisplayName()#</option>
 										</cfloop>
 									</cfif>
 								</select>

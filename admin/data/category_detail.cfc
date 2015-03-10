@@ -113,8 +113,17 @@
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
-		<cfset LOCAL.pageData.filterGroup = LOCAL.pageData.category.getFilterGroup() />
-					
+		<cfif NOT IsNull(LOCAL.pageData.category.getFilterGroup())>
+			<cfset LOCAL.pageData.filterValues = [] />
+			<cfloop array="#LOCAL.pageData.category.getFilterGroup().getFilterGroupFilterRelas()#" index="LOCAL.rela">
+				<cfset LOCAL.filterValueStruct = {} />
+				<cfset LOCAL.filterValueStruct.filterName = LOCAL.rela.getFilter().getDisplayName() />
+				<cfset LOCAL.filterValueStruct.filterValues = LOCAL.rela.getFilterValues() />
+				
+				<cfset ArrayAppend(LOCAL.pageData.filterValues, LOCAL.filterValueStruct) />
+			</cfloop>
+		</cfif>
+						
 		<cfset LOCAL.pageData.tabs = {} />
 		<cfset LOCAL.pageData.tabs["tab_1"] = "" />
 		<cfset LOCAL.pageData.tabs["tab_2"] = "" />
@@ -148,7 +157,7 @@
 			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.category.getTitle())?"":LOCAL.pageData.category.getTitle() />
 			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.category.getKeywords())?"":LOCAL.pageData.category.getKeywords() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.category.getDescription())?"":LOCAL.pageData.category.getDescription() />
-			<cfset LOCAL.pageData.formData.filter_group_id = isNull(LOCAL.pageData.category.getFilterGroup())?"":LOCAL.pageData.category.getFilterGroup.getFilterGroupId() />
+			<cfset LOCAL.pageData.formData.filter_group_id = isNull(LOCAL.pageData.category.getFilterGroup())?"":LOCAL.pageData.category.getFilterGroup().getFilterGroupId() />
 			<cfset LOCAL.pageData.formData.custom_design = isNull(LOCAL.pageData.category.getCustomDesign())?"":LOCAL.pageData.category.getCustomDesign() />
 		</cfif>
 		
