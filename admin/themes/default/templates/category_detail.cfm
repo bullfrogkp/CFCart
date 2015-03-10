@@ -220,6 +220,21 @@
 								</select>
 							</div>
 						</div>
+						
+						<div class="row">
+							<div class="col-md-12">
+								<cfloop array="#REQUEST.pageData.filterValues#" index="filter">
+									<div class="form-group">
+										<label>#filter.filterName#</label>
+										<cfloop array="#filter.filterValues#" index="filterValue">
+											<div style="padding:3px 10px;border:1px solid ##CCC;">
+												#filterValue..getValue()#
+											</div>
+										</cfloop>
+									</div>
+								</cfloop>
+							</div>
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
