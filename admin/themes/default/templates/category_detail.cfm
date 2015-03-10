@@ -69,9 +69,9 @@
 			
 			filters = new Array();
 			
-			<cfloop array="#fg.getFilters()#" index="f">
+			<cfloop array="#fg.getFilterGroupFilterRela()#" index="f">
 				filter = new Object();
-				filter.name = '#f.getDisplayName()#';
+				filter.name = '#f.getFilter().getDisplayName()#';
 				filters.push(filter);
 			</cfloop>
 			

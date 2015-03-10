@@ -112,7 +112,7 @@
 		</cfif>
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group",{isEnabled = true, isDeleted = false}, "displayName ASC")> 
+		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		<cfset LOCAL.pageData.filterGroup = LOCAL.pageData.category.getFilterGroup() />
 					
 		<cfset LOCAL.pageData.tabs = {} />
