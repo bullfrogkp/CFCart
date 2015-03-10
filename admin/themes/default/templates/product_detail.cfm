@@ -253,7 +253,7 @@
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
 									<option value="#tc.getTaxCategoryId()#"
 									
-									<cfif tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategoryId()>
+									<cfif tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategory().getTaxCategoryId()>
 									selected
 									</cfif>
 									
