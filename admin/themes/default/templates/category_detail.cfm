@@ -220,21 +220,48 @@
 								</select>
 							</div>
 						</div>
+						<table class="table table-bordered table-striped" style="margin-top:30px;">
+							<tr>
+								<th>Filter Name</th>
+								<th>Filter Options</th>
+								<th>Action</th>
+							</tr>
+							<cfif NOT IsNULL(REQUEST.pageData.filterValues)>
+							<cfloop array="#REQUEST.pageData.filterValues#" index="filter">
+								<tr>
+									<td>#filter.filterName#</td>
+									<td>
+										<table>
+											<cfloop array="#filter.filterValues#" index="filterValue">
+											<tr>
+												<td style="padding-right:20px;">
+													<div style="padding:3px 10px;border:1px solid ##CCC;">
+													#filterValue.getValue()#
+													</div>
+												</td>
+												<cfif filter.filterName EQ "color">
+												<td>
+													<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;margin-top:3px;"></div>
+												</td>
+												</cfif>
+												<td style="padding-left:20px;">
+													<input type="checkbox" name="remove_filter_value_#filterValue.getFilterValueId()#" class="form-control" />
+												</td>
+												<td>
+													<span style="margin-left:10px;color:red;">Delete</span>
+												</td>
+											</tr>
+											</cfloop>
+										</table>
+									</td>
+									<td>
+										<button name="" value="" type="button" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option</button>
+									</td>
+								</tr>
+							</cfloop>
+							</cfif>
+						</table>
 						
-						<div class="row">
-							<div class="col-md-12">
-								<cfloop array="#REQUEST.pageData.filterValues#" index="filter">
-									<div class="form-group">
-										<label>#filter.filterName#</label>
-										<cfloop array="#filter.filterValues#" index="filterValue">
-											<div style="padding:3px 10px;border:1px solid ##CCC;">
-												#filterValue..getValue()#
-											</div>
-										</cfloop>
-									</div>
-								</cfloop>
-							</div>
-						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
