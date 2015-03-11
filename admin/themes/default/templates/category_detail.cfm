@@ -78,18 +78,16 @@
 			filtergroups[key] = filters;
 		</cfloop>
 		
-		$( "##filter_group" ).change(function() {
+		$( "##filter_group_id" ).change(function() {
 		
-			$('##filter').empty();
-		
-			$("##filter_group option:selected").each(function() {
-				current_key = 'filter_group_' + $(this).val();
-				
-				for(var i=0;i<filtergroups[current_key].length;i++)
-				{
-					$('##filter').append($('<option></option>').html(filtergroups[current_key][i].name)); 
-				}
-			});
+			$('##filters').empty();
+			
+			current_key = 'filter_group_' + $( "##filter_group_id" ).val();
+		console.log(filtergroups[current_key]);
+			for(var i=0;i<filtergroups[current_key].length;i++)
+			{
+				$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+			}
 		});
 	});
 </script>
@@ -200,7 +198,7 @@
 					
 						<div class="form-group">
 							<label>Filter Group</label>
-							 <select class="form-control" name="filter_grop_id">
+							 <select class="form-control" name="filter_group_id" id="filter_group_id">
 								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
 									<option value="#fg.getFilterGroupId()#"
@@ -212,7 +210,7 @@
 							</select>
 						</div>
 					
-						<div class="row">
+						<div id="filters" class="row">
 							<cfif NOT IsNULL(REQUEST.pageData.filterValues)>
 								<cfloop array="#REQUEST.pageData.filterValues#" index="filter">								
 									<div class="col-xs-3">
