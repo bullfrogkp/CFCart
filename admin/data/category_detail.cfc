@@ -119,7 +119,7 @@
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		<cfif NOT IsNull(LOCAL.pageData.category.getFilterGroup())>
 			<cfset LOCAL.pageData.filterValues = [] />
-			<cfloop array="#LOCAL.pageData.category.getFilterGroup().getFilterGroupFilterRelas()#" index="LOCAL.rela">
+			<cfloop array="#LOCAL.pageData.category.getCategoryFilterRelas()#" index="LOCAL.rela">
 				<cfset LOCAL.filterValueStruct = {} />
 				<cfset LOCAL.filterValueStruct.filterName = LOCAL.rela.getFilter().getDisplayName() />
 				<cfset LOCAL.filterValueStruct.filterValues = LOCAL.rela.getFilterValues() />

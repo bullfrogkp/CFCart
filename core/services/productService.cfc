@@ -155,7 +155,7 @@
 			FROM	attribute attr
 			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
 			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
-			AND		asar.required = 1
+			AND		asar.required = <cfqueryparam cfsqltype="cf_sql_bit" value="1" />
 		</cfquery>
 		
 		<cfquery name="LOCAL.getAttributeValues">
