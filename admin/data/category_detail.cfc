@@ -104,6 +104,14 @@
 			<cfset EntitySave(LOCAL.categoryFilterRela) />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
+		<cfelseif StructKeyExists(FORM,"delete_filter_value")>
+			<cfset LOCAL.category = EntityLoadByPK("category",FORM.category_id) />
+			<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",FORM.deleted_filter_value_id) />		
+			<cfset LOCAL.categoryFilterRela = LOCAL.filterValue.getCategoryFilterRela() />
+			<cfset LOCAL.categoryFilterRela.removeFilterValue(LOCAL.filterValue) />
+			<cfset EntitySave(LOCAL.categoryFilterRela) />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

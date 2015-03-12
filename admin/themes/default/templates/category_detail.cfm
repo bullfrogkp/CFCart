@@ -346,27 +346,27 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title"> Add New Option</h4>
 			</div>
-			<form action="##" method="post">
-				<div class="modal-body">
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon">Option Value:</span>
-							<input name="new_filter_value" type="text" class="form-control" placeholder="Option value">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="btn btn-success btn-file">
-							<i class="fa fa-paperclip"></i> Attachment
-							<input type="file" name="attachment"/>
-						</div>
-						<p class="help-block">Max. 32MB</p>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">Option Value:</span>
+						<input name="new_filter_value" type="text" class="form-control" placeholder="Option value">
 					</div>
 				</div>
-				<div class="modal-footer clearfix">
-					<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-					<button name="add_new_filter_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Add</button>
+				<div class="form-group">
+					<div class="btn btn-success btn-file">
+						<i class="fa fa-paperclip"></i> Attachment
+						<input type="file" name="attachment"/>
+					</div>
+					<p class="help-block">Max. 32MB</p>
 				</div>
-			</form>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_filter_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Add</button>
+			</div>
+		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -378,14 +378,12 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title"> Delete this option?</h4>
 			</div>
-			<form action="##" method="post">
-				<div class="modal-body clearfix">
-
-					<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-
-					<button type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Yes</button>
-				</div>
-			</form>
+		
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_filter_value" type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Yes</button>
+			</div>
+		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
