@@ -89,6 +89,15 @@
 				$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
 			}
 		});
+		
+		$( ".add-filter-value" ).click(function() {
+			$("##new_value_filter_id").val($(this).attr('filterid'));
+		});
+		
+		$( ".delete-filter-value" ).click(function() {
+			$("##deleted_filter_value_id").val($(this).attr('filtervalueid'));
+		});
+		
 	});
 </script>
 <section class="content-header">
@@ -105,6 +114,8 @@
 <form method="post">
 <input type="hidden" name="category_id" id="category_id" value="#REQUEST.pageData.category.getCategoryId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.activeTabId#" />
+<input type="hidden" name="new_value_filter_id" id="new_value_filter_id" value="" />
+<input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -222,7 +233,7 @@
 														<cfif filter.filterName EQ "color">
 														<th></th>
 														</cfif>
-														<th><a href="" class="pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a filterid="#filter.filterId#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#filter.filterValues#" index="filterValue">
@@ -230,12 +241,12 @@
 														<td>#filterValue.getValue()#</td>
 														<cfif filter.filterName EQ "color">
 														<td>
-															<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;"></div>
+															<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
 														</td>
 														</cfif>
 														
 														<td>
-															<a name="remove_filter_value_#filterValue.getFilterValueId()#" href="" class="pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
+															<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
 														</td>
 													</tr>
 													</cfloop>
@@ -340,7 +351,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon">Option Value:</span>
-							<input name="email_to" type="email" class="form-control" placeholder="Option value">
+							<input name="new_filter_value" type="text" class="form-control" placeholder="Option value">
 						</div>
 					</div>
 					<div class="form-group">
@@ -350,13 +361,10 @@
 						</div>
 						<p class="help-block">Max. 32MB</p>
 					</div>
-
 				</div>
 				<div class="modal-footer clearfix">
-
 					<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-
-					<button type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Add</button>
+					<button name="add_new_filter_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Add</button>
 				</div>
 			</form>
 		</div><!-- /.modal-content -->

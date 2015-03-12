@@ -27,7 +27,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_category")>
 			<cfif IsNumeric(FORM.category_id)>
-				<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
+				<cfset LOCAL.category = EntityLoadByPK("category", FORM.category_id)>
 				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.category = EntityNew("category") />
@@ -90,6 +90,20 @@
 			<cfset SESSION.temp.message_type = "alert-success" />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
+		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
+		
+			<cfset LOCAL.category = EntityLoadByPK("category",FORM.category_id) />
+		
+			<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category = LOCAL.category, filter = EntityLoadByPK("filter",FORM.new_value_filter_id)},true)>
+						
+			<cfset LOCAL.filterValue = EntityNew("filter_value") />
+			<cfset LOCAL.filterValue.setValue(FORM.new_filter_value) />
+			<cfset EntitySave(LOCAL.filterValue) />
+			
+			<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />
+			<cfset EntitySave(LOCAL.categoryFilterRela) />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -121,6 +135,7 @@
 			<cfset LOCAL.pageData.filterValues = [] />
 			<cfloop array="#LOCAL.pageData.category.getCategoryFilterRelas()#" index="LOCAL.rela">
 				<cfset LOCAL.filterValueStruct = {} />
+				<cfset LOCAL.filterValueStruct.filterId = LOCAL.rela.getFilter().getFilterId() />
 				<cfset LOCAL.filterValueStruct.filterName = LOCAL.rela.getFilter().getDisplayName() />
 				<cfset LOCAL.filterValueStruct.filterValues = LOCAL.rela.getFilterValues() />
 				
