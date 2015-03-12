@@ -96,9 +96,18 @@
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
 		
 			<cfset LOCAL.category = EntityLoadByPK("category",FORM.category_id) />
+			<cfset LOCAL.filter = EntityLoadByPK("filter",FORM.new_value_filter_id) />
 		
-			<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category = LOCAL.category, filter = EntityLoadByPK("filter",FORM.new_value_filter_id)},true)>
+			<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category = LOCAL.category, filter = LOCAL.filter},true)>
 						
+			<cfif IsNull(LOCAL.categoryFilterRela)>
+				<cfset LOCAL.categoryFilterRela = EntityNew("category_filter_rela") /> />
+				<cfset LOCAL.categoryFilterRela.setCategory(LOCAL.category) /> />
+				<cfset LOCAL.categoryFilterRela.setFilter(LOCAL.filter) /> />
+				
+				<cfset EntitySave(LOCAL.categoryFilterRela) />
+			</cfif>
+			
 			<cfset LOCAL.filterValue = EntityNew("filter_value") />
 			<cfset LOCAL.filterValue.setValue(FORM.new_filter_value) />
 			<cfset EntitySave(LOCAL.filterValue) />
@@ -144,11 +153,17 @@
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		<cfif NOT IsNull(LOCAL.pageData.category.getFilterGroup())>
 			<cfset LOCAL.pageData.filterValues = [] />
-			<cfloop array="#LOCAL.pageData.category.getCategoryFilterRelas()#" index="LOCAL.rela">
+			<cfloop array="#LOCAL.pageData.category.getFilterGroup().getFilters()#" index="LOCAL.filter">
 				<cfset LOCAL.filterValueStruct = {} />
-				<cfset LOCAL.filterValueStruct.filterId = LOCAL.rela.getFilter().getFilterId() />
-				<cfset LOCAL.filterValueStruct.filterName = LOCAL.rela.getFilter().getDisplayName() />
-				<cfset LOCAL.filterValueStruct.filterValues = LOCAL.rela.getFilterValues() />
+				<cfset LOCAL.filterValueStruct.filterId = LOCAL.filter.getFilterId() />
+				<cfset LOCAL.filterValueStruct.filterName = LOCAL.filter.getDisplayName() />
+				<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category = LOCAL.pageData.category, filter = EntityLoadByPK("filter",LOCAL.filter.getFilterId())},true)>
+				
+				<cfif NOT IsNull(LOCAL.categoryFilterRela)>
+					<cfset LOCAL.filterValueStruct.filterValues = LOCAL.categoryFilterRela.getFilterValues() />
+				<cfelse>
+					<cfset LOCAL.filterValueStruct.filterValues = [] />
+				</cfif>
 				
 				<cfset ArrayAppend(LOCAL.pageData.filterValues, LOCAL.filterValueStruct) />
 			</cfloop>
