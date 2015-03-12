@@ -68,10 +68,10 @@
 			key = 'filter_group_' + '#fg.getFilterGroupId()#';
 			
 			filters = new Array();
-			
+
 			<cfloop array="#fg.getFilters()#" index="f">
 				filter = new Object();
-				filter.name = '#f.getFilter().getDisplayName()#';
+				filter.name = '#f.getDisplayName()#';
 				filters.push(filter);
 			</cfloop>
 			
@@ -83,7 +83,7 @@
 			$('##filters').empty();
 			
 			current_key = 'filter_group_' + $( "##filter_group_id" ).val();
-		console.log(filtergroups[current_key]);
+		
 			for(var i=0;i<filtergroups[current_key].length;i++)
 			{
 				$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
@@ -222,7 +222,7 @@
 														<cfif filter.filterName EQ "color">
 														<th></th>
 														</cfif>
-														<th><a href="" class="pull-right"><span class="label label-primary">Add Option</span></a></th>
+														<th><a href="" class="pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#filter.filterValues#" index="filterValue">
