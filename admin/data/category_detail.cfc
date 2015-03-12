@@ -34,11 +34,14 @@
 				<cfset LOCAL.tab_id = "tab_1" />
 			</cfif>
 			
-			<cfset LOCAL.category.setParentCategoryId(FORM.parent_category_id) />
+			<cfif FORM.parent_category_id NEQ "">
+				<cfset LOCAL.category.setParentCategory(EntityLoadByPK("category",FORM.parent_category_id)) />
+			</cfif>
 			<cfset LOCAL.category.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.category.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
 			<cfset LOCAL.category.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.category.setIsDeleted(false) />
 			<cfset LOCAL.category.setShowCategoryOnNavigation(FORM.show_category_on_navigation) />
 			<cfset LOCAL.category.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.category.setKeywords(Trim(FORM.keywords)) />
@@ -46,8 +49,8 @@
 			<cfset LOCAL.category.setCustomDesign(Trim(FORM.custom_design)) />
 			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
-			<cfif StructKeyExists(FORM,"filter_group_id")>
-				<cfset LOCAL.category.setFilterGroupId(FORM.filter_group_id) />
+			<cfif FORM.filter_group_id NEQ "">
+				<cfset LOCAL.category.setFilterGroup(EntityLoadByPK("filter_group",FORM.filter_group_id)) />
 			</cfif>
 		
 			<cfif FORM["uploader_count"] NEQ 0>

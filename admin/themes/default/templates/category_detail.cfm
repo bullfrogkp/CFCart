@@ -146,7 +146,7 @@
 						<div class="form-group">
 							<label>Parent Category</label>
 							<select class="form-control" name="parent_category_id">
-								<option value="0">Root</option>
+								<option value="">Root</option>
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 									<option value="#cat.getCategoryId()#"
 									<cfif REQUEST.pageData.formData.parent_category_id EQ cat.getCategoryId()>
