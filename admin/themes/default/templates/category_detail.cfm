@@ -349,17 +349,7 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon">Option Value:</span>
-						<input name="new_filter_value" type="text" class="form-control" placeholder="Option value">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="btn btn-success btn-file">
-						<i class="fa fa-paperclip"></i> Attachment
-						<input type="file" name="attachment"/>
-					</div>
-					<p class="help-block">Max. 32MB</p>
+					<input name="new_filter_value" type="text" class="form-control" placeholder="Option value">
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
