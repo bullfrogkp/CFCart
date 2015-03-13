@@ -15,4 +15,10 @@
 	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	<cfproperty name="subCategories" type="array" persistent="false"> 
+	
+	<cffunction name="removeAllCategoryFilterRelas" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getCategoryFilterRelas())>
+			<cfset ArrayClear(getCategoryFilterRelas()) />
+		</cfif>
+	</cffunction>
 </cfcomponent>
