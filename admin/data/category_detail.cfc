@@ -27,6 +27,10 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
+		<cfset SESSION.temp.message = {} />
+		<cfset SESSION.temp.message.messageArray = [] />
+		<cfset SESSION.temp.message.messageType = "alert-success" />
+		
 		<cfif StructKeyExists(FORM,"save_category")>
 			<cfif IsNumeric(FORM.id)>
 				<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)>
@@ -52,6 +56,9 @@
 			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfif FORM.filter_group_id NEQ "">
+				<cfif FORM.filter_group_id NEQ LOCAL.category.getFilterGroup().getFilterGroupId()>
+					<cfset LOCAL.category.removeAllCategoryFilterRelas() />
+				</cfif>
 				<cfset LOCAL.category.setFilterGroup(EntityLoadByPK("filter_group",FORM.filter_group_id)) />
 			</cfif>
 		
@@ -84,8 +91,7 @@
 			
 			<cfset EntitySave(LOCAL.category) />
 			
-			<cfset SESSION.temp.message = "Category has been saved successfully." />
-			<cfset SESSION.temp.message_type = "alert-success" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_category")>
@@ -94,8 +100,7 @@
 			
 			<cfset EntitySave(LOCAL.category) />
 			
-			<cfset SESSION.temp.message = "Category: #LOCAL.category.getDisplayName()# has been deleted." />
-			<cfset SESSION.temp.message_type = "alert-success" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category: #LOCAL.category.getDisplayName()# has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
@@ -120,6 +125,8 @@
 			<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />
 			<cfset EntitySave(LOCAL.categoryFilterRela) />
 			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New filter value: #FORM.new_filter_value# has been added.") />
+			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		<cfelseif StructKeyExists(FORM,"delete_filter_value")>
 			<cfset LOCAL.category = EntityLoadByPK("category",FORM.id) />
@@ -127,6 +134,8 @@
 			<cfset LOCAL.categoryFilterRela = LOCAL.filterValue.getCategoryFilterRela() />
 			<cfset LOCAL.categoryFilterRela.removeFilterValue(LOCAL.filterValue) />
 			<cfset EntitySave(LOCAL.categoryFilterRela) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Filter value: #LOCAL.filterValue.getValue()# has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		</cfif>
