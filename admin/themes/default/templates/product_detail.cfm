@@ -63,6 +63,10 @@
 		
 		$('##from_date').datepicker();
 		$('##to_date').datepicker();
+				
+		$( ".delete-group-price" ).click(function() {
+			$("##deleted_group_price_id").val($(this).attr('grouppriceid'));
+		});
 	});
 </script>
 
@@ -81,6 +85,7 @@
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
+<input type="hidden" name="deleted_group_price_id" id="deleted_group_price_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -163,7 +168,8 @@
 						</div>
 						<div class="form-group">
 							<label>Group Price(s)</label>
-							<div class="row">
+							<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Group Price</span></a>
+							<div class="row" style="margin-top:10px;">
 								<cfif NOT IsNULL(REQUEST.pageData.groupPrices)>
 									<cfloop array="#REQUEST.pageData.groupPrices#" index="price">								
 										<div class="col-xs-3">
@@ -172,7 +178,7 @@
 													<table class="table table-hover">
 														<tr>
 															<th>#DollarFormat(price.price)#</th>
-															<th><a grouppriceid="#price.productCustomerGroupRelaId#" href="" class="pull-right" data-toggle="modal" data-target="##group-price-modal"><span class="label label-danger">Delete</span></a></th>
+															<th><a grouppriceid="#price.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<tr>
@@ -191,7 +197,6 @@
 									</cfloop>
 								</cfif>
 							</div>
-							<a href="" data-toggle="modal" data-target="##group-price-modal"><span class="label label-primary">Add Group Price</span></a>
 						</div>
 						
 						 <div class="form-group">
@@ -518,7 +523,7 @@
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
 <!-- ADD GROUP PRICE MODAL -->
-<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="add-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -529,6 +534,13 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
+				</div>	
+				<div class="form-group">
+					<select class="form-control" name="customer_group_id" multiple>
+						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
@@ -540,17 +552,17 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- DELETE GROUP PRICE MODAL -->
-<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this option?</h4>
+				<h4 class="modal-title"> Delete this group price?</h4>
 			</div>
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_filter_value" type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Yes</button>
+				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
