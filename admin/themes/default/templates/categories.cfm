@@ -29,17 +29,17 @@
 				<div class="box-body">
 					<ul>
 						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getDisplayName()#</a>
+							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#cat.getCategoryId()#">#cat.getDisplayName()#</a>
 							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 								<ul>
 							</cfif>
 							<cfloop array="#cat.getSubCategories()#" index="subCat">
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getDisplayName()#</a>
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#subCat.getCategoryId()#">#subCat.getDisplayName()#</a>
 								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									<ul>
 								</cfif>
 								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a>
+									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a>
 								</cfloop>
 								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									</ul>
@@ -61,7 +61,7 @@
 					<div class="box-body">
 						<div class="row">
 							<div class="col-xs-2">
-								<input type="text" name="category_id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"category_id")>value="#URL.category_id#"</cfif>>
+								<input type="text" name="id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"id")>value="#URL.id#"</cfif>>
 							</div>
 							<div class="col-xs-3">
 								<select class="form-control" name="is_enabled">
@@ -105,7 +105,7 @@
 									<td>#category.getDisplayName()#</td>
 									<td>#category.getRank()#</td>
 									<td>#category.getIsEnabled()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#category.getCategoryId()#">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#category.getCategoryId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
 							<cfelse>

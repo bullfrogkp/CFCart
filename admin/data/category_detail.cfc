@@ -3,19 +3,21 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
+		<cfset LOCAL.messageArray = [] />
+		
 		<cfif Trim(FORM.display_name) EQ "">
-			<cfset SESSION.temp.message = "Please enter a valid category name." />
-			<cfset SESSION.temp.message_type = "alert-danger" />
-			
-			<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>	
-				<cfif StructKeyExists(URL,"active_tab_id")>	
-					<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#URL.category_id#&active_tab_id=#URL.active_tab_id#" />
-				<cfelse>
-					<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#URL.category_id#" />
-				</cfif>
-			<cfelse>
-				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm" />
-			</cfif>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid category name.") />
+		</cfif>
+		
+		<cfif NOT IsNumeric(Trim(FORM.rank))>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid rank number.") />
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset SESSION.temp.message.messageType = "alert-danger" />
+			<cfset LOCAL.redirectUrl = _setRedirectURL() />
 		</cfif>
 		
 		<cfreturn LOCAL />
@@ -26,8 +28,8 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"save_category")>
-			<cfif IsNumeric(FORM.category_id)>
-				<cfset LOCAL.category = EntityLoadByPK("category", FORM.category_id)>
+			<cfif IsNumeric(FORM.id)>
+				<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)>
 				<cfset LOCAL.tab_id = FORM.tab_id />
 			<cfelse>
 				<cfset LOCAL.category = EntityNew("category") />
@@ -85,9 +87,9 @@
 			<cfset SESSION.temp.message = "Category has been saved successfully." />
 			<cfset SESSION.temp.message_type = "alert-success" />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_category")>
-			<cfset LOCAL.category = EntityLoad("category", FORM.category_id, true)> 
+			<cfset LOCAL.category = EntityLoad("category", FORM.id, true)> 
 			<cfset LOCAL.category.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.category) />
@@ -98,7 +100,7 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
 		
-			<cfset LOCAL.category = EntityLoadByPK("category",FORM.category_id) />
+			<cfset LOCAL.category = EntityLoadByPK("category",FORM.id) />
 			<cfset LOCAL.filter = EntityLoadByPK("filter",FORM.new_value_filter_id) />
 		
 			<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category = LOCAL.category, filter = LOCAL.filter},true)>
@@ -118,15 +120,15 @@
 			<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />
 			<cfset EntitySave(LOCAL.categoryFilterRela) />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		<cfelseif StructKeyExists(FORM,"delete_filter_value")>
-			<cfset LOCAL.category = EntityLoadByPK("category",FORM.category_id) />
+			<cfset LOCAL.category = EntityLoadByPK("category",FORM.id) />
 			<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",FORM.deleted_filter_value_id) />		
 			<cfset LOCAL.categoryFilterRela = LOCAL.filterValue.getCategoryFilterRela() />
 			<cfset LOCAL.categoryFilterRela.removeFilterValue(LOCAL.filterValue) />
 			<cfset EntitySave(LOCAL.categoryFilterRela) />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -139,12 +141,12 @@
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
-		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
-			<cfset LOCAL.pageData.category = EntityLoad("category", URL.category_id, true)> 
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.pageData.category = EntityLoad("category", URL.id, true)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			
-			<cfset LOCAL.productService.setCategoryId(URL.category_id) />
+			<cfset LOCAL.productService.setCategoryId(URL.id) />
 			<cfset LOCAL.pageData.products = LOCAL.productService.getProducts() />
 		<cfelse>
 			<cfset LOCAL.pageData.category = EntityNew("category") />
@@ -172,28 +174,6 @@
 			</cfloop>
 		</cfif>
 						
-		<cfset LOCAL.pageData.tabs = {} />
-		<cfset LOCAL.pageData.tabs["tab_1"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_2"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_3"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_4"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_5"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_6"] = "" />
-		<cfset LOCAL.pageData.tabs["tab_7"] = "" />
-				
-		<cfif StructKeyExists(URL,"active_tab_id")>	
-			<cfset LOCAL.pageData.activeTabId = URL.active_tab_id />
-			<cfset LOCAL.pageData.tabs["#LOCAL.pageData.activeTabId#"] = "active" />
-		<cfelse>
-			<cfset LOCAL.pageData.activeTabId = "tab_1" />
-			<cfset LOCAL.pageData.tabs["tab_1"] = "active" />
-		</cfif>
-		
-		<cfif IsDefined("SESSION.temp.message")>
-			<cfset LOCAL.pageData.message = SESSION.temp.message />
-			<cfset LOCAL.pageData.message_type = SESSION.temp.message_type />
-		</cfif>
-		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
@@ -208,6 +188,9 @@
 			<cfset LOCAL.pageData.formData.filter_group_id = isNull(LOCAL.pageData.category.getFilterGroup())?"":LOCAL.pageData.category.getFilterGroup().getFilterGroupId() />
 			<cfset LOCAL.pageData.formData.custom_design = isNull(LOCAL.pageData.category.getCustomDesign())?"":LOCAL.pageData.category.getCustomDesign() />
 		</cfif>
+		
+		<cfset LOCAL.pageData.tabs = _setActiveTab() />
+		<cfset LOCAL.pageData.message = _setTempMessage() />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

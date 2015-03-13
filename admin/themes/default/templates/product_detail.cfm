@@ -78,7 +78,7 @@
 </section>
 
 <!-- Main content -->
-<form method="post" enctype="multipart/form-data">
+<form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">

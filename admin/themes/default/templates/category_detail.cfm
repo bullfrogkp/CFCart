@@ -121,17 +121,19 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="category_id" id="category_id" value="#REQUEST.pageData.category.getCategoryId()#" />
-<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.activeTabId#" />
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.category.getCategoryId()#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_value_filter_id" id="new_value_filter_id" value="" />
 <input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
-			<cfif IsDefined("REQUEST.pageData.message")>
-				<div class="alert #REQUEST.pageData.message_type# alert-dismissable">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					#REQUEST.pageData.message#
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
 				</div>
 			</cfif>
 		</div>
