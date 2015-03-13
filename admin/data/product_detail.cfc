@@ -213,6 +213,11 @@
 			</cfloop>
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
+		
+		<cfelseif StructKeyExists(FORM,"add_new_group_price")>
+		
+		<cfelseif StructKeyExists(FORM,"delete_group_price")>
+		
 		</cfif>
 		
 		<cfreturn LOCAL />	
