@@ -66,7 +66,7 @@
 		<cfset var LOCAL = {} />
 			   
 	    <cfquery name="LOCAL.getProductGroupPrices">
-			SELECT	pcgr.price, cg.customer_group_id
+			SELECT	pcgr.product_customer_group_rela_id, pcgr.price, cg.customer_group_id
 			FROM	product_customer_group_rela pcgr
 			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
 			WHERE	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
@@ -77,6 +77,7 @@
 		
 		<cfoutput query="LOCAL.getProductGroupPrices" group="price">
 			<cfset LOCAL.priceStruct = {} />
+			<cfset LOCAL.priceStruct.productCustomerGroupRelaId = LOCAL.getProductGroupPrices.product_customer_group_rela_id />
 			<cfset LOCAL.priceStruct.price = LOCAL.getProductGroupPrices.price />
 			<cfset LOCAL.priceStruct.customerGroupIdList = "" />
 			<cfoutput>

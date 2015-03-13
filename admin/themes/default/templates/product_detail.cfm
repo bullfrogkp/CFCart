@@ -161,69 +161,39 @@
 							<label>Price</label>
 							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 						</div>
-						<cfif IsDefined("REQUEST.pageData.groupPrices")>
-							<div class="nav-tabs-custom">
-								<ul class="nav nav-tabs" id="group_price_tabs">
-									<cfloop from="1" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="i">
-										<li class="tab-title"><a href="##group_price_tab_#i#" data-toggle="tab">Group #i#</a></li>
-									</cfloop>
-									<li class="tab-title"><a href="##group_price_tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#" data-toggle="tab">New Group Price</a></li>
-								</ul>
-								<div class="tab-content" id="group_price_tab_content">
-									<cfloop from="1" to="#ArrayLen(REQUEST.pageData.groupPrices)#" index="j">
-										<cfset gp = REQUEST.pageData.groupPrices[j] />
-										<div class="tab-pane" id="group_price_tab_#j#">
-											<div class="form-group">
-												<label>Group Price</label>
-												<input type="text" name="group_price_#j#" class="form-control" placeholder="Enter ..." value="#gp.price#"/>
-											</div>
-											<div class="form-group">
-												<label>Group</label>
-												<select name="customer_group_id_#j#" multiple class="form-control">
-													<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-														<option value="#group.getCustomerGroupId()#"
-														<cfif ListFind(gp.customerGroupIdList,group.getCustomerGroupId())>
-														selected
-														</cfif>
-														>#group.getDisplayName()#</option>
-													</cfloop>
-												</select>
-											</div>
-											<div class="form-group">
-												<input type="checkbox" name="delete_group_price_#j#" class="form-control" /><span style="margin-left:10px;color:red;">Delete This Group Price</span>
-											</div>
+						<div class="form-group">
+							<label>Group Price(s)</label>
+							<div class="row">
+								<cfif NOT IsNULL(REQUEST.pageData.groupPrices)>
+									<cfloop array="#REQUEST.pageData.groupPrices#" index="price">								
+										<div class="col-xs-3">
+											<div class="box box-warning">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr>
+															<th>#DollarFormat(price.price)#</th>
+															<th><a grouppriceid="#price.productCustomerGroupRelaId#" href="" class="pull-right" data-toggle="modal" data-target="##group-price-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+														<tr>
+															<td>#group.getDisplayName()#</td>
+															<td>
+																<cfif ListFind(price.customerGroupIdList,group.getCustomerGroupId())>
+																<span class="label label-primary pull-right">Added</span>
+																</cfif>
+															</td>
+														</tr>
+														</cfloop>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
 										</div>
 									</cfloop>
-									<div class="tab-pane" id="group_price_tab_#ArrayLen(REQUEST.pageData.groupPrices)+1#">
-										<div class="form-group">
-											<label>Group Price</label>
-											<input name="new_group_price" type="text" class="form-control" placeholder="Enter ..." value=""/>
-										</div>
-										<div class="form-group">
-											<label>Group</label>
-											<select name="new_customer_group_id" multiple class="form-control">
-												<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-													<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
-												</cfloop>
-											</select>
-										</div>
-									</div>
-								</div>
+								</cfif>
 							</div>
-						<cfelse>
-							<div class="form-group">
-								<label>Group Price</label>
-								<input name="new_group_price" type="text" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>Group</label>
-								<select name="new_customer_group_id" multiple class="form-control">
-									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-										<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
-						</cfif>
+							<a href="" data-toggle="modal" data-target="##group-price-modal"><span class="label label-primary">Add Group Price</span></a>
+						</div>
+						
 						 <div class="form-group">
 							<label>Special Price</label>
 							<input name="special_price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
@@ -547,5 +517,44 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+<!-- ADD GROUP PRICE MODAL -->
+<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Group Price</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE GROUP PRICE MODAL -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this option?</h4>
+			</div>
+		
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_filter_value" type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Yes</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
