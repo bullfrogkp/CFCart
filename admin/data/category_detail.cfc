@@ -18,6 +18,10 @@
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
 			<cfset SESSION.temp.message.messageType = "alert-danger" />
 			<cfset LOCAL.redirectUrl = _setRedirectURL() />
+		<cfelse>
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset StructDelete(SESSION.temp,"formData") />
+			</cfif>
 		</cfif>
 		
 		<cfreturn LOCAL />
