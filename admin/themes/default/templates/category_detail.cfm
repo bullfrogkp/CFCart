@@ -92,6 +92,15 @@
 		
 		$( ".add-filter-value" ).click(function() {
 			$("##new_value_filter_id").val($(this).attr('filterid'));
+			
+			if($(this).attr('filterid') == 1)
+			{
+				$('##new_filter_value').colorpicker();
+			}
+			else
+			{
+				$('##new_filter_value').unbind();
+			}
 		});
 		
 		$( ".delete-filter-value" ).click(function() {
@@ -349,7 +358,7 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input name="new_filter_value" type="text" class="form-control" placeholder="Option value">
+					<input id="new_filter_value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
