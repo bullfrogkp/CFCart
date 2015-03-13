@@ -185,7 +185,7 @@
 															<td>#group.getDisplayName()#</td>
 															<td>
 																<cfif ListFind(price.customerGroupIdList,group.getCustomerGroupId())>
-																<span class="label label-primary pull-right">Added</span>
+																<i class="fa fa-check-square pull-right" style="margin-top:3px;"></i>
 																</cfif>
 															</td>
 														</tr>
@@ -545,7 +545,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Add</button>
+				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
@@ -562,7 +562,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Yes</button>
+				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
