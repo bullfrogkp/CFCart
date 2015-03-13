@@ -185,6 +185,10 @@
 					<cfset returnStruct = globalPageObj.validateGlobalFormData() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					<cfelse>
+						<cfif IsDefined("SESSION.temp.formData")>
+							<cfset StructDelete(SESSION.temp,"formData") />
+						</cfif>
 					</cfif>
 					
 					<cfset returnStruct = globalPageObj.processGlobalFormDataAfterValidation() />
@@ -201,6 +205,10 @@
 					<cfset returnStruct = pageObj.validateFormData() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					<cfelse>
+						<cfif IsDefined("SESSION.temp.formData")>
+							<cfset StructDelete(SESSION.temp,"formData") />
+						</cfif>
 					</cfif>
 					
 					<cfset returnStruct = pageObj.processFormDataAfterValidation() />
