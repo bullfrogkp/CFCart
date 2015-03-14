@@ -243,8 +243,8 @@
 							<cfif NOT IsNull(REQUEST.pageData.product.getImages())>
 								<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">
 									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#admin/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" target="_blank">
-											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#admin/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" />
+										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" target="_blank">
+											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" />
 										</a>
 									</div>
 								</cfloop>
