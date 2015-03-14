@@ -65,7 +65,7 @@
 		$('##to_date').datepicker();
 				
 		$( ".delete-group-price" ).click(function() {
-			$("##deleted_group_price_id").val($(this).attr('grouppriceid'));
+			$("##deleted_group_price_amount").val($(this).attr('grouppriceamount'));
 		});
 	});
 </script>
@@ -85,7 +85,7 @@
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
-<input type="hidden" name="deleted_group_price_id" id="deleted_group_price_id" value="" />
+<input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -178,7 +178,7 @@
 													<table class="table table-hover">
 														<tr>
 															<th>#DollarFormat(price.price)#</th>
-															<th><a grouppriceid="#price.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
+															<th><a grouppriceamount="#price.price#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<tr>

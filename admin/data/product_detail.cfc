@@ -232,7 +232,12 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
 		<cfelseif StructKeyExists(FORM,"delete_group_price")>
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.id) />
-			<cfset LOCAL.product.removeProductCustomerGroupRela(EntityLoadByPK("product_customer_group_rela",FORM.deleted_group_price_id)) />
+			<cfset LOCAL.groupPrices = EntityLoad("product_customer_group_rela",{price = FORM.deleted_group_price_amount}) />
+			
+			<cfloop array="#LOCAL.groupPrices#" index="LOCAL.groupPrice">
+				<cfset LOCAL.product.removeProductCustomerGroupRela(LOCAL.groupPrice) />
+			</cfloop>
+			
 			<cfset EntitySave(LOCAL.product) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Group price has been deleted.") />
