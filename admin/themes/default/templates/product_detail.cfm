@@ -273,67 +273,50 @@
 								</cfloop>
 							</select>
 						</div>
-						<table class="table table-bordered table-striped" style="margin-top:30px;">
-							<tr>
-								<th>Attribute Name</th>
-								<th>Attribute Values</th>
-								<th>Required</th>
-								<th colspan="2">New Option</th>
-							</tr>
+						
+						
+						<div id="attributes" class="row">
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
-							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-								<tr>
-									<td>#attribute.name#</td>
-									<td>
-										<table>
-											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-											<tr>
-												<td style="padding-right:20px;">
-													<div style="padding:3px 10px;border:1px solid ##CCC;">
-													#attributeValue.value#
-													</div>
-												</td>
-												<cfif attribute.name EQ "color">
-												<td>
-													<cfif attributeValue.imageName NEQ "">
-														<div style="width:20px;height:20px;border:1px solid ##CCC;margin-top:3px;">
-															<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;" />
-														</div>
-													<cfelse>
-														<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#attributeValue.value#;margin-top:3px;"></div>
-													</cfif>
-												</td>
-												</cfif>
-												<td style="padding-left:20px;">
-													<input type="checkbox" name="remove_attribute_value_#attributeValue.attributeValueId#" class="form-control" />
-												</td>
-												<td>
-													<span style="margin-left:10px;color:red;">Delete</span>
-												</td>
-											</tr>
-											</cfloop>
-										</table>
-									</td>
-									<td>
-										#YesNoFormat(attribute.required)#
-									</td>
-									<td>
-										<input name="new_attribute_value_#attribute.attributeId#" id="new_attribute_value_#attribute.attributeId#" type="text" value="">
-										<cfif attribute.name EQ "color">
-											<script>
-											$(function(){
-												$('##new_attribute_value_#attribute.attributeId#').colorpicker();
-											});
-											</script>
-										</cfif>
-									</td>
-									<td>
-										<input name="new_image_#attribute.attributeId#" type="file">
-									</td>
-								</tr>
-							</cfloop>
+								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">						
+									<div class="col-xs-3">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr>
+														<th>#attribute.name#<cfif attribute.required> (required)</cfif></th>
+														<cfif attribute.name EQ "color">
+														<th></th>
+														</cfif>
+														<th><a attributeid="#attribute.attributeId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">Add Option</span></a></th>
+													</tr>
+													
+													<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
+													<tr>
+														<td>#attributeValue.value#</td>
+														<cfif attribute.name EQ "color">
+														<td>
+															<cfif attributeValue.imageName NEQ "">
+																<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
+																	<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;" />
+																</div>
+															<cfelse>
+																<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
+															</cfif>
+														</td>
+														</cfif>
+														
+														<td>
+															<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-danger">Delete</span></a>
+														</td>
+													</tr>
+													</cfloop>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfloop>
 							</cfif>
-						</table>
+						</div>
 						
 						<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
 						<table class="table table-bordered table-striped" style="margin-top:30px;">
