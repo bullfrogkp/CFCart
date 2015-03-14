@@ -212,12 +212,32 @@
 				</cfif>
 			</cfloop>
 			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
+			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		
 		<cfelseif StructKeyExists(FORM,"add_new_group_price")>
-		
+			<cfif IsNumeric(Trim(FORM.new_group_price))>
+				<cfloop list="#FORM.customer_group_id#" index="LOCAL.groupId">
+					<cfset LOCAL.newGroupPrice = EntityNew("product_customer_group_rela") />
+					<cfset LOCAL.newGroupPrice.setProduct(EntityLoadByPK("product",FORM.id)) />
+					<cfset LOCAL.newGroupPrice.setCustomerGroup(EntityLoadByPK("customer_group",LOCAL.groupId)) />
+					<cfset LOCAL.newGroupPrice.setPrice(Trim(FORM.new_group_price)) />
+					<cfset EntitySave(LOCAL.newGroupPrice) />
+				</cfloop>
+			</cfif>
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New group price has been saved successfully.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
 		<cfelseif StructKeyExists(FORM,"delete_group_price")>
-		
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.id) />
+			<cfset LOCAL.product.removeProductCustomerGroupRela(EntityLoadByPK("product_customer_group_rela",FORM.deleted_group_price_id)) />
+			<cfset EntitySave(LOCAL.product) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Group price has been deleted.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
