@@ -375,46 +375,6 @@
 								</div>
 							</cfif>
 						</div>
-						
-						
-						
-						<!---
-						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
-						<table class="table table-bordered table-striped" style="margin-top:30px;">
-							<tr>
-								<th>Attribute Values</th>
-								<th>Price</th>
-								<th>Stock</th>
-								<th>Action</th>
-							</tr>
-							<tr>
-								<td>
-									<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-										<cfif attribute.required EQ true>
-										<select name="new_option_#attribute.attributeId#">
-											<option value="">#attribute.name#</option>
-											<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-												<option value="#attributeValue.value#">
-													#attributeValue.value#
-												</option>
-											</cfloop>
-										</select>
-										</cfif>
-									</cfloop>
-								</td>
-								<td>
-									<input name="new_option_price" type="text" value="" />
-								</td>
-								<td>
-									<input name="new_option_stock" type="text" value="" />
-								</td>
-								<td>
-									<button name="add_option_value" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option Value</button>
-								</td>
-							</tr>
-						</table>
-						</cfif>
-						--->
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 						<table class="table table-bordered table-striped data-table">
@@ -591,24 +551,24 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add New Group Price</h4>
+				<h4 class="modal-title"> Add New Attribute Option</h4>
 			</div>
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
+					<input id="new_attribute_option" name="new_attribute_option" type="text" class="form-control" placeholder="Attribute option">
 				</div>	
-				<div class="form-group">
-					<select class="form-control" name="customer_group_id" multiple>
-						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
-						</cfloop>
-					</select>
+				 <div class="form-group">
+					<div class="btn btn-success btn-file">
+						<i class="fa fa-paperclip"></i> Attachment
+						<input type="file" name="attachment"/>
+					</div>
+					<p class="help-block">Max. 32MB</p>
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_new_attribute_option" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
@@ -620,43 +580,80 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this group price?</h4>
+				<h4 class="modal-title"> Delete this option?</h4>
 			</div>
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_option" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
 <!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
+<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
 <div class="modal fade" id="add-attribute-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add New Group Price</h4>
+				<h4 class="modal-title"> Add New Attribute Value</h4>
 			</div>
 		
 			<div class="modal-body">
+			
+				<!---
+						
+						<table class="table table-bordered table-striped" style="margin-top:30px;">
+							<tr>
+								<th>Attribute Values</th>
+								<th>Price</th>
+								<th>Stock</th>
+								<th>Action</th>
+							</tr>
+							<tr>
+								<td>
+									
+								</td>
+								<td>
+									<input name="new_option_price" type="text" value="" />
+								</td>
+								<td>
+									<input name="new_option_stock" type="text" value="" />
+								</td>
+								<td>
+									<button name="add_option_value" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option Value</button>
+								</td>
+							</tr>
+						</table>
+						</cfif>
+						--->
+				<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+					<cfif attribute.required EQ true>
+						<div class="form-group">
+							<select class="form-control" name="new_attribute_#attribute.attributeId#">
+								<option value="">#attribute.name#</option>
+								<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
+									<option value="#attributeValue.value#">
+										#attributeValue.value#
+									</option>
+								</cfloop>
+							</select>
+						</div>	
+					</cfif>
+				</cfloop>
 				<div class="form-group">
-					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
+					<input id="new_price" name="new_price" type="text" class="form-control" placeholder="Price">
 				</div>	
 				<div class="form-group">
-					<select class="form-control" name="customer_group_id" multiple>
-						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
-						</cfloop>
-					</select>
-				</div>
+					<input id="new_stock" name="new_stock" type="text" class="form-control" placeholder="Stock">
+				</div>	
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_new_attribute_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
@@ -668,16 +665,17 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this group price?</h4>
+				<h4 class="modal-title"> Delete this attribute value?</h4>
 			</div>
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_value" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</cfif>
 </form>
 </cfoutput>
