@@ -582,5 +582,100 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- ADD OPTION MODAL -->
+<div class="modal fade" id="add-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Group Price</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
+				</div>	
+				<div class="form-group">
+					<select class="form-control" name="customer_group_id" multiple>
+						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE OPTION MODAL -->
+<div class="modal fade" id="delete-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this group price?</h4>
+			</div>
+		
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
+<div class="modal fade" id="add-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Group Price</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
+				</div>	
+				<div class="form-group">
+					<select class="form-control" name="customer_group_id" multiple>
+						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE ATTRIBUTE VALUE MODAL -->
+<div class="modal fade" id="delete-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this group price?</h4>
+			</div>
+		
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_group_price" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
