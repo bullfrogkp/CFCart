@@ -184,7 +184,7 @@
 		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
 		
 		<cfelseif StructKeyExists(FORM,"delete_attribute_value")>
-		
+			<cfset EntityDelete(EntityLoad("product",FORM.sub_product_id)) />
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_value")>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
@@ -224,7 +224,7 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 		
 		<cfelseif StructKeyExists(FORM,"add_new_group_price")>
 			<cfif IsNumeric(Trim(FORM.new_group_price))>
