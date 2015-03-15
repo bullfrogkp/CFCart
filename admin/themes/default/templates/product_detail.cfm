@@ -288,7 +288,7 @@
 															<cfif attribute.name EQ "color">
 															<th></th>
 															</cfif>
-															<th><a attributeid="#attribute.attributeId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">Add Option</span></a></th>
+															<th><a attributeid="#attribute.attributeId#" href="" class="add-option pull-right" data-toggle="modal" data-target="##add-option-modal"><span class="label label-primary">Add Option</span></a></th>
 														</tr>
 														
 														<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
@@ -307,7 +307,7 @@
 															</cfif>
 															
 															<td>
-																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-danger">Delete</span></a>
+																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-option pull-right" data-toggle="modal" data-target="##delete-option-modal"><span class="label label-danger">Delete</span></a>
 															</td>
 														</tr>
 														</cfloop>
@@ -322,7 +322,7 @@
 						
 						<div class="form-group">
 							<label>Attribute Value(s)</label>
-							<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Attribute Value</span></a>
+							<a href="" data-toggle="modal" data-target="##add-attribute-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Attribute Value</span></a>
 							
 							<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
 								<div id="attributes" class="row" style="margin-top:10px;">
@@ -335,14 +335,14 @@
 															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
 															<th></th>
 															<th>
-																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">delete</span></a>
+																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-primary">delete</span></a>
 																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
 															</th>
 														</tr>
 														
 														<cfloop array="#subProduct.optionValues#" index="optionValue">
 														<tr style="background-color:##f9f9f9;">
-															<td>#optionValue.attributeName#</td>
+															<td>#LCase(optionValue.attributeName)#</td>
 															<td>#optionValue.optionValue#</td>
 															<td>
 															<cfif optionValue.attributeName EQ "color">
@@ -584,7 +584,7 @@
 </div><!-- /.modal -->
 
 <!-- ADD OPTION MODAL -->
-<div class="modal fade" id="add-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="add-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -613,7 +613,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- DELETE OPTION MODAL -->
-<div class="modal fade" id="delete-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -632,7 +632,7 @@
 
 
 <!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
-<div class="modal fade" id="add-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="add-attribute-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -661,7 +661,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- DELETE ATTRIBUTE VALUE MODAL -->
-<div class="modal fade" id="delete-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-attribute-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
