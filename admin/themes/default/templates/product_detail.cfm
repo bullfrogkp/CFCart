@@ -72,8 +72,9 @@
 			$("##deleted_attribute_value_id").val($(this).attr('attributevalueid'));
 		});
 		
-		
-		
+		$( ".delete-attribute-option-value" ).click(function() {
+			$("##sub_product_id").val($(this).attr('sub_product_id'));
+		});
 	});
 </script>
 
@@ -94,6 +95,7 @@
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_attribute_option_attribute_id" id="new_attribute_option_attribute_id" value="" />
 <input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
+<input type="hidden" name="sub_product_id" id="sub_product_id" value="" />
 <input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <section class="content">
 	<div class="row">
@@ -297,7 +299,7 @@
 															<cfif attribute.name EQ "color">
 															<th></th>
 															</cfif>
-															<th><a attributeid="#attribute.attributeId#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-option-modal"><span class="label label-primary">Add Option</span></a></th>
+															<th><a attributeid="#attribute.attributeId#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 														</tr>
 														
 														<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
@@ -316,7 +318,7 @@
 															</cfif>
 															
 															<td>
-																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-option-modal"><span class="label label-danger">Delete</span></a>
+																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 															</td>
 														</tr>
 														</cfloop>
@@ -332,20 +334,20 @@
 						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
 							<div class="form-group">
 								<label>Attribute Value(s)</label>
-								<a href="" data-toggle="modal" data-target="##add-attribute-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Attribute Value</span></a>
+								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
 								
 								<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
 									<div id="attributes" class="row" style="margin-top:10px;">
 										<cfloop array="#REQUEST.pageData.subProductArray#" index="subProduct">					
 											<div class="col-xs-3">
-												<div class="box box-warning">
+												<div class="box box-info">
 													<div class="box-body table-responsive no-padding">
 														<table class="table table-hover">
 															<tr>
 																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
 																<th></th>
 																<th>
-																	<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-primary">delete</span></a>
+																	<a subproductid="#subProduct.productId#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-primary">delete</span></a>
 																	<!---
 																	<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
 																	--->
@@ -557,7 +559,7 @@
 </div><!-- /.modal -->
 
 <!-- ADD OPTION MODAL -->
-<div class="modal fade" id="add-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="add-new-attribute-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -572,7 +574,7 @@
 				 <div class="form-group">
 					<div class="btn btn-success btn-file">
 						<i class="fa fa-paperclip"></i> Attachment
-						<input type="file" name="attachment"/>
+						<input type="file" name="new_attribute_option_attachment"/>
 					</div>
 					<p class="help-block">Max. 32MB</p>
 				</div>
@@ -586,7 +588,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- DELETE OPTION MODAL -->
-<div class="modal fade" id="delete-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-attribute-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -605,7 +607,7 @@
 
 <!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
 <cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
-<div class="modal fade" id="add-attribute-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="add-attribute-option-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -636,13 +638,13 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_attribute_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_new_attribute_option_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- DELETE ATTRIBUTE VALUE MODAL -->
-<div class="modal fade" id="delete-attribute-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-attribute-option-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -651,7 +653,7 @@
 			</div>
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_attribute_value" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_option_value" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
