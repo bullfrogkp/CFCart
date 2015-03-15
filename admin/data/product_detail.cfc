@@ -180,7 +180,16 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
-		
+			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
+			<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+			<cfset LOCAL.newAttributeValue.setProduct(LOCAL.product) />
+			<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",FORM.new_attribute_option_attribute_id)) />
+			<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option)) />
+			<cfset LOCAL.newAttributeValue.setImageName(Trim(FORM.new_attribute_option_attachment)) />
+			
+			<cfset EntitySave(LOCAL.newAttributeValue) />
+			<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
+			<cfset EntitySave(LOCAL.product) />
 		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
 		
 		<cfelseif StructKeyExists(FORM,"delete_attribute_value")>
