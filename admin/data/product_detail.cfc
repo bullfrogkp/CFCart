@@ -179,7 +179,13 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
-		<cfelseif StructKeyExists(FORM,"add_option_value")>
+		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
+		
+		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
+		
+		<cfelseif StructKeyExists(FORM,"delete_attribute_value")>
+		
+		<cfelseif StructKeyExists(FORM,"add_new_attribute_value")>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
 			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />

@@ -64,9 +64,16 @@
 		$('##from_date').datepicker();
 		$('##to_date').datepicker();
 				
-		$( ".delete-group-price" ).click(function() {
-			$("##deleted_group_price_amount").val($(this).attr('grouppriceamount'));
+		$( ".add-new-attribute-option" ).click(function() {
+			$("##new_attribute_option_attribute_id").val($(this).attr('attributeid'));
 		});
+		
+		$( ".delete-attribute-option" ).click(function() {
+			$("##deleted_attribute_value_id").val($(this).attr('attributevalueid'));
+		});
+		
+		
+		
 	});
 </script>
 
@@ -85,6 +92,8 @@
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
+<input type="hidden" name="new_attribute_option_attribute_id" id="new_attribute_option_attribute_id" value="" />
+<input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
 <input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <section class="content">
 	<div class="row">
@@ -288,7 +297,7 @@
 															<cfif attribute.name EQ "color">
 															<th></th>
 															</cfif>
-															<th><a attributeid="#attribute.attributeId#" href="" class="add-option pull-right" data-toggle="modal" data-target="##add-option-modal"><span class="label label-primary">Add Option</span></a></th>
+															<th><a attributeid="#attribute.attributeId#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-option-modal"><span class="label label-primary">Add Option</span></a></th>
 														</tr>
 														
 														<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
@@ -307,7 +316,7 @@
 															</cfif>
 															
 															<td>
-																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-option pull-right" data-toggle="modal" data-target="##delete-option-modal"><span class="label label-danger">Delete</span></a>
+																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-option-modal"><span class="label label-danger">Delete</span></a>
 															</td>
 														</tr>
 														</cfloop>
@@ -601,35 +610,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title"> Add New Attribute Value</h4>
 			</div>
-		
 			<div class="modal-body">
-			
-				<!---
-						
-						<table class="table table-bordered table-striped" style="margin-top:30px;">
-							<tr>
-								<th>Attribute Values</th>
-								<th>Price</th>
-								<th>Stock</th>
-								<th>Action</th>
-							</tr>
-							<tr>
-								<td>
-									
-								</td>
-								<td>
-									<input name="new_option_price" type="text" value="" />
-								</td>
-								<td>
-									<input name="new_option_stock" type="text" value="" />
-								</td>
-								<td>
-									<button name="add_option_value" value="" type="submit" class="btn btn-sm btn-primary" style="padding:3px 10px;">Add Option Value</button>
-								</td>
-							</tr>
-						</table>
-						</cfif>
-						--->
 				<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 					<cfif attribute.required EQ true>
 						<div class="form-group">
@@ -655,7 +636,6 @@
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
 				<button name="add_new_attribute_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
-		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -667,12 +647,10 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title"> Delete this attribute value?</h4>
 			</div>
-		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_attribute_value" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
-		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
