@@ -284,7 +284,14 @@
 
 					<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">		
 						<cfif LOCAL.attribute.required AND ArrayLen(LOCAL.attribute.attributeValueArray) EQ 1>
-							<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.attribute.attributeValueArray[1].value) />
+						
+							<cfset LOCAL.optionValue = {} />
+							<cfset LOCAL.optionValue.attributeId = LOCAL.attribute.attributeId />
+							<cfset LOCAL.optionValue.attributeName = LOCAL.attribute.attributeName />
+							<cfset LOCAL.optionValue.optionValue = LOCAL.attribute.attributeValueArray[1].value />
+							<cfset LOCAL.optionValue.imageName = LOCAL.attribute.attributeValueArray[1].imageName />
+						
+							<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.optionValue) />
 						</cfif>
 					</cfloop>
 					

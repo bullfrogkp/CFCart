@@ -107,11 +107,12 @@
 			<cfset LOCAL.attributeStruct.name = LOCAL.getAttributes.display_name />
 			<cfset LOCAL.attributeStruct.required = LOCAL.getAttributes.required />
 			<cfset LOCAL.attributeStruct.attributeId = LOCAL.getAttributes.attribute_id />
+			<cfset LOCAL.attributeStruct.attributeName = LOCAL.getAttributes.display_name />
 			
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
 			 <cfquery name="LOCAL.getAttributeValues">
-				SELECT	av.attribute_value_id, av.value, av.min_value, av.max_value,av.image_name
+				SELECT	av.attribute_value_id, av.value, av.image_name
 				FROM	attribute_value av
 				WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 				AND		av.attribute_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.getAttributes.attribute_id#" />
@@ -122,8 +123,6 @@
 				<cfset LOCAL.attributeValueStruct.attributeValueId = LOCAL.getAttributeValues.attribute_value_id />
 				<cfset LOCAL.attributeValueStruct.imageName = LOCAL.getAttributeValues.image_name />
 				<cfset LOCAL.attributeValueStruct.value = LOCAL.getAttributeValues.value />
-				<cfset LOCAL.attributeValueStruct.minValue = LOCAL.getAttributeValues.min_value />
-				<cfset LOCAL.attributeValueStruct.maxValue = LOCAL.getAttributeValues.max_value />
 				<cfset ArrayAppend(LOCAL.attributeStruct.attributeValueArray, LOCAL.attributeValueStruct) />
 			</cfloop>
 			

@@ -277,7 +277,7 @@
 						<div class="form-group">
 							<label>Attribute Option(s)</label>
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
-								<div id="attributes" class="row">
+								<div id="attributes" class="row" style="margin-top:10px;">
 									<cfloop array="#REQUEST.pageData.attributes#" index="attribute">						
 										<div class="col-xs-3">
 											<div class="box box-warning">
@@ -325,33 +325,33 @@
 							<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Attribute Value</span></a>
 							
 							<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
-								<div id="attributes" class="row">
+								<div id="attributes" class="row" style="margin-top:10px;">
 									<cfloop array="#REQUEST.pageData.subProductArray#" index="subProduct">					
 										<div class="col-xs-3">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr>
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">#subProduct.productId#</a></th>
+															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
 															<th></th>
 															<th>
-																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
 																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">delete</span></a>
+																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
 															</th>
 														</tr>
 														
-														<cfloop array="#subProduct.options#" index="option">
-														<tr>
-															<td>#option.attributeName#</td>
-															<td>#option.optionValue#</td>
+														<cfloop array="#subProduct.optionValues#" index="optionValue">
+														<tr style="background-color:##f9f9f9;">
+															<td>#optionValue.attributeName#</td>
+															<td>#optionValue.optionValue#</td>
 															<td>
-															<cfif option.attributeName EQ "color">
-																<cfif option.imageName NEQ "">
+															<cfif optionValue.attributeName EQ "color">
+																<cfif optionValue.imageName NEQ "">
 																	<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																		<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#option.attributeId#/#option.imageName#" style="width:100%;height:100%;" />
+																		<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;" />
 																	</div>
 																<cfelse>
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#option.optionValue#;display:inline-block;vertical-align:middle"></div>
+																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.optionValue#;display:inline-block;vertical-align:middle"></div>
 																</cfif>
 															</cfif>
 															</td>
@@ -359,7 +359,7 @@
 														</cfloop>
 														<tr>
 															<td>price</td>
-															<td colspan="2">#subProduct.price</td>
+															<td colspan="2">#subProduct.price#</td>
 														</tr>
 														<tr>
 															<td>stock</td>
