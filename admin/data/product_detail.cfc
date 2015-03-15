@@ -206,10 +206,28 @@
 			<cfset EntitySave(LOCAL.newAttributeValue) />
 			<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
 			<cfset EntitySave(LOCAL.product) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
+			
 		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
-		
+			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
+			<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",FORM.deleted_attribute_value_id) />
+			<cfset LOCAL.product.removeAttributeValue(LOCAL.attributeValue) /> 
+			<cfset EntitySave(LOCAL.product) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute option has been deleted.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
+			
 		<cfelseif StructKeyExists(FORM,"delete_attribute_value")>
 			<cfset EntityDelete(EntityLoad("product",FORM.sub_product_id)) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute value has been deleted.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
+			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_value")>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
@@ -247,7 +265,7 @@
 			
 			<cfset EntitySave(LOCAL.newProduct) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New attribute value has been saved successfully.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 		
