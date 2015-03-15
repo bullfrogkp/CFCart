@@ -139,7 +139,7 @@
 							
 							<cfif LOCAL.filename NEQ "">
 							
-								<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\products\#LOCAL.product.getProductId()#\attributes\#LOCAL.attribute.attributeId#" />
+								<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#LOCAL.attribute.attributeId#" />
 								
 								<cfif NOT DirectoryExists(LOCAL.imageDir)>
 									<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
@@ -185,7 +185,23 @@
 			<cfset LOCAL.newAttributeValue.setProduct(LOCAL.product) />
 			<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",FORM.new_attribute_option_attribute_id)) />
 			<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option)) />
-			<cfset LOCAL.newAttributeValue.setImageName(Trim(FORM.new_attribute_option_attachment)) />
+			
+			<cfset LOCAL.filename = Trim(FORM.new_attribute_option_attachment) />
+							
+			<cfif LOCAL.filename NEQ "">
+				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#LOCAL.attribute.attributeId#" />
+				
+				<cfif NOT DirectoryExists(LOCAL.imageDir)>
+					<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+				</cfif>
+				
+				<cffile action = "upload"  
+						fileField = "new_attribute_option_attachment"
+						destination = "#LOCAL.imageDir#"
+						nameConflict = "MakeUnique"> 
+				
+				<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.newAttributeValue) />
 			<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
