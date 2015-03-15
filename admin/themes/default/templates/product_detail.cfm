@@ -336,7 +336,9 @@
 															<th></th>
 															<th>
 																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-primary">delete</span></a>
+																<!---
 																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
+																--->
 															</th>
 														</tr>
 														
