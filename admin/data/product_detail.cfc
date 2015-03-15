@@ -192,13 +192,15 @@
 			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
 			
 			<cfset LOCAL.newProduct = EntityNew("product")>
+			<cfset LOCAL.newProduct.setName(LOCAL.product.getName()) />
+			<cfset LOCAL.newProduct.setDisplayName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.newProduct.setSku(LOCAL.product.getSku()) />
 			<cfset LOCAL.newProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
 			<cfset LOCAL.newProduct.setAttributeSet(LOCAL.product.getAttributeSet()) />
 			<cfset LOCAL.newProduct.setShippingMethod(LOCAL.product.getShippingMethod()) />
 			<cfset LOCAL.newProduct.setParentProduct(LOCAL.product) />
-			<cfset LOCAL.newProduct.setPrice(FORM.new_option_price) />
-			<cfset LOCAL.newProduct.setStock(FORM.new_option_stock) />
+			<cfset LOCAL.newProduct.setPrice(FORM.new_price) />
+			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
 			<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
@@ -211,12 +213,14 @@
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProduct(LOCAL.newProduct) />
 					<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",LOCAL.productAttributes.attribute_id)) />
-					<cfset LOCAL.newAttributeValue.setValue(FORM["new_option_#LOCAL.productAttributes.attribute_id#"]) />
+					<cfset LOCAL.newAttributeValue.setValue(FORM["new_attribute_value_#LOCAL.productAttributes.attribute_id#"]) />
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
 				</cfif>
 			</cfloop>
+			
+			<cfset EntitySave(LOCAL.newProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
 			

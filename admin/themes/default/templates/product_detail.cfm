@@ -329,61 +329,63 @@
 							</cfif>
 						</div>
 						
-						<div class="form-group">
-							<label>Attribute Value(s)</label>
-							<a href="" data-toggle="modal" data-target="##add-attribute-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Attribute Value</span></a>
-							
-							<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
-								<div id="attributes" class="row" style="margin-top:10px;">
-									<cfloop array="#REQUEST.pageData.subProductArray#" index="subProduct">					
-										<div class="col-xs-3">
-											<div class="box box-warning">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr>
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
-															<th></th>
-															<th>
-																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-primary">delete</span></a>
-																<!---
-																<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
-																--->
-															</th>
-														</tr>
-														
-														<cfloop array="#subProduct.optionValues#" index="optionValue">
-														<tr style="background-color:##f9f9f9;">
-															<td>#LCase(optionValue.attributeName)#</td>
-															<td>#optionValue.optionValue#</td>
-															<td>
-															<cfif optionValue.attributeName EQ "color">
-																<cfif optionValue.imageName NEQ "">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																		<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;" />
-																	</div>
-																<cfelse>
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.optionValue#;display:inline-block;vertical-align:middle"></div>
+						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
+							<div class="form-group">
+								<label>Attribute Value(s)</label>
+								<a href="" data-toggle="modal" data-target="##add-attribute-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Attribute Value</span></a>
+								
+								<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
+									<div id="attributes" class="row" style="margin-top:10px;">
+										<cfloop array="#REQUEST.pageData.subProductArray#" index="subProduct">					
+											<div class="col-xs-3">
+												<div class="box box-warning">
+													<div class="box-body table-responsive no-padding">
+														<table class="table table-hover">
+															<tr>
+																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
+																<th></th>
+																<th>
+																	<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##delete-attribute-value-modal"><span class="label label-primary">delete</span></a>
+																	<!---
+																	<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
+																	--->
+																</th>
+															</tr>
+															
+															<cfloop array="#subProduct.optionValues#" index="optionValue">
+															<tr style="background-color:##f9f9f9;">
+																<td>#LCase(optionValue.attributeName)#</td>
+																<td>#optionValue.optionValue#</td>
+																<td>
+																<cfif optionValue.attributeName EQ "color">
+																	<cfif optionValue.imageName NEQ "">
+																		<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
+																			<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;" />
+																		</div>
+																	<cfelse>
+																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.optionValue#;display:inline-block;vertical-align:middle"></div>
+																	</cfif>
 																</cfif>
-															</cfif>
-															</td>
-														</tr>
-														</cfloop>
-														<tr>
-															<td>price</td>
-															<td colspan="2">#subProduct.price#</td>
-														</tr>
-														<tr>
-															<td>stock</td>
-															<td colspan="2">#subProduct.stock#</td>
-														</tr>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</div>
-							</cfif>
-						</div>
+																</td>
+															</tr>
+															</cfloop>
+															<tr>
+																<td>price</td>
+																<td colspan="2">#subProduct.price#</td>
+															</tr>
+															<tr>
+																<td>stock</td>
+																<td colspan="2">#subProduct.stock#</td>
+															</tr>
+														</table>
+													</div><!-- /.box-body -->
+												</div><!-- /.box -->
+											</div>
+										</cfloop>
+									</div>
+								</cfif>
+							</div>
+						</cfif>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 						<table class="table table-bordered table-striped data-table">
@@ -614,7 +616,7 @@
 				<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 					<cfif attribute.required EQ true>
 						<div class="form-group">
-							<select class="form-control" name="new_attribute_#attribute.attributeId#">
+							<select class="form-control" name="new_attribute_value_#attribute.attributeId#">
 								<option value="">#attribute.name#</option>
 								<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
 									<option value="#attributeValue.value#">
