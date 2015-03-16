@@ -257,6 +257,9 @@
 					<cfset LOCAL.newAttributeValue.setProduct(LOCAL.newProduct) />
 					<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",LOCAL.productAttributes.attribute_id)) />
 					<cfset LOCAL.newAttributeValue.setValue(FORM["new_attribute_value_#LOCAL.productAttributes.attribute_id#"]) />
+					<cfif FORM.new_attribute_imagename NEQ "">
+						<cfset LOCAL.newAttributeValue.setImageName(FORM.new_attribute_imagename) />
+					</cfif>
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />

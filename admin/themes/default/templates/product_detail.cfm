@@ -75,6 +75,10 @@
 		$( ".delete-attribute-option-value" ).click(function() {
 			$("##sub_product_id").val($(this).attr('subproductid'));
 		});
+		
+		$( ".new-attribute-option-value-attribute-id" ).change(function() {
+			$("##new_attribute_imagename").val($(this).find(":selected").attr('imagename'));
+		});
 	});
 </script>
 
@@ -97,6 +101,7 @@
 <input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
 <input type="hidden" name="sub_product_id" id="sub_product_id" value="" />
 <input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
+<input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -362,7 +367,7 @@
 																<cfif optionValue.attributeName EQ "color">
 																	<cfif optionValue.imageName NEQ "">
 																		<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;" />
+																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
 																		</div>
 																	<cfelse>
 																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.optionValue#;display:inline-block;vertical-align:middle"></div>
@@ -617,12 +622,11 @@
 			<div class="modal-body">
 				<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 					<cfif attribute.required EQ true>
-						<input type="hidden" name="new_attribute_imagename_#attribute.attributeId#" value="##" /> 
 						<div class="form-group">
-							<select class="form-control" name="new_attribute_value_#attribute.attributeId#">
+							<select class="form-control<cfif attribute.name EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#attribute.attributeId#">
 								<option value="">#attribute.name#</option>
 								<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-									<option value="#attributeValue.value#">
+									<option value="#attributeValue.value#" imagename="#attributeValue.imageName#">
 										#attributeValue.value#
 									</option>
 								</cfloop>
