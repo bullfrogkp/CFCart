@@ -260,9 +260,10 @@
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
-					<cfset EntitySave(LOCAL.newProduct) />
 				</cfif>
 			</cfloop>
+			
+			<cfset EntitySave(LOCAL.newProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New attribute value has been saved successfully.") />
 			

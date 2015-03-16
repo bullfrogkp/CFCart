@@ -617,6 +617,7 @@
 			<div class="modal-body">
 				<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 					<cfif attribute.required EQ true>
+						<input type="hidden" name="new_attribute_imagename_#attribute.attributeId#" value="##" /> 
 						<div class="form-group">
 							<select class="form-control" name="new_attribute_value_#attribute.attributeId#">
 								<option value="">#attribute.name#</option>
