@@ -79,14 +79,23 @@
 		</cfloop>
 		
 		$( "##filter_group_id" ).change(function() {
-		
-			$('##filters').empty();
 			
-			current_key = 'filter_group_' + $( "##filter_group_id" ).val();
-		
-			for(var i=0;i<filtergroups[current_key].length;i++)
+			if($( "##filter_group_id" ).val() != #REQUEST.pageData.formData.filter_group_id#)
 			{
-				$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+				$('##filters').hide();
+				$('##new-filters').empty();
+			
+				current_key = 'filter_group_' + $( "##filter_group_id" ).val();
+			
+				for(var i=0;i<filtergroups[current_key].length;i++)
+				{
+					$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+				}
+			}
+			else
+			{
+				$('##filters').show();
+				$('##new-filters').empty();
 			}
 		});
 		
@@ -268,6 +277,8 @@
 									</div>
 								</cfloop>
 							</cfif>
+						</div>
+						<div id="new-filters" class="row" style="margin-top:10px;">
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">

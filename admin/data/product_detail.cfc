@@ -68,7 +68,10 @@
 				<cfset LOCAL.product.setShippingMethod(EntityLoadByPK("shipping_method", FORM.shipping_method_id)) />
 			</cfif>
 			
-			<cfif IsNumeric(FORM.attribute_set_id)>
+			<cfif FORM.attribute_set_id NEQ "">
+				<cfif FORM.attribute_set_id NEQ LOCAL.product.getAttributeSetId()>
+					<cfset LOCAL.product.removeAttributeSet() />
+				</cfif>
 				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
 			</cfif>
 			
