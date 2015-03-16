@@ -79,6 +79,18 @@
 		$( ".new-attribute-option-value-attribute-id" ).change(function() {
 			$("##new_attribute_imagename").val($(this).find(":selected").attr('imagename'));
 		});
+		
+		$( "##attribute_group_id" ).change(function() {
+		
+			$('##attributes').empty();
+			
+			current_key = 'attribute_' + $( "##attribute_id" ).val();
+		
+			for(var i=0;i<filtergroups[current_key].length;i++)
+			{
+				$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+			}
+		});
 	});
 </script>
 
@@ -182,7 +194,7 @@
 							<label>Price</label>
 							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 						</div>
-						<div class="form-group">
+						<div class="form-group #REQUEST.pageData.groupPriceClass#">
 							<label>Group Price(s)</label>
 							<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Group Price</span></a>
 							<div class="row" style="margin-top:10px;">
@@ -290,49 +302,47 @@
 							</select>
 						</div>
 						
-						<div class="form-group">
+						<div id="attributes" class="row" style="margin-top:10px;">
 							<label>Attribute Option(s)</label>
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
-								<div id="attributes" class="row" style="margin-top:10px;">
-									<cfloop array="#REQUEST.pageData.attributes#" index="attribute">						
-										<div class="col-xs-3">
-											<div class="box box-warning">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr>
-															<th>#attribute.name#<cfif attribute.required> (required)</cfif></th>
-															<cfif attribute.name EQ "color">
-															<th></th>
+								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">						
+									<div class="col-xs-3">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr>
+														<th>#attribute.name#<cfif attribute.required> (required)</cfif></th>
+														<cfif attribute.name EQ "color">
+														<th></th>
+														</cfif>
+														<th><a attributeid="#attribute.attributeId#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+													</tr>
+													
+													<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
+													<tr>
+														<td>#attributeValue.value#</td>
+														<cfif attribute.name EQ "color">
+														<td>
+															<cfif attributeValue.imageName NEQ "">
+																<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
+																	<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
+																</div>
+															<cfelse>
+																<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
 															</cfif>
-															<th><a attributeid="#attribute.attributeId#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
-														</tr>
+														</td>
+														</cfif>
 														
-														<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-														<tr>
-															<td>#attributeValue.value#</td>
-															<cfif attribute.name EQ "color">
-															<td>
-																<cfif attributeValue.imageName NEQ "">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																		<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
-																	</div>
-																<cfelse>
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
-																</cfif>
-															</td>
-															</cfif>
-															
-															<td>
-																<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
-															</td>
-														</tr>
-														</cfloop>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</div>
+														<td>
+															<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+														</td>
+													</tr>
+													</cfloop>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfloop>
 							</cfif>
 						</div>
 						
