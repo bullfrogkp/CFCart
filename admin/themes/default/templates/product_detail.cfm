@@ -225,7 +225,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="from_date" id="from_date" value="#REQUEST.pageData.formData.from_date#"/>
+								<input type="text" class="form-control pull-right" name="special_price_from_date" id="from_date" value="#REQUEST.pageData.formData.from_date#"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -234,7 +234,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="to_date" id="to_date" value="#REQUEST.pageData.formData.to_date#"/>
+								<input type="text" class="form-control pull-right" name="special_price_to_date" id="to_date" value="#REQUEST.pageData.formData.to_date#"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -244,7 +244,7 @@
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
 									<option value="#tc.getTaxCategoryId()#"
 									
-									<cfif tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategory().getTaxCategoryId()>
+									<cfif NOT IsNull(REQUEST.pageData.product.getTaxCategory()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategory().getTaxCategoryId()>
 									selected
 									</cfif>
 									

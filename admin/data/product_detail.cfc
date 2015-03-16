@@ -51,6 +51,11 @@
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.product.setPrice(Trim(FORM.price)) />
+			<cfset LOCAL.product.setSpecialPrice(Trim(FORM.special_price)) />
+			<cfset LOCAL.product.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+			<cfset LOCAL.product.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+			<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
