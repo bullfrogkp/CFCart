@@ -70,7 +70,7 @@
 			
 			<cfif FORM.attribute_set_id NEQ "">
 				<cfif FORM.attribute_set_id NEQ LOCAL.product.getAttributeSetId()>
-					<cfset LOCAL.product.removeAttributeSet() />
+					<cfset LOCAL.product.removeAttributeValues() />
 				</cfif>
 				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
 			</cfif>
@@ -143,7 +143,6 @@
 							<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 							<cfset LOCAL.newAttributeValue.setProductId(LOCAL.product.getProductId()) />
 							<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attributeId) />
-							<cfset LOCAL.newAttributeValue.setAttributeSetId(LOCAL.product.getAttributeSetId()) />
 							<cfset LOCAL.newAttributeValue.setValue(LOCAL.formAttributeValue) />
 							
 							<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attributeId#"]) />
@@ -169,7 +168,7 @@
 						
 						<cfloop array="#attribute.attributeValueArray#" index="LOCAL.attributeValue">
 							<cfif StructKeyExists(FORM,"remove_attribute_value_#LOCAL.attributeValue.attributeValueId#")>	
-								<cfset LOCAL.product.removeAttributeValue(EntityLoad("attribute_value",LOCAL.attributeValue.attributeValueId,true)) />
+								<cfset LOCAL.product.removeAttributeValue(EntityLoadByPK("attribute_value",LOCAL.attributeValue.attributeValueId)) />
 							</cfif>
 						</cfloop>
 					</cfif>

@@ -30,4 +30,10 @@
 			<cfset ArrayClear(getCategories()) />
 		</cfif>
 	</cffunction>
+	
+	<cffunction name="removeAttributeValues" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getAttributeValues())>
+			<cfset ArrayClear(getAttributeValues()) />
+		</cfif>
+	</cffunction>
 </cfcomponent>

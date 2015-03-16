@@ -4,6 +4,5 @@
     <cfproperty name="value" column="value" ormtype="string">
 	
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
-	<cfproperty name="attributeSet" fieldtype="many-to-one" cfc="attribute_set" fkcolumn="attribute_set_id">
 	<cfproperty name="attribute" fieldtype="many-to-one" cfc="attribute" fkcolumn="attribute_id">
 </cfcomponent>
