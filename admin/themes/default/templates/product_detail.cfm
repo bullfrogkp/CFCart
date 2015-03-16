@@ -101,15 +101,25 @@
 		</cfloop>
 				
 		$( "##attribute_set_id" ).change(function() {
-		
-			$('##attributes').empty();
-			$('##attribute_option_values').hide();
-			
-			current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
-		
-			for(var i=0;i<attributesets[current_key].length;i++)
+					
+			if($( "##attribute_set_id" ).val() != #REQUEST.pageData.product.getAttributeSet().getAttributeSetId()#)
 			{
-				$('##attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+attributesets[current_key][i].name+'</th></tr></table></div></div></div>'); 
+				$('##attributes').hide();
+				$('##new_attributes').empty();
+				$('##attribute_option_values').hide();
+				
+				current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
+			
+				for(var i=0;i<attributesets[current_key].length;i++)
+				{
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+attributesets[current_key][i].name+'</th></tr></table></div></div></div>'); 
+				}
+			}
+			else
+			{
+				$('##new_attributes').empty();
+				$('##attributes').show();
+				$('##attribute_option_values').show();
 			}
 		});
 	});
@@ -365,6 +375,8 @@
 									</div>
 								</cfloop>
 							</cfif>
+						</div>
+						<div id="new_attributes" class="row" style="margin-top:10px;">
 						</div>
 						
 						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
