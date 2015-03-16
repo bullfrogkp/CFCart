@@ -189,7 +189,7 @@
 			<cfset LOCAL.filename = Trim(FORM.new_attribute_option_attachment) />
 							
 			<cfif LOCAL.filename NEQ "">
-				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#LOCAL.attribute.attributeId#" />
+				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_attribute_id#" />
 				
 				<cfif NOT DirectoryExists(LOCAL.imageDir)>
 					<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
@@ -221,12 +221,12 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
-		<cfelseif StructKeyExists(FORM,"delete_attribute_value")>
-			<cfset EntityDelete(EntityLoad("product",FORM.sub_product_id)) />
+		<cfelseif StructKeyExists(FORM,"delete_attribute_option_value")>
+			<cfset EntityDelete(EntityLoadByPK("product",FORM.sub_product_id)) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute value has been deleted.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_value")>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 

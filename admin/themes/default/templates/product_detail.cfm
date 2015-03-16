@@ -73,7 +73,7 @@
 		});
 		
 		$( ".delete-attribute-option-value" ).click(function() {
-			$("##sub_product_id").val($(this).attr('sub_product_id'));
+			$("##sub_product_id").val($(this).attr('subproductid'));
 		});
 	});
 </script>
@@ -90,7 +90,7 @@
 </section>
 
 <!-- Main content -->
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_attribute_option_attribute_id" id="new_attribute_option_attribute_id" value="" />
@@ -309,7 +309,7 @@
 															<td>
 																<cfif attributeValue.imageName NEQ "">
 																	<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																		<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;" />
+																		<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
 																	</div>
 																<cfelse>
 																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
