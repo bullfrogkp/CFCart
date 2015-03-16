@@ -78,6 +78,8 @@
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
 			</cfloop>
 		
+			<cfset EntitySave(LOCAL.product) />
+		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
