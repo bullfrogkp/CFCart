@@ -80,15 +80,36 @@
 			$("##new_attribute_imagename").val($(this).find(":selected").attr('imagename'));
 		});
 		
-		$( "##attribute_group_id" ).change(function() {
+		
+		
+		var attributesets = new Object();
+		var attributeset, attribute, key;
+		
+		<cfloop array="#REQUEST.pageData.attributeSets#" index="aset">
+			
+			key = 'attribute_set_' + '#aset.getAttributeSetId()#';
+			
+			attributes = new Array();
+
+			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
+				attribute = new Object();
+				attribute.name = '#attr.getAttribute().getDisplayName()#';
+				attributes.push(attribute);
+			</cfloop>
+			
+			attributesets[key] = attributes;
+		</cfloop>
+				
+		$( "##attribute_set_id" ).change(function() {
 		
 			$('##attributes').empty();
+			$('##attribute_option_values').hide();
 			
-			current_key = 'attribute_' + $( "##attribute_id" ).val();
+			current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
 		
-			for(var i=0;i<filtergroups[current_key].length;i++)
+			for(var i=0;i<attributesets[current_key].length;i++)
 			{
-				$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+				$('##attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+attributesets[current_key][i].name+'</th></tr></table></div></div></div>'); 
 			}
 		});
 	});
@@ -288,7 +309,7 @@
 						<!-- text input -->
 						<div class="form-group">
 							<label>Attribute Set</label>
-							<select name="attribute_set_id" class="form-control">
+							<select name="attribute_set_id" id="attribute_set_id" class="form-control">
 								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
 									<option value="#as.getAttributeSetId()#"
@@ -302,8 +323,8 @@
 							</select>
 						</div>
 						
+						<label>Attribute Option(s)</label>
 						<div id="attributes" class="row" style="margin-top:10px;">
-							<label>Attribute Option(s)</label>
 							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
 								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">						
 									<div class="col-xs-3">
@@ -347,7 +368,7 @@
 						</div>
 						
 						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
-							<div class="form-group">
+							<div class="form-group" id="attribute_option_values">
 								<label>Attribute Value(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
 								

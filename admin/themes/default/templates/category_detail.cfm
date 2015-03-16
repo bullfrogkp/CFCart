@@ -232,7 +232,8 @@
 							</select>
 						</div>
 					
-						<div id="filters" class="row">
+						<label>Filter(s)</label>
+						<div id="filters" class="row" style="margin-top:10px;">
 							<cfif NOT IsNULL(REQUEST.pageData.filterValues)>
 								<cfloop array="#REQUEST.pageData.filterValues#" index="filter">								
 									<div class="col-xs-3">
