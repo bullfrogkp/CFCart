@@ -228,7 +228,7 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />
 			
-		<cfelseif StructKeyExists(FORM,"add_new_attribute_value")>
+		<cfelseif StructKeyExists(FORM,"add_new_attribute_option_value")>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.productService.setProductId(FORM.id) />
 			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
@@ -260,10 +260,9 @@
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
+					<cfset EntitySave(LOCAL.newProduct) />
 				</cfif>
 			</cfloop>
-			
-			<cfset EntitySave(LOCAL.newProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New attribute value has been saved successfully.") />
 			

@@ -362,7 +362,7 @@
 																<cfif optionValue.attributeName EQ "color">
 																	<cfif optionValue.imageName NEQ "">
 																		<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																			<img src="#APPLICATION.absoluteUrlWeb#images/products/#REQUEST.pageData.product.getProductId()#/attributes/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;" />
+																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;" />
 																		</div>
 																	<cfelse>
 																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.optionValue#;display:inline-block;vertical-align:middle"></div>
