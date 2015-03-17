@@ -3,6 +3,10 @@
 <script>
 	$(document).ready(function() {
 		$('##reservation').datepicker();
+		
+		$(".tab-title").click(function() {
+		  $("##tab_id").val($(this).attr('tabid'));
+		});
 	});
 </script>
 <section class="content-header">
@@ -26,15 +30,15 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="##tab_1" data-toggle="tab">Activities</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Account Information</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Orders</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Addresses</a></li>
-					<li><a href="##tab_5" data-toggle="tab">Reviews</a></li>
-					<li><a href="##tab_6" data-toggle="tab">Change Password</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Activities</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Account Information</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Orders</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Addresses</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Reviews</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Change Password</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane active" id="tab_1">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						 <div class="form-group">
 							<label>Last Logged In Time</label>
 							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.last_login_datetime#"/>
@@ -134,7 +138,7 @@
 							</table>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_2">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 					
 						<div class="form-group">
 							<label>Prefix</label>
@@ -209,7 +213,7 @@
 							<textarea class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_3">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -251,7 +255,7 @@
 							</tfoot>
 						</table>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_4">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<label>Current Billing Address</label>
 						<table class="table table-bordered table-striped">
 							<thead>
@@ -369,7 +373,7 @@
 							</tfoot>
 						</table>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_5">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -411,7 +415,7 @@
 							</tfoot>
 						</table>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane" id="tab_6">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 						 <div class="form-group">
 							<label>Current Password</label>
 							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
@@ -429,7 +433,8 @@
 			</div><!-- nav-tabs-custom -->
 			<div class="form-group">
 				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Customer</button>
-				<button name="delete_item" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Delete Customer</button>
+				<button name="add_order" type="submit" class="btn btn-primary top-nav-button">Add Order</button>
+				<button name="delete_item" type="submit" class="btn btn-danger pull-right top-nav-button #REQUEST.pageData.deleteButtonClass#">Delete Customer</button>
 			</div>
 		</div><!-- /.col -->
 		
