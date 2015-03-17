@@ -256,6 +256,7 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
+						<label>Addresses</label>
 						<label>Current Billing Address</label>
 						<table class="table table-bordered table-striped">
 							<thead>
@@ -440,5 +441,44 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+<!-- ADD ADDRESS MODAL -->
+<div class="modal fade" id="add-address-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Address</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_address_name" name="new_address_name" type="text" class="form-control" placeholder="Name">
+					<input id="new_address_phone" name="new_address_phone" type="text" class="form-control" placeholder="Phone">
+					<input id="new_address_street" name="new_address_street" type="text" class="form-control" placeholder="Street">
+					<input id="new_address_city" name="new_address_city" type="text" class="form-control" placeholder="City">
+					
+					<select class="form-control" name="new_address_province_id">
+						<option value="">Please Select Province...</option>
+						<option value="Ontario">Ontario</option>
+						<option value="Alberta">Alberta</option>
+					</select>
+					
+					<input id="new_address_postal_code" name="new_address_postal_code" type="text" class="form-control" placeholder="Postal Code">
+					
+					<select class="form-control" name="new_address_country_id">
+						<option value="">Please Select Country...</option>
+						<option value="CA">Canada</option>
+						<option value="US">USA</option>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_address" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
