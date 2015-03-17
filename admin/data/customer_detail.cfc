@@ -40,8 +40,6 @@
 				<cfset LOCAL.customer = EntityLoadByPK("customer", FORM.id)> 
 			<cfelse>
 				<cfset LOCAL.customer = EntityNew("customer") />
-				<cfset LOCAL.customer.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			</cfif>
 			
 			<cfset LOCAL.customer.setFirstName(Trim(FORM.first_name)) />
@@ -56,6 +54,8 @@
 			<cfset LOCAL.customer.setSubscribed(FORM.subscribed) />
 			<cfset LOCAL.customer.setComments(FORM.comments) />
 			<cfset LOCAL.customer.setDateOfBirth(Trim(FORM.date_of_birth)) />
+			<cfset LOCAL.customer.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			
 			<cfset EntitySave(LOCAL.customer) />
 			
