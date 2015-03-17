@@ -256,123 +256,56 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
-						<label>Addresses</label>
-						<label>Current Billing Address</label>
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.currentBillingAddress)>
-									<tr>
-									<td>#REQUEST.pageData.currentBillingAddress.getFirstName()# #REQUEST.pageData.currentBillingAddress.getMiddleName()# #REQUEST.pageData.currentBillingAddress.getLastName()#</td>
-									<td>#REQUEST.pageData.currentBillingAddress.getPhone()#</td>
-									<td>#REQUEST.pageData.currentBillingAddress.getStreet()#</td>
-									<td>#REQUEST.pageData.currentBillingAddress.getCity()#</td>
-									<td>#REQUEST.pageData.currentBillingAddress.getProvince().getDisplayName()#</td>
-									<td>#REQUEST.pageData.currentBillingAddress.getPostalCode()#</td>
-									<td>#REQUEST.pageData.currentBillingAddress.getCountry().getDisplayName()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.currentBillingAddress.getAddressId()#">View Detail</a></td>
-								</tr>
-								<cfelse>
-									<tr>
-										<td colspan="8">No result found</td>
-									</tr>
-								</cfif>
-							</tbody>
-						</table>
-						<label>Current Shipping Address</label>
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.currentShippingAddress)>
-									<tr>
-										<td>#REQUEST.pageData.currentShippingAddress.getFirstName()# #REQUEST.pageData.currentShippingAddress.getMiddleName()# #REQUEST.pageData.currentShippingAddress.getLastName()#</td>
-										<td>#REQUEST.pageData.currentShippingAddress.getPhone()#</td>
-										<td>#REQUEST.pageData.currentShippingAddress.getStreet()#</td>
-										<td>#REQUEST.pageData.currentShippingAddress.getCity()#</td>
-										<td>#REQUEST.pageData.currentShippingAddress.getProvince().getDisplayName()#</td>
-										<td>#REQUEST.pageData.currentShippingAddress.getPostalCode()#</td>
-										<td>#REQUEST.pageData.currentShippingAddress.getCountry().getDisplayName()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#REQUEST.pageData.currentShippingAddress.getAddressId()#">View Detail</a></td>
-									</tr>
-								<cfelse>
-									<tr>
-										<td colspan="8">No result found</td>
-									</tr>
-								</cfif>
-							</tbody>
-						</table>
-						<label>Inactive Addresses</label>
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-									<th>Type</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.inactiveAddresses) AND ArrayLen(REQUEST.pageData.inactiveAddresses) NEQ 0>
-									<cfloop array="#REQUEST.pageData.inactiveAddresses#" index="address">
-										<tr>
-											<td>#address.getFirstName()# #address.getMiddleName()# #address.getLastName()#</td>
-											<td>#address.getPhone()#</td>
-											<td>#address.getStreet()#</td>
-											<td>#address.getCity()#</td>
-											<td>#address.getProvince().getDisplayName()#</td>
-											<td>#address.getPostalCode()#</td>
-											<td>#address.getCountry().getDisplayName()#</td>
-											<td>#address.getAddressType()#</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#admin/address_detail.cfm?id=#address.getAddressId()#">View Detail</a></td>
-										</tr>
-									</cfloop>
-								<cfelse>
-									<tr>
-										<td colspan="9">No result found</td>
-									</tr>
-								</cfif>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Street</th>
-									<th>City</th>
-									<th>Province</th>
-									<th>Postal Code</th>
-									<th>Country</th>
-									<th>Type</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
+						<div class="form-group">
+							<label>Address(es)</label>
+							<a href="" data-toggle="modal" data-target="##add-address-modal" style="margin-left:10px;"><span class="label label-primary">Add Address</span></a>
+							<div class="row" style="margin-top:10px;">
+								<cfloop array="#REQUEST.pageData.customer.getAddresses()#" index="address">								
+									<div class="col-xs-3">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr>
+														<th>ID: #address.getAddressId()#</th>
+														<th>
+															<a addressid="#address.getAddressId()#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-address-modal"><span class="label label-danger">Delete</span></a>
+														</th>
+													</tr>
+													<tr>
+														<td>Type</td>
+														<td>#address.getType().getDisplayName()#</td>
+													</tr>
+													<tr>
+														<td>Street</td>
+														<td>#address.getStreet()#</td>
+													</tr>
+													<tr>
+														<td>Unit</td>
+														<td>#address.getUnit()#</td>
+													</tr>
+													<tr>
+														<td>City</td>
+														<td>#address.getCity()#</td>
+													</tr>
+													<tr>
+														<td>Province</td>
+														<td>#address.getProvince().getDisplayName()#</td>
+													</tr>
+													<tr>
+														<td>Postal Code</td>
+														<td>#address.getPostalCode()#</td>
+													</tr>
+													<tr>
+														<td>Country</td>
+														<td>#address.getCountry().getDisplayName()#</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfloop>
+							</div>
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
 						<table class="table table-bordered table-striped">
@@ -453,18 +386,27 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<input id="new_address_name" name="new_address_name" type="text" class="form-control" placeholder="Name">
+				</div>
+				<div class="form-group">
 					<input id="new_address_phone" name="new_address_phone" type="text" class="form-control" placeholder="Phone">
+				</div>
+				<div class="form-group">
 					<input id="new_address_street" name="new_address_street" type="text" class="form-control" placeholder="Street">
+				</div>
+				<div class="form-group">
 					<input id="new_address_city" name="new_address_city" type="text" class="form-control" placeholder="City">
-					
+				</div>
+				<div class="form-group">
 					<select class="form-control" name="new_address_province_id">
 						<option value="">Please Select Province...</option>
 						<option value="Ontario">Ontario</option>
 						<option value="Alberta">Alberta</option>
 					</select>
-					
+				</div>
+				<div class="form-group">
 					<input id="new_address_postal_code" name="new_address_postal_code" type="text" class="form-control" placeholder="Postal Code">
-					
+				</div>
+				<div class="form-group">
 					<select class="form-control" name="new_address_country_id">
 						<option value="">Please Select Country...</option>
 						<option value="CA">Canada</option>
