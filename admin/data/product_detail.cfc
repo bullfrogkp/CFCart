@@ -52,10 +52,6 @@
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.product.setPrice(Trim(FORM.price)) />
-			<cfset LOCAL.product.setSpecialPrice(Trim(FORM.special_price)) />
-			<cfset LOCAL.product.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
-			<cfset LOCAL.product.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
-			<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
@@ -64,12 +60,26 @@
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.product.setUpdatedDatetime(Now()) />
 			
+			<cfif IsNumeric(Trim(FORM.special_price))>
+				<cfset LOCAL.product.setSpecialPrice(Trim(FORM.special_price)) />
+			</cfif>
+			<cfif IsDate(Trim(FORM.special_price_from_date))>
+				<cfset LOCAL.product.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+			</cfif>
+			<cfif IsDate(Trim(FORM.special_price_to_date))>
+				<cfset LOCAL.product.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+			</cfif>
+			
 			<cfif StructKeyExists(FORM,"shipping_method_id")>
 				<cfset LOCAL.product.setShippingMethod(EntityLoadByPK("shipping_method", FORM.shipping_method_id)) />
 			</cfif>
 			
+			<cfif FORM.tax_category_id NEQ "">
+				<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
+			</cfif>
+			
 			<cfif FORM.attribute_set_id NEQ "">
-				<cfif FORM.attribute_set_id NEQ LOCAL.product.getAttributeSetId()>
+				<cfif FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
 					<cfset LOCAL.product.removeAttributeValues() />
 				</cfif>
 				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />

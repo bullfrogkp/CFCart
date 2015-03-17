@@ -89,7 +89,7 @@
 			
 				for(var i=0;i<filtergroups[current_key].length;i++)
 				{
-					$('##filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+					$('##new-filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
 				}
 			}
 			else
