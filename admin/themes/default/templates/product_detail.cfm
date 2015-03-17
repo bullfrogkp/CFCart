@@ -76,6 +76,11 @@
 			$("##sub_product_id").val($(this).attr('subproductid'));
 		});
 		
+		$( ".delete-group-price" ).click(function() {
+			$("##deleted_group_price_amount").val($(this).attr('grouppriceamount'));
+		});
+		
+		
 		$( ".new-attribute-option-value-attribute-id" ).change(function() {
 			$("##new_attribute_imagename").val($(this).find(":selected").attr('imagename'));
 		});

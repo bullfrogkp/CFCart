@@ -95,7 +95,7 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		<cfelseif StructKeyExists(FORM,"delete_category")>
-			<cfset LOCAL.category = EntityLoad("category", FORM.id, true)> 
+			<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)> 
 			<cfset LOCAL.category.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.category) />
@@ -151,7 +151,7 @@
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.category = EntityLoad("category", URL.id, true)> 
+			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			
