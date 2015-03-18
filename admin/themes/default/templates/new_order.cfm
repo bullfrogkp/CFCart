@@ -60,24 +60,26 @@
 						<input type="text" class="form-control" placeholder="Enter ..." name="billing_city" value="" />
 					</div>
 					<div class="form-group">
-						<label>Country</label>
-						<select class="form-control" name="billing_country_id">
-							<option value="">Please Select...</option>
-							<option value="0">Canada</option>
-							<option value="1">US</option>
-						</select>
-					</div>
-					<div class="form-group">
 						<label>State/Province</label>
 						<select class="form-control" name="billing_province_id">
 							<option value="">Please Select...</option>
-							<option value="0">Ontario</option>
-							<option value="1">Alberta</option>
+							<cfloop array="#REQUEST.pageData.provinces#" index="province">
+								<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
+							</cfloop>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>Zip/Postal Code</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="billing_postal_code" value="" />
+					</div>
+					<div class="form-group">
+						<label>Country</label>
+						<select class="form-control" name="billing_country_id">
+							<option value="">Please Select...</option>
+							<cfloop array="#REQUEST.pageData.countries#" index="country">
+								<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+							</cfloop>
+						</select>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -106,24 +108,27 @@
 						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_city" value="" />
 					</div>
 					<div class="form-group">
-						<label>Country</label>
-						<select class="form-control" name="shipping_country_id">
-							<option value="">Please Select...</option>
-							<option value="0">Canada</option>
-							<option value="1">US</option>
-						</select>
-					</div>
-					<div class="form-group">
 						<label>State/Province</label>
 						<select class="form-control" name="shipping_province_id">
 							<option value="">Please Select...</option>
-							<option value="0">Ontario</option>
-							<option value="1">Alberta</option>
+							<cfloop array="#REQUEST.pageData.provinces#" index="province">
+								<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
+							</cfloop>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>Zip/Postal Code</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_postal_code" value="" />
+					</div>
+					<div class="form-group">
+						<label>Country</label>
+						<select class="form-control" name="shipping_country_id">
+							<option value="">Please Select...</option>
+							<cfloop array="#REQUEST.pageData.countries#" index="country">
+								<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+							</cfloop>
+						</select>
+					</div>
 				</div>
 			</div>
 			<!-- /.box -->
@@ -146,37 +151,16 @@
 							<th>Subtotal</th>
 						</thead>
 						<tbody>
+							<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 							<tr>
-								<td>Box</td>
-								<td>$1000.00</td>
-								<td>1</td>
-								<td>1</td>
-								<td>$1000.00</td>
+								<td>#product.getDisplayName()#</td>
+								<td>#product.getPrice()#</td>
+								<td>#product.getQuantity()#</td>
+								<td>#product.getShippingMethod()#</td>
+								<td>#product.getSubtotal()#</td>
 							</tr>
-							<tr>
-								<td>Box</td>
-								<td>$1000.00</td>
-								<td>1</td>
-								<td>1</td>
-								<td>$1000.00</td>
-							</tr>
-							<tr>
-								<td>Box</td>
-								<td>$1000.00</td>
-								<td>1</td>
-								<td>1</td>
-								<td>$1000.00</td>
-							</tr>
+							</cfloop>
 						</tbody>
-						<tfoot>
-							<tr>
-								<th>Total Product</th>
-								<th></th>
-								<th>Total Quantity</th>
-								<th>Total Shipping</th>
-								<th>Subtotal</th>
-							</tr>
-						</tfoot>
 					</table>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -190,7 +174,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="coupon" value="" />
 					</div>
 				</div>
 			</div>
@@ -206,9 +190,11 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Check / Money order</option>
-							<option value=""> Credit Card (saved)</option>
+						<select class="form-control" name="payment_method_id">
+							<option value="">Please Select...</option>
+							<cfloop array="#REQUEST.pageData.paymentMethods#" index="method">
+								<option value="#method.getPaymentMethodId()#">#method.getDisplayName()#</option>
+							</cfloop>
 						</select>
 					</div>
 				</div>
@@ -224,7 +210,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<textarea class="form-control" rows="8" placeholder="Enter ..." style="height:170px;"></textarea>
+						<textarea name="decription" class="form-control" rows="8" placeholder="Enter ..." style="height:170px;"></textarea>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -265,7 +251,7 @@
 			<!-- /.box -->
 		</section><!-- right col -->
 	</div><!-- /.row (main row) -->
-	<button type="submit" class="btn btn-primary">Submit Order</button>
+	<button name="submit_order" type="submit" class="btn btn-primary">Submit Order</button>
 					
 </section><!-- /.content -->
 <!-- ADD PRODUCT MODAL -->
@@ -292,7 +278,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_filter_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_new_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->

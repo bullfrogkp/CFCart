@@ -2,12 +2,12 @@
     <cfproperty name="orderId" column="order_id" fieldtype="id" generator="native">
 	<cfproperty name="trackingNumber" column="tracking_number" ormtype="string"> 
 	<cfproperty name="coupon" column="coupon" ormtype="string"> 
+	<cfproperty name="phone" column="phone" ormtype="string"> 
 	<cfproperty name="total" column="total" ormtype="string"> 
 	
 	<cfproperty name="shippingFirstName" column="shipping_first_name" ormtype="string"> 
 	<cfproperty name="shippingMiddleName" column="shipping_middle_name" ormtype="string"> 
 	<cfproperty name="shippingLastName" column="shipping_last_name" ormtype="string">
-	<cfproperty name="shippingPhone" column="shipping_phone" ormtype="string"> 
     <cfproperty name="shippingStreet" column="shipping_street" ormtype="string"> 
     <cfproperty name="shippingCity" column="shipping_city" ormtype="string"> 
     <cfproperty name="shippingPostalCode" column="shipping_postal_code" ormtype="string"> 
@@ -17,7 +17,6 @@
 	<cfproperty name="billingFirstName" column="billing_first_name" ormtype="string"> 
 	<cfproperty name="billingMiddleName" column="billing_middle_name" ormtype="string"> 
 	<cfproperty name="billingLastName" column="billing_last_name" ormtype="string">
-	<cfproperty name="billingPhone" column="billing_phone" ormtype="string"> 
     <cfproperty name="billingStreet" column="billing_street" ormtype="string"> 
     <cfproperty name="billingCity" column="billing_city" ormtype="string"> 
     <cfproperty name="billingPostalCode" column="billing_postal_code" ormtype="string"> 
