@@ -89,6 +89,16 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Address has been added.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.customer.getCustomerId()#&active_tab_id=tab_4" />
+		
+		<cfelseif StructKeyExists(FORM,"delete_address")>
+			<cfset LOCAL.customer = EntityLoadByPK("customer", FORM.id)> 
+			<cfset LOCAL.address = EntityLoadByPK("address", FORM.address_id)> 
+			<cfset LOCAL.customer.removeAddress(LOCAL.address) />
+			<cfset EntitySave(LOCAL.customer) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Address has been deleted.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.customer.getCustomerId()#&active_tab_id=tab_4" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

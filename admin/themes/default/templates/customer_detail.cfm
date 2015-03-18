@@ -7,6 +7,10 @@
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
+		
+		$( ".delete-address" ).click(function() {
+			$("##address_id").val($(this).attr('addressid'));
+		});
 	});
 </script>
 <section class="content-header">
@@ -24,6 +28,7 @@
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.customer.getCustomerId()#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
+<input type="hidden" name="address_id" id="address_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -274,7 +279,7 @@
 													<tr>
 														<th>ID: #address.getAddressId()#</th>
 														<th>
-															<a addressid="#address.getAddressId()#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-address-modal"><span class="label label-danger">Delete</span></a>
+															<a addressid="#address.getAddressId()#" href="" class="delete-address pull-right" data-toggle="modal" data-target="##delete-address-modal"><span class="label label-danger">Delete</span></a>
 														</th>
 													</tr>
 													<tr>
@@ -420,6 +425,21 @@
 				<button name="add_new_address" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE ADDRESS MODAL -->
+<div class="modal fade" id="delete-address-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this address?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_address" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
