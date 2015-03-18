@@ -79,7 +79,7 @@
 		</cfloop>
 		
 		$( "##filter_group_id" ).change(function() {
-			
+			<cfif REQUEST.pageData.formData.filter_group_id NEQ "">	
 			if($( "##filter_group_id" ).val() != #REQUEST.pageData.formData.filter_group_id#)
 			{
 				$('##filters').hide();
@@ -97,6 +97,17 @@
 				$('##filters').show();
 				$('##new-filters').empty();
 			}
+			<cfelse>
+			$('##filters').hide();
+			$('##new-filters').empty();
+		
+			current_key = 'filter_group_' + $( "##filter_group_id" ).val();
+		
+			for(var i=0;i<filtergroups[current_key].length;i++)
+			{
+				$('##new-filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
+			}	
+			</cfif>
 		});
 		
 		$( ".add-filter-value" ).click(function() {

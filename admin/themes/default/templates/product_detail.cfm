@@ -105,8 +105,9 @@
 			attributesets[key] = attributes;
 		</cfloop>
 				
+		
 		$( "##attribute_set_id" ).change(function() {
-					
+			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>		
 			if($( "##attribute_set_id" ).val() != #REQUEST.pageData.product.getAttributeSet().getAttributeSetId()#)
 			{
 				$('##attributes').hide();
@@ -126,7 +127,21 @@
 				$('##attributes').show();
 				$('##attribute_option_values').show();
 			}
+			<cfelse>
+			$('##attributes').hide();
+			$('##new_attributes').empty();
+			$('##attribute_option_values').hide();
+			
+			current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
+		
+			for(var i=0;i<attributesets[current_key].length;i++)
+			{
+				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+attributesets[current_key][i].name+'</th></tr></table></div></div></div>'); 
+			}
+			</cfif>
+			
 		});
+		
 	});
 </script>
 
