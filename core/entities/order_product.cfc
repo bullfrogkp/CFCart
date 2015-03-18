@@ -7,4 +7,5 @@
 	<cfproperty name="subtotal" column="subtotal" ormtype="float"> 
 	<cfproperty name="taxAmount" column="tax_amount" ormtype="float"> 
 	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="float"> 
+	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">	
 </cfcomponent>

@@ -30,25 +30,35 @@
 		<cfif StructKeyExists(FORM,"submit_order")>
 		
 			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.pageData.order = EntityLoadByPK("order", FORM.id) /> 
+				<cfset LOCAL.order = EntityLoadByPK("order", FORM.id) /> 
 			<cfelse>
-				<cfset LOCAL.pageData.order = EntityNew("order") /> 
+				<cfset LOCAL.order = EntityNew("order") /> 
 			</cfif>
 			
-			<cfset LOCAL.pageData.order.setTrackingNumber(Trim(FORM.tracking_number)) />
-			<cfset LOCAL.pageData.order.setCoupon(Trim(FORM.coupon)) />
-			<cfset LOCAL.pageData.order.setPhone(Trim(FORM.phone)) />
+			<cfset LOCAL.order.setTrackingNumber(Trim(FORM.tracking_number)) />
+			<cfset LOCAL.order.setPhone(Trim(FORM.phone)) />
+			<cfset LOCAL.order.setTotal(Trim(FORM.total)) />
 			
-			<cfset LOCAL.pageData.order.setShippingFirstName(Trim(FORM.shipping_first_name)) />
-			<cfset LOCAL.pageData.order.setShippingMiddleName(Trim(FORM.shipping_middle_name)) />
-			<cfset LOCAL.pageData.order.setShippingLastName(Trim(FORM.shipping_last_name)) />
-			<cfset LOCAL.pageData.order.setShippingStreet(Trim(FORM.shipping_street)) />
-			<cfset LOCAL.pageData.order.setShippingCity(Trim(FORM.shipping_city)) />
-			<cfset LOCAL.pageData.order.setShippingPostalCode(Trim(FORM.shipping_postal_code)) />
-			<cfset LOCAL.pageData.order.setShippingProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
-			<cfset LOCAL.pageData.order.setShippingCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
+			<cfset LOCAL.order.setShippingFirstName(Trim(FORM.shipping_first_name)) />
+			<cfset LOCAL.order.setShippingMiddleName(Trim(FORM.shipping_middle_name)) />
+			<cfset LOCAL.order.setShippingLastName(Trim(FORM.shipping_last_name)) />
+			<cfset LOCAL.order.setShippingStreet(Trim(FORM.shipping_street)) />
+			<cfset LOCAL.order.setShippingCity(Trim(FORM.shipping_city)) />
+			<cfset LOCAL.order.setShippingPostalCode(Trim(FORM.shipping_postal_code)) />
+			<cfset LOCAL.order.setShippingProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
+			<cfset LOCAL.order.setShippingCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
 		
+			<cfset LOCAL.order.setBillingFirstName(Trim(FORM.billing_first_name)) />
+			<cfset LOCAL.order.setBillingMiddleName(Trim(FORM.billing_middle_name)) />
+			<cfset LOCAL.order.setBillingLastName(Trim(FORM.billing_last_name)) />
+			<cfset LOCAL.order.setBillingStreet(Trim(FORM.billing_street)) />
+			<cfset LOCAL.order.setBillingCity(Trim(FORM.billing_city)) />
+			<cfset LOCAL.order.setBillingPostalCode(Trim(FORM.billing_postal_code)) />
+			<cfset LOCAL.order.setBillingProvince(EntityLoadByPK("province",FORM.billing_province_id)) />
+			<cfset LOCAL.order.setBillingCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
 			
+			<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
+			<cfset LOCAL.order.setCoupon(EntityLoadByPK("coupon",FORM.coupon_id)) />
 			
 			<cfset LOCAL.currentStatus = EntityLoad("order_status",{orderId = FORM.id, endDatetime = JavaCast("NULL","")}) />
 			
@@ -62,12 +72,15 @@
 			
 			<cfset EntitySave(LOCAL.order) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order status has been saved successfully.") />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
 		<cfelseif StructKeyExists(FORM,"add_new_product")>
-			<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)>
-			<cfset LOCAL.coupon.setIsDeleted(true) />
+			<cfif IsNumeric(FORM.id)>
+				<cfset LOCAL.order = EntityLoadByPK("order", FORM.id) /> 
+			<cfelse>
+				<cfset LOCAL.order = EntityNew("order") /> 
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.coupon) />
 			
