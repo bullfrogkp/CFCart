@@ -267,29 +267,29 @@
 											<h3 class="box-title">Order Totals</h3>
 										</div><!-- /.box-header -->
 										<div class="box-body">
-											<div class="form-group">
-												<label>Subtotal</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
-											</div>
-											<div class="form-group">
-												<label>Shipping & Handling</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
-											</div>
-											<div class="form-group">
-												<label>Grand Total</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
-											</div>
-											<div class="form-group">
-												<label>Total Paid</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
-											</div>
-											<div class="form-group">
-												<label>Total Refunded</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
-											</div>
-											<div class="form-group">
-												<label>Total Due</label>
-												<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+											<div class="table-responsive">
+												<table class="table">
+													<tr>
+														<th style="width:50%">Subtotal:</th>
+														<td>$250.30</td>
+													</tr>
+													<tr>
+														<th>Shipping & Handling</th>
+														<td>$10.34</td>
+													</tr>
+													<tr>
+														<th>Tax (9.3%)</th>
+														<td>$10.34</td>
+													</tr>
+													<tr>
+														<th>Shipping:</th>
+														<td>$5.80</td>
+													</tr>
+													<tr>
+														<th>Total:</th>
+														<td>$265.24</td>
+													</tr>
+												</table>
 											</div>
 										</div>
 									</div>

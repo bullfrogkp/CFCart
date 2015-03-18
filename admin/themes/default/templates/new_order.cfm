@@ -10,7 +10,104 @@
 </section>
 
 <!-- Main content -->
+
 <section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Order ## 100000102</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<dl class="dl-horizontal">
+						<dt>Order Date</dt>
+						<dd>6 Mar 2015 15:41:02</dd>
+						<dt>Order Status</dt>
+						<dd>Complete</dd>
+						<dt>Placed from IP</dt>
+						<dd>149.172.246.154</dd>
+					</dl>
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
+		</div><!-- ./col -->
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Account Information</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<dl class="dl-horizontal">
+						<dt>Customer</dt>
+						<dd>Horst alfons</dd>
+						<dt>Email</dt>
+						<dd>abc@me.com</dd>
+						<dt>Customer Group</dt>
+						<dd>NOT LOGGED IN</dd>
+					</dl>
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
+		</div><!-- ./col -->
+	</div><!-- /.row -->
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Billing Address</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<dl>
+						<dd>123 adlims st.</dd>
+						<dd>Richmond</dd>
+						<dd>Canada</dd>
+					</dl>
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
+		</div><!-- ./col -->
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Shipping Address</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<dl>
+						<dd>123 adlims st.</dd>
+						<dd>Richmond</dd>
+						<dd>Canada</dd>
+					</dl>
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
+		</div><!-- ./col -->
+	</div><!-- /.row -->
+	
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Payment Information</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<dl>
+						<dd>Credit Card</dd>
+					</dl>
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
+		</div><!-- ./col -->
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Shipping Information</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<dl>
+						<dd>Flat Rate - Fixed £5.00</dd>
+					</dl>
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
+		</div><!-- ./col -->
+	</div><!-- /.row -->
+	
+	
 	<div class="row">
 		<section class="col-lg-12"> 
 			<div class="box box-primary">
@@ -21,38 +118,59 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 							<th>Product</th>
+							<th>Item Status</th>
+							<th>Original Price</th>
 							<th>Price</th>
 							<th>Qty</th>
 							<th>Subtotal</th>
+							<th>Tax Amount</th>
+							<th>Tax Percentage</th>
+							<th>Row Total</th>
 						</thead>
 						<tbody>
 							<tr>
-								<td>Box</td>
+								<td>
+									juta
+									SKU: fvvdx
+								</td>
 								<td>$1000.00</td>
 								<td>1</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
 								<td>$1000.00</td>
 							</tr>
 							<tr>
-								<td>Box</td>
+								<td>
+									juta
+									SKU: fvvdx
+								</td>
 								<td>$1000.00</td>
 								<td>1</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
 								<td>$1000.00</td>
 							</tr>
 							<tr>
-								<td>Box</td>
+								<td>
+									juta
+									SKU: fvvdx
+								</td>
 								<td>$1000.00</td>
 								<td>1</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
+								<td>$1000.00</td>
 								<td>$1000.00</td>
 							</tr>
 						</tbody>
-						<tfoot>
-							<tr>
-								<th>Total Product</th>
-								<th></th>
-								<th>Total Quantity</th>
-								<th>Subtotal</th>
-							</tr>
-						</tfoot>
 					</table>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -74,218 +192,15 @@
 		</section><!-- right col -->
 	</div><!-- /.row (main row) -->
 	<div class="row">
-		<section class="col-lg-12"> 
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Account Information</h3>
-				</div><!-- /.box-header -->
-				<div class="box-body">
-					<div class="form-group">
-						<label>Group</label>
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Shipped</option>
-							<option value="">Preparing</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" />
-					</div>
-				</div>
-			</div><!-- /.box (chat box) -->   
-		</section>
-	</div><!-- /.row (main row) -->
-	<div class="row">
-		<!-- Left col -->
-		<section class="col-lg-6"> 
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Billing Address</h3>
-				</div><!-- /.box-header -->
-				<div class="box-body">
-					<div class="form-group">
-						<label>Prefix</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>First Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Middle Name/Initial</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Last Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Suffix</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Company</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Street Address</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>City</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Country</label>
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Canada</option>
-							<option value="">US</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>State/Province</label>
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Ontario</option>
-							<option value="">Alberta</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Zip/Postal Code</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Fax</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-				</div>
-			</div><!-- /.box (chat box) -->   
-		</section><!-- /.Left col -->
-		<!-- right col (We are only adding the ID to make the widgets sortable)-->
-		<section class="col-lg-6"> 
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Shipping Address</h3>
-					<div class="form-group pull-right" style="margin:10px 10px 0 0;">
-						<input type="checkbox" class="form-control" checked />
-						<label>Same As Billing Address</label>
-					</div>
-				</div><!-- /.box-header -->
-				<div class="box-body">
-					<div class="form-group">
-						<label>Prefix</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>First Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Middle Name/Initial</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Last Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Suffix</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Company</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Street Address</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>City</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Country</label>
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Canada</option>
-							<option value="">US</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>State/Province</label>
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Ontario</option>
-							<option value="">Alberta</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Zip/Postal Code</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-					<div class="form-group">
-						<label>Fax</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
-				</div>
-			</div>
-			<!-- /.box -->
-
-		</section><!-- right col -->
-	</div><!-- /.row (main row) -->
-
-	<div class="row">
-		<!-- Left col -->
-		<section class="col-lg-6"> 
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Payment Method</h3>
-				</div><!-- /.box-header -->
-				<div class="box-body">
-					<div class="form-group">
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Check / Money order</option>
-							<option value=""> Credit Card (saved)</option>
-						</select>
-					</div>
-				</div>
-			</div><!-- /.box (chat box) -->   
-		</section><!-- /.Left col -->
-		<!-- right col (We are only adding the ID to make the widgets sortable)-->
-		<section class="col-lg-6"> 
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Shipping Method</h3>
-				</div><!-- /.box-header -->
-				<div class="box-body">
-					<div class="form-group">
-						<select class="form-control" name="parent_category_id">
-							<option value="0">Flat Rate</option>
-							<option value="">Express</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<!-- /.box -->
-		</section><!-- right col -->
-	</div><!-- /.row (main row) -->
-	<div class="row">
 		<!-- Left col -->
 		<section class="col-lg-6"> 
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Comments</h3>
 				</div><!-- /.box-header -->
+				
 				<div class="box-body">
-					<div class="form-group">
-						<textarea class="form-control" rows="8" placeholder="Enter ..."></textarea>
-					</div>
+					<textarea class="form-control" rows="8" placeholder="Enter ..." style="height:185px;"></textarea>
 				</div>
 			</div><!-- /.box (chat box) -->   
 		</section><!-- /.Left col -->
@@ -296,15 +211,30 @@
 					<h3 class="box-title">Order Totals</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body">
-					<div class="form-group">
-						<label>Subtotal</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
+					<div class="table-responsive">
+						<table class="table">
+							<tr>
+								<th style="width:50%">Subtotal:</th>
+								<td>$250.30</td>
+							</tr>
+							<tr>
+								<th>Shipping & Handling</th>
+								<td>$10.34</td>
+							</tr>
+							<tr>
+								<th>Tax (9.3%)</th>
+								<td>$10.34</td>
+							</tr>
+							<tr>
+								<th>Shipping:</th>
+								<td>$5.80</td>
+							</tr>
+							<tr>
+								<th>Total:</th>
+								<td>$265.24</td>
+							</tr>
+						</table>
 					</div>
-					<div class="form-group">
-						<label>Grand Total</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="$100.00" disabled />
-					</div>
-					<button type="submit" class="btn btn-primary">Submit Order</button>
 				</div>
 			</div>
 			<!-- /.box -->

@@ -387,7 +387,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li id="orders"><a href="#APPLICATION.absoluteUrlWeb#admin/orders.cfm"><i class="fa fa-angle-double-right"></i> All Orders</a></li>
-                                <li id="order_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
+                                <li id="order_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
                             </ul>
                         </li>
 						<li id="reviews">
