@@ -201,7 +201,13 @@
 							<select class="form-control" name="customer_group_id">
 								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-								<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
+								<option value="#group.getCustomerGroupId()#"
+								
+								<cfif group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
+								selected
+								</cfif>
+								
+								>#group.getDisplayName()#</option>
 								</cfloop>
 							</select>
 						</div>
@@ -271,6 +277,7 @@
 							<label>Address(es)</label>
 							<a href="" data-toggle="modal" data-target="##add-address-modal" style="margin-left:10px;"><span class="label label-primary">Add Address</span></a>
 							<div class="row" style="margin-top:10px;">
+								<cfif NOT IsNull(REQUEST.pageData.customer.getAddresses())>
 								<cfloop array="#REQUEST.pageData.customer.getAddresses()#" index="address">								
 									<div class="col-xs-3">
 										<div class="box box-warning">
@@ -311,6 +318,7 @@
 										</div><!-- /.box -->
 									</div>
 								</cfloop>
+								</cfif>
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->

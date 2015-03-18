@@ -52,8 +52,9 @@
 			<cfset LOCAL.customer.setGender(Trim(FORM.gender)) />
 			<cfset LOCAL.customer.setWebsite(Trim(FORM.website)) />
 			<cfset LOCAL.customer.setSubscribed(FORM.subscribed) />
-			<cfset LOCAL.customer.setComments(FORM.comments) />
+			<cfset LOCAL.customer.setDescription(FORM.description) />
 			<cfset LOCAL.customer.setDateOfBirth(Trim(FORM.date_of_birth)) />
+			<cfset LOCAL.customer.setCustomerGroup(EntityLoadByPK("customer_group", FORM.customer_group_id)) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			
