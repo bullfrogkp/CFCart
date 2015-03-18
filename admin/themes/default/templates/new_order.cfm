@@ -151,15 +151,21 @@
 							<th>Subtotal</th>
 						</thead>
 						<tbody>
-							<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
-							<tr>
-								<td>#product.getDisplayName()#</td>
-								<td>#product.getPrice()#</td>
-								<td>#product.getQuantity()#</td>
-								<td>#product.getShippingMethod()#</td>
-								<td>#product.getSubtotal()#</td>
-							</tr>
-							</cfloop>
+							<cfif NOT IsNull(REQUEST.pageData.order.getProducts())>
+								<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
+								<tr>
+									<td>#product.getDisplayName()#</td>
+									<td>#product.getPrice()#</td>
+									<td>#product.getQuantity()#</td>
+									<td>#product.getShippingMethod()#</td>
+									<td>#product.getSubtotal()#</td>
+								</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="5">No product.</td>
+								</tr>
+							</cfif>
 						</tbody>
 					</table>
 				</div>
@@ -210,7 +216,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<textarea name="decription" class="form-control" rows="8" placeholder="Enter ..." style="height:170px;"></textarea>
+						<textarea name="description" class="form-control" rows="8" placeholder="Enter ..." style="height:170px;"></textarea>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -235,10 +241,6 @@
 							<tr>
 								<th>Tax (9.3%)</th>
 								<td>$10.34</td>
-							</tr>
-							<tr>
-								<th>Shipping:</th>
-								<td>$5.80</td>
 							</tr>
 							<tr>
 								<th>Total:</th>
