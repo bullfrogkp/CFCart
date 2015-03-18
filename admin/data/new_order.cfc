@@ -108,6 +108,7 @@
 		
 		<cfset LOCAL.pageData.countries = EntityLoad("country") />
 		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
+		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method") />
 		<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
 		
 		<cfif StructKeyExists(URL,"id")>
@@ -118,6 +119,7 @@
 			<cfset LOCAL.pageData.formData.last_name = isNull(LOCAL.pageData.order.getLastName())?"":LOCAL.pageData.order.getLastName() />
 			<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.order.getPhone())?"":LOCAL.pageData.order.getPhone() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.order.getDescription())?"":LOCAL.pageData.order.getDescription() />
+			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 			
 			<cfset LOCAL.pageData.formData.shipping_company = isNull(LOCAL.pageData.order.getShippingCompany())?"":LOCAL.pageData.order.getShippingCompany() />
 			<cfset LOCAL.pageData.formData.shipping_street = isNull(LOCAL.pageData.order.getShippingStreet())?"":LOCAL.pageData.order.getShippingStreet() />
@@ -138,6 +140,7 @@
 			<cfset LOCAL.pageData.formData.last_name = "" />
 			<cfset LOCAL.pageData.formData.phone = "" />
 			<cfset LOCAL.pageData.formData.description = "" />
+			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 			
 			<cfset LOCAL.pageData.formData.shipping_company = "" />
 			<cfset LOCAL.pageData.formData.shipping_street = "" />
