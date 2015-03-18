@@ -63,29 +63,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.order = EntityLoadByPK("order", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getTrackingNumber()# | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "" />	
-		<cfelse>
-			<cfset LOCAL.pageData.order = EntityNew("order") />
-			<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
-		</cfif>
-		
-		<cfif IsDefined("SESSION.temp.formData")>
-			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-		<cfelse>
-		<!---
-			<cfset LOCAL.pageData.formData.code = isNull(LOCAL.pageData.coupon.getCode())?"":LOCAL.pageData.coupon.getCode() />
-			<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":LOCAL.pageData.coupon.getStartDate() />
-			<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":LOCAL.pageData.coupon.getEndDate() />
-			<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
-		--->
-		</cfif>
-		
-		<cfset LOCAL.pageData.tabs = _setActiveTab() />
-		<cfset LOCAL.pageData.message = _setTempMessage() />
+		<cfset LOCAL.pageData.countries = EntityLoad("country") />
+		<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
 	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
