@@ -276,7 +276,15 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_filter_value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
+					<input id="new_product_id" name="new_product_id" type="text" class="form-control" placeholder="Product ID">
+				</div>
+				<div class="form-group">
+					<select class="form-control" name="new_address_country_id">
+						<option value="">Please Select Shipping...</option>
+						<cfloop array="#REQUEST.pageData.countries#" index="country">
+							<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+						</cfloop>
+					</select>
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
