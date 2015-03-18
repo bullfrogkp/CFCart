@@ -20,19 +20,19 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>First Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value=""/>
+						<input type="text" class="form-control" placeholder="Enter ..." name="first_name" value=""/>
 					</div>
 					<div class="form-group">
 						<label>Middle Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value=""/>
+						<input type="text" class="form-control" placeholder="Enter ..." name="middle_name" value=""/>
 					</div>
 					<div class="form-group">
 						<label>Last Name</label>
-						<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value=""/>
+						<input type="text" class="form-control" placeholder="Enter ..." name="last_name" value=""/>
 					</div>
 					<div class="form-group">
 						<label>Phone</label>
-						<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value=""/>
+						<input type="text" class="form-control" placeholder="Enter ..." name="phone" value=""/>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -49,33 +49,35 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Company</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="billing_company" value="" />
 					</div>
 					<div class="form-group">
 						<label>Street Address</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="billing_street" value="" />
 					</div>
 					<div class="form-group">
 						<label>City</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="billing_city" value="" />
 					</div>
 					<div class="form-group">
 						<label>Country</label>
-						<select class="form-control" name="parent_category_id">
+						<select class="form-control" name="billing_country_id">
+							<option value="">Please Select...</option>
 							<option value="0">Canada</option>
-							<option value="">US</option>
+							<option value="1">US</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>State/Province</label>
-						<select class="form-control" name="parent_category_id">
+						<select class="form-control" name="billing_province_id">
+							<option value="">Please Select...</option>
 							<option value="0">Ontario</option>
-							<option value="">Alberta</option>
+							<option value="1">Alberta</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>Zip/Postal Code</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="billing_postal_code" value="" />
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -93,34 +95,35 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Company</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_company" value="" />
 					</div>
 					<div class="form-group">
 						<label>Street Address</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_street" value="" />
 					</div>
 					<div class="form-group">
 						<label>City</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_city" value="" />
 					</div>
 					<div class="form-group">
 						<label>Country</label>
-						<select class="form-control" name="parent_category_id">
+						<select class="form-control" name="shipping_country_id">
+							<option value="">Please Select...</option>
 							<option value="0">Canada</option>
-							<option value="">US</option>
+							<option value="1">US</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>State/Province</label>
-						<select class="form-control" name="parent_category_id">
+						<select class="form-control" name="shipping_province_id">
+							<option value="">Please Select...</option>
 							<option value="0">Ontario</option>
-							<option value="">Alberta</option>
+							<option value="1">Alberta</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>Zip/Postal Code</label>
-						<input type="text" class="form-control" placeholder="Enter ..." value="" />
-					</div>
+						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_postal_code" value="" />
 				</div>
 			</div>
 			<!-- /.box -->
@@ -279,10 +282,10 @@
 					<input id="new_product_id" name="new_product_id" type="text" class="form-control" placeholder="Product ID">
 				</div>
 				<div class="form-group">
-					<select class="form-control" name="new_address_country_id">
+					<select class="form-control" name="new_product_shipping_method_id">
 						<option value="">Please Select Shipping...</option>
-						<cfloop array="#REQUEST.pageData.countries#" index="country">
-							<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+						<cfloop array="#REQUEST.pageData.shippinMethods#" index="method">
+							<option value="#method.getShippingMethodId()#">#method.getDisplayName()#</option>
 						</cfloop>
 					</select>
 				</div>
