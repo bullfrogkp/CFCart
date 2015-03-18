@@ -40,8 +40,7 @@
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						 <div class="form-group">
-							<label>Last Logged In Time</label>
-							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.last_login_datetime#"/>
+							<label>Last Logged In Time: <span style="color:##3c8dbc;">#TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")# #DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")#</span></label>
 						</div>
 						 <div class="form-group">
 							<label>Last Logged In IP Address</label>
@@ -385,13 +384,10 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_address_name" name="new_address_name" type="text" class="form-control" placeholder="Name">
-				</div>
-				<div class="form-group">
-					<input id="new_address_phone" name="new_address_phone" type="text" class="form-control" placeholder="Phone">
-				</div>
-				<div class="form-group">
 					<input id="new_address_street" name="new_address_street" type="text" class="form-control" placeholder="Street">
+				</div>
+				<div class="form-group">
+					<input id="new_address_unit" name="new_address_unit" type="text" class="form-control" placeholder="Unit">
 				</div>
 				<div class="form-group">
 					<input id="new_address_city" name="new_address_city" type="text" class="form-control" placeholder="City">
@@ -399,8 +395,9 @@
 				<div class="form-group">
 					<select class="form-control" name="new_address_province_id">
 						<option value="">Please Select Province...</option>
-						<option value="Ontario">Ontario</option>
-						<option value="Alberta">Alberta</option>
+						<cfloop array="#REQUEST.pageData.provinces#" index="province">
+							<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
+						</cfloop>
 					</select>
 				</div>
 				<div class="form-group">
@@ -409,8 +406,9 @@
 				<div class="form-group">
 					<select class="form-control" name="new_address_country_id">
 						<option value="">Please Select Country...</option>
-						<option value="CA">Canada</option>
-						<option value="US">USA</option>
+						<cfloop array="#REQUEST.pageData.countries#" index="country">
+							<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+						</cfloop>
 					</select>
 				</div>
 			</div>
