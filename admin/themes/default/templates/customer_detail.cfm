@@ -27,6 +27,16 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
+		<div class="col-md-12">
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
@@ -40,19 +50,16 @@
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						 <div class="form-group">
-							<label>Last Logged In Time: <span style="color:##3c8dbc;">#TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")# #DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")#</span></label>
+							<label>Last Logged In Time: <span class="info-section">#TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")# #DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")#</span></label>
 						</div>
 						 <div class="form-group">
-							<label>Last Logged In IP Address</label>
-							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.last_login_ip#"/>
+							<label>Last Logged In IP Address: <span class="info-section">#REQUEST.pageData.customer.getLastLoginIP()#</span></label>
 						</div>
 						 <div class="form-group">
-							<label>Account Created Time</label>
-							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.created_datetime#"/>
+							<label>Account Created Datetime: <span class="info-section">#REQUEST.pageData.customer.getCreatedDatetime()#</span></label>
 						</div>
 						 <div class="form-group">
-							<label>Account Created IP Address</label>
-							<input disabled type="text" class="form-control" value="#REQUEST.pageData.formData.created_user#"/>
+							<label>Account Created IP Address: <span class="info-section">#REQUEST.pageData.customer.getCreatedUser()#</span></label>
 						</div>
 						<div class="form-group">
 							<label>Shopping Cart</label>
@@ -209,7 +216,7 @@
 						</div>
 						<div class="form-group">
 							<label>Comments</label>
-							<textarea class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
+							<textarea name="description" class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
@@ -269,10 +276,6 @@
 														<th>
 															<a addressid="#address.getAddressId()#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-address-modal"><span class="label label-danger">Delete</span></a>
 														</th>
-													</tr>
-													<tr>
-														<td>Type</td>
-														<td>#address.getType().getDisplayName()#</td>
 													</tr>
 													<tr>
 														<td>Street</td>

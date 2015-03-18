@@ -5,7 +5,7 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif IsValid("email",Trim(FORM.email)) EQ true>
+		<cfif IsValid("email",Trim(FORM.email)) EQ false>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
 		</cfif>
 		
@@ -78,14 +78,14 @@
 			<cfset LOCAL.newAddress.setStreet(FORM.new_address_street) />
 			<cfset LOCAL.newAddress.setUnit(FORM.new_address_unit) />
 			<cfset LOCAL.newAddress.setCity(FORM.new_address_city) />
-			<cfset LOCAL.newAddress.setProvince(EntityLoadByPK("province", FORM.province_id)) />
+			<cfset LOCAL.newAddress.setProvince(EntityLoadByPK("province", FORM.new_address_province_id)) />
 			<cfset LOCAL.newAddress.setPostalCode(FORM.new_address_postal_code) />
-			<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("province", FORM.country_id)) />
+			<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("province", FORM.new_address_country_id)) />
 			<cfset EntitySave(LOCAL.newAddress) />
 			
 			<cfset LOCAL.customer.addAddress(LOCAL.newAddress) />
 			<cfset EntitySave(LOCAL.customer) />
-			
+		
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Address has been added.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.customer.getCustomerId()#&active_tab_id=tab_4" />
