@@ -54,18 +54,18 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
-						 <div class="form-group">
-							<label>Last Logged In Time: <span class="info-section">#TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")# #DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")#</span></label>
-						</div>
-						 <div class="form-group">
-							<label>Last Logged In IP Address: <span class="info-section">#REQUEST.pageData.customer.getLastLoginIP()#</span></label>
-						</div>
-						 <div class="form-group">
-							<label>Account Created Datetime: <span class="info-section">#REQUEST.pageData.customer.getCreatedDatetime()#</span></label>
-						</div>
-						 <div class="form-group">
-							<label>Account Created IP Address: <span class="info-section">#REQUEST.pageData.customer.getCreatedUser()#</span></label>
-						</div>
+					
+						<dl class="dl-horizontal">
+							<dt>Last Logged In Dateime:</dt>
+							<dd><span class="info-section">#TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")# #DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")#</span></dd>
+							<dt>Last Logged In IP:</dt>
+							<dd><span class="info-section">#REQUEST.pageData.customer.getLastLoginIP()#</span></dd>
+							<dt>Created Dateime:</dt>
+							<dd><span class="info-section">#REQUEST.pageData.customer.getCreatedDatetime()#</span></dd>
+							<dt>Created IP:</dt>
+							<dd><span class="info-section">#REQUEST.pageData.customer.getCreatedUser()#</span></dd>
+						</dl>
+						
 						<div class="form-group">
 							<label>Shopping Cart</label>
 							<table class="table table-bordered table-striped">
