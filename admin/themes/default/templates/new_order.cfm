@@ -232,19 +232,19 @@
 						<table class="table">
 							<tr>
 								<th style="width:50%">Subtotal:</th>
-								<td>$250.30</td>
+								<td>#DollarFormat(REQUEST.pageData.order.getSubtotalAmount())#</td>
 							</tr>
 							<tr>
 								<th>Shipping & Handling</th>
-								<td>$10.34</td>
+								<td>#DollarFormat(REQUEST.pageData.order.getShippingAmount())#</td>
 							</tr>
 							<tr>
-								<th>Tax (9.3%)</th>
-								<td>$10.34</td>
+								<th>Tax</th>
+								<td>#DollarFormat(REQUEST.pageData.order.getTaxAmount())#</td>
 							</tr>
 							<tr>
 								<th>Total:</th>
-								<td>$265.24</td>
+								<td>#DollarFormat(REQUEST.pageData.order.getTotalAmount())#</td>
 							</tr>
 						</table>
 					</div>

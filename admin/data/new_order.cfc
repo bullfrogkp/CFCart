@@ -134,6 +134,24 @@
 			<cfset LOCAL.pageData.formData.billing_country_id = isNull(LOCAL.pageData.order.getBillingCountry())?"":LOCAL.pageData.order.getBillingCountry().getCountryId() />
 		<cfelse>
 			<cfset LOCAL.pageData.formData.first_name = "" />
+			<cfset LOCAL.pageData.formData.middle_name = "" />
+			<cfset LOCAL.pageData.formData.last_name = "" />
+			<cfset LOCAL.pageData.formData.phone = "" />
+			<cfset LOCAL.pageData.formData.description = "" />
+			
+			<cfset LOCAL.pageData.formData.shipping_company = "" />
+			<cfset LOCAL.pageData.formData.shipping_street = "" />
+			<cfset LOCAL.pageData.formData.shipping_city = "" />
+			<cfset LOCAL.pageData.formData.shipping_province_id = "" />
+			<cfset LOCAL.pageData.formData.shipping_postal_code = "" />
+			<cfset LOCAL.pageData.formData.shipping_country_id = "" />
+			
+			<cfset LOCAL.pageData.formData.billing_company = "" />
+			<cfset LOCAL.pageData.formData.billing_street = "" />
+			<cfset LOCAL.pageData.formData.billing_city = "" />
+			<cfset LOCAL.pageData.formData.billing_province_id = "" />
+			<cfset LOCAL.pageData.formData.billing_postal_code = "" />
+			<cfset LOCAL.pageData.formData.billing_country_id = "" />
 		</cfif>
 	
 		<cfreturn LOCAL.pageData />	
