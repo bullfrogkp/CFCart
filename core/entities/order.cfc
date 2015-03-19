@@ -25,6 +25,6 @@
 	<cfproperty name="coupon" fieldtype="many-to-one" cfc="coupon" fkcolumn="coupon_id">	
 	<cfproperty name="paymentMethod" fieldtype="many-to-one" cfc="payment_method" fkcolumn="payment_method_id">	
 	
-	<cfproperty name="status" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_status_id" singularname="status">
-	<cfproperty name="products" type="array" fieldtype="one-to-many" cfc="order_product" fkcolumn="order_product_id" singularname="product">
+	<cfproperty name="status" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_id" singularname="status">
+	<cfproperty name="products" type="array" fieldtype="one-to-many" cfc="order_product" fkcolumn="order_id" singularname="product">
 </cfcomponent>
