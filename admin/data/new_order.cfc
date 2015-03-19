@@ -94,11 +94,21 @@
 				
 				<cfset LOCAL.order.addProduct(LOCAL.newProduct) />
 				
+				<cfset LOCAL.order.setSubtotalAmount(0) />
+				<cfset LOCAL.order.setShippingAmount(0) />
+				<cfset LOCAL.order.setTaxAmount(0) />
+				<cfset LOCAL.order.setTotalAmount(0) />
+				
 				<cfset EntitySave(LOCAL.order) /> 
 				
 				<cfset ArrayAppend(SESSION.temp.message.messageArray,"New product has been added.") />
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.customer.getCustomerId()#" />
 			<cfelse>
+				<cfset LOCAL.order.setSubtotalAmount(0) />
+				<cfset LOCAL.order.setShippingAmount(0) />
+				<cfset LOCAL.order.setTaxAmount(0) />
+				<cfset LOCAL.order.setTotalAmount(0) />
+				
 				<cfset EntitySave(LOCAL.order) />
 				<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
@@ -147,6 +157,11 @@
 				<cfset LOCAL.pageData.formData.billing_province_id = isNull(LOCAL.pageData.order.getBillingProvince())?"":LOCAL.pageData.order.getBillingProvince().getProvinceId() />
 				<cfset LOCAL.pageData.formData.billing_postal_code = isNull(LOCAL.pageData.order.getBillingPostalCode())?"":LOCAL.pageData.order.getBillingPostalCode() />
 				<cfset LOCAL.pageData.formData.billing_country_id = isNull(LOCAL.pageData.order.getBillingCountry())?"":LOCAL.pageData.order.getBillingCountry().getCountryId() />
+			
+				<cfset LOCAL.pageData.formData.subtotal_amount = DollarFormat(REQUEST.pageData.order.getSubtotalAmount()) />
+				<cfset LOCAL.pageData.formData.shipping_amount = DollarFormat(REQUEST.pageData.order.getShippingAmount()) />
+				<cfset LOCAL.pageData.formData.tax_amount = DollarFormat(REQUEST.pageData.order.getTaxAmount()) />
+				<cfset LOCAL.pageData.formData.total_amount = DollarFormat(REQUEST.pageData.order.getTotalAmount()) />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.order_id = "" />
 				<cfset LOCAL.pageData.formData.first_name = "" />
@@ -170,6 +185,10 @@
 				<cfset LOCAL.pageData.formData.billing_province_id = "" />
 				<cfset LOCAL.pageData.formData.billing_postal_code = "" />
 				<cfset LOCAL.pageData.formData.billing_country_id = "" />
+				<cfset LOCAL.pageData.formData.subtotal_amount = "" />
+				<cfset LOCAL.pageData.formData.shipping_amount = "" />
+				<cfset LOCAL.pageData.formData.tax_amount = "" />
+				<cfset LOCAL.pageData.formData.total_amount = "" />
 			</cfif>
 		</cfif>
 	

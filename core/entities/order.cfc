@@ -2,10 +2,10 @@
     <cfproperty name="orderId" column="order_id" fieldtype="id" generator="native">
 	<cfproperty name="trackingNumber" column="tracking_number" ormtype="string">
 	<cfproperty name="phone" column="phone" ormtype="string"> 
-	<cfproperty name="subtotalAmount" column="subtotal_amount" ormtype="string"> 
-	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="string"> 
-	<cfproperty name="taxAmount" column="tax_amount" ormtype="string"> 
-	<cfproperty name="totalAmount" column="total_amount" ormtype="string"> 
+	<cfproperty name="subtotalAmount" column="subtotal_amount" ormtype="numeric"> 
+	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="numeric"> 
+	<cfproperty name="taxAmount" column="tax_amount" ormtype="numeric"> 
+	<cfproperty name="totalAmount" column="total_amount" ormtype="numeric"> 
 	
 	<cfproperty name="shippingFirstName" column="shipping_first_name" ormtype="string"> 
 	<cfproperty name="shippingMiddleName" column="shipping_middle_name" ormtype="string"> 

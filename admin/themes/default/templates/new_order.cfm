@@ -12,6 +12,10 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.order_id#" />
+<input type="hidden" name="subtotal_amount" id="subtotal_amount" value="#REQUEST.pageData.formData.subtotal_amount#" />
+<input type="hidden" name="shipping_amount" id="shipping_amount" value="#REQUEST.pageData.formData.shipping_amount#" />
+<input type="hidden" name="tax_amount" id="tax_amount" value="#REQUEST.pageData.formData.tax_amount#" />
+<input type="hidden" name="total_amount" id="total_amount" value="#REQUEST.pageData.formData.total_amount#" />
 <section class="content">
 	<div class="row">
 		<section class="col-lg-12"> 
@@ -264,19 +268,19 @@
 						<table class="table">
 							<tr>
 								<th style="width:50%">Subtotal:</th>
-								<td>#DollarFormat(REQUEST.pageData.order.getSubtotalAmount())#</td>
+								<td>#REQUEST.pageData.formData.subtotal_amount#</td>
 							</tr>
 							<tr>
 								<th>Shipping & Handling</th>
-								<td>#DollarFormat(REQUEST.pageData.order.getShippingAmount())#</td>
+								<td>#REQUEST.pageData.formData.shipping_amount#</td>
 							</tr>
 							<tr>
 								<th>Tax</th>
-								<td>#DollarFormat(REQUEST.pageData.order.getTaxAmount())#</td>
+								<td>#REQUEST.pageData.formData.tax_amount#</td>
 							</tr>
 							<tr>
 								<th>Total:</th>
-								<td>#DollarFormat(REQUEST.pageData.order.getTotalAmount())#</td>
+								<td>#REQUEST.pageData.formData.total_amount#</td>
 							</tr>
 						</table>
 					</div>
