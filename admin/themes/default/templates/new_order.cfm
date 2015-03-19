@@ -252,7 +252,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<textarea name="description" class="form-control" rows="8" placeholder="Enter ..." style="height:170px;">#REQUEST.pageData.formData.description#</textarea>
+						<textarea name="description" class="form-control" rows="8" placeholder="Enter ..." style="height:160px;">#REQUEST.pageData.formData.description#</textarea>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -271,11 +271,11 @@
 								<td>#REQUEST.pageData.formData.subtotal_amount#</td>
 							</tr>
 							<tr>
-								<th>Shipping & Handling</th>
+								<th>Shipping & Handling:</th>
 								<td>#REQUEST.pageData.formData.shipping_amount#</td>
 							</tr>
 							<tr>
-								<th>Tax</th>
+								<th>Tax:</th>
 								<td>#REQUEST.pageData.formData.tax_amount#</td>
 							</tr>
 							<tr>
@@ -308,7 +308,7 @@
 				<div class="form-group">
 					<select class="form-control" name="new_product_shipping_method_id">
 						<option value="">Please Select Shipping...</option>
-						<cfloop array="#REQUEST.pageData.shippinMethods#" index="method">
+						<cfloop array="#REQUEST.pageData.shippingMethods#" index="method">
 							<option value="#method.getShippingMethodId()#">#method.getDisplayName()#</option>
 						</cfloop>
 					</select>

@@ -132,8 +132,8 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfif StructKeyExists(URL,"id")>
-				<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
+			<cfif StructKeyExists(FORM,"id")>
+				<cfset LOCAL.pageData.order = EntityLoadByPK("order",FORM.id) />
 				
 				<cfset LOCAL.pageData.formData.order_id = LOCAL.pageData.order.getOrderId() />
 				<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.order.getFirstName())?"":LOCAL.pageData.order.getFirstName() />
@@ -185,10 +185,10 @@
 				<cfset LOCAL.pageData.formData.billing_province_id = "" />
 				<cfset LOCAL.pageData.formData.billing_postal_code = "" />
 				<cfset LOCAL.pageData.formData.billing_country_id = "" />
-				<cfset LOCAL.pageData.formData.subtotal_amount = "" />
-				<cfset LOCAL.pageData.formData.shipping_amount = "" />
-				<cfset LOCAL.pageData.formData.tax_amount = "" />
-				<cfset LOCAL.pageData.formData.total_amount = "" />
+				<cfset LOCAL.pageData.formData.subtotal_amount = "-" />
+				<cfset LOCAL.pageData.formData.shipping_amount = "-" />
+				<cfset LOCAL.pageData.formData.tax_amount = "-" />
+				<cfset LOCAL.pageData.formData.total_amount = "-" />
 			</cfif>
 		</cfif>
 	
