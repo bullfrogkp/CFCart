@@ -35,18 +35,24 @@
 				<cfset LOCAL.order = EntityNew("order") /> 
 			</cfif>
 			
-			<cfset LOCAL.order.setTrackingNumber(Trim(FORM.tracking_number)) />
+			<cfset LOCAL.order.setFirstName(Trim(FORM.first_name)) />
+			<cfset LOCAL.order.setMiddleName(Trim(FORM.middle_name)) />
+			<cfset LOCAL.order.setLastName(Trim(FORM.last_name)) />
 			<cfset LOCAL.order.setPhone(Trim(FORM.phone)) />
-			<cfset LOCAL.order.setTotal(Trim(FORM.total)) />
 			<cfset LOCAL.order.setDescription(Trim(FORM.description)) />
-			<cfset LOCAL.order.setSubtotalAmount(FORM.subtotal_amount) />
-			<cfset LOCAL.order.setShippingAmount(FORM.shipping_amount) />
-			<cfset LOCAL.order.setTaxAmount(FORM.tax_amount) />
-			<cfset LOCAL.order.setTotalAmount(FORM.total_amount) />
+			<cfif IsNumeric(FORM.subtotal_amount)>
+				<cfset LOCAL.order.setSubtotalAmount(FORM.subtotal_amount) />
+			</cfif>
+			<cfif IsNumeric(FORM.shipping_amount)>
+				<cfset LOCAL.order.setShippingAmount(FORM.shipping_amount) />
+			</cfif>
+			<cfif IsNumeric(FORM.tax_amount)>
+				<cfset LOCAL.order.setTaxAmount(FORM.tax_amount) />
+			</cfif>
+			<cfif IsNumeric(FORM.total_amount)>
+				<cfset LOCAL.order.setTotalAmount(FORM.total_amount) />
+			</cfif>
 			
-			<cfset LOCAL.order.setShippingFirstName(Trim(FORM.shipping_first_name)) />
-			<cfset LOCAL.order.setShippingMiddleName(Trim(FORM.shipping_middle_name)) />
-			<cfset LOCAL.order.setShippingLastName(Trim(FORM.shipping_last_name)) />
 			<cfset LOCAL.order.setShippingStreet(Trim(FORM.shipping_street)) />
 			<cfset LOCAL.order.setShippingCity(Trim(FORM.shipping_city)) />
 			<cfset LOCAL.order.setShippingPostalCode(Trim(FORM.shipping_postal_code)) />
@@ -58,9 +64,6 @@
 				<cfset LOCAL.order.setShippingCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
 			</cfif>
 		
-			<cfset LOCAL.order.setBillingFirstName(Trim(FORM.billing_first_name)) />
-			<cfset LOCAL.order.setBillingMiddleName(Trim(FORM.billing_middle_name)) />
-			<cfset LOCAL.order.setBillingLastName(Trim(FORM.billing_last_name)) />
 			<cfset LOCAL.order.setBillingStreet(Trim(FORM.billing_street)) />
 			<cfset LOCAL.order.setBillingCity(Trim(FORM.billing_city)) />
 			<cfset LOCAL.order.setBillingPostalCode(Trim(FORM.billing_postal_code)) />
