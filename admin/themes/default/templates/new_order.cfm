@@ -10,6 +10,8 @@
 </section>
 
 <!-- Main content -->
+<form method="post">
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.order_id#" />
 <section class="content">
 	<div class="row">
 		<section class="col-lg-12"> 

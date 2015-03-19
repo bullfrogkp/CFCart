@@ -75,10 +75,14 @@
 			<cfif FORM.payment_method_id NEQ "">
 				<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
 			</cfif>
-			<cfset LOCAL.order.setCoupon(EntityLoad("coupon",{coupon = FORM.coupon})) />
+			
+			<cfset LOCAL.order.setCoupon(EntityLoad("coupon",{coupon = FORM.coupon}, true)) />
 						
-			<cfset LOCAL.newStatus = EntityLoad("order_status",{name = "placed"}) />
-			<cfset LOCAL.newStatus.setStartDatetime(LOCAL.currentStatus.getEndDatetime()) />
+			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"}) />
+			<cfset LOCAL.newStatus = EntityNew("order_status") />
+			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
+			<cfset LOCAL.newStatus.setStatusType(LOCAL.newStatusType) />
+			<cfset EntitySave(LOCAL.newStatus) />
 			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
 			
 			<cfif StructKeyExists(FORM,"add_new_product")>
@@ -111,50 +115,57 @@
 		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method") />
 		<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
 		
-		<cfif StructKeyExists(URL,"id")>
-			<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
-			
-			<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.order.getFirstName())?"":LOCAL.pageData.order.getFirstName() />
-			<cfset LOCAL.pageData.formData.middle_name = isNull(LOCAL.pageData.order.getMiddleName())?"":LOCAL.pageData.order.getMiddleName() />
-			<cfset LOCAL.pageData.formData.last_name = isNull(LOCAL.pageData.order.getLastName())?"":LOCAL.pageData.order.getLastName() />
-			<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.order.getPhone())?"":LOCAL.pageData.order.getPhone() />
-			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.order.getDescription())?"":LOCAL.pageData.order.getDescription() />
-			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
-			
-			<cfset LOCAL.pageData.formData.shipping_company = isNull(LOCAL.pageData.order.getShippingCompany())?"":LOCAL.pageData.order.getShippingCompany() />
-			<cfset LOCAL.pageData.formData.shipping_street = isNull(LOCAL.pageData.order.getShippingStreet())?"":LOCAL.pageData.order.getShippingStreet() />
-			<cfset LOCAL.pageData.formData.shipping_city = isNull(LOCAL.pageData.order.getShippingCity())?"":LOCAL.pageData.order.getShippingCity() />
-			<cfset LOCAL.pageData.formData.shipping_province = isNull(LOCAL.pageData.order.getShippingProvince())?"":LOCAL.pageData.order.getShippingProvince().getDisplayName() />
-			<cfset LOCAL.pageData.formData.shipping_postal_code = isNull(LOCAL.pageData.order.getShippingPostalCode())?"":LOCAL.pageData.order.getShippingPostalCode() />
-			<cfset LOCAL.pageData.formData.shipping_country = isNull(LOCAL.pageData.order.getShippingCountry())?"":LOCAL.pageData.order.getShippingCountry().getDisplayName() />
-			
-			<cfset LOCAL.pageData.formData.billing_company = isNull(LOCAL.pageData.order.getBillingCompany())?"":LOCAL.pageData.order.getBillingCompany() />
-			<cfset LOCAL.pageData.formData.billing_street = isNull(LOCAL.pageData.order.getBillingStreet())?"":LOCAL.pageData.order.getBillingStreet() />
-			<cfset LOCAL.pageData.formData.billing_city = isNull(LOCAL.pageData.order.getBillingCity())?"":LOCAL.pageData.order.getBillingCity() />
-			<cfset LOCAL.pageData.formData.billing_province_id = isNull(LOCAL.pageData.order.getBillingProvince())?"":LOCAL.pageData.order.getBillingProvince().getProvinceId() />
-			<cfset LOCAL.pageData.formData.billing_postal_code = isNull(LOCAL.pageData.order.getBillingPostalCode())?"":LOCAL.pageData.order.getBillingPostalCode() />
-			<cfset LOCAL.pageData.formData.billing_country_id = isNull(LOCAL.pageData.order.getBillingCountry())?"":LOCAL.pageData.order.getBillingCountry().getCountryId() />
+		
+		<cfif IsDefined("SESSION.temp.formData")>
+			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.formData.first_name = "" />
-			<cfset LOCAL.pageData.formData.middle_name = "" />
-			<cfset LOCAL.pageData.formData.last_name = "" />
-			<cfset LOCAL.pageData.formData.phone = "" />
-			<cfset LOCAL.pageData.formData.description = "" />
-			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
-			
-			<cfset LOCAL.pageData.formData.shipping_company = "" />
-			<cfset LOCAL.pageData.formData.shipping_street = "" />
-			<cfset LOCAL.pageData.formData.shipping_city = "" />
-			<cfset LOCAL.pageData.formData.shipping_province_id = "" />
-			<cfset LOCAL.pageData.formData.shipping_postal_code = "" />
-			<cfset LOCAL.pageData.formData.shipping_country_id = "" />
-			
-			<cfset LOCAL.pageData.formData.billing_company = "" />
-			<cfset LOCAL.pageData.formData.billing_street = "" />
-			<cfset LOCAL.pageData.formData.billing_city = "" />
-			<cfset LOCAL.pageData.formData.billing_province_id = "" />
-			<cfset LOCAL.pageData.formData.billing_postal_code = "" />
-			<cfset LOCAL.pageData.formData.billing_country_id = "" />
+			<cfif StructKeyExists(URL,"id")>
+				<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
+				
+				<cfset LOCAL.pageData.formData.order_id = LOCAL.pageData.order.getOrderId() />
+				<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.order.getFirstName())?"":LOCAL.pageData.order.getFirstName() />
+				<cfset LOCAL.pageData.formData.middle_name = isNull(LOCAL.pageData.order.getMiddleName())?"":LOCAL.pageData.order.getMiddleName() />
+				<cfset LOCAL.pageData.formData.last_name = isNull(LOCAL.pageData.order.getLastName())?"":LOCAL.pageData.order.getLastName() />
+				<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.order.getPhone())?"":LOCAL.pageData.order.getPhone() />
+				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.order.getDescription())?"":LOCAL.pageData.order.getDescription() />
+				<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
+				
+				<cfset LOCAL.pageData.formData.shipping_company = isNull(LOCAL.pageData.order.getShippingCompany())?"":LOCAL.pageData.order.getShippingCompany() />
+				<cfset LOCAL.pageData.formData.shipping_street = isNull(LOCAL.pageData.order.getShippingStreet())?"":LOCAL.pageData.order.getShippingStreet() />
+				<cfset LOCAL.pageData.formData.shipping_city = isNull(LOCAL.pageData.order.getShippingCity())?"":LOCAL.pageData.order.getShippingCity() />
+				<cfset LOCAL.pageData.formData.shipping_province = isNull(LOCAL.pageData.order.getShippingProvince())?"":LOCAL.pageData.order.getShippingProvince().getDisplayName() />
+				<cfset LOCAL.pageData.formData.shipping_postal_code = isNull(LOCAL.pageData.order.getShippingPostalCode())?"":LOCAL.pageData.order.getShippingPostalCode() />
+				<cfset LOCAL.pageData.formData.shipping_country = isNull(LOCAL.pageData.order.getShippingCountry())?"":LOCAL.pageData.order.getShippingCountry().getDisplayName() />
+				
+				<cfset LOCAL.pageData.formData.billing_company = isNull(LOCAL.pageData.order.getBillingCompany())?"":LOCAL.pageData.order.getBillingCompany() />
+				<cfset LOCAL.pageData.formData.billing_street = isNull(LOCAL.pageData.order.getBillingStreet())?"":LOCAL.pageData.order.getBillingStreet() />
+				<cfset LOCAL.pageData.formData.billing_city = isNull(LOCAL.pageData.order.getBillingCity())?"":LOCAL.pageData.order.getBillingCity() />
+				<cfset LOCAL.pageData.formData.billing_province_id = isNull(LOCAL.pageData.order.getBillingProvince())?"":LOCAL.pageData.order.getBillingProvince().getProvinceId() />
+				<cfset LOCAL.pageData.formData.billing_postal_code = isNull(LOCAL.pageData.order.getBillingPostalCode())?"":LOCAL.pageData.order.getBillingPostalCode() />
+				<cfset LOCAL.pageData.formData.billing_country_id = isNull(LOCAL.pageData.order.getBillingCountry())?"":LOCAL.pageData.order.getBillingCountry().getCountryId() />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.order_id = "" />
+				<cfset LOCAL.pageData.formData.first_name = "" />
+				<cfset LOCAL.pageData.formData.middle_name = "" />
+				<cfset LOCAL.pageData.formData.last_name = "" />
+				<cfset LOCAL.pageData.formData.phone = "" />
+				<cfset LOCAL.pageData.formData.description = "" />
+				<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
+				
+				<cfset LOCAL.pageData.formData.shipping_company = "" />
+				<cfset LOCAL.pageData.formData.shipping_street = "" />
+				<cfset LOCAL.pageData.formData.shipping_city = "" />
+				<cfset LOCAL.pageData.formData.shipping_province_id = "" />
+				<cfset LOCAL.pageData.formData.shipping_postal_code = "" />
+				<cfset LOCAL.pageData.formData.shipping_country_id = "" />
+				
+				<cfset LOCAL.pageData.formData.billing_company = "" />
+				<cfset LOCAL.pageData.formData.billing_street = "" />
+				<cfset LOCAL.pageData.formData.billing_city = "" />
+				<cfset LOCAL.pageData.formData.billing_province_id = "" />
+				<cfset LOCAL.pageData.formData.billing_postal_code = "" />
+				<cfset LOCAL.pageData.formData.billing_country_id = "" />
+			</cfif>
 		</cfif>
 	
 		<cfreturn LOCAL.pageData />	
