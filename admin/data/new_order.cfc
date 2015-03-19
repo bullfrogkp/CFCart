@@ -83,7 +83,7 @@
 				<cfset LOCAL.order.setCoupon(EntityLoad("coupon",{couponCode = FORM.coupon_code}, true)) />
 			</cfif>
 						
-			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"}) />
+			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
 			<cfset LOCAL.newStatus = EntityNew("order_status") />
 			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.newStatus.setStatusType(LOCAL.newStatusType) />
