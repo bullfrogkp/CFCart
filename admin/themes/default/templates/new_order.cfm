@@ -177,7 +177,7 @@
 							<th>Subtotal</th>
 						</thead>
 						<tbody>
-							<cfif NOT IsNull(REQUEST.pageData.order.getProducts())>
+							<cfif NOT IsNull(REQUEST.pageData.order) AND NOT IsNull(REQUEST.pageData.order.getProducts())>
 								<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 								<tr>
 									<td>#product.getDisplayName()#</td>
@@ -206,7 +206,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Enter ..." name="coupon" value="#REQUEST.pageData.formData.coupon#" />
+						<input type="text" class="form-control" placeholder="Enter ..." name="coupon_code" value="#REQUEST.pageData.formData.coupon_code#" />
 					</div>
 				</div>
 			</div>
