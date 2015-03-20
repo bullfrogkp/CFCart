@@ -68,6 +68,7 @@
 		
 		<cfset LOCAL.pageData.order = EntityLoadByPK("order", URL.id)> 
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getOrderTrackingNumber()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.currentOrderStatus = EntityLoad("order_status",{order_id = LOCAL.pageData.order.getOrderId(), current = true},true) />
 
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />

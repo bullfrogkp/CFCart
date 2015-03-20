@@ -36,11 +36,11 @@
 										<div class="box-body">
 											<dl class="dl-horizontal">
 												<dt>Order Date</dt>
-												<dd>6 Mar 2015 15:41:02</dd>
+												<dd>#REQUEST.pageData.order.getCreatedDatetime()#</dd>
 												<dt>Order Status</dt>
-												<dd>Complete</dd>
+												<dd>#REQUEST.pageData.currentOrderStatus.getDisplayName()#</dd>
 												<dt>Placed from IP</dt>
-												<dd>149.172.246.154</dd>
+												<dd>#REQUEST.pageData.order.getCreatedUser()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -53,11 +53,11 @@
 										<div class="box-body">
 											<dl class="dl-horizontal">
 												<dt>Customer</dt>
-												<dd>Horst alfons</dd>
+												<dd>#REQUEST.pageData.order.getCustomer().getFirstName()# #REQUEST.pageData.order.getCustomer().getMiddleName()# #REQUEST.pageData.order.getCustomer().getLastName()#</dd>
 												<dt>Email</dt>
-												<dd>abc@me.com</dd>
+												<dd>#REQUEST.pageData.order.getCustomer().getEmail()#</dd>
 												<dt>Customer Group</dt>
-												<dd>NOT LOGGED IN</dd>
+												<dd>#REQUEST.pageData.order.getCustomer().getCustomerGroup()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -71,9 +71,9 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl>
-												<dd>123 adlims st.</dd>
-												<dd>Richmond</dd>
-												<dd>Canada</dd>
+												<dd>#REQUEST.pageData.order.getBillingStreet()#</dd>
+												<dd>#REQUEST.pageData.order.getBillingCity()#</dd>
+												<dd>#REQUEST.pageData.order.getBillingCountry()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -85,9 +85,9 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl>
-												<dd>123 adlims st.</dd>
-												<dd>Richmond</dd>
-												<dd>Canada</dd>
+												<dd>#REQUEST.pageData.order.getShippingStreet()#</dd>
+												<dd>#REQUEST.pageData.order.getShippingCity()#</dd>
+												<dd>#REQUEST.pageData.order.getShippingCountry()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -103,7 +103,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl>
-												<dd>Credit Card</dd>
+												<dd>#REQUEST.pageData.order.getPaymentMethod().getDisplayName()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -115,7 +115,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl>
-												<dd>Flat Rate - Fixed £5.00</dd>
+												<dd>#REQUEST.pageData.order.getShippingMethod().getDisplayName()# - #REQUEST.pageData.order.getShippingMethod().getDisplayName()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -133,58 +133,33 @@
 											<table class="table table-bordered table-striped">
 												<thead>
 													<th>Product</th>
-													<th>Item Status</th>
 													<th>Original Price</th>
 													<th>Price</th>
 													<th>Qty</th>
+													<th>Status</th>
 													<th>Subtotal</th>
 													<th>Tax Amount</th>
+													<th>Shipping Amount</th>
 													<th>Tax Percentage</th>
 													<th>Row Total</th>
 												</thead>
 												<tbody>
-													<tr>
-														<td>
-															juta
-															SKU: fvvdx
-														</td>
-														<td>$1000.00</td>
-														<td>1</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-													</tr>
-													<tr>
-														<td>
-															juta
-															SKU: fvvdx
-														</td>
-														<td>$1000.00</td>
-														<td>1</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-													</tr>
-													<tr>
-														<td>
-															juta
-															SKU: fvvdx
-														</td>
-														<td>$1000.00</td>
-														<td>1</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-														<td>$1000.00</td>
-													</tr>
+													<cfloop array="##" index="product">
+														<tr>
+															<td>
+																#product.getDisplayName()# (SKU: #product.getSKU()#)
+															</td>
+															<td>#product.getPrice()#</td>
+															<td>#product.getCurrentPrice()#</td>
+															<td>#product.getQuantity()#</td>
+															<td>#product.getOrderProductStatus().getDisplayName()#</td>
+															<td>#product.getSubtotalAmount()#</td>
+															<td>#product.getTaxAmount()#</td>
+															<td>#product.getShippingAmount()#</td>
+															<td>#product.getTaxCategory().getPercentage()#</td>
+															<td>#product.getShippingAmount() + product.getSubtotalAmount() + product.getTaxAmount()#</td>
+														</tr>
+													</cfloop>
 												</tbody>
 											</table>
 										</div>
