@@ -11,7 +11,7 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.order_id#" />
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="subtotal_amount" id="subtotal_amount" value="#REQUEST.pageData.formData.subtotal_amount#" />
 <input type="hidden" name="shipping_amount" id="shipping_amount" value="#REQUEST.pageData.formData.shipping_amount#" />
 <input type="hidden" name="tax_amount" id="tax_amount" value="#REQUEST.pageData.formData.tax_amount#" />

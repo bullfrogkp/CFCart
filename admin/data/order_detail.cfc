@@ -44,16 +44,19 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order status has been saved successfully.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
+			
 		<cfelseif StructKeyExists(FORM,"save_tracking_number")>
-			<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)>
-			<cfset LOCAL.coupon.setIsDeleted(true) />
+		
+			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id)> 
 			
-			<cfset EntitySave(LOCAL.coupon) />
+			<cfset LOCAL.order.setTrackingNumber(FORM.tracking_number) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Coupon #LOCAL.coupon.getCode()# has been deleted.") />
+			<cfset EntitySave(LOCAL.order) />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/coupons.cfm" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Tracking number has been saved successfully.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=tab_2" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -63,25 +66,13 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.order = EntityLoadByPK("order", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getTrackingNumber()# | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "" />	
-		<cfelse>
-			<cfset LOCAL.pageData.order = EntityNew("order") />
-			<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
-		</cfif>
-		
+		<cfset LOCAL.pageData.order = EntityLoadByPK("order", URL.id)> 
+		<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getTrackingNumber()# | #APPLICATION.applicationName#" />
+
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-		<!---
-			<cfset LOCAL.pageData.formData.code = isNull(LOCAL.pageData.coupon.getCode())?"":LOCAL.pageData.coupon.getCode() />
-			<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":LOCAL.pageData.coupon.getStartDate() />
-			<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":LOCAL.pageData.coupon.getEndDate() />
-			<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
-		--->
+			<cfset LOCAL.pageData.formData.tracking_number = "" />
 		</cfif>
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
