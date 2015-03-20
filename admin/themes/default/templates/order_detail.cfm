@@ -144,7 +144,7 @@
 													<th>Row Total</th>
 												</thead>
 												<tbody>
-													<cfloop array="##" index="product">
+													<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 														<tr>
 															<td>
 																#product.getDisplayName()# (SKU: #product.getSKU()#)
@@ -174,7 +174,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" />
+												<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.order.getCoupon().getCouponCode()#" />
 											</div>
 										</div>
 									</div>
