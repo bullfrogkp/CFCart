@@ -18,6 +18,16 @@
 <input type="hidden" name="total_amount" id="total_amount" value="#REQUEST.pageData.formData.total_amount#" />
 <section class="content">
 	<div class="row">
+		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
 		<section class="col-lg-12"> 
 			<div class="box box-primary">
 				<div class="box-header">
@@ -303,10 +313,13 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_product_id" name="new_product_id" type="text" class="form-control" placeholder="Product ID">
+					<input id="new_order_product_id" name="new_order_product_id" type="text" class="form-control" placeholder="Product ID">
 				</div>
 				<div class="form-group">
-					<select class="form-control" name="new_product_shipping_method_id">
+					<input id="new_order_product_quantity" name="new_order_product_quantity" type="text" class="form-control" placeholder="Quantity">
+				</div>
+				<div class="form-group">
+					<select class="form-control" name="new_order_product_shipping_method_id">
 						<option value="">Please Select Shipping...</option>
 						<cfloop array="#REQUEST.pageData.shippingMethods#" index="method">
 							<option value="#method.getShippingMethodId()#">#method.getDisplayName()#</option>

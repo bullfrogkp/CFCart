@@ -4,9 +4,9 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset LOCAL.messageArray = [] />
-		
+	
 		<cfif StructKeyExists(FORM,"submit_order") AND Trim(FORM.first_name) EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid first name.") />
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid first name.") />	
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -27,7 +27,7 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfif StructKeyExists(FORM,"submit_order") OR StructKeyExists(FORM,"add_new_product")>
+		<cfif StructKeyExists(FORM,"submit_order")>
 		
 			<cfif IsNumeric(FORM.id)>
 				<cfset LOCAL.order = EntityLoadByPK("order", FORM.id) /> 
@@ -91,37 +91,46 @@
 			<cfset EntitySave(LOCAL.newStatus) /> 
 			
 			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
+		
+			<cfset LOCAL.order.setSubtotalAmount(0) />
+			<cfset LOCAL.order.setShippingAmount(0) />
+			<cfset LOCAL.order.setTaxAmount(0) />
+			<cfset LOCAL.order.setTotalAmount(0) />
 			
-			<cfif StructKeyExists(FORM,"add_new_product")>
-				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_product_id) />
-				
-				<cfset LOCAL.orderProduct = EntityNew("order_product") />
-				<cfset LOCAL.orderProduct.setPrice(LOCAL.newProduct.getPrice()) />
-				<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_product_shipping_method_id)) />
-				
-				<cfset EntitySave(LOCAL.orderProduct) /> 
-				
-				<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
-				
-				<cfset LOCAL.order.setSubtotalAmount(0) />
-				<cfset LOCAL.order.setShippingAmount(0) />
-				<cfset LOCAL.order.setTaxAmount(0) />
-				<cfset LOCAL.order.setTotalAmount(0) />
-				
-				<cfset EntitySave(LOCAL.order) /> 
-				
-				<cfset ArrayAppend(SESSION.temp.message.messageArray,"New product has been added.") />
-				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
+			<cfset EntitySave(LOCAL.order) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
+			
+		<cfelseif StructKeyExists(FORM,"add_new_product")>
+		
+			<cfif IsNumeric(FORM.id)>
+				<cfset LOCAL.order = EntityLoadByPK("order", FORM.id) /> 
 			<cfelse>
-				<cfset LOCAL.order.setSubtotalAmount(0) />
-				<cfset LOCAL.order.setShippingAmount(0) />
-				<cfset LOCAL.order.setTaxAmount(0) />
-				<cfset LOCAL.order.setTotalAmount(0) />
-				
-				<cfset EntitySave(LOCAL.order) />
-				<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
-				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
+				<cfset LOCAL.order = EntityNew("order") /> 
 			</cfif>
+		
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.new_order_product_id) />
+				
+			<cfset LOCAL.orderProduct = EntityNew("order_product") />
+			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
+			<cfset LOCAL.orderProduct.setPrice(LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setQuantity(FORM.new_order_product_quantity) />
+			<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id)) />
+			
+			<cfset EntitySave(LOCAL.orderProduct) /> 
+			
+			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
+			
+			<cfset LOCAL.order.setSubtotalAmount(LOCAL.orderProduct.getPrice() * FORM.new_order_product_quantity) />
+			<cfset LOCAL.order.setShippingAmount(0) />
+			<cfset LOCAL.order.setTaxAmount(0) />
+			<cfset LOCAL.order.setTotalAmount(0) />
+			
+			<cfset EntitySave(LOCAL.order) /> 
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New product has been added.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -139,7 +148,10 @@
 		
 		
 		<cfif IsDefined("SESSION.temp.formData")>
+			<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfset LOCAL.pageData.formData.order_id = URL.id />
+			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 		<cfelse>
 			<cfif StructKeyExists(URL,"id")>
 				<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
@@ -200,6 +212,8 @@
 				<cfset LOCAL.pageData.formData.total_amount = "-" />
 			</cfif>
 		</cfif>
+		
+		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
