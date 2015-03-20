@@ -31,6 +31,7 @@
 			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id) /> 
 		<cfelse>
 			<cfset LOCAL.order = EntityNew("order") /> 
+			<cfset LOCAL.newOrderTrackingNumber = "OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")#" />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"submit_order")>
@@ -97,6 +98,11 @@
 			<cfset LOCAL.order.setTotalAmount(0) />
 			
 			<cfset EntitySave(LOCAL.order) />
+			
+			<cfif StructKeyExists(LOCAL,"newOrderTrackingNumber")>
+				<cfset LOCAL.order.setOrderTrackingNumber("#LOCAL.newOrderTrackingNumber##LOCAL.order.getOrderId()#") />
+				<cfset EntitySave(LOCAL.order) />
+			</cfif>
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />

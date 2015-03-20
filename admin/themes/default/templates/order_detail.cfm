@@ -1,7 +1,7 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Order ## 100000102 | 6 Mar 2015 15:41:02
+		Order ## #REQUEST.pageData.order.getOrderTrackingNumber()# | 6 Mar 2015 15:41:02
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,7 +20,7 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Tracking No.</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Shipping Tracking No.</a></li>
 					<li><a href="##tab_3" data-toggle="tab">Transaction</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
@@ -31,7 +31,7 @@
 								<div class="col-md-6">
 									<div class="box box-primary">
 										<div class="box-header">
-											<h3 class="box-title">Order ## 100000102</h3>
+											<h3 class="box-title">Order ## #REQUEST.pageData.order.getOrderTrackingNumber()#</h3>
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl class="dl-horizontal">
