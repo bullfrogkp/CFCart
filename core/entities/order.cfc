@@ -3,7 +3,8 @@
 	<cfproperty name="firstName" column="shipping_first_name" ormtype="string"> 
 	<cfproperty name="middleName" column="shipping_middle_name" ormtype="string"> 
 	<cfproperty name="lastName" column="shipping_last_name" ormtype="string">
-	<cfproperty name="trackingNumber" column="tracking_number" ormtype="string">
+	<cfproperty name="orderTrackingNumber" column="order_tracking_number" ormtype="string">
+	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
 	<cfproperty name="phone" column="phone" ormtype="string"> 
 	<cfproperty name="subtotalAmount" column="subtotal_amount" ormtype="float"> 
 	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="float"> 

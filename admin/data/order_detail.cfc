@@ -5,8 +5,8 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif StructKeyExists(FORM,"save_tracking_number") AND Trim(FORM.tracking_number) EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid tracking number.") />
+		<cfif StructKeyExists(FORM,"save_shipping_tracking_number") AND Trim(FORM.shipping_tracking_number) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping tracking number.") />
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -46,15 +46,15 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
 			
-		<cfelseif StructKeyExists(FORM,"save_tracking_number")>
+		<cfelseif StructKeyExists(FORM,"save_shipping_tracking_number")>
 		
 			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id)> 
 			
-			<cfset LOCAL.order.setTrackingNumber(FORM.tracking_number) />
+			<cfset LOCAL.order.setShippingTrackingNumber(FORM.shipping_tracking_number) />
 			
 			<cfset EntitySave(LOCAL.order) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Tracking number has been saved successfully.") />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Shipping tracking number has been saved successfully.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=tab_2" />
 		</cfif>
@@ -67,12 +67,12 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.order = EntityLoadByPK("order", URL.id)> 
-		<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getTrackingNumber()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getOrderTrackingNumber()# | #APPLICATION.applicationName#" />
 
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.formData.tracking_number = "" />
+			<cfset LOCAL.pageData.formData.shipping_tracking_number = "" />
 		</cfif>
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />

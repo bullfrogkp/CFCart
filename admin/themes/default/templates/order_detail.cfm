@@ -20,7 +20,7 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Tracking</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Tracking No.</a></li>
 					<li><a href="##tab_3" data-toggle="tab">Transaction</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
@@ -302,10 +302,10 @@
 					<div class="tab-pane" id="tab_2">
 					
 						<div class="form-group">
-							<label>Tracking Number</label>
-							<input name="tracking_number" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							<label>Shipping Tracking Number</label>
+							<input name="shipping_tracking_number" type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
-						<button name="save_tracking_number" type="submit" class="btn btn-primary">Submit</button>
+						<button name="save_shipping_tracking_number" type="submit" class="btn btn-primary">Submit</button>
 						
 					</div>
 					<div class="tab-pane" id="tab_3">

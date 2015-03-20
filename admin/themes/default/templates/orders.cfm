@@ -30,7 +30,7 @@
 						<tbody>
 							<cfloop array="#REQUEST.pageData.orders#" index="order">
 								<tr>
-									<td>#order.getTrackingNumber()#</td>
+									<td>#order.getOrderTrackingNumber()#</td>
 									<td>#order.getCustomer().getEmail()#</td>
 									<td>#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#</td>
 									<td>#order.getTotal()#</td>

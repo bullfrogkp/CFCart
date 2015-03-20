@@ -246,7 +246,7 @@
 								<cfif NOT IsNull(REQUEST.pageData.customer.getOrders()) AND ArrayLen(REQUEST.pageData.customer.getOrders()) NEQ 0>
 									<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
 										<tr>
-											<td>#order.getTrackingNumber()#</td>
+											<td>#order.getOrderTrackingNumber()#</td>
 											<td>#order.getCreatedDatetime()#</td>
 											<td>#order.getBillingFirstName()# #order.getBillingMiddleName()# #order.getBillingLastName()#</td>
 											<td>#order.getShippingFirstName()# #order.getShippingMiddleName()# #order.getShippingLastName()#</td>
