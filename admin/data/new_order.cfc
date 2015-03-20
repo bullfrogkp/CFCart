@@ -86,16 +86,22 @@
 			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
 			<cfset LOCAL.newStatus = EntityNew("order_status") />
 			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
+			<cfset LOCAL.newStatus.setCurrent(true) />
 			<cfset LOCAL.newStatus.setStatusType(LOCAL.newStatusType) />
-			<cfset EntitySave(LOCAL.newStatus) />
+			<cfset EntitySave(LOCAL.newStatus) /> 
+			
 			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
 			
 			<cfif StructKeyExists(FORM,"add_new_product")>
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_product_id) />
-				<cfset LOCAL.newProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_product_shipping_method_id)) />
-				<cfset EntitySave(LOCAL.newProduct) /> 
 				
-				<cfset LOCAL.order.addProduct(LOCAL.newProduct) />
+				<cfset LOCAL.orderProduct = EntityNew("order_product") />
+				<cfset LOCAL.orderProduct.setPrice(LOCAL.newProduct.getPrice()) />
+				<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_product_shipping_method_id)) />
+				
+				<cfset EntitySave(LOCAL.orderProduct) /> 
+				
+				<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
 				
 				<cfset LOCAL.order.setSubtotalAmount(0) />
 				<cfset LOCAL.order.setShippingAmount(0) />
@@ -105,7 +111,7 @@
 				<cfset EntitySave(LOCAL.order) /> 
 				
 				<cfset ArrayAppend(SESSION.temp.message.messageArray,"New product has been added.") />
-				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.customer.getCustomerId()#" />
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
 			<cfelse>
 				<cfset LOCAL.order.setSubtotalAmount(0) />
 				<cfset LOCAL.order.setShippingAmount(0) />
@@ -135,8 +141,8 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfif StructKeyExists(FORM,"id")>
-				<cfset LOCAL.pageData.order = EntityLoadByPK("order",FORM.id) />
+			<cfif StructKeyExists(URL,"id")>
+				<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
 				
 				<cfset LOCAL.pageData.formData.order_id = LOCAL.pageData.order.getOrderId() />
 				<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.order.getFirstName())?"":LOCAL.pageData.order.getFirstName() />
@@ -150,9 +156,9 @@
 				<cfset LOCAL.pageData.formData.shipping_company = isNull(LOCAL.pageData.order.getShippingCompany())?"":LOCAL.pageData.order.getShippingCompany() />
 				<cfset LOCAL.pageData.formData.shipping_street = isNull(LOCAL.pageData.order.getShippingStreet())?"":LOCAL.pageData.order.getShippingStreet() />
 				<cfset LOCAL.pageData.formData.shipping_city = isNull(LOCAL.pageData.order.getShippingCity())?"":LOCAL.pageData.order.getShippingCity() />
-				<cfset LOCAL.pageData.formData.shipping_province = isNull(LOCAL.pageData.order.getShippingProvince())?"":LOCAL.pageData.order.getShippingProvince().getDisplayName() />
+				<cfset LOCAL.pageData.formData.shipping_province_id = isNull(LOCAL.pageData.order.getShippingProvince())?"":LOCAL.pageData.order.getShippingProvince().getProvinceId() />
 				<cfset LOCAL.pageData.formData.shipping_postal_code = isNull(LOCAL.pageData.order.getShippingPostalCode())?"":LOCAL.pageData.order.getShippingPostalCode() />
-				<cfset LOCAL.pageData.formData.shipping_country = isNull(LOCAL.pageData.order.getShippingCountry())?"":LOCAL.pageData.order.getShippingCountry().getDisplayName() />
+				<cfset LOCAL.pageData.formData.shipping_country_id = isNull(LOCAL.pageData.order.getShippingCountry())?"":LOCAL.pageData.order.getShippingCountry().getCountryId() />
 				
 				<cfset LOCAL.pageData.formData.billing_company = isNull(LOCAL.pageData.order.getBillingCompany())?"":LOCAL.pageData.order.getBillingCompany() />
 				<cfset LOCAL.pageData.formData.billing_street = isNull(LOCAL.pageData.order.getBillingStreet())?"":LOCAL.pageData.order.getBillingStreet() />
@@ -161,10 +167,10 @@
 				<cfset LOCAL.pageData.formData.billing_postal_code = isNull(LOCAL.pageData.order.getBillingPostalCode())?"":LOCAL.pageData.order.getBillingPostalCode() />
 				<cfset LOCAL.pageData.formData.billing_country_id = isNull(LOCAL.pageData.order.getBillingCountry())?"":LOCAL.pageData.order.getBillingCountry().getCountryId() />
 			
-				<cfset LOCAL.pageData.formData.subtotal_amount = DollarFormat(REQUEST.pageData.order.getSubtotalAmount()) />
-				<cfset LOCAL.pageData.formData.shipping_amount = DollarFormat(REQUEST.pageData.order.getShippingAmount()) />
-				<cfset LOCAL.pageData.formData.tax_amount = DollarFormat(REQUEST.pageData.order.getTaxAmount()) />
-				<cfset LOCAL.pageData.formData.total_amount = DollarFormat(REQUEST.pageData.order.getTotalAmount()) />
+				<cfset LOCAL.pageData.formData.subtotal_amount = DollarFormat(LOCAL.pageData.order.getSubtotalAmount()) />
+				<cfset LOCAL.pageData.formData.shipping_amount = DollarFormat(LOCAL.pageData.order.getShippingAmount()) />
+				<cfset LOCAL.pageData.formData.tax_amount = DollarFormat(LOCAL.pageData.order.getTaxAmount()) />
+				<cfset LOCAL.pageData.formData.total_amount = DollarFormat(LOCAL.pageData.order.getTotalAmount()) />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.order_id = "" />
 				<cfset LOCAL.pageData.formData.first_name = "" />

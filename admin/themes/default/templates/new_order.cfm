@@ -187,8 +187,8 @@
 									<td>#product.getDisplayName()#</td>
 									<td>#product.getPrice()#</td>
 									<td>#product.getQuantity()#</td>
-									<td>#product.getShippingMethod()#</td>
-									<td>#product.getSubtotal()#</td>
+									<td>#product.getShippingMethod().getDisplayName()#</td>
+									<td>#product.getSubtotalAmount()#</td>
 								</tr>
 								</cfloop>
 							<cfelse>

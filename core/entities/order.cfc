@@ -10,12 +10,14 @@
 	<cfproperty name="taxAmount" column="tax_amount" ormtype="float"> 
 	<cfproperty name="totalAmount" column="total_amount" ormtype="float"> 
 	
+    <cfproperty name="shippingCompany" column="shipping_company" ormtype="string"> 
     <cfproperty name="shippingStreet" column="shipping_street" ormtype="string"> 
     <cfproperty name="shippingCity" column="shipping_city" ormtype="string"> 
     <cfproperty name="shippingPostalCode" column="shipping_postal_code" ormtype="string"> 
 	<cfproperty name="shippingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="shipping_country_id">
 	<cfproperty name="shippingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="shipping_province_id">	
 	
+    <cfproperty name="billingCompany" column="billing_company" ormtype="string"> 
     <cfproperty name="billingStreet" column="billing_street" ormtype="string"> 
     <cfproperty name="billingCity" column="billing_city" ormtype="string"> 
     <cfproperty name="billingPostalCode" column="billing_postal_code" ormtype="string"> 
