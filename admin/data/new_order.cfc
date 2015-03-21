@@ -117,7 +117,7 @@
 				
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
-			<cfset LOCAL.orderProduct.setPrice(LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setOrderPrice(LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setQuantity(FORM.new_order_product_quantity) />
 			<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id)) />
 			
@@ -126,7 +126,7 @@
 			<cfset LOCAL.newProductStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.newProductStatus.setCurrent(true) />
 			<cfset LOCAL.newProductStatus.setComments(Trim(FORM.new_order_product_comments)) />
-			<cfset LOCAL.newProductStatus.setStatusType(LOCAL.newStatusType) />
+			<cfset LOCAL.newProductStatus.setStatusType(LOCAL.newProductStatusType) />
 			<cfset EntitySave(LOCAL.newProductStatus) /> 
 			
 			<cfset LOCAL.orderProduct.addStatus(LOCAL.newProductStatus) />
@@ -135,7 +135,7 @@
 			
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
 			
-			<cfset LOCAL.order.setSubtotalAmount(LOCAL.orderProduct.getPrice() * FORM.new_order_product_quantity) />
+			<cfset LOCAL.order.setSubtotalAmount(LOCAL.orderProduct.getOrderPrice() * FORM.new_order_product_quantity) />
 			<cfset LOCAL.order.setShippingAmount(0) />
 			<cfset LOCAL.order.setTaxAmount(0) />
 			<cfset LOCAL.order.setTotalAmount(0) />
@@ -168,13 +168,13 @@
 					<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 				</cfif>
 			<cfelse>
-				<cfset LOCAL.pageData.formData.order_id = LOCAL.pageData.order.getOrderId() />
+				<cfset LOCAL.pageData.formData.id = LOCAL.pageData.order.getOrderId() />
 				<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.order.getFirstName())?"":LOCAL.pageData.order.getFirstName() />
 				<cfset LOCAL.pageData.formData.middle_name = isNull(LOCAL.pageData.order.getMiddleName())?"":LOCAL.pageData.order.getMiddleName() />
 				<cfset LOCAL.pageData.formData.last_name = isNull(LOCAL.pageData.order.getLastName())?"":LOCAL.pageData.order.getLastName() />
 				<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.order.getPhone())?"":LOCAL.pageData.order.getPhone() />
 				<cfset LOCAL.pageData.formData.coupon_code = isNull(LOCAL.pageData.order.getCoupon())?"":LOCAL.pageData.order.getCoupon().getCouponCode() />
-				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.order.getDescription())?"":LOCAL.pageData.order.getDescription() />
+				<cfset LOCAL.pageData.formData.comments = isNull(LOCAL.pageData.order.getComments())?"":LOCAL.pageData.order.getComments() />
 				<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 				
 				<cfset LOCAL.pageData.formData.shipping_company = isNull(LOCAL.pageData.order.getShippingCompany())?"":LOCAL.pageData.order.getShippingCompany() />
@@ -197,13 +197,13 @@
 				<cfset LOCAL.pageData.formData.total_amount = DollarFormat(LOCAL.pageData.order.getTotalAmount()) />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.formData.order_id = "" />
+			<cfset LOCAL.pageData.formData.id = "" />
 			<cfset LOCAL.pageData.formData.first_name = "" />
 			<cfset LOCAL.pageData.formData.middle_name = "" />
 			<cfset LOCAL.pageData.formData.last_name = "" />
 			<cfset LOCAL.pageData.formData.phone = "" />
 			<cfset LOCAL.pageData.formData.coupon_code = "" />
-			<cfset LOCAL.pageData.formData.description = "" />
+			<cfset LOCAL.pageData.formData.comments = "" />
 			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 			
 			<cfset LOCAL.pageData.formData.shipping_company = "" />
