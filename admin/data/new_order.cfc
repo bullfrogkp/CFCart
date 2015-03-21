@@ -98,6 +98,9 @@
 			<cfset LOCAL.order.setTaxAmount(0) />
 			<cfset LOCAL.order.setTotalAmount(0) />
 			
+			<cfset LOCAL.customer = EntityLoad("customer",{name="admin"},true) />
+			<cfset LOCAL.order.setCustomer(LOCAL.customer) />
+			
 			<cfset EntitySave(LOCAL.order) />
 			
 			<cfif StructKeyExists(LOCAL,"newOrderTrackingNumber")>
