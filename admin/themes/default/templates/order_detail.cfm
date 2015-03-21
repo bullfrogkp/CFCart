@@ -249,7 +249,7 @@
 										<tbody>
 											<cfloop array="#product.getStatus()#" index="status">
 											<tr>
-												<td>#status.getOrderStatusType().getDisplayName()#</td>
+												<td>#status.getOrderProductStatusType().getDisplayName()#</td>
 												<td>#status.getStartDatetime()#</td>
 												<td>#status.getEndDatetime()#</td>
 												<td>#status.getComments()#</td>

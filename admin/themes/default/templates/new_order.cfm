@@ -262,7 +262,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<textarea name="description" class="form-control" rows="8" placeholder="Enter ..." style="height:160px;">#REQUEST.pageData.formData.description#</textarea>
+						<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..." style="height:160px;">#REQUEST.pageData.formData.comments#</textarea>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -317,6 +317,9 @@
 				</div>
 				<div class="form-group">
 					<input id="new_order_product_quantity" name="new_order_product_quantity" type="text" class="form-control" placeholder="Quantity">
+				</div>
+				<div class="form-group">
+					<textarea name="new_order_product_comments" class="form-control" rows="8" placeholder="Enter ..." style="height:160px;"></textarea>
 				</div>
 				<div class="form-group">
 					<select class="form-control" name="new_order_product_shipping_method_id">

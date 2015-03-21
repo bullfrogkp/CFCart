@@ -6,6 +6,7 @@
 	<cfproperty name="subtotalAmount" column="subtotal_amount" ormtype="float"> 
 	<cfproperty name="taxAmount" column="tax_amount" ormtype="float"> 
 	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="float"> 
+	<cfproperty name="comments" column="comments" ormtype="string">
 	
 	<cfproperty name="status" type="array" fieldtype="one-to-many" cfc="order_product_status" fkcolumn="order_product_id" singularname="status">
 	
