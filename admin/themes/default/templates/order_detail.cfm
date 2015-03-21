@@ -1,7 +1,7 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Order ## #REQUEST.pageData.order.getOrderTrackingNumber()# | 6 Mar 2015 15:41:02
+		Order ## #REQUEST.pageData.order.getOrderTrackingNumber()# | #DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")#
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -21,7 +21,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
 					<li><a href="##tab_2" data-toggle="tab">Tracking</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Status</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Product Status</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
 				<div class="tab-content">

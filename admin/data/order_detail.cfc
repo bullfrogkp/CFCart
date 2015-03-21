@@ -30,7 +30,7 @@
 		<cfif StructKeyExists(FORM,"save_status")>
 			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id)> 
 			
-			<cfset LOCAL.currentStatus = EntityLoad("order_status",{orderId = FORM.id, endDatetime = JavaCast("NULL","")}) />
+			<cfset LOCAL.currentStatus = EntityLoad("order_status",{orderId = FORM.id, current = true}, true) />
 			
 			<cfset LOCAL.currentStatus.setEndDatetime(Now()) />
 			<cfset EntitySave(LOCAL.currentStatus) />
@@ -38,6 +38,8 @@
 			<cfset LOCAL.newStatus = EntityNew("order_status") />
 			<cfset LOCAL.newStatus.setStatusType(EntityLoad("order_status_type", FORM.order_status_type_id)) />
 			<cfset LOCAL.newStatus.setStartDatetime(LOCAL.currentStatus.getEndDatetime()) />
+			<cfset EntitySave(LOCAL.newStatus) />
+			
 			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
 			
 			<cfset EntitySave(LOCAL.order) />
