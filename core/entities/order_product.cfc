@@ -7,7 +7,7 @@
 	<cfproperty name="taxAmount" column="tax_amount" ormtype="float"> 
 	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="float"> 
 	
-	<cfproperty name="status" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_product_id" singularname="status">
+	<cfproperty name="status" type="array" fieldtype="one-to-many" cfc="order_product_status" fkcolumn="order_product_id" singularname="status">
 	
 	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">	
 	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">	
