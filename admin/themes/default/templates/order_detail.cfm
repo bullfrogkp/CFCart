@@ -195,19 +195,19 @@
 												<table class="table">
 													<tr>
 														<th style="width:50%">Subtotal:</th>
-														<td>#DollarFormat(REQUEST.pageData.order.getSubtotalAmount())#</td>
+														<td>#DollarFormat(REQUEST.pageData.orderSubtotalAmount)#</td>
 													</tr>
 													<tr>
 														<th>Shipping & Handling</th>
-														<td>#DollarFormat(REQUEST.pageData.order.getShippingAmount())#</td>
+														<td>#DollarFormat(REQUEST.pageData.orderShippingAmount)#</td>
 													</tr>
 													<tr>
 														<th>Tax</th>
-														<td>#DollarFormat(REQUEST.pageData.order.getTaxAmount())#</td>
+														<td>#DollarFormat(REQUEST.pageData.orderTaxAmount)#</td>
 													</tr>
 													<tr>
 														<th>Total:</th>
-														<td>#DollarFormat(REQUEST.pageData.order.getTotalAmount())#</td>
+														<td>#DollarFormat(REQUEST.pageData.orderTotalAmount)#</td>
 													</tr>
 												</table>
 											</div>

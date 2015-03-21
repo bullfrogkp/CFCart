@@ -72,6 +72,17 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getOrderTrackingNumber()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.currentOrderStatus = EntityLoad("order_status",{order_id = LOCAL.pageData.order.getOrderId(), current = true},true) />
 
+		<cfset LOCAL.pageData.orderSubtotalAmount = 0 />
+		<cfset LOCAL.pageData.orderShippingAmount = 0 />
+		<cfset LOCAL.pageData.orderTaxAmount = 0 />
+		<cfset LOCAL.pageData.orderTotalAmount = 0 />
+		<cfloop array="#LOCAL.pageData.order.getProducts()#" index="LOCAL.product">
+			<cfset LOCAL.pageData.orderSubtotalAmount += LOCAL.product.getSubtotalAmount() />
+			<cfset LOCAL.pageData.orderShippingAmount += LOCAL.product.getShippingAmount() />
+			<cfset LOCAL.pageData.orderTaxAmount += LOCAL.product.getTaxAmount() />
+			<cfset LOCAL.pageData.orderTotalAmount += LOCAL.product.getTotalAmount() />
+		</cfloop>
+		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
