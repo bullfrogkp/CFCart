@@ -20,8 +20,8 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Shipping Tracking No.</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Transaction</a></li>
+					<li><a href="##tab_2" data-toggle="tab">Tracking</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Status</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
 				<div class="tab-content">
@@ -127,7 +127,7 @@
 								<section class="col-lg-12"> 
 									<div class="box box-primary">
 										<div class="box-header">
-											<h3 class="box-title">Items Ordered</h3>
+											<h3 class="box-title">Products</h3>
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<table class="table table-bordered table-striped">
@@ -182,59 +182,6 @@
 								</section><!-- right col -->
 							</div><!-- /.row (main row) -->
 							<div class="row">
-								<!-- Left col -->
-								<section class="col-lg-6"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Status</h3>
-										</div><!-- /.box-header -->
-										
-										<div class="box-body">
-											<table class="table table-bordered table-striped">
-												<thead>
-													<tr>
-														<th>Status</th>
-														<th>Create Datetime</th>
-														<th>End Datetime</th>
-														<th>Comment</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Order Placed</td>
-														<td>2014 Dec 27 02:15:27</td>
-														<td>2014 Dec 27 02:15:27</td>
-														<td></td>
-													</tr>
-													<tr>
-														<td>Pending Shipment</td>
-														<td>2014 Dec 27 02:15:27</td>
-														<td>2015 Jan 02 08:25:02</td>
-														<td></td>
-													</tr>
-													<tr>
-														<td>Shipped</td>
-														<td>2015 Jan 02 08:25:02</td>
-														<td></td>
-														<td></td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="form-group">
-												<label>Status</label>
-												<select class="form-control" name="parent_category_id">
-													<option value="0">Shipped</option>
-													<option value="">Preparing</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Comments</label>
-												<textarea class="form-control" rows="8" placeholder="Enter ..."></textarea>
-											</div>
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</div><!-- /.box (chat box) -->   
-								</section><!-- /.Left col -->
 								<!-- right col (We are only adding the ID to make the widgets sortable)-->
 								<section class="col-lg-6"> 
 									<div class="box box-primary">
@@ -246,23 +193,19 @@
 												<table class="table">
 													<tr>
 														<th style="width:50%">Subtotal:</th>
-														<td>$250.30</td>
+														<td>#DollarFormat(REQUEST.pageData.order.getSubtotalAmount())#</td>
 													</tr>
 													<tr>
 														<th>Shipping & Handling</th>
-														<td>$10.34</td>
+														<td>#DollarFormat(REQUEST.pageData.order.getShippingAmount())#</td>
 													</tr>
 													<tr>
-														<th>Tax (9.3%)</th>
-														<td>$10.34</td>
-													</tr>
-													<tr>
-														<th>Shipping:</th>
-														<td>$5.80</td>
+														<th>Tax</th>
+														<td>#DollarFormat(REQUEST.pageData.order.getTaxAmount())#</td>
 													</tr>
 													<tr>
 														<th>Total:</th>
-														<td>$265.24</td>
+														<td>#DollarFormat(REQUEST.pageData.order.getTotalAmount())#</td>
 													</tr>
 												</table>
 											</div>
@@ -278,49 +221,58 @@
 					
 						<div class="form-group">
 							<label>Shipping Tracking Number</label>
-							<input name="shipping_tracking_number" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							<input name="shipping_tracking_number" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.order.getShippingTrackingNumber()#"/>
 						</div>
 						<button name="save_shipping_tracking_number" type="submit" class="btn btn-primary">Submit</button>
 						
 					</div>
 					<div class="tab-pane" id="tab_3">
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Transaction Type</th>
-									<th>Transaction ID</th>
-									<th>Create Datetime</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>purchase</td>
-									<td>3VE01719SL0474839</td>
-									<td>2014 Dec 27 02:15:27</td>
-								</tr>
-							</tbody>
-						</table>
-						 <div class="form-group">
-							<label>Transaction ID</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="3VE01719SL0474839" disabled/>
-						</div>
-						<div class="form-group">
-							<label>Refund Type</label>
-							<select class="form-control" name="parent_category_id">
-								<option value="0">Full</option>
-								<option value="">Partial</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label>Amount</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value="22.22" />
-						</div>
-						<div class="form-group">
-							<label>Memo</label>
-							<textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
-						</div>
-						<button name="refund" type="submit" class="btn btn-primary">Submit</button>
-					
+						<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
+						<section class="col-lg-6"> 
+							<div class="box box-primary">
+								<div class="box-header">
+									<h3 class="box-title">Status</h3>
+								</div><!-- /.box-header -->
+								
+								<div class="box-body">
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Status</th>
+												<th>Create Datetime</th>
+												<th>End Datetime</th>
+												<th>Comments</th>
+											</tr>
+										</thead>
+										<tbody>
+											<cfloop array="#product.getStatus()#" index="status">
+											<tr>
+												<td>#status.getOrderStatusType().getDisplayName()#</td>
+												<td>#status.getStartDatetime()#</td>
+												<td>#status.getEndDatetime()#</td>
+												<td>#status.getComments()#</td>
+											</tr>
+											</cfloop>
+										</tbody>
+									</table>
+									<div class="form-group">
+										<label>Order Status</label>
+										<select class="form-control" name="order_status_type_id">
+											<option value="">Please Select...</option>
+											<cfloop array="#REQUEST.pageData.orderStatusTypes#" index="type">
+												<option value="#type.getOrderStatusTypeId()#">#type.getDisplayName()#</option>
+											</cfloop>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Comments</label>
+										<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..."></textarea>
+									</div>
+									<button type="submit" class="btn btn-primary">Save Status</button>
+								</div>
+							</div><!-- /.box (chat box) -->   
+						</section><!-- /.Left col -->
+						</cfloop>
 					</div>
 					<div class="tab-pane" id="tab_4">
 						<!-- Main content -->
