@@ -21,7 +21,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
 					<li><a href="##tab_2" data-toggle="tab">Tracking</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Product Status</a></li>
+					<li><a href="##tab_3" data-toggle="tab">Status</a></li>
 					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
 				<div class="tab-content">
@@ -36,7 +36,7 @@
 										<div class="box-body">
 											<dl class="dl-horizontal">
 												<dt>Order Date</dt>
-												<dd>#REQUEST.pageData.order.getCreatedDatetime()#</dd>
+												<dd>#DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")#</dd>
 												<dt>Order Status</dt>
 												<dd>#REQUEST.pageData.currentOrderStatus.getDisplayName()#</dd>
 												<dt>Placed from IP</dt>
@@ -57,7 +57,7 @@
 												<dt>Email</dt>
 												<dd>#REQUEST.pageData.order.getCustomer().getEmail()#</dd>
 												<dt>Customer Group</dt>
-												<dd>#REQUEST.pageData.order.getCustomer().getCustomerGroup()#</dd>
+												<dd>#REQUEST.pageData.order.getCustomer().getCustomerGroup().getDisplayName()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -74,6 +74,7 @@
 												<dd>#REQUEST.pageData.order.getBillingStreet()#</dd>
 												<dd>#REQUEST.pageData.order.getBillingCity()#</dd>
 												<dd>#REQUEST.pageData.order.getBillingCountry()#</dd>
+												<dd>#REQUEST.pageData.order.getBillingPostalCode()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -88,6 +89,7 @@
 												<dd>#REQUEST.pageData.order.getShippingStreet()#</dd>
 												<dd>#REQUEST.pageData.order.getShippingCity()#</dd>
 												<dd>#REQUEST.pageData.order.getShippingCountry()#</dd>
+												<dd>#REQUEST.pageData.order.getShippingPostalCode()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -149,8 +151,8 @@
 															<td>
 																#product.getDisplayName()# (SKU: #product.getSKU()#)
 															</td>
+															<td>#product.getOringinalPrice()#</td>
 															<td>#product.getPrice()#</td>
-															<td>#product.getCurrentPrice()#</td>
 															<td>#product.getQuantity()#</td>
 															<td>#product.getOrderProductStatus().getDisplayName()#</td>
 															<td>#product.getSubtotalAmount()#</td>
