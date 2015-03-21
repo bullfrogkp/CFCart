@@ -258,7 +258,7 @@
 										</tbody>
 									</table>
 									<div class="form-group">
-										<label>Order Status</label>
+										<label>Product Status</label>
 										<select class="form-control" name="order_status_type_id">
 											<option value="">Please Select...</option>
 											<cfloop array="#REQUEST.pageData.orderStatusTypes#" index="type">
