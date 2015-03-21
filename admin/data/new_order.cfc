@@ -117,6 +117,15 @@
 			<cfset LOCAL.orderProduct.setQuantity(FORM.new_order_product_quantity) />
 			<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id)) />
 			
+			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
+			<cfset LOCAL.newProductStatus = EntityNew("order_product_status") />
+			<cfset LOCAL.newProductStatus.setStartDatetime(Now()) />
+			<cfset LOCAL.newProductStatus.setCurrent(true) />
+			<cfset LOCAL.newProductStatus.setStatusType(LOCAL.newStatusType) />
+			<cfset EntitySave(LOCAL.newProductStatus) /> 
+			
+			<cfset LOCAL.orderProduct.addStatus(LOCAL.newProductStatus) />
+			
 			<cfset EntitySave(LOCAL.orderProduct) /> 
 			
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
