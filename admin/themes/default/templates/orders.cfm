@@ -20,7 +20,6 @@
 								<th>Order No.</th>
 								<th>Email</th>
 								<th>Name</th>
-								<th>Total</th>
 								<th>Create Datetime</th>
 								<th>Status</th>
 								<th>Invoice</th>
@@ -33,9 +32,9 @@
 									<td>#order.getOrderTrackingNumber()#</td>
 									<td>#order.getCustomer().getEmail()#</td>
 									<td>#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#</td>
-									<td>#order.getTotal()#</td>
 									<td>#DateFormat(order.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/invoice_detail.cfm?id=#order.getOrderId()#">Invoice</a></td>
+									<td>#isNull(EntityLoad("order_status",{order = order, current = true}, true))?"":EntityLoad("order_status",{order = order, current = true}, true).getOrderStatusType().getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#&active_tab_id=tab_4">Invoice</a></td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
@@ -45,7 +44,6 @@
 								<th>Order No.</th>
 								<th>Email</th>
 								<th>Name</th>
-								<th>Total</th>
 								<th>Create Datetime</th>
 								<th>Status</th>
 								<th>Invoice</th>

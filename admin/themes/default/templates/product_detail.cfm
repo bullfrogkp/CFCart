@@ -548,10 +548,10 @@
 								<tr>
 									<td>#shipping.getDisplayName()#</td>
 									<td>#shipping.getDescription()#</td>
-									<td>#shipping.getCfc()#</td>
+									<td>#shipping.getComponent()#</td>
 									<td><input type="checkbox" class="form-control" 
 
-									<cfif REQUEST.pageData.product.getShippingMethodId() EQ shipping.getShippingMethodId>
+									<cfif NOT IsNull(REQUEST.pageData.product.getShippingMethod()) AND REQUEST.pageData.product.getShippingMethod().getShippingMethodId() EQ shipping.getShippingMethodId>
 									checked
 									</cfif>
 	
