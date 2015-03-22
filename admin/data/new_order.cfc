@@ -114,7 +114,7 @@
 			<cfset LOCAL.newProductStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.newProductStatus.setCurrent(true) />
 			<cfset LOCAL.newProductStatus.setComments(Trim(FORM.new_order_product_comments)) />
-			<cfset LOCAL.newProductStatus.setStatusType(LOCAL.newProductStatusType) />
+			<cfset LOCAL.newProductStatus.setOrderProductStatusType(LOCAL.newProductStatusType) />
 			<cfset EntitySave(LOCAL.newProductStatus) /> 
 			
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.newProductStatus) />
