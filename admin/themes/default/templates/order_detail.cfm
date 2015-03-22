@@ -218,52 +218,54 @@
 						
 					</div>
 					<div class="tab-pane" id="tab_3">
+						<div class="row">
 						<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
-						<section class="col-lg-6"> 
-							<div class="box box-primary">
-								<div class="box-header">
-									<h3 class="box-title">Status</h3>
-								</div><!-- /.box-header -->
-								
-								<div class="box-body">
-									<table class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<th>Status</th>
-												<th>Create Datetime</th>
-												<th>End Datetime</th>
-												<th>Comments</th>
-											</tr>
-										</thead>
-										<tbody>
-											<cfloop array="#product.getOrderProductStatus()#" index="status">
-											<tr>
-												<td>#status.getOrderProductStatusType().getDisplayName()#</td>
-												<td>#status.getStartDatetime()#</td>
-												<td>#status.getEndDatetime()#</td>
-												<td>#status.getComments()#</td>
-											</tr>
-											</cfloop>
-										</tbody>
-									</table>
-									<div class="form-group">
-										<label>Product Status</label>
-										<select class="form-control" name="order_status_type_id">
-											<option value="">Please Select...</option>
-											<cfloop array="#REQUEST.pageData.orderStatusTypes#" index="type">
-												<option value="#type.getOrderStatusTypeId()#">#type.getDisplayName()#</option>
-											</cfloop>
-										</select>
+							<div class="col-lg-6"> 
+								<div class="box box-primary">
+									<div class="box-header">
+										<h3 class="box-title">#product.getDIsplayName()#</h3>
+									</div><!-- /.box-header -->
+									
+									<div class="box-body">
+										<div class="form-group">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>Status</th>
+														<th>Create Datetime</th>
+														<th>End Datetime</th>
+														<th>Comments</th>
+													</tr>
+												</thead>
+												<tbody>
+													<cfloop array="#product.getOrderProductStatus()#" index="status">
+													<tr>
+														<td>#status.getOrderProductStatusType().getDisplayName()#</td>
+														<td>#DateFormat(status.getStartDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getStartDatetime(),"hh:mm:ss")#</td>
+														<td>#DateFormat(status.getEndDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getEndDatetime(),"hh:mm:ss")#</td>
+														<td>#status.getComments()#</td>
+													</tr>
+													</cfloop>
+												</tbody>
+											</table>
+										</div>
+										<div class="form-group">
+											<select class="form-control" name="order_status_type_id">
+												<option value="">Please Select...</option>
+												<cfloop array="#REQUEST.pageData.orderStatusTypes#" index="type">
+													<option value="#type.getOrderStatusTypeId()#">#type.getDisplayName()#</option>
+												</cfloop>
+											</select>
+										</div>
+										<div class="form-group">
+											<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..."></textarea>
+										</div>
+										<button type="submit" class="btn btn-primary">Save Status</button>
 									</div>
-									<div class="form-group">
-										<label>Comments</label>
-										<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..."></textarea>
-									</div>
-									<button type="submit" class="btn btn-primary">Save Status</button>
-								</div>
-							</div><!-- /.box (chat box) -->   
-						</section><!-- /.Left col -->
+								</div><!-- /.box (chat box) -->   
+							</div>
 						</cfloop>
+						</div>
 					</div>
 					<div class="tab-pane" id="tab_4">
 						<!-- Main content -->
