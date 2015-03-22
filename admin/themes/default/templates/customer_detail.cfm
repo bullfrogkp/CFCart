@@ -236,9 +236,7 @@
 								<tr>
 									<th>Order No.</th>
 									<th>Purchase On</th>
-									<th>Bill To</th>
-									<th>Ship To</th>
-									<th>Total</th>
+									<th>Contact</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -248,9 +246,7 @@
 										<tr>
 											<td>#order.getOrderTrackingNumber()#</td>
 											<td>#order.getCreatedDatetime()#</td>
-											<td>#order.getBillingFirstName()# #order.getBillingMiddleName()# #order.getBillingLastName()#</td>
-											<td>#order.getShippingFirstName()# #order.getShippingMiddleName()# #order.getShippingLastName()#</td>
-											<td>#order.getTotal()#</td>
+											<td>#order.getFirstName()# #order.getMiddleName()# #order.getLastName()#</td>
 											<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
 										</tr>
 									</cfloop>
@@ -264,9 +260,7 @@
 								<tr>
 									<th>Order No.</th>
 									<th>Purchase On</th>
-									<th>Bill To</th>
-									<th>Ship To</th>
-									<th>Total</th>
+									<th>Contact</th>
 									<th>Action</th>
 								</tr>
 							</tfoot>
