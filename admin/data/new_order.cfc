@@ -39,19 +39,7 @@
 			<cfset LOCAL.order.setMiddleName(Trim(FORM.middle_name)) />
 			<cfset LOCAL.order.setLastName(Trim(FORM.last_name)) />
 			<cfset LOCAL.order.setPhone(Trim(FORM.phone)) />
-			<cfset LOCAL.order.setDescription(Trim(FORM.description)) />
-			<cfif IsNumeric(FORM.subtotal_amount)>
-				<cfset LOCAL.order.setSubtotalAmount(FORM.subtotal_amount) />
-			</cfif>
-			<cfif IsNumeric(FORM.shipping_amount)>
-				<cfset LOCAL.order.setShippingAmount(FORM.shipping_amount) />
-			</cfif>
-			<cfif IsNumeric(FORM.tax_amount)>
-				<cfset LOCAL.order.setTaxAmount(FORM.tax_amount) />
-			</cfif>
-			<cfif IsNumeric(FORM.total_amount)>
-				<cfset LOCAL.order.setTotalAmount(FORM.total_amount) />
-			</cfif>
+			<cfset LOCAL.order.setComments(Trim(FORM.comments)) />
 			
 			<cfset LOCAL.order.setShippingStreet(Trim(FORM.shipping_street)) />
 			<cfset LOCAL.order.setShippingCity(Trim(FORM.shipping_city)) />
@@ -92,11 +80,6 @@
 			<cfset EntitySave(LOCAL.newStatus) /> 
 			
 			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
-		
-			<cfset LOCAL.order.setSubtotalAmount(0) />
-			<cfset LOCAL.order.setShippingAmount(0) />
-			<cfset LOCAL.order.setTaxAmount(0) />
-			<cfset LOCAL.order.setTotalAmount(0) />
 			
 			<cfset LOCAL.customer = EntityLoad("customer",{name="admin"},true) />
 			<cfset LOCAL.order.setCustomer(LOCAL.customer) />
@@ -117,7 +100,12 @@
 				
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
+			<cfset LOCAL.orderProduct.setRegularPrice(LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setOrderPrice(LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setSubtotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setTaxAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * LOCAL.product.getTaxCategory().getRate()) />
+			<cfset LOCAL.orderProduct.setShippingAmount(LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setTotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * (1+LOCAL.product.getTaxCategory().getRate())) />
 			<cfset LOCAL.orderProduct.setQuantity(FORM.new_order_product_quantity) />
 			<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id)) />
 			
@@ -134,11 +122,6 @@
 			<cfset EntitySave(LOCAL.orderProduct) /> 
 			
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
-			
-			<cfset LOCAL.order.setSubtotalAmount(LOCAL.orderProduct.getOrderPrice() * FORM.new_order_product_quantity) />
-			<cfset LOCAL.order.setShippingAmount(0) />
-			<cfset LOCAL.order.setTaxAmount(0) />
-			<cfset LOCAL.order.setTotalAmount(0) />
 			
 			<cfset EntitySave(LOCAL.order) /> 
 			
@@ -190,11 +173,22 @@
 				<cfset LOCAL.pageData.formData.billing_province_id = isNull(LOCAL.pageData.order.getBillingProvince())?"":LOCAL.pageData.order.getBillingProvince().getProvinceId() />
 				<cfset LOCAL.pageData.formData.billing_postal_code = isNull(LOCAL.pageData.order.getBillingPostalCode())?"":LOCAL.pageData.order.getBillingPostalCode() />
 				<cfset LOCAL.pageData.formData.billing_country_id = isNull(LOCAL.pageData.order.getBillingCountry())?"":LOCAL.pageData.order.getBillingCountry().getCountryId() />
+				
+				<cfset LOCAL.pageData.formData.payment_method_id = isNull(LOCAL.pageData.order.getPaymentMethod())?"":LOCAL.pageData.order.getPaymentMethod().getPaymentMethodId() />
 			
-				<cfset LOCAL.pageData.formData.subtotal_amount = DollarFormat(LOCAL.pageData.order.getSubtotalAmount()) />
-				<cfset LOCAL.pageData.formData.shipping_amount = DollarFormat(LOCAL.pageData.order.getShippingAmount()) />
-				<cfset LOCAL.pageData.formData.tax_amount = DollarFormat(LOCAL.pageData.order.getTaxAmount()) />
-				<cfset LOCAL.pageData.formData.total_amount = DollarFormat(LOCAL.pageData.order.getTotalAmount()) />
+				<cfset LOCAL.pageData.formData.subtotal_amount = 0 />
+				<cfset LOCAL.pageData.formData.shipping_amount = 0 />
+				<cfset LOCAL.pageData.formData.tax_amount = 0 />
+				<cfset LOCAL.pageData.formData.total_amount = 0 />
+				
+				<cfif NOT IsNull(LOCAL.pageData.order.getProducts())>
+					<cfloop array="#LOCAL.pageData.order.getProducts()#" index="LOCAL.product">
+						<cfset LOCAL.pageData.formData.subtotal_amount += LOCAL.product.getSubtotalAmount() />
+						<cfset LOCAL.pageData.formData.shipping_amount += LOCAL.product.getShippingAmount() />
+						<cfset LOCAL.pageData.formData.tax_amount += LOCAL.product.getTaxAmount() />
+						<cfset LOCAL.pageData.formData.total_amount += LOCAL.product.getTotalAmount() />
+					</cfloop>
+				</cfif>
 			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.formData.id = "" />
@@ -219,10 +213,13 @@
 			<cfset LOCAL.pageData.formData.billing_province_id = "" />
 			<cfset LOCAL.pageData.formData.billing_postal_code = "" />
 			<cfset LOCAL.pageData.formData.billing_country_id = "" />
-			<cfset LOCAL.pageData.formData.subtotal_amount = "-" />
-			<cfset LOCAL.pageData.formData.shipping_amount = "-" />
-			<cfset LOCAL.pageData.formData.tax_amount = "-" />
-			<cfset LOCAL.pageData.formData.total_amount = "-" />
+			
+			<cfset LOCAL.pageData.formData.payment_method_id = "" />
+			
+			<cfset LOCAL.pageData.formData.subtotal_amount = 0 />
+			<cfset LOCAL.pageData.formData.shipping_amount = 0 />
+			<cfset LOCAL.pageData.formData.tax_amount = 0 />
+			<cfset LOCAL.pageData.formData.total_amount = 0 />
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />

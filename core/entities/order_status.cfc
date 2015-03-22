@@ -4,5 +4,6 @@
     <cfproperty name="endDatetime" column="end_datetime" ormtype="string"> 
     <cfproperty name="current" column="current" ormtype="boolean"> 
     <cfproperty name="comments" column="comments" ormtype="string"> 
-	<cfproperty name="statusType" fieldtype="many-to-one" cfc="order_status_type" fkcolumn="order_status_type_id">
+	<cfproperty name="order" fieldtype="many-to-one" cfc="order" fkcolumn="order_id">
+	<cfproperty name="orderStatusType" fieldtype="many-to-one" cfc="order_status_type" fkcolumn="order_status_type_id">
 </cfcomponent>

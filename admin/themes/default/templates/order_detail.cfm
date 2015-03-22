@@ -38,7 +38,7 @@
 												<dt>Order Date</dt>
 												<dd>#DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")#</dd>
 												<dt>Order Status</dt>
-												<dd>#REQUEST.pageData.currentOrderStatus.getDisplayName()#</dd>
+												<dd>#REQUEST.pageData.currentOrderStatus.getOrderStatusType().getDisplayName()#</dd>
 												<dt>Placed from IP</dt>
 												<dd>#REQUEST.pageData.order.getCreatedUser()#</dd>
 											</dl>
@@ -73,7 +73,8 @@
 											<dl>
 												<dd>#REQUEST.pageData.order.getBillingStreet()#</dd>
 												<dd>#REQUEST.pageData.order.getBillingCity()#</dd>
-												<dd>#REQUEST.pageData.order.getBillingCountry()#</dd>
+												<dd>#REQUEST.pageData.order.getBillingCountry().getDisplayName()#</dd>
+												<dd>#REQUEST.pageData.order.getBillingProvince().getDisplayName()#</dd>
 												<dd>#REQUEST.pageData.order.getBillingPostalCode()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
@@ -88,7 +89,8 @@
 											<dl>
 												<dd>#REQUEST.pageData.order.getShippingStreet()#</dd>
 												<dd>#REQUEST.pageData.order.getShippingCity()#</dd>
-												<dd>#REQUEST.pageData.order.getShippingCountry()#</dd>
+												<dd>#REQUEST.pageData.order.getShippingCountry().getDisplayName()#</dd>
+												<dd>#REQUEST.pageData.order.getShippingProvince().getDisplayName()#</dd>
 												<dd>#REQUEST.pageData.order.getShippingPostalCode()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
@@ -110,18 +112,6 @@
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
 								</div><!-- ./col -->
-								<div class="col-md-6">
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Shipping Information</h3>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<dl>
-												<dd>#REQUEST.pageData.order.getShippingMethod().getDisplayName()# - #REQUEST.pageData.order.getShippingMethod().getDisplayName()#</dd>
-											</dl>
-										</div><!-- /.box-body -->
-									</div><!-- /.box -->
-								</div><!-- ./col -->
 							</div><!-- /.row -->
 							
 							
@@ -138,6 +128,7 @@
 													<th>Original Price</th>
 													<th>Price</th>
 													<th>Qty</th>
+													<th>Shipping Method</th>
 													<th>Status</th>
 													<th>Subtotal</th>
 													<th>Tax Amount</th>
@@ -151,9 +142,10 @@
 															<td>
 																#product.getDisplayName()# (SKU: #product.getSKU()#)
 															</td>
-															<td>#product.getOringinalPrice()#</td>
-															<td>#product.getPrice()#</td>
+															<td>#product.getRegularPrice()#</td>
+															<td>#product.getOrderPrice()#</td>
 															<td>#product.getQuantity()#</td>
+															<td>#product.getShippingMethod().getDisplayName()#</td>
 															<td>#product.getOrderProductStatus().getDisplayName()#</td>
 															<td>#product.getSubtotalAmount()#</td>
 															<td>#product.getTaxAmount()#</td>

@@ -195,7 +195,7 @@
 								<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 								<tr>
 									<td>#product.getDisplayName()#</td>
-									<td>#product.getPrice()#</td>
+									<td>#product.getOrderPrice()#</td>
 									<td>#product.getQuantity()#</td>
 									<td>#product.getShippingMethod().getDisplayName()#</td>
 									<td>#product.getSubtotalAmount()#</td>
@@ -262,7 +262,7 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
-						<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..." style="height:160px;">#REQUEST.pageData.formData.comments#</textarea>
+						<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..." style="height:133px;">#REQUEST.pageData.formData.comments#</textarea>
 					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -278,19 +278,19 @@
 						<table class="table">
 							<tr>
 								<th style="width:50%">Subtotal:</th>
-								<td>#REQUEST.pageData.formData.subtotal_amount#</td>
+								<td>#DollarFormat(REQUEST.pageData.formData.subtotal_amount)#</td>
 							</tr>
 							<tr>
 								<th>Shipping & Handling:</th>
-								<td>#REQUEST.pageData.formData.shipping_amount#</td>
+								<td>#DollarFormat(REQUEST.pageData.formData.shipping_amount)#</td>
 							</tr>
 							<tr>
 								<th>Tax:</th>
-								<td>#REQUEST.pageData.formData.tax_amount#</td>
+								<td>#DollarFormat(REQUEST.pageData.formData.tax_amount)#</td>
 							</tr>
 							<tr>
 								<th>Total:</th>
-								<td>#REQUEST.pageData.formData.total_amount#</td>
+								<td>#DollarFormat(REQUEST.pageData.formData.total_amount)#</td>
 							</tr>
 						</table>
 					</div>
