@@ -146,11 +146,11 @@
 															<td>#product.getOrderPrice()#</td>
 															<td>#product.getQuantity()#</td>
 															<td>#product.getShippingMethod().getDisplayName()#</td>
-															<td>#EntityLoad("order_product_status", {order = product.getOrder(),current = true}, true).getOrderProductStatusType().getDisplayName()#</td>
+															<td>#EntityLoad("order_product_status", {orderProduct = product,current = true}, true).getOrderProductStatusType().getDisplayName()#</td>
 															<td>#product.getSubtotalAmount()#</td>
 															<td>#product.getTaxAmount()#</td>
 															<td>#product.getShippingAmount()#</td>
-															<td>#product.getTaxCategory().getPercentage()#</td>
+															<td>#product.getTaxCategory().getRate()#</td>
 															<td>#product.getShippingAmount() + product.getSubtotalAmount() + product.getTaxAmount()#</td>
 														</tr>
 													</cfloop>
@@ -168,7 +168,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.order.getCoupon().getCouponCode()#" />
+												<input type="text" class="form-control" placeholder="Enter ..." value="" />
 											</div>
 										</div>
 									</div>
@@ -239,7 +239,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<cfloop array="#product.getStatus()#" index="status">
+											<cfloop array="#product.getOrderProductStatus()#" index="status">
 											<tr>
 												<td>#status.getOrderProductStatusType().getDisplayName()#</td>
 												<td>#status.getStartDatetime()#</td>

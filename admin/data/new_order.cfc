@@ -76,7 +76,7 @@
 			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.newStatus.setCurrent(true) />
 			<cfset LOCAL.newStatus.setComments(Trim(FORM.comments)) />
-			<cfset LOCAL.newStatus.setStatusType(LOCAL.newStatusType) />
+			<cfset LOCAL.newStatus.setOrderStatusType(LOCAL.newStatusType) />
 			<cfset EntitySave(LOCAL.newStatus) /> 
 			
 			<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
@@ -102,6 +102,7 @@
 			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setRegularPrice(LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setOrderPrice(LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
 			<cfset LOCAL.orderProduct.setSubtotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setTaxAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * LOCAL.product.getTaxCategory().getRate()) />
 			<cfset LOCAL.orderProduct.setShippingAmount(LOCAL.product.getPrice()) />

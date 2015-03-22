@@ -73,6 +73,7 @@
 		<cfset LOCAL.pageData.order = EntityLoadByPK("order", URL.id)> 
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.order.getOrderTrackingNumber()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.pageData.order, current = true},true) />
+		<cfset LOCAL.pageData.orderStatusTypes = EntityLoad("order_status_type") />
 
 		<cfset LOCAL.pageData.orderSubtotalAmount = 0 />
 		<cfset LOCAL.pageData.orderShippingAmount = 0 />
