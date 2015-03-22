@@ -6,5 +6,5 @@
 	
 	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">
 	<cfproperty name="discountType" fieldtype="many-to-one" cfc="discount_type" fkcolumn="discount_type_id">
-	<cfproperty name="status" fieldtype="many-to-one" cfc="coupon_status" fkcolumn="coupon_status_id">
+	<cfproperty name="couponStatus" fieldtype="many-to-one" cfc="coupon_status" fkcolumn="coupon_status_id">
 </cfcomponent>

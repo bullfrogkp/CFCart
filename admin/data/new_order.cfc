@@ -79,7 +79,7 @@
 			<cfset LOCAL.newStatus.setStatusType(LOCAL.newStatusType) />
 			<cfset EntitySave(LOCAL.newStatus) /> 
 			
-			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
+			<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
 			
 			<cfset LOCAL.customer = EntityLoad("customer",{name="admin"},true) />
 			<cfset LOCAL.order.setCustomer(LOCAL.customer) />
@@ -117,7 +117,7 @@
 			<cfset LOCAL.newProductStatus.setStatusType(LOCAL.newProductStatusType) />
 			<cfset EntitySave(LOCAL.newProductStatus) /> 
 			
-			<cfset LOCAL.orderProduct.addStatus(LOCAL.newProductStatus) />
+			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.newProductStatus) />
 			
 			<cfset EntitySave(LOCAL.orderProduct) /> 
 			

@@ -146,7 +146,7 @@
 															<td>#product.getOrderPrice()#</td>
 															<td>#product.getQuantity()#</td>
 															<td>#product.getShippingMethod().getDisplayName()#</td>
-															<td>#product.getOrderProductStatus().getDisplayName()#</td>
+															<td>#product.getOrderProductStatus().getOrderProductStatusType().getDisplayName()#</td>
 															<td>#product.getSubtotalAmount()#</td>
 															<td>#product.getTaxAmount()#</td>
 															<td>#product.getShippingAmount()#</td>
