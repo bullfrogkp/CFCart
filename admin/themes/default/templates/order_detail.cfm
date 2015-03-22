@@ -112,8 +112,19 @@
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
 								</div><!-- ./col -->
+								<div class="col-md-6">
+									<div class="box box-primary">
+										<div class="box-header">
+											<h3 class="box-title">Coupon Code</h3>
+										</div><!-- /.box-header -->
+										<div class="box-body">
+											<dl>
+												<dd>#REQUEST.pageData.order.getPaymentMethod().getDisplayName()#</dd>
+											</dl>
+										</div>
+									</div>
+								</div><!-- ./col -->
 							</div><!-- /.row -->
-							
 							
 							<div class="row">
 								<section class="col-lg-12"> 
@@ -160,21 +171,7 @@
 									</div><!-- /.box (chat box) -->   
 								</section>
 							</div><!-- /.row (main row) -->
-							<div class="row">
-								<section class="col-lg-12"> 
-									<div class="box box-primary">
-										<div class="box-header">
-											<h3 class="box-title">Coupon Code</h3>
-										</div><!-- /.box-header -->
-										<div class="box-body">
-											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Enter ..." value="" />
-											</div>
-										</div>
-									</div>
-									<!-- /.box -->
-								</section><!-- right col -->
-							</div><!-- /.row (main row) -->
+							
 							<div class="row">
 								<!-- right col (We are only adding the ID to make the widgets sortable)-->
 								<section class="col-lg-6"> 

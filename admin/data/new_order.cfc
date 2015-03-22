@@ -32,6 +32,7 @@
 		<cfelse>
 			<cfset LOCAL.order = EntityNew("order") /> 
 			<cfset LOCAL.newOrderTrackingNumber = "OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")#" />
+			<cfset LOCAL.order.setOrderTrackingNumber("#LOCAL.newOrderTrackingNumber##LOCAL.order.getOrderId()#") />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"submit_order")>
@@ -44,6 +45,8 @@
 			<cfset LOCAL.order.setShippingStreet(Trim(FORM.shipping_street)) />
 			<cfset LOCAL.order.setShippingCity(Trim(FORM.shipping_city)) />
 			<cfset LOCAL.order.setShippingPostalCode(Trim(FORM.shipping_postal_code)) />
+			<cfset LOCAL.order.setCreatedDatetime(Now()) />
+			<cfset LOCAL.order.setCreatedUser(SESSION.user) />
 			
 			<cfif FORM.shipping_province_id NEQ "">
 				<cfset LOCAL.order.setShippingProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
@@ -85,11 +88,6 @@
 			<cfset LOCAL.order.setCustomer(LOCAL.customer) />
 			
 			<cfset EntitySave(LOCAL.order) />
-			
-			<cfif StructKeyExists(LOCAL,"newOrderTrackingNumber")>
-				<cfset LOCAL.order.setOrderTrackingNumber("#LOCAL.newOrderTrackingNumber##LOCAL.order.getOrderId()#") />
-				<cfset EntitySave(LOCAL.order) />
-			</cfif>
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
