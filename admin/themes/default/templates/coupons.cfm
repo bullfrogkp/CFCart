@@ -26,10 +26,10 @@
 						<tbody>
 							<cfloop array="#REQUEST.pageData.coupons#" index="coupon">
 								<tr>
-									<td>#coupon.getCode()#</td>
+									<td>#coupon.getCouponCode()#</td>
 									<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
 									<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
-									<td>#coupon.getStatus().getDisplayName()#</td>
+									<td>#coupon.getCouponStatusType().getDisplayName()#</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/coupon_detail.cfm?id=#coupon.getCouponId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
