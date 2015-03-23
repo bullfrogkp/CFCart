@@ -143,7 +143,7 @@
 		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method") />
 		<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
 		
-		<cfif StructKeyExists(URL,"id")>
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.order = EntityLoadByPK("order",URL.id) />
 			
 			<cfif IsDefined("SESSION.temp.formData")>

@@ -62,20 +62,26 @@
 			<cfset LOCAL.pageData.discountType = EntityLoadByPK("discount_type", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.discountType.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.discountType.getDisplayName())?"":LOCAL.pageData.discountType.getDisplayName() />
+				<cfset LOCAL.pageData.formData.amount = isNull(LOCAL.pageData.discountType.getAmount())?"":LOCAL.pageData.discountType.getAmount() />
+				<cfset LOCAL.pageData.formData.id = isNull(LOCAL.pageData.discountType.getAmount())?"":LOCAL.pageData.discountType.getAmount() />
+			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.discountType = EntityNew("discount_type") />
 			<cfset LOCAL.pageData.title = "New Discount Type | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			
+			<cfset LOCAL.pageData.formData.display_name = "" />
+			<cfset LOCAL.pageData.formData.amount = "" />
+			<cfset LOCAL.pageData.formData.id = "" />
 		</cfif>
 		
 		<cfset LOCAL.pageData.CalculationTypes = EntityLoad("calculation_type") />
 		
-		<cfif IsDefined("SESSION.temp.formData")>
-			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-		<cfelse>
-			<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.discountType.getDisplayName())?"":LOCAL.pageData.discountType.getDisplayName() />
-			<cfset LOCAL.pageData.formData.amount = isNull(LOCAL.pageData.discountType.getAmount())?"":LOCAL.pageData.discountType.getAmount() />
-		</cfif>
+		
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
