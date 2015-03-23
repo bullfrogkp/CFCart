@@ -88,7 +88,7 @@
 				<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":DateFormat(LOCAL.pageData.coupon.getStartDate(),"mm/dd/yyyy") />
 				<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":DateFormat(LOCAL.pageData.coupon.getEndDate(),"mm/dd/yyyy") />
 				<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
-				<cfset LOCAL.pageData.formData.id = LOCAL.pageData.coupon.getCouponId() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.title = "New Coupon | #APPLICATION.applicationName#" />

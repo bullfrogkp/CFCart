@@ -13,10 +13,10 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-body table-responsive">
-					<table id="example2" class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
-								<th>Template Name</th>
+								<th>Name</th>
 								<th>Date Added</th>
 								<th>Date Updated</th>
 								<th>Subject</th>
@@ -25,20 +25,20 @@
 							</tr>
 						</thead>
 						<tbody>
-						
+							<cfloop array="#REQUEST.pageData.newsletters#" index="newsletter">
 							<tr>
-								<td>Test email 1</td>
-								<td>This is a new email</td>
-								<td>Test email 1</td>
-								<td>This is a new email</td>
-								<td>Test email 1</td>
-								<td><a href="newsletter_detail.cfm?request_id=1">View Detail</a></td>
+								<td>#newsletter.getDisplayName()#</td>
+								<td>#newsletter.getCreatedDatetime()#</td>
+								<td>#newsletter.getUpdatedDatetime()#</td>
+								<td>#newsletter.getSubject()#</td>
+								<td>#newsletter.getType()#</td>
+								<td><a href="<a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
 							</tr>
-							
+							</cfloop>
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>Template Name</th>
+								<th>Name</th>
 								<th>Date Added</th>
 								<th>Date Updated</th>
 								<th>Subject</th>
