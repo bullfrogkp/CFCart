@@ -31,7 +31,7 @@
 									<td>#review.getProduct().getDisplayName()#</td>
 									<td>#review.getMessage()#</td>
 									<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-									<td>#review.getStatus().getDisplayName()#</td>
+									<td>#review.getReviewStatusType().getDisplayName()#</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
 								</tr>
 							</cfloop>

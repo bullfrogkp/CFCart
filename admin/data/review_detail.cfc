@@ -10,7 +10,7 @@
 		<cfif StructKeyExists(FORM,"save_item")>
 			
 			<cfset LOCAL.review = EntityLoadByPK("review", FORM.id)>
-			<cfset LOCAL.review.setStatus(EntityLoadByPK('review_status',FORM.review_status_id)) />
+			<cfset LOCAL.review.setReviewStatusType(EntityLoadByPK('review_status_type',FORM.review_status_type_id)) />
 			
 			<cfset EntitySave(LOCAL.review) />
 			
@@ -26,8 +26,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-	
 		<cfset LOCAL.pageData.review = EntityLoadByPK("review", URL.id)> 
+		<cfset LOCAL.pageData.reviewStatusTypes = EntityLoad("review_status_type")> 
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.review.getSubject()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		
