@@ -71,28 +71,35 @@
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type") />
+		<cfset LOCAL.pageData.couponStatus = EntityLoad("coupon_status") />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.coupon = EntityLoadByPK("coupon", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.coupon.getCode()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.coupon_code = isNull(LOCAL.pageData.coupon.getCouponCode())?"":LOCAL.pageData.coupon.getCouponCode() />
+				<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":LOCAL.pageData.coupon.getStartDate() />
+				<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":LOCAL.pageData.coupon.getEndDate() />
+				<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
+			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.coupon = EntityNew("coupon") />
 			<cfset LOCAL.pageData.title = "New Coupon | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			
+			<cfset LOCAL.pageData.formData.coupon_code = "" />
+			<cfset LOCAL.pageData.formData.start_date = "" />
+			<cfset LOCAL.pageData.formData.end_date = "" />
+			<cfset LOCAL.pageData.formData.discount_type_id = "" />
 		</cfif>
 		
-		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type") />
-		<cfset LOCAL.pageData.couponStatus = EntityLoad("coupon_status") />
 		
-		<cfif IsDefined("SESSION.temp.formData")>
-			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-		<cfelse>
-			<cfset LOCAL.pageData.formData.coupon_code = isNull(LOCAL.pageData.coupon.getCouponCode())?"":LOCAL.pageData.coupon.getCouponCode() />
-			<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":LOCAL.pageData.coupon.getStartDate() />
-			<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":LOCAL.pageData.coupon.getEndDate() />
-			<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
-		</cfif>
+		
+		
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
