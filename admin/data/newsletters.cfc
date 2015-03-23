@@ -4,7 +4,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.title = "Newsletters | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.newsletters = EntityLoad("newsletter") />
+		<cfset LOCAL.pageData.newsletters = EntityLoad("newsletter",{isDeleted = false}) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
