@@ -203,7 +203,7 @@
 								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 								<option value="#group.getCustomerGroupId()#"
 								
-								<cfif group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
+								<cfif NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
 								selected
 								</cfif>
 								
