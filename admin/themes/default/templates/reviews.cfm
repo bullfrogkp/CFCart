@@ -31,7 +31,13 @@
 									<td>#review.getProduct().getDisplayName()#</td>
 									<td>#review.getMessage()#</td>
 									<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-									<td>#review.getReviewStatusType().getDisplayName()#</td>
+									<td>
+										<cfswitch expression="#review.getReviewStatusType().getDisplayName()#">
+											<cfcase value="Approved"><span class="label label-success">Approved</span></cfcase>
+											<cfcase value="Denied"><span class="label label-danger">Denied</span></cfcase>
+											<cfcase value="Pending"><span class="label label-warning">Pending</span></cfcase>
+										</cfswitch>
+									</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
