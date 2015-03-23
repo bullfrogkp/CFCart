@@ -88,7 +88,7 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.formData.code = isNull(LOCAL.pageData.coupon.getCode())?"":LOCAL.pageData.coupon.getCode() />
+			<cfset LOCAL.pageData.formData.coupon_code = isNull(LOCAL.pageData.coupon.getCouponCode())?"":LOCAL.pageData.coupon.getCouponCode() />
 			<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":LOCAL.pageData.coupon.getStartDate() />
 			<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":LOCAL.pageData.coupon.getEndDate() />
 			<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />

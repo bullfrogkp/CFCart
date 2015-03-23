@@ -24,10 +24,11 @@
 						<div class="form-group">
 							<label>Calculation Type</label>
 							<select name="Calculation_type_id" class="form-control">
+								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.CalculationTypes#" index="type">
 									<option value="#type.getCalculationTypeId()#"
 									
-									<cfif type.getCalculationTypeId() EQ REQUEST.pageData.discountType.getCalculationType().getCalculationTypeId()>
+									<cfif NOT IsNull(REQUEST.pageData.discountType.getCalculationType()) AND type.getCalculationTypeId() EQ REQUEST.pageData.discountType.getCalculationType().getCalculationTypeId()>
 									selected
 									</cfif>
 									

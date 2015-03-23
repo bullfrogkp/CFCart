@@ -26,7 +26,7 @@
 					<div class="box-body">
 						 <div class="form-group">
 							<label>Code</label>
-							<input type="text" name="code" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.code#"/>
+							<input type="text" name="coupon_code" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.coupon_code#"/>
 						</div>
 						<div class="form-group">
 							<label>Discount Type</label>
