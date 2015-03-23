@@ -57,6 +57,7 @@
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageData.calculationTypes = EntityLoad("calculation_type") />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.discountType = EntityLoadByPK("discount_type", URL.id)> 
@@ -68,7 +69,8 @@
 			<cfelse>
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.discountType.getDisplayName())?"":LOCAL.pageData.discountType.getDisplayName() />
 				<cfset LOCAL.pageData.formData.amount = isNull(LOCAL.pageData.discountType.getAmount())?"":LOCAL.pageData.discountType.getAmount() />
-				<cfset LOCAL.pageData.formData.id = isNull(LOCAL.pageData.discountType.getAmount())?"":LOCAL.pageData.discountType.getAmount() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
+				<cfset LOCAL.pageData.formData.calculation_type_id =  isNull(LOCAL.pageData.discountType.getCalculationType())?"":LOCAL.pageData.discountType.getCalculationType().getCalculationTypeId() />
 			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.title = "New Discount Type | #APPLICATION.applicationName#" />
@@ -77,11 +79,8 @@
 			<cfset LOCAL.pageData.formData.display_name = "" />
 			<cfset LOCAL.pageData.formData.amount = "" />
 			<cfset LOCAL.pageData.formData.id = "" />
+			<cfset LOCAL.pageData.formData.calculation_type_id = "" />
 		</cfif>
-		
-		<cfset LOCAL.pageData.CalculationTypes = EntityLoad("calculation_type") />
-		
-		
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	

@@ -15,6 +15,16 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
+		<div class="col-md-12">
 			<!-- general form elements -->
 			<div class="box box-primary">
 				
@@ -30,7 +40,7 @@
 							<cfloop array="#REQUEST.pageData.CalculationTypes#" index="type">
 								<option value="#type.getCalculationTypeId()#"
 								
-								<cfif NOT IsNull(REQUEST.pageData.discountType.getCalculationType()) AND type.getCalculationTypeId() EQ REQUEST.pageData.discountType.getCalculationType().getCalculationTypeId()>
+								<cfif type.getCalculationTypeId() EQ REQUEST.pageData.formData.calculation_type_id>
 								selected
 								</cfif>
 								
