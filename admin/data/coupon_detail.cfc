@@ -97,10 +97,6 @@
 			<cfset LOCAL.pageData.formData.discount_type_id = "" />
 		</cfif>
 		
-		
-		
-		
-		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
