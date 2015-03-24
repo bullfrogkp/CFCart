@@ -12,6 +12,10 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Discount Types</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Discount Type</a>
+				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-striped data-table">
 						<thead>

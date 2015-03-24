@@ -87,7 +87,7 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Category</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table class="table table-bordered table-striped">
+					<table class="table table-bordered table-striped data-table">
 						<thead>
 							<tr>
 								<th>ID</th>

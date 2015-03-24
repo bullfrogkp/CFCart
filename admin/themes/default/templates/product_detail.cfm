@@ -458,45 +458,57 @@
 						</cfif>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-						<table class="table table-bordered table-striped data-table">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Price</th>
-									<th>Create Datetime</th>
-									<th>SKU</th>
-									<th>Status</th>
-									<th>Link</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
-								<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
-									<tr>
-										<td>#product.getDisplayName()#</td>
-										<td>#product.getPrice()#</td>
-										<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-										<td>#product.getSku()#</td>
-										<td>#product.getIsEnabled()#</td>
-										<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-										<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
-									</tr>
-								</cfloop>
-								</cfif>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Name</th>
-									<th>Price</th>
-									<th>Create Datetime</th>
-									<th>SKU</th>
-									<th>Status</th>
-									<th>Link</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="box box-primary">
+									<div class="box-header">
+										<h3 class="box-title">Related Products</h3>
+										<a data-toggle="modal" data-target="##add-product-modal" href="" class="btn btn-default btn-sm pull-right" style="margin:10px 10px 0 0">Add New Product</a>
+									</div><!-- /.box-header -->
+									<div class="box-body table-responsive">
+										<table class="table table-bordered table-striped data-table">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Create Datetime</th>
+													<th>SKU</th>
+													<th>Status</th>
+													<th>Link</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
+												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+													<tr>
+														<td>#product.getDisplayName()#</td>
+														<td>#product.getPrice()#</td>
+														<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#product.getSku()#</td>
+														<td>#product.getIsEnabled()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+														<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
+													</tr>
+												</cfloop>
+												</cfif>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Create Datetime</th>
+													<th>SKU</th>
+													<th>Status</th>
+													<th>Link</th>
+													<th>Action</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
 						<table class="table table-bordered table-striped data-table">
@@ -672,7 +684,28 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+<!-- ADD PRODUCT MODAL -->
+<div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Product</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_order_product_id" name="new_order_product_id" type="text" class="form-control" placeholder="Product ID">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
 <cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
 <div class="modal fade" id="add-attribute-option-value-modal" tabindex="-1" role="dialog" aria-hidden="true">

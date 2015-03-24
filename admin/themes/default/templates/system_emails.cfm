@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Newsletters
+		System Emails
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Newsletters</li>
+		<li class="active">System Emails</li>
 	</ol>
 </section>
 <section class="content">
@@ -13,8 +13,8 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Newsletters</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Newsletter</a>
+					<h3 class="box-title">System Emails</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New System Email</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-striped data-table">
