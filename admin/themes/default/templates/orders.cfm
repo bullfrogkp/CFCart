@@ -12,11 +12,39 @@
 <section class="content">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box">
+			<form>
+				<div class="box box-default">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-xs-2">
+								<input type="text" name="id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"id")>value="#URL.id#"</cfif>>
+							</div>
+							<div class="col-xs-3">
+								<select class="form-control" name="is_enabled">
+									<option value="">All Status</option>
+									<option value="1" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 1>selected</cfif>>Enabled</option>
+									<option value="0" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 0>selected</cfif>>Disabled</option>
+								</select>
+							</div>
+							<div class="col-xs-5">
+								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords" <cfif StructKeyExists(URL,"search_keyword")>value="#URL.search_keyword#"</cfif>>
+							</div>
+							<div class="col-xs-2">
+								<button name="search_category" type="submit" class="btn btn-sm btn-primary search-button pull-right">Search</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Orders</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/new_order.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Order</a>
+				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table class="table table-bordered table-striped data-table">
-						<thead>
-							<tr>
+					<table class="table table-bordered table-hover">
+						
+							<tr class="default">
 								<th>Order No.</th>
 								<th>Email</th>
 								<th>Name</th>
@@ -25,8 +53,7 @@
 								<th>Invoice</th>
 								<th>Action</th>
 							</tr>
-						</thead>
-						<tbody>
+						
 							<cfloop array="#REQUEST.pageData.orders#" index="order">
 								<tr>
 									<td>#order.getOrderTrackingNumber()#</td>
@@ -38,9 +65,8 @@
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
-						</tbody>
-						<tfoot>
-							<tr>
+						
+							<tr class="default">
 								<th>Order No.</th>
 								<th>Email</th>
 								<th>Name</th>
@@ -49,7 +75,7 @@
 								<th>Invoice</th>
 								<th>Action</th>
 							</tr>
-						</tfoot>
+						
 					</table>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
