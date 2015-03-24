@@ -551,33 +551,51 @@
 						</table>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
-						<label>Shipping</label>
-						<div class="row" style="margin-top:10px;">
-							<cfif NOT IsNULL(REQUEST.pageData.shippingCarriers)>
-								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="carrier">						
-									<div class="col-xs-3">
-										<div class="box box-warning">
-											<div class="box-body table-responsive no-padding">
-												<table class="table table-hover">
-													<tr>
-														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#carrier.getImageName()#" style="height:25px;vertical-align:top;" /></th>
-														<th style="width:40px;"><input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#carrier.getShippingCarrierId()#" /></th>
-													</tr>
-													
-													<cfloop array="#carrier.getShippingMethods()#" index="shippingMethod">
-													<tr>
-														<td>#shippingMethod.getDisplayName()#</td>
-														<td>
-															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#" />
-														</td>
-													</tr>
-													</cfloop>
-												</table>
-											</div><!-- /.box-body -->
-										</div><!-- /.box -->
-									</div>
-								</cfloop>
-							</cfif>
+						<div class="form-group">
+							<label>Length</label>
+							<input name="length" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.length#"/>
+						</div>
+						<div class="form-group">
+							<label>Width</label>
+							<input name="width" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.width#"/>
+						</div>
+						<div class="form-group">
+							<label>Height</label>
+							<input name="height" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.height#"/>
+						</div>
+						<div class="form-group">
+							<label>Weight</label>
+							<input name="weight" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.weight#"/>
+						</div>
+						<div class="form-group">
+							<label>Shipping Methods</label>
+							<div class="row" style="margin-top:10px;">
+								<cfif NOT IsNULL(REQUEST.pageData.shippingCarriers)>
+									<cfloop array="#REQUEST.pageData.shippingCarriers#" index="carrier">						
+										<div class="col-xs-3">
+											<div class="box box-warning">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr>
+															<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#carrier.getImageName()#" style="height:25px;vertical-align:top;" /></th>
+															<th style="width:40px;"></th>
+														</tr>
+														
+														<cfloop array="#carrier.getShippingMethods()#" index="shippingMethod">
+														<tr>
+															<td>#shippingMethod.getDisplayName()#</td>
+															<td>
+																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#" />
+															</td>
+														</tr>
+														</cfloop>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
 						</div>
 					</div>
 				</div><!-- /.tab-content -->

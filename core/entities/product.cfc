@@ -10,6 +10,11 @@
 	<cfproperty name="specialPriceToDate" column="special_price_to_date" ormtype="date"> 
 	<cfproperty name="detail" column="detail" ormtype="text"> 
 	
+	<cfproperty name="length" column="length" ormtype="float"> 
+	<cfproperty name="width" column="width" ormtype="float"> 
+	<cfproperty name="height" column="height" ormtype="float"> 
+	<cfproperty name="weight" column="weight" ormtype="float"> 
+	
 	<cfproperty name="attributeSet" fieldtype="many-to-one" cfc="attribute_set" fkcolumn="attribute_set_id">
 	<cfproperty name="parentProduct" fieldtype="many-to-one" cfc="product" fkcolumn="parent_product_id">
 	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">

@@ -64,6 +64,19 @@
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.product.setUpdatedDatetime(Now()) />
 			
+			<cfif IsNumeric(Trim(FORM.length))>
+				<cfset LOCAL.product.setLength(Trim(FORM.length)) />
+			</cfif>
+			<cfif IsNumeric(Trim(FORM.width))>
+				<cfset LOCAL.product.setWidth(Trim(FORM.width)) />
+			</cfif>
+			<cfif IsNumeric(Trim(FORM.height))>
+				<cfset LOCAL.product.setHeight(Trim(FORM.height)) />
+			</cfif>
+			<cfif IsNumeric(Trim(FORM.weight))>
+				<cfset LOCAL.product.setWeight(Trim(FORM.weight)) />
+			</cfif>
+			
 			<cfif IsNumeric(Trim(FORM.special_price))>
 				<cfset LOCAL.product.setSpecialPrice(Trim(FORM.special_price)) />
 			</cfif>
@@ -445,6 +458,10 @@
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescription())?"":LOCAL.pageData.product.getDescription() />
 			<cfset LOCAL.pageData.formData.shipping_method_id = isNull(LOCAL.pageData.product.getShippingMethod())?"":LOCAL.pageData.product.getShippingMethod().getShippingMethodId() />
 			<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.product.getTaxCategory())?"":LOCAL.pageData.product.getTaxCategory().getTaxCategoryId() />
+			<cfset LOCAL.pageData.formData.length = isNull(LOCAL.pageData.product.getLength())?"":LOCAL.pageData.product.getLength() />
+			<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeight())?"":LOCAL.pageData.product.getHeight() />
+			<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidth())?"":LOCAL.pageData.product.getWidth() />
+			<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeight())?"":LOCAL.pageData.product.getWeight() />
 		</cfif>
 	
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
