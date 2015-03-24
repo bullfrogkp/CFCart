@@ -560,16 +560,15 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr>
-														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/carrier/#carrier.getShippingCarrierId()#/#carrier.getImageName()#" style="width:100%;height:100%;vertical-align:top;" /></th>
-														<th>#carrier.getDisplayName()#</th>
-														<th><input type="checkbox" class="form-control" name="shipping_carrier_id" value="#carrier.getShippingCarrierId()#" /></th>
+														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#carrier.getImageName()#" style="height:25px;vertical-align:top;" /></th>
+														<th style="width:40px;"><input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#carrier.getShippingCarrierId()#" /></th>
 													</tr>
 													
 													<cfloop array="#carrier.getShippingMethods()#" index="shippingMethod">
 													<tr>
-														<td colspan="2">#shippingMethod.getDisplayName()#</td>
+														<td>#shippingMethod.getDisplayName()#</td>
 														<td>
-															<th><input type="checkbox" class="form-control" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#" /></th>
+															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#" />
 														</td>
 													</tr>
 													</cfloop>
