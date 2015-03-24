@@ -551,40 +551,35 @@
 						</table>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
-						<table class="table table-bordered table-striped data-table">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Component</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfloop array="#REQUEST.pageData.shippingMethods#" index="shipping">
-								<tr>
-									<td>#shipping.getDisplayName()#</td>
-									<td>#shipping.getDescription()#</td>
-									<td>#shipping.getComponent()#</td>
-									<td><input type="checkbox" class="form-control" 
-
-									<cfif NOT IsNull(REQUEST.pageData.product.getShippingMethod()) AND REQUEST.pageData.product.getShippingMethod().getShippingMethodId() EQ shipping.getShippingMethodId>
-									checked
-									</cfif>
-	
-									/></td>
-								</tr>
+						<label>Shipping</label>
+						<div class="row" style="margin-top:10px;">
+							<cfif NOT IsNULL(REQUEST.pageData.shippingCarriers)>
+								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="carrier">						
+									<div class="col-xs-3">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr>
+														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/carrier/#carrier.getShippingCarrierId()#/#carrier.getImageName()#" style="width:100%;height:100%;vertical-align:top;" /></th>
+														<th>#carrier.getDisplayName()#</th>
+														<th><input type="checkbox" class="form-control" name="shipping_carrier_id" value="#carrier.getShippingCarrierId()#" /></th>
+													</tr>
+													
+													<cfloop array="#carrier.getShippingMethods()#" index="shippingMethod">
+													<tr>
+														<td colspan="2">#shippingMethod.getDisplayName()#</td>
+														<td>
+															<th><input type="checkbox" class="form-control" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#" /></th>
+														</td>
+													</tr>
+													</cfloop>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
 								</cfloop>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Component</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
+							</cfif>
+						</div>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
