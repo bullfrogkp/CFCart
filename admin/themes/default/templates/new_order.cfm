@@ -31,6 +31,44 @@
 		<section class="col-lg-12"> 
 			<div class="box box-primary">
 				<div class="box-header">
+					<h3 class="box-title">Products</h3>
+					<a href="" class="add-product" data-toggle="modal" data-target="##add-product-modal" style="line-height:40px;"><span class="label label-primary">Add Product</span></a>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<th>Product</th>
+							<th>Price</th>
+							<th>Qty</th>
+							<th>Shipping</th>
+							<th>Subtotal</th>
+						</thead>
+						<tbody>
+							<cfif NOT IsNull(REQUEST.pageData.order) AND NOT IsNull(REQUEST.pageData.order.getProducts())>
+								<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
+								<tr>
+									<td>#product.getDisplayName()#</td>
+									<td>#product.getOrderPrice()#</td>
+									<td>#product.getQuantity()#</td>
+									<td>#product.getShippingMethod().getDisplayName()#</td>
+									<td>#product.getSubtotalAmount()#</td>
+								</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="5">No product.</td>
+								</tr>
+							</cfif>
+						</tbody>
+					</table>
+				</div>
+			</div><!-- /.box (chat box) -->   
+		</section>
+	</div><!-- /.row (main row) -->
+	<div class="row">
+		<section class="col-lg-12"> 
+			<div class="box box-primary">
+				<div class="box-header">
 					<h3 class="box-title">Customer Information</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body">
@@ -174,44 +212,7 @@
 			<!-- /.box -->
 		</section><!-- right col -->
 	</div><!-- /.row (main row) -->
-	<div class="row">
-		<section class="col-lg-12"> 
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Products</h3>
-					<a href="" class="add-product" data-toggle="modal" data-target="##add-product-modal" style="line-height:40px;"><span class="label label-primary">Add Product</span></a>
-				</div><!-- /.box-header -->
-				<div class="box-body">
-					<table class="table table-bordered table-striped">
-						<thead>
-							<th>Product</th>
-							<th>Price</th>
-							<th>Qty</th>
-							<th>Shipping</th>
-							<th>Subtotal</th>
-						</thead>
-						<tbody>
-							<cfif NOT IsNull(REQUEST.pageData.order) AND NOT IsNull(REQUEST.pageData.order.getProducts())>
-								<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
-								<tr>
-									<td>#product.getDisplayName()#</td>
-									<td>#product.getOrderPrice()#</td>
-									<td>#product.getQuantity()#</td>
-									<td>#product.getShippingMethod().getDisplayName()#</td>
-									<td>#product.getSubtotalAmount()#</td>
-								</tr>
-								</cfloop>
-							<cfelse>
-								<tr>
-									<td colspan="5">No product.</td>
-								</tr>
-							</cfif>
-						</tbody>
-					</table>
-				</div>
-			</div><!-- /.box (chat box) -->   
-		</section>
-	</div><!-- /.row (main row) -->
+	
 	<div class="row">
 		<section class="col-lg-12"> 
 			<div class="box box-primary">
