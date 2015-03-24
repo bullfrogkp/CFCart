@@ -50,7 +50,8 @@
 							<th>Group</th>
 							<th>Subscribed</th>
 							<th>Create Datetime</th>
-							<th>Action</th>
+							<th style="width:40px;">Status</th>
+							<th style="width:110px;">Action</th>
 						</tr>
 					
 						<cfloop array="#REQUEST.pageData.customers#" index="c">
@@ -61,6 +62,12 @@
 								<td>#c.getCustomerGroup().getDisplayName()#</td>
 								<td>#c.getSubscribed()#</td>
 								<td>#DateFormat(c.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+								<td>
+									<cfswitch expression="#c.getIsEnabled()#">
+										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+									</cfswitch>
+								</td>
 								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#c.getCustomerId()#">View Detail</a></td>
 							</tr>
 						</cfloop>
@@ -72,6 +79,7 @@
 							<th>Group</th>
 							<th>Subscribed</th>
 							<th>Create Datetime</th>
+							<th>Status</th>
 							<th>Action</th>
 						</tr>
 					</table>

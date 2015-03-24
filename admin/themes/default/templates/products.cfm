@@ -91,8 +91,8 @@
 						<tr class="default">
 							<th>Name</th>
 							<th>Price</th>
-							<th>Status</th>
-							<th>Action</th>
+							<th style="width:40px;">Status</th>
+							<th style="width:110px;">Action</th>
 						</tr>
 					
 						<cfif ArrayLen(REQUEST.pageData.products) NEQ 0>
@@ -100,7 +100,12 @@
 							<tr>
 								<td>#product.getProductId()#</td>
 								<td>#product.getDisplayName()#</td>
-								<td>#product.getIsEnabled()#</td>
+								<td>
+									<cfswitch expression="#product.getIsEnabled()#">
+										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+									</cfswitch>
+								</td>
 								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 							</tr>
 							</cfloop>
