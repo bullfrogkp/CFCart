@@ -17,7 +17,6 @@
 	
 	<cfproperty name="attributeSet" fieldtype="many-to-one" cfc="attribute_set" fkcolumn="attribute_set_id">
 	<cfproperty name="parentProduct" fieldtype="many-to-one" cfc="product" fkcolumn="parent_product_id">
-	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">
 	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">
 	
 	<cfproperty name="attributeValues" type="array" fieldtype="one-to-many" cfc="attribute_value" fkcolumn="product_id" singularname="attributeValue" cascade="delete-orphan">
@@ -27,6 +26,7 @@
 	<cfproperty name="productCustomerGroupRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="product_id" singularname="productCustomerGroupRela" cascade="delete-orphan">
 	
 	<cfproperty name="categories" fieldtype="many-to-many" cfc="category" linktable="category_product_rela" fkcolumn="product_id" inversejoincolumn="category_id" singularname="category">
+	<cfproperty name="shippingMethods" fieldtype="many-to-many" cfc="shipping_method" linktable="product_shipping_method_rela" fkcolumn="product_id" inversejoincolumn="shipping_method_id" singularname="shippingMethod">
 	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	
@@ -39,6 +39,12 @@
 	<cffunction name="removeAttributeValues" access="public" output="false" returnType="void">
 		<cfif NOT IsNull(getAttributeValues())>
 			<cfset ArrayClear(getAttributeValues()) />
+		</cfif>
+	</cffunction>
+	
+	<cffunction name="removeShippingMethods" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getShippingMethods())>
+			<cfset ArrayClear(getShippingMethods()) />
 		</cfif>
 	</cffunction>
 </cfcomponent>

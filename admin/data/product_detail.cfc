@@ -87,10 +87,6 @@
 				<cfset LOCAL.product.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
 			</cfif>
 			
-			<cfif StructKeyExists(FORM,"shipping_method_id")>
-				<cfset LOCAL.product.setShippingMethod(EntityLoadByPK("shipping_method", FORM.shipping_method_id)) />
-			</cfif>
-			
 			<cfif FORM.tax_category_id NEQ "">
 				<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
 			</cfif>
@@ -107,6 +103,13 @@
 			<cfloop list="#FORM.category_id#" index="LOCAL.categoryId">
 				<cfset LOCAL.newCategory = EntityLoadByPK("category",LOCAL.categoryId) />
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
+			</cfloop>
+			
+			<cfset LOCAL.product.removeShippingMethods() />
+			
+			<cfloop list="#FORM.shipping_method_id#" index="LOCAL.shippingMethodId">
+				<cfset LOCAL.newShippingMethod = EntityLoadByPK("shipping_method",LOCAL.shippingMethodId) />
+				<cfset LOCAL.product.addShippingMethod(LOCAL.newShippingMethod) />
 			</cfloop>
 		
 			<cfset EntitySave(LOCAL.product) />
@@ -277,7 +280,6 @@
 			<cfset LOCAL.newProduct.setSku(LOCAL.product.getSku()) />
 			<cfset LOCAL.newProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
 			<cfset LOCAL.newProduct.setAttributeSet(LOCAL.product.getAttributeSet()) />
-			<cfset LOCAL.newProduct.setShippingMethod(LOCAL.product.getShippingMethod()) />
 			<cfset LOCAL.newProduct.setParentProduct(LOCAL.product) />
 			<cfset LOCAL.newProduct.setPrice(FORM.new_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
@@ -440,7 +442,6 @@
 		<cfset LOCAL.pageData.shippingCarriers = EntityLoad("shipping_carrier") />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false, isEnabled = true}) />
-		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method",{isDeleted = false, isEnabled = true}) />
 				
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
@@ -456,7 +457,6 @@
 			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitle())?"":LOCAL.pageData.product.getTitle() />
 			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescription())?"":LOCAL.pageData.product.getDescription() />
-			<cfset LOCAL.pageData.formData.shipping_method_id = isNull(LOCAL.pageData.product.getShippingMethod())?"":LOCAL.pageData.product.getShippingMethod().getShippingMethodId() />
 			<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.product.getTaxCategory())?"":LOCAL.pageData.product.getTaxCategory().getTaxCategoryId() />
 			<cfset LOCAL.pageData.formData.length = isNull(LOCAL.pageData.product.getLength())?"":LOCAL.pageData.product.getLength() />
 			<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeight())?"":LOCAL.pageData.product.getHeight() />

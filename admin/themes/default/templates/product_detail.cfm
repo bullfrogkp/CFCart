@@ -585,7 +585,13 @@
 														<tr>
 															<td>#shippingMethod.getDisplayName()#</td>
 															<td>
-																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#" />
+																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#"
+
+																<cfif NOT IsNull(REQUEST.pageData.product.getShippingMethods()) AND REQUEST.pageData.product.getShippingMethods().hasShippingMethod(shippingMethod)>
+																checked
+																</cfif>
+
+																/>
 															</td>
 														</tr>
 														</cfloop>
