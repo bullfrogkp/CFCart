@@ -371,12 +371,14 @@
 						<li class="treeview">
                             <a href="##">
                                 <i class="fa fa-envelope"></i>
-                                <span>Newsletters</span>
+                                <span>Emails</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li id="newsletters"><a href="#APPLICATION.absoluteUrlWeb#admin/newsletters.cfm"><i class="fa fa-angle-double-right"></i> All Newsletters</a></li>
                                 <li id="newsletter_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Newsletter</a></li>
+								<li id="system_emails"><a href="#APPLICATION.absoluteUrlWeb#admin/system_emails.cfm"><i class="fa fa-angle-double-right"></i> All System Emails</a></li>
+                                <li id="system_email_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/system_email_detail.cfm"><i class="fa fa-angle-double-right"></i> Add System Email</a></li>
                             </ul>
                         </li>		
 						<li class="treeview">
@@ -402,7 +404,6 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/emails.cfm"><i class="fa fa-angle-double-right"></i> System Emails</a></li>	
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping Methods</a></li>			
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment Methods</a></li>	
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
