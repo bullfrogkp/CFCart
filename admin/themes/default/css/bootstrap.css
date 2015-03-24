@@ -1731,6 +1731,18 @@ table th[class*="col-"] {
   float: none;
 }
 
+.table > thead > tr > .default,
+.table > tbody > tr > .default,
+.table > tfoot > tr > .default,
+.table > thead > .default > td,
+.table > tbody > .default > td,
+.table > tfoot > .default > td,
+.table > thead > .default > th,
+.table > tbody > .default > th,
+.table > tfoot > .default > th { 
+background-color: #f5f5f5;
+}
+
 .table > thead > tr > .active,
 .table > tbody > tr > .active,
 .table > tfoot > tr > .active,
