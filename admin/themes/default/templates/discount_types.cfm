@@ -17,33 +17,31 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Discount Type</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table class="table table-bordered table-striped data-table">
-						<thead>
+					<table class="table table-bordered table-hover">
+					
+						<tr class="default">
+							<th>Name</th>
+							<th>Calculation Type</th>
+							<th>Amount</th>
+							<th>Action</th>
+						</tr>
+					
+						<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
 							<tr>
-								<th>Name</th>
-								<th>Calculation Type</th>
-								<th>Amount</th>
-								<th>Action</th>
+								<td>#type.getDisplayName()#</td>
+								<td>#type.getCalculationType().getDisplayName()#</td>
+								<td>#type.getAmount()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm?id=#type.getDiscountTypeId()#">View Detail</a></td>
 							</tr>
-						</thead>
-						<tbody>
-							<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
-								<tr>
-									<td>#type.getDisplayName()#</td>
-									<td>#type.getCalculationType().getDisplayName()#</td>
-									<td>#type.getAmount()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm?id=#type.getDiscountTypeId()#">View Detail</a></td>
-								</tr>
-							</cfloop>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>Name</th>
-								<th>Calculation Type</th>
-								<th>Amount</th>
-								<th>Action</th>
-							</tr>
-						</tfoot>
+						</cfloop>
+					
+						<tr class="default">
+							<th>Name</th>
+							<th>Calculation Type</th>
+							<th>Amount</th>
+							<th>Action</th>
+						</tr>
+						
 					</table>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

@@ -17,30 +17,28 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Customer Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table class="table table-bordered table-striped data-table">
-						<thead>
+					<table class="table table-bordered table-hover">
+					
+						<tr class="default">
+							<th>Group Name</th>
+							<th>Discount Type</th>
+							<th>Action</th>
+						</tr>
+					
+						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 							<tr>
-								<th>Group Name</th>
-								<th>Discount Type</th>
-								<th>Action</th>
+								<td>#group.getDisplayName()#</td>
+								<td>#group.getDiscountType()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?id=#group.getCustomerGroupId()#">View Detail</a></td>
 							</tr>
-						</thead>
-						<tbody>
-							<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-								<tr>
-									<td>#group.getDisplayName()#</td>
-									<td>#group.getDiscountType()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?id=#group.getCustomerGroupId()#">View Detail</a></td>
-								</tr>
-							</cfloop>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>Group Name</th>
-								<th>Discount Type</th>
-								<th>Action</th>
-							</tr>
-						</tfoot>
+						</cfloop>
+				
+						<tr class="default">
+							<th>Group Name</th>
+							<th>Discount Type</th>
+							<th>Action</th>
+						</tr>
+					
 					</table>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

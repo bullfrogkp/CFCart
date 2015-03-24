@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<form>
-				<div class="box box-success">
+				<div class="box box-default">
 					<div class="box-body">
 						<div class="row">
 							<div class="col-xs-2">
