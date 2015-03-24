@@ -92,7 +92,7 @@
 							<th style="width:40px;">ID</th>
 							<th>Name</th>
 							<th>Rank</th>
-							<th>Status</th>
+							<th style="width:40px;">Status</th>
 							<th style="width:110px;">Action</th>
 						</tr>
 						<cfif ArrayLen(REQUEST.pageData.categories) NEQ 0>
@@ -101,7 +101,12 @@
 								<td>#category.getCategoryId()#</td>
 								<td>#category.getDisplayName()#</td>
 								<td>#category.getRank()#</td>
-								<td>#category.getIsEnabled()#</td>
+								<td>
+									<cfswitch expression="#category.getIsEnabled()#">
+										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+									</cfswitch>
+								</td>
 								<td><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#category.getCategoryId()#">View Detail</a></td>
 							</tr>
 							</cfloop>
