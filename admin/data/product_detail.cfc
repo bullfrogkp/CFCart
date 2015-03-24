@@ -13,6 +13,10 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid SKU.") />
 		</cfif>
 		
+		<cfif StructKeyExists(FORM,"add_new_product") AND NOT IsNumeric(FORM.new_product_id)>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product ID.") />
+		</cfif>
+		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
@@ -319,6 +323,33 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Group price has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
+		
+		<cfelseif StructKeyExists(FORM,"add_new_product")>
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.id) />
+			
+			<cfset LOCAL.relatedProduct = EntityNew("related_product") />
+			<cfset LOCAL.relatedProduct.setProduct(EntityLoadByPK("product",FORM.new_product_id)) />
+			
+			<cfset EntitySave(LOCAL.relatedProduct) />
+			
+			<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+			<cfset EntitySave(LOCAL.product) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
+		
+		<cfelseif StructKeyExists(FORM,"delete_related_product")>
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.id) />
+			<cfset LOCAL.relatedProduct = EntityLoadByPK("related_product",FORM.delete_related_product_id) />
+			
+			<cfset LOCAL.product.removeRelatedProduct(LOCAL.relatedProduct) />
+			
+			<cfset EntitySave(LOCAL.product) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

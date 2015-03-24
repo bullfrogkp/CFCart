@@ -76,6 +76,10 @@
 			$("##sub_product_id").val($(this).attr('subproductid'));
 		});
 		
+		$( ".delete-related-product" ).click(function() {
+			$("##delete_related_product_id").val($(this).attr('relatedproductid'));
+		});
+		
 		$( ".delete-group-price" ).click(function() {
 			$("##deleted_group_price_amount").val($(this).attr('grouppriceamount'));
 		});
@@ -163,6 +167,7 @@
 <input type="hidden" name="new_attribute_option_attribute_id" id="new_attribute_option_attribute_id" value="" />
 <input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
 <input type="hidden" name="sub_product_id" id="sub_product_id" value="" />
+<input type="hidden" name="delete_related_product_id" id="delete_related_product_id" value="" />
 <input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <section class="content">
@@ -480,15 +485,15 @@
 											</thead>
 											<tbody>
 												<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
-												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
 													<tr>
-														<td>#product.getDisplayName()#</td>
-														<td>#product.getPrice()#</td>
-														<td>#DateFormat(product.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-														<td>#product.getSku()#</td>
-														<td>#product.getIsEnabled()#</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-														<td><button name="remove_related_product" type="submit" class="btn btn-danger top-nav-button #REQUEST.pageData.deleteButtonClass#">Remove Product</button></td>
+														<td>#relatedProduct.getProduct().getDisplayName()#</td>
+														<td>#relatedProduct.getProduct().getPrice()#</td>
+														<td>#DateFormat(relatedProduct.getProduct().getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#relatedProduct.getProduct().getSku()#</td>
+														<td>#relatedProduct.getProduct().getIsEnabled()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProduct().getProductId()#">View Detail</a></td>
+														<td><a relatedproductid="#relatedProduct.getRelatedProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
 													</tr>
 												</cfloop>
 												</cfif>
@@ -695,7 +700,7 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_order_product_id" name="new_order_product_id" type="text" class="form-control" placeholder="Product ID">
+					<input id="new_product_id" name="new_product_id" type="text" class="form-control" placeholder="Product ID">
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
@@ -703,6 +708,21 @@
 				<button name="add_new_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE PRODUCT MODAL -->
+<div class="modal fade" id="delete-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this related product?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_related_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
