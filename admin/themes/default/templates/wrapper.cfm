@@ -404,10 +404,15 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping Methods</a></li>			
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_sets.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>		
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/order_status_types.cfm"><i class="fa fa-angle-double-right"></i> Order Status Types</a></li>								
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/order_product_status_types.cfm"><i class="fa fa-angle-double-right"></i> Product Status Types</a></li>		
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment Methods</a></li>	
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping Methods</a></li>			
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>		
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/countries.cfm"><i class="fa fa-angle-double-right"></i> Countries</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/provinces.cfm"><i class="fa fa-angle-double-right"></i> Provinces</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
                             </ul>
                         </li>
 						<li class="treeview">
