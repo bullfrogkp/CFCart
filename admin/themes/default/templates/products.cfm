@@ -87,41 +87,46 @@
 					<a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Product</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
-					<table class="table table-bordered table-striped data-table">
-						<thead>
+					<table class="table table-bordered table-hover">
+						<tr class="default">
+							<th>Name</th>
+							<th>Price</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					
+						<cfif ArrayLen(REQUEST.pageData.products) NEQ 0>
+							<cfloop array="#REQUEST.pageData.products#" index="product">
 							<tr>
-								<th>Name</th>
-								<th>Price</th>
-								<th>Status</th>
-								<th>Action</th>
+								<td>#product.getProductId()#</td>
+								<td>#product.getDisplayName()#</td>
+								<td>#product.getIsEnabled()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 							</tr>
-						</thead>
-						<tbody>
-							<cfif ArrayLen(REQUEST.pageData.products) NEQ 0>
-								<cfloop array="#REQUEST.pageData.products#" index="product">
-								<tr>
-									<td>#product.getProductId()#</td>
-									<td>#product.getDisplayName()#</td>
-									<td>#product.getIsEnabled()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-								</tr>
-								</cfloop>
-							<cfelse>
-								<tr>
-									<td colspan="5">No result found.</td>
-								</tr>
-							</cfif>
-						</tbody>
-						<tfoot>
+							</cfloop>
+						<cfelse>
 							<tr>
-								<th>Name</th>
-								<th>Price</th>
-								<th>Status</th>
-								<th>Action</th>
+								<td colspan="5">No result found.</td>
 							</tr>
-						</tfoot>
+						</cfif>
+					
+						<tr class="default">
+							<th>Name</th>
+							<th>Price</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
 					</table>
 				</div><!-- /.box-body -->
+				<div class="box-footer clearfix">
+					<ul class="pagination pagination-sm no-margin pull-right">
+						<li><a href="##">&laquo;</a></li>
+						<li><a href="##">1</a></li>
+						<li><a href="##">2</a></li>
+						<li><a href="##">3</a></li>
+						<li><a href="##">&raquo;</a></li>
+					</ul>
+				</div>
 			</div><!-- /.box -->
 		
 		</div><!-- ./col -->
