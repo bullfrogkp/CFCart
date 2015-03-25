@@ -94,11 +94,15 @@
 			<cfset LOCAL.pageData.title = "New Coupon | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
-			<cfset LOCAL.pageData.formData.coupon_code = "" />
-			<cfset LOCAL.pageData.formData.start_date = "" />
-			<cfset LOCAL.pageData.formData.end_date = "" />
-			<cfset LOCAL.pageData.formData.discount_type_id = "" />
-			<cfset LOCAL.pageData.formData.id = "" />
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.coupon_code = "" />
+				<cfset LOCAL.pageData.formData.start_date = "" />
+				<cfset LOCAL.pageData.formData.end_date = "" />
+				<cfset LOCAL.pageData.formData.discount_type_id = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />

@@ -138,7 +138,7 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="id" id="id" value="#REQUEST.pageData.category.getCategoryId()#" />
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_value_filter_id" id="new_value_filter_id" value="" />
 <input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
@@ -296,7 +296,7 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
 						<div class="row">
-							<cfif NOT IsNULL(REQUEST.pageData.category.getImages())>
+							<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getImages())>
 								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">
 									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
 										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#images/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" target="_blank">
