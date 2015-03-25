@@ -610,7 +610,7 @@
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr>
+														<tr class="warning">
 															<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#carrier.getImageName()#" style="height:25px;vertical-align:top;" /></th>
 															<th style="width:40px;"></th>
 														</tr>
