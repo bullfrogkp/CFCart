@@ -745,17 +745,17 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add New Product</h4>
+				<h4 class="modal-title"> Add Related Product</h4>
 			</div>
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_product_id" name="new_product_id" type="text" class="form-control" placeholder="Product ID">
+					<input id="new_related_product_id" name="new_related_product_id" type="text" class="form-control" placeholder="Product ID">
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_related_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->

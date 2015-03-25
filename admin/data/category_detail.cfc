@@ -31,11 +31,13 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.category = EntityLoadByPK("category", URL.id)> 
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)> 
 			<cfset LOCAL.tab_id = FORM.tab_id />
 		<cfelse>
 			<cfset LOCAL.category = EntityNew("category")> 
+			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.category.setCreatedDatetime(Now()) />
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
 		

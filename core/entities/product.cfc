@@ -20,6 +20,7 @@
 	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">
 	
 	<cfproperty name="attributeValues" type="array" fieldtype="one-to-many" cfc="attribute_value" fkcolumn="product_id" singularname="attributeValue" cascade="delete-orphan">
+	<cfproperty name="subProducts" type="array" fieldtype="one-to-many" cfc="product" fkcolumn="product_id" singularname="subProduct" cascade="delete-orphan">
 	<cfproperty name="relatedProducts" type="array" fieldtype="one-to-many" cfc="related_product" fkcolumn="product_id" singularname="relatedProduct" cascade="delete-orphan">
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="product_id" singularname="review" cascade="delete-orphan">
 	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="product_image" fkcolumn="product_id" singularname="image" cascade="delete-orphan">
