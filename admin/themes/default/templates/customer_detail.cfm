@@ -231,39 +231,36 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Order No.</th>
-									<th>Purchase On</th>
-									<th>Contact</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getOrders()) AND ArrayLen(REQUEST.pageData.customer.getOrders()) NEQ 0>
-									<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
-										<tr>
-											<td>#order.getOrderTrackingNumber()#</td>
-											<td>#order.getCreatedDatetime()#</td>
-											<td>#order.getFirstName()# #order.getMiddleName()# #order.getLastName()#</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
-										</tr>
-									</cfloop>
-								<cfelse>
+						<table class="table table-bordered table-hover">
+						
+							<tr class="default">
+								<th>Order No.</th>
+								<th>Purchase On</th>
+								<th>Contact</th>
+								<th>Action</th>
+							</tr>
+					
+							<cfif NOT IsNull(REQUEST.pageData.customer.getOrders()) AND ArrayLen(REQUEST.pageData.customer.getOrders()) GT 0>
+								<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
 									<tr>
-										<td colspan="6">No result found</td>
+										<td>#order.getOrderTrackingNumber()#</td>
+										<td>#order.getCreatedDatetime()#</td>
+										<td>#order.getFirstName()# #order.getMiddleName()# #order.getLastName()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
 									</tr>
-								</cfif>
-							</tbody>
-							<tfoot>
+								</cfloop>
+							<cfelse>
 								<tr>
-									<th>Order No.</th>
-									<th>Purchase On</th>
-									<th>Contact</th>
-									<th>Action</th>
+									<td colspan="4">No data available</td>
 								</tr>
-							</tfoot>
+							</cfif>
+						
+							<tr class="default">
+								<th>Order No.</th>
+								<th>Purchase On</th>
+								<th>Contact</th>
+								<th>Action</th>
+							</tr>
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
@@ -277,7 +274,7 @@
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
-													<tr>
+													<tr class="warning">
 														<th>ID: #address.getAddressId()#</th>
 														<th>
 															<a addressid="#address.getAddressId()#" href="" class="delete-address pull-right" data-toggle="modal" data-target="##delete-address-modal"><span class="label label-danger">Delete</span></a>
@@ -317,45 +314,42 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
-						<table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Create User</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.customer.getReviews()) AND ArrayLen(REQUEST.pageData.customer.getReviews()) NEQ 0>
-									<cfloop array="#REQUEST.pageData.customer.getReviews()#" index="review">
-										<tr>
-											<td>#review.getSubject()#</td>
-											<td>#review.getMessage()#</td>
-											<td>#review.getRating()#</td>
-											<td>#review.getCreatedDatetime()#</td>
-											<td>#review.getCreatedUser()#</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
-										</tr>
-									</cfloop>
-								<cfelse>
+						<table class="table table-bordered table-hover">
+							
+							<tr class="default">
+								<th>Subject</th>
+								<th>Message</th>
+								<th>Rating</th>
+								<th>Create Datetime</th>
+								<th>Create User</th>
+								<th>Action</th>
+							</tr>
+					
+							<cfif NOT IsNull(REQUEST.pageData.customer.getReviews()) AND ArrayLen(REQUEST.pageData.customer.getReviews()) NEQ 0>
+								<cfloop array="#REQUEST.pageData.customer.getReviews()#" index="review">
 									<tr>
-										<td colspan="6">No result found</td>
+										<td>#review.getSubject()#</td>
+										<td>#review.getMessage()#</td>
+										<td>#review.getRating()#</td>
+										<td>#review.getCreatedDatetime()#</td>
+										<td>#review.getCreatedUser()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
 									</tr>
-								</cfif>
-							</tbody>
-							<tfoot>
+								</cfloop>
+							<cfelse>
 								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Create User</th>
-									<th>Action</th>
+									<td colspan="6">No data available</td>
 								</tr>
-							</tfoot>
+							</cfif>
+						
+							<tr class="default">
+								<th>Subject</th>
+								<th>Message</th>
+								<th>Rating</th>
+								<th>Create Datetime</th>
+								<th>Create User</th>
+								<th>Action</th>
+							</tr>
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
