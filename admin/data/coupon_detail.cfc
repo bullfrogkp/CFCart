@@ -37,6 +37,7 @@
 			<cfset LOCAL.coupon = EntityNew("coupon") />
 			<cfset LOCAL.coupon.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.coupon.setCreatedDatetime(Now()) />
+			<cfset LOCAL.coupon.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
@@ -44,7 +45,7 @@
 			<cfset LOCAL.coupon.setCouponCode(Trim(FORM.coupon_code)) />
 			<cfset LOCAL.coupon.setCouponStatusType(EntityLoadByPK("coupon_status_type", FORM.coupon_status_type_id)) />
 			<cfset LOCAL.coupon.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
-			<cfset LOCAL.coupon.setIsDeleted(false) />
+			
 			<cfif IsDate(Trim(FORM.start_date))>
 				<cfset LOCAL.coupon.setStartDate(Trim(FORM.start_date)) />
 			</cfif>

@@ -44,6 +44,7 @@
 			<cfset LOCAL.product = EntityNew("product") />
 			<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.product.setCreatedDatetime(Now()) />
+			<cfset LOCAL.product.setIsDeleted(false) />
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
 		

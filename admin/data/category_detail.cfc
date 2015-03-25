@@ -38,6 +38,7 @@
 			<cfset LOCAL.category = EntityNew("category")> 
 			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setCreatedDatetime(Now()) />
+			<cfset LOCAL.category.setIsDeleted(false) />
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
 		
@@ -50,7 +51,6 @@
 			<cfset LOCAL.category.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
 			<cfset LOCAL.category.setIsEnabled(FORM.is_enabled) />
-			<cfset LOCAL.category.setIsDeleted(false) />
 			<cfset LOCAL.category.setShowCategoryOnNavigation(FORM.show_category_on_navigation) />
 			<cfset LOCAL.category.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.category.setKeywords(Trim(FORM.keywords)) />

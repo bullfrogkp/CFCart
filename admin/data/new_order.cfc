@@ -33,6 +33,7 @@
 			<cfset LOCAL.order = EntityNew("order") /> 
 			<cfset LOCAL.newOrderTrackingNumber = "OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")#" />
 			<cfset LOCAL.order.setOrderTrackingNumber("#LOCAL.newOrderTrackingNumber##LOCAL.order.getOrderId()#") />
+			<cfset LOCAL.order.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"submit_order")>
