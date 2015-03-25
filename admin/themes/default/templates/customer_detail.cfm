@@ -26,7 +26,7 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="id" id="id" value="#REQUEST.pageData.customer.getCustomerId()#" />
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="address_id" id="address_id" value="" />
 <section class="content">
@@ -57,13 +57,13 @@
 					
 						<dl class="dl-horizontal">
 							<dt>Last Logged In Dateime:</dt>
-							<dd><span class="info-section">#TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")# #DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")#</span></dd>
+							<dd><span class="info-section">#REQUEST.pageData.formData.last_login_datetime#</span></dd>
 							<dt>Last Logged In IP:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.customer.getLastLoginIP()#</span></dd>
+							<dd><span class="info-section">#REQUEST.pageData.formData.last_login_ip#</span></dd>
 							<dt>Created Dateime:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.customer.getCreatedDatetime()#</span></dd>
+							<dd><span class="info-section">#REQUEST.pageData.formData.created_datetime#</span></dd>
 							<dt>Created IP:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.customer.getCreatedUser()#</span></dd>
+							<dd><span class="info-section">#REQUEST.pageData.formData.created_user#</span></dd>
 						</dl>
 						
 						<div class="form-group">
@@ -77,7 +77,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<cfif NOT IsNull(REQUEST.pageData.customer.getShoppingCartProducts()) AND ArrayLen(REQUEST.pageData.customer.getShoppingCartProducts()) NEQ 0>
+									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getShoppingCartProducts()) AND ArrayLen(REQUEST.pageData.customer.getShoppingCartProducts()) NEQ 0>
 										<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
 										<tr>
 											<td>#product.getDisplayName()#</td>
@@ -104,7 +104,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<cfif NOT IsNull(REQUEST.pageData.customer.getBuyLaterProducts()) AND ArrayLen(REQUEST.pageData.customer.getBuyLaterProducts()) NEQ 0>
+									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getBuyLaterProducts()) AND ArrayLen(REQUEST.pageData.customer.getBuyLaterProducts()) NEQ 0>
 										<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
 											<tr>
 												<td>#product.getDisplayName()#</td>
@@ -132,7 +132,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<cfif NOT IsNull(REQUEST.pageData.customer.getWishListProducts()) AND ArrayLen(REQUEST.pageData.customer.getWishListProducts()) NEQ 0>
+									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getWishListProducts()) AND ArrayLen(REQUEST.pageData.customer.getWishListProducts()) NEQ 0>
 										<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
 											<tr>
 												<td>#product.getDisplayName()#</td>
@@ -203,7 +203,7 @@
 								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 								<option value="#group.getCustomerGroupId()#"
 								
-								<cfif NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
+								<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
 								selected
 								</cfif>
 								
@@ -240,7 +240,7 @@
 								<th>Action</th>
 							</tr>
 					
-							<cfif NOT IsNull(REQUEST.pageData.customer.getOrders()) AND ArrayLen(REQUEST.pageData.customer.getOrders()) GT 0>
+							<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getOrders()) AND ArrayLen(REQUEST.pageData.customer.getOrders()) GT 0>
 								<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
 									<tr>
 										<td>#order.getOrderTrackingNumber()#</td>
@@ -268,7 +268,7 @@
 							<label>Address(es)</label>
 							<a href="" data-toggle="modal" data-target="##add-address-modal" style="margin-left:10px;"><span class="label label-primary">Add Address</span></a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNull(REQUEST.pageData.customer.getAddresses())>
+								<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getAddresses())>
 								<cfloop array="#REQUEST.pageData.customer.getAddresses()#" index="address">								
 									<div class="col-xs-3">
 										<div class="box box-warning">
@@ -325,7 +325,7 @@
 								<th>Action</th>
 							</tr>
 					
-							<cfif NOT IsNull(REQUEST.pageData.customer.getReviews()) AND ArrayLen(REQUEST.pageData.customer.getReviews()) NEQ 0>
+							<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getReviews()) AND ArrayLen(REQUEST.pageData.customer.getReviews()) NEQ 0>
 								<cfloop array="#REQUEST.pageData.customer.getReviews()#" index="review">
 									<tr>
 										<td>#review.getSubject()#</td>
