@@ -483,18 +483,22 @@
 												<th>Action</th>
 											</tr>
 									
-											<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
-											<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
+											<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts()) AND ArrayLen(REQUEST.pageData.product.getRelatedProducts()) GT 0>
+												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
+													<tr>
+														<td>#relatedProduct.getProduct().getDisplayName()#</td>
+														<td>#relatedProduct.getProduct().getPrice()#</td>
+														<td>#DateFormat(relatedProduct.getProduct().getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#relatedProduct.getProduct().getSku()#</td>
+														<td>#relatedProduct.getProduct().getIsEnabled()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProduct().getProductId()#">View Detail</a></td>
+														<td><a relatedproductid="#relatedProduct.getRelatedProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
+													</tr>
+												</cfloop>
+											<cfelse>
 												<tr>
-													<td>#relatedProduct.getProduct().getDisplayName()#</td>
-													<td>#relatedProduct.getProduct().getPrice()#</td>
-													<td>#DateFormat(relatedProduct.getProduct().getCreatedDatetime(),"mmm dd,yyyy")#</td>
-													<td>#relatedProduct.getProduct().getSku()#</td>
-													<td>#relatedProduct.getProduct().getIsEnabled()#</td>
-													<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProduct().getProductId()#">View Detail</a></td>
-													<td><a relatedproductid="#relatedProduct.getRelatedProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
+													<td colspan="7">No data available</td>
 												</tr>
-											</cfloop>
 											</cfif>
 										
 											<tr class="default">
@@ -540,16 +544,20 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif NOT IsNull(REQUEST.pageData.product.getReviews())>
-											<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
-											<tr>
-												<td>#review.getSubject()#</td>
-												<td>#review.getMessage()#</td>
-												<td>#review.getRating()#</td>
-												<td>#review.getCreatedDatetime()#</td>
-												<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
-											</tr>
-											</cfloop>
+											<cfif NOT IsNull(REQUEST.pageData.product.getReviews()) AND ArrayLen(REQUEST.pageData.product.getReviews()) GT 0>
+												<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
+												<tr>
+													<td>#review.getSubject()#</td>
+													<td>#review.getMessage()#</td>
+													<td>#review.getRating()#</td>
+													<td>#review.getCreatedDatetime()#</td>
+													<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+												</tr>
+												</cfloop>
+											<cfelse>
+												<tr>
+													<td colspan="5">No data available</td>
+												</tr>
 											</cfif>
 									
 											<tr class="default">

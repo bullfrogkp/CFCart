@@ -257,7 +257,7 @@
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
-													<tr>
+													<tr class="warning">
 														<th>#filter.filterName#</th>
 														<cfif filter.filterName EQ "color">
 														<th></th>
@@ -328,7 +328,7 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif NOT IsNull(REQUEST.pageData.products)>
+											<cfif NOT IsNull(REQUEST.pageData.products) AND ArrayLen(REQUEST.pageData.products) GT 0>
 												<cfloop array="#REQUEST.pageData.products#" index="product">
 													<tr>
 														<td>#product[1].getDisplayName()#</td>
@@ -339,6 +339,10 @@
 														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product[1].getProductId()#">View Detail</a></td>
 													</tr>
 												</cfloop>
+											<cfelse>
+												<tr>
+													<td colspan="6">No data available</td>
+												</tr>
 											</cfif>
 										
 											<tr class="default">
