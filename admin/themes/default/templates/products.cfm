@@ -60,21 +60,21 @@
 				<div class="box box-success">
 					<div class="box-body">
 						<div class="row">
-							<div class="col-xs-2">
+							<div class="col-xs-2" style="padding-right:0;">
 								<input type="text" name="id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"id")>value="#URL.id#"</cfif>>
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-3" style="padding-right:0;padding-left:10px;">
 								<select class="form-control" name="is_enabled">
 									<option value="">All Status</option>
 									<option value="1" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 1>selected</cfif>>Enabled</option>
 									<option value="0" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 0>selected</cfif>>Disabled</option>
 								</select>
 							</div>
-							<div class="col-xs-5">
+							<div class="col-xs-5" style="padding-right:0;padding-left:10px;">
 								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords" <cfif StructKeyExists(URL,"search_keyword")>value="#URL.search_keyword#"</cfif>>
 							</div>
-							<div class="col-xs-2">
-								<button name="search_item" type="submit" class="btn btn-sm btn-primary search-button">Search</button>
+							<div class="col-xs-2" style="padding-left:10px;">
+								<button name="search_category" type="submit" class="btn btn-sm btn-primary search-button pull-right">Search</button>
 							</div>
 						</div>
 					</div>

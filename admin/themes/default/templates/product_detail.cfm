@@ -260,7 +260,7 @@
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr>
+														<tr class="warning">
 															<th>#DollarFormat(price.price)#</th>
 															<th><a grouppriceamount="#price.price#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
@@ -366,7 +366,7 @@
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
-													<tr>
+													<tr class="warning">
 														<th>#attribute.name#<cfif attribute.required> (required)</cfif></th>
 														<cfif attribute.name EQ "color">
 														<th></th>
@@ -416,7 +416,7 @@
 												<div class="box box-info">
 													<div class="box-body table-responsive no-padding">
 														<table class="table table-hover">
-															<tr>
+															<tr class="success">
 																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
 																<th></th>
 																<th>
@@ -471,84 +471,108 @@
 										<a data-toggle="modal" data-target="##add-product-modal" href="" class="btn btn-default btn-sm pull-right" style="margin:10px 10px 0 0">Add New Product</a>
 									</div><!-- /.box-header -->
 									<div class="box-body table-responsive">
-										<table class="table table-bordered table-striped data-table">
-											<thead>
+										<table class="table table-bordered table-hover">
+										
+											<tr class="default">
+												<th>Name</th>
+												<th>Price</th>
+												<th>Create Datetime</th>
+												<th>SKU</th>
+												<th>Status</th>
+												<th>Link</th>
+												<th>Action</th>
+											</tr>
+									
+											<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
+											<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
 												<tr>
-													<th>Name</th>
-													<th>Price</th>
-													<th>Create Datetime</th>
-													<th>SKU</th>
-													<th>Status</th>
-													<th>Link</th>
-													<th>Action</th>
+													<td>#relatedProduct.getProduct().getDisplayName()#</td>
+													<td>#relatedProduct.getProduct().getPrice()#</td>
+													<td>#DateFormat(relatedProduct.getProduct().getCreatedDatetime(),"mmm dd,yyyy")#</td>
+													<td>#relatedProduct.getProduct().getSku()#</td>
+													<td>#relatedProduct.getProduct().getIsEnabled()#</td>
+													<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProduct().getProductId()#">View Detail</a></td>
+													<td><a relatedproductid="#relatedProduct.getRelatedProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
 												</tr>
-											</thead>
-											<tbody>
-												<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts())>
-												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
-													<tr>
-														<td>#relatedProduct.getProduct().getDisplayName()#</td>
-														<td>#relatedProduct.getProduct().getPrice()#</td>
-														<td>#DateFormat(relatedProduct.getProduct().getCreatedDatetime(),"mmm dd,yyyy")#</td>
-														<td>#relatedProduct.getProduct().getSku()#</td>
-														<td>#relatedProduct.getProduct().getIsEnabled()#</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProduct().getProductId()#">View Detail</a></td>
-														<td><a relatedproductid="#relatedProduct.getRelatedProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
-													</tr>
-												</cfloop>
-												</cfif>
-											</tbody>
-											<tfoot>
-												<tr>
-													<th>Name</th>
-													<th>Price</th>
-													<th>Create Datetime</th>
-													<th>SKU</th>
-													<th>Status</th>
-													<th>Link</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
+											</cfloop>
+											</cfif>
+										
+											<tr class="default">
+												<th>Name</th>
+												<th>Price</th>
+												<th>Create Datetime</th>
+												<th>SKU</th>
+												<th>Status</th>
+												<th>Link</th>
+												<th>Action</th>
+											</tr>
 										</table>
+									</div>
+									<div class="box-footer clearfix">
+										<ul class="pagination pagination-sm no-margin pull-right">
+											<li><a href="##">&laquo;</a></li>
+											<li><a href="##">1</a></li>
+											<li><a href="##">2</a></li>
+											<li><a href="##">3</a></li>
+											<li><a href="##">&raquo;</a></li>
+										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
-						<table class="table table-bordered table-striped data-table">
-							<thead>
-								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<cfif NOT IsNull(REQUEST.pageData.product.getReviews())>
-								<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
-								<tr>
-									<td>#review.getSubject()#</td>
-									<td>#review.getMessage()#</td>
-									<td>#review.getRating()#</td>
-									<td>#review.getCreatedDatetime()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
-								</tr>
-								</cfloop>
-								</cfif>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Subject</th>
-									<th>Message</th>
-									<th>Rating</th>
-									<th>Create Datetime</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
-						</table>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="box box-primary">
+									<div class="box-header">
+										<h3 class="box-title">Related Products</h3>
+										<a data-toggle="modal" data-target="##add-product-modal" href="" class="btn btn-default btn-sm pull-right" style="margin:10px 10px 0 0">Add New Product</a>
+									</div><!-- /.box-header -->
+									<div class="box-body table-responsive">
+										<table class="table table-bordered table-hover">
+										
+											<tr class="default">
+												<th>Subject</th>
+												<th>Message</th>
+												<th>Rating</th>
+												<th>Create Datetime</th>
+												<th>Action</th>
+											</tr>
+										
+											<cfif NOT IsNull(REQUEST.pageData.product.getReviews())>
+											<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
+											<tr>
+												<td>#review.getSubject()#</td>
+												<td>#review.getMessage()#</td>
+												<td>#review.getRating()#</td>
+												<td>#review.getCreatedDatetime()#</td>
+												<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+											</tr>
+											</cfloop>
+											</cfif>
+									
+											<tr class="default">
+												<th>Subject</th>
+												<th>Message</th>
+												<th>Rating</th>
+												<th>Create Datetime</th>
+												<th>Action</th>
+											</tr>
+										</table>
+									</div>
+									<div class="box-footer clearfix">
+										<ul class="pagination pagination-sm no-margin pull-right">
+											<li><a href="##">&laquo;</a></li>
+											<li><a href="##">1</a></li>
+											<li><a href="##">2</a></li>
+											<li><a href="##">3</a></li>
+											<li><a href="##">&raquo;</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<div class="form-group">
