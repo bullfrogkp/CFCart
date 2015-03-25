@@ -33,6 +33,7 @@
 			<cfset LOCAL.customerGroup = EntityNew("customer_group") />
 			<cfset LOCAL.customerGroup.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.customerGroup.setCreatedDatetime(Now()) />
+			<cfset LOCAL.customerGroup.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
