@@ -66,11 +66,15 @@
 			<cfset LOCAL.pageData.title = "New Newsletter | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
-			<cfset LOCAL.pageData.formData.subject = "" />
-			<cfset LOCAL.pageData.formData.display_name = "" />
-			<cfset LOCAL.pageData.formData.content = "" />
-			<cfset LOCAL.pageData.formData.type = "" />
-			<cfset LOCAL.pageData.formData.id = "" />
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.subject = "" />
+				<cfset LOCAL.pageData.formData.display_name = "" />
+				<cfset LOCAL.pageData.formData.content = "" />
+				<cfset LOCAL.pageData.formData.type = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />

@@ -66,17 +66,26 @@
 			<cfset LOCAL.pageData.customerGroup = EntityLoadByPK("customer_group", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customerGroup.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.group_name = isNull(LOCAL.pageData.customerGroup.getDisplayName())?"":LOCAL.pageData.customerGroup.getDisplayName() />
+				<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.customerGroup.getDiscountType())?"":LOCAL.pageData.customerGroup.getDiscountType().getDiscountTypeId() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
+			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.customerGroup = EntityNew("customer_group") />
 			<cfset LOCAL.pageData.title = "New Customer Group | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
-		</cfif>
-		
-		<cfif IsDefined("SESSION.temp.formData")>
-			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-		<cfelse>
-			<cfset LOCAL.pageData.formData.group_name = isNull(LOCAL.pageData.customerGroup.getDisplayName())?"":LOCAL.pageData.customerGroup.getDisplayName() />
-			<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.customerGroup.getDiscountType())?"":LOCAL.pageData.customerGroup.getDiscountType().getDiscountTypeId() />
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.group_name = "" />
+				<cfset LOCAL.pageData.formData.discount_type_id = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
