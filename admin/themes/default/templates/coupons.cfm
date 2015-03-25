@@ -50,15 +50,21 @@
 							<th>Action</th>
 						</tr>
 					
-						<cfloop array="#REQUEST.pageData.coupons#" index="coupon">
+						<cfif ArrayLen(REQUEST.pageData.coupons) GT 0>
+							<cfloop array="#REQUEST.pageData.coupons#" index="coupon">
+								<tr>
+									<td>#coupon.getCouponCode()#</td>
+									<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
+									<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
+									<td>#coupon.getCouponStatusType().getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/coupon_detail.cfm?id=#coupon.getCouponId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
+						<cfelse>
 							<tr>
-								<td>#coupon.getCouponCode()#</td>
-								<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
-								<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
-								<td>#coupon.getCouponStatusType().getDisplayName()#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/coupon_detail.cfm?id=#coupon.getCouponId()#">View Detail</a></td>
+								<td colspan="5">No data available</td>
 							</tr>
-						</cfloop>
+						</cfif>
 				
 						<tr class="default">
 							<th>Code</th>

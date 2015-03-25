@@ -48,22 +48,30 @@
 							<th>Action</th>
 						</tr>
 					
-						<cfloop array="#REQUEST.pageData.reviews#" index="review">
+						<cfif ArrayLen(REQUEST.pageData.reviews) GT 0>
+							<cfloop array="#REQUEST.pageData.reviews#" index="review">
+								<tr>
+									<td>#review.getSubject()#</td>
+									<td>#review.getProduct().getDisplayName()#</td>
+									<td>#review.getMessage()#</td>
+									<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+									<td>
+										<cfswitch expression="#review.getReviewStatusType().getDisplayName()#">
+											<cfcase value="Approved"><span class="label label-success">Approved</span></cfcase>
+											<cfcase value="Denied"><span class="label label-danger">Denied</span></cfcase>
+											<cfcase value="Pending"><span class="label label-warning">Pending</span></cfcase>
+										</cfswitch>
+									</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
+						<cfelse>
 							<tr>
-								<td>#review.getSubject()#</td>
-								<td>#review.getProduct().getDisplayName()#</td>
-								<td>#review.getMessage()#</td>
-								<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-								<td>
-									<cfswitch expression="#review.getReviewStatusType().getDisplayName()#">
-										<cfcase value="Approved"><span class="label label-success">Approved</span></cfcase>
-										<cfcase value="Denied"><span class="label label-danger">Denied</span></cfcase>
-										<cfcase value="Pending"><span class="label label-warning">Pending</span></cfcase>
-									</cfswitch>
-								</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+								<td colspan="7">No data available</td>
 							</tr>
-						</cfloop>
+						</cfif>
+				
+					
 					
 						<tr class="default">
 							<th>Subject</th>

@@ -54,17 +54,25 @@
 								<th>Action</th>
 							</tr>
 						
-							<cfloop array="#REQUEST.pageData.orders#" index="order">
+							<cfif ArrayLen(REQUEST.pageData.orders) GT 0>
+								<cfloop array="#REQUEST.pageData.orders#" index="order">
+									<tr>
+										<td>#order.getOrderTrackingNumber()#</td>
+										<td>#order.getCustomer().getEmail()#</td>
+										<td>#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#</td>
+										<td>#DateFormat(order.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+										<td>#isNull(EntityLoad("order_status",{order = order, current = true}, true))?"":EntityLoad("order_status",{order = order, current = true}, true).getOrderStatusType().getDisplayName()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#&active_tab_id=tab_4">Invoice</a></td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
+									</tr>
+								</cfloop>
+							<cfelse>
 								<tr>
-									<td>#order.getOrderTrackingNumber()#</td>
-									<td>#order.getCustomer().getEmail()#</td>
-									<td>#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#</td>
-									<td>#DateFormat(order.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-									<td>#isNull(EntityLoad("order_status",{order = order, current = true}, true))?"":EntityLoad("order_status",{order = order, current = true}, true).getOrderStatusType().getDisplayName()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#&active_tab_id=tab_4">Invoice</a></td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
+									<td colspan="7">No data available</td>
 								</tr>
-							</cfloop>
+							</cfif>
+						
+							
 						
 							<tr class="default">
 								<th>Order No.</th>

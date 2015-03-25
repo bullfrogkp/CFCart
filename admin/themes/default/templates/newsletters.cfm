@@ -52,16 +52,23 @@
 								<th>Action</th>
 							</tr>
 						
-							<cfloop array="#REQUEST.pageData.newsletters#" index="newsletter">
-							<tr>
-								<td>#newsletter.getDisplayName()#</td>
-								<td>#newsletter.getCreatedDatetime()#</td>
-								<td>#newsletter.getUpdatedDatetime()#</td>
-								<td>#newsletter.getSubject()#</td>
-								<td>#newsletter.getType()#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
-							</tr>
-							</cfloop>
+							<cfif ArrayLen(REQUEST.pageData.newsletters) GT 0>
+								<cfloop array="#REQUEST.pageData.newsletters#" index="newsletter">
+								<tr>
+									<td>#newsletter.getDisplayName()#</td>
+									<td>#newsletter.getCreatedDatetime()#</td>
+									<td>#newsletter.getUpdatedDatetime()#</td>
+									<td>#newsletter.getSubject()#</td>
+									<td>#newsletter.getType()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
+								</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="6">No data available</td>
+								</tr>
+							</cfif>
+							
 					
 							<tr class="default">
 								<th>Name</th>

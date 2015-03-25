@@ -25,16 +25,22 @@
 							<th>Amount</th>
 							<th>Action</th>
 						</tr>
-					
-						<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
+						
+						<cfif ArrayLen(REQUEST.pageData.discountTypes) GT 0>
+							<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
+								<tr>
+									<td>#type.getDisplayName()#</td>
+									<td>#type.getCalculationType().getDisplayName()#</td>
+									<td>#type.getAmount()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm?id=#type.getDiscountTypeId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
+						<cfelse>
 							<tr>
-								<td>#type.getDisplayName()#</td>
-								<td>#type.getCalculationType().getDisplayName()#</td>
-								<td>#type.getAmount()#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm?id=#type.getDiscountTypeId()#">View Detail</a></td>
+								<td colspan="4">No data available</td>
 							</tr>
-						</cfloop>
-					
+						</cfif>
+						
 						<tr class="default">
 							<th>Name</th>
 							<th>Calculation Type</th>
