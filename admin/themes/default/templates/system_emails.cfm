@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		System Emails
+		Newsletters
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">System Emails</li>
+		<li class="active">Newsletters</li>
 	</ol>
 </section>
 <section class="content">
@@ -38,7 +38,7 @@
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Newsletters</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New System Email</a>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Newsletter</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
@@ -49,7 +49,8 @@
 								<th>Date Updated</th>
 								<th>Subject</th>
 								<th>Type</th>
-								<th>Action</th>
+								<th style="width:40px;">Status</th>
+								<th style="width:110px;">Action</th>
 							</tr>
 						
 							<cfif ArrayLen(REQUEST.pageData.newsletters) GT 0>
@@ -60,6 +61,12 @@
 									<td>#newsletter.getUpdatedDatetime()#</td>
 									<td>#newsletter.getSubject()#</td>
 									<td>#newsletter.getType()#</td>
+									<td>
+										<cfswitch expression="#newsletter.getIsEnabled()#">
+											<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+											<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+										</cfswitch>
+									</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
@@ -68,6 +75,7 @@
 									<td colspan="6">No data available</td>
 								</tr>
 							</cfif>
+							
 					
 							<tr class="default">
 								<th>Name</th>
@@ -75,6 +83,7 @@
 								<th>Date Updated</th>
 								<th>Subject</th>
 								<th>Type</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						

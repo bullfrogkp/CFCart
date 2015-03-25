@@ -13,6 +13,7 @@
 			<cfset LOCAL.newsletter = EntityNew("newsletter") />
 			<cfset LOCAL.newsletter.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.newsletter.setCreatedDatetime(Now()) />
+			<cfset LOCAL.newsletter.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
@@ -21,7 +22,7 @@
 			<cfset LOCAL.newsletter.setSubject(Trim(FORM.subject)) />
 			<cfset LOCAL.newsletter.setContent(Trim(FORM.content)) />
 			<cfset LOCAL.newsletter.setType(Trim(FORM.type)) />
-			<cfset LOCAL.newsletter.setIsDeleted(false) />
+			<cfset LOCAL.newsletter.setIsEnabled(FORM.is_enabled) />
 			
 			<cfset EntitySave(LOCAL.newsletter) />
 			
@@ -61,6 +62,7 @@
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.newsletter.getDisplayName())?"":LOCAL.pageData.newsletter.getDisplayName() />
 				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.newsletter.getContent())?"":LOCAL.pageData.newsletter.getContent() />
 				<cfset LOCAL.pageData.formData.type = isNull(LOCAL.pageData.newsletter.getType())?"":LOCAL.pageData.newsletter.getType() />
+				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.newsletter.getIsEnabled())?"":LOCAL.pageData.newsletter.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
@@ -74,6 +76,7 @@
 				<cfset LOCAL.pageData.formData.display_name = "" />
 				<cfset LOCAL.pageData.formData.content = "" />
 				<cfset LOCAL.pageData.formData.type = "" />
+				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>

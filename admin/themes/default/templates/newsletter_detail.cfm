@@ -52,6 +52,13 @@
 						</select>
 					</div>
 					<div class="form-group">
+						<label>Status</label>
+						<select class="form-control" name="is_enabled">
+							<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ 1>selected</cfif>>Enabled</option>
+							<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ 0>selected</cfif>>Disabled</option>
+						</select>
+					</div>
+					<div class="form-group">
 						<label>Content</label>
 						<textarea name="content" id="content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.content#</textarea>
 					</div>

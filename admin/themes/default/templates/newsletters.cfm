@@ -49,7 +49,8 @@
 								<th>Date Updated</th>
 								<th>Subject</th>
 								<th>Type</th>
-								<th>Action</th>
+								<th style="width:40px;">Status</th>
+								<th style="width:110px;">Action</th>
 							</tr>
 						
 							<cfif ArrayLen(REQUEST.pageData.newsletters) GT 0>
@@ -60,6 +61,12 @@
 									<td>#newsletter.getUpdatedDatetime()#</td>
 									<td>#newsletter.getSubject()#</td>
 									<td>#newsletter.getType()#</td>
+									<td>
+										<cfswitch expression="#newsletter.getIsEnabled()#">
+											<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+											<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+										</cfswitch>
+									</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
@@ -76,6 +83,7 @@
 								<th>Date Updated</th>
 								<th>Subject</th>
 								<th>Type</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						

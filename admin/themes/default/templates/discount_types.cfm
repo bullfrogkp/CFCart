@@ -23,7 +23,7 @@
 							<th>Name</th>
 							<th>Calculation Type</th>
 							<th>Amount</th>
-							<th>Action</th>
+							<th style="width:110px;">Action</th>
 						</tr>
 						
 						<cfif ArrayLen(REQUEST.pageData.discountTypes) GT 0>

@@ -46,8 +46,8 @@
 							<th>Code</th>
 							<th>Date Start</th>
 							<th>Date Expire</th>
-							<th>Status</th>
-							<th>Action</th>
+							<th style="width:40px;">Status</th>
+							<th style="width:110px;">Action</th>
 						</tr>
 					
 						<cfif ArrayLen(REQUEST.pageData.coupons) GT 0>
@@ -56,7 +56,13 @@
 									<td>#coupon.getCouponCode()#</td>
 									<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
 									<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
-									<td>#coupon.getCouponStatusType().getDisplayName()#</td>
+									<td>
+										<cfswitch expression="#coupon.getCouponStatusType().getDisplayName()#">
+											<cfcase value="active"><span class="label label-success">Active</span></cfcase>
+											<cfcase value="expired"><span class="label label-danger">Expired</span></cfcase>
+											<cfcase value="used"><span class="label label-primary">Used</span></cfcase>
+										</cfswitch>
+									</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/coupon_detail.cfm?id=#coupon.getCouponId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
