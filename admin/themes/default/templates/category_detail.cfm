@@ -6,10 +6,7 @@
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
-	
 		CKEDITOR.replace('custom_design');
-		$("##products_table").dataTable();
-		
 		$("##uploader").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
@@ -294,7 +291,6 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
-							<label>HTML Code</label>
 							<textarea name="custom_design" id="custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.custom_design#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
@@ -321,43 +317,49 @@
 							<div class="col-xs-12">
 								<div class="box">
 									<div class="box-body table-responsive">
-										<table id="products_table" class="table table-bordered table-striped">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Price</th>
-													<th>Create Datetime</th>
-													<th>SKU</th>
-													<th>Status</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<cfif NOT IsNull(REQUEST.pageData.products)>
-													<cfloop array="#REQUEST.pageData.products#" index="product">
-														<tr>
-															<td>#product[1].getDisplayName()#</td>
-															<td>#product[1].getPrice()#</td>
-															<td>#DateFormat(product[1].getCreatedDatetime(),"mmm dd,yyyy")#</td>
-															<td>#product[1].getSku()#</td>
-															<td>#product[1].getIsEnabled()#</td>
-															<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product[1].getProductId()#">View Detail</a></td>
-														</tr>
-													</cfloop>
-												</cfif>
-											</tbody>
-											<tfoot>
-												<tr>
-													<th>Name</th>
-													<th>Price</th>
-													<th>Create Datetime</th>
-													<th>SKU</th>
-													<th>Status</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
+										<table class="table table-bordered table-hover">
+											
+											<tr class="default">
+												<th>Name</th>
+												<th>Price</th>
+												<th>Create Datetime</th>
+												<th>SKU</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										
+											<cfif NOT IsNull(REQUEST.pageData.products)>
+												<cfloop array="#REQUEST.pageData.products#" index="product">
+													<tr>
+														<td>#product[1].getDisplayName()#</td>
+														<td>#product[1].getPrice()#</td>
+														<td>#DateFormat(product[1].getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#product[1].getSku()#</td>
+														<td>#product[1].getIsEnabled()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product[1].getProductId()#">View Detail</a></td>
+													</tr>
+												</cfloop>
+											</cfif>
+										
+											<tr class="default">
+												<th>Name</th>
+												<th>Price</th>
+												<th>Create Datetime</th>
+												<th>SKU</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
 										</table>
 									</div><!-- /.box-body -->
+									<div class="box-footer clearfix">
+										<ul class="pagination pagination-sm no-margin pull-right">
+											<li><a href="##">&laquo;</a></li>
+											<li><a href="##">1</a></li>
+											<li><a href="##">2</a></li>
+											<li><a href="##">3</a></li>
+											<li><a href="##">&raquo;</a></li>
+										</ul>
+									</div>
 								</div><!-- /.box -->
 							</div>
 						</div>
