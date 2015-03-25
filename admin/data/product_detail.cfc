@@ -349,11 +349,13 @@
 		<cfelseif StructKeyExists(FORM,"delete_related_product")>
 		
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.id) />
-			<cfset LOCAL.relatedProduct = EntityLoadByPK("related_product",FORM.delete_related_product_id) />
+			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.delete_related_product_id) />
 			
 			<cfset LOCAL.product.removeRelatedProduct(LOCAL.relatedProduct) />
+			<cfset LOCAL.relatedProduct.removeRelatedParentProduct(LOCAL.product) />
 			
 			<cfset EntitySave(LOCAL.product) />
+			<cfset EntitySave(LOCAL.relatedProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
 			

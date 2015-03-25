@@ -483,13 +483,18 @@
 											<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts()) AND ArrayLen(REQUEST.pageData.product.getRelatedProducts()) GT 0>
 												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
 													<tr>
-														<td>#relatedProduct.getProduct().getDisplayName()#</td>
-														<td>#relatedProduct.getProduct().getPrice()#</td>
-														<td>#DateFormat(relatedProduct.getProduct().getCreatedDatetime(),"mmm dd,yyyy")#</td>
-														<td>#relatedProduct.getProduct().getSku()#</td>
-														<td>#relatedProduct.getProduct().getIsEnabled()#</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProduct().getProductId()#">View Detail</a></td>
-														<td><a relatedproductid="#relatedProduct.getRelatedProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
+														<td>#relatedProduct.getDisplayName()#</td>
+														<td>#relatedProduct.getPrice()#</td>
+														<td>#DateFormat(relatedProduct.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+														<td>#relatedProduct.getSku()#</td>
+														<td>
+															<cfswitch expression="#relatedProduct.getIsEnabled()#">
+																<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+																<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+															</cfswitch>
+														</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProductId()#">View Detail</a></td>
+														<td><a relatedproductid="#relatedProduct.getProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
 													</tr>
 												</cfloop>
 											<cfelse>
