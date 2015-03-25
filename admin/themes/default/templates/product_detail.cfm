@@ -409,36 +409,33 @@
 								<label>Attribute Value(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
 								
-								<cfif NOT IsNull(REQUEST.pageData.subProductArray)>
+								<cfif NOT IsNull(REQUEST.pageData.product.getSubProducts())>
 									<div id="attributes" class="row" style="margin-top:10px;">
-										<cfloop array="#REQUEST.pageData.subProductArray#" index="subProduct">					
+										<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 											<div class="col-xs-3">
 												<div class="box box-info">
 													<div class="box-body table-responsive no-padding">
 														<table class="table table-hover">
 															<tr class="success">
-																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#subProduct.productId#">ID: #subProduct.productId#</a></th>
+																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></th>
 																<th></th>
 																<th>
-																	<a subproductid="#subProduct.productId#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-primary">delete</span></a>
-																	<!---
-																	<a subproductid="#subProduct.productId#" href="" class="add-attribute-value pull-right" data-toggle="modal" data-target="##add-attribute-value-modal"><span class="label label-primary">update</span></a>
-																	--->
+																	<a subproductid="#p.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-primary">delete</span></a>
 																</th>
 															</tr>
 															
-															<cfloop array="#subProduct.optionValues#" index="optionValue">
+															<cfloop array="#p.getAttributeValues()#" index="optionValue">
 															<tr style="background-color:##f9f9f9;">
-																<td>#LCase(optionValue.attributeName)#</td>
-																<td>#optionValue.optionValue#</td>
+																<td>#LCase(optionValue.getAttribute().getDisplayName())#</td>
+																<td>#optionValue.getValue()#</td>
 																<td>
-																<cfif optionValue.attributeName EQ "color">
-																	<cfif optionValue.imageName NEQ "">
+																<cfif optionValue.getAttribute().getDisplayName() EQ "color">
+																	<cfif optionValue.getImageName() NEQ "">
 																		<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
-																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.attributeId#/#optionValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
+																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.getAttribute().getAttributeId()#/#optionValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
 																		</div>
 																	<cfelse>
-																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.optionValue#;display:inline-block;vertical-align:middle"></div>
+																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.getValue()#;display:inline-block;vertical-align:middle"></div>
 																	</cfif>
 																</cfif>
 																</td>
@@ -446,11 +443,11 @@
 															</cfloop>
 															<tr>
 																<td>price</td>
-																<td colspan="2">#subProduct.price#</td>
+																<td colspan="2">#p.getPrice()#</td>
 															</tr>
 															<tr>
 																<td>stock</td>
-																<td colspan="2">#subProduct.stock#</td>
+																<td colspan="2">#p.getStock()#</td>
 															</tr>
 														</table>
 													</div><!-- /.box-body -->

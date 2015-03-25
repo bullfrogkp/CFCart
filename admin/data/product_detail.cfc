@@ -297,7 +297,9 @@
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.newProduct) />
+			
 			<cfset LOCAL.product.addSubProduct(LOCAL.newProduct) />
+			
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New attribute value has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
@@ -331,14 +333,15 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
 		
 		<cfelseif StructKeyExists(FORM,"add_related_product")>
+						
 			
-			<cfset LOCAL.relatedProduct = EntityNew("related_product") />
-			<cfset LOCAL.relatedProduct.setProduct(EntityLoadByPK("product",FORM.new_related_product_id)) />
-			
-			<cfset EntitySave(LOCAL.relatedProduct) />
+			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
 			
 			<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+			<cfset LOCAL.relatedProduct.addRelatedParentProduct(LOCAL.product) />
+			
 			<cfset EntitySave(LOCAL.product) />
+			<cfset EntitySave(LOCAL.relatedProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
@@ -387,44 +390,6 @@
 				<cfset LOCAL.productService.setAttributeSetId(LOCAL.pageData.product.getAttributeSet().getAttributeSetId()) />
 				<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributeAndValues() />
 				<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
-			
-				<cfset LOCAL.productService.removeProductId() />
-				<cfset LOCAL.productService.setParentProductId(URL.id) />
-				<cfset LOCAL.pageData.subProducts = LOCAL.productService.getProducts() />
-				
-				<cfset LOCAL.pageData.subProductArray = [] />
-				
-				<cfloop array="#LOCAL.pageData.subProducts#" index="LOCAL.subProduct">
-					<cfset LOCAL.productService.setProductId(LOCAL.subProduct.getProductId()) />
-					<cfset LOCAL.pageData.subProductAttributes = LOCAL.productService.getProductAttributeAndValues() />
-					
-					<cfset LOCAL.subProductStruct = {} />
-					<cfset LOCAL.subProductStruct.productId = LOCAL.subProduct.getProductId() />
-					
-					<cfset LOCAL.subProductStruct.optionValues = [] />
-
-					<cfloop array="#LOCAL.pageData.subProductAttributes#" index="LOCAL.attribute">		
-						<cfif LOCAL.attribute.required AND ArrayLen(LOCAL.attribute.attributeValueArray) EQ 1>
-						
-							<cfset LOCAL.optionValue = {} />
-							<cfset LOCAL.optionValue.attributeId = LOCAL.attribute.attributeId />
-							<cfset LOCAL.optionValue.attributeName = LOCAL.attribute.attributeName />
-							<cfset LOCAL.optionValue.optionValue = LOCAL.attribute.attributeValueArray[1].value />
-							<cfset LOCAL.optionValue.imageName = LOCAL.attribute.attributeValueArray[1].imageName />
-						
-							<cfset ArrayAppend(LOCAL.subProductStruct.optionValues, LOCAL.optionValue) />
-						</cfif>
-					</cfloop>
-					
-					<cfset LOCAL.subProductStruct.price = LOCAL.subProduct.getPrice() />
-					<cfif NOT IsNull(LOCAL.subProduct.getStock())>
-						<cfset LOCAL.subProductStruct.stock = LOCAL.subProduct.getStock() />
-					<cfelse>
-						<cfset LOCAL.subProductStruct.stock = 0 />
-					</cfif>
-					
-					<cfset ArrayAppend(LOCAL.pageData.subProductArray, LOCAL.subProductStruct) />
-				</cfloop>
 			</cfif>
 			
 			<cfif IsDefined("SESSION.temp.formData")>
