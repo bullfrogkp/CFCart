@@ -31,14 +31,15 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.discountType = EntityLoadByPK("discount_type", FORM.id)> 
+		<cfelse>
+			<cfset LOCAL.discountType = EntityNew("discount_type") />
+			<cfset LOCAL.discountType.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.discountType.setCreatedDatetime(Now()) />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.discountType = EntityLoadByPK("discount_type", FORM.id)> 
-			<cfelse>
-				<cfset LOCAL.discountType = EntityNew("discount_type") />
-				<cfset LOCAL.discountType.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.discountType.setCreatedDatetime(Now()) />
-			</cfif>
 			
 			<cfset LOCAL.discountType.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.discountType.setCalculationType(EntityLoadByPK("calculation_type",FORM.calculation_type_id)) />
@@ -47,8 +48,8 @@
 			<cfset EntitySave(LOCAL.discountType) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Discount type has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.discountType.getDiscountTypeId()#" />
+			
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -76,10 +77,14 @@
 			<cfset LOCAL.pageData.title = "New Discount Type | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
-			<cfset LOCAL.pageData.formData.display_name = "" />
-			<cfset LOCAL.pageData.formData.amount = "" />
-			<cfset LOCAL.pageData.formData.id = "" />
-			<cfset LOCAL.pageData.formData.calculation_type_id = "" />
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.display_name = "" />
+				<cfset LOCAL.pageData.formData.amount = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
+				<cfset LOCAL.pageData.formData.calculation_type_id = "" />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />

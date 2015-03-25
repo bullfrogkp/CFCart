@@ -15,8 +15,8 @@
 			<cfset EntitySave(LOCAL.review) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Review has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.review.getReviewId()#" />
+			
 		</cfif>
 		
 		<cfreturn LOCAL />	

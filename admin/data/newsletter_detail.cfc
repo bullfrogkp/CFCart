@@ -7,14 +7,15 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.newsletter = EntityLoadByPK("newsletter", FORM.id)> 
+		<cfelse>
+			<cfset LOCAL.newsletter = EntityNew("newsletter") />
+			<cfset LOCAL.newsletter.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.newsletter.setCreatedDatetime(Now()) />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.newsletter = EntityLoadByPK("newsletter", FORM.id)> 
-			<cfelse>
-				<cfset LOCAL.newsletter = EntityNew("newsletter") />
-				<cfset LOCAL.newsletter.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.newsletter.setCreatedDatetime(Now()) />
-			</cfif>
 			
 			<cfset LOCAL.newsletter.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.newsletter.setSubject(Trim(FORM.subject)) />
@@ -25,17 +26,17 @@
 			<cfset EntitySave(LOCAL.newsletter) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Newsletter has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.newsletter.getNewsletterId()#" />
+			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.newsletter = EntityLoadByPK("newsletter", FORM.id)>
+			
 			<cfset LOCAL.newsletter.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.newsletter) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Newsletter '#LOCAL.newsletter.getSubject()#' has been deleted.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/newsletters.cfm" />
+			
 		</cfif>
 		
 		<cfreturn LOCAL />	

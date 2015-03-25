@@ -27,15 +27,16 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group", FORM.id)> 
+		<cfelse>
+			<cfset LOCAL.customerGroup = EntityNew("customer_group") />
+			<cfset LOCAL.customerGroup.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.customerGroup.setCreatedDatetime(Now()) />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group", FORM.id)> 
-			<cfelse>
-				<cfset LOCAL.customerGroup = EntityNew("customer_group") />
-				<cfset LOCAL.customerGroup.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.customerGroup.setCreatedDatetime(Now()) />
-			</cfif>
-			
+		
 			<cfset LOCAL.customerGroup.setGroupName(Trim(FORM.group_name)) />
 			<cfset LOCAL.customerGroup.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
 			
@@ -45,7 +46,7 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.customerGroup.getCustomerGroupId()#" />
 		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group", FORM.id)>
+			
 			<cfset LOCAL.customerGroup.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.customerGroup) />

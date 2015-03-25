@@ -31,14 +31,15 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)> 
+		<cfelse>
+			<cfset LOCAL.coupon = EntityNew("coupon") />
+			<cfset LOCAL.coupon.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.coupon.setCreatedDatetime(Now()) />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif IsNumeric(FORM.id)>
-				<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)> 
-			<cfelse>
-				<cfset LOCAL.coupon = EntityNew("coupon") />
-				<cfset LOCAL.coupon.setCreatedUser(SESSION.adminUser) />
-				<cfset LOCAL.coupon.setCreatedDatetime(Now()) />
-			</cfif>
 			
 			<cfset LOCAL.coupon.setCouponCode(Trim(FORM.coupon_code)) />
 			<cfset LOCAL.coupon.setCouponStatusType(EntityLoadByPK("coupon_status_type", FORM.coupon_status_type_id)) />
@@ -54,17 +55,17 @@
 			<cfset EntitySave(LOCAL.coupon) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Coupon has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.coupon.getCouponId()#" />
+			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)>
+			
 			<cfset LOCAL.coupon.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.coupon) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Coupon #LOCAL.coupon.getCode()# has been deleted.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/coupons.cfm" />
+			
 		</cfif>
 		
 		<cfreturn LOCAL />	
