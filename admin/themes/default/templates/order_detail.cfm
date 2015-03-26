@@ -181,7 +181,6 @@
 										<div class="box-body">
 											<div class="form-group">
 												<table class="table table-bordered table-striped">
-												
 													<tr>
 														<th>Status</th>
 														<th>Create Datetime</th>
@@ -189,32 +188,22 @@
 														<th>Comment</th>
 													</tr>
 												
+													<cfloop array="#product.getOrderStatus()#" index="status">
 													<tr>
-														<td>Order Placed</td>
-														<td>2014 Dec 27 02:15:27</td>
-														<td>2014 Dec 27 02:15:27</td>
-														<td></td>
+														<td>#status.getOrderStatusType().getDisplayName()#</td>
+														<td>#DateFormat(status.getStartDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getStartDatetime(),"hh:mm:ss")#</td>
+														<td>#DateFormat(status.getEndDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getEndDatetime(),"hh:mm:ss")#</td>
+														<td>#status.getComments()#</td>
 													</tr>
-													<tr>
-														<td>Pending Shipment</td>
-														<td>2014 Dec 27 02:15:27</td>
-														<td>2015 Jan 02 08:25:02</td>
-														<td></td>
-													</tr>
-													<tr>
-														<td>Shipped</td>
-														<td>2015 Jan 02 08:25:02</td>
-														<td></td>
-														<td></td>
-													</tr>
-												
+													</cfloop>
 												</table>
 											</div>
 											<div class="form-group">
-												<select class="form-control" name="parent_category_id">
+												<select class="form-control" name="order_status_type_id">
 													<option value="">Please Select Status...</option>
-													<option value="0">Shipped</option>
-													<option value="">Preparing</option>
+													<cfloop array="#REQUEST.pageData.orderStatusTypes#" index="type">
+														<option value="#type.getOrderStatusTypeId()#">#type.getDisplayName()#</option>
+													</cfloop>
 												</select>
 											</div>
 											<div class="form-group">
@@ -280,24 +269,23 @@
 									<div class="box-body">
 										<div class="form-group">
 											<table class="table table-bordered table-striped">
-												<thead>
-													<tr>
-														<th>Status</th>
-														<th>Create Datetime</th>
-														<th>End Datetime</th>
-														<th>Comments</th>
-													</tr>
-												</thead>
-												<tbody>
-													<cfloop array="#product.getOrderProductStatus()#" index="status">
-													<tr>
-														<td>#status.getOrderProductStatusType().getDisplayName()#</td>
-														<td>#DateFormat(status.getStartDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getStartDatetime(),"hh:mm:ss")#</td>
-														<td>#DateFormat(status.getEndDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getEndDatetime(),"hh:mm:ss")#</td>
-														<td>#status.getComments()#</td>
-													</tr>
-													</cfloop>
-												</tbody>
+											
+												<tr>
+													<th>Status</th>
+													<th>Create Datetime</th>
+													<th>End Datetime</th>
+													<th>Comments</th>
+												</tr>
+										
+												<cfloop array="#product.getOrderProductStatus()#" index="status">
+												<tr>
+													<td>#status.getOrderProductStatusType().getDisplayName()#</td>
+													<td>#DateFormat(status.getStartDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getStartDatetime(),"hh:mm:ss")#</td>
+													<td>#DateFormat(status.getEndDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getEndDatetime(),"hh:mm:ss")#</td>
+													<td>#status.getComments()#</td>
+												</tr>
+												</cfloop>
+												
 											</table>
 										</div>
 										<div class="form-group">
