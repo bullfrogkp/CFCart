@@ -7,6 +7,7 @@
 		
 		<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
 		
+		<cfset LOCAL.customerService.setIsDeleted(false) />
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.customerService.setCustomerId(URL.id) />
 		</cfif>
