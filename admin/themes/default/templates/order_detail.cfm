@@ -188,7 +188,7 @@
 														<th>Comment</th>
 													</tr>
 												
-													<cfloop array="#product.getOrderStatus()#" index="status">
+													<cfloop array="#REQUEST.pageData.order.getOrderStatus()#" index="status">
 													<tr>
 														<td>#status.getOrderStatusType().getDisplayName()#</td>
 														<td>#DateFormat(status.getStartDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getStartDatetime(),"hh:mm:ss")#</td>
