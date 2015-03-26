@@ -404,8 +404,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/attributes.cfm"><i class="fa fa-angle-double-right"></i> Attribute</a></li>		
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/attributes.cfm"><i class="fa fa-angle-double-right"></i> Attributes</a></li>		
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_sets.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>		
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/filters.cfm"><i class="fa fa-angle-double-right"></i> Filters</a></li>		
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/filter_groups.cfm"><i class="fa fa-angle-double-right"></i> Filter Groups</a></li>	
 								<li><a href="#APPLICATION.absoluteUrlWeb#admin/order_status_types.cfm"><i class="fa fa-angle-double-right"></i> Order Status Types</a></li>								
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/order_product_status_types.cfm"><i class="fa fa-angle-double-right"></i> Product Status Types</a></li>		
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment</a></li>	
