@@ -61,8 +61,8 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		$('##from_date').datepicker();
-		$('##to_date').datepicker();
+		$('##special_price_from_date').datepicker();
+		$('##special_price_to_date').datepicker();
 				
 		$( ".add-new-attribute-option" ).click(function() {
 			$("##new_attribute_option_attribute_id").val($(this).attr('attributeid'));
@@ -301,7 +301,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date" id="from_date" value="#REQUEST.pageData.formData.from_date#"/>
+								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -310,7 +310,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date" id="to_date" value="#REQUEST.pageData.formData.to_date#"/>
+								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -650,7 +650,7 @@
 			</div><!-- nav-tabs-custom -->
 			<div class="form-group">
 				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
-				<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Product</button>
+				<button type="button" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>
 			</div>
 		</div><!-- /.col -->
 		
@@ -786,8 +786,25 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
+
+<!-- DELETE ENTITY MODAL -->
+<div class="modal fade" id="delete-current-entity-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this product?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_item" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
+<!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
 <div class="modal fade" id="add-attribute-option-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

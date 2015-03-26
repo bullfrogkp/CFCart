@@ -31,6 +31,10 @@
 				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getProductId()#' " />
 			</cfif>
 			
+			<cfif NOT IsNull(getIsDeleted())>
+				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getIsDeleted()#' " />
+			</cfif>
+			
 			<cfif NOT IsNull(getParentProductId())>
 				<cfset LOCAL.qry = LOCAL.qry & "and p.parentProduct.parentProductId = '#getParentProductId()#' " />
 			<cfelse>
@@ -54,6 +58,9 @@
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
+			</cfif>
+			<cfif NOT IsNull(getIsDeleted())>
+				<cfset LOCAL.filter.isDeleted = getIsDeleted() />
 			</cfif>
 
 			<cfset LOCAL.products = EntityLoad('product',LOCAL.filter)> 
