@@ -19,13 +19,13 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="##tab_1" data-toggle="tab">Information</a></li>
-					<li><a href="##tab_2" data-toggle="tab">Tracking</a></li>
-					<li><a href="##tab_3" data-toggle="tab">Status</a></li>
-					<li><a href="##tab_4" data-toggle="tab">Invoice</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Information</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Tracking</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Product Status</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane active" id="tab_1">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						<section class="content">
 							<div class="row">
 								<div class="col-md-6">
@@ -208,7 +208,7 @@
 						</section><!-- /.content -->
 						
 					</div>
-					<div class="tab-pane" id="tab_2">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 					
 						<div class="form-group">
 							<label>Shipping Tracking Number</label>
@@ -217,7 +217,7 @@
 						<button name="save_shipping_tracking_number" type="submit" class="btn btn-primary">Submit</button>
 						
 					</div>
-					<div class="tab-pane" id="tab_3">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="row">
 						<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 							<div class="col-lg-6"> 
@@ -250,24 +250,24 @@
 											</table>
 										</div>
 										<div class="form-group">
-											<select class="form-control" name="order_status_type_id">
+											<select class="form-control" name="order_product_status_type_id">
 												<option value="">Please Select...</option>
-												<cfloop array="#REQUEST.pageData.orderStatusTypes#" index="type">
-													<option value="#type.getOrderStatusTypeId()#">#type.getDisplayName()#</option>
+												<cfloop array="#REQUEST.pageData.orderProductStatusTypes#" index="type">
+													<option value="#type.getOrderProductStatusTypeId()#">#type.getDisplayName()#</option>
 												</cfloop>
 											</select>
 										</div>
 										<div class="form-group">
 											<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..."></textarea>
 										</div>
-										<button type="submit" class="btn btn-primary">Save Status</button>
+										<button name="save_product_status" type="submit" class="btn btn-primary">Save Status</button>
 									</div>
 								</div><!-- /.box (chat box) -->   
 							</div>
 						</cfloop>
 						</div>
 					</div>
-					<div class="tab-pane" id="tab_4">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<!-- Main content -->
 						<section class="content invoice">
 							<!-- title row -->
