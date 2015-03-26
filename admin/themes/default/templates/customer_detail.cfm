@@ -370,8 +370,8 @@
 			</div><!-- nav-tabs-custom -->
 			<div class="form-group">
 				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Customer</button>
-				<button name="add_order" type="submit" class="btn btn-primary top-nav-button">Add Order</button>
-				<button name="delete_item" type="submit" class="btn btn-danger pull-right top-nav-button #REQUEST.pageData.deleteButtonClass#">Delete Customer</button>
+				<a href="" class="btn btn-primary top-nav-button">Add Order</a>
+				<button type="button" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Customer</button>
 			</div>
 		</div><!-- /.col -->
 		
@@ -435,6 +435,21 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_address" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE ENTITY MODAL -->
+<div class="modal fade" id="delete-current-entity-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this customer?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_item" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
