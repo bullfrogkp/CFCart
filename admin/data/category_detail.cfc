@@ -42,7 +42,7 @@
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
 		
-		<cfif StructKeyExists(FORM,"save_category")>
+		<cfif StructKeyExists(FORM,"save_item")>
 			
 			<cfif FORM.parent_category_id NEQ "">
 				<cfset LOCAL.category.setParentCategory(EntityLoadByPK("category",FORM.parent_category_id)) />
@@ -98,7 +98,7 @@
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		
-		<cfelseif StructKeyExists(FORM,"delete_category")>
+		<cfelseif StructKeyExists(FORM,"delete_item")>
 		
 			<cfset LOCAL.category.setIsDeleted(true) />
 			

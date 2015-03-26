@@ -7,6 +7,7 @@
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		
+		<cfset LOCAL.categoryService.setIsDeleted(false) />
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.categoryService.setCategoryId(URL.category_id) />
 		</cfif>

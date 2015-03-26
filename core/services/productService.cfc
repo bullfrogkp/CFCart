@@ -32,7 +32,7 @@
 			</cfif>
 			
 			<cfif NOT IsNull(getIsDeleted())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getIsDeleted()#' " />
+				<cfset LOCAL.qry = LOCAL.qry & "and p.is_deleted = '#getIsDeleted()#' " />
 			</cfif>
 			
 			<cfif NOT IsNull(getParentProductId())>

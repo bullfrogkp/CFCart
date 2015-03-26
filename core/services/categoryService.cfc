@@ -22,6 +22,9 @@
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
 			</cfif>
+			<cfif NOT IsNull(getIsDeleted())>
+				<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
+			</cfif>
 			
 			<cfset LOCAL.categories = ORMExecuteQuery(LOCAL.qry)> 
 		<cfelse>
@@ -31,6 +34,9 @@
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
+			</cfif>
+			<cfif NOT IsNull(getIsDeleted())>
+				<cfset LOCAL.filter.isDeleted = getIsDeleted() />
 			</cfif>
 			
 			<cfset LOCAL.categories = EntityLoad('category',LOCAL.filter)> 
