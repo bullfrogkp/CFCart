@@ -125,8 +125,6 @@
 			
 			<cfset EntitySave(LOCAL.order) /> 
 			
-			<cfset SESSION.temp.formData = Duplicate(FORM) />
-			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New product has been added.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
 		</cfif>
@@ -153,7 +151,7 @@
 					<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
 				</cfif>
 			<cfelse>
-				<cfset LOCAL.pageData.formData.id = LOCAL.pageData.order.getOrderId() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
 				<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.order.getFirstName())?"":LOCAL.pageData.order.getFirstName() />
 				<cfset LOCAL.pageData.formData.middle_name = isNull(LOCAL.pageData.order.getMiddleName())?"":LOCAL.pageData.order.getMiddleName() />
 				<cfset LOCAL.pageData.formData.last_name = isNull(LOCAL.pageData.order.getLastName())?"":LOCAL.pageData.order.getLastName() />
@@ -193,35 +191,42 @@
 				</cfif>
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.formData.id = "" />
-			<cfset LOCAL.pageData.formData.first_name = "" />
-			<cfset LOCAL.pageData.formData.middle_name = "" />
-			<cfset LOCAL.pageData.formData.last_name = "" />
-			<cfset LOCAL.pageData.formData.phone = "" />
-			<cfset LOCAL.pageData.formData.coupon_code = "" />
-			<cfset LOCAL.pageData.formData.comments = "" />
-			<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
-			
-			<cfset LOCAL.pageData.formData.shipping_company = "" />
-			<cfset LOCAL.pageData.formData.shipping_street = "" />
-			<cfset LOCAL.pageData.formData.shipping_city = "" />
-			<cfset LOCAL.pageData.formData.shipping_province_id = "" />
-			<cfset LOCAL.pageData.formData.shipping_postal_code = "" />
-			<cfset LOCAL.pageData.formData.shipping_country_id = "" />
-			
-			<cfset LOCAL.pageData.formData.billing_company = "" />
-			<cfset LOCAL.pageData.formData.billing_street = "" />
-			<cfset LOCAL.pageData.formData.billing_city = "" />
-			<cfset LOCAL.pageData.formData.billing_province_id = "" />
-			<cfset LOCAL.pageData.formData.billing_postal_code = "" />
-			<cfset LOCAL.pageData.formData.billing_country_id = "" />
-			
-			<cfset LOCAL.pageData.formData.payment_method_id = "" />
-			
-			<cfset LOCAL.pageData.formData.subtotal_amount = 0 />
-			<cfset LOCAL.pageData.formData.shipping_amount = 0 />
-			<cfset LOCAL.pageData.formData.tax_amount = 0 />
-			<cfset LOCAL.pageData.formData.total_amount = 0 />
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+				<cfif NOT StructKeyExists(FORM,"same_as_shipping_address")>
+					<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
+				</cfif>
+			<cfelse>
+				<cfset LOCAL.pageData.formData.id = "" />
+				<cfset LOCAL.pageData.formData.first_name = "" />
+				<cfset LOCAL.pageData.formData.middle_name = "" />
+				<cfset LOCAL.pageData.formData.last_name = "" />
+				<cfset LOCAL.pageData.formData.phone = "" />
+				<cfset LOCAL.pageData.formData.coupon_code = "" />
+				<cfset LOCAL.pageData.formData.comments = "" />
+				<cfset LOCAL.pageData.formData.same_as_shipping_address = "" />
+				
+				<cfset LOCAL.pageData.formData.shipping_company = "" />
+				<cfset LOCAL.pageData.formData.shipping_street = "" />
+				<cfset LOCAL.pageData.formData.shipping_city = "" />
+				<cfset LOCAL.pageData.formData.shipping_province_id = "" />
+				<cfset LOCAL.pageData.formData.shipping_postal_code = "" />
+				<cfset LOCAL.pageData.formData.shipping_country_id = "" />
+				
+				<cfset LOCAL.pageData.formData.billing_company = "" />
+				<cfset LOCAL.pageData.formData.billing_street = "" />
+				<cfset LOCAL.pageData.formData.billing_city = "" />
+				<cfset LOCAL.pageData.formData.billing_province_id = "" />
+				<cfset LOCAL.pageData.formData.billing_postal_code = "" />
+				<cfset LOCAL.pageData.formData.billing_country_id = "" />
+				
+				<cfset LOCAL.pageData.formData.payment_method_id = "" />
+				
+				<cfset LOCAL.pageData.formData.subtotal_amount = 0 />
+				<cfset LOCAL.pageData.formData.shipping_amount = 0 />
+				<cfset LOCAL.pageData.formData.tax_amount = 0 />
+				<cfset LOCAL.pageData.formData.total_amount = 0 />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
