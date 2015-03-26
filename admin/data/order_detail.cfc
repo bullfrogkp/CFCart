@@ -27,7 +27,7 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfif StructKeyExists(FORM,"save_status")>
+		<cfif StructKeyExists(FORM,"save_order_status")>
 			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id)> 
 			
 			<cfset LOCAL.currentStatus = EntityLoad("order_status",{orderId = FORM.id, current = true}, true) />

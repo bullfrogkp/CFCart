@@ -220,7 +220,7 @@
 											<div class="form-group">
 												<textarea class="form-control" rows="8" placeholder="Comments..."></textarea>
 											</div>
-											<button type="submit" class="btn btn-primary">Submit</button>
+											<button name="save_order_status" type="submit" class="btn btn-primary">Save Status</button>
 										</div>
 									</div><!-- /.box (chat box) -->   
 								</section><!-- /.Left col -->
