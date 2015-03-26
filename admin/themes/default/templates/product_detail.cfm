@@ -66,7 +66,16 @@
 				
 		$( ".add-new-attribute-option" ).click(function() {
 			$("##new_attribute_option_attribute_id").val($(this).attr('attributeid'));
-		});
+			
+			if($(this).attr('attributename') == 'color')
+			{
+				$('##new_attribute_option').colorpicker();
+			}
+			else
+			{
+				$('##new_attribute_option').unbind();
+			}
+		});		
 		
 		$( ".delete-attribute-option" ).click(function() {
 			$("##deleted_attribute_value_id").val($(this).attr('attributevalueid'));
@@ -145,7 +154,6 @@
 			</cfif>
 			
 		});
-		
 	});
 </script>
 
@@ -371,7 +379,7 @@
 														<cfif attribute.name EQ "color">
 														<th></th>
 														</cfif>
-														<th><a attributeid="#attribute.attributeId#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a attributeid="#attribute.attributeId#" attributename="#LCase(attribute.name)#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#attribute.attributeValueArray#" index="attributeValue">

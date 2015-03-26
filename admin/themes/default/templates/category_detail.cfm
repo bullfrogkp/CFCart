@@ -110,7 +110,7 @@
 		$( ".add-filter-value" ).click(function() {
 			$("##new_value_filter_id").val($(this).attr('filterid'));
 			
-			if($(this).attr('filterid') == 1)
+			if($(this).attr('filtername') == 'color')
 			{
 				$('##new_filter_value').colorpicker();
 			}
@@ -262,7 +262,7 @@
 														<cfif filter.filterName EQ "color">
 														<th></th>
 														</cfif>
-														<th><a filterid="#filter.filterId#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a filterid="#filter.filterId#" filtername="#LCase(filter.filterName)#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#filter.filterValues#" index="filterValue">
