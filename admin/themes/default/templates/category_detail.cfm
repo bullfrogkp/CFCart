@@ -373,7 +373,7 @@
 		
 			<div class="form-group">
 				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Category</button>
-				<button type="button" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Category</button>
+				<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Category</button>
 			</div>
 		</div><!-- /.col -->
 	</div>   <!-- /.row -->

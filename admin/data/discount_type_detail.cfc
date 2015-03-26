@@ -37,6 +37,7 @@
 			<cfset LOCAL.discountType = EntityNew("discount_type") />
 			<cfset LOCAL.discountType.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.discountType.setCreatedDatetime(Now()) />
+			<cfset LOCAL.discountType.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
@@ -50,6 +51,13 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Discount type has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.discountType.getDiscountTypeId()#" />
 			
+		<cfelseif StructKeyExists(FORM,"delete_item")>
+			<cfset LOCAL.discountType.setIsDeleted(false) />
+			
+			<cfset EntitySave(LOCAL.discountType) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Discount type has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/discount_types.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

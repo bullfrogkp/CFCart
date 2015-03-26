@@ -98,10 +98,26 @@
 						</div><!-- /.input group -->
 					</div><!-- /.form group -->
 					<button type="submit" name="save_item" class="btn btn-primary">Submit</button>
+					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Customer</button>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+<!-- DELETE ENTITY MODAL -->
+<div class="modal fade" id="delete-current-entity-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this coupon?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_item" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
