@@ -85,9 +85,6 @@
 			
 			<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
 			
-			<cfset LOCAL.customer = EntityLoad("customer",{name="admin"},true) />
-			<cfset LOCAL.order.setCustomer(LOCAL.customer) />
-			
 			<cfset EntitySave(LOCAL.order) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />

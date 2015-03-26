@@ -45,6 +45,7 @@
 					<table class="table table-bordered table-hover">
 						
 							<tr class="default">
+								<th>ID</th>
 								<th>Order No.</th>
 								<th>Email</th>
 								<th>Name</th>
@@ -57,9 +58,18 @@
 							<cfif ArrayLen(REQUEST.pageData.orders) GT 0>
 								<cfloop array="#REQUEST.pageData.orders#" index="order">
 									<tr>
+										<td>#order.getOrderId()#</td>
 										<td>#order.getOrderTrackingNumber()#</td>
-										<td>#order.getCustomer().getEmail()#</td>
-										<td>#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#</td>
+										<td>
+											<cfif NOT IsNull(order.getCustomer())>
+												#order.getCustomer().getEmail()#
+											</cfif>
+										</td>
+										<td>
+											<cfif NOT IsNull(order.getCustomer())>
+												#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#
+											</cfif>
+										</td>
 										<td>#DateFormat(order.getCreatedDatetime(),"mmm dd,yyyy")#</td>
 										<td>#isNull(EntityLoad("order_status",{order = order, current = true}, true))?"":EntityLoad("order_status",{order = order, current = true}, true).getOrderStatusType().getDisplayName()#</td>
 										<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#&active_tab_id=tab_4">Invoice</a></td>
@@ -72,9 +82,8 @@
 								</tr>
 							</cfif>
 						
-							
-						
 							<tr class="default">
+								<th>ID</th>
 								<th>Order No.</th>
 								<th>Email</th>
 								<th>Name</th>
