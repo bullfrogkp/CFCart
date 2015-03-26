@@ -134,7 +134,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<table class="table table-bordered table-striped">
-												<thead>
+												
 													<th>Product</th>
 													<th>Original Price</th>
 													<th>Price</th>
@@ -146,8 +146,7 @@
 													<th>Shipping Amount</th>
 													<th>Tax Percentage</th>
 													<th>Row Total</th>
-												</thead>
-												<tbody>
+												
 													<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 														<tr>
 															<td>
@@ -165,7 +164,7 @@
 															<td>#product.getShippingAmount() + product.getSubtotalAmount() + product.getTaxAmount()#</td>
 														</tr>
 													</cfloop>
-												</tbody>
+												
 											</table>
 										</div>
 									</div><!-- /.box (chat box) -->   
@@ -173,6 +172,58 @@
 							</div><!-- /.row (main row) -->
 							
 							<div class="row">
+								<section class="col-lg-6"> 
+									<div class="box box-primary">
+										<div class="box-header">
+											<h3 class="box-title">Status</h3>
+										</div><!-- /.box-header -->
+										
+										<div class="box-body">
+											<div class="form-group">
+												<table class="table table-bordered table-striped">
+												
+													<tr>
+														<th>Status</th>
+														<th>Create Datetime</th>
+														<th>End Datetime</th>
+														<th>Comment</th>
+													</tr>
+												
+													<tr>
+														<td>Order Placed</td>
+														<td>2014 Dec 27 02:15:27</td>
+														<td>2014 Dec 27 02:15:27</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>Pending Shipment</td>
+														<td>2014 Dec 27 02:15:27</td>
+														<td>2015 Jan 02 08:25:02</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>Shipped</td>
+														<td>2015 Jan 02 08:25:02</td>
+														<td></td>
+														<td></td>
+													</tr>
+												
+												</table>
+											</div>
+											<div class="form-group">
+												<select class="form-control" name="parent_category_id">
+													<option value="">Please Select Status...</option>
+													<option value="0">Shipped</option>
+													<option value="">Preparing</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<textarea class="form-control" rows="8" placeholder="Comments..."></textarea>
+											</div>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+									</div><!-- /.box (chat box) -->   
+								</section><!-- /.Left col -->
 								<!-- right col (We are only adding the ID to make the widgets sortable)-->
 								<section class="col-lg-6"> 
 									<div class="box box-primary">
@@ -251,14 +302,14 @@
 										</div>
 										<div class="form-group">
 											<select class="form-control" name="order_product_status_type_id">
-												<option value="">Please Select...</option>
+												<option value="">Please Select Status...</option>
 												<cfloop array="#REQUEST.pageData.orderProductStatusTypes#" index="type">
 													<option value="#type.getOrderProductStatusTypeId()#">#type.getDisplayName()#</option>
 												</cfloop>
 											</select>
 										</div>
 										<div class="form-group">
-											<textarea name="comments" class="form-control" rows="8" placeholder="Enter ..."></textarea>
+											<textarea name="comments" class="form-control" rows="8" placeholder="Comments ..."></textarea>
 										</div>
 										<button name="save_product_status" type="submit" class="btn btn-primary">Save Status</button>
 									</div>
