@@ -33,17 +33,18 @@
 			<cfset LOCAL.currentStatus = EntityLoad("order_status",{order = LOCAL.order, current = true}, true) />
 			
 			<cfset LOCAL.currentStatus.setEndDatetime(Now()) />
+			<cfset LOCAL.currentStatus.setCurrent(false) />
 			<cfset EntitySave(LOCAL.currentStatus) />
 			
 			<cfset LOCAL.newStatus = EntityNew("order_status") />
 			<cfset LOCAL.newStatus.setOrder(LOCAL.order) />
-			<cfset LOCAL.newStatus.setOrderStatusType(EntityLoad("order_status_type", FORM.order_status_type_id)) />
+			<cfset LOCAL.newStatus.setOrderStatusType(EntityLoadByPK("order_status_type", FORM.order_status_type_id)) />
 			<cfset LOCAL.newStatus.setStartDatetime(LOCAL.currentStatus.getEndDatetime()) />
 			<cfset LOCAL.newStatus.setCurrent(true) />
 			<cfset LOCAL.newStatus.setComments(Trim(FORM.comments)) />
 			<cfset EntitySave(LOCAL.newStatus) />
 			
-			<cfset LOCAL.order.addStatus(LOCAL.newStatus) />
+			<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
 			
 			<cfset EntitySave(LOCAL.order) />
 			

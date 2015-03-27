@@ -418,6 +418,7 @@
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
                             </ul>
                         </li>
+						<!---
 						<li class="treeview">
                             <a href="##">
                                 <i class="fa fa-bar-chart-o"></i>
@@ -431,6 +432,7 @@
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/"><i class="fa fa-angle-double-right"></i> Reviews</a></li>
                             </ul>
                         </li>
+							--->
 						 <li>
                             <a href="#CGI.SCRIPT_NAME#?logout">
                                 <i class="fa fa-user"></i> <span>Logout</span>
