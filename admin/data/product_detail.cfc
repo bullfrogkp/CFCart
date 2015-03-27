@@ -90,7 +90,7 @@
 			</cfif>
 			
 			<cfif FORM.attribute_set_id NEQ "">
-				<cfif FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
+				<cfif NOT IsNull(LOCAL.product.getAttributeSet()) AND FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
 					<cfset LOCAL.product.removeAttributeValues() />
 				</cfif>
 				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
