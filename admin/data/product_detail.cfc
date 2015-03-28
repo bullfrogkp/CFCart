@@ -220,6 +220,7 @@
 			<cfset LOCAL.newAttributeValue.setProduct(LOCAL.product) />
 			<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",FORM.new_attribute_option_attribute_id)) />
 			<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option)) />
+			<cfset LOCAL.newAttributeValue.setDisplayName(Trim(FORM.new_attribute_option_name)) />
 			
 			<cfset LOCAL.filename = Trim(FORM.new_attribute_option_attachment) />
 							

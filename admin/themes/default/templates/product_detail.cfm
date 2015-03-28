@@ -375,28 +375,26 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th>#attribute.name#<cfif attribute.required> (required)</cfif></th>
-														<cfif attribute.name EQ "color">
-														<th></th>
-														</cfif>
+														<th colspan="2">#attribute.name#<cfif attribute.required> (required)</cfif></th>
 														<th><a attributeid="#attribute.attributeId#" attributename="#LCase(attribute.name)#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
 													<tr>
-														<td>#attributeValue.value#</td>
-														<cfif attribute.name EQ "color">
+														<td>#attributeValue.name#</td>
 														<td>
 															<cfif attributeValue.imageName NEQ "">
 																<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
 																	<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
 																</div>
 															<cfelse>
-																<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
+																<cfif attribute.name EQ "color">
+																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
+																<cfelse>
+																	#attributeValue.value#
+																</cfif>
 															</cfif>
 														</td>
-														</cfif>
-														
 														<td>
 															<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 														</td>
@@ -713,6 +711,9 @@
 			</div>
 		
 			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_attribute_option_name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Attribute Name">
+				</div>
 				<div class="form-group">
 					<input id="new_attribute_option" name="new_attribute_option" type="text" class="form-control" placeholder="Attribute option">
 				</div>	

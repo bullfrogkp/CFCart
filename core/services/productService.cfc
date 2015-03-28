@@ -119,7 +119,7 @@
 			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
 			
 			 <cfquery name="LOCAL.getAttributeValues">
-				SELECT	av.attribute_value_id, av.value, av.image_name
+				SELECT	av.attribute_value_id, av.value, av.image_name, av.display_name
 				FROM	attribute_value av
 				WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 				AND		av.attribute_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.getAttributes.attribute_id#" />
@@ -130,6 +130,7 @@
 				<cfset LOCAL.attributeValueStruct.attributeValueId = LOCAL.getAttributeValues.attribute_value_id />
 				<cfset LOCAL.attributeValueStruct.imageName = LOCAL.getAttributeValues.image_name />
 				<cfset LOCAL.attributeValueStruct.value = LOCAL.getAttributeValues.value />
+				<cfset LOCAL.attributeValueStruct.name = LOCAL.getAttributeValues.display_name />
 				<cfset ArrayAppend(LOCAL.attributeStruct.attributeValueArray, LOCAL.attributeValueStruct) />
 			</cfloop>
 			
