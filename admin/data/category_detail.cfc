@@ -124,6 +124,7 @@
 			
 			<cfset LOCAL.filterValue = EntityNew("filter_value") />
 			<cfset LOCAL.filterValue.setValue(FORM.new_filter_value) />
+			<cfset LOCAL.filterValue.setDisplayName(FORM.new_filter_display_name) />
 			<cfset EntitySave(LOCAL.filterValue) />
 			
 			<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />

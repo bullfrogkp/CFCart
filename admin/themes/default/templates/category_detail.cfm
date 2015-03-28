@@ -259,21 +259,20 @@
 												<table class="table table-hover">
 													<tr class="warning">
 														<th>#filter.filterName#</th>
-														<cfif filter.filterName EQ "color">
 														<th></th>
-														</cfif>
 														<th><a filterid="#filter.filterId#" filtername="#LCase(filter.filterName)#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#filter.filterValues#" index="filterValue">
 													<tr>
-														<td>#filterValue.getValue()#</td>
-														<cfif filter.filterName EQ "color">
+														<td>#filterValue.getDisplayName()#</td>
 														<td>
+														<cfif filter.filterName EQ "color">
 															<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
-														</td>
+														<cfelse>
+															#filterValue.getValue()#
 														</cfif>
-														
+														</td>
 														<td>
 															<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
 														</td>
@@ -386,8 +385,10 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title"> Add New Option</h4>
 			</div>
-		
 			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_filter_display_name" name="new_filter_display_name" type="text" class="form-control" placeholder="Name">
+				</div>
 				<div class="form-group">
 					<input id="new_filter_value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
 				</div>
