@@ -433,7 +433,7 @@
 															<cfloop array="#p.getAttributeValues()#" index="optionValue">
 															<tr style="background-color:##f9f9f9;">
 																<td>#LCase(optionValue.getAttribute().getDisplayName())#</td>
-																<td>#optionValue.getValue()#</td>
+																<td>#optionValue.getDisplayName()#</td>
 																<td>
 																<cfif optionValue.getAttribute().getDisplayName() EQ "color">
 																	<cfif optionValue.getImageName() NEQ "">
@@ -820,8 +820,8 @@
 							<select class="form-control<cfif attribute.name EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#attribute.attributeId#">
 								<option value="">#attribute.name#</option>
 								<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-									<option value="#attributeValue.value#" imagename="#attributeValue.imageName#">
-										#attributeValue.value#
+									<option value="#attributeValue.attributeValueId#" imagename="#attributeValue.imageName#">
+										#attributeValue.name#
 									</option>
 								</cfloop>
 							</select>
