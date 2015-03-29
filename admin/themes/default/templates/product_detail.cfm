@@ -384,12 +384,12 @@
 														<td>#attributeValue.name#</td>
 														<td>
 															<cfif attributeValue.imageName NEQ "">
-																<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
+																<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
 																	<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
 																</div>
 															<cfelse>
 																<cfif attribute.name EQ "color">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;display:inline-block;vertical-align:middle"></div>
+																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;margin-top:3px;"></div>
 																<cfelse>
 																	#attributeValue.value#
 																</cfif>
@@ -437,11 +437,11 @@
 																<td>
 																<cfif optionValue.getAttribute().getDisplayName() EQ "color">
 																	<cfif optionValue.getImageName() NEQ "">
-																		<div style="width:14px;height:14px;border:1px solid ##CCC;display:inline-block;vertical-align:middle">
+																		<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
 																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.getAttribute().getAttributeId()#/#optionValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
 																		</div>
 																	<cfelse>
-																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.getValue()#;display:inline-block;vertical-align:middle"></div>
+																		<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.getValue()#;margin-top:3px;"></div>
 																	</cfif>
 																</cfif>
 																</td>
