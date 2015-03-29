@@ -426,7 +426,7 @@
 																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></th>
 																<th></th>
 																<th>
-																	<a subproductid="#p.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-primary">delete</span></a>
+																	<a subproductid="#p.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-danger">Delete</span></a>
 																</th>
 															</tr>
 															
