@@ -629,7 +629,7 @@
 													<cfoutput>
 													<tr>
 														<td>#s.shipping_method_name#</td>
-														<td>#s.default_price#</td>
+														<td>#DollarFormat(s.default_price)#</td>
 														<td>
 															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
 

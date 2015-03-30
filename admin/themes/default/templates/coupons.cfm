@@ -46,6 +46,7 @@
 							<th>Code</th>
 							<th>Date Start</th>
 							<th>Date Expire</th>
+							<th>Threshold</th>
 							<th style="width:40px;">Status</th>
 							<th style="width:110px;">Action</th>
 						</tr>
@@ -56,6 +57,7 @@
 									<td>#coupon.getCouponCode()#</td>
 									<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
 									<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
+									<td>#DollarFormat(coupon.getThresholdAmount())#</td>
 									<td>
 										<cfswitch expression="#coupon.getCouponStatusType().getDisplayName()#">
 											<cfcase value="active"><span class="label label-success">Active</span></cfcase>
@@ -76,6 +78,7 @@
 							<th>Code</th>
 							<th>Date Start</th>
 							<th>Date Expire</th>
+							<th>Threshold</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>

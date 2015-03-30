@@ -43,6 +43,7 @@
 		<cfif StructKeyExists(FORM,"save_item")>
 			
 			<cfset LOCAL.coupon.setCouponCode(Trim(FORM.coupon_code)) />
+			<cfset LOCAL.coupon.setThresholdAmount(Trim(FORM.threshold_amount)) />
 			<cfset LOCAL.coupon.setCouponStatusType(EntityLoadByPK("coupon_status_type", FORM.coupon_status_type_id)) />
 			<cfset LOCAL.coupon.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
 			
@@ -87,6 +88,7 @@
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.coupon_code = isNull(LOCAL.pageData.coupon.getCouponCode())?"":LOCAL.pageData.coupon.getCouponCode() />
+				<cfset LOCAL.pageData.formData.threshold_amount = isNull(LOCAL.pageData.coupon.getThresholdAmount())?"":LOCAL.pageData.coupon.getThresholdAmount() />
 				<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":DateFormat(LOCAL.pageData.coupon.getStartDate(),"mm/dd/yyyy") />
 				<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":DateFormat(LOCAL.pageData.coupon.getEndDate(),"mm/dd/yyyy") />
 				<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
@@ -100,6 +102,7 @@
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.coupon_code = "" />
+				<cfset LOCAL.pageData.formData.threshold_amount = "" />
 				<cfset LOCAL.pageData.formData.start_date = "" />
 				<cfset LOCAL.pageData.formData.end_date = "" />
 				<cfset LOCAL.pageData.formData.discount_type_id = "" />
