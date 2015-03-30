@@ -353,7 +353,6 @@
 		
 		<cfelseif StructKeyExists(FORM,"delete_related_product")>
 		
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.id) />
 			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.delete_related_product_id) />
 			
 			<cfset LOCAL.product.removeRelatedProduct(LOCAL.relatedProduct) />
@@ -365,6 +364,16 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
+		
+		<cfelseif StructKeyExists(FORM,"edit_default_price")>
+			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", FORM.product_shipping_method_rela_id) />
+			<cfset LOCAL.productShippingMethodRela.setDefaultPrice(FORM.new_default_price) />
+			
+			<cfset EntitySave(LOCAL.productShippingMethodRela) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Default price has been updated.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_8" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -447,7 +456,7 @@
 				<cfset LOCAL.pageData.formData.weight = "" />
 			</cfif>
 		</cfif>
-	<cfdump var="#LOCAL.pageData.shippingMethods#" abort>
+	
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	

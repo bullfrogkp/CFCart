@@ -93,6 +93,10 @@
 			$("##deleted_group_price_amount").val($(this).attr('grouppriceamount'));
 		});
 		
+		$( ".edit-default-price" ).click(function() {
+			$("##product_shipping_method_rela_id").val($(this).attr('productshippingmethodrelaid'));
+		});
+		
 		
 		$( ".new-attribute-option-value-attribute-id" ).change(function() {
 			$("##new_attribute_imagename").val($(this).find(":selected").attr('imagename'));
@@ -178,6 +182,7 @@
 <input type="hidden" name="delete_related_product_id" id="delete_related_product_id" value="" />
 <input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
+<input type="hidden" name="product_shipping_method_rela_id" id="product_shipping_method_rela_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -607,20 +612,20 @@
 							<label>Weight</label>
 							<input name="weight" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.weight#"/>
 						</div>
+						</cfoutput>
 						<div class="form-group">
 							<label>Shipping Methods</label>
 							<div class="row" style="margin-top:10px;">
 								<cfset s = REQUEST.pageData.shippingMethods />
-								<cfoutput query="s " group="shipping_carrier_name">						
+								<cfoutput query="s" group="shipping_carrier_name">						
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
+														<th colspan="3"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
 														<th style="width:40px;">#s.shipping_carrier_name#</th>
 													</tr>
-													
 													<cfoutput>
 													<tr>
 														<td>#s.shipping_method_name#</td>
@@ -629,10 +634,15 @@
 															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
 
 															<cfif IsNumeric(s.product_shipping_method_rela_id)>
-															checked
+																checked
 															</cfif>
 
 															/>
+														</td>
+														<td>
+															<cfif IsNumeric(s.product_shipping_method_rela_id)>
+																<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price" href="" data-toggle="modal" data-target="##edit-default-price-modal"><span class="label label-primary">Edit</span></a>
+															</cfif>
 														</td>
 													</tr>
 													</cfoutput>
@@ -643,6 +653,7 @@
 								</cfoutput>
 							</div>
 						</div>
+						<cfoutput>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
@@ -800,6 +811,29 @@
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_item" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- EDIT DEFAULT PRICE MODAL -->
+<div class="modal fade" id="edit-default-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Edit Default Price</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_default_price" name="new_default_price" type="text" class="form-control" placeholder="Default Price">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="edit_default_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Update</button>
+			</div>
+		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
