@@ -3,6 +3,10 @@
 <script>
 	$(document).ready(function() {
 		CKEDITOR.replace('content');
+		
+		$( ".delete-related-product" ).click(function() {
+			$("##related_product_id").val($(this).attr('relatedproductid'));
+		});
 	});
 </script>
 <section class="content-header">
@@ -18,6 +22,7 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
+<input type="hidden" name="related_product_id" id="related_product_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -52,12 +57,12 @@
 													<tr class="warning">
 														<th>#product.getDisplayName()#</th>
 														<th>
-															<a productid="#product.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a>
+															<a relatedproductid="#product.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a>
 														</th>
 													</tr>
 													<tr>
 														<td colspan="2">
-															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#img.getName()#" />
+															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#EntityLoad("product_image",{isDefault = true},true).getName()#" />
 														</td>
 													</tr>
 												</table>
@@ -69,8 +74,7 @@
 						</cfif>
 					</div>
 					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Newsletter</button>
-						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Newsletter</button>
+						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Group</button>
 					</div>
 				</div><!-- /.box-body -->
 				

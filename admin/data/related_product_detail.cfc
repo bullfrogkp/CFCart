@@ -16,9 +16,9 @@
 			<cfset LOCAL.relatedProductGroup.setIsDeleted(false) />
 		</cfif>
 		
-		<cfif StructKeyExists(FORM,"add_product")>
+		<cfif StructKeyExists(FORM,"add_related_product")>
 			
-			<cfset LOCAL.newProduct = EntityLoadByPK("product", FORM.new_product_id) />
+			<cfset LOCAL.newProduct = EntityLoadByPK("product", FORM.new_related_product_id) />
 			
 			<cfset LOCAL.relatedProductGroup.addRelatedProduct(LOCAL.newProduct) />
 			
@@ -27,7 +27,7 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Related product has been added successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.relatedProductGroup.getRelatedProductGroupId()#" />
 			
-		<cfelseif StructKeyExists(FORM,"delete_product")>
+		<cfelseif StructKeyExists(FORM,"delete_related_product")>
 			
 			<cfset LOCAL.relatedProduct = EntityLoadByPK("product", FORM.related_product_id) />
 			
