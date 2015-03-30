@@ -7,11 +7,11 @@
 </script>
 <section class="content-header">
 	<h1>
-		Newsletter Detail
+		Group Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Newsletter Detail</li>
+		<li class="active">Group Detail</li>
 	</ol>
 </section>
 
@@ -36,31 +36,37 @@
 				
 				<div class="box-body">
 					<div class="form-group">
-						<label>Subject</label>
-						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
-					</div>
-					 <div class="form-group">
 						<label>Name</label>
 						<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					<div class="form-group">
-						<label>Type</label>
-						<select class="form-control" name="type">
-							<option value="">Please Select...</option>
-							<option value="html" <cfif REQUEST.pageData.formData.type EQ "html">selected</cfif>>HTML</option>
-							<option value="plaintext" <cfif REQUEST.pageData.formData.type EQ "plaintext">selected</cfif>>Plaintext</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Status</label>
-						<select class="form-control" name="is_enabled">
-							<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ 1>selected</cfif>>Enabled</option>
-							<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ 0>selected</cfif>>Disabled</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Content</label>
-						<textarea name="content" id="content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.content#</textarea>
+						<label>Products</label>
+						<a href="" data-toggle="modal" data-target="##add-product-modal" style="margin-left:10px;"><span class="label label-primary">Add Product</span></a>
+						<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup) AND NOT IsNull(REQUEST.pageData.relatedProductGroup.getRelatedProducts()) >
+							<div class="row" style="margin-top:10px;">
+								<cfloop array="#REQUEST.pageData.relatedProductGroup.getRelatedProducts()#" index="product">
+									<div class="col-xs-3">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr class="warning">
+														<th>#product.getDisplayName()#</th>
+														<th>
+															<a productid="#product.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a>
+														</th>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#img.getName()#" />
+														</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfoutput>
+							</div>
+						</cfif>
 					</div>
 					<div class="form-group">
 						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Newsletter</button>
@@ -72,5 +78,42 @@
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+<!-- ADD PRODUCT MODAL -->
+<div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add Related Product</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_related_product_id" name="new_related_product_id" type="text" class="form-control" placeholder="Product ID">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_related_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE PRODUCT MODAL -->
+<div class="modal fade" id="delete-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this related product?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_related_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
