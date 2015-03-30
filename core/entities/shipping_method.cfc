@@ -2,5 +2,5 @@
     <cfproperty name="shippingMethodId" column="shipping_method_id" fieldtype="id" generator="native"> 
 	<cfproperty name="displayName" column="display_name" ormtype="string"> 
 	<cfproperty name="function" column="function" ormtype="string"> 
-	<cfproperty name="products" fieldtype="many-to-many" cfc="product" linktable="product_shipping_method_rela" fkcolumn="shipping_method_id" inversejoincolumn="product_id" singularname="product">
+	<cfproperty name="productShippingMethodRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="shipping_method_id">
 </cfcomponent>

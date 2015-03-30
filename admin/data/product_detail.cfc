@@ -381,7 +381,6 @@
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
-		<cfset LOCAL.pageData.shippingCarriers = EntityLoad("shipping_carrier") />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false, isEnabled = true}) />
 		
@@ -392,6 +391,7 @@
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.groupPriceClass = "" />
 			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
+			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
 			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
 				<cfset LOCAL.productService.setAttributeSetId(LOCAL.pageData.product.getAttributeSet().getAttributeSetId()) />
@@ -424,6 +424,7 @@
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			<cfset LOCAL.pageData.groupPriceClass = "hide-this" />
+			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
@@ -446,7 +447,7 @@
 				<cfset LOCAL.pageData.formData.weight = "" />
 			</cfif>
 		</cfif>
-	
+	<cfdump var="#LOCAL.pageData.shippingMethods#" abort>
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	

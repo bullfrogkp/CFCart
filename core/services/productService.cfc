@@ -181,7 +181,20 @@
 		<cfreturn LOCAL.retValue />
     </cffunction>
 	
-	<cffunction name="removeProductId" output="false" access="public" returntype="void">
-		<cfset StructDelete(VARIABLES,"productId") />
+	<cffunction name="getProductShippingMethods" output="false" access="public" returntype="query">
+		<cfset var LOCAL = {} />
+	   
+		<cfquery name="LOCAL.getProductShippingMethods">
+			SELECT		sc.display_name AS shipping_carrier_name
+			,			sc.image_name
+			,			sm.display_name AS shipping_method_name
+			,			sm.shipping_method_id
+			FROM		shipping_carrier sc
+			JOIN		shipping_method sm ON sc.shipping_carrier_id = sc.shipping_carrier_id
+			ORDER BY	sc.shipping_carrier_id
+		</cfquery>
+		 
+		<cfreturn LOCAL.getProductShippingMethods />
     </cffunction>
+	
 </cfcomponent>

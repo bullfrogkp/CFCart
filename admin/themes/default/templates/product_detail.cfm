@@ -610,37 +610,37 @@
 						<div class="form-group">
 							<label>Shipping Methods</label>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.shippingCarriers)>
-									<cfloop array="#REQUEST.pageData.shippingCarriers#" index="carrier">						
-										<div class="col-xs-3">
-											<div class="box box-warning">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="warning">
-															<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#carrier.getImageName()#" style="height:25px;vertical-align:top;" /></th>
-															<th style="width:40px;"></th>
-														</tr>
-														
-														<cfloop array="#carrier.getShippingMethods()#" index="shippingMethod">
-														<tr>
-															<td>#shippingMethod.getDisplayName()#</td>
-															<td>
-																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#shippingMethod.getShippingMethodId()#"
+								<cfset s = REQUEST.pageData.shippingMethods />
+								<cfoutput query="s " group="shipping_carrier_name">						
+									<div class="col-xs-3">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr class="warning">
+														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
+														<th style="width:40px;">#s.shipping_carrier_name#</th>
+													</tr>
+													
+													<cfoutput>
+													<tr>
+														<td>#s.shipping_method_name#</td>
+														<td>#s.default_price#</td>
+														<td>
+															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
 
-																<cfif NOT IsNull(REQUEST.pageData.product.getShippingMethods()) AND REQUEST.pageData.product.hasShippingMethod(shippingMethod)>
-																checked
-																</cfif>
+															<cfif IsNumeric(s.product_shipping_method_rela_id)>
+															checked
+															</cfif>
 
-																/>
-															</td>
-														</tr>
-														</cfloop>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</cfif>
+															/>
+														</td>
+													</tr>
+													</cfoutput>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfoutput>
 							</div>
 						</div>
 					</div>
