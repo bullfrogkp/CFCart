@@ -9,7 +9,7 @@
 	<cfproperty name="filterGroup" fieldtype="one-to-one" cfc="filter_group" fkcolumn="filter_group_id">
 	<cfproperty name="parentCategory" fieldtype="many-to-one" cfc="category" fkcolumn="parent_category_id">
 	
-	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="category_id">
+	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="category_id" singularname="categoryImage">
 	<cfproperty name="categoryFilterRelas" type="array" fieldtype="one-to-many" cfc="category_filter_rela" fkcolumn="category_id">
 	<cfproperty name="products" fieldtype="many-to-many" cfc="product" linktable="category_product_rela" fkcolumn="category_id" inversejoincolumn="product_id">
 	

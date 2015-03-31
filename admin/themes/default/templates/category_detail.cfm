@@ -303,12 +303,12 @@
 							<div class="row">
 								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">						
 									<div class="col-xs-2">
-										<div class="box box-warning">
+										<div class="box <cfif img.getIsDefault() EQ true>box-danger</cfif>">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
-													<tr class="warning">
+													<tr <cfif img.getIsDefault() EQ true>class="danger"<cfelse>class="default"</cfif>>
 														<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
-														<th><a categoryimageid="#img.getCategoryImageId()#" filtername="#LCase(filter.filterName)#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a categoryimageid="#img.getCategoryImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -317,14 +317,8 @@
 													</tr>
 													<tr>
 														<td colspan="2">
-															<input class="form-control" type="radio" name="default_image_id" value="#img.getCategoryImageId()#"
-
-															<cfif img.getIsDefault() EQ true>
-															checked
-															</cfif>
-															
-															/>
-															<div class="pull-right" style="margin-top:1px;margin-right:16px;">Set as Default</div>
+															<input class="form-control pull-left" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" <cfif img.getIsDefault() EQ true>checked</cfif>/>
+															<div class="pull-right" style="margin-top:1px;margin-right:19px;">Set as Default</div>
 														</td>
 													</tr>
 												</table>
