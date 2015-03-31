@@ -85,11 +85,23 @@
 						
 							<cfset LOCAL.categoryImage = EntityNew("category_image") />
 							<cfset LOCAL.categoryImage.setName(LOCAL.imgName) />
+							<cfset LOCAL.categoryImage.setIsDefault(false) />
 							<cfset EntitySave(LOCAL.categoryImage) />
 							<cfset LOCAL.category.addImages(LOCAL.categoryImage) />
 						</cfif>
 					</cfif>
 				</cfloop>
+			</cfif>
+			
+			<cfif FORM.default_image_id NEQ "">
+				<cfset LOCAL.currentDefaultCategoryImage = EntityLoad("category_image",{category=LOCAL.category,isDefault=true},true) />
+				<cfif NOT IsNull(LOCAL.currentDefaultCategoryImage)>
+					<cfset LOCAL.currentDefaultCategoryImage.setIsDefault(false) />
+					<cfset EntitySave(LOCAL.currentDefaultCategoryImage) />
+				</cfif>
+				<cfset LOCAL.categoryImage = EntityLoadByPK("category_image", FORM.default_image_id) />
+				<cfset LOCAL.categoryImage.setIsDefault(true) />
+				<cfset EntitySave(LOCAL.categoryImage) />
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.category) />
@@ -107,7 +119,19 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category: #LOCAL.category.getDisplayName()# has been deleted.") />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
+		
+		<cfelseif StructKeyExists(FORM,"delete_image")>
+		
+			<cfset LOCAL.image = EntityLoadByPK("category_image",FORM.deleted_image_id) />
+		
+			<cfset LOCAL.category.removeCategoryImage(LOCAL.image) />
 			
+			<cfset EntitySave(LOCAL.category) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_5" />
+		
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
 		
 			<cfset LOCAL.filter = EntityLoadByPK("filter",FORM.new_value_filter_id) />
