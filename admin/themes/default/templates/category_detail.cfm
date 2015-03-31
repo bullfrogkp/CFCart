@@ -310,6 +310,12 @@
 															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" />
 														</td>
 													</tr>
+													<tr>
+														<td colspan="2">
+															<input class="form-control" type="radio" name="default_image_id" value="" />
+															<div class="pull-right" style="margin-top:1px;margin-right:16px;">Set as Default</div>
+														</td>
+													</tr>
 												</table>
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
