@@ -124,6 +124,10 @@
 			$("##deleted_filter_value_id").val($(this).attr('filtervalueid'));
 		});
 		
+		$( ".delete-image" ).click(function() {
+			$("##deleted_image_id").val($(this).attr('categoryimageid'));
+		});
+		
 	});
 </script>
 <section class="content-header">
@@ -142,6 +146,7 @@
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_value_filter_id" id="new_value_filter_id" value="" />
 <input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
+<input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -303,7 +308,7 @@
 												<table class="table table-hover">
 													<tr class="warning">
 														<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
-														<th><a filterid="#filter.filterId#" filtername="#LCase(filter.filterName)#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a categoryimageid="#img.getCategoryImageId()#" filtername="#LCase(filter.filterName)#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -312,7 +317,7 @@
 													</tr>
 													<tr>
 														<td colspan="2">
-															<input class="form-control" type="radio" name="default_image_id" value="" />
+															<input class="form-control" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" />
 															<div class="pull-right" style="margin-top:1px;margin-right:16px;">Set as Default</div>
 														</td>
 													</tr>
@@ -448,6 +453,21 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_item" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE IMAGE MODAL -->
+<div class="modal fade" id="delete-image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this image?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_image" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
