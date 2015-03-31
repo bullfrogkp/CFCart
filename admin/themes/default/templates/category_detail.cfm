@@ -294,17 +294,30 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
-						<div class="row">
-							<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getImages())>
-								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">
-									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#images/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" target="_blank">
-											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" />
-										</a>
+						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getImages())>
+							<div class="row">
+								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">						
+									<div class="col-xs-2">
+										<div class="box box-warning">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr class="warning">
+														<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
+														<th><a filterid="#filter.filterId#" filtername="#LCase(filter.filterName)#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-danger">Delete</span></a></th>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" />
+														</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
 									</div>
 								</cfloop>
-							</cfif>
-						</div>
+							</div>
+						</cfif>
+						
 						<div class="form-group">
 							<div id="uploader">
 								<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
