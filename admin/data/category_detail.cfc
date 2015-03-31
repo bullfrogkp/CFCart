@@ -68,6 +68,13 @@
 			<!--- to get the category id for image path, extra entitysave here --->
 			<cfset EntitySave(LOCAL.category) />
 		
+			<cfloop array="#LOCAL.category.getCategoryImages()#" index="LOCAL.img">
+				<cfif IsNumeric(FORM["rank_#LOCAL.img.getCategoryImageId()#"])>
+					<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getCategoryImageId()#"]) />
+					<cfset EntitySave(LOCAL.img) />
+				</cfif>
+			</cfloop>
+		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -87,13 +94,13 @@
 							<cfset LOCAL.categoryImage.setName(LOCAL.imgName) />
 							<cfset LOCAL.categoryImage.setIsDefault(false) />
 							<cfset EntitySave(LOCAL.categoryImage) />
-							<cfset LOCAL.category.addImages(LOCAL.categoryImage) />
+							<cfset LOCAL.category.addCategoryImage(LOCAL.categoryImage) />
 						</cfif>
 					</cfif>
 				</cfloop>
 			</cfif>
 			
-			<cfif FORM.default_image_id NEQ "">
+			<cfif StructKeyExists(FORM,"default_image_id") AND FORM.default_image_id NEQ "">
 				<cfset LOCAL.currentDefaultCategoryImage = EntityLoad("category_image",{category=LOCAL.category,isDefault=true},true) />
 				<cfif NOT IsNull(LOCAL.currentDefaultCategoryImage)>
 					<cfset LOCAL.currentDefaultCategoryImage.setIsDefault(false) />

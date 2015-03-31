@@ -299,9 +299,9 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
-						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getImages())>
+						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryImages())>
 							<div class="row">
-								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">						
+								<cfloop array="#REQUEST.pageData.category.getCategoryImages()#" index="img">						
 									<div class="col-xs-2">
 										<div class="box <cfif img.getIsDefault() EQ true>box-danger</cfif>">
 											<div class="box-body table-responsive no-padding">
@@ -317,8 +317,19 @@
 													</tr>
 													<tr>
 														<td colspan="2">
-															<input class="form-control pull-left" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" <cfif img.getIsDefault() EQ true>checked</cfif>/>
-															<div class="pull-right" style="margin-top:1px;margin-right:19px;">Set as Default</div>
+															<table style="width:100%;">
+																<tr>
+																	<td>
+																		<input class="form-control pull-left" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" <cfif img.getIsDefault() EQ true>checked</cfif>/>
+																	</td>
+																	<td style="padding-left:5px;">
+																		Set as Default
+																	</td>
+																	<td style="text-align:right">
+																		<input type="text" name="rank_#img.getCategoryImageId()#" value="#img.getRank()#" style="width:30px;text-align:center;" />
+																	</td>
+																</tr>
+															</table>
 														</td>
 													</tr>
 												</table>
