@@ -317,7 +317,13 @@
 													</tr>
 													<tr>
 														<td colspan="2">
-															<input class="form-control" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" />
+															<input class="form-control" type="radio" name="default_image_id" value="#img.getCategoryImageId()#"
+
+															<cfif img.getIsDefault() EQ true>
+															checked
+															</cfif>
+															
+															/>
 															<div class="pull-right" style="margin-top:1px;margin-right:16px;">Set as Default</div>
 														</td>
 													</tr>
