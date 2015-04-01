@@ -299,16 +299,16 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
-						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryImages())>
+						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getImages())>
 							<div class="row">
-								<cfloop array="#REQUEST.pageData.category.getCategoryImages()#" index="img">						
+								<cfloop array="#REQUEST.pageData.category.getImages()#" index="img">						
 									<div class="col-xs-2">
 										<div class="box <cfif img.getIsDefault() EQ true>box-danger</cfif>">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr <cfif img.getIsDefault() EQ true>class="danger"<cfelse>class="default"</cfif>>
 														<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
-														<th><a categoryimageid="#img.getCategoryImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a imageid="#img.getCategoryImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -322,7 +322,7 @@
 																	<td>
 																		<input class="form-control pull-left" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" <cfif img.getIsDefault() EQ true>checked</cfif>/>
 																	</td>
-																	<td style="padding-left:5px;">
+																	<td style="padding-left:5px;padding-top:1px;font-size:12px;">
 																		Set as Default
 																	</td>
 																	<td style="text-align:right">
