@@ -18,7 +18,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 		
-			<cfset LOCAL.relatedProductGroup.setDiplayName(Trim(FORM.display_name)) />
+			<cfset LOCAL.relatedProductGroup.setDisplayName(Trim(FORM.display_name)) />
 			
 			<cfset EntitySave(LOCAL.relatedProductGroup) />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.relatedProductGroup.getRelatedProductGroupId()#" />

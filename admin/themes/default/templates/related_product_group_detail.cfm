@@ -41,10 +41,11 @@
 						<label>Name</label>
 						<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
+					<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup)>
 					<div class="form-group">
 						<label>Products</label>
 						<a href="" data-toggle="modal" data-target="##add-product-modal" style="margin-left:10px;"><span class="label label-primary">Add Product</span></a>
-						<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup) AND NOT IsNull(REQUEST.pageData.relatedProductGroup.getRelatedProducts()) >
+						<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup.getRelatedProducts()) >
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.relatedProductGroup.getRelatedProducts()#" index="product">
 									<div class="col-xs-2">
@@ -70,9 +71,10 @@
 							</div>
 						</cfif>
 					</div>
+					</cfif>
 					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
-						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Product Group</button>
+						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Related Product Group</button>
+						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Related Product Group</button>
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
