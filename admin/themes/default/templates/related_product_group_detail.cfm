@@ -48,6 +48,12 @@
 						<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup.getRelatedProducts()) >
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.relatedProductGroup.getRelatedProducts()#" index="product">
+									<cfset productImg = EntityLoad("product_image",{isDefault = true},true) />
+									<cfif NOT IsNull(productImg)>
+										<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
+									<cfelse>
+										<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+									</cfif>
 									<div class="col-xs-2">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
@@ -55,12 +61,12 @@
 													<tr class="warning">
 														<th>#product.getDisplayName()#</th>
 														<th>
-															<a relatedproductid="#product.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a>
+															<a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a>
 														</th>
 													</tr>
 													<tr>
 														<td colspan="2">
-															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#EntityLoad("product_image",{isDefault = true},true).getName()#" />
+															<img class="img-responsive" src="#imageLink#" />
 														</td>
 													</tr>
 												</table>

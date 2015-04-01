@@ -38,7 +38,7 @@
 			
 			<cfset LOCAL.relatedProduct = EntityLoadByPK("product", FORM.related_product_id) />
 			
-			<cfset LOCAL.relatedProductGroup.removewRelatedProduct(LOCAL.relatedProduct) />
+			<cfset LOCAL.relatedProductGroup.removeRelatedProduct(LOCAL.relatedProduct) />
 			
 			<cfset EntitySave(LOCAL.relatedProductGroup) />
 			
