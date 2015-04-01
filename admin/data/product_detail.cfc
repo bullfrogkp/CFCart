@@ -103,11 +103,19 @@
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
 			</cfloop>
 			
-			<cfset LOCAL.product.removeShippingMethods() />
+			<cfset LOCAL.product.removeProductShippingMethodRelas() />
 			
 			<cfloop list="#FORM.shipping_method_id#" index="LOCAL.shippingMethodId">
 				<cfset LOCAL.newShippingMethod = EntityLoadByPK("shipping_method",LOCAL.shippingMethodId) />
-				<cfset LOCAL.product.addShippingMethod(LOCAL.newShippingMethod) />
+				<cfset LOCAL.newProductShippingMethodRela = EntityNew("product_shipping_method_rela") />
+				
+				<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(0) />
+				<cfset LOCAL.newProductShippingMethodRela.setProduct(LOCAL.product) />
+				<cfset LOCAL.newProductShippingMethodRela.setShippingMethod(LOCAL.newShippingMethod) />
+				
+				<cfset EntitySave(LOCAL.newProductShippingMethodRela) />
+				
+				<cfset LOCAL.product.addProductShippingMethodRela(LOCAL.newProductShippingMethodRela) />
 			</cfloop>
 		
 			<cfset EntitySave(LOCAL.product) />

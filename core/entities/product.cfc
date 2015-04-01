@@ -46,9 +46,9 @@
 		</cfif>
 	</cffunction>
 	
-	<cffunction name="removeShippingMethods" access="public" output="false" returnType="void">
-		<cfif NOT IsNull(getShippingMethods())>
-			<cfset ArrayClear(getShippingMethods()) />
+	<cffunction name="removeProductShippingMethodRelas" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getProductShippingMethodRelas())>
+			<cfset ArrayClear(getProductShippingMethodRelas()) />
 		</cfif>
 	</cffunction>
 </cfcomponent>
