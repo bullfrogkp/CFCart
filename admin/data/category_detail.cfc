@@ -68,7 +68,7 @@
 			<!--- to get the category id for image path, extra entitysave here --->
 			<cfset EntitySave(LOCAL.category) />
 		
-			<cfloop array="#LOCAL.category.getCategoryImages()#" index="LOCAL.img">
+			<cfloop array="#LOCAL.category.getImages()#" index="LOCAL.img">
 				<cfif IsNumeric(FORM["rank_#LOCAL.img.getCategoryImageId()#"])>
 					<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getCategoryImageId()#"]) />
 					<cfset EntitySave(LOCAL.img) />
@@ -101,14 +101,14 @@
 			</cfif>
 			
 			<cfif StructKeyExists(FORM,"default_image_id") AND FORM.default_image_id NEQ "">
-				<cfset LOCAL.currentDefaultCategoryImage = EntityLoad("category_image",{category=LOCAL.category,isDefault=true},true) />
-				<cfif NOT IsNull(LOCAL.currentDefaultCategoryImage)>
-					<cfset LOCAL.currentDefaultCategoryImage.setIsDefault(false) />
-					<cfset EntitySave(LOCAL.currentDefaultCategoryImage) />
+				<cfset LOCAL.currentDefaultImage = EntityLoad("category_image",{product=LOCAL.product,isDefault=true},true) />
+				<cfif NOT IsNull(LOCAL.currentDefaultImage)>
+					<cfset LOCAL.currentDefaultImage.setIsDefault(false) />
+					<cfset EntitySave(LOCAL.currentDefaultImage) />
 				</cfif>
-				<cfset LOCAL.categoryImage = EntityLoadByPK("category_image", FORM.default_image_id) />
-				<cfset LOCAL.categoryImage.setIsDefault(true) />
-				<cfset EntitySave(LOCAL.categoryImage) />
+				<cfset LOCAL.newDefaultImage = EntityLoadByPK("category_image", FORM.default_image_id) />
+				<cfset LOCAL.newDefaultImage.setIsDefault(true) />
+				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.category) />
@@ -131,7 +131,7 @@
 		
 			<cfset LOCAL.image = EntityLoadByPK("category_image",FORM.deleted_image_id) />
 		
-			<cfset LOCAL.category.removeCategoryImage(LOCAL.image) />
+			<cfset LOCAL.category.removeImage(LOCAL.image) />
 			
 			<cfset EntitySave(LOCAL.category) />
 			

@@ -158,6 +158,10 @@
 			</cfif>
 			
 		});
+		
+		$( ".delete-image" ).click(function() {
+			$("##deleted_image_id").val($(this).attr('imageid'));
+		});
 	});
 </script>
 
@@ -183,6 +187,7 @@
 <input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <input type="hidden" name="product_shipping_method_rela_id" id="product_shipping_method_rela_id" value="" />
+<input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -336,17 +341,47 @@
 					</div><!-- /.tab-pane -->
 					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
-						<div class="row">
-							<cfif NOT IsNull(REQUEST.pageData.product.getImages())>
-								<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">
-									<div class="col-lg-3 col-md-4 col-xs-6 thumb">
-										<a class="thumbnail" href="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" target="_blank">
-											<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" />
-										</a>
+					
+						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getImages())>
+							<div class="row">
+								<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">						
+									<div class="col-xs-2">
+										<div class="box <cfif img.getIsDefault() EQ true>box-danger</cfif>">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr <cfif img.getIsDefault() EQ true>class="danger"<cfelse>class="default"</cfif>>
+														<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
+														<th><a imageid="#img.getProductImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" />
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<table style="width:100%;">
+																<tr>
+																	<td>
+																		<input class="form-control pull-left" type="radio" name="default_image_id" value="#img.getProductImageId()#" <cfif img.getIsDefault() EQ true>checked</cfif>/>
+																	</td>
+																	<td style="padding-left:5px;padding-top:1px;font-size:12px;">
+																		Set as Default
+																	</td>
+																	<td style="text-align:right">
+																		<input type="text" name="rank_#img.getProductImageId()#" value="#img.getRank()#" style="width:30px;text-align:center;" />
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
 									</div>
 								</cfloop>
-							</cfif>
-						</div>
+							</div>
+						</cfif>
 						<div class="form-group">
 							<div id="uploader">
 								<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
@@ -887,6 +922,21 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_attribute_option_value" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE IMAGE MODAL -->
+<div class="modal fade" id="delete-image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this image?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_image" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

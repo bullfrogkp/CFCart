@@ -112,6 +112,13 @@
 		
 			<cfset EntitySave(LOCAL.product) />
 		
+			<cfloop array="#LOCAL.category.getImages()#" index="LOCAL.img">
+				<cfif IsNumeric(FORM["rank_#LOCAL.img.getProductImageId()#"])>
+					<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getProductImageId()#"]) />
+					<cfset EntitySave(LOCAL.img) />
+				</cfif>
+			</cfloop>
+		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -134,6 +141,17 @@
 						</cfif>
 					</cfif>
 				</cfloop>
+			</cfif>
+			
+			<cfif StructKeyExists(FORM,"default_image_id") AND FORM.default_image_id NEQ "">
+				<cfset LOCAL.currentDefaultImage = EntityLoad("product_image",{product=LOCAL.product,isDefault=true},true) />
+				<cfif NOT IsNull(LOCAL.currentDefaultImage)>
+					<cfset LOCAL.currentDefaultImage.setIsDefault(false) />
+					<cfset EntitySave(LOCAL.currentDefaultImage) />
+				</cfif>
+				<cfset LOCAL.newDefaultImage = EntityLoadByPK("product_image", FORM.default_image_id) />
+				<cfset LOCAL.newDefaultImage.setIsDefault(true) />
+				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
 			<cfif IsNumeric(FORM.new_group_price) AND ListLen(FORM.new_customer_group_id) NEQ 0>
@@ -213,6 +231,14 @@
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product #LOCAL.product.getDisplayName()# has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/products.cfm" />
+			
+		<cfelseif StructKeyExists(FORM,"delete_image")>
+		
+			<cfset LOCAL.image = EntityLoadByPK("product_image",FORM.deleted_image_id) />
+			<cfset LOCAL.product.removeImage(LOCAL.image) />
+			<cfset EntitySave(LOCAL.product) />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_4" />	
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
 		
