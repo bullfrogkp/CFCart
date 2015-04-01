@@ -659,7 +659,7 @@
 												<table class="table table-hover">
 													<tr class="warning">
 														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
-														<th colspan="2">#s.shipping_carrier_name#</th>
+														<th colspan="2" style="text-align:right;padding-right:10px;">#s.shipping_carrier_name#</th>
 													</tr>
 													<cfoutput>
 													<tr>
@@ -676,7 +676,7 @@
 														</td>
 														<td>
 															<cfif IsNumeric(s.product_shipping_method_rela_id)>
-																<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price" href="" data-toggle="modal" data-target="##edit-default-price-modal"><span class="label label-primary">Edit</span></a>
+																<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-price-modal"><span class="label label-primary">Edit</span></a>
 															</cfif>
 														</td>
 													</tr>

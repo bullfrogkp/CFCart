@@ -38,7 +38,7 @@
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Related Product Groups</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/related_product_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Group</a>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/related_product_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Product Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
@@ -49,7 +49,7 @@
 								<th style="width:110px;">Action</th>
 							</tr>
 						
-							<cfif ArrayLen(REQUEST.pageData.newsletters) GT 0>
+							<cfif ArrayLen(REQUEST.pageData.relatedProductGroups) GT 0>
 								<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
 								<tr>
 									<td>#group.getDisplayName()#</td>

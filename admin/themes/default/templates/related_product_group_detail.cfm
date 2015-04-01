@@ -1,9 +1,7 @@
 ﻿<cfoutput>
 
 <script>
-	$(document).ready(function() {
-		CKEDITOR.replace('content');
-		
+	$(document).ready(function() {		
 		$( ".delete-related-product" ).click(function() {
 			$("##related_product_id").val($(this).attr('relatedproductid'));
 		});
@@ -38,7 +36,6 @@
 		<div class="col-md-12">
 			<!-- general form elements -->
 			<div class="box box-primary">
-				
 				<div class="box-body">
 					<div class="form-group">
 						<label>Name</label>
@@ -50,7 +47,7 @@
 						<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup) AND NOT IsNull(REQUEST.pageData.relatedProductGroup.getRelatedProducts()) >
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.relatedProductGroup.getRelatedProducts()#" index="product">
-									<div class="col-xs-3">
+									<div class="col-xs-2">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
@@ -69,15 +66,15 @@
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
 									</div>
-								</cfoutput>
+								</cfloop>
 							</div>
 						</cfif>
 					</div>
 					<div class="form-group">
-						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Group</button>
+						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
+						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Product Group</button>
 					</div>
 				</div><!-- /.box-body -->
-				
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
