@@ -658,8 +658,8 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th colspan="3"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
-														<th style="width:40px;">#s.shipping_carrier_name#</th>
+														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
+														<th colspan="2">#s.shipping_carrier_name#</th>
 													</tr>
 													<cfoutput>
 													<tr>

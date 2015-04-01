@@ -101,7 +101,7 @@
 			</cfif>
 			
 			<cfif StructKeyExists(FORM,"default_image_id") AND FORM.default_image_id NEQ "">
-				<cfset LOCAL.currentDefaultImage = EntityLoad("category_image",{product=LOCAL.product,isDefault=true},true) />
+				<cfset LOCAL.currentDefaultImage = EntityLoad("category_image",{category=LOCAL.category,isDefault=true},true) />
 				<cfif NOT IsNull(LOCAL.currentDefaultImage)>
 					<cfset LOCAL.currentDefaultImage.setIsDefault(false) />
 					<cfset EntitySave(LOCAL.currentDefaultImage) />

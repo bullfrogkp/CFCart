@@ -120,7 +120,7 @@
 		
 			<cfset EntitySave(LOCAL.product) />
 		
-			<cfloop array="#LOCAL.category.getImages()#" index="LOCAL.img">
+			<cfloop array="#LOCAL.product.getImages()#" index="LOCAL.img">
 				<cfif IsNumeric(FORM["rank_#LOCAL.img.getProductImageId()#"])>
 					<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getProductImageId()#"]) />
 					<cfset EntitySave(LOCAL.img) />

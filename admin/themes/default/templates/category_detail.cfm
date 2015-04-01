@@ -125,7 +125,7 @@
 		});
 		
 		$( ".delete-image" ).click(function() {
-			$("##deleted_image_id").val($(this).attr('categoryimageid'));
+			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
 		
 	});
