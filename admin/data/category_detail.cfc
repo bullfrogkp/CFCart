@@ -115,7 +115,7 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 		
@@ -137,7 +137,7 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_5" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_5" />
 		
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
 		
@@ -163,7 +163,7 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New filter value: #FORM.new_filter_value# has been added.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		<cfelseif StructKeyExists(FORM,"delete_filter_value")>
 			
 			<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",FORM.deleted_filter_value_id) />		
@@ -173,7 +173,7 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Filter value: #LOCAL.filterValue.getValue()# has been deleted.") />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

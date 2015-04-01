@@ -246,7 +246,7 @@
 			<cfset LOCAL.product.removeImage(LOCAL.image) />
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_4" />	
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_4" />	
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
 		
