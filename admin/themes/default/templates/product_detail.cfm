@@ -662,6 +662,7 @@
 														<th colspan="2" style="text-align:right;padding-right:10px;">#s.shipping_carrier_name#</th>
 													</tr>
 													<cfoutput>
+													<input type="hidden" name="default_price_#s.shipping_method_id#" value="#s.default_price#" />
 													<tr>
 														<td>#s.shipping_method_name#</td>
 														<td>#DollarFormat(s.default_price)#</td>
