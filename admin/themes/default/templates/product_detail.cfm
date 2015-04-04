@@ -506,10 +506,6 @@
 						</cfif>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-					
-						
-					
-					
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="box box-primary">
@@ -545,15 +541,6 @@
 												</div>
 											</cfloop>
 										</cfif>
-									</div>
-									<div class="box-footer clearfix">
-										<ul class="pagination pagination-sm no-margin pull-right">
-											<li><a href="##">&laquo;</a></li>
-											<li><a href="##">1</a></li>
-											<li><a href="##">2</a></li>
-											<li><a href="##">3</a></li>
-											<li><a href="##">&raquo;</a></li>
-										</ul>
 									</div>
 								</div>
 							</div>
@@ -793,6 +780,7 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
+					<label>Product Group</label>
 					<select name="related_product_group_id" multiple class="form-control">
 						<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
 							<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
@@ -800,6 +788,7 @@
 					</select>
 				</div>
 				<div class="form-group">
+					<label>Product ID</label>
 					<input id="new_related_product_id" name="new_related_product_id" type="text" class="form-control" placeholder="Product ID">
 				</div>
 			</div>

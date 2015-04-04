@@ -377,11 +377,19 @@
 		
 		<cfelseif StructKeyExists(FORM,"add_related_product")>
 						
+			<cfloop list="#FORM.related_product_group_id#" index="LOCAL.groupId">
+				<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
+				<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+					<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+					<cfset LOCAL.relatedProduct.addRelatedParentProduct(LOCAL.product) />
+				</cfloop>
+			</cfloop>
 			
-			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
-			
-			<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
-			<cfset LOCAL.relatedProduct.addRelatedParentProduct(LOCAL.product) />
+			<cfif IsNumeric(FORM.new_related_product_id)>
+				<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
+				<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+				<cfset LOCAL.relatedProduct.addRelatedParentProduct(LOCAL.product) />
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.product) />
 			<cfset EntitySave(LOCAL.relatedProduct) />
