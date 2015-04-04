@@ -506,6 +506,10 @@
 						</cfif>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
+					
+						
+					
+					
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="box box-primary">
@@ -513,52 +517,34 @@
 										<h3 class="box-title">Related Products</h3>
 										<a data-toggle="modal" data-target="##add-product-modal" href="" class="btn btn-default btn-sm pull-right" style="margin:10px 10px 0 0">Add New Product</a>
 									</div><!-- /.box-header -->
-									<div class="box-body table-responsive">
-										<table class="table table-bordered table-hover">
-										
-											<tr class="default">
-												<th>Name</th>
-												<th>Price</th>
-												<th>Create Datetime</th>
-												<th>SKU</th>
-												<th>Status</th>
-												<th>Link</th>
-												<th>Action</th>
-											</tr>
-									
-											<cfif NOT IsNull(REQUEST.pageData.product.getRelatedProducts()) AND ArrayLen(REQUEST.pageData.product.getRelatedProducts()) GT 0>
-												<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="relatedProduct">
-													<tr>
-														<td>#relatedProduct.getDisplayName()#</td>
-														<td>#relatedProduct.getPrice()#</td>
-														<td>#DateFormat(relatedProduct.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-														<td>#relatedProduct.getSku()#</td>
-														<td>
-															<cfswitch expression="#relatedProduct.getIsEnabled()#">
-																<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
-																<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
-															</cfswitch>
-														</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#relatedProduct.getProductId()#">View Detail</a></td>
-														<td><a relatedproductid="#relatedProduct.getProductId()#" class="delete-related-product" href="" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></td>
-													</tr>
-												</cfloop>
-											<cfelse>
-												<tr>
-													<td colspan="7">No data available</td>
-												</tr>
-											</cfif>
-										
-											<tr class="default">
-												<th>Name</th>
-												<th>Price</th>
-												<th>Create Datetime</th>
-												<th>SKU</th>
-												<th>Status</th>
-												<th>Link</th>
-												<th>Action</th>
-											</tr>
-										</table>
+									<div class="box-body">
+										<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProducts())>
+											<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">	
+												<cfset productImg = EntityLoad("product_image",{product = product, isDefault = true},true) />
+												<cfif NOT IsNull(productImg)>
+													<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
+												<cfelse>
+													<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+												</cfif>
+												<div class="col-xs-2">
+													<div class="box">
+														<div class="box-body table-responsive no-padding">
+															<table class="table table-hover">
+																<tr class="default">
+																	<th style="font-size:11px;line-height:20px;">#product.getDisplayName()#</th>
+																	<th><a productid="#product.getProductId()#" href="" class="delete-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+																</tr>
+																<tr>
+																	<td colspan="2">
+																		<img class="img-responsive" src="#imageLink#" />
+																	</td>
+																</tr>
+															</table>
+														</div><!-- /.box-body -->
+													</div><!-- /.box -->
+												</div>
+											</cfloop>
+										</cfif>
 									</div>
 									<div class="box-footer clearfix">
 										<ul class="pagination pagination-sm no-margin pull-right">
@@ -578,8 +564,7 @@
 							<div class="col-xs-12">
 								<div class="box box-primary">
 									<div class="box-header">
-										<h3 class="box-title">Related Products</h3>
-										<a data-toggle="modal" data-target="##add-product-modal" href="" class="btn btn-default btn-sm pull-right" style="margin:10px 10px 0 0">Add New Product</a>
+										<h3 class="box-title">Reviews</h3>
 									</div><!-- /.box-header -->
 									<div class="box-body table-responsive">
 										<table class="table table-bordered table-hover">

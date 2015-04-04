@@ -48,7 +48,7 @@
 						<cfif NOT IsNull(REQUEST.pageData.relatedProductGroup.getRelatedProducts()) >
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.relatedProductGroup.getRelatedProducts()#" index="product">
-									<cfset productImg = EntityLoad("product_image",{isDefault = true},true) />
+									<cfset productImg = EntityLoad("product_image",{product = product, isDefault = true},true) />
 									<cfif NOT IsNull(productImg)>
 										<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
 									<cfelse>
