@@ -429,6 +429,7 @@
 		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
+		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false, isEnabled = true}) />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>

@@ -793,6 +793,13 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
+					<select name="related_product_group_id" multiple class="form-control">
+						<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
+							<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+				<div class="form-group">
 					<input id="new_related_product_id" name="new_related_product_id" type="text" class="form-control" placeholder="Product ID">
 				</div>
 			</div>
