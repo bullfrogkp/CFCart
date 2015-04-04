@@ -53,7 +53,6 @@
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
-			<cfset LOCAL.product.setPrice(Trim(FORM.price)) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
@@ -74,7 +73,10 @@
 			<cfif IsNumeric(Trim(FORM.weight))>
 				<cfset LOCAL.product.setWeight(Trim(FORM.weight)) />
 			</cfif>
-			
+						
+			<cfif IsNumeric(Trim(FORM.price))>
+				<cfset LOCAL.product.setPrice(Trim(FORM.price)) />
+			</cfif>
 			<cfif IsNumeric(Trim(FORM.special_price))>
 				<cfset LOCAL.product.setSpecialPrice(Trim(FORM.special_price)) />
 			</cfif>
@@ -105,31 +107,35 @@
 			
 			<cfset LOCAL.product.removeProductShippingMethodRelas() />
 			
-			<cfloop list="#FORM.shipping_method_id#" index="LOCAL.shippingMethodId">
-				<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",LOCAL.shippingMethodId) />
-				<cfset LOCAL.newProductShippingMethodRela = EntityNew("product_shipping_method_rela") />
-				<cfset LOCAL.newProductShippingMethodRela.setShippingMethod(LOCAL.shippingMethod) />
-				<cfset LOCAL.newProductShippingMethodRela.setProduct(LOCAL.product) />
-				
-				<cfif IsNumeric(FORM["default_price_#LOCAL.shippingMethodId#"])>
-					<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
-				<cfelse>
-					<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(0) />
-				</cfif>
-				
-				<cfset EntitySave(LOCAL.newProductShippingMethodRela) />
-				
-				<cfset LOCAL.product.addProductShippingMethodRela(LOCAL.newProductShippingMethodRela) />
-			</cfloop>
+			<cfif StructKeyExists(FORM,"shipping_method_id")>
+				<cfloop list="#FORM.shipping_method_id#" index="LOCAL.shippingMethodId">
+					<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",LOCAL.shippingMethodId) />
+					<cfset LOCAL.newProductShippingMethodRela = EntityNew("product_shipping_method_rela") />
+					<cfset LOCAL.newProductShippingMethodRela.setShippingMethod(LOCAL.shippingMethod) />
+					<cfset LOCAL.newProductShippingMethodRela.setProduct(LOCAL.product) />
+					
+					<cfif IsNumeric(FORM["default_price_#LOCAL.shippingMethodId#"])>
+						<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
+					<cfelse>
+						<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(0) />
+					</cfif>
+					
+					<cfset EntitySave(LOCAL.newProductShippingMethodRela) />
+					
+					<cfset LOCAL.product.addProductShippingMethodRela(LOCAL.newProductShippingMethodRela) />
+				</cfloop>
+			</cfif>
 		
 			<cfset EntitySave(LOCAL.product) />
-		
-			<cfloop array="#LOCAL.product.getImages()#" index="LOCAL.img">
-				<cfif IsNumeric(FORM["rank_#LOCAL.img.getProductImageId()#"])>
-					<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getProductImageId()#"]) />
-					<cfset EntitySave(LOCAL.img) />
-				</cfif>
-			</cfloop>
+			
+			<cfif NOT IsNull(LOCAL.product.getImages())>
+				<cfloop array="#LOCAL.product.getImages()#" index="LOCAL.img">
+					<cfif IsNumeric(FORM["rank_#LOCAL.img.getProductImageId()#"])>
+						<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getProductImageId()#"]) />
+						<cfset EntitySave(LOCAL.img) />
+					</cfif>
+				</cfloop>
+			</cfif>
 		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
@@ -381,7 +387,6 @@
 				<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
 				<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
 					<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
-					<cfset LOCAL.relatedProduct.addRelatedParentProduct(LOCAL.product) />
 				</cfloop>
 			</cfloop>
 			
