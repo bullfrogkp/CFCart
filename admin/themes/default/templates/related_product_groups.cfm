@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Related Product Groups
+		Product Groups
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Related Product Groups</li>
+		<li class="active">Product Groups</li>
 	</ol>
 </section>
 <section class="content">
@@ -37,8 +37,8 @@
 			</form>
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">Related Product Groups</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/related_product_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Related Product Group</a>
+					<h3 class="box-title">Product Groups</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/related_product_group_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Product Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">

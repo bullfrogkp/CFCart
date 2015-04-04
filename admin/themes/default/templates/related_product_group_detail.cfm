@@ -9,11 +9,11 @@
 </script>
 <section class="content-header">
 	<h1>
-		Group Detail
+		Product Group Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Group Detail</li>
+		<li class="active">Product Group Detail</li>
 	</ol>
 </section>
 
@@ -59,7 +59,7 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th>#product.getDisplayName()#</th>
+														<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
 														<th>
 															<a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a>
 														</th>
@@ -79,8 +79,8 @@
 					</div>
 					</cfif>
 					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Related Product Group</button>
-						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Related Product Group</button>
+						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
+						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Product Group</button>
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
@@ -93,7 +93,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add Related Product</h4>
+				<h4 class="modal-title"> Add Product</h4>
 			</div>
 		
 			<div class="modal-body">
