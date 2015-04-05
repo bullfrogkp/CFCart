@@ -326,7 +326,7 @@
 					<select class="form-control" name="new_order_product_shipping_method_id">
 						<option value="">Please Select Shipping...</option>
 						<cfloop array="#REQUEST.pageData.shippingMethods#" index="method">
-							<option value="#method.getShippingMethodId()#">#method.getDisplayName()#</option>
+							<option value="#method.getShippingMethodId()#">#method.getShippingCarrier().getDisplayName()# - #method.getDisplayName()#</option>
 						</cfloop>
 					</select>
 				</div>
