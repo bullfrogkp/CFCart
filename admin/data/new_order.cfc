@@ -94,7 +94,7 @@
 		
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.new_order_product_id) />
 			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id) />
-			<cfset LOCAL.imageName = EntityLoad("product_image",{product=LOCAL.product,isDefault=true},true) />
+			<cfset LOCAL.image = EntityLoad("product_image",{product=LOCAL.product,isDefault=true},true) />
 				
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
@@ -111,8 +111,8 @@
 			<cfset LOCAL.orderProduct.setProductId(LOCAL.product.getProductId()) />
 			<cfset LOCAL.orderProduct.setProductName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
-			<cfif NOT IsNull(LOCAL.imageName)>
-				<cfset LOCAL.orderProduct.setImageName(LOCAL.imageName) />
+			<cfif NOT IsNull(LOCAL.image)>
+				<cfset LOCAL.orderProduct.setImageName(LOCAL.image.getName()) />
 			</cfif>
 			
 			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />

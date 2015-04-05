@@ -38,6 +38,8 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 							<th>Product</th>
+							<th>ID</th>
+							<th>Name</th>
 							<th>Price</th>
 							<th>Qty</th>
 							<th>Shipping</th>
@@ -46,17 +48,24 @@
 						<tbody>
 							<cfif NOT IsNull(REQUEST.pageData.order) AND NOT IsNull(REQUEST.pageData.order.getProducts())>
 								<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
-								<tr>
-									<td>#product.getDisplayName()#</td>
-									<td>#product.getOrderPrice()#</td>
-									<td>#product.getQuantity()#</td>
-									<td>#product.getShippingMethodName()#</td>
-									<td>#product.getSubtotalAmount()#</td>
-								</tr>
+									<cfif NOT IsNull(product.getImageName())>
+										<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#product.getImageName()#" />
+									<cfelse>
+										<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+									</cfif>
+									<tr>
+										<td style="width:110px;"><img class="img-responsive" src="#imageLink#" style="width:100px;" /></td>
+										<td>#product.getProductId()#</td>
+										<td>#product.getDisplayName()#</td>
+										<td>#product.getOrderPrice()#</td>
+										<td>#product.getQuantity()#</td>
+										<td>#product.getShippingCarrierName()# - #product.getShippingMethodName()#</td>
+										<td>#product.getSubtotalAmount()#</td>
+									</tr>
 								</cfloop>
 							<cfelse>
 								<tr>
-									<td colspan="5">No product.</td>
+									<td colspan="6">No product.</td>
 								</tr>
 							</cfif>
 						</tbody>
