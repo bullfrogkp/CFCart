@@ -148,7 +148,8 @@
 											<table class="table table-bordered table-striped">
 												
 													<th>Product</th>
-													<th>Original Price</th>
+													<th>Name</th>
+													<th>SKU</th>
 													<th>Price</th>
 													<th>Qty</th>
 													<th>Shipping Method</th>
@@ -160,19 +161,23 @@
 													<th>Row Total</th>
 												
 													<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
+														<cfif NOT IsNull(product.getImageName())>
+															<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#product.getImageName()#" />
+														<cfelse>
+															<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+														</cfif>
 														<tr>
-															<td>
-																#product.getDisplayName()# (SKU: #product.getSKU()#)
-															</td>
-															<td>#product.getRegularPrice()#</td>
+															<td><img class="img-responsive" src="#imageLink#" style="width:100px;" /></td>
+															<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getProductName()#</a></td>
+															<td>#product.getSKU()#</td>
 															<td>#product.getOrderPrice()#</td>
 															<td>#product.getQuantity()#</td>
-															<td>#product.getShippingMethod().getDisplayName()#</td>
+															<td>#product.getShippingCarrierName()# - #product.getShippingMethodName()#</td>
 															<td>#EntityLoad("order_product_status", {orderProduct = product,current = true}, true).getOrderProductStatusType().getDisplayName()#</td>
 															<td>#product.getSubtotalAmount()#</td>
 															<td>#product.getTaxAmount()#</td>
 															<td>#product.getShippingAmount()#</td>
-															<td>#product.getTaxCategory().getRate()#</td>
+															<td>#product.getTaxRate()#</td>
 															<td>#product.getShippingAmount() + product.getSubtotalAmount() + product.getTaxAmount()#</td>
 														</tr>
 													</cfloop>
@@ -275,7 +280,7 @@
 							<div class="col-lg-6"> 
 								<div class="box box-primary">
 									<div class="box-header">
-										<h3 class="box-title">#product.getDIsplayName()#</h3>
+										<h3 class="box-title">#product.getDisplayName()#</h3>
 									</div><!-- /.box-header -->
 									
 									<div class="box-body">

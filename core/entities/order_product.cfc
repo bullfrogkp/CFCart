@@ -5,15 +5,17 @@
 	<cfproperty name="quantity" column="quantity" ormtype="integer"> 
 	<cfproperty name="subtotalAmount" column="subtotal_amount" ormtype="float"> 
 	<cfproperty name="taxAmount" column="tax_amount" ormtype="float"> 
+	<cfproperty name="taxRate" column="tax_rate" ormtype="float"> 
 	<cfproperty name="shippingAmount" column="shipping_amount" ormtype="float"> 
 	<cfproperty name="totalAmount" column="total_amount" ormtype="float"> 
 	<cfproperty name="comments" column="comments" ormtype="string">
+	<cfproperty name="imageName" column="image_name" ormtype="string">
+	<cfproperty name="shippingCarrierName" column="shipping_carrier" ormtype="string">
+	<cfproperty name="shippingMethodName" column="shipping_method" ormtype="string">
+	<cfproperty name="taxCategoryName" column="tax_category_name" ormtype="string">
+	<cfproperty name="productId" column="product_id" ormtype="integer">
+	<cfproperty name="productName" column="product_name" ormtype="string">
 	<cfproperty name="sku" column="sku" ormtype="string">
 	
 	<cfproperty name="orderProductStatus" type="array" fieldtype="one-to-many" cfc="order_product_status" fkcolumn="order_product_id">
-	
-	<cfproperty name="order" fieldtype="many-to-one" cfc="order" fkcolumn="order_id">	
-	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">	
-	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">	
-	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">	
 </cfcomponent>
