@@ -2,5 +2,6 @@
     <cfproperty name="shippingMethodId" column="shipping_method_id" fieldtype="id" generator="native"> 
 	<cfproperty name="displayName" column="display_name" ormtype="string"> 
 	<cfproperty name="function" column="function" ormtype="string"> 
+	<cfproperty name="shippingCarrier" fieldtype="many-to-one" cfc="shipping_carrier" fkcolumn="shipping_carrier_id">
 	<cfproperty name="productShippingMethodRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="shipping_method_id">
 </cfcomponent>

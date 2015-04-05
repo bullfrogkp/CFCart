@@ -111,7 +111,9 @@
 			<cfset LOCAL.orderProduct.setProductId(LOCAL.product.getProductId()) />
 			<cfset LOCAL.orderProduct.setProductName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
-			<cfset LOCAL.orderProduct.setImageName(LOCAL.imageName) />
+			<cfif NOT IsNull(LOCAL.imageName)>
+				<cfset LOCAL.orderProduct.setImageName(LOCAL.imageName) />
+			</cfif>
 			
 			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
 			<cfset LOCAL.newProductStatus = EntityNew("order_product_status") />

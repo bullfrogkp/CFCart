@@ -50,7 +50,7 @@
 									<td>#product.getDisplayName()#</td>
 									<td>#product.getOrderPrice()#</td>
 									<td>#product.getQuantity()#</td>
-									<td>#product.getShippingMethod().getDisplayName()#</td>
+									<td>#product.getShippingMethodName()#</td>
 									<td>#product.getSubtotalAmount()#</td>
 								</tr>
 								</cfloop>
