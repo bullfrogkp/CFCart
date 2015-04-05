@@ -93,18 +93,25 @@
 		<cfelseif StructKeyExists(FORM,"add_new_product")>
 		
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.new_order_product_id) />
+			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id) />
+			<cfset LOCAL.imageName = EntityLoad("product_image",{product=LOCAL.product,isDefault=true},true) />
 				
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setRegularPrice(LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setOrderPrice(LOCAL.product.getPrice()) />
-			<cfset LOCAL.orderProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
+			<cfset LOCAL.orderProduct.setTaxCategoryName(LOCAL.product.getTaxCategory().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setSubtotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setTaxAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * LOCAL.product.getTaxCategory().getRate()) />
 			<cfset LOCAL.orderProduct.setShippingAmount(LOCAL.product.getPrice()) />
 			<cfset LOCAL.orderProduct.setTotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * (1+LOCAL.product.getTaxCategory().getRate())) />
 			<cfset LOCAL.orderProduct.setQuantity(FORM.new_order_product_quantity) />
-			<cfset LOCAL.orderProduct.setShippingMethod(EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id)) />
+			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.shippingMethod.getShippingCarrier().getDisplayName()) />
+			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.shippingMethod.getDisplayName()) />
+			<cfset LOCAL.orderProduct.setProductId(LOCAL.product.getProductId()) />
+			<cfset LOCAL.orderProduct.setProductName(LOCAL.product.getDisplayName()) />
+			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
+			<cfset LOCAL.orderProduct.setImageName(LOCAL.imageName) />
 			
 			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
 			<cfset LOCAL.newProductStatus = EntityNew("order_product_status") />
