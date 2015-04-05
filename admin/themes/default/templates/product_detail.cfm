@@ -629,24 +629,41 @@
 														<th colspan="2" style="text-align:right;padding-right:10px;">#s.shipping_carrier_name#</th>
 													</tr>
 													<cfoutput>
-													<input type="hidden" name="default_price_#s.shipping_method_id#" value="#s.default_price#" />
+													<cfif IsNumeric(s.product_shipping_method_rela_id)>
+														<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",s.product_shipping_method_rela_id) />
+														<cfset defaultPrice = productShippingMethodRela.getDefaultPrice() />
+													<cfelse>
+														<cfset defaultPrice = 0 />
+													</cfif>
+													<input type="hidden" name="default_price_#s.shipping_method_id#" value="#defaultPrice#" />
 													<tr>
 														<td>#s.shipping_method_name#</td>
-														<td>#DollarFormat(s.default_price)#</td>
-														<td>
-															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
+														<td>#DollarFormat(defaultPrice)#</td>
+														
+														<cfif IsNumeric(s.product_shipping_method_rela_id)>
+															<td>
+																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
 
-															<cfif IsNumeric(s.product_shipping_method_rela_id)>
-																checked
-															</cfif>
+																<cfif IsNumeric(s.product_shipping_method_rela_id)>
+																	checked
+																</cfif>
 
-															/>
-														</td>
-														<td>
-															<cfif IsNumeric(s.product_shipping_method_rela_id)>
+																/>
+															</td>
+															<td>
 																<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-price-modal"><span class="label label-primary">Edit</span></a>
-															</cfif>
-														</td>
+															</td>
+														<cfelse>
+															<td colspan="2" style="text-align:right;">
+																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
+
+																<cfif IsNumeric(s.product_shipping_method_rela_id)>
+																	checked
+																</cfif>
+
+																/>
+															</td>
+														</cfif>
 													</tr>
 													</cfoutput>
 												</table>
