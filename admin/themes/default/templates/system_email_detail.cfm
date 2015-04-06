@@ -7,11 +7,11 @@
 </script>
 <section class="content-header">
 	<h1>
-		Newsletter Detail
+		System Email Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Newsletter Detail</li>
+		<li class="active">System Email Detail</li>
 	</ol>
 </section>
 
@@ -63,8 +63,8 @@
 						<textarea name="content" id="content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.content#</textarea>
 					</div>
 					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Newsletter</button>
-						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete Newsletter</button>
+						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save System Email</button>
+						<button name="delete_item" type="submit" class="btn btn-danger top-nav-button pull-right #REQUEST.pageData.deleteButtonClass#">Delete System Email</button>
 					</div>
 				</div><!-- /.box-body -->
 				

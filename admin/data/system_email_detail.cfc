@@ -8,35 +8,35 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.newsletter = EntityLoadByPK("newsletter", FORM.id)> 
+			<cfset LOCAL.systemEmail = EntityLoadByPK("system_email", FORM.id)> 
 		<cfelse>
-			<cfset LOCAL.newsletter = EntityNew("newsletter") />
-			<cfset LOCAL.newsletter.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.newsletter.setCreatedDatetime(Now()) />
-			<cfset LOCAL.newsletter.setIsDeleted(false) />
+			<cfset LOCAL.systemEmail = EntityNew("system_email") />
+			<cfset LOCAL.systemEmail.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.systemEmail.setCreatedDatetime(Now()) />
+			<cfset LOCAL.systemEmail.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.newsletter.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.newsletter.setSubject(Trim(FORM.subject)) />
-			<cfset LOCAL.newsletter.setContent(Trim(FORM.content)) />
-			<cfset LOCAL.newsletter.setType(Trim(FORM.type)) />
-			<cfset LOCAL.newsletter.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.systemEmail.setDisplayName(Trim(FORM.display_name)) />
+			<cfset LOCAL.systemEmail.setSubject(Trim(FORM.subject)) />
+			<cfset LOCAL.systemEmail.setContent(Trim(FORM.content)) />
+			<cfset LOCAL.systemEmail.setType(Trim(FORM.type)) />
+			<cfset LOCAL.systemEmail.setIsEnabled(FORM.is_enabled) />
 			
-			<cfset EntitySave(LOCAL.newsletter) />
+			<cfset EntitySave(LOCAL.systemEmail) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Newsletter has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.newsletter.getNewsletterId()#" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"System email has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.systemEmail.getSystemEmailId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
-			<cfset LOCAL.newsletter.setIsDeleted(true) />
+			<cfset LOCAL.systemEmail.setIsDeleted(true) />
 			
-			<cfset EntitySave(LOCAL.newsletter) />
+			<cfset EntitySave(LOCAL.systemEmail) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Newsletter '#LOCAL.newsletter.getSubject()#' has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/newsletters.cfm" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"System Email '#LOCAL.systemEmail.getSubject()#' has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/system_emails.cfm" />
 			
 		</cfif>
 		
@@ -51,22 +51,22 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.newsletter = EntityLoadByPK("newsletter", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.newsletter.getSubject()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.systemEmail = EntityLoadByPK("system_email", URL.id)> 
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.systemEmail.getSubject()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.subject = isNull(LOCAL.pageData.newsletter.getSubject())?"":LOCAL.pageData.newsletter.getSubject() />
-				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.newsletter.getDisplayName())?"":LOCAL.pageData.newsletter.getDisplayName() />
-				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.newsletter.getContent())?"":LOCAL.pageData.newsletter.getContent() />
-				<cfset LOCAL.pageData.formData.type = isNull(LOCAL.pageData.newsletter.getType())?"":LOCAL.pageData.newsletter.getType() />
-				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.newsletter.getIsEnabled())?"":LOCAL.pageData.newsletter.getIsEnabled() />
+				<cfset LOCAL.pageData.formData.subject = isNull(LOCAL.pageData.systemEmail.getSubject())?"":LOCAL.pageData.systemEmail.getSubject() />
+				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.systemEmail.getDisplayName())?"":LOCAL.pageData.systemEmail.getDisplayName() />
+				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.systemEmail.getContent())?"":LOCAL.pageData.systemEmail.getContent() />
+				<cfset LOCAL.pageData.formData.type = isNull(LOCAL.pageData.systemEmail.getType())?"":LOCAL.pageData.systemEmail.getType() />
+				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.systemEmail.getIsEnabled())?"":LOCAL.pageData.systemEmail.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.title = "New Newsletter | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.title = "System Email | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
 			<cfif IsDefined("SESSION.temp.formData")>

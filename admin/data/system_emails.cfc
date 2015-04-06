@@ -3,8 +3,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.title = "Newsletters | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.newsletters = EntityLoad("newsletter",{isDeleted = false}) />
+		<cfset LOCAL.pageData.title = "System Emails | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.systemEmails = EntityLoad("system_email",{isDeleted = false}) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

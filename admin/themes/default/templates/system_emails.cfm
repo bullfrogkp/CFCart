@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Newsletters
+		System Emails
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Newsletters</li>
+		<li class="active">System Emails</li>
 	</ol>
 </section>
 <section class="content">
@@ -37,8 +37,8 @@
 			</form>
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">Newsletters</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Newsletter</a>
+					<h3 class="box-title">System Emails</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/system_email_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New System Email</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
@@ -53,26 +53,26 @@
 								<th style="width:110px;">Action</th>
 							</tr>
 						
-							<cfif ArrayLen(REQUEST.pageData.newsletters) GT 0>
-								<cfloop array="#REQUEST.pageData.newsletters#" index="newsletter">
+							<cfif ArrayLen(REQUEST.pageData.systemEmails) GT 0>
+								<cfloop array="#REQUEST.pageData.systemEmails#" index="systemEmail">
 								<tr>
-									<td>#newsletter.getDisplayName()#</td>
-									<td>#newsletter.getCreatedDatetime()#</td>
-									<td>#newsletter.getUpdatedDatetime()#</td>
-									<td>#newsletter.getSubject()#</td>
-									<td>#newsletter.getType()#</td>
+									<td>#systemEmail.getDisplayName()#</td>
+									<td>#systemEmail.getCreatedDatetime()#</td>
+									<td>#systemEmail.getUpdatedDatetime()#</td>
+									<td>#systemEmail.getSubject()#</td>
+									<td>#systemEmail.getType()#</td>
 									<td>
-										<cfswitch expression="#newsletter.getIsEnabled()#">
+										<cfswitch expression="#systemEmail.getIsEnabled()#">
 											<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
 											<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
 										</cfswitch>
 									</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/system_email_detail.cfm?id=#systemEmail.getSystemEmailId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
 							<cfelse>
 								<tr>
-									<td colspan="6">No data available</td>
+									<td colspan="7">No data available</td>
 								</tr>
 							</cfif>
 							

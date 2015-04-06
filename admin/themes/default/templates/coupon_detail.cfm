@@ -102,7 +102,7 @@
 						<input type="text" class="form-control" id="threshold_amount" name="threshold_amount" value="#REQUEST.pageData.formData.threshold_amount#" />
 					</div><!-- /.form group -->
 					<button type="submit" name="save_item" class="btn btn-primary">Submit</button>
-					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Customer</button>
+					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Coupon</button>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->
