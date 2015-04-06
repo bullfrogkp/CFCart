@@ -65,7 +65,7 @@
 								</cfloop>
 							<cfelse>
 								<tr>
-									<td colspan="6">No product.</td>
+									<td colspan="7">No product.</td>
 								</tr>
 							</cfif>
 						</tbody>
