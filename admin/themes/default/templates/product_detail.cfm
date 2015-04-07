@@ -274,73 +274,50 @@
 								<label>Price(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Price</span></a>
 								<div class="row" style="margin-top:10px;">
-								
-								
-									<cfloop query="REQUEST.pageData.customerGroupPrices">				
-										<cfset group = REQUEST.pageData.customerGroupPrices />
+									<cfloop query="REQUEST.pageData.groupPrices">				
+										<cfset groupPrice = REQUEST.pageData.groupPrices />
 										<div class="col-xs-3">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="warning">
-															<th>#group.display_name#</th>
-															<th><a customergroupid="#group.customer_group_id#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
+															<th>#groupPrice.groupDisplayName#</th>
+															<th>
+																<a customergroupid="#groupPrice.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-primary">Edit</span></a>
+																<a customergroupid="#groupPrice.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
+															</th>
 														</tr>
-														<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<tr>
-															<td>#group.getDisplayName()#</td>
-															<td>
-																<cfif ListFind(price.customerGroupIdList,group.getCustomerGroupId())>
-																<i class="fa fa-check-square pull-right" style="margin-top:3px;"></i>
-																</cfif>
-															</td>
+															<td>price:</td>
+															<td>#groupPrice.price#</td>
 														</tr>
-														</cfloop>
+														<tr>
+															<td>special price:</td>
+															<td>#groupPrice.specialPrice#</td>
+														</tr>
+														<tr>
+															<td>from:</td>
+															<td>#groupPrice.specialPriceFromDate#</td>
+														</tr>
+														<tr>
+															<td>to:</td>
+															<td>#groupPrice.specialPriceToDate#</td>
+														</tr>
 													</table>
 												</div><!-- /.box-body -->
 											</div><!-- /.box -->
 										</div>
 									</cfloop>
-								
-								
-								
-								
-									<cfif NOT IsNULL(REQUEST.pageData.groupPrices)>
-										<cfloop array="#REQUEST.pageData.groupPrices#" index="price">								
-											<div class="col-xs-3">
-												<div class="box box-warning">
-													<div class="box-body table-responsive no-padding">
-														<table class="table table-hover">
-															<tr class="warning">
-																<th>#DollarFormat(price.price)#</th>
-																<th><a grouppriceamount="#price.price#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
-															</tr>
-															<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-															<tr>
-																<td>#group.getDisplayName()#</td>
-																<td>
-																	<cfif ListFind(price.customerGroupIdList,group.getCustomerGroupId())>
-																	<i class="fa fa-check-square pull-right" style="margin-top:3px;"></i>
-																	</cfif>
-																</td>
-															</tr>
-															</cfloop>
-														</table>
-													</div><!-- /.box-body -->
-												</div><!-- /.box -->
-											</div>
-										</cfloop>
-									</cfif>
 								</div>
 							</div>
 						<cfelse>
 							<div class="form-group">
 								<label>Price</label>
-								<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+								<input type="text" name="price" class="form-control" placeholder="Enter ..." />
 							</div>
 							<div class="form-group">
 								<label>Special Price</label>
-								<input name="special_price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+								<input name="special_price" type="text" class="form-control" placeholder="Enter ..." />
 							</div>
 							 <div class="form-group">
 								<label>Special Price From Date</label>
@@ -348,7 +325,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
-									<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
+									<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" />
 								</div><!-- /.input group -->
 							</div><!-- /.form group -->
 							<div class="form-group">
@@ -357,7 +334,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
-									<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
+									<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" />
 								</div><!-- /.input group -->
 							</div><!-- /.form group -->
 						</cfif>
@@ -690,7 +667,7 @@
 																/>
 															</td>
 															<td>
-																<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-price-modal"><span class="label label-primary">Edit</span></a>
+																<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-shipping-price-modal"><span class="label label-primary">Edit</span></a>
 															</td>
 														<cfelse>
 															<td colspan="2" style="text-align:right;">
@@ -762,6 +739,47 @@
 							<i class="fa fa-calendar"></i>
 						</div>
 						<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" placeholder="Special Price To Date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
+					</div><!-- /.input group -->
+				</div><!-- /.form group -->
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- EDIT GROUP PRICE MODAL -->
+<div class="modal fade" id="edit-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Edit Group Price</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="updated_price" name="updated_price" type="text" class="form-control" placeholder="Price">
+				</div>
+				<div class="form-group">
+					<input id="updated_special_price" name="updated_special_price" type="text" class="form-control" placeholder="Special Price"/>
+				</div>
+				 <div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" name="updated_special_price_from_date" id="updated_special_price_from_date" placeholder="Special Price From Date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
+					</div><!-- /.input group -->
+				</div><!-- /.form group -->
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" name="updated_special_price_to_date" id="updated_special_price_to_date" placeholder="Special Price To Date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 			</div>
@@ -904,7 +922,7 @@
 </div><!-- /.modal -->
 
 <!-- EDIT DEFAULT PRICE MODAL -->
-<div class="modal fade" id="edit-default-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="edit-default-shipping-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
