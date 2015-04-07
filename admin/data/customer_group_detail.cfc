@@ -39,7 +39,7 @@
 		<cfif StructKeyExists(FORM,"save_item")>
 		
 			<cfset LOCAL.customerGroup.setGroupName(Trim(FORM.group_name)) />
-			<cfset LOCAL.customerGroup.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
+			<cfset LOCAL.customerGroup.setIsDefault(FORM.is_default) />
 			
 			<cfset EntitySave(LOCAL.customerGroup) />
 			
@@ -73,7 +73,7 @@
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.group_name = isNull(LOCAL.pageData.customerGroup.getDisplayName())?"":LOCAL.pageData.customerGroup.getDisplayName() />
-				<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.customerGroup.getDiscountType())?"":LOCAL.pageData.customerGroup.getDiscountType().getDiscountTypeId() />
+				<cfset LOCAL.pageData.formData.is_default = isNull(LOCAL.pageData.customerGroup.getIsDefault())?"":LOCAL.pageData.customerGroup.getIsDefault() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
@@ -85,7 +85,7 @@
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.group_name = "" />
-				<cfset LOCAL.pageData.formData.discount_type_id = "" />
+				<cfset LOCAL.pageData.formData.is_default = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>

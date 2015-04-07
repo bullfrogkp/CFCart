@@ -22,10 +22,10 @@
 							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						<div class="form-group">
-							<label>Discount Type</label>
-							<select class="form-control" name="parent_category_id">
-								<option value="0">Type 1</option>
-								<option value="">Type 2</option>
+							<label>Default</label>
+							 <select class="form-control" name="is_default">
+								<option value="1" <cfif REQUEST.pageData.formData.is_default EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_default EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>

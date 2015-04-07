@@ -3,11 +3,7 @@
 	<cfproperty name="sku" column="sku" ormtype="string"> 
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
-	<cfproperty name="price" column="price" ormtype="float"> 
 	<cfproperty name="stock" column="stock" ormtype="integer"> 
-	<cfproperty name="specialPrice" column="special_price" ormtype="float"> 
-	<cfproperty name="specialPriceFromDate" column="special_price_from_date" ormtype="date"> 
-	<cfproperty name="specialPriceToDate" column="special_price_to_date" ormtype="date"> 
 	<cfproperty name="detail" column="detail" ormtype="text"> 
 	
 	<cfproperty name="length" column="length" ormtype="float"> 
