@@ -2,7 +2,12 @@
 
 <script>
 	$(document).ready(function() {
-		CKEDITOR.replace('detail');
+		CKEDITOR.replace( 'detail',
+		{
+			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
+			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html',
+			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html'}
+		 );
 		
 		$(".top-level-tab").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));

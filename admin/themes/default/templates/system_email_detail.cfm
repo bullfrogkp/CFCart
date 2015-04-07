@@ -2,7 +2,12 @@
 
 <script>
 	$(document).ready(function() {
-		CKEDITOR.replace('content');
+		CKEDITOR.replace( 'content',
+		{
+			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
+			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html',
+			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html'}
+		 );
 	});
 </script>
 <section class="content-header">
