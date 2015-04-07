@@ -6,7 +6,14 @@
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
-		CKEDITOR.replace('custom_design');
+		
+		CKEDITOR.replace( 'custom_design',
+		{
+			filebrowserBrowseUrl :'#APPLICATION.absoluteUrlWeb#admin/themes/default/js/plugins/ckeditor/filemanager/index.html',
+			filebrowserImageBrowseUrl : '#APPLICATION.absoluteUrlWeb#admin/themes/default/js/plugins//ckeditor/filemanager/index.html',
+			filebrowserFlashBrowseUrl :'#APPLICATION.absoluteUrlWeb#admin/themes/default/js/plugins//ckeditor/filemanager/index.html'}
+		 );
+		
 		$("##uploader").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
