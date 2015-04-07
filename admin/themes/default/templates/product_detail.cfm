@@ -269,23 +269,22 @@
 						
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
-						<div class="form-group">
-							<label>Price</label>
-							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
-						</div>
-						<div class="form-group #REQUEST.pageData.groupPriceClass#">
-							<label>Group Price(s)</label>
-							<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Group Price</span></a>
-							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.groupPrices)>
-									<cfloop array="#REQUEST.pageData.groupPrices#" index="price">								
+						<cfif IsNumeric(REQUEST.pageData.formData.id)>
+							<div class="form-group #REQUEST.pageData.groupPriceClass#">
+								<label>Price(s)</label>
+								<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Price</span></a>
+								<div class="row" style="margin-top:10px;">
+								
+								
+									<cfloop query="REQUEST.pageData.customerGroupPrices">				
+										<cfset group = REQUEST.pageData.customerGroupPrices />
 										<div class="col-xs-3">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="warning">
-															<th>#DollarFormat(price.price)#</th>
-															<th><a grouppriceamount="#price.price#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
+															<th>#group.display_name#</th>
+															<th><a customergroupid="#group.customer_group_id#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 														<tr>
@@ -302,32 +301,67 @@
 											</div><!-- /.box -->
 										</div>
 									</cfloop>
-								</cfif>
+								
+								
+								
+								
+									<cfif NOT IsNULL(REQUEST.pageData.groupPrices)>
+										<cfloop array="#REQUEST.pageData.groupPrices#" index="price">								
+											<div class="col-xs-3">
+												<div class="box box-warning">
+													<div class="box-body table-responsive no-padding">
+														<table class="table table-hover">
+															<tr class="warning">
+																<th>#DollarFormat(price.price)#</th>
+																<th><a grouppriceamount="#price.price#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a></th>
+															</tr>
+															<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+															<tr>
+																<td>#group.getDisplayName()#</td>
+																<td>
+																	<cfif ListFind(price.customerGroupIdList,group.getCustomerGroupId())>
+																	<i class="fa fa-check-square pull-right" style="margin-top:3px;"></i>
+																	</cfif>
+																</td>
+															</tr>
+															</cfloop>
+														</table>
+													</div><!-- /.box-body -->
+												</div><!-- /.box -->
+											</div>
+										</cfloop>
+									</cfif>
+								</div>
 							</div>
-						</div>
+						<cfelse>
+							<div class="form-group">
+								<label>Price</label>
+								<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+							</div>
+							<div class="form-group">
+								<label>Special Price</label>
+								<input name="special_price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+							</div>
+							 <div class="form-group">
+								<label>Special Price From Date</label>
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
+							<div class="form-group">
+								<label>Special Price To Date</label>
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
+								</div><!-- /.input group -->
+							</div><!-- /.form group -->
+						</cfif>
 						
-						 <div class="form-group">
-							<label>Special Price</label>
-							<input name="special_price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
-						</div>
-						 <div class="form-group">
-							<label>Special Price From Date</label>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
-							</div><!-- /.input group -->
-						</div><!-- /.form group -->
-						<div class="form-group">
-							<label>Special Price To Date</label>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
-							</div><!-- /.input group -->
-						</div><!-- /.form group -->
 						<div class="form-group">
 							<label>Tax Category</label>
 							<select name="tax_category_id" class="form-control">
@@ -701,15 +735,35 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_group_price" name="new_group_price" type="text" class="form-control" placeholder="Group price">
-				</div>	
-				<div class="form-group">
+					<label>Customer Group</label>
 					<select class="form-control" name="customer_group_id" multiple>
 						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
 						</cfloop>
 					</select>
 				</div>
+				<div class="form-group">
+					<input id="price" name="price" type="text" class="form-control" placeholder="Price">
+				</div>
+				<div class="form-group">
+					<input name="special_price" type="text" class="form-control" placeholder="Special Price"/>
+				</div>
+				 <div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" placeholder="Special Price From Date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
+					</div><!-- /.input group -->
+				</div><!-- /.form group -->
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" placeholder="Special Price To Date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
+					</div><!-- /.input group -->
+				</div><!-- /.form group -->
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
