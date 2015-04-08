@@ -167,6 +167,18 @@
 		$( ".delete-image" ).click(function() {
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
+		
+		$( ".edit-group-price" ).click(function() {
+			$("##updated_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
+			$("##updated_price").val($(this).attr('price'));
+			$("##updated_special_price").val($(this).attr('specialprice'));
+			$("##updated_special_price_from_date").val($(this).attr('fromdate'));
+			$("##updated_special_price_to_date").val($(this).attr('todate'));
+		});
+		
+		$( ".delete-group-price" ).click(function() {
+			$("##deleted_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
+		});
 	});
 </script>
 
@@ -193,6 +205,8 @@
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <input type="hidden" name="product_shipping_method_rela_id" id="product_shipping_method_rela_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
+<input type="hidden" name="edit_product_customer_group_rela_id" id="updated_product_customer_group_rela_id" value="" />
+<input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -286,8 +300,15 @@
 														<tr class="warning">
 															<th>#group.groupDisplayName#</th>
 															<th>
-																<a customergroupid="#group.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
-																<a customergroupid="#group.customerGroupId#" href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
+																<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
+																<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" 
+			
+																price="<cfif NOT IsNull(groupPrice)>#groupPrice.getPrice()#</cfif>"
+																specialprice="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPrice()#</cfif>"
+																fromdate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceFromDate()#</cfif>"
+																todate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceToDate()#</cfif>"
+																
+																href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
 															</th>
 														</tr>
 														<tr>
