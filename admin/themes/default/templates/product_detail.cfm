@@ -183,7 +183,7 @@
 
 <!-- Main content -->
 <form method="post" enctype="multipart/form-data">
-<input type="hidden" name="id" id="id" value="#REQUEST.pageData.product.getProductId()#" />
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_attribute_option_attribute_id" id="new_attribute_option_attribute_id" value="" />
 <input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
@@ -270,38 +270,57 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<cfif IsNumeric(REQUEST.pageData.formData.id)>
-							<div class="form-group #REQUEST.pageData.groupPriceClass#">
+							<div class="form-group">
 								<label>Price(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Price</span></a>
 								<div class="row" style="margin-top:10px;">
-									<cfloop query="REQUEST.pageData.groupPrices">				
-										<cfset groupPrice = REQUEST.pageData.groupPrices />
+									<cfloop query="REQUEST.pageData.customerGroupPrices">				
+										<cfset group = REQUEST.pageData.customerGroupPrices />
+										<cfif IsNumeric(group.productCustomerGroupRelaId)>
+											<cfset groupPrice = EntityLoadByPK("product_customer_group_rela",group.productCustomerGroupRelaId) />
+										</cfif>
 										<div class="col-xs-3">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="warning">
-															<th>#groupPrice.groupDisplayName#</th>
+															<th>#group.groupDisplayName#</th>
 															<th>
-																<a customergroupid="#groupPrice.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-primary">Edit</span></a>
-																<a customergroupid="#groupPrice.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
+																<a customergroupid="#group.customerGroupId#" href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal"><span class="label label-primary">Edit</span></a>
+																<a customergroupid="#group.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
 															</th>
 														</tr>
 														<tr>
 															<td>price:</td>
-															<td>#groupPrice.price#</td>
+															<td>
+																<cfif NOT IsNull(groupPrice)>
+																	#groupPrice.getPrice()#
+																</cfif>
+															</td>
 														</tr>
 														<tr>
 															<td>special price:</td>
-															<td>#groupPrice.specialPrice#</td>
+															<td>
+																<cfif NOT IsNull(groupPrice)>
+																	#groupPrice.getSpecialPrice()#
+																</cfif>
+															</td>
 														</tr>
 														<tr>
 															<td>from:</td>
-															<td>#groupPrice.specialPriceFromDate#</td>
+															<td>
+																<cfif NOT IsNull(groupPrice)>
+																	#groupPrice.getSpecialPriceFromDate()#
+																</cfif>
+															</td>
 														</tr>
 														<tr>
 															<td>to:</td>
-															<td>#groupPrice.specialPriceToDate#</td>
+															<td>
+																<cfif NOT IsNull(groupPrice)>
+																	#groupPrice.getSpecialPriceToDate()#
+																</cfif>
+															</td>
 														</tr>
 													</table>
 												</div><!-- /.box-body -->
@@ -730,7 +749,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" placeholder="Special Price From Date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
+						<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" placeholder="Special Price From Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 				<div class="form-group">
@@ -738,7 +757,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" placeholder="Special Price To Date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
+						<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" placeholder="Special Price To Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 			</div>
@@ -771,7 +790,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="updated_special_price_from_date" id="updated_special_price_from_date" placeholder="Special Price From Date" value="#REQUEST.pageData.formData.special_price_from_date#"/>
+						<input type="text" class="form-control pull-right" name="updated_special_price_from_date" id="updated_special_price_from_date" placeholder="Special Price From Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 				<div class="form-group">
@@ -779,13 +798,13 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="updated_special_price_to_date" id="updated_special_price_to_date" placeholder="Special Price To Date" value="#REQUEST.pageData.formData.special_price_to_date#"/>
+						<input type="text" class="form-control pull-right" name="updated_special_price_to_date" id="updated_special_price_to_date" placeholder="Special Price To Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="edit_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->

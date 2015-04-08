@@ -77,7 +77,6 @@
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.customerGroup = EntityNew("customer_group") />
 			<cfset LOCAL.pageData.title = "New Customer Group | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			

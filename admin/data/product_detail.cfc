@@ -453,8 +453,7 @@
 			<cfset LOCAL.pageData.product = EntityLoadByPK("product", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
-			<cfset LOCAL.pageData.groupPriceClass = "" />
-			<cfset LOCAL.pageData.groupPrices = LOCAL.productService.getProductGroupPrices() />
+			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
 			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
 			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
@@ -478,12 +477,11 @@
 				<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeight())?"":LOCAL.pageData.product.getHeight() />
 				<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidth())?"":LOCAL.pageData.product.getWidth() />
 				<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeight())?"":LOCAL.pageData.product.getWeight() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.product = EntityNew("product") />
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
-			<cfset LOCAL.pageData.groupPriceClass = "hide-this" />
 			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
@@ -501,6 +499,7 @@
 				<cfset LOCAL.pageData.formData.height = "" />
 				<cfset LOCAL.pageData.formData.width = "" />
 				<cfset LOCAL.pageData.formData.weight = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
 	
