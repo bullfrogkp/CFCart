@@ -26,4 +26,20 @@
 	<cfproperty name="wishListProducts" type="array" fieldtype="one-to-many" cfc="wishlist_product" fkcolumn="customer_id" singularname="wishListProduct">
 	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
+	
+	
+	<cffunction name="getFullName" access="public" output="false" returnType="string">
+		
+		<cfset var firstName = isNull(getFirstName())?"":getFirstName() />
+		<cfset var middleName = isNull(getMiddleName())?"":getMiddleName() />
+		<cfset var lastName = isNull(getLastName())?"":getLastName() />
+		
+		<cfif middleName EQ "">
+			<cfset var fullName = firstName & " " & lastName />
+		<cfelse>
+			<cfset var fullName = firstName & " " & middleName & " " & lastName />
+		</cfif>
+		
+		<cfreturn fullName />
+	</cffunction>
 </cfcomponent>

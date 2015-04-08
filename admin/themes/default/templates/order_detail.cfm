@@ -330,8 +330,8 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<h2 class="page-header">
-										<i class="fa fa-globe"></i> AdminLTE, Inc.
-										<small class="pull-right">Date: 2/10/2014</small>
+										<i class="fa fa-globe"></i> #APPLICATION.companyName#
+										<small class="pull-right">Date: #DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")##</small>
 									</h2>
 								</div><!-- /.col -->
 							</div>
@@ -340,27 +340,27 @@
 								<div class="col-sm-4 invoice-col">
 									From
 									<address>
-										<strong>Admin, Inc.</strong><br>
-										795 Folsom Ave, Suite 600<br>
-										San Francisco, CA 94107<br>
-										Phone: (804) 123-5432<br/>
-										Email: info@almasaeedstudio.com
+										<strong>#APPLICATION.companyName#</strong><br>
+										#APPLICATION.companyInfo.street#, #APPLICATION.companyInfo.unit#<br>
+										#APPLICATION.companyInfo.city#, #APPLICATION.companyInfo.province# #APPLICATION.companyInfo.postalCode#<br>
+										Phone: #APPLICATION.companyInfo.phone#<br/>
+										Email: #APPLICATION.companyInfo.email#
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">
 									To
 									<address>
-										<strong>John Doe</strong><br>
-										795 Folsom Ave, Suite 600<br>
-										San Francisco, CA 94107<br>
-										Phone: (555) 539-1037<br/>
-										Email: john.doe@example.com
+										<strong>#REQUEST.pageData.order.getCustomerFullName()#</strong><br>
+										#REQUEST.pageData.order.getShippingStreet()#, #REQUEST.pageData.order.getShippingUnit()#<br>
+										#REQUEST.pageData.order.getShippingCity()#, #REQUEST.pageData.order.getShippingProvince()# #REQUEST.pageData.order.getShippingPostalCode()#<br>
+										Phone: #REQUEST.pageData.order.getPhone()#<br/>
+										Email: #REQUEST.pageData.order.getEmail()#
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">
-									<b>Invoice ##007612</b><br/>
+									<b>Invoice ###REQUEST.pageData.order.getOrderId()#</b><br/>
 									<br/>
-									<b>Order ID:</b> 4F3S8J<br/>
+									<b>Order ID:</b> #REQUEST.pageData.order.getTrackingNumber()#<br/>
 									<b>Payment Due:</b> 2/22/2014<br/>
 									<b>Account:</b> 968-34567
 								</div><!-- /.col -->
