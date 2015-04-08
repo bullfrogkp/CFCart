@@ -97,11 +97,7 @@
 		$( ".delete-related-product" ).click(function() {
 			$("##delete_related_product_id").val($(this).attr('relatedproductid'));
 		});
-		
-		$( ".delete-group-price" ).click(function() {
-			$("##deleted_group_price_amount").val($(this).attr('grouppriceamount'));
-		});
-		
+				
 		$( ".edit-default-price" ).click(function() {
 			$("##product_shipping_method_rela_id").val($(this).attr('productshippingmethodrelaid'));
 		});
@@ -209,7 +205,6 @@
 <input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
 <input type="hidden" name="sub_product_id" id="sub_product_id" value="" />
 <input type="hidden" name="delete_related_product_id" id="delete_related_product_id" value="" />
-<input type="hidden" name="deleted_group_price_amount" id="deleted_group_price_amount" value="" />
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <input type="hidden" name="product_shipping_method_rela_id" id="product_shipping_method_rela_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
@@ -303,20 +298,20 @@
 											<cfset groupPrice = EntityLoadByPK("product_customer_group_rela",group.productCustomerGroupRelaId) />
 										</cfif>
 										<div class="col-xs-3">
-											<div class="box <cfif NOT IsNull(groupPrice)>box-warning<cfelse>box-default</cfif>">
+											<div class="box <cfif IsNumeric(group.productCustomerGroupRelaId)>box-warning<cfelse>box-default</cfif>">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr class="<cfif NOT IsNull(groupPrice)>warning<cfelse>default</cfif>">
+														<tr class="<cfif IsNumeric(group.productCustomerGroupRelaId)>warning<cfelse>default</cfif>">
 															<th>#group.groupDisplayName#</th>
 															<th>
-																<cfif NOT IsNull(groupPrice)>
+																<cfif IsNumeric(group.productCustomerGroupRelaId)>
 																	<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
 																	<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" 
 				
-																	price="<cfif NOT IsNull(groupPrice)>#groupPrice.getPrice()#</cfif>"
-																	specialprice="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPrice()#</cfif>"
-																	fromdate="<cfif NOT IsNull(groupPrice)>#DateFormat(groupPrice.getSpecialPriceFromDate(),"yyyy/mm/dd")#</cfif>"
-																	todate="<cfif NOT IsNull(groupPrice)>#DateFormat(groupPrice.getSpecialPriceToDate(),"yyyy/mm/dd")#</cfif>"
+																	price="<cfif IsNumeric(group.productCustomerGroupRelaId)>#groupPrice.getPrice()#</cfif>"
+																	specialprice="<cfif IsNumeric(group.productCustomerGroupRelaId)>#groupPrice.getSpecialPrice()#</cfif>"
+																	fromdate="<cfif IsNumeric(group.productCustomerGroupRelaId)>#DateFormat(groupPrice.getSpecialPriceFromDate(),"yyyy/mm/dd")#</cfif>"
+																	todate="<cfif IsNumeric(group.productCustomerGroupRelaId)>#DateFormat(groupPrice.getSpecialPriceToDate(),"yyyy/mm/dd")#</cfif>"
 																	
 																	href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
 																<cfelse>
@@ -327,7 +322,7 @@
 														<tr>
 															<td>price:</td>
 															<td>
-																<cfif NOT IsNull(groupPrice)>
+																<cfif IsNumeric(group.productCustomerGroupRelaId)>
 																	#groupPrice.getPrice()#
 																<cfelse>
 																	-
@@ -337,7 +332,7 @@
 														<tr>
 															<td>special price:</td>
 															<td>
-																<cfif NOT IsNull(groupPrice)>
+																<cfif IsNumeric(group.productCustomerGroupRelaId)>
 																	#groupPrice.getSpecialPrice()#
 																<cfelse>
 																	-
@@ -347,7 +342,7 @@
 														<tr>
 															<td>from:</td>
 															<td>
-																<cfif NOT IsNull(groupPrice)>
+																<cfif IsNumeric(group.productCustomerGroupRelaId)>
 																	#DateFormat(groupPrice.getSpecialPriceFromDate(),"mmm dd, yyyy")#
 																<cfelse>
 																	-
@@ -357,7 +352,7 @@
 														<tr>
 															<td>to:</td>
 															<td>
-																<cfif NOT IsNull(groupPrice)>
+																<cfif IsNumeric(group.productCustomerGroupRelaId)>
 																	#DateFormat(groupPrice.getSpecialPriceToDate(),"mmm dd, yyyy")#
 																<cfelse>
 																	-
@@ -822,10 +817,10 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input name="edit_price" type="text" class="form-control" placeholder="Price">
+					<input id="edit_price" name="edit_price" type="text" class="form-control" placeholder="Price">
 				</div>
 				<div class="form-group">
-					<input name="edit_special_price" type="text" class="form-control" placeholder="Special Price"/>
+					<input id="edit_special_price" name="edit_special_price" type="text" class="form-control" placeholder="Special Price"/>
 				</div>
 				 <div class="form-group">
 					<div class="input-group">
@@ -846,7 +841,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="edit_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="edit_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Update</button>
 			</div>
 		
 		</div><!-- /.modal-content -->

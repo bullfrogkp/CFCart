@@ -172,18 +172,6 @@
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 						
-			<cfset LOCAL.productService.setProductId(LOCAL.product.getProductId()) />
-			<cfset LOCAL.groupPrices = LOCAL.productService.getProductGroupPrices() />
-			
-			<cfloop from="1" to="#ArrayLen(LOCAL.groupPrices)#" index="LOCAL.i">
-				<cfif StructKeyExists(FORM,"delete_group_price_#LOCAL.i#")>
-					<cfset LOCAL.productCustomerGroupRela = EntityLoad('product_customer_group_rela', {productId = LOCAL.product.getProductId(), price = LOCAL.groupPrices[i].price})> 
-					<cfloop array="#LOCAL.productCustomerGroupRela#" index="LOCAL.rela">
-						<cfset EntityDelete(LOCAL.rela) />
-					</cfloop>
-				</cfif>
-			</cfloop>
-		
 			<!--- attribute values --->
 			<cfif NOT IsNull(LOCAL.product.getAttributeSet())>
 				<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
