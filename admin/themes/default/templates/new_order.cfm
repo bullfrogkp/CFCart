@@ -109,6 +109,13 @@
 						<label>Phone</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="phone" value="#REQUEST.pageData.formData.phone#"/>
 					</div>
+					<div class="form-group">
+						<label>Save Customer and Addresses ?</label>
+						<select class="form-control" name="save_customer_and_addresses">
+							<option value="1">Yes</option>
+							<option value="0">No</option>
+						</select>
+					</div>
 				</div>
 			</div><!-- /.box (chat box) -->   
 		</section>
