@@ -52,6 +52,8 @@
 				<cfset LOCAL.newCustomer.setCreatedDatetime(Now()) />
 				<cfset LOCAL.newCustomer.setCreatedUser(SESSION.user) />
 				
+				<cfset LOCAL.newCustomer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
+				
 				<cfset LOCAL.newAddress = EntityNew("address") />
 				<cfset LOCAL.newAddress.setUnit(Trim(FORM.shipping_unit)) />
 				<cfset LOCAL.newAddress.setStreet(Trim(FORM.shipping_street)) />
@@ -126,6 +128,11 @@
 			
 			<cfset EntitySave(LOCAL.order) />
 			
+			<cfif FORM.save_customer_and_addresses EQ 1>
+				<cfset LOCAL.newCustomer.addOrder(LOCAL.order) />
+				<cfset EntitySave(LOCAL.newCustomer) />
+			</cfif>
+			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
 			
@@ -184,7 +191,7 @@
 		<cfset LOCAL.pageData.countries = EntityLoad("country") />
 		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
 		<cfset LOCAL.pageData.paymentMethods = EntityLoad("payment_method") />
-		<cfset LOCAL.pageData.shippingMethods = EntityLoad("shipping_method") />
+		<cfset LOCAL.pageData.shippingCarriers = EntityLoad("shipping_carrier",{},"displayName") />
 		<cfset LOCAL.pageData.title = "New Order | #APPLICATION.applicationName#" />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>

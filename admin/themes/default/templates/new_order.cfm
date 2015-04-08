@@ -361,8 +361,10 @@
 				<div class="form-group">
 					<select class="form-control" name="new_order_product_shipping_method_id">
 						<option value="">Please Select Shipping...</option>
-						<cfloop array="#REQUEST.pageData.shippingMethods#" index="method">
-							<option value="#method.getShippingMethodId()#">#method.getShippingCarrier().getDisplayName()# - #method.getDisplayName()#</option>
+						<cfloop array="#REQUEST.pageData.shippingCarriers#" index="shippingCarrier">
+							<cfloop array="#shippingCarrier.getShippingMethods()#" index="method">
+								<option value="#method.getShippingMethodId()#">#shippingCarrier.getDisplayName()# - #method.getDisplayName()#</option>
+							</cfloop>
 						</cfloop>
 					</select>
 				</div>
