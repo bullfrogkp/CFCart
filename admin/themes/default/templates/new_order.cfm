@@ -82,6 +82,10 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="form-group">
+						<label>Prefix</label>
+						<input type="text" class="form-control" placeholder="Enter ..." name="prefix" value="#REQUEST.pageData.formData.prefix#"/>
+					</div>
+					<div class="form-group">
 						<label>First Name</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="first_name" value="#REQUEST.pageData.formData.first_name#"/>
 					</div>
@@ -92,6 +96,14 @@
 					<div class="form-group">
 						<label>Last Name</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="last_name" value="#REQUEST.pageData.formData.last_name#"/>
+					</div>
+					<div class="form-group">
+						<label>Suffix</label>
+						<input type="text" class="form-control" placeholder="Enter ..." name="suffix" value="#REQUEST.pageData.formData.suffix#"/>
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input type="text" class="form-control" placeholder="Enter ..." name="email" value="#REQUEST.pageData.formData.email#"/>
 					</div>
 					<div class="form-group">
 						<label>Phone</label>

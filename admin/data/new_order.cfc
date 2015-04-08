@@ -37,39 +37,72 @@
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"submit_order")>
-			<cfset LOCAL.order.setFirstName(Trim(FORM.first_name)) />
-			<cfset LOCAL.order.setMiddleName(Trim(FORM.middle_name)) />
-			<cfset LOCAL.order.setLastName(Trim(FORM.last_name)) />
-			<cfset LOCAL.order.setPhone(Trim(FORM.phone)) />
-			<cfset LOCAL.order.setComments(Trim(FORM.comments)) />
+		
+			<cfset LOCAL.newCustomer = EntityNew("customer") />
+			<cfset LOCAL.newCustomer.setFirstName(Trim(FORM.first_name)) />
+			<cfset LOCAL.newCustomer.setMiddleName(Trim(FORM.middle_name)) />
+			<cfset LOCAL.newCustomer.setLastName(Trim(FORM.last_name)) />
+			<cfset LOCAL.newCustomer.setPrefix(Trim(FORM.prefix)) />
+			<cfset LOCAL.newCustomer.setSuffix(Trim(FORM.suffix)) />
+			<cfset LOCAL.newCustomer.setEmail(Trim(FORM.email)) />
+			<cfset LOCAL.newCustomer.setPhone(Trim(FORM.phone)) />
+			<cfset LOCAL.newCustomer.setCreatedDatetime(Now()) />
+			<cfset LOCAL.newCustomer.setCreatedUser(SESSION.user) />
 			
+			<cfset LOCAL.newAddress = EntityNew("address") />
+			<cfset LOCAL.newAddress.setUnit(Trim(FORM.shipping_unit)) />
+			<cfset LOCAL.newAddress.setStreet(Trim(FORM.shipping_street)) />
+			<cfset LOCAL.newAddress.setCity(Trim(FORM.shipping_city)) />
+			<cfset LOCAL.newAddress.setProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
+			<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
+			<cfset LOCAL.newAddress.setPostalCode(Trim(FORM.shipping_postal_code)) />
+			<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
+			<cfset LOCAL.newAddress.setCreatedUser(SESSION.user) />
+			
+			<cfset EntitySave(LOCAL.newAddress) />
+			<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
+			
+			<cfif Trim(FORM.shipping_unit) NEQ Trim(FORM.billing_unit)
+			OR	Trim(FORM.shipping_street) NEQ Trim(FORM.billing_street)
+			OR	Trim(FORM.shipping_city) NEQ Trim(FORM.billing_city)
+			OR	Trim(FORM.shipping_province_id) NEQ Trim(FORM.billing_province_id)
+			OR	Trim(FORM.shipping_country_id) NEQ Trim(FORM.billing_country_id)
+			OR	Trim(FORM.shipping_postal_code) NEQ Trim(FORM.billing_postal_code)>
+				
+				<cfset LOCAL.newAddress = EntityNew("address") />
+				<cfset LOCAL.newAddress.setUnit(Trim(FORM.billing_unit)) />
+				<cfset LOCAL.newAddress.setStreet(Trim(FORM.billing_street)) />
+				<cfset LOCAL.newAddress.setCity(Trim(FORM.billing_city)) />
+				<cfset LOCAL.newAddress.setProvince(EntityLoadByPK("province",FORM.billing_province_id)) />
+				<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
+				<cfset LOCAL.newAddress.setPostalCode(Trim(FORM.billing_postal_code)) />
+				<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
+				<cfset LOCAL.newAddress.setCreatedUser(SESSION.user) />
+				
+				<cfset EntitySave(LOCAL.newAddress) />
+				<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
+			</cfif>
+			
+			<cfset EntitySave(LOCAL.newCustomer) />
+			
+			<cfset LOCAL.order.setShippingUnit(Trim(FORM.shipping_unit)) />
 			<cfset LOCAL.order.setShippingStreet(Trim(FORM.shipping_street)) />
 			<cfset LOCAL.order.setShippingCity(Trim(FORM.shipping_city)) />
+			<cfset LOCAL.order.setShippingProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
+			<cfset LOCAL.order.setShippingCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
 			<cfset LOCAL.order.setShippingPostalCode(Trim(FORM.shipping_postal_code)) />
+					
+			<cfset LOCAL.order.setBillingUnit(Trim(FORM.billing_unit)) />
+			<cfset LOCAL.order.setBillingStreet(Trim(FORM.billing_street)) />
+			<cfset LOCAL.order.setBillingCity(Trim(FORM.billing_city)) />
+			<cfset LOCAL.order.setBillingProvince(EntityLoadByPK("province",FORM.billing_province_id)) />
+			<cfset LOCAL.order.setBillingCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
+			<cfset LOCAL.order.setBillingPostalCode(Trim(FORM.billing_postal_code)) />
+			
 			<cfset LOCAL.order.setCreatedDatetime(Now()) />
 			<cfset LOCAL.order.setCreatedUser(SESSION.user) />
 			
-			<cfif FORM.shipping_province_id NEQ "">
-				<cfset LOCAL.order.setShippingProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
-			</cfif>
-			<cfif FORM.shipping_country_id NEQ "">
-				<cfset LOCAL.order.setShippingCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
-			</cfif>
-		
-			<cfset LOCAL.order.setBillingStreet(Trim(FORM.billing_street)) />
-			<cfset LOCAL.order.setBillingCity(Trim(FORM.billing_city)) />
-			<cfset LOCAL.order.setBillingPostalCode(Trim(FORM.billing_postal_code)) />
-			
-			<cfif FORM.billing_province_id NEQ "">
-				<cfset LOCAL.order.setBillingProvince(EntityLoadByPK("province",FORM.billing_province_id)) />
-			</cfif>
-			<cfif FORM.billing_country_id NEQ "">
-				<cfset LOCAL.order.setBillingCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
-			</cfif>
-			
-			<cfif FORM.payment_method_id NEQ "">
-				<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
-			</cfif>
+			<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
 			
 			<cfif FORM.coupon_code NEQ "">
 				<cfset LOCAL.order.setCoupon(EntityLoad("coupon",{couponCode = FORM.coupon_code}, true)) />

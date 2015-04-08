@@ -54,9 +54,7 @@
 		<cfset var productCustomeGroupRela = EntityLoad("product_customer_group_rela",{customerGroup=customerGroup,product=product},true) />
 		<cfset var price = "" />
 		
-		<cfif IsNull(productCustomeGroupRela)>
-			<cfset price = "" />
-		<cfelse>
+		<cfif NOT IsNull(productCustomeGroupRela)>
 			<cfset price = productCustomeGroupRela.getPrice() />
 		</cfif>
 		
