@@ -286,7 +286,7 @@
 						<cfif IsNumeric(REQUEST.pageData.formData.id)>
 							<div class="form-group">
 								<label>Price(s)</label>
-								<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Price</span></a>
+								<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Price(s)</span></a>
 								<div class="row" style="margin-top:10px;">
 									<cfloop query="REQUEST.pageData.customerGroupPrices">				
 										<cfset group = REQUEST.pageData.customerGroupPrices />
@@ -294,21 +294,25 @@
 											<cfset groupPrice = EntityLoadByPK("product_customer_group_rela",group.productCustomerGroupRelaId) />
 										</cfif>
 										<div class="col-xs-3">
-											<div class="box box-warning">
+											<div class="box <cfif NOT IsNull(groupPrice)>box-warning<cfelse>box-default</cfif>">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr class="warning">
+														<tr class="<cfif NOT IsNull(groupPrice)>warning<cfelse>default</cfif>">
 															<th>#group.groupDisplayName#</th>
 															<th>
-																<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
-																<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" 
-			
-																price="<cfif NOT IsNull(groupPrice)>#groupPrice.getPrice()#</cfif>"
-																specialprice="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPrice()#</cfif>"
-																fromdate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceFromDate()#</cfif>"
-																todate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceToDate()#</cfif>"
-																
-																href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
+																<cfif NOT IsNull(groupPrice)>
+																	<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
+																	<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" 
+				
+																	price="<cfif NOT IsNull(groupPrice)>#groupPrice.getPrice()#</cfif>"
+																	specialprice="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPrice()#</cfif>"
+																	fromdate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceFromDate()#</cfif>"
+																	todate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceToDate()#</cfif>"
+																	
+																	href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
+																<cfelse>
+																	<a customergrouprelaid="#group.customerGroupId#" href="" class="add-single-group-price pull-right" data-toggle="modal" data-target="##add-single-group-price-modal"><span class="label label-primary">Add</span></a>
+																</cfif>
 															</th>
 														</tr>
 														<tr>
@@ -834,6 +838,47 @@
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
 				<button name="edit_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ADD SINGLE GROUP PRICE MODAL -->
+<div class="modal fade" id="add-single-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add Group Price</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<input id="updated_price" name="new_price" type="text" class="form-control" placeholder="Price">
+				</div>
+				<div class="form-group">
+					<input id="updated_special_price" name="new_special_price" type="text" class="form-control" placeholder="Special Price"/>
+				</div>
+				 <div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" name="new_special_price_from_date" id="updated_special_price_from_date" placeholder="Special Price From Date" />
+					</div><!-- /.input group -->
+				</div><!-- /.form group -->
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" name="new_special_price_to_date" id="updated_special_price_to_date" placeholder="Special Price To Date" />
+					</div><!-- /.input group -->
+				</div><!-- /.form group -->
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
