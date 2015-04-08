@@ -66,8 +66,10 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		$('##special_price_from_date').datepicker();
-		$('##special_price_to_date').datepicker();
+		$('##new_special_price_from_date').datepicker();
+		$('##new_special_price_to_date').datepicker();
+		$('##new_single_special_price_from_date').datepicker();
+		$('##new_single_special_price_to_date').datepicker();
 				
 		$( ".add-new-attribute-option" ).click(function() {
 			$("##new_attribute_option_attribute_id").val($(this).attr('attributeid'));
@@ -344,7 +346,7 @@
 															<td>from:</td>
 															<td>
 																<cfif NOT IsNull(groupPrice)>
-																	#groupPrice.getSpecialPriceFromDate()#
+																	#DateFormat(groupPrice.getSpecialPriceFromDate(),"mmm dd, yyyy")#
 																<cfelse>
 																	-
 																</cfif>
@@ -354,7 +356,7 @@
 															<td>to:</td>
 															<td>
 																<cfif NOT IsNull(groupPrice)>
-																	#groupPrice.getSpecialPriceToDate()#
+																	#DateFormat(groupPrice.getSpecialPriceToDate(),"mmm dd, yyyy")#
 																<cfelse>
 																	-
 																</cfif>
