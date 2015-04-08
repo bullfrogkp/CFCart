@@ -179,6 +179,10 @@
 		$( ".delete-group-price" ).click(function() {
 			$("##deleted_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
 		});
+		
+		$( ".add-single-group-price" ).click(function() {
+			$("##add_customer_group_id").val($(this).attr('customergroupid'));
+		});
 	});
 </script>
 
@@ -207,6 +211,7 @@
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <input type="hidden" name="edit_product_customer_group_rela_id" id="updated_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
+<input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -311,7 +316,7 @@
 																	
 																	href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
 																<cfelse>
-																	<a customergrouprelaid="#group.customerGroupId#" href="" class="add-single-group-price pull-right" data-toggle="modal" data-target="##add-single-group-price-modal"><span class="label label-primary">Add</span></a>
+																	<a customergroupid="#group.customerGroupId#" href="" class="add-single-group-price pull-right" data-toggle="modal" data-target="##add-single-group-price-modal"><span class="label label-primary">Add</span></a>
 																</cfif>
 															</th>
 														</tr>
@@ -878,7 +883,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_single_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
