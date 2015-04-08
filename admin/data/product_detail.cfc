@@ -344,16 +344,29 @@
 		<cfelseif StructKeyExists(FORM,"add_new_group_price")>
 			<cfif IsNumeric(Trim(FORM.new_group_price))>
 				<cfloop list="#FORM.customer_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.newGroupPrice = EntityNew("product_customer_group_rela") />
-					<cfset LOCAL.newGroupPrice.setProduct(LOCAL.product) />
-					<cfset LOCAL.newGroupPrice.setCustomerGroup(EntityLoadByPK("customer_group",LOCAL.groupId)) />
-					<cfset LOCAL.newGroupPrice.setPrice(Trim(FORM.new_group_price)) />
-					<cfset LOCAL.newGroupPrice.setSpecialPrice(Trim(FORM.special_price)) />
-					<cfset LOCAL.newGroupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
-					<cfset LOCAL.newGroupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
-					
-					<cfset EntitySave(LOCAL.newGroupPrice) />
-					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.newGroupPrice) />
+				
+					<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group",LOCAL.groupId) />
+					<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.customerGroup},true) />
+				
+					<cfif IsNull(LOCAL.groupPrice)>
+						<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+						<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+						<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
+						<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_group_price)) />
+						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+						
+						<cfset EntitySave(LOCAL.groupPrice) />
+						<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_group_price)) />
+						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+						
+						<cfset EntitySave(LOCAL.groupPrice) />
+					</cfif>
 				</cfloop>
 			</cfif>
 			
@@ -363,16 +376,28 @@
 		
 		<cfelseif StructKeyExists(FORM,"add_single_group_price")>
 			<cfif IsNumeric(Trim(FORM.new_price))>
-				<cfset LOCAL.newGroupPrice = EntityNew("product_customer_group_rela") />
-				<cfset LOCAL.newGroupPrice.setProduct(LOCAL.product) />
-				<cfset LOCAL.newGroupPrice.setCustomerGroup(EntityLoadByPK("customer_group",FORM.add_customer_group_id)) />
-				<cfset LOCAL.newGroupPrice.setPrice(Trim(FORM.new_price)) />
-				<cfset LOCAL.newGroupPrice.setSpecialPrice(Trim(FORM.new_special_price)) />
-				<cfset LOCAL.newGroupPrice.setSpecialPriceFromDate(Trim(FORM.new_special_price_from_date)) />
-				<cfset LOCAL.newGroupPrice.setSpecialPriceToDate(Trim(FORM.new_special_price_to_date)) />
-				
-				<cfset EntitySave(LOCAL.newGroupPrice) />
-				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.newGroupPrice) />
+				<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group",FORM.add_customer_group_id) />
+				<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.customerGroup},true) />
+			
+				<cfif IsNull(LOCAL.groupPrice)>
+					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_group_price)) />
+					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+					<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+					<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+					
+					<cfset EntitySave(LOCAL.groupPrice) />
+					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+				<cfelse>
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_group_price)) />
+					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+					<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+					<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+					
+					<cfset EntitySave(LOCAL.groupPrice) />
+				</cfif>
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.product) />
