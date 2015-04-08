@@ -134,6 +134,10 @@
 						<input type="text" class="form-control" placeholder="Enter ..." name="billing_company" value="#REQUEST.pageData.formData.billing_company#" />
 					</div>
 					<div class="form-group">
+						<label>Unit</label>
+						<input type="text" class="form-control" placeholder="Enter ..." name="billing_unit" value="#REQUEST.pageData.formData.billing_unit#" />
+					</div>
+					<div class="form-group">
 						<label>Street Address</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="billing_street" value="#REQUEST.pageData.formData.billing_street#" />
 					</div>
@@ -192,6 +196,10 @@
 					<div class="form-group">
 						<label>Company</label>
 						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_company" value="#REQUEST.pageData.formData.shipping_company#" />
+					</div>
+					<div class="form-group">
+						<label>Unit</label>
+						<input type="text" class="form-control" placeholder="Enter ..." name="shipping_unit" value="#REQUEST.pageData.formData.shipping_unit#" />
 					</div>
 					<div class="form-group">
 						<label>Street Address</label>
