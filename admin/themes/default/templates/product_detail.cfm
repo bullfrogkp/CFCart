@@ -70,6 +70,8 @@
 		$('##new_special_price_to_date').datepicker();
 		$('##new_single_special_price_from_date').datepicker();
 		$('##new_single_special_price_to_date').datepicker();
+		$('##edit_special_price_from_date').datepicker();
+		$('##edit_special_price_to_date').datepicker();
 				
 		$( ".add-new-attribute-option" ).click(function() {
 			$("##new_attribute_option_attribute_id").val($(this).attr('attributeid'));
@@ -313,8 +315,8 @@
 				
 																	price="<cfif NOT IsNull(groupPrice)>#groupPrice.getPrice()#</cfif>"
 																	specialprice="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPrice()#</cfif>"
-																	fromdate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceFromDate()#</cfif>"
-																	todate="<cfif NOT IsNull(groupPrice)>#groupPrice.getSpecialPriceToDate()#</cfif>"
+																	fromdate="<cfif NOT IsNull(groupPrice)>#DateFormat(groupPrice.getSpecialPriceFromDate(),"yyyy/mm/dd")#</cfif>"
+																	todate="<cfif NOT IsNull(groupPrice)>#DateFormat(groupPrice.getSpecialPriceToDate(),"yyyy/mm/dd")#</cfif>"
 																	
 																	href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
 																<cfelse>
@@ -820,17 +822,17 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="updated_price" name="updated_price" type="text" class="form-control" placeholder="Price">
+					<input name="edit_price" type="text" class="form-control" placeholder="Price">
 				</div>
 				<div class="form-group">
-					<input id="updated_special_price" name="updated_special_price" type="text" class="form-control" placeholder="Special Price"/>
+					<input name="edit_special_price" type="text" class="form-control" placeholder="Special Price"/>
 				</div>
 				 <div class="form-group">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="updated_special_price_from_date" id="updated_special_price_from_date" placeholder="Special Price From Date" />
+						<input type="text" class="form-control pull-right" name="edit_special_price_from_date" id="edit_special_price_from_date" placeholder="Special Price From Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 				<div class="form-group">
@@ -838,7 +840,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="updated_special_price_to_date" id="updated_special_price_to_date" placeholder="Special Price To Date" />
+						<input type="text" class="form-control pull-right" name="edit_special_price_to_date" id="edit_special_price_to_date" placeholder="Special Price To Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 			</div>
