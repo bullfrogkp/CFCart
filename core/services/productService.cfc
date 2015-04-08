@@ -80,7 +80,7 @@
 						WHERE 	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
 						AND 	cg.customer_group_id = pcgr.customer_group_id) AS productCustomerGroupRelaId
 			FROM	customer_group cg 
-			ORDER BY cg.is_default, cg.display_name
+			ORDER BY cg.is_default DESC, cg.display_name
 		</cfquery>
  
 		<cfreturn LOCAL.getProductGroupPrices />

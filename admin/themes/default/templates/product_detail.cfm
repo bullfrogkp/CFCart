@@ -286,8 +286,8 @@
 														<tr class="warning">
 															<th>#group.groupDisplayName#</th>
 															<th>
-																<a customergroupid="#group.customerGroupId#" href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal"><span class="label label-primary">Edit</span></a>
 																<a customergroupid="#group.customerGroupId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
+																<a customergroupid="#group.customerGroupId#" href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
 															</th>
 														</tr>
 														<tr>
@@ -295,6 +295,8 @@
 															<td>
 																<cfif NOT IsNull(groupPrice)>
 																	#groupPrice.getPrice()#
+																<cfelse>
+																	-
 																</cfif>
 															</td>
 														</tr>
@@ -303,6 +305,8 @@
 															<td>
 																<cfif NOT IsNull(groupPrice)>
 																	#groupPrice.getSpecialPrice()#
+																<cfelse>
+																	-
 																</cfif>
 															</td>
 														</tr>
@@ -311,6 +315,8 @@
 															<td>
 																<cfif NOT IsNull(groupPrice)>
 																	#groupPrice.getSpecialPriceFromDate()#
+																<cfelse>
+																	-
 																</cfif>
 															</td>
 														</tr>
@@ -319,6 +325,8 @@
 															<td>
 																<cfif NOT IsNull(groupPrice)>
 																	#groupPrice.getSpecialPriceToDate()#
+																<cfelse>
+																	-
 																</cfif>
 															</td>
 														</tr>
