@@ -420,13 +420,14 @@
 			</cfloop>
 			
 			<cfif IsNumeric(FORM.new_related_product_id)>
-				<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
-				<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
-				<cfset LOCAL.relatedProduct.addRelatedParentProduct(LOCAL.product) />
+				<cfset LOCAL.newRelatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
+				<cfset LOCAL.product.addRelatedProduct(LOCAL.newRelatedProduct) />
+				<cfset LOCAL.newRelatedProduct.addRelatedParentProduct(LOCAL.product) />
+				
+				<cfset EntitySave(LOCAL.newRelatedProduct) />
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.product) />
-			<cfset EntitySave(LOCAL.relatedProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
