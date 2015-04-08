@@ -402,10 +402,10 @@
 		<cfelseif StructKeyExists(FORM,"edit_group_price")>
 			
 			<cfset LOCAL.groupPrice = EntityLoadByPK("product_customer_group_rela",FORM.edit_product_customer_group_rela_id) />
-			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.updated_group_price)) />
-			<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.updated_special_price)) />
-			<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.updated_special_price_from_date)) />
-			<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.updated_special_price_to_date)) />
+			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.edit_price)) />
+			<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.edit_special_price)) />
+			<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.edit_special_price_from_date)) />
+			<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.edit_special_price_to_date)) />
 			
 			<cfset EntitySave(LOCAL.groupPrice) />
 			

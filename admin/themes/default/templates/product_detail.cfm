@@ -173,11 +173,11 @@
 		});
 		
 		$( ".edit-group-price" ).click(function() {
-			$("##updated_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
-			$("##updated_price").val($(this).attr('price'));
-			$("##updated_special_price").val($(this).attr('specialprice'));
-			$("##updated_special_price_from_date").val($(this).attr('fromdate'));
-			$("##updated_special_price_to_date").val($(this).attr('todate'));
+			$("##edit_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
+			$("##edit_price").val($(this).attr('price'));
+			$("##edit_special_price").val($(this).attr('specialprice'));
+			$("##edit_special_price_from_date").val($(this).attr('fromdate'));
+			$("##edit_special_price_to_date").val($(this).attr('todate'));
 		});
 		
 		$( ".delete-group-price" ).click(function() {
@@ -213,7 +213,7 @@
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <input type="hidden" name="product_shipping_method_rela_id" id="product_shipping_method_rela_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
-<input type="hidden" name="edit_product_customer_group_rela_id" id="updated_product_customer_group_rela_id" value="" />
+<input type="hidden" name="edit_product_customer_group_rela_id" id="edit_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
 <section class="content">
