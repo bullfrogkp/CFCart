@@ -777,17 +777,17 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<input id="price" name="price" type="text" class="form-control" placeholder="Price">
+					<input name="new_price" type="text" class="form-control" placeholder="Price">
 				</div>
 				<div class="form-group">
-					<input name="special_price" type="text" class="form-control" placeholder="Special Price"/>
+					<input name="new_special_price" type="text" class="form-control" placeholder="Special Price"/>
 				</div>
 				 <div class="form-group">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" placeholder="Special Price From Date" />
+						<input type="text" class="form-control pull-right" name="new_special_price_from_date" id="new_special_price_from_date" placeholder="Special Price From Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 				<div class="form-group">
@@ -795,7 +795,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" placeholder="Special Price To Date" />
+						<input type="text" class="form-control pull-right" name="new_special_price_to_date" id="new_special_price_to_date" placeholder="Special Price To Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 			</div>
@@ -859,17 +859,17 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="updated_price" name="new_price" type="text" class="form-control" placeholder="Price">
+					<input name="new_single_price" type="text" class="form-control" placeholder="Price">
 				</div>
 				<div class="form-group">
-					<input id="updated_special_price" name="new_special_price" type="text" class="form-control" placeholder="Special Price"/>
+					<input name="new_single_special_price" type="text" class="form-control" placeholder="Special Price"/>
 				</div>
 				 <div class="form-group">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="new_special_price_from_date" id="updated_special_price_from_date" placeholder="Special Price From Date" />
+						<input type="text" class="form-control pull-right" name="new_single_special_price_from_date" id="new_single_special_price_from_date" placeholder="Special Price From Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 				<div class="form-group">
@@ -877,7 +877,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right" name="new_special_price_to_date" id="updated_special_price_to_date" placeholder="Special Price To Date" />
+						<input type="text" class="form-control pull-right" name="new_single_special_price_to_date" id="new_single_special_price_to_date" placeholder="Special Price To Date" />
 					</div><!-- /.input group -->
 				</div><!-- /.form group -->
 			</div>
