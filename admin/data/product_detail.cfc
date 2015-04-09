@@ -93,14 +93,8 @@
 			
 			<cfif FORM.attribute_set_id NEQ "">
 				<cfif NOT IsNull(LOCAL.product.getAttributeSet()) AND FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
-					
-					<cfloop array="#LOCAL.product.getAttributeValues()#" index="attributeValue">
-						<cfif NOT IsNull(attributeValue.getProduct())>
-							<cfset EntityDelete(attributeValue.getProduct()) />
-						</cfif>
-					</cfloop>
-					
 					<cfset LOCAL.product.removeAttributeValues() />
+					<cfset LOCAL.product.removeSubProducts() />
 				</cfif>
 				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
 			</cfif>
@@ -291,7 +285,7 @@
 			
 			<cfset LOCAL.productService.setProductId(FORM.id) />
 			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
-			<cfset LOCAL.productAttributes = LOCAL.productService.getProductAttributes() />
+			<cfset LOCAL.productAttributes = LOCAL.productService.getAttributeSetAttributes() />
 			
 			<cfset LOCAL.newProduct = EntityNew("product")>
 			<cfset LOCAL.newProduct.setParentProduct(LOCAL.product) />
@@ -308,7 +302,7 @@
 			<cfset LOCAL.newProduct.setUpdatedDatetime(Now()) />
 			
 			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-			<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
 			<cfset LOCAL.groupPrice.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_price)) />
 			
@@ -352,7 +346,7 @@
 					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
 					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
-					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_price)) />
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_group_price)) />
 					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.new_special_price)) />
 					<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.new_special_price_from_date)) />
 					<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.new_special_price_to_date)) />
@@ -360,7 +354,7 @@
 					<cfset EntitySave(LOCAL.groupPrice) />
 					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
 				<cfelse>
-					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_price)) />
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_group_price)) />
 					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.new_special_price)) />
 					<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.new_special_price_from_date)) />
 					<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.new_special_price_to_date)) />

@@ -130,7 +130,7 @@
 		<cfreturn LOCAL.attributeArray />
     </cffunction>
 	
-	<cffunction name="getProductAttributes" output="false" access="public" returntype="query">
+	<cffunction name="getAttributeSetAttributes" output="false" access="public" returntype="query">
 		<cfset var LOCAL = {} />
 	   
 		<cfquery name="LOCAL.getAttributes">

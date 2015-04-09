@@ -36,6 +36,12 @@
 		</cfif>
 	</cffunction>
 	
+	<cffunction name="removeSubProducts" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getSubProducts())>
+			<cfset ArrayClear(getSubProducts()) />
+		</cfif>
+	</cffunction>
+	
 	<cffunction name="removeAttributeValues" access="public" output="false" returnType="void">
 		<cfif NOT IsNull(getAttributeValues())>
 			<cfset ArrayClear(getAttributeValues()) />

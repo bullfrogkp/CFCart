@@ -776,7 +776,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<input name="new_price" type="text" class="form-control" placeholder="Price">
+					<input name="new_group_price" type="text" class="form-control" placeholder="Price">
 				</div>
 				<div class="form-group">
 					<input name="new_special_price" type="text" class="form-control" placeholder="Special Price"/>
