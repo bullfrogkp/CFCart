@@ -34,4 +34,19 @@
 	
 	<cfproperty name="orderStatus" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_id" singularname="orderStatus">
 	<cfproperty name="products" type="array" fieldtype="one-to-many" cfc="order_product" fkcolumn="order_id" singularname="product">
+
+	<cffunction name="getCustomerFullName" access="public" output="false" returnType="string">
+		
+		<cfset var firstName = isNull(getFirstName())?"":getFirstName() />
+		<cfset var middleName = isNull(getMiddleName())?"":getMiddleName() />
+		<cfset var lastName = isNull(getLastName())?"":getLastName() />
+		
+		<cfif middleName EQ "">
+			<cfset var fullName = firstName & " " & lastName />
+		<cfelse>
+			<cfset var fullName = firstName & " " & middleName & " " & lastName />
+		</cfif>
+		
+		<cfreturn fullName />
+	</cffunction>
 </cfcomponent>

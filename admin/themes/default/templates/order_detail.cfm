@@ -341,10 +341,10 @@
 									From
 									<address>
 										<strong>#APPLICATION.companyName#</strong><br>
-										#APPLICATION.companyInfo.street#, #APPLICATION.companyInfo.unit#<br>
-										#APPLICATION.companyInfo.city#, #APPLICATION.companyInfo.province# #APPLICATION.companyInfo.postalCode#<br>
-										Phone: #APPLICATION.companyInfo.phone#<br/>
-										Email: #APPLICATION.companyInfo.email#
+										#APPLICATION.companyStreet#, #APPLICATION.companyUnit#<br>
+										#APPLICATION.companyCity#, #APPLICATION.companyProvince# #APPLICATION.companyPostalCode#<br>
+										Phone: #APPLICATION.companyPhone#<br/>
+										Email: #APPLICATION.companyEmail#
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">

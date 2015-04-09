@@ -47,9 +47,27 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.systemEmail = EntityLoadByPK("system_email", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.systemEmail.getSubject()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.title = "Company Information | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.siteInfoArray = EntityLoad("site_info") /> 
+		
+		<cfif NOT IsNull(LOCAL.pageData.siteInfoArray)>
+			<cfset LOCAL.pageData.siteInfo = LOCAL.pageData.siteInfoArray[1] /> 
+		<cfelse>
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.name = "" />
+				<cfset LOCAL.pageData.formData.unit = "" />
+				<cfset LOCAL.pageData.formData.street = "" />
+				<cfset LOCAL.pageData.formData.city = "" />
+				<cfset LOCAL.pageData.formData.province = "" />
+				<cfset LOCAL.pageData.formData.country = "" />
+				<cfset LOCAL.pageData.formData.postal_code = "" />
+				<cfset LOCAL.pageData.formData.phone = "" />
+				<cfset LOCAL.pageData.formData.email = "" />
+			</cfif>
+		</cfif>
+			
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
