@@ -93,6 +93,13 @@
 			
 			<cfif FORM.attribute_set_id NEQ "">
 				<cfif NOT IsNull(LOCAL.product.getAttributeSet()) AND FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
+					
+					<cfloop array="#LOCAL.product.getAttributeValues()#" index="attributeValue">
+						<cfif NOT IsNull(attributeValue.getProduct())>
+							<cfset EntityDelete(attributeValue.getProduct()) />
+						</cfif>
+					</cfloop>
+					
 					<cfset LOCAL.product.removeAttributeValues() />
 				</cfif>
 				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
@@ -294,13 +301,20 @@
 			<cfset LOCAL.newProduct.setSku(LOCAL.product.getSku()) />
 			<cfset LOCAL.newProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
 			<cfset LOCAL.newProduct.setAttributeSet(LOCAL.product.getAttributeSet()) />
-			<cfset LOCAL.newProduct.setPrice(FORM.new_price) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
 			<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.newProduct.setUpdatedDatetime(Now()) />
 			
+			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+			<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+			<cfset LOCAL.groupPrice.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
+			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_price)) />
+			
+			<cfset EntitySave(LOCAL.groupPrice) />
+			
+			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
 			<cfset EntitySave(LOCAL.newProduct) />
 		
 			<cfloop query="LOCAL.productAttributes">

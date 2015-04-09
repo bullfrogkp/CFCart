@@ -89,8 +89,10 @@
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
 						<tr class="default">
+							<th style="width:40px;">ID</th>
 							<th>Name</th>
-							<th>Price</th>
+							<th>SKU</th>
+							<th>Tax Category</th>
 							<th style="width:40px;">Status</th>
 							<th style="width:110px;">Action</th>
 						</tr>
@@ -100,6 +102,8 @@
 							<tr>
 								<td>#product.getProductId()#</td>
 								<td>#product.getDisplayName()#</td>
+								<td>#product.getSku()#</td>
+								<td>#product.getTaxCategory().getDisplayName()#</td>
 								<td>
 									<cfswitch expression="#product.getIsEnabled()#">
 										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
@@ -116,8 +120,10 @@
 						</cfif>
 					
 						<tr class="default">
+							<th>ID</th>
 							<th>Name</th>
-							<th>Price</th>
+							<th>SKU</th>
+							<th>Tax Category</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
