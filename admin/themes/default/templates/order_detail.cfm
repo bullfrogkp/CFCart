@@ -414,7 +414,7 @@
 												<td>#DollarFormat(REQUEST.pageData.orderSubtotalAmount)#</td>
 											</tr>
 											<tr>
-												<th>Tax (9.3%)</th>
+												<th>Tax</th>
 												<td>#DollarFormat(REQUEST.pageData.orderTaxAmount)#</td>
 											</tr>
 											<tr>
