@@ -26,7 +26,7 @@
 			<cfset LOCAL.siteInfo.setPostalCode(Trim(FORM.postal_code)) />
 			<cfset LOCAL.siteInfo.setPhone(Trim(FORM.phone)) />
 			<cfset LOCAL.siteInfo.setEmail(Trim(FORM.email)) />
-			<cfset LOCAL.siteInfo.setMap(Replace(Trim(FORM.map),"/","//","all")) />
+			<cfset LOCAL.siteInfo.setMap(Trim(FORM.map)) />
 			
 			<cfset EntitySave(LOCAL.siteInfo) />
 			
@@ -62,7 +62,7 @@
 				<cfset LOCAL.pageData.formData.postal_code = LOCAL.pageData.siteInfo.getPostalCode() />
 				<cfset LOCAL.pageData.formData.phone = LOCAL.pageData.siteInfo.getPhone() />
 				<cfset LOCAL.pageData.formData.email = LOCAL.pageData.siteInfo.getEmail() />
-				<cfset LOCAL.pageData.formData.map = LOCAL.pageData.siteInfo.getMap() />
+				<cfset LOCAL.pageData.formData.map = isNull(LOCAL.pageData.siteInfo.getMap())?"":LOCAL.pageData.siteInfo.getMap() />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.name = "" />
 				<cfset LOCAL.pageData.formData.unit = "" />
