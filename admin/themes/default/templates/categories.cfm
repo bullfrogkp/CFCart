@@ -92,6 +92,7 @@
 							<th style="width:40px;">ID</th>
 							<th>Name</th>
 							<th>Rank</th>
+							<th>Show On Navigation</th>
 							<th style="width:40px;">Status</th>
 							<th style="width:110px;">Action</th>
 						</tr>
@@ -101,6 +102,7 @@
 								<td>#category.getCategoryId()#</td>
 								<td>#category.getDisplayName()#</td>
 								<td>#category.getRank()#</td>
+								<td>#YesNoFormat(category.getShowCategoryOnNavigation())#</td>
 								<td>
 									<cfswitch expression="#category.getIsEnabled()#">
 										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
@@ -112,13 +114,14 @@
 							</cfloop>
 						<cfelse>
 							<tr>
-								<td colspan="5">No result found.</td>
+								<td colspan="6">No result found.</td>
 							</tr>
 						</cfif>
 						<tr class="default">
 							<th>ID</th>
 							<th>Name</th>
 							<th>Rank</th>
+							<th>Show On Navigation</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>

@@ -68,12 +68,14 @@
 			<!--- to get the category id for image path, extra entitysave here --->
 			<cfset EntitySave(LOCAL.category) />
 		
-			<cfloop array="#LOCAL.category.getImages()#" index="LOCAL.img">
-				<cfif IsNumeric(FORM["rank_#LOCAL.img.getCategoryImageId()#"])>
-					<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getCategoryImageId()#"]) />
-					<cfset EntitySave(LOCAL.img) />
-				</cfif>
-			</cfloop>
+			<cfif NOT IsNull(LOCAL.category.getImages())>
+				<cfloop array="#LOCAL.category.getImages()#" index="LOCAL.img">
+					<cfif IsNumeric(FORM["rank_#LOCAL.img.getCategoryImageId()#"])>
+						<cfset LOCAL.img.setRank(FORM["rank_#LOCAL.img.getCategoryImageId()#"]) />
+						<cfset EntitySave(LOCAL.img) />
+					</cfif>
+				</cfloop>
+			</cfif>
 		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
@@ -94,7 +96,7 @@
 							<cfset LOCAL.categoryImage.setName(LOCAL.imgName) />
 							<cfset LOCAL.categoryImage.setIsDefault(false) />
 							<cfset EntitySave(LOCAL.categoryImage) />
-							<cfset LOCAL.category.addCategoryImage(LOCAL.categoryImage) />
+							<cfset LOCAL.category.addImage(LOCAL.categoryImage) />
 						</cfif>
 					</cfif>
 				</cfloop>
