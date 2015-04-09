@@ -6,38 +6,31 @@
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
-		
-		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.systemEmail = EntityLoadByPK("system_email", FORM.id)> 
-		<cfelse>
-			<cfset LOCAL.systemEmail = EntityNew("system_email") />
-			<cfset LOCAL.systemEmail.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.systemEmail.setCreatedDatetime(Now()) />
-			<cfset LOCAL.systemEmail.setIsDeleted(false) />
-		</cfif>
-		
+				
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.systemEmail.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.systemEmail.setSubject(Trim(FORM.subject)) />
-			<cfset LOCAL.systemEmail.setContent(Trim(FORM.content)) />
-			<cfset LOCAL.systemEmail.setType(Trim(FORM.type)) />
-			<cfset LOCAL.systemEmail.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.siteInfoArray = EntityLoad("site_info") /> 
 			
-			<cfset EntitySave(LOCAL.systemEmail) />
+			<cfif NOT IsNull(LOCAL.siteInfoArray)>
+				<cfset LOCAL.siteInfo = LOCAL.siteInfoArray[1] /> 
+			<cfelse>
+				<cfset LOCAL.siteInfo = EntityNew("site_info") /> 
+			</cfif>
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"System email has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.systemEmail.getSystemEmailId()#" />
+			<cfset LOCAL.siteInfo.setName(Trim(FORM.name)) />
+			<cfset LOCAL.siteInfo.setUnit(Trim(FORM.unit)) />
+			<cfset LOCAL.siteInfo.setStreet(Trim(FORM.street)) />
+			<cfset LOCAL.siteInfo.setCity(Trim(FORM.city)) />
+			<cfset LOCAL.siteInfo.setProvince(EntityLoadByPK("province",FORM.province_id)) />
+			<cfset LOCAL.siteInfo.setCountry(EntityLoadByPK("country",FORM.country_id)) />
+			<cfset LOCAL.siteInfo.setPostalCode(Trim(FORM.postal_code)) />
+			<cfset LOCAL.siteInfo.setPhone(Trim(FORM.phone)) />
+			<cfset LOCAL.siteInfo.setEmail(Trim(FORM.email)) />
 			
-		<cfelseif StructKeyExists(FORM,"delete_item")>
+			<cfset EntitySave(LOCAL.siteInfo) />
 			
-			<cfset LOCAL.systemEmail.setIsDeleted(true) />
-			
-			<cfset EntitySave(LOCAL.systemEmail) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"System Email '#LOCAL.systemEmail.getSubject()#' has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/system_emails.cfm" />
-			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Company information has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -48,13 +41,26 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.title = "Company Information | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.siteInfoArray = EntityLoad("site_info") /> 
+		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
+		<cfset LOCAL.pageData.countries = EntityLoad("country") />
 		
-		<cfif NOT IsNull(LOCAL.pageData.siteInfoArray)>
-			<cfset LOCAL.pageData.siteInfo = LOCAL.pageData.siteInfoArray[1] /> 
+		<cfif IsDefined("SESSION.temp.formData")>
+			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfif IsDefined("SESSION.temp.formData")>
-				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfset LOCAL.pageData.siteInfoArray = EntityLoad("site_info") /> 
+			
+			<cfif NOT IsNull(LOCAL.pageData.siteInfoArray)>
+				<cfset LOCAL.pageData.siteInfo = LOCAL.pageData.siteInfoArray[1] /> 
+			
+				<cfset LOCAL.pageData.formData.name = LOCAL.pageData.siteInfo.getName() />
+				<cfset LOCAL.pageData.formData.unit = LOCAL.pageData.siteInfo.getUnit() />
+				<cfset LOCAL.pageData.formData.street = LOCAL.pageData.siteInfo.getStreet() />
+				<cfset LOCAL.pageData.formData.city = LOCAL.pageData.siteInfo.getCity() />
+				<cfset LOCAL.pageData.formData.province = LOCAL.pageData.siteInfo.getProvince() />
+				<cfset LOCAL.pageData.formData.country = LOCAL.pageData.siteInfo.getCountry() />
+				<cfset LOCAL.pageData.formData.postal_code = LOCAL.pageData.siteInfo.getPostalCode() />
+				<cfset LOCAL.pageData.formData.phone = LOCAL.pageData.siteInfo.getPhone() />
+				<cfset LOCAL.pageData.formData.email = LOCAL.pageData.siteInfo.getEmail() />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.name = "" />
 				<cfset LOCAL.pageData.formData.unit = "" />
@@ -64,35 +70,7 @@
 				<cfset LOCAL.pageData.formData.country = "" />
 				<cfset LOCAL.pageData.formData.postal_code = "" />
 				<cfset LOCAL.pageData.formData.phone = "" />
-				<cfset LOCAL.pageData.formData.email = "" />
-			</cfif>
-		</cfif>
-			
-			<cfset LOCAL.pageData.deleteButtonClass = "" />	
-			
-			<cfif IsDefined("SESSION.temp.formData")>
-				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-			<cfelse>
-				<cfset LOCAL.pageData.formData.subject = isNull(LOCAL.pageData.systemEmail.getSubject())?"":LOCAL.pageData.systemEmail.getSubject() />
-				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.systemEmail.getDisplayName())?"":LOCAL.pageData.systemEmail.getDisplayName() />
-				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.systemEmail.getContent())?"":LOCAL.pageData.systemEmail.getContent() />
-				<cfset LOCAL.pageData.formData.type = isNull(LOCAL.pageData.systemEmail.getType())?"":LOCAL.pageData.systemEmail.getType() />
-				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.systemEmail.getIsEnabled())?"":LOCAL.pageData.systemEmail.getIsEnabled() />
-				<cfset LOCAL.pageData.formData.id = URL.id />
-			</cfif>
-		<cfelse>
-			<cfset LOCAL.pageData.title = "System Email | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
-			
-			<cfif IsDefined("SESSION.temp.formData")>
-				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-			<cfelse>
-				<cfset LOCAL.pageData.formData.subject = "" />
-				<cfset LOCAL.pageData.formData.display_name = "" />
-				<cfset LOCAL.pageData.formData.content = "" />
-				<cfset LOCAL.pageData.formData.type = "" />
-				<cfset LOCAL.pageData.formData.is_enabled = "" />
-				<cfset LOCAL.pageData.formData.id = "" />
+				<cfset LOCAL.pageData.formData.email = "" 
 			</cfif>
 		</cfif>
 		
