@@ -330,8 +330,8 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<h2 class="page-header">
-										<i class="fa fa-globe"></i> #APPLICATION.companyName#
-										<small class="pull-right">Date: #DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")##</small>
+										<i class="fa fa-globe"></i> #APPLICATION.siteInfo.getName()#
+										<small class="pull-right">Date: #DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")#</small>
 									</h2>
 								</div><!-- /.col -->
 							</div>
@@ -340,11 +340,11 @@
 								<div class="col-sm-4 invoice-col">
 									From
 									<address>
-										<strong>#APPLICATION.companyName#</strong><br>
-										#APPLICATION.companyStreet#, #APPLICATION.companyUnit#<br>
-										#APPLICATION.companyCity#, #APPLICATION.companyProvince# #APPLICATION.companyPostalCode#<br>
-										Phone: #APPLICATION.companyPhone#<br/>
-										Email: #APPLICATION.companyEmail#
+										<strong>#APPLICATION.siteInfo.getName()#</strong><br>
+										#APPLICATION.siteInfo.getStreet()#, #APPLICATION.siteInfo.getUnit()#<br>
+										#APPLICATION.siteInfo.getCity()#, #APPLICATION.siteInfo.getProvince().getDisplayName()# #APPLICATION.siteInfo.getPostalCode()#<br>
+										Phone: #APPLICATION.siteInfo.getPhone()#<br/>
+										Email: #APPLICATION.siteInfo.getEmail()#
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">
@@ -352,7 +352,7 @@
 									<address>
 										<strong>#REQUEST.pageData.order.getCustomerFullName()#</strong><br>
 										#REQUEST.pageData.order.getShippingStreet()#, #REQUEST.pageData.order.getShippingUnit()#<br>
-										#REQUEST.pageData.order.getShippingCity()#, #REQUEST.pageData.order.getShippingProvince()# #REQUEST.pageData.order.getShippingPostalCode()#<br>
+										#REQUEST.pageData.order.getShippingCity()#, #REQUEST.pageData.order.getShippingProvince().getDisplayName()# #REQUEST.pageData.order.getShippingPostalCode()#<br>
 										Phone: #REQUEST.pageData.order.getPhone()#<br/>
 										Email: #REQUEST.pageData.order.getEmail()#
 									</address>
@@ -360,7 +360,7 @@
 								<div class="col-sm-4 invoice-col">
 									<b>Invoice ###REQUEST.pageData.order.getOrderId()#</b><br/>
 									<br/>
-									<b>Order ID:</b> #REQUEST.pageData.order.getTrackingNumber()#<br/>
+									<b>Order ID:</b> #REQUEST.pageData.order.getOrderTrackingNumber()#<br/>
 									<b>Payment Due:</b> 2/22/2014<br/>
 									<b>Account:</b> 968-34567
 								</div><!-- /.col -->
