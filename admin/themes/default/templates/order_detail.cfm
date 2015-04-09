@@ -361,8 +361,7 @@
 									<b>Invoice ###REQUEST.pageData.order.getOrderId()#</b><br/>
 									<br/>
 									<b>Order ID:</b> #REQUEST.pageData.order.getOrderTrackingNumber()#<br/>
-									<b>Payment Due:</b> 2/22/2014<br/>
-									<b>Account:</b> 968-34567
+									
 								</div><!-- /.col -->
 							</div><!-- /.row -->
 
@@ -372,42 +371,23 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>Qty</th>
 												<th>Product</th>
-												<th>Serial ##</th>
+												<th>Qty</th>
+												<th>SKU</th>
 												<th>Description</th>
 												<th>Subtotal</th>
 											</tr>
 										</thead>
 										<tbody>
+											<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 											<tr>
-												<td>1</td>
-												<td>Call of Duty</td>
-												<td>455-981-221</td>
-												<td>El snort testosterone trophy driving gloves handsome</td>
-												<td>$64.50</td>
+												<td>#product.getProductName()#</td>
+												<td>#product.getQuantity()#</td>
+												<td>#product.getSku()#</td>
+												<td>#product.getProductName()#</td>
+												<td>#DollarFormat(product.getOrderPrice() * product.getQuantity())#</td>
 											</tr>
-											<tr>
-												<td>1</td>
-												<td>Need for Speed IV</td>
-												<td>247-925-726</td>
-												<td>Wes Anderson umami biodiesel</td>
-												<td>$50.00</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Monsters DVD</td>
-												<td>735-845-642</td>
-												<td>Terry Richardson helvetica tousled street art master</td>
-												<td>$10.70</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Grown Ups Blue Ray</td>
-												<td>422-568-642</td>
-												<td>Tousled lomo letterpress</td>
-												<td>$25.99</td>
-											</tr>
+											</cfloop>
 										</tbody>
 									</table>
 								</div><!-- /.col -->
@@ -431,19 +411,19 @@
 										<table class="table">
 											<tr>
 												<th style="width:50%">Subtotal:</th>
-												<td>$250.30</td>
+												<td>#DollarFormat(REQUEST.pageData.orderSubtotalAmount)#</td>
 											</tr>
 											<tr>
 												<th>Tax (9.3%)</th>
-												<td>$10.34</td>
+												<td>#DollarFormat(REQUEST.pageData.orderTaxAmount)#</td>
 											</tr>
 											<tr>
 												<th>Shipping:</th>
-												<td>$5.80</td>
+												<td>#DollarFormat(REQUEST.pageData.orderShippingAmount)#</td>
 											</tr>
 											<tr>
 												<th>Total:</th>
-												<td>$265.24</td>
+												<td>#DollarFormat(REQUEST.pageData.orderTotalAmount)#</td>
 											</tr>
 										</table>
 									</div>
@@ -454,7 +434,6 @@
 							<div class="row no-print">
 								<div class="col-xs-12">
 									<button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
-									<button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
 									<button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
 								</div>
 							</div>
