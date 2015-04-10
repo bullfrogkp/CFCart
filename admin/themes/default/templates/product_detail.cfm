@@ -68,6 +68,8 @@
 		
 		$('##new_special_price_from_date').datepicker();
 		$('##new_special_price_to_date').datepicker();
+		$('##special_price_from_date').datepicker();
+		$('##special_price_to_date').datepicker();
 		$('##new_single_special_price_from_date').datepicker();
 		$('##new_single_special_price_to_date').datepicker();
 		$('##edit_special_price_from_date').datepicker();
@@ -129,7 +131,7 @@
 				
 		
 		$( "##attribute_set_id" ).change(function() {
-			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>		
+			<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>		
 			if($( "##attribute_set_id" ).val() != #REQUEST.pageData.product.getAttributeSet().getAttributeSetId()#)
 			{
 				$('##attributes').hide();
@@ -247,7 +249,7 @@
 							<select name="category_id" multiple class="form-control">
 								<cfloop array="#REQUEST.pageData.categories#" index="category">
 									<option value="#category.getCategoryId()#"
-									<cfif NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),category)>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),category)>
 									selected
 									</cfif>
 									>#category.getDisplayName()#</option>
@@ -402,7 +404,7 @@
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
 									<option value="#tc.getTaxCategoryId()#"
 									
-									<cfif NOT IsNull(REQUEST.pageData.product.getTaxCategory()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategory().getTaxCategoryId()>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategory()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategory().getTaxCategoryId()>
 									selected
 									</cfif>
 									
@@ -469,7 +471,7 @@
 								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
 									<option value="#as.getAttributeSetId()#"
 									
-									<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND as.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND as.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
 									selected
 									</cfif>
 									
@@ -631,7 +633,7 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif NOT IsNull(REQUEST.pageData.product.getReviews()) AND ArrayLen(REQUEST.pageData.product.getReviews()) GT 0>
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviews()) AND ArrayLen(REQUEST.pageData.product.getReviews()) GT 0>
 												<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
 												<tr>
 													<td>#review.getSubject()#</td>
