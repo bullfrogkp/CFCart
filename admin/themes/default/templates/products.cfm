@@ -29,17 +29,17 @@
 				<div class="box-body">
 					<ul>
 						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-							<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getDisplayName()#</a>
+							<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=#cat.getCategoryId()#">#cat.getDisplayName()#</a>
 							<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 								<ul>
 							</cfif>
 							<cfloop array="#cat.getSubCategories()#" index="subCat">
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getDisplayName()#</a>
+								<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=#subCat.getCategoryId()#">#subCat.getDisplayName()#</a>
 								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									<ul>
 								</cfif>
 								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-									<li><a href="#APPLICATION.absoluteUrlWeb#admin/category_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a>
+									<li><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?category_id=#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a>
 								</cfloop>
 								<cfif ArrayLen(subCat.getSubCategories()) NEQ 0>
 									</ul>

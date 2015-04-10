@@ -404,7 +404,7 @@
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
 									<option value="#tc.getTaxCategoryId()#"
 									
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategory()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.product.getTaxCategory().getTaxCategoryId()>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategory()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
 									selected
 									</cfif>
 									
