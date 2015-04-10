@@ -1,4 +1,5 @@
-﻿<script>
+﻿<cfoutput>
+<script>
 	$(document).ready(function() {
 		$( ".update-tax" ).click(function() {
 			$("##tax_id").val($(this).attr('taxid'));
@@ -11,7 +12,7 @@
 		<small>tax information</small>
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Tax Information</li>
 	</ol>
 </section>
@@ -19,6 +20,16 @@
 <input type="hidden" name="tax_id" id="tax_id" value="" />
 <section class="content">
 	<div class="row">
+		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-body table-responsive">
@@ -35,10 +46,10 @@
 								<tr>
 									<td>#tax.getProvince().getDisplayName()#</td>
 									<td>
-										<input type="text" name="rate_#tax.getTaxId()#" value="#tax.getRate#" />
+										<input type="text" name="rate_#tax.getTaxId()#" value="#tax.getRate()#" />
 									</td>
-									<td>
-										<button name="update_tax" type="submit" class="btn btn-sm btn-primary update-tax">Update</button>
+									<td style="width:54px;">
+										<button name="update_tax" taxid="#tax.getTaxId()#" type="submit" class="btn btn-sm btn-primary update-tax pull-right">Update</button>
 									</td>
 								</tr>
 							</cfloop>
@@ -57,4 +68,4 @@
 	</div>
 </section><!-- /.content -->
 </form>
-
+</cfoutput>
