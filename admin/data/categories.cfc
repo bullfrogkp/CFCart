@@ -22,26 +22,8 @@
 			<cfset LOCAL.categoryService.setPageNumber(Trim(URL.page)) />
 		</cfif>
 		
-		<cfset LOCAL.paginationStruct = LOCAL.categoryService.getCategories() />
-		
-		<cfset LOCAL.pageData.records = LOCAL.paginationStruct.records />
-		<cfset LOCAL.pageData.totalCount = LOCAL.paginationStruct.totalCount />
-		<cfset LOCAL.pageData.totalPages = LOCAL.paginationStruct.totalPages />
-		
-		<cfset LOCAL.pageData.currentQueryString = "" />
-		<cfloop collection="#URL#" item="LOCAL.key">
-			<cfif LOCAL.key NEQ "page">
-				<cfset LOCAL.pageData.currentQueryString &= LOCAL.key & "=" & URL["#LOCAL.key#"] & "&" />
-			</cfif>
-		</cfloop>
-		
-		
-		<cfif NOT IsNull(URL.page) AND IsNumeric(URL.page)>
-			<cfset LOCAL.pageData.currentPage = URL.page />
-		<cfelse>
-			<cfset LOCAL.pageData.currentPage = 1 />
-		</cfif>
-		
+		<cfset LOCAL.recordStruct = LOCAL.categoryService.getCategories() />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 	
 		<cfreturn LOCAL.pageData />	

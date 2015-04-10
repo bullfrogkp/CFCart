@@ -96,8 +96,8 @@
 							<th style="width:40px;">Status</th>
 							<th style="width:110px;">Action</th>
 						</tr>
-						<cfif ArrayLen(REQUEST.pageData.records) NEQ 0>
-							<cfloop array="#REQUEST.pageData.records#" index="category">
+						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="category">
 							<tr>
 								<td>#category.getCategoryId()#</td>
 								<td>#category.getDisplayName()#</td>

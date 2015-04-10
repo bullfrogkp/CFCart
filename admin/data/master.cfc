@@ -97,4 +97,28 @@
 		
 		<cfreturn LOCAL.message /> 
 	</cffunction>
+	
+	<cffunction name="_getPaginationInfo" access="private" output="false" returnType="struct">
+		<cfargument name="recordStruct" type="struct" required="true"> 
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.records = ARGUMENTS.recordStruct.records />
+		<cfset LOCAL.totalCount = ARGUMENTS.recordStruct.totalCount />
+		<cfset LOCAL.totalPages = ARGUMENTS.recordStruct.totalPages />
+		
+		<cfset LOCAL.currentQueryString = "" />
+		<cfloop collection="#URL#" item="LOCAL.key">
+			<cfif LOCAL.key NEQ "page">
+				<cfset LOCAL.currentQueryString &= LOCAL.key & "=" & URL["#LOCAL.key#"] & "&" />
+			</cfif>
+		</cfloop>
+		
+		<cfif NOT IsNull(URL.page) AND IsNumeric(URL.page)>
+			<cfset LOCAL.currentPage = URL.page />
+		<cfelse>
+			<cfset LOCAL.currentPage = 1 />
+		</cfif>
+		
+		<cfreturn LOCAL /> 
+	</cffunction>
 </cfcomponent>
