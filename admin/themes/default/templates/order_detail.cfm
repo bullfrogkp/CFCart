@@ -2,7 +2,7 @@
 <script>
 	$(document).ready(function() {
 		$( ".save-product-status" ).click(function() {
-			$("##product_id").val($(this).attr('productid'));
+			$("##order_product_id").val($(this).attr('productid'));
 		});
 	});
 </script>
@@ -19,10 +19,20 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.order.getOrderId()#" />
-<input type="hidden" name="product_id" id="product_id" value="" />
+<input type="hidden" name="order_product_id" id="order_product_id" value="" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
+		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
 		<div class="col-md-12">
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
@@ -324,7 +334,7 @@
 										<div class="form-group">
 											<textarea name="comments" class="form-control" rows="8" placeholder="Comments ..."></textarea>
 										</div>
-										<button productid="#product.getProductId()#" name="save_product_status" type="submit" class="btn btn-primary save-product-status">Save Status</button>
+										<button productid="#product.getOrderProductId()#" name="save_product_status" type="submit" class="btn btn-primary save-product-status">Save Status</button>
 									</div>
 								</div><!-- /.box (chat box) -->   
 							</div>

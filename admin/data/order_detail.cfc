@@ -54,25 +54,24 @@
 			
 		<cfelseif StructKeyExists(FORM,"save_product_status")>
 					
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.product_id) />		
-			<cfset LOCAL.currentStatus = EntityLoad("product_status",{order = LOCAL.order,product = LOCAL.product, current = true}, true) />
+			<cfset LOCAL.orderProduct = EntityLoadByPK("order_product",FORM.order_product_id) />		
+			<cfset LOCAL.currentStatus = EntityLoad("order_product_status",{orderProduct = LOCAL.orderProduct, current = true}, true) />
 			
 			<cfset LOCAL.currentStatus.setEndDatetime(Now()) />
 			<cfset LOCAL.currentStatus.setCurrent(false) />
 			<cfset EntitySave(LOCAL.currentStatus) />
 			
-			<cfset LOCAL.newStatus = EntityNew("product_status") />
-			<cfset LOCAL.newStatus.setOrder(LOCAL.order) />
-			<cfset LOCAL.newStatus.setProduct(LOCAL.product) />
-			<cfset LOCAL.newStatus.setProductStatusType(EntityLoadByPK("product_status_type", FORM.product_status_type_id)) />
+			<cfset LOCAL.newStatus = EntityNew("order_product_status") />
+			<cfset LOCAL.newStatus.setOrderProduct(LOCAL.orderProduct) />
+			<cfset LOCAL.newStatus.setOrderProductStatusType(EntityLoadByPK("order_product_status_type", FORM.order_product_status_type_id)) />
 			<cfset LOCAL.newStatus.setStartDatetime(LOCAL.currentStatus.getEndDatetime()) />
 			<cfset LOCAL.newStatus.setCurrent(true) />
 			<cfset LOCAL.newStatus.setComments(Trim(FORM.comments)) />
 			<cfset EntitySave(LOCAL.newStatus) />
 			
-			<cfset LOCAL.order.addProductStatus(LOCAL.newStatus) />
+			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.newStatus) />
 			
-			<cfset EntitySave(LOCAL.order) />
+			<cfset EntitySave(LOCAL.orderProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product status has been saved successfully.") />
 			
