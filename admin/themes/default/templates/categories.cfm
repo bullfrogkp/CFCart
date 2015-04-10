@@ -128,17 +128,7 @@
 					</table>
 				</div><!-- /.box-body -->
 				<div class="box-footer clearfix">
-					<ul class="pagination pagination-sm no-margin pull-right">
-						<cfif REQUEST.pageData.currentPage NEQ 1>
-							<li><a href="##">&laquo;</a></li>
-						</cfif>
-						<cfloop from="1" to="#REQUEST.pageData.totalPages#" index="i">
-							<li><a href="##">#i#</a></li>
-						</cfloop>
-						<cfif REQUEST.pageData.currentPage NEQ REQUEST.pageData.totalPages>
-							<li><a href="#APPLICATION.absoluteUrlWeb#admin/categories.cfm?page">&raquo;</a></li>
-						</cfif>
-					</ul>
+					<cfinclude template="pagination.cfm" />
 				</div>
 			</div><!-- /.box -->
 		

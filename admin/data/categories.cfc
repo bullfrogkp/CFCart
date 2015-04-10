@@ -28,6 +28,14 @@
 		<cfset LOCAL.pageData.totalCount = LOCAL.paginationStruct.totalCount />
 		<cfset LOCAL.pageData.totalPages = LOCAL.paginationStruct.totalPages />
 		
+		<cfset LOCAL.pageData.currentQueryString = "" />
+		<cfloop collection="#URL#" item="LOCAL.key">
+			<cfif LOCAL.key NEQ "page">
+				<cfset LOCAL.pageData.currentQueryString &= LOCAL.key & "=" & URL["#LOCAL.key#"] & "&" />
+			</cfif>
+		</cfloop>
+		
+		
 		<cfif NOT IsNull(URL.page) AND IsNumeric(URL.page)>
 			<cfset LOCAL.pageData.currentPage = URL.page />
 		<cfelse>
