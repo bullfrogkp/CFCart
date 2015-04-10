@@ -1,4 +1,11 @@
 ﻿<cfoutput>
+<script>
+	$(document).ready(function() {
+		$( ".save-product-status" ).click(function() {
+			$("##product_id").val($(this).attr('productid'));
+		});
+	});
+</script>
 <section class="content-header">
 	<h1>
 		Order ## #REQUEST.pageData.order.getOrderTrackingNumber()# | #DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")#
@@ -12,6 +19,7 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.order.getOrderId()#" />
+<input type="hidden" name="product_id" id="product_id" value="" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
@@ -316,7 +324,7 @@
 										<div class="form-group">
 											<textarea name="comments" class="form-control" rows="8" placeholder="Comments ..."></textarea>
 										</div>
-										<button name="save_product_status" type="submit" class="btn btn-primary">Save Status</button>
+										<button productid="#product.getProductId()#" name="save_product_status" type="submit" class="btn btn-primary save-product-status">Save Status</button>
 									</div>
 								</div><!-- /.box (chat box) -->   
 							</div>
