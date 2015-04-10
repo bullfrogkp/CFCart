@@ -1,14 +1,6 @@
-﻿<cfcomponent output="false" accessors="true">
-    <cfproperty name="categoryId" type="numeric"> 
-    <cfproperty name="parentCategoryId" type="numeric"> 
-    <cfproperty name="name" type="string"> 
-    <cfproperty name="searchKeywords" type="string"> 
-    <cfproperty name="displayName" type="string"> 
-    <cfproperty name="isEnabled" type="boolean"> 
-    <cfproperty name="isDeleted" type="boolean"> 
-    <cfproperty name="showCategoryOnNavigation" type="boolean"> 
-    <cfproperty name="offset" type="numeric"> 
-    <cfproperty name="limit" type="numeric"> 
+﻿<cfcomponent extends="service" output="false" accessors="true">
+	<cfproperty name="parentCategoryId" type="numeric"> 
+	<cfproperty name="showCategoryOnNavigation" type="boolean"> 
 
     <cffunction name="getCategories" output="false" access="public" returntype="array">
 		<cfset LOCAL = {} />
@@ -26,11 +18,11 @@
 				<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
 			</cfif>
 			
-			<cfset LOCAL.categories = ORMExecuteQuery(LOCAL.qry)> 
+			<cfset LOCAL.categories = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct())> 
 		<cfelse>
 			<cfset LOCAL.filter = {} />
-			<cfif NOT IsNull(getCategoryId())>
-				<cfset LOCAL.filter.categoryId = getCategoryId() />
+			<cfif NOT IsNull(getId())>
+				<cfset LOCAL.filter.categoryId = getId() />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
@@ -39,7 +31,7 @@
 				<cfset LOCAL.filter.isDeleted = getIsDeleted() />
 			</cfif>
 			
-			<cfset LOCAL.categories = EntityLoad('category',LOCAL.filter)> 
+			<cfset LOCAL.categories = EntityLoad('category', LOCAL.filter, getPaginationStruct())> 
 		</cfif>
 	   
 		<cfreturn LOCAL.categories />
