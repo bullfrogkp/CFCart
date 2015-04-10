@@ -2,39 +2,30 @@
 	<cfproperty name="parentCategoryId" type="numeric"> 
 	<cfproperty name="showCategoryOnNavigation" type="boolean"> 
 
-    <cffunction name="getCategories" output="false" access="public" returntype="array">
+    <cffunction name="getCategories" output="false" access="public" returntype="struct">
 		<cfset LOCAL = {} />
 	   
-	    <cfif getSearchKeywords() NEQ "">
-			<cfset LOCAL.qry = "from category where (display_name like '%#getSearchKeywords()#%' or keywords like '%#getSearchKeywords()#%' or description like '%#getSearchKeywords()#%' )" > 
-			
-			<cfif NOT IsNull(getCategoryId())>
-				<cfset LOCAL.qry = LOCAL.qry & "and category_id = '#getCategoryId()#' " />
-			</cfif>
-			<cfif NOT IsNull(getIsEnabled())>
-				<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
-			</cfif>
-			<cfif NOT IsNull(getIsDeleted())>
-				<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
-			</cfif>
-			
-			<cfset LOCAL.categories = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct())> 
+		<cfif getSearchKeywords() NEQ "">	
+			<cfset LOCAL.qry = "from category where (display_name like '%#getSearchKeywords()#%' or keywords like '%#getSearchKeywords()#%' or description like '%#getSearchKeywords()#%' )" /> 
 		<cfelse>
-			<cfset LOCAL.filter = {} />
-			<cfif NOT IsNull(getId())>
-				<cfset LOCAL.filter.categoryId = getId() />
-			</cfif>
-			<cfif NOT IsNull(getIsEnabled())>
-				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
-			</cfif>
-			<cfif NOT IsNull(getIsDeleted())>
-				<cfset LOCAL.filter.isDeleted = getIsDeleted() />
-			</cfif>
-			
-			<cfset LOCAL.categories = EntityLoad('category', LOCAL.filter, getPaginationStruct())> 
+			<cfset LOCAL.qry = "from category where 1=1 " /> 
 		</cfif>
-	   
-		<cfreturn LOCAL.categories />
+		
+		<cfif NOT IsNull(getId())>
+			<cfset LOCAL.qry = LOCAL.qry & "and category_id = '#getId()#' " />
+		</cfif>
+		<cfif NOT IsNull(getIsEnabled())>
+			<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
+		</cfif>
+		<cfif NOT IsNull(getIsDeleted())>
+			<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
+		</cfif>
+		
+		<cfset LOCAL.records = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct()) /> 
+		<cfset LOCAL.totalCount = ORMExecuteQuery( "select count(category_id) as count " & LOCAL.qry, true) /> 
+		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
+	
+		<cfreturn LOCAL />
     </cffunction>
 	
 	<cffunction name="getCategoryTree" access="public" returntype="array">

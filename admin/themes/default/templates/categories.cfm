@@ -96,8 +96,8 @@
 							<th style="width:40px;">Status</th>
 							<th style="width:110px;">Action</th>
 						</tr>
-						<cfif ArrayLen(REQUEST.pageData.categories) NEQ 0>
-							<cfloop array="#REQUEST.pageData.categories#" index="category">
+						<cfif ArrayLen(REQUEST.pageData.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.records#" index="category">
 							<tr>
 								<td>#category.getCategoryId()#</td>
 								<td>#category.getDisplayName()#</td>
@@ -129,11 +129,15 @@
 				</div><!-- /.box-body -->
 				<div class="box-footer clearfix">
 					<ul class="pagination pagination-sm no-margin pull-right">
-						<li><a href="##">&laquo;</a></li>
-						<li><a href="##">1</a></li>
-						<li><a href="##">2</a></li>
-						<li><a href="##">3</a></li>
-						<li><a href="##">&raquo;</a></li>
+						<cfif REQUEST.pageData.currentPage NEQ 1>
+							<li><a href="##">&laquo;</a></li>
+						</cfif>
+						<cfloop from="1" to="#REQUEST.pageData.totalPages#" index="i">
+							<li><a href="##">#i#</a></li>
+						</cfloop>
+						<cfif REQUEST.pageData.currentPage NEQ REQUEST.pageData.totalPages>
+							<li><a href="#APPLICATION.absoluteUrlWeb#admin/categories.cfm?page">&raquo;</a></li>
+						</cfif>
 					</ul>
 				</div>
 			</div><!-- /.box -->

@@ -22,9 +22,20 @@
 			<cfset LOCAL.categoryService.setPageNumber(Trim(URL.page)) />
 		</cfif>
 		
-		<cfset LOCAL.pageData.categories = LOCAL.categoryService.getCategories() />
-		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
+		<cfset LOCAL.paginationStruct = LOCAL.categoryService.getCategories() />
 		
+		<cfset LOCAL.pageData.records = LOCAL.paginationStruct.records />
+		<cfset LOCAL.pageData.totalCount = LOCAL.paginationStruct.totalCount />
+		<cfset LOCAL.pageData.totalPages = LOCAL.paginationStruct.totalPages />
+		
+		<cfif NOT IsNull(URL.page) AND IsNumeric(URL.page)>
+			<cfset LOCAL.pageData.currentPage = URL.page />
+		<cfelse>
+			<cfset LOCAL.pageData.currentPage = 1 />
+		</cfif>
+		
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
+	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
