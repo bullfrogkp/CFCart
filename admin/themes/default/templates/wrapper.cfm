@@ -414,7 +414,7 @@
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/order_product_status_types.cfm"><i class="fa fa-angle-double-right"></i> Product Status Types</a></li>		
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment</a></li>	
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping</a></li>			
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/taxes.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
+                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/tax_information.cfm"><i class="fa fa-angle-double-right"></i> Tax</a></li>
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/countries.cfm"><i class="fa fa-angle-double-right"></i> Countries</a></li>
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/provinces.cfm"><i class="fa fa-angle-double-right"></i> Provinces</a></li>
                                 <li><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
