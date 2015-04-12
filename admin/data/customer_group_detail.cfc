@@ -39,7 +39,16 @@
 		<cfif StructKeyExists(FORM,"save_item")>
 		
 			<cfset LOCAL.customerGroup.setDisplayName(Trim(FORM.group_name)) />
-			<cfset LOCAL.customerGroup.setIsDefault(FORM.is_default) />
+			
+			<cfif FORM.is_default EQ 1>
+				<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
+				<cfif NOT IsNull(LOCAL.defaultCustomerGroup)>
+					<cfset LOCAL.defaultCustomerGroup.setIsDefault(false) />
+				</cfif>
+				<cfset LOCAL.customerGroup.setIsDefault(true) />
+			<cfelse>
+				<cfset LOCAL.customerGroup.setIsDefault(false) />
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.customerGroup) />
 			
