@@ -10,16 +10,27 @@
 </section>
 
 <!-- Main content -->
+<form method="post">
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div class="alert #REQUEST.pageData.message.messageType# alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					#msg#<br/>
+					</cfloop>
+				</div>
+			</cfif>
+		</div>
+		<div class="col-md-12">
 			<!-- general form elements -->
 			<div class="box box-primary">
-				<form role="form">
 					<div class="box-body">
 						<div class="form-group">
 							<label>Group Name</label>
-							<input type="text" class="form-control" placeholder="Enter ..." value=""/>
+							<input type="text" name="group_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.group_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Default</label>
@@ -28,11 +39,11 @@
 								<option value="0" <cfif REQUEST.pageData.formData.is_default EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.box-body -->
-				</form>
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
+</form>
 </cfoutput>

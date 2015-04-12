@@ -47,9 +47,9 @@
 					
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
-			<cfset LOCAL.relatedProduct.setIsDeleted(true) />
+			<cfset LOCAL.relatedProductGroup.setIsDeleted(true) />
 			
-			<cfset EntitySave(LOCAL.relatedProduct) />
+			<cfset EntitySave(LOCAL.relatedProductGroup) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Related product group has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/related_product_groups.cfm" />

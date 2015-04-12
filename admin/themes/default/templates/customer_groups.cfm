@@ -21,14 +21,14 @@
 					
 						<tr class="default">
 							<th>Group Name</th>
-							<th>Discount Type</th>
+							<th>Default</th>
 							<th>Action</th>
 						</tr>
 					
 						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 							<tr>
 								<td>#group.getDisplayName()#</td>
-								<td>#group.getDiscountType()#</td>
+								<td>#group.getIsDefault()#</td>
 								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_group_detail.cfm?id=#group.getCustomerGroupId()#">View Detail</a></td>
 							</tr>
 						</cfloop>

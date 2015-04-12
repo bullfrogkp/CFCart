@@ -38,7 +38,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 		
-			<cfset LOCAL.customerGroup.setGroupName(Trim(FORM.group_name)) />
+			<cfset LOCAL.customerGroup.setDisplayName(Trim(FORM.group_name)) />
 			<cfset LOCAL.customerGroup.setIsDefault(FORM.is_default) />
 			
 			<cfset EntitySave(LOCAL.customerGroup) />

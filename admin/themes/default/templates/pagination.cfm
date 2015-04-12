@@ -1,4 +1,5 @@
 ﻿<cfoutput>
+	<cfif REQUEST.pageData.paginationInfo.totalPages GT 1>
 	<ul class="pagination pagination-sm no-margin pull-right">
 		<cfif REQUEST.pageData.paginationInfo.currentPage NEQ 1>
 			<li><a href="#APPLICATION.absoluteUrlWeb#admin/#REQUEST.pageData.currentPageName#.cfm?#REQUEST.pageData.paginationInfo.currentQueryString#page=1">&laquo;</a></li>
@@ -10,4 +11,5 @@
 			<li><a href="#APPLICATION.absoluteUrlWeb#admin/#REQUEST.pageData.currentPageName#.cfm?#REQUEST.pageData.paginationInfo.currentQueryString#page=#REQUEST.pageData.paginationInfo.totalPages#">&raquo;</a></li>
 		</cfif>
 	</ul>
+	</cfif>
 </cfoutput>
