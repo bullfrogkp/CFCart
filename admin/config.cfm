@@ -160,3 +160,71 @@ INSERT INTO order_product_status_type
 (name,display_name)
 VALUES
 ('receiving_with_problems','Receiving with Problems');
+
+//order_status_type
+//http://www.amazon.com/gp/help/customer/display.html?nodeId=200243170
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('working','Working');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('ready_to_ship','Ready to Ship');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('shipped','Shipped');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('in_transit','In-Transit');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('delivered','Delivered');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('checked_in','Checked-In');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('directed_to_prep','Directed to Prep');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('receiving','Receiving');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('closed','Closed');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('canceled','Cancelled');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('deleted','Deleted');
+
+INSERT INTO order_status_type
+(name,display_name)
+VALUES
+('receiving_with_problems','Receiving with Problems');
+
+//payment_method
+INSERT INTO payment_method
+(name,display_name)
+VALUES
+('paypal','PayPal');

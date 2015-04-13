@@ -1,5 +1,6 @@
 ﻿<cfcomponent persistent="true"> 
     <cfproperty name="shippingMethodId" column="shipping_method_id" fieldtype="id" generator="native"> 
+	<cfproperty name="name" column="name" ormtype="string"> 
 	<cfproperty name="displayName" column="display_name" ormtype="string"> 
 	<cfproperty name="function" column="function" ormtype="string"> 
 	<cfproperty name="shippingCarrier" fieldtype="many-to-one" cfc="shipping_carrier" fkcolumn="shipping_carrier_id">
