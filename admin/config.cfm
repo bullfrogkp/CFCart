@@ -1,4 +1,4 @@
-﻿//tax category
+﻿/*tax category*/
 INSERT INTO tax_category
 (name,display_name)
 VALUES
@@ -10,14 +10,14 @@ VALUES
 ('zero-rated','Zero-rated',0),
 ('exempt','Exempt',0);
 
-//calculation type
+/*calculation type*/
 INSERT INTO calculation_type
 (name,display_name)
 VALUES
-('percentage','Percentage',
+('percentage','Percentage'),
 ('fixed','Fixed');
 
-//attribute
+/*attribute*/
 INSERT INTO attribute
 (name,display_name)
 VALUES
@@ -26,7 +26,7 @@ VALUES
 ('brand','Brand'),
 ('material','Material');
 
-//filter
+/*filter*/
 INSERT INTO filter
 (name,display_name)
 VALUES
@@ -35,14 +35,14 @@ VALUES
 ('brand','Brand'),
 ('material','Material');
 
-//country
+/*country*/
 INSERT INTO country
 (code,display_name)
 VALUES
 ('US','USA'),
 ('CA','Canada');
 
-//coupon status type
+/*coupon status type*/
 INSERT INTO coupon_status_type
 (name,display_name)
 VALUES
@@ -51,13 +51,13 @@ VALUES
 ('used','Used'),
 ('disabled','Disabled');
 
-//order_product_status_type
-//http://www.amazon.com/gp/help/customer/display.html?nodeId=200243170
+/*order_product_status_type*/
+/*www.amazon.com/gp/help/customer/display.html?nodeId=200243170*/
 INSERT INTO order_product_status_type
 (name,display_name)
 VALUES
 ('working','Working'),
-('ready_to_ship','Ready to Ship',
+('ready_to_ship','Ready to Ship'),
 ('shipped','Shipped'),
 ('in_transit','In-Transit'),
 ('delivered','Delivered'),
@@ -69,8 +69,8 @@ VALUES
 ('deleted','Deleted'),
 ('receiving_with_problems','Receiving with Problems');
 
-//order_status_type
-//http://www.amazon.com/gp/help/customer/display.html?nodeId=200243170
+/*order_status_type*/
+/*www.amazon.com/gp/help/customer/display.html?nodeId=200243170*/
 INSERT INTO order_status_type
 (name,display_name)
 VALUES
@@ -87,7 +87,7 @@ VALUES
 ('deleted','Deleted'),
 ('receiving_with_problems','Receiving with Problems');
 
-//payment_solution
+/*payment_solution*/
 INSERT INTO payment_solution
 (name,display_name)
 VALUES
@@ -95,7 +95,7 @@ VALUES
 ('google_checkout','Google Checkout'),
 ('amazon_payments','Amazon Payments');
 
-//payment_method
+/*payment_method*/
 INSERT INTO payment_method
 (name,display_name,payment_solution_id)
 VALUES
@@ -106,7 +106,7 @@ VALUES
 ('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments')),
 ('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
 
-//province
+/*province*/
 INSERT INTO province
 (code,display_name)
 VALUES
@@ -178,7 +178,7 @@ INSERT into province values
 ('WI', 'Wisconsin'),
 ('WY', 'Wyoming');
 
-//review_status_type
+/*review_status_type*/
 INSERT INTO review_status_type
 (name,display_name)
 VALUES
@@ -186,7 +186,7 @@ VALUES
 ('rejected','Rejected'),
 ('pending','Pending');
 
-//shipping_carrier
+/*shipping_carrier*/
 INSERT INTO shipping_carrier
 (name,display_name)
 VALUES
@@ -197,9 +197,9 @@ VALUES
 ('ems','EMS'),
 ('canadapost','Canada Post');
 
-//shipping_method
+/*shipping_method*/
 INSERT INTO shipping_method
-(name,display_name)
+(name,display_name,shipping_carrier_id)
 VALUES
 ('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
 ('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
