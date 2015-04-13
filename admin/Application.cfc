@@ -51,7 +51,7 @@
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
-                <cfset THIS[ "$Config" ].ormEnabled = "false" />
+                <cfset THIS[ "$Config" ].ormEnabled = "true" />
                 <cfset THIS[ "$Config" ].ormSettings = {} />
                 <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
 				<cfset THIS[ "$Config" ].ormSettings.cfclocation = "/core/entities/" />
