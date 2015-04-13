@@ -40,8 +40,19 @@
 			
 			<cfset LOCAL.attributeSet.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.attributeSet.removeAttributes() />
-			<cfloop array="#FORM.attribute_id#" index="attribute">
-				<cfset LOCAL.attributeSet.addAttribute(EntityLoadByPK("attribute",FORM.id)) />
+			
+			<cfset LOCAL.currentAttributes = EntityLoad("attribute",{isDeleted=false}) />
+			
+			<cfloop array="#LOCAL.currentAttributes#" index="LOCAL.attribute">
+				<cfif StructKeyExists(FORM,"attribute_#LOCAL.attribute.getAttributeId()#")>
+					<cfset LOCAL.attributeSetAttributeRela(EntityNew("attribute_set_attribute_rela")) />
+					<cfset LOCAL.attributeSetAttributeRela.setAttributeSet(LOCAL.attributeSet) />
+					<cfset LOCAL.attributeSetAttributeRela.setAttribute(LOCAL.attribute) />
+					<cfset LOCAL.attributeSetAttributeRela.setRequired(StructFind(FORM,"attribute_required_#LOCAL.attribute.getAttributeId()#")) />
+					<cfset EntitySave(LOCAL.attributeSetAttributeRela) />
+					
+					<cfset LOCAL.attributeSet.addAttributeSetAttributeRela(LOCAL.attributeSetAttributeRela) />
+				</cfif>
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.attributeSet) />
