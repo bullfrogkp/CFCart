@@ -223,8 +223,49 @@ INSERT INTO order_status_type
 VALUES
 ('receiving_with_problems','Receiving with Problems');
 
-//payment_method
-INSERT INTO payment_method
+//payment_solution
+INSERT INTO payment_solution
 (name,display_name)
 VALUES
 ('paypal','PayPal');
+
+INSERT INTO payment_solution
+(name,display_name)
+VALUES
+('google_checkout','Google Checkout');
+
+INSERT INTO payment_solution
+(name,display_name)
+VALUES
+('amazon_payments','Amazon Payments');
+
+//payment_method
+INSERT INTO payment_method
+(name,display_name,payment_solution_id)
+VALUES
+('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal'));
+
+INSERT INTO payment_method
+(name,display_name,payment_solution_id)
+VALUES
+('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal'));
+
+INSERT INTO payment_method
+(name,display_name,payment_solution_id)
+VALUES
+('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout'));
+
+INSERT INTO payment_method
+(name,display_name,payment_solution_id)
+VALUES
+('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout'));
+
+INSERT INTO payment_method
+(name,display_name,payment_solution_id)
+VALUES
+('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
+
+INSERT INTO payment_method
+(name,display_name,payment_solution_id)
+VALUES
+('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
