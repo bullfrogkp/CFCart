@@ -271,21 +271,6 @@ VALUES
 ('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
 
 //province
-
-Alberta
-2	British Columbia
-3	Manitoba
-4	New Brunswick
-5	Newfoundland and Labrador
-6	Northwest Territories*
-7	Nova Scotia
-8	Nunavut*
-9	Ontario
-10	Prince Edward Island
-11	Quebec
-12	Saskatchewan
-13	Yukon Territory*
-
 INSERT INTO province
 (code,display_name)
 VALUES
@@ -319,5 +304,87 @@ VALUES
 INSERT INTO province
 (code,display_name)
 VALUES
+('NS','Nova Scotia');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('NU','Nunavut');
+
+INSERT INTO province
+(code,display_name)
+VALUES
 ('ON','Ontario');
 
+INSERT INTO province
+(code,display_name)
+VALUES
+('PE','Prince Edward Island');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('QC','Quebec');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('SK','Saskatchewan');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('YT','Yukon Territory');
+
+INSERT into province values ('AL', 'Alabama'),
+('AK', 'Alaska'),
+('AZ', 'Arizona'),
+('AR', 'Arkansas'),
+('CA', 'California'),
+('CO', 'Colorado'),
+('CT', 'Connecticut'),
+('DE', 'Delaware'),
+('DC', 'District of Columbia'),
+('FL', 'Florida'),
+('GA', 'Georgia'),
+('HI', 'Hawaii'),
+('ID', 'Idaho'),
+('IL', 'Illinois'),
+('IN', 'Indiana'),
+('IA', 'Iowa'),
+('KS', 'Kansas'),
+('KY', 'Kentucky'),
+('LA', 'Louisiana'),
+('ME', 'Maine'),
+('MD', 'Maryland'),
+('MA', 'Massachusetts'),
+('MI', 'Michigan'),
+('MN', 'Minnesota'),
+('MS', 'Mississippi'),
+('MO', 'Missouri'),
+('MT', 'Montana'),
+('NE', 'Nebraska'),
+('NV', 'Nevada'),
+('NH', 'New Hampshire'),
+('NJ', 'New Jersey'),
+('NM', 'New Mexico'),
+('NY', 'New York'),
+('NC', 'North Carolina'),
+('ND', 'North Dakota'),
+('OH', 'Ohio'),
+('OK', 'Oklahoma'),
+('OR', 'Oregon'),
+('PA', 'Pennsylvania'),
+('PR', 'Puerto Rico'),
+('RI', 'Rhode Island'),
+('SC', 'South Carolina'),
+('SD', 'South Dakota'),
+('TN', 'Tennessee'),
+('TX', 'Texas'),
+('UT', 'Utah'),
+('VT', 'Vermont'),
+('VA', 'Virginia'),
+('WA', 'Washington'),
+('WV', 'West Virginia'),
+('WI', 'Wisconsin'),
+('WY', 'Wyoming');
