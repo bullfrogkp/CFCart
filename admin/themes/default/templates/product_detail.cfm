@@ -234,7 +234,7 @@
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Price</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Attributes</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
 				</ul>
@@ -579,7 +579,7 @@
 							</div>
 						</cfif>
 					</div>
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" id="tab_6">
 					
 						<div class="form-group">
 							<label>Related Products</label>

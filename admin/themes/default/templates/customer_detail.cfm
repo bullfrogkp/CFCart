@@ -48,7 +48,7 @@
 					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Activities</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Account Information</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Orders</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Addresses</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_4']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Addresses</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Change Password</a></li>
 				</ul>
@@ -263,7 +263,7 @@
 							</tr>
 						</table>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']# #REQUEST.pageData.deleteButtonClass#" id="tab_4">
 						<div class="form-group">
 							<label>Address(es)</label>
 							<a href="" data-toggle="modal" data-target="##add-address-modal" style="margin-left:10px;"><span class="label label-primary">Add Address</span></a>
