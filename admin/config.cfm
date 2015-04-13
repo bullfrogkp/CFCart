@@ -46,6 +46,27 @@ INSERT INTO attribute
 VALUES
 ('material','Material');
 
+//filter
+INSERT INTO filter
+(name,display_name)
+VALUES
+('color','Color');
+
+INSERT INTO filter
+(name,display_name)
+VALUES
+('size','Size');
+
+INSERT INTO filter
+(name,display_name)
+VALUES
+('brand','Brand');
+
+INSERT INTO filter
+(name,display_name)
+VALUES
+('material','Material');
+
 //country
 INSERT INTO country
 (code,name,display_name)
@@ -62,3 +83,80 @@ INSERT INTO coupon_status_type
 (name,display_name)
 VALUES
 ('active','Active');
+
+INSERT INTO coupon_status_type
+(name,display_name)
+VALUES
+('expired','Expired');
+
+INSERT INTO coupon_status_type
+(name,display_name)
+VALUES
+('used','Used');
+
+INSERT INTO coupon_status_type
+(name,display_name)
+VALUES
+('disabled','Disabled');
+
+//order_product_status_type
+//http://www.amazon.com/gp/help/customer/display.html?nodeId=200243170
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('working','Working');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('ready_to_ship','Ready to Ship');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('shipped','Shipped');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('in_transit','In-Transit');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('delivered','Delivered');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('checked_in','Checked-In');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('directed_to_prep','Directed to Prep');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('receiving','Receiving');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('closed','Closed');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('canceled','Cancelled');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('deleted','Deleted');
+
+INSERT INTO order_product_status_type
+(name,display_name)
+VALUES
+('receiving_with_problems','Receiving with Problems');
