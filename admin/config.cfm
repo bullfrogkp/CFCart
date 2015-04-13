@@ -185,3 +185,31 @@ VALUES
 ('approved','Approved'),
 ('rejected','Rejected'),
 ('pending','Pending');
+
+//shipping_carrier
+INSERT INTO shipping_carrier
+(name,display_name)
+VALUES
+('ups','UPS'),
+('fedex','Fedex'),
+('chinapost','China Post'),
+('dhl','DHL'),
+('ems','EMS'),
+('canadapost','Canada Post');
+
+//shipping_method
+INSERT INTO shipping_method
+(name,display_name)
+VALUES
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
