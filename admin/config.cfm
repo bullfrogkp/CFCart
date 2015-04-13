@@ -7,96 +7,48 @@ VALUES
 INSERT INTO tax_category
 (name,display_name,rate)
 VALUES
-('zero-rated','Zero-rated',0);
-
-INSERT INTO tax_category
-(name,display_name,rate)
-VALUES
+('zero-rated','Zero-rated',0),
 ('exempt','Exempt',0);
 
 //calculation type
 INSERT INTO calculation_type
 (name,display_name)
 VALUES
-('percentage','Percentage');
-
-INSERT INTO calculation_type
-(name,display_name)
-VALUES
+('percentage','Percentage',
 ('fixed','Fixed');
 
 //attribute
 INSERT INTO attribute
 (name,display_name)
 VALUES
-('color','Color');
-
-INSERT INTO attribute
-(name,display_name)
-VALUES
-('size','Size');
-
-INSERT INTO attribute
-(name,display_name)
-VALUES
-('brand','Brand');
-
-INSERT INTO attribute
-(name,display_name)
-VALUES
+('color','Color'),
+('size','Size'),
+('brand','Brand'),
 ('material','Material');
 
 //filter
 INSERT INTO filter
 (name,display_name)
 VALUES
-('color','Color');
-
-INSERT INTO filter
-(name,display_name)
-VALUES
-('size','Size');
-
-INSERT INTO filter
-(name,display_name)
-VALUES
-('brand','Brand');
-
-INSERT INTO filter
-(name,display_name)
-VALUES
+('color','Color'),
+('size','Size'),
+('brand','Brand'),
 ('material','Material');
 
 //country
 INSERT INTO country
 (code,display_name)
 VALUES
-('US','USA');
-
-INSERT INTO country
-(code,display_name)
-VALUES
+('US','USA'),
 ('CA','Canada');
 
 //coupon status type
 INSERT INTO coupon_status_type
 (name,display_name)
 VALUES
-('active','Active');
-
-INSERT INTO coupon_status_type
-(name,display_name)
-VALUES
-('expired','Expired');
-
-INSERT INTO coupon_status_type
-(name,display_name)
-VALUES
-('used','Used');
-
-INSERT INTO coupon_status_type
-(name,display_name)
-VALUES
+('active','Active'),
+('expired','Expired'),
+('used','Used'),
 ('disabled','Disabled');
 
 //order_product_status_type
@@ -104,61 +56,17 @@ VALUES
 INSERT INTO order_product_status_type
 (name,display_name)
 VALUES
-('working','Working');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('ready_to_ship','Ready to Ship');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('shipped','Shipped');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('in_transit','In-Transit');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('delivered','Delivered');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('checked_in','Checked-In');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('directed_to_prep','Directed to Prep');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('receiving','Receiving');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('closed','Closed');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('canceled','Cancelled');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
-('deleted','Deleted');
-
-INSERT INTO order_product_status_type
-(name,display_name)
-VALUES
+('working','Working'),
+('ready_to_ship','Ready to Ship',
+('shipped','Shipped'),
+('in_transit','In-Transit'),
+('delivered','Delivered'),
+('checked_in','Checked-In'),
+('directed_to_prep','Directed to Prep'),
+('receiving','Receiving'),
+('closed','Closed'),
+('canceled','Cancelled'),
+('deleted','Deleted'),
 ('receiving_with_problems','Receiving with Problems');
 
 //order_status_type
@@ -166,177 +74,58 @@ VALUES
 INSERT INTO order_status_type
 (name,display_name)
 VALUES
-('working','Working');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('ready_to_ship','Ready to Ship');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('shipped','Shipped');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('in_transit','In-Transit');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('delivered','Delivered');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('checked_in','Checked-In');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('directed_to_prep','Directed to Prep');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('receiving','Receiving');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('closed','Closed');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('canceled','Cancelled');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
-('deleted','Deleted');
-
-INSERT INTO order_status_type
-(name,display_name)
-VALUES
+('working','Working'),
+('ready_to_ship','Ready to Ship'),
+('shipped','Shipped'),
+('in_transit','In-Transit'),
+('delivered','Delivered'),
+('checked_in','Checked-In'),
+('directed_to_prep','Directed to Prep'),
+('receiving','Receiving'),
+('closed','Closed'),
+('canceled','Cancelled'),
+('deleted','Deleted'),
 ('receiving_with_problems','Receiving with Problems');
 
 //payment_solution
 INSERT INTO payment_solution
 (name,display_name)
 VALUES
-('paypal','PayPal');
-
-INSERT INTO payment_solution
-(name,display_name)
-VALUES
-('google_checkout','Google Checkout');
-
-INSERT INTO payment_solution
-(name,display_name)
-VALUES
+('paypal','PayPal'),
+('google_checkout','Google Checkout'),
 ('amazon_payments','Amazon Payments');
 
 //payment_method
 INSERT INTO payment_method
 (name,display_name,payment_solution_id)
 VALUES
-('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal'));
-
-INSERT INTO payment_method
-(name,display_name,payment_solution_id)
-VALUES
-('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal'));
-
-INSERT INTO payment_method
-(name,display_name,payment_solution_id)
-VALUES
-('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout'));
-
-INSERT INTO payment_method
-(name,display_name,payment_solution_id)
-VALUES
-('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout'));
-
-INSERT INTO payment_method
-(name,display_name,payment_solution_id)
-VALUES
-('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
-
-INSERT INTO payment_method
-(name,display_name,payment_solution_id)
-VALUES
+('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal')),
+('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal')),
+('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout')),
+('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout')),
+('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments')),
 ('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
 
 //province
 INSERT INTO province
 (code,display_name)
 VALUES
-('AB','Alberta');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('BC','British Columbia');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('MB','Manitoba');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('NB','New Brunswick');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('NL','Newfoundland and Labrador');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('NT','Northwest Territories');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('NS','Nova Scotia');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('NU','Nunavut');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('ON','Ontario');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('PE','Prince Edward Island');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('QC','Quebec');
-
-INSERT INTO province
-(code,display_name)
-VALUES
-('SK','Saskatchewan');
-
-INSERT INTO province
-(code,display_name)
-VALUES
+('AB','Alberta'),
+('BC','British Columbia'),
+('MB','Manitoba'),
+('NB','New Brunswick'),
+('NL','Newfoundland and Labrador'),
+('NT','Northwest Territories'),
+('NS','Nova Scotia'),
+('NU','Nunavut'),
+('ON','Ontario'),
+('PE','Prince Edward Island'),
+('QC','Quebec'),
+('SK','Saskatchewan'),
 ('YT','Yukon Territory');
 
-INSERT into province values ('AL', 'Alabama'),
+INSERT into province values 
+('AL', 'Alabama'),
 ('AK', 'Alaska'),
 ('AZ', 'Arizona'),
 ('AR', 'Arkansas'),
@@ -388,3 +177,11 @@ INSERT into province values ('AL', 'Alabama'),
 ('WV', 'West Virginia'),
 ('WI', 'Wisconsin'),
 ('WY', 'Wyoming');
+
+//review_status_type
+INSERT INTO review_status_type
+(name,display_name)
+VALUES
+('approved','Approved'),
+('rejected','Rejected'),
+('pending','Pending');
