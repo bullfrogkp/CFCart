@@ -69,14 +69,14 @@ VALUES
 
 //country
 INSERT INTO country
-(code,name,display_name)
+(code,display_name)
 VALUES
-('US','usa','USA');
+('US','USA');
 
 INSERT INTO country
-(code,name,display_name)
+(code,display_name)
 VALUES
-('CA','canada','Canada');
+('CA','Canada');
 
 //coupon status type
 INSERT INTO coupon_status_type
@@ -269,3 +269,55 @@ INSERT INTO payment_method
 (name,display_name,payment_solution_id)
 VALUES
 ('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
+
+//province
+
+Alberta
+2	British Columbia
+3	Manitoba
+4	New Brunswick
+5	Newfoundland and Labrador
+6	Northwest Territories*
+7	Nova Scotia
+8	Nunavut*
+9	Ontario
+10	Prince Edward Island
+11	Quebec
+12	Saskatchewan
+13	Yukon Territory*
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('AB','Alberta');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('BC','British Columbia');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('MB','Manitoba');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('NB','New Brunswick');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('NL','Newfoundland and Labrador');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('NT','Northwest Territories');
+
+INSERT INTO province
+(code,display_name)
+VALUES
+('ON','Ontario');
+
