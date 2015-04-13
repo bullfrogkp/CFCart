@@ -28,31 +28,31 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.attribute = EntityLoadByPK("attribute", FORM.id)> 
+			<cfset LOCAL.filter = EntityLoadByPK("filter", FORM.id)> 
 		<cfelse>
-			<cfset LOCAL.attribute = EntityNew("attribute") />
-			<cfset LOCAL.attribute.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.attribute.setCreatedDatetime(Now()) />
-			<cfset LOCAL.attribute.setIsDeleted(false) />
+			<cfset LOCAL.filter = EntityNew("filter") />
+			<cfset LOCAL.filter.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.filter.setCreatedDatetime(Now()) />
+			<cfset LOCAL.filter.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.attribute.setName(Trim(FORM.display_name)) />
-			<cfset LOCAL.attribute.setDisplayName(Trim(FORM.display_name)) />
+			<cfset LOCAL.filter.setName(Trim(FORM.display_name)) />
+			<cfset LOCAL.filter.setDisplayName(Trim(FORM.display_name)) />
 			
-			<cfset EntitySave(LOCAL.attribute) />
+			<cfset EntitySave(LOCAL.filter) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.attribute.getAttributeId()#" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Filter has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.filter.getFilterId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.attribute.setIsDeleted(false) />
+			<cfset LOCAL.filter.setIsDeleted(false) />
 			
-			<cfset EntitySave(LOCAL.attribute) />
+			<cfset EntitySave(LOCAL.filter) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/attributes.cfm" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Filter has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/filters.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -63,18 +63,18 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.attribute = EntityLoadByPK("attribute", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.attribute.getDisplayName()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.filter = EntityLoadByPK("filter", URL.id)> 
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.filter.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.attribute.getDisplayName())?"":LOCAL.pageData.attribute.getDisplayName() />
+				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.filter.getDisplayName())?"":LOCAL.pageData.filter.getDisplayName() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.title = "New Attribute | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.title = "New Filter | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
