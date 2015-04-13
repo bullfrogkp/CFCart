@@ -25,7 +25,7 @@
 							<th style="width:110px;">Action</th>
 						</tr>
 						
-						<cfif ArrayLen(REQUEST.pageData.discountTypes) GT 0>
+						<cfif ArrayLen(REQUEST.pageData.attributes) GT 0>
 							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 								<tr>
 									<td>#attribute.getAttributeId()#</td>

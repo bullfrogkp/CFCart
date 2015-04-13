@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Attributes
+		Attribute Sets
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Attributes</li>
+		<li class="active">Attribute Sets</li>
 	</ol>
 </section>
 <section class="content">
@@ -13,8 +13,8 @@
 		<div class="col-xs-12">
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">Attributes</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Attribute</a>
+					<h3 class="box-title">Attribute Sets</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Attribute Set</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover data-table">
@@ -25,12 +25,12 @@
 							<th style="width:110px;">Action</th>
 						</tr>
 						
-						<cfif ArrayLen(REQUEST.pageData.discountTypes) GT 0>
-							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+						<cfif ArrayLen(REQUEST.pageData.attributeSets) GT 0>
+							<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
 								<tr>
-									<td>#attribute.getAttributeId()#</td>
-									<td>#attribute.getDisplayName()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_detail.cfm?id=#attribute.getAttributeId()#">View Detail</a></td>
+									<td>#attributeSet.getAttributeSetId()#</td>
+									<td>#attributeSet.getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_set_detail.cfm?id=#attributeSet.getAttributeSetId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
 						<cfelse>

@@ -76,6 +76,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
+		<cfset LOCAL.pageData.attributes = EntityLoad("attribute",{isDeleted=false}) />
+		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.attributeSet = EntityLoadByPK("attribute_set", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.attributeSet.getDisplayName()# | #APPLICATION.applicationName#" />
