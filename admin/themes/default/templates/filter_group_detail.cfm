@@ -46,7 +46,7 @@
 										<td>
 											<input type="checkbox" name="filter_id" value="#filter.getFilterId()#" class="form-control"
 
-											<cfif 	REQUEST.pageData.filterGroup.hasFilter(filter)>
+											<cfif NOT IsNull(REQUEST.pageData.filterGroup) AND REQUEST.pageData.filterGroup.hasFilter(filter)>
 											checked
 											</cfif>
 												
