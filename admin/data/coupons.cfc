@@ -9,7 +9,7 @@
 		
 		<cfset LOCAL.couponService.setIsDeleted(false) />
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.couponService.setProductId(URL.id) />
+			<cfset LOCAL.couponService.setId(URL.id) />
 		</cfif>
 		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
 			<cfset LOCAL.couponService.setIsEnabled(URL.is_enabled) />
