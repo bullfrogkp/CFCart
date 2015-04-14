@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Attribute Detail
+		Filter Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Attribute Detail</li>
+		<li class="active">Filter Detail</li>
 	</ol>
 </section>
 
@@ -34,7 +34,7 @@
 						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
-					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Attribute</button>
+					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Filter</button>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->
@@ -46,7 +46,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this attribute?</h4>
+				<h4 class="modal-title"> Delete this filter?</h4>
 			</div>
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>

@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Attribute Set Detail
+		Filter Group Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Attribute Set Detail</li>
+		<li class="active">Filter Group Detail</li>
 	</ol>
 </section>
 
@@ -28,42 +28,46 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
-					<table class="table table-bordered table-hover">
-						<tr class="default">
-							<th>Name</th>
-							<th>Required</th>
-							<th style="width:110px;">Action</th>
-						</tr>
-						
-						<cfif ArrayLen(REQUEST.pageData.attributes) GT 0>
-							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-								<tr>
-									<td>#attribute.getAttributeId()#</td>
-									<td>
-										<select class="form-control" name="attribute_required_#attribute.getAttributeId()#">
-											<option value="1" <cfif attribute.getRequired() EQ true>selected</cfif>>Yes</option>
-											<option value="0" <cfif attribute.getRequired() EQ false>selected</cfif>>No</option>
-										</select>
-									</td>
-									<td>
-										<input type="checkbox" name="attribute_#attribute.getAttributeId()#" class="form-control" />
-									</td>
-								</tr>
-							</cfloop>
-						<cfelse>
-							<tr>
-								<td colspan="3">No data available</td>
+					<div class="form-group">
+						<label>Name</label>
+						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+					</div>
+					<div class="form-group">
+						<table class="table table-bordered table-hover">
+							<tr class="default">
+								<th>Name</th>
+								<th style="width:110px;">Action</th>
 							</tr>
-						</cfif>
-						
-						<tr class="default">
-							<th>Name</th>
-							<th>Required</th>
-							<th style="width:110px;">Action</th>
-						</tr>
-					</table>
+							
+							<cfif ArrayLen(REQUEST.pageData.filters) GT 0>
+								<cfloop array="#REQUEST.pageData.filters#" index="filter">
+									<tr>
+										<td>#filter.getDisplayName()#</td>
+										<td>
+											<input type="checkbox" name="filter_#filter.getFilterId()#" class="form-control"
+
+											<cfif 	REQUEST.pageData.filterGroup.hasFilter(filter)>
+											checked
+											</cfif>
+												
+											/>
+										</td>
+									</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="2">No data available</td>
+								</tr>
+							</cfif>
+							
+							<tr class="default">
+								<th>Name</th>
+								<th style="width:110px;">Action</th>
+							</tr>
+						</table>
+					</div>
 					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
-					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Attribute Set</button>
+					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Filter Group</button>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
 		</div><!--/.col (left) -->

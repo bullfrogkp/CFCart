@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Attribute Sets
+		Filter Groups
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Attribute Sets</li>
+		<li class="active">Filter Groups</li>
 	</ol>
 </section>
 <section class="content">
@@ -13,8 +13,8 @@
 		<div class="col-xs-12">
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">Attribute Sets</h3>
-					<a href="#APPLICATION.absoluteUrlWeb#admin/discount_type_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Attribute Set</a>
+					<h3 class="box-title">Filter Groups</h3>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/filter_set_detail.cfm" class="btn btn-default btn-sm pull-right top-nav-anchor">Add New Filter Group</a>
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover data-table">
@@ -25,12 +25,12 @@
 							<th style="width:110px;">Action</th>
 						</tr>
 						
-						<cfif ArrayLen(REQUEST.pageData.attributeSets) GT 0>
-							<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
+						<cfif ArrayLen(REQUEST.pageData.filterGroups) GT 0>
+							<cfloop array="#REQUEST.pageData.filterGroups#" index="filterGroup">
 								<tr>
-									<td>#attributeSet.getAttributeSetId()#</td>
-									<td>#attributeSet.getDisplayName()#</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_set_detail.cfm?id=#attributeSet.getAttributeSetId()#">View Detail</a></td>
+									<td>#filterGroup.getFilterGroupId()#</td>
+									<td>#filterGroup.getDisplayName()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/filter_group_detail.cfm?id=#filterGroup.getFilterGroupId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
 						<cfelse>
