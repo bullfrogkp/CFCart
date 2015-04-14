@@ -45,7 +45,7 @@
 			
 			<cfloop array="#LOCAL.currentAttributes#" index="LOCAL.attribute">
 				<cfif StructKeyExists(FORM,"attribute_#LOCAL.attribute.getAttributeId()#")>
-					<cfset LOCAL.attributeSetAttributeRela(EntityNew("attribute_set_attribute_rela")) />
+					<cfset LOCAL.attributeSetAttributeRela = EntityNew("attribute_set_attribute_rela") />
 					<cfset LOCAL.attributeSetAttributeRela.setAttributeSet(LOCAL.attributeSet) />
 					<cfset LOCAL.attributeSetAttributeRela.setAttribute(LOCAL.attribute) />
 					<cfset LOCAL.attributeSetAttributeRela.setRequired(StructFind(FORM,"attribute_required_#LOCAL.attribute.getAttributeId()#")) />

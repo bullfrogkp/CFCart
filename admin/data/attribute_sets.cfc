@@ -4,7 +4,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.title = "Attribute Sets | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.attributes = EntityLoad("attribute_set",{isDeleted = false}) />
+		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false}) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

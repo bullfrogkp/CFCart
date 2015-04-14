@@ -406,18 +406,18 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/attributes.cfm"><i class="fa fa-angle-double-right"></i> Attributes</a></li>		
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_sets.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>		
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/filters.cfm"><i class="fa fa-angle-double-right"></i> Filters</a></li>		
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/filter_groups.cfm"><i class="fa fa-angle-double-right"></i> Filter Groups</a></li>	
-								<li><a href="#APPLICATION.absoluteUrlWeb#admin/order_status_types.cfm"><i class="fa fa-angle-double-right"></i> Order Status Types</a></li>								
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/order_product_status_types.cfm"><i class="fa fa-angle-double-right"></i> Product Status Types</a></li>		
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment</a></li>	
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping</a></li>			
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/tax_information.cfm"><i class="fa fa-angle-double-right"></i> Tax</a></li>
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/countries.cfm"><i class="fa fa-angle-double-right"></i> Countries</a></li>
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/provinces.cfm"><i class="fa fa-angle-double-right"></i> Provinces</a></li>
-                                <li><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
+                                <li id="attributes"><a href="#APPLICATION.absoluteUrlWeb#admin/attributes.cfm"><i class="fa fa-angle-double-right"></i> Attributes</a></li>		
+                                <li id="attribute_sets"><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_sets.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>		
+								<li id="filters"><a href="#APPLICATION.absoluteUrlWeb#admin/filters.cfm"><i class="fa fa-angle-double-right"></i> Filters</a></li>		
+                                <li id="filter_groups"><a href="#APPLICATION.absoluteUrlWeb#admin/filter_groups.cfm"><i class="fa fa-angle-double-right"></i> Filter Groups</a></li>	
+								<li id="order_status_types"><a href="#APPLICATION.absoluteUrlWeb#admin/order_status_types.cfm"><i class="fa fa-angle-double-right"></i> Order Status Types</a></li>								
+                                <li id="order_product_status_types"><a href="#APPLICATION.absoluteUrlWeb#admin/order_product_status_types.cfm"><i class="fa fa-angle-double-right"></i> Product Status Types</a></li>		
+                                <li id="payment_methods"><a href="#APPLICATION.absoluteUrlWeb#admin/payment_methods.cfm"><i class="fa fa-angle-double-right"></i> Payment</a></li>	
+                                <li id="shipping_methods"><a href="#APPLICATION.absoluteUrlWeb#admin/shipping_methods.cfm"><i class="fa fa-angle-double-right"></i> Shipping</a></li>			
+                                <li id="tax_information"><a href="#APPLICATION.absoluteUrlWeb#admin/tax_information.cfm"><i class="fa fa-angle-double-right"></i> Tax</a></li>
+                                <li id="countries"><a href="#APPLICATION.absoluteUrlWeb#admin/countries.cfm"><i class="fa fa-angle-double-right"></i> Countries</a></li>
+                                <li id="provinces"><a href="#APPLICATION.absoluteUrlWeb#admin/provinces.cfm"><i class="fa fa-angle-double-right"></i> Provinces</a></li>
+                                <li id="site_info"><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
                             </ul>
                         </li>
 						<!---

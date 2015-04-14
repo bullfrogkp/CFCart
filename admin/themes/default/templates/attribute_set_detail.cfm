@@ -28,40 +28,53 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
-					<table class="table table-bordered table-hover">
-						<tr class="default">
-							<th>Name</th>
-							<th>Required</th>
-							<th style="width:110px;">Action</th>
-						</tr>
-						
-						<cfif ArrayLen(REQUEST.pageData.attributes) GT 0>
-							<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-								<tr>
-									<td>#attribute.getAttributeId()#</td>
-									<td>
-										<select class="form-control" name="attribute_required_#attribute.getAttributeId()#">
-											<option value="1" <cfif attribute.getRequired() EQ true>selected</cfif>>Yes</option>
-											<option value="0" <cfif attribute.getRequired() EQ false>selected</cfif>>No</option>
-										</select>
-									</td>
-									<td>
-										<input type="checkbox" name="attribute_#attribute.getAttributeId()#" class="form-control" />
-									</td>
-								</tr>
-							</cfloop>
-						<cfelse>
-							<tr>
-								<td colspan="3">No data available</td>
+					<div class="form-group">
+						<label>Name</label>
+						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+					</div>
+					<div class="form-group">
+						<table class="table table-bordered table-hover">
+							<tr class="default">
+								<th>Name</th>
+								<th style="width:100px;">Required</th>
+								<th style="width:140px;">Action</th>
 							</tr>
-						</cfif>
-						
-						<tr class="default">
-							<th>Name</th>
-							<th>Required</th>
-							<th style="width:110px;">Action</th>
-						</tr>
-					</table>
+							
+							<cfif ArrayLen(REQUEST.pageData.attributes) GT 0>
+								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+									<cfset rela = EntityLoad("attribute_set_attribute_rela",{attribute=attribute,attributeSet=REQUEST.pageData.attributeSet},true) />
+									<tr>
+										<td>#attribute.getAttributeId()#</td>
+										<td>
+											<select class="form-control" name="attribute_required_#attribute.getAttributeId()#">
+												<option value="1" <cfif NOT IsNull(rela) AND rela.getRequired() EQ true>selected</cfif>>Yes</option>
+												<option value="0" <cfif NOT(NOT IsNull(rela) AND rela.getRequired() EQ true)>selected</cfif>>No</option>
+											</select>
+										</td>
+										<td>
+											<input type="checkbox" name="attribute_#attribute.getAttributeId()#" class="form-control"
+
+											<cfif  NOT IsNull(rela)>
+											checked
+											</cfif>
+											
+											/>
+										</td>
+									</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="3">No data available</td>
+								</tr>
+							</cfif>
+							
+							<tr class="default">
+								<th>Name</th>
+								<th>Required</th>
+								<th>Action</th>
+							</tr>
+						</table>
+					</div>
 					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Attribute Set</button>
 				</div><!-- /.box-body -->
