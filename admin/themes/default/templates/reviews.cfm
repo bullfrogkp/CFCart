@@ -48,8 +48,8 @@
 							<th>Action</th>
 						</tr>
 					
-						<cfif ArrayLen(REQUEST.pageData.reviews) GT 0>
-							<cfloop array="#REQUEST.pageData.reviews#" index="review">
+						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="review">
 								<tr>
 									<td>#review.getSubject()#</td>
 									<td>#review.getProduct().getDisplayName()#</td>
@@ -70,8 +70,6 @@
 								<td colspan="7">No data available</td>
 							</tr>
 						</cfif>
-				
-					
 					
 						<tr class="default">
 							<th>Subject</th>
@@ -83,6 +81,9 @@
 						</tr>
 					</table>
 				</div><!-- /.box-body -->
+				<div class="box-footer clearfix">
+					<cfinclude template="pagination.cfm" />
+				</div>
 			</div><!-- /.box -->
 		</div>
 	</div>
