@@ -43,52 +43,54 @@
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
 						
-							<tr class="default">
-								<th>Name</th>
-								<th>Date Added</th>
-								<th>Date Updated</th>
-								<th>Subject</th>
-								<th>Type</th>
-								<th style="width:40px;">Status</th>
-								<th style="width:110px;">Action</th>
-							</tr>
-						
-							<cfif ArrayLen(REQUEST.pageData.newsletters) GT 0>
-								<cfloop array="#REQUEST.pageData.newsletters#" index="newsletter">
-								<tr>
-									<td>#newsletter.getDisplayName()#</td>
-									<td>#newsletter.getCreatedDatetime()#</td>
-									<td>#newsletter.getUpdatedDatetime()#</td>
-									<td>#newsletter.getSubject()#</td>
-									<td>#newsletter.getType()#</td>
-									<td>
-										<cfswitch expression="#newsletter.getIsEnabled()#">
-											<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
-											<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
-										</cfswitch>
-									</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
-								</tr>
-								</cfloop>
-							<cfelse>
-								<tr>
-									<td colspan="6">No data available</td>
-								</tr>
-							</cfif>
-							
+						<tr class="default">
+							<th>Name</th>
+							<th>Date Added</th>
+							<th>Date Updated</th>
+							<th>Subject</th>
+							<th>Type</th>
+							<th style="width:40px;">Status</th>
+							<th style="width:110px;">Action</th>
+						</tr>
 					
-							<tr class="default">
-								<th>Name</th>
-								<th>Date Added</th>
-								<th>Date Updated</th>
-								<th>Subject</th>
-								<th>Type</th>
-								<th>Status</th>
-								<th>Action</th>
+						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="newsletter">
+							<tr>
+								<td>#newsletter.getDisplayName()#</td>
+								<td>#newsletter.getCreatedDatetime()#</td>
+								<td>#newsletter.getUpdatedDatetime()#</td>
+								<td>#newsletter.getSubject()#</td>
+								<td>#newsletter.getType()#</td>
+								<td>
+									<cfswitch expression="#newsletter.getIsEnabled()#">
+										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+									</cfswitch>
+								</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
 							</tr>
+							</cfloop>
+						<cfelse>
+							<tr>
+								<td colspan="6">No data available</td>
+							</tr>
+						</cfif>
+				
+						<tr class="default">
+							<th>Name</th>
+							<th>Date Added</th>
+							<th>Date Updated</th>
+							<th>Subject</th>
+							<th>Type</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
 						
 					</table>
 				</div><!-- /.box-body -->
+				<div class="box-footer clearfix">
+					<cfinclude template="pagination.cfm" />
+				</div>
 			</div><!-- /.box -->
 		</div>
 	</div>

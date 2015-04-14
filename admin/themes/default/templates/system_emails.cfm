@@ -42,53 +42,55 @@
 				</div><!-- /.box-header -->
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
-						
-							<tr class="default">
-								<th>Name</th>
-								<th>Date Added</th>
-								<th>Date Updated</th>
-								<th>Subject</th>
-								<th>Type</th>
-								<th style="width:40px;">Status</th>
-								<th style="width:110px;">Action</th>
-							</tr>
-						
-							<cfif ArrayLen(REQUEST.pageData.systemEmails) GT 0>
-								<cfloop array="#REQUEST.pageData.systemEmails#" index="systemEmail">
-								<tr>
-									<td>#systemEmail.getDisplayName()#</td>
-									<td>#systemEmail.getCreatedDatetime()#</td>
-									<td>#systemEmail.getUpdatedDatetime()#</td>
-									<td>#systemEmail.getSubject()#</td>
-									<td>#systemEmail.getType()#</td>
-									<td>
-										<cfswitch expression="#systemEmail.getIsEnabled()#">
-											<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
-											<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
-										</cfswitch>
-									</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/system_email_detail.cfm?id=#systemEmail.getSystemEmailId()#">View Detail</a></td>
-								</tr>
-								</cfloop>
-							<cfelse>
-								<tr>
-									<td colspan="7">No data available</td>
-								</tr>
-							</cfif>
-							
 					
-							<tr class="default">
-								<th>Name</th>
-								<th>Date Added</th>
-								<th>Date Updated</th>
-								<th>Subject</th>
-								<th>Type</th>
-								<th>Status</th>
-								<th>Action</th>
+						<tr class="default">
+							<th>Name</th>
+							<th>Date Added</th>
+							<th>Date Updated</th>
+							<th>Subject</th>
+							<th>Type</th>
+							<th style="width:40px;">Status</th>
+							<th style="width:110px;">Action</th>
+						</tr>
+					
+						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="systemEmail">
+							<tr>
+								<td>#systemEmail.getDisplayName()#</td>
+								<td>#systemEmail.getCreatedDatetime()#</td>
+								<td>#systemEmail.getUpdatedDatetime()#</td>
+								<td>#systemEmail.getSubject()#</td>
+								<td>#systemEmail.getType()#</td>
+								<td>
+									<cfswitch expression="#systemEmail.getIsEnabled()#">
+										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+									</cfswitch>
+								</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/system_email_detail.cfm?id=#systemEmail.getSystemEmailId()#">View Detail</a></td>
 							</tr>
+							</cfloop>
+						<cfelse>
+							<tr>
+								<td colspan="7">No data available</td>
+							</tr>
+						</cfif>
+				
+						<tr class="default">
+							<th>Name</th>
+							<th>Date Added</th>
+							<th>Date Updated</th>
+							<th>Subject</th>
+							<th>Type</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
 						
 					</table>
 				</div><!-- /.box-body -->
+				<div class="box-footer clearfix">
+					<cfinclude template="pagination.cfm" />
+				</div>
 			</div><!-- /.box -->
 		</div>
 	</div>

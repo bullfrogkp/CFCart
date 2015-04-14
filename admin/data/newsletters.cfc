@@ -4,7 +4,26 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.title = "Newsletters | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.newsletters = EntityLoad("newsletter",{isDeleted = false}) />
+		
+		<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.emailService"() />
+		
+		<cfset LOCAL.emailService.setIsDeleted(false) />
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.emailService.setId(URL.id) />
+		</cfif>
+		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
+			<cfset LOCAL.emailService.setIsEnabled(URL.is_enabled) />
+		</cfif>
+		<cfif StructKeyExists(URL,"search_keyword") AND Trim(URL.search_keyword) NEQ "">
+			<cfset LOCAL.emailService.setSearchKeywords(Trim(URL.search_keyword)) />
+		</cfif>
+		
+		<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
+			<cfset LOCAL.emailService.setPageNumber(Trim(URL.page)) />
+		</cfif>
+		
+		<cfset LOCAL.recordStruct = LOCAL.emailService.getNewsletters() />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
