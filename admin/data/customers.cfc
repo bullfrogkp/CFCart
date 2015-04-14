@@ -18,7 +18,12 @@
 			<cfset LOCAL.customerService.setSearchKeywords(Trim(URL.search_keyword)) />
 		</cfif>
 		
-		<cfset LOCAL.pageData.customers = LOCAL.customerService.getCustomers() />
+		<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
+			<cfset LOCAL.customerService.setPageNumber(Trim(URL.page)) />
+		</cfif>
+		
+		<cfset LOCAL.recordStruct = LOCAL.customerService.getCustomers() />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

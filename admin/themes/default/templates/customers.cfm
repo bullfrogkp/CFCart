@@ -91,13 +91,7 @@
 					</table>
 				</div><!-- /.box-body -->
 				<div class="box-footer clearfix">
-					<ul class="pagination pagination-sm no-margin pull-right">
-						<li><a href="##">&laquo;</a></li>
-						<li><a href="##">1</a></li>
-						<li><a href="##">2</a></li>
-						<li><a href="##">3</a></li>
-						<li><a href="##">&raquo;</a></li>
-					</ul>
+					<cfinclude template="pagination.cfm" />
 				</div>
 			</div><!-- /.box -->
 		</div>
