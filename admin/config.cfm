@@ -213,3 +213,11 @@ VALUES
 ('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
 ('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
 ('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
+
+/*customer_group*/
+INSERT INTO customer_group
+(name,display_name,is_default)
+VALUES
+('default','Default',1),
+('wholesaler','Wholesaler',0),
+('retailer','Retailer',0);

@@ -42,9 +42,11 @@
 							
 							<cfif ArrayLen(REQUEST.pageData.attributes) GT 0>
 								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-									<cfset rela = EntityLoad("attribute_set_attribute_rela",{attribute=attribute,attributeSet=REQUEST.pageData.attributeSet},true) />
+									<cfif NOT IsNull(REQUEST.pageData.attributeSet)> 
+										<cfset rela = EntityLoad("attribute_set_attribute_rela",{attribute=attribute,attributeSet=REQUEST.pageData.attributeSet},true) />
+									</cfif>
 									<tr>
-										<td>#attribute.getAttributeId()#</td>
+										<td>#attribute.getDisplayName()#</td>
 										<td>
 											<select class="form-control" name="attribute_required_#attribute.getAttributeId()#">
 												<option value="1" <cfif NOT IsNull(rela) AND rela.getRequired() EQ true>selected</cfif>>Yes</option>
