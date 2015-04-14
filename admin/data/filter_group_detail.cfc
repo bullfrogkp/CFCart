@@ -42,12 +42,9 @@
 			<cfset LOCAL.filterGroup.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.filterGroup.removeFilters() />
 			
-			<cfset LOCAL.currentFilters = EntityLoad("filter",{isDeleted=false}) />
-			
-			<cfloop array="#LOCAL.currentFilters#" index="LOCAL.filter">
-				<cfif StructKeyExists(FORM,"filter_#LOCAL.filter.getFilterId()#")>
-					<cfset LOCAL.filterGroup.addFilter(LOCAL.filter) />
-				</cfif>
+			<cfloop list="#FORM.filter_id#" index="LOCAL.filterId">
+				<cfset LOCAL.newFilter = EntityLoadByPK("filter",LOCAL.filterId) />
+				<cfset LOCAL.filterGroup.addFilter(LOCAL.newFilter) />
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.filterGroup) />

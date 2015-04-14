@@ -44,7 +44,7 @@
 									<tr>
 										<td>#filter.getDisplayName()#</td>
 										<td>
-											<input type="checkbox" name="filter_#filter.getFilterId()#" class="form-control"
+											<input type="checkbox" name="filter_id" value="#filter.getFilterId()#" class="form-control"
 
 											<cfif 	REQUEST.pageData.filterGroup.hasFilter(filter)>
 											checked
