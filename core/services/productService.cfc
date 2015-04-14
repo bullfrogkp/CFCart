@@ -1,72 +1,38 @@
-﻿<cfcomponent output="false" accessors="true">
-    <cfproperty name="productId" type="numeric"> 
+﻿<cfcomponent extends="service" output="false" accessors="true">
     <cfproperty name="attributeSetId" type="numeric"> 
     <cfproperty name="parentProductId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
-    <cfproperty name="name" type="string"> 
-    <cfproperty name="searchKeywords" type="string"> 
-    <cfproperty name="displayName" type="string"> 
-    <cfproperty name="isEnabled" type="boolean"> 
-    <cfproperty name="isDeleted" type="boolean"> 
-    <cfproperty name="offset" type="numeric"> 
-    <cfproperty name="limit" type="numeric"> 
 
-   <cffunction name="getProducts" output="false" access="public" returntype="array">
+   <cffunction name="getProducts" output="false" access="public" returntype="struct">
 		<cfset var LOCAL = {} />
 	   
-	    <cfif getSearchKeywords() NEQ "" OR NOT IsNull(getCategoryId())>
-			<cfset LOCAL.qry = "from product p " > 
-			
-			<cfif NOT IsNull(getCategoryId())>
-				<cfset LOCAL.qry = LOCAL.qry & "join p.categories c where c.categoryId = #getCategoryId()# " />
-			<cfelse>
-				<cfset LOCAL.qry = LOCAL.qry & "where true " />
-			</cfif>
-			
-			<cfif getSearchKeywords() NEQ "">
-				<cfset LOCAL.qry = LOCAL.qry & "and (p.display_name like '%#getSearchKeywords()#%' or p.keywords like '%#getSearchKeywords()#%' or p.description like '%#getSearchKeywords()#%' )" > 
-			</cfif>
-			
-			<cfif NOT IsNull(getProductId())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.product_id = '#getProductId()#' " />
-			</cfif>
-			
-			<cfif NOT IsNull(getIsDeleted())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.is_deleted = '#getIsDeleted()#' " />
-			</cfif>
-			
-			<cfif NOT IsNull(getParentProductId())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.parentProduct.parentProductId = '#getParentProductId()#' " />
-			<cfelse>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.parentProduct is null " />
-			</cfif>
-			
-			<cfif NOT IsNull(getIsEnabled())>
-				<cfset LOCAL.qry = LOCAL.qry & "and p.is_enabled = '#getIsEnabled()#' " />
-			</cfif>
-			
-			<cfset LOCAL.products = ORMExecuteQuery(LOCAL.qry)> 
-		<cfelse>
-			<cfset LOCAL.filter = {} />
-			<cfif NOT IsNull(getProductId())>
-				<cfset LOCAL.filter.productId = getProductId() />
-			</cfif>
-			<cfif NOT IsNull(getParentProductId())>
-				<cfset LOCAL.filter.parentProduct = EntityLoadByPK("product",getParentProductId()) />
-			<cfelse>
-				<cfset LOCAL.filter.parentProduct = JavaCast("NULL","") />
-			</cfif>
-			<cfif NOT IsNull(getIsEnabled())>
-				<cfset LOCAL.filter.isEnabled = getIsEnabled() />
-			</cfif>
-			<cfif NOT IsNull(getIsDeleted())>
-				<cfset LOCAL.filter.isDeleted = getIsDeleted() />
-			</cfif>
-
-			<cfset LOCAL.products = EntityLoad('product',LOCAL.filter)> 
+		<cfset LOCAL.qry = "from product p " />
+	   
+		<cfif NOT IsNull(getCategoryId())>
+			<cfset LOCAL.qry = LOCAL.qry & "join p.categories c where c.category_id = #getCategoryId()# " />
 		</cfif>
 	   
-		<cfreturn LOCAL.products />
+		<cfif getSearchKeywords() NEQ "">	
+			<cfset LOCAL.qry = "from product p where (display_name like '%#getSearchKeywords()#%' or keywords like '%#getSearchKeywords()#%' or description like '%#getSearchKeywords()#%' )" /> 
+		<cfelse>
+			<cfset LOCAL.qry = "from product p where 1=1 " /> 
+		</cfif>
+		
+		<cfif NOT IsNull(getId())>
+			<cfset LOCAL.qry = LOCAL.qry & "and product_id = '#getId()#' " />
+		</cfif>
+		<cfif NOT IsNull(getIsEnabled())>
+			<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
+		</cfif>
+		<cfif NOT IsNull(getIsDeleted())>
+			<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
+		</cfif>
+	   
+	    <cfset LOCAL.records = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct()) /> 
+		<cfset LOCAL.totalCount = ORMExecuteQuery( "select count(product_id) as count " & LOCAL.qry, true) /> 
+		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
+		
+		<cfreturn LOCAL />
     </cffunction>
 		
 	<cffunction name="getCustomerGroupPrices" output="false" access="public" returntype="query">
@@ -77,7 +43,7 @@
 			,		cg.display_name AS groupDisplayName
 			,		(	SELECT	pcgr.product_customer_group_rela_id
 						FROM	product_customer_group_rela pcgr
-						WHERE 	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
+						WHERE 	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 						AND 	cg.customer_group_id = pcgr.customer_group_id) AS productCustomerGroupRelaId
 			FROM	customer_group cg 
 			ORDER BY cg.is_default DESC, cg.display_name
@@ -111,7 +77,7 @@
 			 <cfquery name="LOCAL.getAttributeValues">
 				SELECT	av.attribute_value_id, av.value, av.image_name, av.display_name
 				FROM	attribute_value av
-				WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
+				WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 				AND		av.attribute_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.getAttributes.attribute_id#" />
 			</cfquery>
 			
@@ -159,7 +125,7 @@
 		<cfquery name="LOCAL.getAttributeValues">
 			SELECT	DISTINCT attribute_id
 			FROM	attribute_value
-			WHERE	product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />
+			WHERE	product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 		</cfquery>
 
 		<cfif Find(ListSort(ValueList(LOCAL.getAttributes.attribute_id),"numeric"),ListSort(ValueList(LOCAL.getAttributeValues.attribute_id),"numeric"))>
@@ -182,7 +148,7 @@
 			,			(
 							SELECT	product_shipping_method_rela_id 
 							FROM 	product_shipping_method_rela psmr
-							WHERE 	psmr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getProductId()#" />	
+							WHERE 	psmr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />	
 							AND		psmr.shipping_method_id = sm.shipping_method_id
 						) AS product_shipping_method_rela_id
 			FROM		shipping_carrier sc

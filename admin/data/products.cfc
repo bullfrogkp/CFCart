@@ -19,7 +19,12 @@
 			<cfset LOCAL.productService.setSearchKeywords(Trim(URL.search_keyword)) />
 		</cfif>
 		
-		<cfset LOCAL.pageData.products = LOCAL.productService.getProducts() />
+		<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
+			<cfset LOCAL.productService.setPageNumber(Trim(URL.page)) />
+		</cfif>
+		
+		<cfset LOCAL.recordStruct = LOCAL.productService.getProducts() />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		
 		<cfreturn LOCAL.pageData />	
