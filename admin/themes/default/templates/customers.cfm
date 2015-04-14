@@ -54,23 +54,29 @@
 							<th style="width:110px;">Action</th>
 						</tr>
 					
-						<cfloop array="#REQUEST.pageData.customers#" index="c">
+						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="c">
+								<tr>
+									<td>#c.getFirstName()# #c.getMiddleName()# #c.getLastName()#</td>
+									<td>#c.getEmail()#</td>
+									<td>#c.getPhone()#</td>
+									<td>#c.getCustomerGroup().getDisplayName()#</td>
+									<td>#c.getSubscribed()#</td>
+									<td>#DateFormat(c.getCreatedDatetime(),"mmm dd,yyyy")#</td>
+									<td>
+										<cfswitch expression="#c.getIsEnabled()#">
+											<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+											<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+										</cfswitch>
+									</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#c.getCustomerId()#">View Detail</a></td>
+								</tr>
+							</cfloop>
+						<cfelse>
 							<tr>
-								<td>#c.getFirstName()# #c.getMiddleName()# #c.getLastName()#</td>
-								<td>#c.getEmail()#</td>
-								<td>#c.getPhone()#</td>
-								<td>#c.getCustomerGroup().getDisplayName()#</td>
-								<td>#c.getSubscribed()#</td>
-								<td>#DateFormat(c.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-								<td>
-									<cfswitch expression="#c.getIsEnabled()#">
-										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
-										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
-									</cfswitch>
-								</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#c.getCustomerId()#">View Detail</a></td>
+								<td colspan="6">No result found.</td>
 							</tr>
-						</cfloop>
+						</cfif>
 					
 						<tr class="default">
 							<th>Name</th>
