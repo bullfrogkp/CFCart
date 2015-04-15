@@ -19,4 +19,14 @@
 	   
 		<cfreturn retStruct />
     </cffunction>
+	
+	<cffunction name="getRecords" output="false" access="public" returntype="struct">
+		<cfset LOCAL = {} />
+		
+		<cfset LOCAL.records = _getQuery() /> 
+		<cfset LOCAL.totalCount = _getQuery(getCount=true)[1] /> 
+		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
+	
+		<cfreturn LOCAL />
+    </cffunction>
 </cfcomponent>

@@ -1,28 +1,34 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">
-    
-   <cffunction name="getReviews" output="false" access="public" returntype="struct">
+    <cffunction name="_getQuery" output="false" access="private" returntype="array">
+		<cfargument name="getCount" type="boolean" required="false" default="false" />
 		<cfset LOCAL = {} />
-	   
-		<cfif getSearchKeywords() NEQ "">	
-			<cfset LOCAL.qry = "from review where (subject like '%#getSearchKeywords()#%' or content like '%#getSearchKeywords()#%')" /> 
+		
+		<cfif ARGUMENTS.getCount EQ false>
+			<cfset LOCAL.ormOptions = getPaginationStruct() />
 		<cfelse>
-			<cfset LOCAL.qry = "from review where 1=1 " /> 
+			<cfset LOCAL.ormOptions = {} />
 		</cfif>
-		
-		<cfif NOT IsNull(getId())>
-			<cfset LOCAL.qry = LOCAL.qry & "and review_id = '#getId()#' " />
-		</cfif>
-		<cfif NOT IsNull(getIsEnabled())>
-			<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
-		</cfif>
-		<cfif NOT IsNull(getIsDeleted())>
-			<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
-		</cfif>
-		
-		<cfset LOCAL.records = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct()) /> 
-		<cfset LOCAL.totalCount = ORMExecuteQuery( "select count(review_id) as count " & LOCAL.qry, true) /> 
-		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
+	   
+		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
+			<cfif ARGUMENTS.getCount EQ true>
+			SELECT COUNT(reviewId) 
+			</cfif>
+			FROM review 
+			WHERE 1=1
+			<cfif getSearchKeywords() NEQ "">	
+			AND	(subject like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR content like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
+			</cfif>
+			<cfif NOT IsNull(getId())>
+			AND reviewId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			</cfif>
+			<cfif NOT IsNull(getIsEnabled())>
+			AND isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
+			</cfif>
+			<cfif NOT IsNull(getIsDeleted())>
+			AND isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
+			</cfif>
+		</cfquery>
 	
-		<cfreturn LOCAL />
+		<cfreturn LOCAL.query />
     </cffunction>
 </cfcomponent>

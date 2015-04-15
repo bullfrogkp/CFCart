@@ -1,5 +1,5 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">
-	<cffunction name="_getQuery" output="false" access="private" returntype="array">
+    <cffunction name="_getQuery" output="false" access="private" returntype="array">
 		<cfargument name="getCount" type="boolean" required="false" default="false" />
 		<cfset LOCAL = {} />
 		
@@ -11,15 +11,15 @@
 	   
 		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
 			<cfif ARGUMENTS.getCount EQ true>
-			SELECT COUNT(couponId) 
+			SELECT COUNT(systemEmailId) 
 			</cfif>
-			FROM coupon 
+			FROM system_email 
 			WHERE 1=1
 			<cfif getSearchKeywords() NEQ "">	
-			AND	displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />
+			AND	(displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
 			</cfif>
 			<cfif NOT IsNull(getId())>
-			AND couponId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			AND systemEmailId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 			AND isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />

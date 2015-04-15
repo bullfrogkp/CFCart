@@ -1,16 +1,6 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">
 	<cfproperty name="parentCategoryId" type="numeric"> 
 	<cfproperty name="showCategoryOnNavigation" type="boolean"> 
-
-    <cffunction name="getRecords" output="false" access="public" returntype="struct">
-		<cfset LOCAL = {} />
-		
-		<cfset LOCAL.records = _getQuery() /> 
-		<cfset LOCAL.totalCount = _getQuery(getCount=true)[1] /> 
-		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
-	
-		<cfreturn LOCAL />
-    </cffunction>
 	
 	<cffunction name="_getQuery" output="false" access="private" returntype="array">
 		<cfargument name="getCount" type="boolean" required="false" default="false" />

@@ -3,38 +3,39 @@
     <cfproperty name="parentProductId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
 
-   <cffunction name="getProducts" output="false" access="public" returntype="struct">
-		<cfset var LOCAL = {} />
-	   
-		<cfset LOCAL.qry = "from product p " />
-	   
-		<cfif NOT IsNull(getCategoryId())>
-			<cfset LOCAL.qry = LOCAL.qry & "join p.categories c where c.category_id = #getCategoryId()# " />
-		</cfif>
-	   
-		<cfif getSearchKeywords() NEQ "">	
-			<cfset LOCAL.qry = "from product p where (display_name like '%#getSearchKeywords()#%' or keywords like '%#getSearchKeywords()#%' or description like '%#getSearchKeywords()#%' )" /> 
+	<cffunction name="_getQuery" output="false" access="private" returntype="array">
+		<cfargument name="getCount" type="boolean" required="false" default="false" />
+		<cfset LOCAL = {} />
+		
+		<cfif ARGUMENTS.getCount EQ false>
+			<cfset LOCAL.ormOptions = getPaginationStruct() />
 		<cfelse>
-			<cfset LOCAL.qry = "from product p where 1=1 " /> 
-		</cfif>
-		
-		<cfif NOT IsNull(getId())>
-			<cfset LOCAL.qry = LOCAL.qry & "and product_id = '#getId()#' " />
-		</cfif>
-		<cfif NOT IsNull(getIsEnabled())>
-			<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
-		</cfif>
-		<cfif NOT IsNull(getIsDeleted())>
-			<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
+			<cfset LOCAL.ormOptions = {} />
 		</cfif>
 	   
-	    <cfset LOCAL.records = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct()) /> 
-		<cfset LOCAL.totalCount = ORMExecuteQuery( "select count(product_id) as count " & LOCAL.qry, true) /> 
-		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
-		
-		<cfreturn LOCAL />
+		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
+			<cfif ARGUMENTS.getCount EQ true>
+			SELECT COUNT(productId) 
+			</cfif>
+			FROM product 
+			WHERE 1=1
+			<cfif getSearchKeywords() NEQ "">	
+			AND	(displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
+			</cfif>
+			<cfif NOT IsNull(getId())>
+			AND productId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			</cfif>
+			<cfif NOT IsNull(getIsEnabled())>
+			AND isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
+			</cfif>
+			<cfif NOT IsNull(getIsDeleted())>
+			AND isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
+			</cfif>
+		</cfquery>
+	
+		<cfreturn LOCAL.query />
     </cffunction>
-		
+	
 	<cffunction name="getCustomerGroupPrices" output="false" access="public" returntype="query">
 		<cfset var LOCAL = {} />
 			   
