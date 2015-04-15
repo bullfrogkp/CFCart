@@ -22,7 +22,7 @@
 			<cfset LOCAL.reviewService.setPageNumber(Trim(URL.page)) />
 		</cfif>
 		
-		<cfset LOCAL.recordStruct = LOCAL.reviewService.getReviews() />
+		<cfset LOCAL.recordStruct = LOCAL.reviewService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		
 		<cfreturn LOCAL.pageData />	

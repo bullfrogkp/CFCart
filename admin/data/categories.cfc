@@ -22,7 +22,7 @@
 			<cfset LOCAL.categoryService.setPageNumber(Trim(URL.page)) />
 		</cfif>
 		
-		<cfset LOCAL.recordStruct = LOCAL.categoryService.getCategories() />
+		<cfset LOCAL.recordStruct = LOCAL.categoryService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 	

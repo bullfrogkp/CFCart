@@ -22,7 +22,7 @@
 			<cfset LOCAL.emailService.setPageNumber(Trim(URL.page)) />
 		</cfif>
 		
-		<cfset LOCAL.recordStruct = LOCAL.emailService.getNewsletters() />
+		<cfset LOCAL.recordStruct = LOCAL.emailService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		
 		<cfreturn LOCAL.pageData />	

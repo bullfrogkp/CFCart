@@ -22,7 +22,7 @@
 			<cfset LOCAL.couponService.setPageNumber(Trim(URL.page)) />
 		</cfif>
 		
-		<cfset LOCAL.recordStruct = LOCAL.couponService.getCoupons() />
+		<cfset LOCAL.recordStruct = LOCAL.couponService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		
 		<cfreturn LOCAL.pageData />	

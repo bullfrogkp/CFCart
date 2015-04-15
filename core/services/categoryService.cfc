@@ -2,17 +2,17 @@
 	<cfproperty name="parentCategoryId" type="numeric"> 
 	<cfproperty name="showCategoryOnNavigation" type="boolean"> 
 
-    <cffunction name="getCategories" output="false" access="public" returntype="struct">
+    <cffunction name="getRecords" output="false" access="public" returntype="struct">
 		<cfset LOCAL = {} />
 		
-		<cfset LOCAL.records = _getCategoriesQuery() /> 
-		<cfset LOCAL.totalCount = _getCategoriesQuery(getCount=true)[1] /> 
+		<cfset LOCAL.records = _getQuery() /> 
+		<cfset LOCAL.totalCount = _getQuery(getCount=true)[1] /> 
 		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
 	
 		<cfreturn LOCAL />
     </cffunction>
 	
-	<cffunction name="_getCategoriesQuery" output="false" access="private" returntype="array">
+	<cffunction name="_getQuery" output="false" access="private" returntype="array">
 		<cfargument name="getCount" type="boolean" required="false" default="false" />
 		<cfset LOCAL = {} />
 		
@@ -22,7 +22,7 @@
 			<cfset LOCAL.ormOptions = {} />
 		</cfif>
 	   
-		<cfquery name="LOCAL.getCategoriesQuery" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
+		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
 			<cfif ARGUMENTS.getCount EQ true>
 			SELECT COUNT(categoryId) 
 			</cfif>
@@ -42,7 +42,7 @@
 			</cfif>
 		</cfquery>
 	
-		<cfreturn LOCAL.getCategoriesQuery />
+		<cfreturn LOCAL.query />
     </cffunction>
 	
 	<cffunction name="getCategoryTree" access="public" returntype="array">
