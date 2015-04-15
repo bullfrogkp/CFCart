@@ -15,24 +15,30 @@
 	<cffunction name="_getCategoriesQuery" output="false" access="private" returntype="array">
 		<cfargument name="getCount" type="boolean" required="false" default="false" />
 		<cfset LOCAL = {} />
+		
+		<cfif ARGUMENTS.getCount EQ false>
+			<cfset LOCAL.ormOptions = getPaginationStruct() />
+		<cfelse>
+			<cfset LOCAL.ormOptions = {} />
+		</cfif>
 	   
-		<cfquery name="LOCAL.getCategoriesQuery" ormoptions="#getPaginationStruct()#" dbtype="hql">	
+		<cfquery name="LOCAL.getCategoriesQuery" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
 			<cfif ARGUMENTS.getCount EQ true>
-			SELECT COUNT(category_id) 
+			SELECT COUNT(categoryId) 
 			</cfif>
 			FROM category 
 			WHERE 1=1
 			<cfif getSearchKeywords() NEQ "">	
-			AND	(display_name like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
+			AND	(displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
 			</cfif>
 			<cfif NOT IsNull(getId())>
-			AND category_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			AND categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
-			AND is_enabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
+			AND isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
 			</cfif>
 			<cfif NOT IsNull(getIsDeleted())>
-			AND is_deleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
+			AND isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
 			</cfif>
 		</cfquery>
 	

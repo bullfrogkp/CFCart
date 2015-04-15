@@ -6,16 +6,17 @@
     <cfproperty name="pageNumber" type="numeric"> 
 
     <cffunction name="getPaginationStruct" output="false" access="public" returntype="struct">
-		<cfset LOCAL = {} />
+		<!--- if use local scope, it will return extra field named 'arguments', it will break cfquery ormoptions value --->
+		<cfset var retStruct = {} />
 		
 	    <cfif NOT IsNull(getPageNumber())>
-			<cfset LOCAL.offset = APPLICATION.recordsPerPage * (getPageNumber() - 1) />
+			<cfset retStruct.offset = APPLICATION.recordsPerPage * (getPageNumber() - 1) />
 		<cfelse>
-			<cfset LOCAL.offset = 0 />
+			<cfset retStruct.offset = 0 />
 		</cfif>
 			
-		<cfset LOCAL.maxResults = APPLICATION.recordsPerPage />
+		<cfset retStruct.maxResults = APPLICATION.recordsPerPage />
 	   
-		<cfreturn LOCAL />
+		<cfreturn retStruct />
     </cffunction>
 </cfcomponent>
