@@ -4,28 +4,39 @@
 
     <cffunction name="getCategories" output="false" access="public" returntype="struct">
 		<cfset LOCAL = {} />
-	   
-		<cfif getSearchKeywords() NEQ "">	
-			<cfset LOCAL.qry = "from category where (display_name like '%#getSearchKeywords()#%' or keywords like '%#getSearchKeywords()#%' or description like '%#getSearchKeywords()#%' )" /> 
-		<cfelse>
-			<cfset LOCAL.qry = "from category where 1=1 " /> 
-		</cfif>
 		
-		<cfif NOT IsNull(getId())>
-			<cfset LOCAL.qry = LOCAL.qry & "and category_id = '#getId()#' " />
-		</cfif>
-		<cfif NOT IsNull(getIsEnabled())>
-			<cfset LOCAL.qry = LOCAL.qry & "and is_enabled = '#getIsEnabled()#' " />
-		</cfif>
-		<cfif NOT IsNull(getIsDeleted())>
-			<cfset LOCAL.qry = LOCAL.qry & "and is_deleted = '#getIsDeleted()#' " />
-		</cfif>
-		
-		<cfset LOCAL.records = ORMExecuteQuery(LOCAL.qry, false, getPaginationStruct()) /> 
-		<cfset LOCAL.totalCount = ORMExecuteQuery( "select count(category_id) as count " & LOCAL.qry, true) /> 
+		<cfset LOCAL.records = _getCategoriesQuery() /> 
+		<cfset LOCAL.totalCount = _getCategoriesQuery(getCount=true)[1] /> 
 		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
 	
 		<cfreturn LOCAL />
+    </cffunction>
+	
+	<cffunction name="_getCategoriesQuery" output="false" access="private" returntype="array">
+		<cfargument name="getCount" type="boolean" required="false" default="false" />
+		<cfset LOCAL = {} />
+	   
+		<cfquery name="LOCAL.getCategoriesQuery" ormoptions="#getPaginationStruct()#" dbtype="hql">	
+			<cfif ARGUMENTS.getCount EQ true>
+			SELECT COUNT(category_id) 
+			</cfif>
+			FROM category 
+			WHERE 1=1
+			<cfif getSearchKeywords() NEQ "">	
+			AND	(display_name like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
+			</cfif>
+			<cfif NOT IsNull(getId())>
+			AND category_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			</cfif>
+			<cfif NOT IsNull(getIsEnabled())>
+			AND is_enabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
+			</cfif>
+			<cfif NOT IsNull(getIsDeleted())>
+			AND is_deleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
+			</cfif>
+		</cfquery>
+	
+		<cfreturn LOCAL.getCategoriesQuery />
     </cffunction>
 	
 	<cffunction name="getCategoryTree" access="public" returntype="array">
