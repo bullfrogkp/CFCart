@@ -483,7 +483,7 @@
 						<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
 							<label>Attribute Option(s)</label>
 							<div id="attributes" class="row" style="margin-top:10px;">
-								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRela()#" index="attributeSetAttributeRela">
+								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 									<cfset attribute = attributeSetAttributeRela.getAttribute() />
 									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 									<div class="col-xs-3">
@@ -1057,19 +1057,17 @@
 				<h4 class="modal-title"> Add New Attribute Value</h4>
 			</div>
 			<div class="modal-body">
-				<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-					<cfif attribute.required EQ true>
-						<div class="form-group">
-							<select class="form-control<cfif attribute.name EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#attribute.attributeId#">
-								<option value="">#attribute.name#</option>
-								<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-									<option value="#attributeValue.attributeValueId#" imagename="#attributeValue.imageName#">
-										#attributeValue.name#
-									</option>
-								</cfloop>
-							</select>
-						</div>	
-					</cfif>
+				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+					<div class="form-group">
+						<select class="form-control<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#productAttributeRela.getAttribute().getAttributeId()#">
+							<option value="">#productAttributeRela.getAttribute().getDisplayName()#</option>
+							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+								<option value="#attributeValue.getAttributeValueId()#" imagename="#attributeValue.getImageName()#">
+									#attributeValue.getDisplayName()#
+								</option>
+							</cfloop>
+						</select>
+					</div>	
 				</cfloop>
 				<div class="form-group">
 					<input id="new_price" name="new_price" type="text" class="form-control" placeholder="Price">

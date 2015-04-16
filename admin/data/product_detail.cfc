@@ -92,17 +92,19 @@
 			</cfif>
 			
 			<cfif FORM.attribute_set_id NEQ "">
-				<cfif NOT IsNull(LOCAL.product.getAttributeSet()) AND FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
+				<cfif IsNull(LOCAL.product.getAttributeSet())
+					OR
+					(NOT IsNull(LOCAL.product.getAttributeSet()) AND FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId())>
 					<cfset LOCAL.product.removeProductAttributeRelas() />
 					<cfset LOCAL.product.removeSubProducts() />
 					
-					<cfset LOCAL.product.setAttributeSet(LOCAL.newAttributeSet) />
 					<cfset LOCAL.newAttributeSet = EntityLoadByPK("attribute_set", FORM.attribute_set_id) />
+					<cfset LOCAL.product.setAttributeSet(LOCAL.newAttributeSet) />
 					
-					<cfloop array="#LOCAL.product.getAttributeSet()#" index="LOCAL.attribute">
+					<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
 						<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
 						<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.product) />
-						<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attribute) />
+						<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
 						<cfset EntitySave(LOCAL.newProductAttributeRela) />
 						
 						<cfset LOCAL.product.addProductAttributeRela(LOCAL.newProductAttributeRela) />
