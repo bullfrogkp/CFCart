@@ -483,38 +483,41 @@
 						<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
 							<label>Attribute Option(s)</label>
 							<div id="attributes" class="row" style="margin-top:10px;">
-								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRela()#" index="LOCAL.attributeSetAttributeRela">
-									<cfset attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
+								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRela()#" index="attributeSetAttributeRela">
+									<cfset attribute = attributeSetAttributeRela.getAttribute() />
+									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 									<div class="col-xs-3">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="warning">
-															<th colspan="2">#attribute.getDisplayName()#<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
-															<th><a attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+															<th colspan="2">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
+															<th><a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 														</tr>
 														
-														<cfloop array="#LOCAL.attributeSetAttributeRela.getAttributeValues()#" index="attributeValue">
-														<tr>
-															<td>#attributeValue.getDisplayName()#</td>
-															<td>
-																<cfif attributeValue.getImageName() NEQ "">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																		<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
-																	</div>
-																<cfelse>
-																	<cfif attribute.getDisplayName() EQ "color">
-																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:3px;"></div>
-																	<cfelse>
-																		#attributeValue.getValue()#
-																	</cfif>
-																</cfif>
-															</td>
-															<td>
-																<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
-															</td>
-														</tr>
-														</cfloop>
+														<cfif NOT IsNull(productAttributeRela.getAttributeValues())>
+															<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+																<tr>
+																	<td>#attributeValue.getDisplayName()#</td>
+																	<td>
+																		<cfif attributeValue.getImageName() NEQ "">
+																			<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																				<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
+																			</div>
+																		<cfelse>
+																			<cfif attribute.getDisplayName() EQ "color">
+																				<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:3px;"></div>
+																			<cfelse>
+																				#attributeValue.getValue()#
+																			</cfif>
+																		</cfif>
+																	</td>
+																	<td>
+																		<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																	</td>
+																</tr>
+															</cfloop>
+														</cfif>
 													</table>
 												</div><!-- /.box-body -->
 											</div><!-- /.box -->
