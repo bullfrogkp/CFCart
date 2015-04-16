@@ -63,6 +63,8 @@
 	</cffunction>
 	
 	<cffunction name="_setActiveTab" access="private" output="false" returnType="struct">
+		<cfargument name="defaultActiveTabId" type="string" required="false">
+		
 		<cfset var LOCAL = {} />
 	
 		<cfset LOCAL.tabs = {} />
@@ -80,7 +82,11 @@
 			<cfset LOCAL.tabs["#URL.active_tab_id#"] = "active" />
 		<cfelse>
 			<cfset LOCAL.tabs["activeTabId"] = "tab_1" />
-			<cfset LOCAL.tabs["tab_1"] = "active" />
+			<cfif StructKeyExists(ARGUMENTS,"defaultActiveTabId")>
+				<cfset LOCAL.tabs["#ARGUMENTS.defaultActiveTabId#"] = "active" />
+			<cfelse>
+				<cfset LOCAL.tabs["tab_1"] = "active" />
+			</cfif>
 		</cfif>
 		
 		<cfreturn LOCAL.tabs /> 

@@ -166,7 +166,7 @@
 			</cfif>
 		</cfif>
 		
-		<cfset LOCAL.pageData.tabs = _setActiveTab() />
+		<cfset LOCAL.pageData.tabs = _setActiveTab(defaultActiveTabId="tab_2") />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	

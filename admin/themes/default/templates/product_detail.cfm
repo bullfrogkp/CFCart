@@ -480,7 +480,7 @@
 							</select>
 						</div>
 						
-						<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
+						<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
 							<label>Attribute Option(s)</label>
 							<div id="attributes" class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">

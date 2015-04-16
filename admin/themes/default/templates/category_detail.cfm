@@ -261,7 +261,7 @@
 							</select>
 						</div>
 					
-						<cfif NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
+						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
 							<label>Filter(s)</label>
 							<div id="filters" class="row" style="margin-top:10px;">
 							
@@ -374,7 +374,7 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif NOT IsNull(REQUEST.pageData.category.getProducts()) AND ArrayLen(REQUEST.pageData.category.getProducts()) GT 0>
+											<cfif NOT IsNull(REQUEST.pageData.category) AND NOT IsNull(REQUEST.pageData.category.getProducts()) AND ArrayLen(REQUEST.pageData.category.getProducts()) GT 0>
 												<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
 													<tr>
 														<td>#product[1].getDisplayName()#</td>

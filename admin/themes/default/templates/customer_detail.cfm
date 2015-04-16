@@ -45,15 +45,15 @@
 			<!-- Custom Tabs -->
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
-					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Activities</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Activities</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Account Information</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Orders</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_3']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Orders</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_4']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Addresses</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Reviews</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Change Password</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_5']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Reviews</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Password</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']# #REQUEST.pageData.deleteButtonClass#" id="tab_1">
 					
 						<dl class="dl-horizontal">
 							<dt>Last Logged In Dateime:</dt>
@@ -230,7 +230,7 @@
 							<textarea name="description" class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']# #REQUEST.pageData.deleteButtonClass#" id="tab_3">
 						<table class="table table-bordered table-hover">
 						
 							<tr class="default">
@@ -313,7 +313,7 @@
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']# #REQUEST.pageData.deleteButtonClass#" id="tab_5">
 						<table class="table table-bordered table-hover">
 							
 							<tr class="default">
@@ -353,10 +353,12 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-						 <div class="form-group">
-							<label>Current Password</label>
-							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
-						</div>
+						<cfif NOT IsNull(REQUEST.pageData.customer)>
+							<div class="form-group">
+								<label>Current Password</label>
+								<input type="password" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+						</cfif>
 						 <div class="form-group">
 							<label>New Password</label>
 							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
