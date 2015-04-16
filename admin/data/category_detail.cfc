@@ -142,11 +142,7 @@
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
 		
 			<cfset LOCAL.categoryFilterRela = EntityLoadByPK("category_filter_rela", FORM.new_filter_value_category_filter_rela_id)>
-						
-			<cfset LOCAL.categoryFilterRela = EntityNew("category_filter_rela") /> 
-			<cfset LOCAL.categoryFilterRela.setCategory(LOCAL.category) /> 
-			<cfset LOCAL.categoryFilterRela.setFilter(LOCAL.filter) /> 
-			
+							
 			<cfset LOCAL.filterValue = EntityNew("filter_value") />
 			<cfset LOCAL.filterValue.setValue(FORM.new_filter_value) />
 			<cfset LOCAL.filterValue.setDisplayName(FORM.new_filter_display_name) />
@@ -186,25 +182,7 @@
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
-			
-			<cfif NOT IsNull(LOCAL.pageData.category.getFilterGroup())>
-				<cfset LOCAL.pageData.filterValues = [] />
-				<cfloop array="#LOCAL.pageData.category.getFilterGroup().getFilters()#" index="LOCAL.filter">
-					<cfset LOCAL.filterValueStruct = {} />
-					<cfset LOCAL.filterValueStruct.filterId = LOCAL.filter.getFilterId() />
-					<cfset LOCAL.filterValueStruct.filterName = LOCAL.filter.getDisplayName() />
-					<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category = LOCAL.pageData.category, filter = EntityLoadByPK("filter",LOCAL.filter.getFilterId())},true)>
-					
-					<cfif NOT IsNull(LOCAL.categoryFilterRela)>
-						<cfset LOCAL.filterValueStruct.filterValues = LOCAL.categoryFilterRela.getFilterValues() />
-					<cfelse>
-						<cfset LOCAL.filterValueStruct.filterValues = [] />
-					</cfif>
-					
-					<cfset ArrayAppend(LOCAL.pageData.filterValues, LOCAL.filterValueStruct) />
-				</cfloop>
-			</cfif>
-			
+						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>

@@ -472,6 +472,7 @@
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitle())?"":LOCAL.pageData.product.getTitle() />
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />
 				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescription())?"":LOCAL.pageData.product.getDescription() />
+				<cfset LOCAL.pageData.formData.attribute_set_id = isNull(LOCAL.pageData.product.getAttributeSet())?"":LOCAL.pageData.product.getAttributeSet().getAttributeSetId() />
 				<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.product.getTaxCategory())?"":LOCAL.pageData.product.getTaxCategory().getTaxCategoryId() />
 				<cfset LOCAL.pageData.formData.length = isNull(LOCAL.pageData.product.getLength())?"":LOCAL.pageData.product.getLength() />
 				<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeight())?"":LOCAL.pageData.product.getHeight() />
@@ -495,6 +496,7 @@
 				<cfset LOCAL.pageData.formData.keywords = "" />
 				<cfset LOCAL.pageData.formData.description = "" />
 				<cfset LOCAL.pageData.formData.tax_category_id = "" />
+				<cfset LOCAL.pageData.formData.attribute_set_id = "" />
 				<cfset LOCAL.pageData.formData.length = "" />
 				<cfset LOCAL.pageData.formData.height = "" />
 				<cfset LOCAL.pageData.formData.width = "" />

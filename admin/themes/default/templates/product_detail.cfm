@@ -471,7 +471,7 @@
 								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
 									<option value="#as.getAttributeSetId()#"
 									
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND as.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
+									<cfif as.getAttributeSetId() EQ REQUEST.pageData.formData.attribute_set_id>
 									selected
 									</cfif>
 									
