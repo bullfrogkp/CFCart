@@ -112,6 +112,7 @@
 				</cfif>
 			</cfif>
 			
+			<!--- update: not necessary for each time --->
 			<cfset LOCAL.product.removeAllCategories() />
 			
 			<cfloop list="#FORM.category_id#" index="LOCAL.categoryId">
@@ -119,6 +120,7 @@
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
 			</cfloop>
 			
+			<!--- update: not necessary for each time --->
 			<cfset LOCAL.product.removeProductShippingMethodRelas() />
 			
 			<cfif StructKeyExists(FORM,"shipping_method_id")>
