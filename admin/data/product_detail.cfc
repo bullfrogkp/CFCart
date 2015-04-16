@@ -460,8 +460,6 @@
 			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
 			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
-				<cfset LOCAL.productService.setAttributeSetId(LOCAL.pageData.product.getAttributeSet().getAttributeSetId()) />
-				<cfset LOCAL.pageData.attributes = LOCAL.productService.getProductAttributeAndValues() />
 				<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
 			</cfif>
 			

@@ -53,65 +53,6 @@
 		<cfreturn LOCAL.getProductGroupPrices />
     </cffunction>
 	
-	<cffunction name="getProductAttributeAndValues" output="false" access="public" returntype="array">
-		<cfset var LOCAL = {} />
-	   
-		<cfquery name="LOCAL.getAttributes">
-			SELECT	attr.attribute_id
-			,		attr.display_name
-			,		asar.required
-			FROM	attribute attr
-			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
-			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
-		</cfquery>
-		
-		<cfset LOCAL.attributeArray = [] />
-		<cfloop query="LOCAL.getAttributes">
-			<cfset LOCAL.attributeStruct = {} />
-			<cfset LOCAL.attributeStruct.name = LOCAL.getAttributes.display_name />
-			<cfset LOCAL.attributeStruct.required = LOCAL.getAttributes.required />
-			<cfset LOCAL.attributeStruct.attributeId = LOCAL.getAttributes.attribute_id />
-			<cfset LOCAL.attributeStruct.attributeName = LOCAL.getAttributes.display_name />
-			
-			<cfset LOCAL.attributeStruct.attributeValueArray = [] />
-			
-			 <cfquery name="LOCAL.getAttributeValues">
-				SELECT	av.attribute_value_id, av.value, av.image_name, av.display_name
-				FROM	attribute_value av
-				WHERE	av.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
-				AND		av.attribute_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.getAttributes.attribute_id#" />
-			</cfquery>
-			
-			<cfloop query="LOCAL.getAttributeValues">
-				<cfset LOCAL.attributeValueStruct = {} />
-				<cfset LOCAL.attributeValueStruct.attributeValueId = LOCAL.getAttributeValues.attribute_value_id />
-				<cfset LOCAL.attributeValueStruct.imageName = LOCAL.getAttributeValues.image_name />
-				<cfset LOCAL.attributeValueStruct.value = LOCAL.getAttributeValues.value />
-				<cfset LOCAL.attributeValueStruct.name = LOCAL.getAttributeValues.display_name />
-				<cfset ArrayAppend(LOCAL.attributeStruct.attributeValueArray, LOCAL.attributeValueStruct) />
-			</cfloop>
-			
-			<cfset ArrayAppend(LOCAL.attributeArray, LOCAL.attributeStruct) />
-		</cfloop>
- 
-		<cfreturn LOCAL.attributeArray />
-    </cffunction>
-	
-	<cffunction name="getAttributeSetAttributes" output="false" access="public" returntype="query">
-		<cfset var LOCAL = {} />
-	   
-		<cfquery name="LOCAL.getAttributes">
-			SELECT	attr.attribute_id
-			,		attr.display_name
-			,		asar.required
-			FROM	attribute attr
-			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
-			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
-		</cfquery>
-		 
-		<cfreturn LOCAL.getAttributes />
-    </cffunction>
-	
 	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
 		<cfset var LOCAL = {} />
 	   
@@ -125,7 +66,7 @@
 		
 		<cfquery name="LOCAL.getAttributeValues">
 			SELECT	DISTINCT attribute_id
-			FROM	attribute_value
+			FROM	product_attribute_rela
 			WHERE	product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 		</cfquery>
 

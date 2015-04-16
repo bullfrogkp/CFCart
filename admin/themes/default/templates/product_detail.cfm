@@ -480,49 +480,50 @@
 							</select>
 						</div>
 						
-						<label>Attribute Option(s)</label>
-						<div id="attributes" class="row" style="margin-top:10px;">
-							<cfif NOT IsNULL(REQUEST.pageData.attributes)>
-								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">						
+						<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
+							<label>Attribute Option(s)</label>
+							<div id="attributes" class="row" style="margin-top:10px;">
+								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRela()#" index="LOCAL.attributeSetAttributeRela">
+									<cfset attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
 									<div class="col-xs-3">
-										<div class="box box-warning">
-											<div class="box-body table-responsive no-padding">
-												<table class="table table-hover">
-													<tr class="warning">
-														<th colspan="2">#attribute.name#<cfif attribute.required> (required)</cfif></th>
-														<th><a attributeid="#attribute.attributeId#" attributename="#LCase(attribute.name)#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
-													</tr>
-													
-													<cfloop array="#attribute.attributeValueArray#" index="attributeValue">
-													<tr>
-														<td>#attributeValue.name#</td>
-														<td>
-															<cfif attributeValue.imageName NEQ "">
-																<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																	<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.imageName#" style="width:100%;height:100%;vertical-align:top;" />
-																</div>
-															<cfelse>
-																<cfif attribute.name EQ "color">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.value#;margin-top:3px;"></div>
+											<div class="box box-warning">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="warning">
+															<th colspan="2">#attribute.getDisplayName()#<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
+															<th><a attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+														</tr>
+														
+														<cfloop array="#LOCAL.attributeSetAttributeRela.getAttributeValues()#" index="attributeValue">
+														<tr>
+															<td>#attributeValue.getDisplayName()#</td>
+															<td>
+																<cfif attributeValue.getImageName() NEQ "">
+																	<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																		<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
+																	</div>
 																<cfelse>
-																	#attributeValue.value#
+																	<cfif attribute.getDisplayName() EQ "color">
+																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:3px;"></div>
+																	<cfelse>
+																		#attributeValue.getValue()#
+																	</cfif>
 																</cfif>
-															</cfif>
-														</td>
-														<td>
-															<a attributevalueid="#attributeValue.attributeValueId#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
-														</td>
-													</tr>
-													</cfloop>
-												</table>
-											</div><!-- /.box-body -->
-										</div><!-- /.box -->
-									</div>
+															</td>
+															<td>
+																<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+															</td>
+														</tr>
+														</cfloop>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
 								</cfloop>
-							</cfif>
-						</div>
-						<div id="new_attributes" class="row" style="margin-top:10px;">
-						</div>
+							</div>
+							<div id="new_attributes" class="row" style="margin-top:10px;">
+							</div>
+						</cfif>
 						
 						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
 							<div class="form-group" id="attribute_option_values">
@@ -544,22 +545,22 @@
 																</th>
 															</tr>
 															
-															<cfloop array="#p.getAttributeValues()#" index="optionValue">
-															<tr style="background-color:##f9f9f9;">
-																<td>#LCase(optionValue.getAttribute().getDisplayName())#</td>
-																<td>#optionValue.getDisplayName()#</td>
-																<td>
-																<cfif optionValue.getAttribute().getDisplayName() EQ "color">
-																	<cfif optionValue.getImageName() NEQ "">
-																		<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#optionValue.getAttribute().getAttributeId()#/#optionValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
-																		</div>
-																	<cfelse>
-																		<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#optionValue.getValue()#;margin-top:3px;"></div>
+															<cfloop array="#p.getProductAttributeRelas()#" index="productAttributeRela">
+																<tr style="background-color:##f9f9f9;">
+																	<td>#LCase(productAttributeRela.getAttribute().getDisplayName())#</td>
+																	<td>#productAttributeRela.getAttributeValues()[1].getDisplayName()#</td>
+																	<td>
+																	<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
+																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																			<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																				<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#productAttributeRela.getAttribute().getAttributeId()#/#productAttributeRela.getAttributeValues()[1].getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
+																			</div>
+																		<cfelse>
+																			<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+																		</cfif>
 																	</cfif>
-																</cfif>
-																</td>
-															</tr>
+																	</td>
+																</tr>
 															</cfloop>
 															<tr>
 																<td>price</td>
