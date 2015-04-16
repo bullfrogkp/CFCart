@@ -502,7 +502,7 @@
 																<td>
 																	<cfif attributeValue.getImageName() NEQ "">
 																		<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#attribute.attributeId#/#attributeValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
+																			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#productAttributeRela.getProductAttributeRelaId()#/#attributeValue.getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
 																		</div>
 																	<cfelse>
 																		<cfif attribute.getDisplayName() EQ "color">

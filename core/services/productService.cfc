@@ -56,25 +56,20 @@
 	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
 		<cfset var LOCAL = {} />
 	   
-		<cfquery name="LOCAL.getAttributes">
-			SELECT	attr.attribute_id
-			FROM	attribute attr
-			JOIN	attribute_set_attribute_rela asar ON asar.attribute_id = attr.attribute_id
-			WHERE	asar.attribute_set_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getAttributeSetId()#" /> 
-			AND		asar.required = <cfqueryparam cfsqltype="cf_sql_bit" value="1" />
-		</cfquery>
+		<cfset LOCAL.retValue = true />
 		
-		<cfquery name="LOCAL.getAttributeValues">
-			SELECT	DISTINCT attribute_id
-			FROM	product_attribute_rela
-			WHERE	product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
-		</cfquery>
-
-		<cfif Find(ListSort(ValueList(LOCAL.getAttributes.attribute_id),"numeric"),ListSort(ValueList(LOCAL.getAttributeValues.attribute_id),"numeric"))>
-			<cfset LOCAL.retValue = true />
-		<cfelse>
-			<cfset LOCAL.retValue = false />
-		</cfif>
+		<cfset LOCAL.product = EntityLoadByPK("product",getId()) />
+		
+		<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
+			<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
+				<cfset LOCAL.attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
+				<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.attribute},true) />
+				<cfif ArrayIsEmpty(LOCAL.productAttributeRela.getAttributeValues())>
+					<cfset LOCAL.retValue = false />
+					<cfbreak />
+				</cfif>
+			</cfif>
+		</cfloop>
  
 		<cfreturn LOCAL.retValue />
     </cffunction>
