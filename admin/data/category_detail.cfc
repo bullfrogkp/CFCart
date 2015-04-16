@@ -33,6 +33,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)> 
+			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.category.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.tab_id = FORM.tab_id />
 		<cfelse>
 			<cfset LOCAL.category = EntityNew("category")> 

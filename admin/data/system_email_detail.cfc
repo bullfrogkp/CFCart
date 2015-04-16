@@ -9,6 +9,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.systemEmail = EntityLoadByPK("system_email", FORM.id)> 
+			<cfset LOCAL.systemEmail.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.systemEmail.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.systemEmail = EntityNew("system_email") />
 			<cfset LOCAL.systemEmail.setCreatedUser(SESSION.adminUser) />

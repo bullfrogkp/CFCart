@@ -29,6 +29,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.filterGroup = EntityLoadByPK("filter_group", FORM.id)> 
+			<cfset LOCAL.filterGroup.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.filterGroup.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.filterGroup = EntityNew("filter_group") />
 			<cfset LOCAL.filterGroup.setCreatedUser(SESSION.adminUser) />

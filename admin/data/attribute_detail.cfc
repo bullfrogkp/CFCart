@@ -29,6 +29,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.attribute = EntityLoadByPK("attribute", FORM.id)> 
+			<cfset LOCAL.attribute.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.attribute.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.attribute = EntityNew("attribute") />
 			<cfset LOCAL.attribute.setCreatedUser(SESSION.adminUser) />

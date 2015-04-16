@@ -9,6 +9,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group", FORM.id)> 
+			<cfset LOCAL.relatedProductGroup.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.relatedProductGroup.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.relatedProductGroup = EntityNew("related_product_group") />
 			<cfset LOCAL.relatedProductGroup.setCreatedUser(SESSION.adminUser) />

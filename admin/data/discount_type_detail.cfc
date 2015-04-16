@@ -32,7 +32,9 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.discountType = EntityLoadByPK("discount_type", FORM.id)> 
+			<cfset LOCAL.discountType = EntityLoadByPK("discount_type", FORM.id)>  
+			<cfset LOCAL.discountType.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.discountType.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.discountType = EntityNew("discount_type") />
 			<cfset LOCAL.discountType.setCreatedUser(SESSION.adminUser) />

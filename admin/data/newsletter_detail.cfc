@@ -9,6 +9,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.newsletter = EntityLoadByPK("newsletter", FORM.id)> 
+			<cfset LOCAL.newsletter.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.newsletter.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.newsletter = EntityNew("newsletter") />
 			<cfset LOCAL.newsletter.setCreatedUser(SESSION.adminUser) />

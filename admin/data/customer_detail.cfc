@@ -31,6 +31,8 @@
 				
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.customer = EntityLoadByPK("customer", FORM.id)> 
+			<cfset LOCAL.customer.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.customer.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.tab_id = FORM.tab_id />
 		<cfelse>
 			<cfset LOCAL.customer = EntityNew("customer") />

@@ -28,7 +28,9 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.filter = EntityLoadByPK("filter", FORM.id)> 
+			<cfset LOCAL.filter = EntityLoadByPK("filter", FORM.id)>  
+			<cfset LOCAL.filter.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.filter.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.filter = EntityNew("filter") />
 			<cfset LOCAL.filter.setCreatedUser(SESSION.adminUser) />
