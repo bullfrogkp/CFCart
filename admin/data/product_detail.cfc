@@ -39,6 +39,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
+			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.product.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.tab_id = FORM.tab_id />
 		<cfelse>
 			<cfset LOCAL.product = EntityNew("product") />
@@ -58,8 +60,6 @@
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDetail(Trim(FORM.detail)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
-			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.product.setUpdatedDatetime(Now()) />
 			
 			<cfif IsNumeric(Trim(FORM.length))>
 				<cfset LOCAL.product.setLength(Trim(FORM.length)) />
