@@ -40,7 +40,7 @@
 			
 			<cfset LOCAL.attributeSet.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.attributeSet.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.attributeSet.removeAttributes() />
+			<cfset LOCAL.attributeSet.removeAttributeSetAttributeRelas() />
 			
 			<cfset LOCAL.currentAttributes = EntityLoad("attribute",{isDeleted=false}) />
 			

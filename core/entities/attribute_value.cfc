@@ -1,8 +1,8 @@
-﻿<cfcomponent extends="entity" persistent="true"> 
+﻿<cfcomponent persistent="true"> 
     <cfproperty name="attributeValueId" column="attribute_value_id" fieldtype="id" generator="native">
+	<cfproperty name="name" column="name" ormtype="string">
+	<cfproperty name="displayName" column="display_name" ormtype="string">
     <cfproperty name="imageName" column="image_name" ormtype="string">
     <cfproperty name="value" column="value" ormtype="string">
-	
-	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
-	<cfproperty name="attribute" fieldtype="many-to-one" cfc="attribute" fkcolumn="attribute_id">
+	<cfproperty name="productAttributeRela" fieldtype="many-to-one" cfc="product_attribute_rela" fkcolumn="product_attribute_rela_id">
 </cfcomponent>

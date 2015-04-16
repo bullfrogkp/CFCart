@@ -93,10 +93,21 @@
 			
 			<cfif FORM.attribute_set_id NEQ "">
 				<cfif NOT IsNull(LOCAL.product.getAttributeSet()) AND FORM.attribute_set_id NEQ LOCAL.product.getAttributeSet().getAttributeSetId()>
-					<cfset LOCAL.product.removeAttributeValues() />
+					<cfset LOCAL.product.removeProductAttributeRelas() />
 					<cfset LOCAL.product.removeSubProducts() />
+					
+					<cfset LOCAL.product.setAttributeSet(LOCAL.newAttributeSet) />
+					<cfset LOCAL.newAttributeSet = EntityLoadByPK("attribute_set", FORM.attribute_set_id) />
+					
+					<cfloop array="#LOCAL.product.getAttributeSet()#" index="LOCAL.attribute">
+						<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
+						<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.product) />
+						<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attribute) />
+						<cfset EntitySave(LOCAL.newProductAttributeRela) />
+						
+						<cfset LOCAL.product.addProductAttributeRela(LOCAL.newProductAttributeRela) />
+					</cfloop>
 				</cfif>
-				<cfset LOCAL.product.setAttributeSet(EntityLoadByPK("attribute_set", FORM.attribute_set_id)) />
 			</cfif>
 			
 			<cfset LOCAL.product.removeAllCategories() />
@@ -172,50 +183,7 @@
 				<cfset LOCAL.newDefaultImage.setIsDefault(true) />
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
-						
-			<!--- attribute values --->
-			<cfif NOT IsNull(LOCAL.product.getAttributeSet())>
-				<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
-				<cfset LOCAL.attributes = LOCAL.productService.getProductAttributeAndValues() />
-				<cfloop array="#LOCAL.attributes#" index="LOCAL.attribute">
-					<cfif StructKeyExists(FORM,"new_attribute_value_#LOCAL.attribute.attributeId#")>
-						<cfset LOCAL.formAttributeValue = Trim(FORM["new_attribute_value_#LOCAL.attribute.attributeId#"]) />
-						<cfif LOCAL.formAttributeValue NEQ "">
-							<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-							<cfset LOCAL.newAttributeValue.setProductId(LOCAL.product.getProductId()) />
-							<cfset LOCAL.newAttributeValue.setAttributeId(LOCAL.attribute.attributeId) />
-							<cfset LOCAL.newAttributeValue.setValue(LOCAL.formAttributeValue) />
-							
-							<cfset LOCAL.filename = Trim(FORM["new_image_#LOCAL.attribute.attributeId#"]) />
-							
-							<cfif LOCAL.filename NEQ "">
-							
-								<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#LOCAL.attribute.attributeId#" />
-								
-								<cfif NOT DirectoryExists(LOCAL.imageDir)>
-									<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-								</cfif>
-								
-								<cffile action = "upload"  
-										fileField = "new_image_#LOCAL.attribute.attributeId#"
-										destination = "#LOCAL.imageDir#"
-										nameConflict = "MakeUnique"> 
-								
-								<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-							</cfif>
-							<cfset EntitySave(LOCAL.newAttributeValue) />
-							<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
-						</cfif>
-						
-						<cfloop array="#attribute.attributeValueArray#" index="LOCAL.attributeValue">
-							<cfif StructKeyExists(FORM,"remove_attribute_value_#LOCAL.attributeValue.attributeValueId#")>	
-								<cfset LOCAL.product.removeAttributeValue(EntityLoadByPK("attribute_value",LOCAL.attributeValue.attributeValueId)) />
-							</cfif>
-						</cfloop>
-					</cfif>
-				</cfloop>
-			</cfif>
-			
+									
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
@@ -237,15 +205,14 @@
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
 		
+			<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_product_attribute_rela_id) />
+		
 			<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-			<cfset LOCAL.newAttributeValue.setProduct(LOCAL.product) />
-			<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",FORM.new_attribute_option_attribute_id)) />
+			<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 			<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option)) />
 			<cfset LOCAL.newAttributeValue.setDisplayName(Trim(FORM.new_attribute_option_name)) />
 			
-			<cfset LOCAL.filename = Trim(FORM.new_attribute_option_attachment) />
-							
-			<cfif LOCAL.filename NEQ "">
+			<cfif Trim(FORM.new_attribute_option_attachment) NEQ "">
 				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_attribute_id#" />
 				
 				<cfif NOT DirectoryExists(LOCAL.imageDir)>
@@ -261,7 +228,7 @@
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.newAttributeValue) />
-			<cfset LOCAL.product.addAttributeValue(LOCAL.newAttributeValue) />
+			<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
@@ -282,10 +249,6 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option_value")>
-			
-			<cfset LOCAL.productService.setProductId(FORM.id) />
-			<cfset LOCAL.productService.setAttributeSetId(LOCAL.product.getAttributeSet().getAttributeSetId()) />
-			<cfset LOCAL.productAttributes = LOCAL.productService.getAttributeSetAttributes() />
 			
 			<cfset LOCAL.newProduct = EntityNew("product")>
 			<cfset LOCAL.newProduct.setParentProduct(LOCAL.product) />
@@ -311,21 +274,27 @@
 			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
 			<cfset EntitySave(LOCAL.newProduct) />
 		
-			<cfloop query="LOCAL.productAttributes">
-				<cfif LOCAL.productAttributes.required>
+			<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
+				<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
+				
+					<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
+					<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
+					<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
+					<cfset EntitySave(LOCAL.newProductAttributeRela) />
+				
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-					<cfset LOCAL.newAttributeValue.setProduct(LOCAL.newProduct) />
-					<cfset LOCAL.newAttributeValue.setAttribute(EntityLoadByPK("attribute",LOCAL.productAttributes.attribute_id)) />
+					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
 					
 					<cfset LOCAL.originalAttributeValue = EntityLoadByPK("attribute_value",FORM["new_attribute_value_#LOCAL.productAttributes.attribute_id#"]) />
 					<cfset LOCAL.newAttributeValue.setValue(LOCAL.originalAttributeValue.getValue()) />
+					<cfset LOCAL.newAttributeValue.setName(LOCAL.originalAttributeValue.getName()) />
 					<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.originalAttributeValue.getDisplayName()) />
 					<cfif FORM.new_attribute_imagename NEQ "">
 						<cfset LOCAL.newAttributeValue.setImageName(FORM.new_attribute_imagename) />
 					</cfif>
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
-					<cfset LOCAL.newProduct.addAttributeValue(LOCAL.newAttributeValue) />
+					<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 				</cfif>
 			</cfloop>
 			
