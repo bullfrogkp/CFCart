@@ -44,14 +44,14 @@
 		<cfelse>
 			<cfset LOCAL.ormOptions = {} />
 		</cfif>
-	   
+	  
 		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
 			<cfif ARGUMENTS.getCount EQ true>
-			SELECT COUNT(productId) 
+			SELECT COUNT(p) 
 			</cfif>
 			FROM product p
-			JOIN category_product_rela cpr ON p.productId = cpr.productId
-			WHERE cpr.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			JOIN p.categories cat
+			WHERE cat.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 		</cfquery>
 	
 		<cfreturn LOCAL.query />
