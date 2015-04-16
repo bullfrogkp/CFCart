@@ -58,13 +58,14 @@
 			<cfset LOCAL.category.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.category.setDescription(Trim(FORM.description)) />
 			<cfset LOCAL.category.setCustomDesign(Trim(FORM.custom_design)) />
-			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
+			
 			<cfif FORM.filter_group_id NEQ "">
-				<cfif NOT IsNull(LOCAL.category.getFilterGroup()) AND FORM.filter_group_id NEQ LOCAL.category.getFilterGroup().getFilterGroupId()>
+				<cfif 	IsNull(LOCAL.category.getFilterGroup())
+						OR
+						(NOT IsNull(LOCAL.category.getFilterGroup()) AND FORM.filter_group_id NEQ LOCAL.category.getFilterGroup().getFilterGroupId())>
 					<cfset LOCAL.category.removeAllCategoryFilterRelas() />
+					<cfset LOCAL.category.setFilterGroup(EntityLoadByPK("filter_group",FORM.filter_group_id)) />
 				</cfif>
-				<cfset LOCAL.category.setFilterGroup(EntityLoadByPK("filter_group",FORM.filter_group_id)) />
 			</cfif>
 		
 			<!--- to get the category id for image path, extra entitysave here --->
@@ -124,23 +125,18 @@
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 		
 			<cfset LOCAL.category.setIsDeleted(true) />
-			
 			<cfset EntitySave(LOCAL.category) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category: #LOCAL.category.getDisplayName()# has been deleted.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/categories.cfm" />
 		
 		<cfelseif StructKeyExists(FORM,"delete_image")>
 		
 			<cfset LOCAL.image = EntityLoadByPK("category_image",FORM.deleted_image_id) />
-		
 			<cfset LOCAL.category.removeImage(LOCAL.image) />
-			
 			<cfset EntitySave(LOCAL.category) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_5" />
 		
 		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
@@ -197,9 +193,6 @@
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
-			
-			<cfset LOCAL.productService.setCategoryId(URL.id) />
-			<cfset LOCAL.pageData.products = LOCAL.productService.getProducts() />
 			
 			<cfif NOT IsNull(LOCAL.pageData.category.getFilterGroup())>
 				<cfset LOCAL.pageData.filterValues = [] />

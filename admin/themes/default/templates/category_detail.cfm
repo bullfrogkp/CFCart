@@ -369,8 +369,8 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif NOT IsNull(REQUEST.pageData.products) AND ArrayLen(REQUEST.pageData.products) GT 0>
-												<cfloop array="#REQUEST.pageData.products#" index="product">
+											<cfif NOT IsNull(REQUEST.pageData.category.getProducts()) AND ArrayLen(REQUEST.pageData.category.getProducts()) GT 0>
+												<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
 													<tr>
 														<td>#product[1].getDisplayName()#</td>
 														<td>#product[1].getPrice()#</td>
