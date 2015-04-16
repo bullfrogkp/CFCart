@@ -205,7 +205,7 @@
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
 		
-			<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_product_attribute_rela_id) />
+			<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_attribute_option_product_attribute_rela_id) />
 		
 			<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 			<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
@@ -213,7 +213,7 @@
 			<cfset LOCAL.newAttributeValue.setDisplayName(Trim(FORM.new_attribute_option_name)) />
 			
 			<cfif Trim(FORM.new_attribute_option_attachment) NEQ "">
-				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_attribute_id#" />
+				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_product_attribute_rela_id#" />
 				
 				<cfif NOT DirectoryExists(LOCAL.imageDir)>
 					<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
