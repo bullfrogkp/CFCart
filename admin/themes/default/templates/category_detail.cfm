@@ -115,7 +115,7 @@
 		});
 		
 		$( ".add-filter-value" ).click(function() {
-			$("##new_value_filter_id").val($(this).attr('filterid'));
+			$("##new_filter_value_category_filter_rela_id").val($(this).attr('categoryfilterrelaid'));
 			
 			if($(this).attr('filtername') == 'color')
 			{
@@ -151,7 +151,7 @@
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
-<input type="hidden" name="new_value_filter_id" id="new_value_filter_id" value="" />
+<input type="hidden" name="new_filter_value_category_filter_rela_id" id="new_filter_value_category_filter_rela_id" value="" />
 <input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <section class="content">
@@ -272,7 +272,7 @@
 													<tr class="warning">
 														<th>#filter.filterName#</th>
 														<th></th>
-														<th><a filterid="#filter.filterId#" filtername="#LCase(filter.filterName)#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a categoryfilterrelaid="#filter.filterId#" filtername="#LCase(filter.filterName)#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfloop array="#filter.filterValues#" index="filterValue">
