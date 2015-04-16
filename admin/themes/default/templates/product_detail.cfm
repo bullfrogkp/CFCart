@@ -603,7 +603,7 @@
 													<table class="table table-hover">
 														<tr class="default">
 															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
-															<th><a productid="#product.getProductId()#" href="" class="delete-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
 															<td colspan="2">

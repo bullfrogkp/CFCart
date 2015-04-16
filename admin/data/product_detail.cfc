@@ -265,14 +265,11 @@
 			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
 			<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
-			<cfset LOCAL.newProduct.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.newProduct.setUpdatedDatetime(Now()) />
 			
 			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
 			<cfset LOCAL.groupPrice.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_price)) />
-			
 			<cfset EntitySave(LOCAL.groupPrice) />
 			
 			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
@@ -280,7 +277,6 @@
 		
 			<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
 				<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
-				
 					<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
 					<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
 					<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
@@ -392,20 +388,19 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
 		
 		<cfelseif StructKeyExists(FORM,"add_related_product")>
-						
-			<cfloop list="#FORM.related_product_group_id#" index="LOCAL.groupId">
-				<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
-				<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
-					<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+			
+			<cfif StructKeyExists(FORM,"related_product_group_id")>			
+				<cfloop list="#FORM.related_product_group_id#" index="LOCAL.groupId">
+					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+						<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+					</cfloop>
 				</cfloop>
-			</cfloop>
+			</cfif>
 			
 			<cfif IsNumeric(FORM.new_related_product_id)>
 				<cfset LOCAL.newRelatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
 				<cfset LOCAL.product.addRelatedProduct(LOCAL.newRelatedProduct) />
-				<cfset LOCAL.newRelatedProduct.addRelatedParentProduct(LOCAL.product) />
-				
-				<cfset EntitySave(LOCAL.newRelatedProduct) />
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.product) />
