@@ -287,7 +287,7 @@
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
 					
-					<cfset LOCAL.originalAttributeValue = EntityLoadByPK("attribute_value",FORM["new_attribute_value_#LOCAL.productAttributes.attribute_id#"]) />
+					<cfset LOCAL.originalAttributeValue = EntityLoadByPK("attribute_value",FORM["new_attribute_value_#LOCAL.attributeSetAttributeRela.getAttribute().getAttributeId()#"]) />
 					<cfset LOCAL.newAttributeValue.setValue(LOCAL.originalAttributeValue.getValue()) />
 					<cfset LOCAL.newAttributeValue.setName(LOCAL.originalAttributeValue.getName()) />
 					<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.originalAttributeValue.getDisplayName()) />
