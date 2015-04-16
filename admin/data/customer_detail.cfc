@@ -57,8 +57,6 @@
 			<cfset LOCAL.customer.setDescription(FORM.description) />
 			<cfset LOCAL.customer.setDateOfBirth(Trim(FORM.date_of_birth)) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoadByPK("customer_group", FORM.customer_group_id)) />
-			<cfset LOCAL.customer.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.customer.setUpdatedDatetime(Now()) />
 			
 			<cfset EntitySave(LOCAL.customer) />
 			
@@ -68,7 +66,6 @@
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 		
 			<cfset LOCAL.customer.setIsDeleted(true) />
-			
 			<cfset EntitySave(LOCAL.customer) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Customer #LOCAL.customer.getDisplayName()# has been deleted.") />
