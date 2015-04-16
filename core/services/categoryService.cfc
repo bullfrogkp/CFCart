@@ -35,6 +35,28 @@
 		<cfreturn LOCAL.query />
     </cffunction>
 	
+	<cffunction name="_getProductQuery" output="false" access="private" returntype="array">
+		<cfargument name="getCount" type="boolean" required="false" default="false" />
+		<cfset LOCAL = {} />
+		
+		<cfif ARGUMENTS.getCount EQ false>
+			<cfset LOCAL.ormOptions = getPaginationStruct() />
+		<cfelse>
+			<cfset LOCAL.ormOptions = {} />
+		</cfif>
+	   
+		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
+			<cfif ARGUMENTS.getCount EQ true>
+			SELECT COUNT(productId) 
+			</cfif>
+			FROM product p
+			JOIN category_product_rela cpr ON p.productId = cpr.productId
+			WHERE cpr.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+		</cfquery>
+	
+		<cfreturn LOCAL.query />
+    </cffunction>
+	
 	<cffunction name="getCategoryTree" access="public" returntype="array">
 		<cfargument name="parentCategoryId" type="numeric" required="false" />
 		<cfargument name="isEnabled" type="boolean" required="false" default="true" />
@@ -55,4 +77,14 @@
 		
         <cfreturn LOCAL.categories />
 	</cffunction>
+	
+	<cffunction name="getProducts" output="false" access="public" returntype="struct">
+		<cfset LOCAL = {} />
+		
+		<cfset LOCAL.records = _getProductQuery() /> 
+		<cfset LOCAL.totalCount = _getProductQuery(getCount=true)[1] /> 
+		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
+	
+		<cfreturn LOCAL />
+    </cffunction>
 </cfcomponent>

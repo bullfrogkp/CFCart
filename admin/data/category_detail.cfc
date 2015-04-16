@@ -182,6 +182,13 @@
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
+			
+			<cfset LOCAL.categoryService.setId(URL.id) />
+			<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
+				<cfset LOCAL.categoryService.setPageNumber(Trim(URL.page)) />
+			</cfif>
+			<cfset LOCAL.recordStruct = LOCAL.categoryService.getProducts() />
+			<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />

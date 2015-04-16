@@ -374,8 +374,8 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif NOT IsNull(REQUEST.pageData.category) AND NOT IsNull(REQUEST.pageData.category.getProducts()) AND ArrayLen(REQUEST.pageData.category.getProducts()) GT 0>
-												<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
+											<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+												<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 													<tr>
 														<td>#product[1].getDisplayName()#</td>
 														<td>#product[1].getPrice()#</td>
@@ -402,13 +402,7 @@
 										</table>
 									</div><!-- /.box-body -->
 									<div class="box-footer clearfix">
-										<ul class="pagination pagination-sm no-margin pull-right">
-											<li><a href="##">&laquo;</a></li>
-											<li><a href="##">1</a></li>
-											<li><a href="##">2</a></li>
-											<li><a href="##">3</a></li>
-											<li><a href="##">&raquo;</a></li>
-										</ul>
+										<cfinclude template="pagination.cfm" />
 									</div>
 								</div><!-- /.box -->
 							</div>
