@@ -627,49 +627,39 @@
 										<h3 class="box-title">Reviews</h3>
 									</div><!-- /.box-header -->
 									<div class="box-body table-responsive">
-										<table class="table table-bordered table-hover">
-										
-											<tr class="default">
-												<th>Subject</th>
-												<th>Message</th>
-												<th>Rating</th>
-												<th>Create Datetime</th>
-												<th>Action</th>
-											</tr>
-										
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviews()) AND ArrayLen(REQUEST.pageData.product.getReviews()) GT 0>
-												<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
+										<table class="table table-bordered table-striped data-table">
+											<thead>
 												<tr>
-													<td>#review.getSubject()#</td>
-													<td>#review.getMessage()#</td>
-													<td>#review.getRating()#</td>
-													<td>#review.getCreatedDatetime()#</td>
-													<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+													<th>Subject</th>
+													<th>Message</th>
+													<th>Rating</th>
+													<th>Create Datetime</th>
+													<th>Action</th>
 												</tr>
-												</cfloop>
-											<cfelse>
+											</thead>
+											<tbody>
+												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviews()) AND ArrayLen(REQUEST.pageData.product.getReviews()) GT 0>
+													<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
+													<tr>
+														<td>#review.getSubject()#</td>
+														<td>#review.getMessage()#</td>
+														<td>#review.getRating()#</td>
+														<td>#review.getCreatedDatetime()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+													</tr>
+													</cfloop>
+												</cfif>
+											</tbody>
+											<tfoot>
 												<tr>
-													<td colspan="5">No data available</td>
+													<th>Subject</th>
+													<th>Message</th>
+													<th>Rating</th>
+													<th>Create Datetime</th>
+													<th>Action</th>
 												</tr>
-											</cfif>
-									
-											<tr class="default">
-												<th>Subject</th>
-												<th>Message</th>
-												<th>Rating</th>
-												<th>Create Datetime</th>
-												<th>Action</th>
-											</tr>
+											</tfoot>
 										</table>
-									</div>
-									<div class="box-footer clearfix">
-										<ul class="pagination pagination-sm no-margin pull-right">
-											<li><a href="##">&laquo;</a></li>
-											<li><a href="##">1</a></li>
-											<li><a href="##">2</a></li>
-											<li><a href="##">3</a></li>
-											<li><a href="##">&raquo;</a></li>
-										</ul>
 									</div>
 								</div>
 							</div>
