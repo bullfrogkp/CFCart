@@ -82,7 +82,7 @@
 		<cfset LOCAL = {} />
 		
 		<cfset LOCAL.records = _getProductQuery() /> 
-		<cfset LOCAL.totalCount = _getProductQuery(getCount=true)[1] /> 
+		<cfset LOCAL.totalCount = _getProductQuery(getCount=true)[1] />
 		<cfset LOCAL.totalPages = Ceiling(LOCAL.totalCount / APPLICATION.recordsPerPage) /> 
 	
 		<cfreturn LOCAL />
