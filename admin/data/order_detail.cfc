@@ -45,11 +45,9 @@
 			<cfset EntitySave(LOCAL.newStatus) />
 			
 			<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
-			
 			<cfset EntitySave(LOCAL.order) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order status has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"save_product_status")>
@@ -70,23 +68,20 @@
 			<cfset EntitySave(LOCAL.newStatus) />
 			
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.newStatus) />
-			
 			<cfset EntitySave(LOCAL.orderProduct) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product status has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=tab_3" />	
+			
 		<cfelseif StructKeyExists(FORM,"save_shipping_tracking_number")>
 		
 			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id)> 
-			
 			<cfset LOCAL.order.setShippingTrackingNumber(FORM.shipping_tracking_number) />
-			
 			<cfset EntitySave(LOCAL.order) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Shipping tracking number has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#&active_tab_id=tab_2" />
+			
 		</cfif>
 		
 		<cfreturn LOCAL />	

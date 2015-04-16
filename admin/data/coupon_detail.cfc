@@ -33,6 +33,8 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.coupon = EntityLoadByPK("coupon", FORM.id)> 
+			<cfset LOCAL.coupon.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.coupon.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.coupon = EntityNew("coupon") />
 			<cfset LOCAL.coupon.setCreatedUser(SESSION.adminUser) />
@@ -62,7 +64,6 @@
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
 			<cfset LOCAL.coupon.setIsDeleted(true) />
-			
 			<cfset EntitySave(LOCAL.coupon) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Coupon #LOCAL.coupon.getCouponCode()# has been deleted.") />
