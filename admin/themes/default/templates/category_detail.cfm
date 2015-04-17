@@ -261,10 +261,9 @@
 							</select>
 						</div>
 					
-						<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
-							<label>Filter(s)</label>
-							<div id="filters" class="row" style="margin-top:10px;">
-							
+						<label>Filter(s)</label>
+						<div id="filters" class="row" style="margin-top:10px;">
+							<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
 								<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">		
 									<cfset filter = categoryFilterRela.getFilter() />
 									<div class="col-xs-3">
@@ -299,11 +298,10 @@
 										</div><!-- /.box -->
 									</div>
 								</cfloop>
-							
-							</div>
-							<div id="new-filters" class="row" style="margin-top:10px;">
-							</div>
-						</cfif>
+							</cfif>
+						</div>
+						<div id="new-filters" class="row" style="margin-top:10px;">
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
@@ -374,7 +372,7 @@
 												<th>Action</th>
 											</tr>
 										
-											<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+											<cfif NOT IsNull(REQUEST.pageData.paginationInfo.records) AND ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
 												<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 													<tr>
 														<td>#product[1].getDisplayName()#</td>

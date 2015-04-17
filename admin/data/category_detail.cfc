@@ -65,6 +65,15 @@
 						(NOT IsNull(LOCAL.category.getFilterGroup()) AND FORM.filter_group_id NEQ LOCAL.category.getFilterGroup().getFilterGroupId())>
 					<cfset LOCAL.category.removeAllCategoryFilterRelas() />
 					<cfset LOCAL.category.setFilterGroup(EntityLoadByPK("filter_group",FORM.filter_group_id)) />
+					
+					<cfloop array="#LOCAL.category.getFilterGroup().getFilters()#" index="LOCAL.filter">
+						<cfset LOCAL.newCategoryFilterRela = EntityNew("category_filter_rela") />
+						<cfset LOCAL.newCategoryFilterRela.setCategory(LOCAL.category) />
+						<cfset LOCAL.newCategoryFilterRela.setFilter(LOCAL.filter) />
+						<cfset EntitySave(LOCAL.newCategoryFilterRela) />
+						
+						<cfset LOCAL.category.addCategoryFilterRela(LOCAL.newCategoryFilterRela) />
+					</cfloop>
 				</cfif>
 			</cfif>
 		

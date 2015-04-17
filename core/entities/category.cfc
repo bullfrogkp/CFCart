@@ -10,7 +10,7 @@
 	<cfproperty name="parentCategory" fieldtype="many-to-one" cfc="category" fkcolumn="parent_category_id">
 	
 	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="category_id" singularname="image" orderby="rank">
-	<cfproperty name="categoryFilterRelas" type="array" fieldtype="one-to-many" cfc="category_filter_rela" fkcolumn="category_id">
+	<cfproperty name="categoryFilterRelas" type="array" fieldtype="one-to-many" cfc="category_filter_rela" fkcolumn="category_id" singularname="categoryFilterRela">
 	<cfproperty name="products" fieldtype="many-to-many" cfc="product" linktable="category_product_rela" fkcolumn="category_id" inversejoincolumn="product_id">
 	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
