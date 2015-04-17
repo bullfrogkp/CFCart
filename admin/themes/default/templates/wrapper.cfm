@@ -394,6 +394,17 @@
                                 <li class="order_detail new_order"><a href="#APPLICATION.absoluteUrlWeb#admin/new_order.cfm"><i class="fa fa-angle-double-right"></i> Add Order</a></li>
                             </ul>
                         </li>
+						<li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-money"></i>
+                                <span>Users</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="users"><a href="#APPLICATION.absoluteUrlWeb#admin/users.cfm"><i class="fa fa-angle-double-right"></i> Users</a></li>
+                                <li class="user_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/user_detail.cfm"><i class="fa fa-angle-double-right"></i> Add User</a></li>
+                            </ul>
+                        </li>
 						<li class="reviews">
                             <a href="#APPLICATION.absoluteUrlWeb#admin/reviews.cfm">
                                 <i class="fa fa-comment"></i> <span>Reviews</span>
