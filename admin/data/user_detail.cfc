@@ -79,6 +79,7 @@
 			</cfif>
 		</cfif>
 		
+		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
