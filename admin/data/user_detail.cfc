@@ -1,4 +1,44 @@
 ﻿<cfcomponent extends="master">
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset LOCAL.messageArray = [] />
+		
+		<cfif Trim(FORM.display_name) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid name.") />
+		</cfif>
+		
+		<cfif Trim(FORM.username) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid username.") />
+		</cfif>
+		
+		<cfif IsNumeric(FORM.id)>
+			<cfif Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
+			<cfelse>
+				<cfset LOCAL.userService = new "#APPLICATION.componentPathRoot#core.services.userService"() />
+				<cfset LOCAL.userService.setUsername(Trim(FORM.username)) />
+				<cfset LOCAL.userService.setPassword(Trim(FORM.current_password)) />
+				<cfif LOCAL.userService.isUserValid() EQ false>
+					<cfset ArrayAppend(LOCAL.messageArray,"The current password is not correct.") />
+				</cfif>
+			</cfif>
+		<cfelse>
+			<cfif Trim(FORM.password) NEQ Trim(FORM.confirm_password)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
+			</cfif>
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset SESSION.temp.message.messageType = "alert-danger" />
+			<cfset LOCAL.redirectUrl = _setRedirectURL() />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
