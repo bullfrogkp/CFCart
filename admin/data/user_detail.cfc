@@ -20,16 +20,16 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
+			<cfset LOCAL.user.setUsername(Trim(FORM.username)) />
 			<cfset LOCAL.user.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.user.setSubject(Trim(FORM.subject)) />
-			<cfset LOCAL.user.setContent(Trim(FORM.content)) />
-			<cfset LOCAL.user.setType(Trim(FORM.type)) />
-			<cfset LOCAL.user.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.user.setPassword(Hash(Trim(FORM.password))) />
+			<cfset LOCAL.user.setEmail(Trim(FORM.email)) />
+			<cfset LOCAL.user.setPhone(Trim(FORM.phone)) />
 			
 			<cfset EntitySave(LOCAL.user) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"System email has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.user.getSystemEmailId()#" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"User has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.user.getUserlId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
@@ -37,8 +37,8 @@
 			
 			<cfset EntitySave(LOCAL.user) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"System Email '#LOCAL.user.getSubject()#' has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/system_emails.cfm" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"User has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/users.cfm" />
 			
 		</cfif>
 		
