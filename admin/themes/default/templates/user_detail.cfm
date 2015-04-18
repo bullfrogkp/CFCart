@@ -41,10 +41,11 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
-				
+						<cfif IsNumeric(REQUEST.pageData.formData.id)>
 						<div class="form-group">
-							<label>Last Login: #REQUEST.pageData.formData.last_login_datetime#</label>
+							<label>Last Login: #REQUEST.pageData.user.getLastLoginDatetime()#</label>
 						</div>
+						</cfif>
 						<div class="form-group">
 							<label>Username</label>
 							<input name="username" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.username#"/>

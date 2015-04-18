@@ -2,7 +2,7 @@
 	<cfproperty name="username" type="string"> 
     <cfproperty name="password" type="string"> 
 	
-    <cffunction name="isUserValid" output="false" access="private" returntype="boolean">
+    <cffunction name="isUserValid" output="false" access="public" returntype="boolean">
 		<cfset LOCAL = {} />
 		<cfset LOCAL.retValue = false />
 		
