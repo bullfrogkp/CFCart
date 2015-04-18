@@ -1,4 +1,12 @@
 ﻿<cfoutput>
+<script>
+	$(document).ready(function() {
+	
+		$(".tab-title").click(function() {
+		  $("##tab_id").val($(this).attr('tabid'));
+		});
+	});
+</script>
 <section class="content-header">
 	<h1>
 		User Detail
@@ -12,6 +20,7 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -25,40 +34,65 @@
 			</cfif>
 		</div>
 		<div class="col-md-12">
-			<!-- general form elements -->
-			<div class="box box-primary">
-				<div class="box-body">
-					<div class="form-group">
-						<label>Last Login: #REQUEST.pageData.formData.last_login_datetime#</label>
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Password</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
+				
+						<div class="form-group">
+							<label>Last Login: #REQUEST.pageData.formData.last_login_datetime#</label>
+						</div>
+						<div class="form-group">
+							<label>Username</label>
+							<input name="username" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.username#"/>
+						</div>
+						<div class="form-group">
+							<label>Name</label>
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						</div>
+						<div class="form-group">
+							<label>Email</label>
+							<input name="email" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
+						</div>
+						<div class="form-group">
+							<label>Phone</label>
+							<input name="phone" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.phone#"/>
+						</div>
 					</div>
-					<div class="form-group">
-						<label>Username</label>
-						<input name="username" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.username#"/>
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
+						<cfif IsNumeric(REQUEST.pageData.formData.id)>
+							<div class="form-group">
+								<label>Current Password</label>
+								<input name="current_password" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>New Password</label>
+								<input name="new_password" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Confirm New Password</label>
+								<input name="confirm_new_password" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+						<cfelse>
+							<div class="form-group">
+								<label>Password</label>
+								<input name="password" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Confirm Password</label>
+								<input name="confirm_password" type="text" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+						</cfif>
 					</div>
-					<div class="form-group">
-						<label>Password</label>
-						<input name="password" type="text" class="form-control" placeholder="Enter ..." value=""/>
-					</div>
-					<div class="form-group">
-						<label>Confirm Password</label>
-						<input name="confirm_password" type="text" class="form-control" placeholder="Enter ..." value=""/>
-					</div>
-					<div class="form-group">
-						<label>Name</label>
-						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input name="email" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input name="phone" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.phone#"/>
-					</div>
-					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
-					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Filter</button>
-				</div><!-- /.box-body -->
-			</div><!-- /.box -->
+				</div>
+			</div>
+			<div class="form-group">
+				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Category</button>
+				<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Category</button>
+			</div>
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->

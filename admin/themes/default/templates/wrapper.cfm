@@ -396,7 +396,7 @@
                         </li>
 						<li class="treeview">
                             <a href="##">
-                                <i class="fa fa-money"></i>
+                                <i class="fa fa-user"></i>
                                 <span>Users</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -450,7 +450,7 @@
 							--->
 						 <li>
                             <a href="#CGI.SCRIPT_NAME#?logout">
-                                <i class="fa fa-user"></i> <span>Logout</span>
+                                <i class="fa fa-power-off"></i> <span>Logout</span>
                             </a>
                         </li>
                     </ul>

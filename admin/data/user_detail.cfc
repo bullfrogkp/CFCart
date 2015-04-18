@@ -22,7 +22,11 @@
 			
 			<cfset LOCAL.user.setUsername(Trim(FORM.username)) />
 			<cfset LOCAL.user.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.user.setPassword(Hash(Trim(FORM.password))) />
+			<cfif StructKeyExists(FORM,"new_password")>
+				<cfset LOCAL.user.setPassword(Hash(Trim(FORM.new_password))) />
+			<cfelse>
+				<cfset LOCAL.user.setPassword(Hash(Trim(FORM.password))) />
+			</cfif>
 			<cfset LOCAL.user.setEmail(Trim(FORM.email)) />
 			<cfset LOCAL.user.setPhone(Trim(FORM.phone)) />
 			
