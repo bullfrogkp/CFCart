@@ -7,6 +7,11 @@
 		
 		<cfif IsValid("email",Trim(FORM.email)) EQ false>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
+		<cfelse>
+			<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.email),isDeleted=false,isEnabled=true}) />
+			<cfif NOT ArrayIsEmpty(LOCAL.existingCustomer)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.email)#.") />
+			</cfif>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>

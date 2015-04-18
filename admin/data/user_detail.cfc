@@ -11,6 +11,11 @@
 		
 		<cfif Trim(FORM.username) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid username.") />
+		<cfelse>
+			<cfset LOCAL.existingUser = EntityLoad("user",{username=Trim(FORM.username)}) />
+			<cfif NOT ArrayIsEmpty(LOCAL.existingUser)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Username already exists.") />
+			</cfif>
 		</cfif>
 		
 		<cfif IsNumeric(FORM.id)>
