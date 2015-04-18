@@ -45,7 +45,7 @@
 					</div>
 					<div class="form-group">
 						<label>Name</label>
-						<input name="name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					<div class="form-group">
 						<label>Email</label>

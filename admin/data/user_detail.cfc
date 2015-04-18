@@ -29,12 +29,11 @@
 			<cfset EntitySave(LOCAL.user) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"User has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.user.getUserlId()#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.user.getUserId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
 			<cfset LOCAL.user.setIsDeleted(true) />
-			
 			<cfset EntitySave(LOCAL.user) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"User has been deleted.") />
@@ -50,32 +49,32 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.user = EntityLoadByPK("system_email", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.user.getSubject()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.user = EntityLoadByPK("user", URL.id)> 
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.user.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.subject = isNull(LOCAL.pageData.user.getSubject())?"":LOCAL.pageData.user.getSubject() />
+				<cfset LOCAL.pageData.formData.username = isNull(LOCAL.pageData.user.getUsername())?"":LOCAL.pageData.user.getUsername() />
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.user.getDisplayName())?"":LOCAL.pageData.user.getDisplayName() />
-				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.user.getContent())?"":LOCAL.pageData.user.getContent() />
-				<cfset LOCAL.pageData.formData.type = isNull(LOCAL.pageData.user.getType())?"":LOCAL.pageData.user.getType() />
-				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.user.getIsEnabled())?"":LOCAL.pageData.user.getIsEnabled() />
+				<cfset LOCAL.pageData.formData.email = isNull(LOCAL.pageData.user.getEmail())?"":LOCAL.pageData.user.getEmail() />
+				<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.user.getPhone())?"":LOCAL.pageData.user.getPhone() />
+				<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.user.getLastLoginDatetime())?"":LOCAL.pageData.user.getLastLoginDatetime() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.title = "System Email | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.title = "User Detail | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.subject = "" />
+				<cfset LOCAL.pageData.formData.username = "" />
 				<cfset LOCAL.pageData.formData.display_name = "" />
-				<cfset LOCAL.pageData.formData.content = "" />
-				<cfset LOCAL.pageData.formData.type = "" />
-				<cfset LOCAL.pageData.formData.is_enabled = "" />
+				<cfset LOCAL.pageData.formData.email = "" />
+				<cfset LOCAL.pageData.formData.phone = "" />
+				<cfset LOCAL.pageData.formData.last_login_datetime = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
