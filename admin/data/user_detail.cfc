@@ -12,29 +12,34 @@
 		<cfif Trim(FORM.username) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid username.") />
 		<cfelse>
-			<cfset LOCAL.existingUser = EntityLoad("user",{username=Trim(FORM.username)}) />
-			<cfif NOT ArrayIsEmpty(LOCAL.existingUser)>
+			<cfset LOCAL.existingUser = EntityLoad("user",{username=Trim(FORM.username)},true) />
+			<cfif NOT IsNull(LOCAL.existingUser) AND LOCAL.existingUser.getUserId() NEQ FORM.id>
 				<cfset ArrayAppend(LOCAL.messageArray,"Username already exists.") />
 			</cfif>
 		</cfif>
-		
+	
 		<cfif IsNumeric(FORM.id)>
-			<cfif Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
-				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
-			<cfelse>
-				<cfset LOCAL.userService = new "#APPLICATION.componentPathRoot#core.services.userService"() />
-				<cfset LOCAL.userService.setUsername(Trim(FORM.username)) />
-				<cfset LOCAL.userService.setPassword(Trim(FORM.current_password)) />
-				<cfif LOCAL.userService.isUserValid() EQ false>
-					<cfset ArrayAppend(LOCAL.messageArray,"The current password is not correct.") />
+			<cfif Trim(FORM.current_password) NEQ "">
+				<cfif Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
+				<cfelse>
+					<cfset LOCAL.userService = new "#APPLICATION.componentPathRoot#core.services.userService"() />
+					<cfset LOCAL.userService.setUsername(Trim(FORM.username)) />
+					<cfset LOCAL.userService.setPassword(Trim(FORM.current_password)) />
+					<cfif LOCAL.userService.isUserValid() EQ false>
+						<cfset ArrayAppend(LOCAL.messageArray,"The current password is not correct.") />
+					</cfif>
 				</cfif>
 			</cfif>
 		<cfelse>
-			<cfif Trim(FORM.password) NEQ Trim(FORM.confirm_password)>
+			<!--- password is required for new user --->
+			<cfif Trim(FORM.password) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please choose a password") />
+			<cfelseif Trim(FORM.password) NEQ Trim(FORM.confirm_password)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
 			</cfif>
 		</cfif>
-		
+			
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
