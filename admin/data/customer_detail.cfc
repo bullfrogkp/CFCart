@@ -13,6 +13,21 @@
 				<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.email)#.") />
 			</cfif>
 		</cfif>
+	
+		<cfif IsNumeric(FORM.id)>
+			<cfif Trim(FORM.new_password) NEQ "">
+				<cfif Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
+				</cfif>
+			</cfif>
+		<cfelse>
+			<!--- password is required for new user --->
+			<cfif Trim(FORM.new_password) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please choose a password") />
+			<cfelseif Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match") />
+			</cfif>
+		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
@@ -62,6 +77,10 @@
 			<cfset LOCAL.customer.setDescription(FORM.description) />
 			<cfset LOCAL.customer.setDateOfBirth(Trim(FORM.date_of_birth)) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoadByPK("customer_group", FORM.customer_group_id)) />
+			
+			<cfif Trim(FORM.new_password) NEQ "">
+				<cfset LOCAL.customer.setPassword(Hash(FORM.new_password)) />
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.customer) />
 			
