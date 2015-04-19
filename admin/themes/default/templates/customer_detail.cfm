@@ -353,19 +353,13 @@
 						</table>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-						<cfif NOT IsNull(REQUEST.pageData.customer)>
-							<div class="form-group">
-								<label>Current Password</label>
-								<input type="password" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-						</cfif>
-						 <div class="form-group">
+						<div class="form-group">
 							<label>New Password</label>
-							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
+							<input type="new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						  <div class="form-group">
 							<label>Confirm New Password</label>
-							<input type="password" class="form-control" placeholder="Enter ..." value=""/>
+							<input type="confirm_new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 					</div>
 				</div><!-- /.tab-content -->
