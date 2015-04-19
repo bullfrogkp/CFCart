@@ -8,8 +8,8 @@
 		<cfif IsValid("email",Trim(FORM.email)) EQ false>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
 		<cfelse>
-			<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.email),isDeleted=false,isEnabled=true}) />
-			<cfif NOT ArrayIsEmpty(LOCAL.existingCustomer)>
+			<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.email),isDeleted=false,isEnabled=true},true) />
+			<cfif NOT IsNull(LOCAL.existingCustomer) AND LOCAL.existingCustomer.getCustomerId() NEQ FORM.id>
 				<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.email)#.") />
 			</cfif>
 		</cfif>
@@ -153,15 +153,12 @@
 				<cfset LOCAL.pageData.formData.website = isNull(LOCAL.pageData.customer.getWebsite())?"":LOCAL.pageData.customer.getWebsite() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.customer.getIsEnabled())?"":LOCAL.pageData.customer.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.customer.getPhone())?"":LOCAL.pageData.customer.getPhone() />
-				<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.customer.getLastLoginDatetime())?"":"#DateFormat(LOCAL.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")# #TimeFormat(LOCAL.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")#" />
-				<cfset LOCAL.pageData.formData.last_login_ip = isNull(LOCAL.pageData.customer.getLastLoginIp())?"":LOCAL.pageData.customer.getLastLoginIp() />
 				<cfset LOCAL.pageData.formData.date_of_birth = isNull(LOCAL.pageData.customer.getDateOfBirth())?"":DateFormat(LOCAL.pageData.customer.getDateOfBirth(),"mmm dd, yyyy") />
-				<cfset LOCAL.pageData.formData.created_datetime = isNull(LOCAL.pageData.customer.getCreatedDatetime())?"":"#DateFormat(LOCAL.pageData.customer.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(LOCAL.pageData.customer.getCreatedDatetime(),"hh:mm:ss")#" />
-				<cfset LOCAL.pageData.formData.created_user = isNull(LOCAL.pageData.customer.getCreatedUser())?"":LOCAL.pageData.customer.getCreatedUser() />
 				<cfset LOCAL.pageData.formData.subscribed = isNull(LOCAL.pageData.customer.getSubscribed())?"":LOCAL.pageData.customer.getSubscribed() />
 				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.customer.getDescription())?"":LOCAL.pageData.customer.getDescription() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
+			<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfelse>
 			<cfset LOCAL.pageData.title = "New Customer | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
@@ -179,18 +176,15 @@
 				<cfset LOCAL.pageData.formData.website = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.phone = "" />
-				<cfset LOCAL.pageData.formData.last_login_datetime = "" />
-				<cfset LOCAL.pageData.formData.last_login_ip = "" />
 				<cfset LOCAL.pageData.formData.date_of_birth = "" />
-				<cfset LOCAL.pageData.formData.created_datetime = "" />
-				<cfset LOCAL.pageData.formData.created_user = "" />
 				<cfset LOCAL.pageData.formData.subscribed = "" />
 				<cfset LOCAL.pageData.formData.description = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
+			
+			<cfset LOCAL.pageData.tabs = _setActiveTab(defaultActiveTabId="tab_2") />
 		</cfif>
 		
-		<cfset LOCAL.pageData.tabs = _setActiveTab(defaultActiveTabId="tab_2") />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	

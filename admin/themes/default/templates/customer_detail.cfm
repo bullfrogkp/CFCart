@@ -54,100 +54,101 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']# #REQUEST.pageData.deleteButtonClass#" id="tab_1">
-					
-						<dl class="dl-horizontal">
-							<dt>Last Logged In Dateime:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.formData.last_login_datetime#</span></dd>
-							<dt>Last Logged In IP:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.formData.last_login_ip#</span></dd>
-							<dt>Created Dateime:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.formData.created_datetime#</span></dd>
-							<dt>Created IP:</dt>
-							<dd><span class="info-section">#REQUEST.pageData.formData.created_user#</span></dd>
-						</dl>
-						
-						<div class="form-group">
-							<label>Shopping Cart</label>
-							<table class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>Product</th>
-										<th>Description</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getShoppingCartProducts()) AND ArrayLen(REQUEST.pageData.customer.getShoppingCartProducts()) NEQ 0>
-										<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
+						<cfif NOT IsNull(REQUEST.pageData.customer)>
+							<dl class="dl-horizontal">
+								<dt>Last Logged In Dateime:</dt>
+								<dd><span class="info-section">#DateFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.customer.getLastLoginDatetime(),"hh:mm:ss")#</span></dd>
+								<dt>Last Logged In IP:</dt>
+								<dd><span class="info-section">#REQUEST.pageData.customer.getLastLoginIP()#</span></dd>
+								<dt>Created Dateime:</dt>
+								<dd><span class="info-section">#DateFormat(REQUEST.pageData.customer.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.customer.getCreatedDatetime(),"hh:mm:ss")#</span></dd>
+								<dt>Created IP:</dt>
+								<dd><span class="info-section">#REQUEST.pageData.customer.getCreatedUser()#</span></dd>
+							</dl>
+							
+							<div class="form-group">
+								<label>Shopping Cart</label>
+								<table class="table table-bordered table-striped">
+									<thead>
 										<tr>
-											<td>#product.getDisplayName()#</td>
-											<td>#product.getDescription()#</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+											<th>Product</th>
+											<th>Description</th>
+											<th>Action</th>
 										</tr>
-										</cfloop>
-									<cfelse>
-										<tr>
-											<td colspan="3">No result found</td>
-										</tr>
-									</cfif>
-								</tbody>
-							</table>
-						</div>
-						<div class="form-group">
-							<label>Buy Later</label>
-							<table class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>Product</th>
-										<th>Description</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getBuyLaterProducts()) AND ArrayLen(REQUEST.pageData.customer.getBuyLaterProducts()) NEQ 0>
-										<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
+									</thead>
+									<tbody>
+										<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getShoppingCartProducts()) AND ArrayLen(REQUEST.pageData.customer.getShoppingCartProducts()) NEQ 0>
+											<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
 											<tr>
 												<td>#product.getDisplayName()#</td>
 												<td>#product.getDescription()#</td>
 												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
 											</tr>
-										</cfloop>
-									<cfelse>
-										<tr>
-											<td colspan="3">No result found</td>
-										</tr>
-									</cfif>
-								</tbody>
-							</table>
-						</div>
-						
-						<div class="form-group">
-							<label>Wishlist</label>
-							<table class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>Product</th>
-										<th>Description</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getWishListProducts()) AND ArrayLen(REQUEST.pageData.customer.getWishListProducts()) NEQ 0>
-										<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
+											</cfloop>
+										<cfelse>
 											<tr>
-												<td>#product.getDisplayName()#</td>
-												<td>#product.getDescription()#</td>
-												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+												<td colspan="3">No result found</td>
 											</tr>
-										</cfloop>
-									<cfelse>
+										</cfif>
+									</tbody>
+								</table>
+							</div>
+							<div class="form-group">
+								<label>Buy Later</label>
+								<table class="table table-bordered table-striped">
+									<thead>
 										<tr>
-											<td colspan="3">No result found</td>
+											<th>Product</th>
+											<th>Description</th>
+											<th>Action</th>
 										</tr>
-									</cfif>
-								</tbody>
-							</table>
-						</div>
+									</thead>
+									<tbody>
+										<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getBuyLaterProducts()) AND ArrayLen(REQUEST.pageData.customer.getBuyLaterProducts()) NEQ 0>
+											<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
+												<tr>
+													<td>#product.getDisplayName()#</td>
+													<td>#product.getDescription()#</td>
+													<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+												</tr>
+											</cfloop>
+										<cfelse>
+											<tr>
+												<td colspan="3">No result found</td>
+											</tr>
+										</cfif>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="form-group">
+								<label>Wishlist</label>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Product</th>
+											<th>Description</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getWishListProducts()) AND ArrayLen(REQUEST.pageData.customer.getWishListProducts()) NEQ 0>
+											<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
+												<tr>
+													<td>#product.getDisplayName()#</td>
+													<td>#product.getDescription()#</td>
+													<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+												</tr>
+											</cfloop>
+										<cfelse>
+											<tr>
+												<td colspan="3">No result found</td>
+											</tr>
+										</cfif>
+									</tbody>
+								</table>
+							</div>
+						</cfif>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 					
@@ -355,11 +356,11 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 						<div class="form-group">
 							<label>New Password</label>
-							<input type="new_password" class="form-control" placeholder="Enter ..." value=""/>
+							<input type="password" name="new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 						  <div class="form-group">
 							<label>Confirm New Password</label>
-							<input type="confirm_new_password" class="form-control" placeholder="Enter ..." value=""/>
+							<input type="password" name="confirm_new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 					</div>
 				</div><!-- /.tab-content -->
