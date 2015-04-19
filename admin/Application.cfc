@@ -93,6 +93,8 @@
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
 		
+		<cfset APPLICATION.siteInfo = EntityLoad("site_info") />	
+		
 		<cfreturn true>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
