@@ -3,7 +3,7 @@
 <html class="bg-black">
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Log in</title>
+        <title>PinMyDeals | Log in</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="#SESSION.absoluteUrlThemeAdmin#css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -25,6 +25,11 @@
             <div class="header">Sign In</div>
             <form method="post">
                 <div class="body bg-gray">
+					<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+						<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+						#msg#<br/>
+						</cfloop>
+					</cfif>
                     <div class="form-group">
                         <input type="text" name="username" class="form-control" placeholder="Username"/>
                     </div>
