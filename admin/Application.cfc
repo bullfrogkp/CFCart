@@ -142,6 +142,9 @@
 			</cfif>
 		<cfelseif StructKeyExists(URL,"ormreload")>
 			<cfset ORMReload() />
+		<cfelseif StructKeyExists(URL,"logout")>
+			<cfset StructDelete(SESSION,"adminUser") />
+			<cflocation url="login.cfm" addToken="false" />
 		<cfelseif StructKeyExists(URL,"sitetheme")>
 			<cfset _setTheme(URL.sitetheme) />
 			<cfif StructKeyExists(URL,"page") AND Trim(URL.page) NEQ "">

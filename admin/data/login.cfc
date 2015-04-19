@@ -30,6 +30,7 @@
 		
 		<cfreturn LOCAL />
 	</cffunction>
+	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
@@ -40,6 +41,7 @@
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
