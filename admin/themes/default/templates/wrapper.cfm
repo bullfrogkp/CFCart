@@ -410,6 +410,20 @@
                                 <i class="fa fa-comment"></i> <span>Reviews</span>
                             </a>
                         </li>	
+						<li class="treeview">
+                            <a href="##">
+                                <i class="fa fa-user"></i>
+                                <span>Pages</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="home"><a href="#APPLICATION.absoluteUrlWeb#admin/home.cfm"><i class="fa fa-angle-double-right"></i> Home</a></li>
+                                <li class="about_us"><a href="#APPLICATION.absoluteUrlWeb#admin/about_us.cfm"><i class="fa fa-angle-double-right"></i> About Us</a></li>
+                                <li class="contact_us"><a href="#APPLICATION.absoluteUrlWeb#admin/contact_us.cfm"><i class="fa fa-angle-double-right"></i> Contact Us</a></li>
+                                <li class="privacy"><a href="#APPLICATION.absoluteUrlWeb#admin/privacy.cfm"><i class="fa fa-angle-double-right"></i> Privacy</a></li>
+                                <li class="faqs"><a href="#APPLICATION.absoluteUrlWeb#admin/faqs.cfm"><i class="fa fa-angle-double-right"></i> FAQs</a></li>
+                            </ul>
+                        </li>
                         <li class="treeview">
                             <a href="##">
                                 <i class="fa fa-gear"></i>
