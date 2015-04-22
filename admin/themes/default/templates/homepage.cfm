@@ -12,7 +12,7 @@
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
 			
-			url: "#APPLICATION.absoluteUrlWeb#admin/ajax/upload_category_images.cfm",
+			url: "#APPLICATION.absoluteUrlWeb#admin/ajax/upload_ads.cfm",
 
 			// Maximum file size
 			max_file_size: '1000mb',
