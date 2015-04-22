@@ -75,7 +75,6 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
 <section class="content">
 	<div class="row">
@@ -108,9 +107,9 @@
 												<table class="table table-hover">
 													<tr class="default">
 														<th style="font-size:11px;line-height:20px;">
-															<input type="text" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:30px;text-align:center;" />
+															<input type="text" placeholder="Rank" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
 														</th>
-														<th><a adid="#ad.getHomepageAdId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a adid="#ad.getHomepageAdId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">
