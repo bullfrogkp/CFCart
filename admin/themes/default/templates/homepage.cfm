@@ -100,42 +100,29 @@
 					<div class="form-group">
 						<label>Advertise Images</label>
 						<div class="row">
-							<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">						
-								<div class="col-xs-2">
-									<div class="box <cfif img.getIsDefault() EQ true>box-danger</cfif>">
-										<div class="box-body table-responsive no-padding">
-											<table class="table table-hover">
-												<tr <cfif img.getIsDefault() EQ true>class="danger"<cfelse>class="default"</cfif>>
-													<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
-													<th><a imageid="#img.getCategoryImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
-												</tr>
-												<tr>
-													<td colspan="2">
-														<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/category/#REQUEST.pageData.category.getCategoryId()#/#img.getName()#" />
-													</td>
-												</tr>
-												<tr>
-													<td colspan="2">
-														<table style="width:100%;">
-															<tr>
-																<td>
-																	<input class="form-control pull-left" type="radio" name="default_image_id" value="#img.getCategoryImageId()#" <cfif img.getIsDefault() EQ true>checked</cfif>/>
-																</td>
-																<td style="padding-left:5px;padding-top:1px;font-size:12px;">
-																	Set as Default
-																</td>
-																<td style="text-align:right">
-																	<input type="text" name="rank_#img.getCategoryImageId()#" value="#img.getRank()#" style="width:30px;text-align:center;" />
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-											</table>
-										</div><!-- /.box-body -->
-									</div><!-- /.box -->
-								</div>
-							</cfloop>
+							<cfif NOT IsNull(REQUEST.pageData.homepageAds)>
+								<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">						
+									<div class="col-xs-2">
+										<div class="box">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr class="default">
+														<th style="font-size:11px;line-height:20px;">
+															<input type="text" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:30px;text-align:center;" />
+														</th>
+														<th><a adid="#ad.getHomepageAdId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" />
+														</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfloop>
+							</cfif>
 						</div>
 						
 						<div class="form-group">
@@ -143,6 +130,10 @@
 								<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
 							</div>
 						</div>
+					</div>
+					
+					<div class="form-group">
+						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Content</button>
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

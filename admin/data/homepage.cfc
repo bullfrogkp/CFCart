@@ -20,6 +20,31 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
+			<cfif FORM["uploader_count"] NEQ 0>
+				<cfloop collection="#FORM#" item="LOCAL.key">
+					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
+						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
+						<cfif StructFind(FORM,LOCAL.key) EQ "done">
+							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#images/uploads/category/") />
+						
+							<cfset LOCAL.imageDir = LOCAL.imagePath & LOCAL.category.getCategoryId() />
+							<cfif NOT DirectoryExists(LOCAL.imageDir)>
+								<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+							</cfif>
+							
+							<cffile action = "move" source = "#LOCAL.imagePath##LOCAL.imgName#" destination = "#LOCAL.imagePath##LOCAL.category.getCategoryId()#\#LOCAL.imgName#">
+						
+							<cfset LOCAL.categoryImage = EntityNew("category_image") />
+							<cfset LOCAL.categoryImage.setName(LOCAL.imgName) />
+							<cfset LOCAL.categoryImage.setIsDefault(false) />
+							<cfset EntitySave(LOCAL.categoryImage) />
+							<cfset LOCAL.category.addImage(LOCAL.categoryImage) />
+						</cfif>
+					</cfif>
+				</cfloop>
+			</cfif>
+			
 			<cfset LOCAL.homePage.setContent(Trim(FORM.slide_content)) />			
 			<cfset EntitySave(LOCAL.homePage) />
 			
@@ -48,6 +73,7 @@
 			<cfset LOCAL.pageData.page = EntityLoadByPK("page", URL.id)> 
 			<cfset LOCAL.pageData.title = "Homepage | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
+			<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=true}) />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
