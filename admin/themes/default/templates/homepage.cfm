@@ -102,10 +102,10 @@
 							<cfif NOT IsNull(REQUEST.pageData.homepageAds)>
 								<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">						
 									<div class="col-xs-2">
-										<div class="box">
+										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
-													<tr class="default">
+													<tr class="warning">
 														<th style="font-size:11px;line-height:20px;">
 															<input type="text" placeholder="Rank" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
 														</th>
