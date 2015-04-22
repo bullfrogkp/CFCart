@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {		
-		CKEDITOR.replace( 'banner',
+		CKEDITOR.replace( 'slide',
 		{
 			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
-			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html',
-			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html'}
+			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
+			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html'}
 		 );
 	});
 </script>
@@ -39,25 +39,25 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Slide</label>
-						<textarea name="slide" id="slide" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.homepage1#</textarea>
+						<textarea name="slide_content" id="slide_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.slideContent#</textarea>
 					</div>
 					<div class="form-group">
 						<label>Advertise Images</label>
 						<div class="row" style="margin-top:10px;">
-							<cfloop array="#REQUEST.pageData.homepage.getHomePageImages()#" index="img">						
+							<cfloop array="#REQUEST.pageData.homePageAds#" index="ad">						
 								<div class="col-xs-3">
 									<div class="box">
 										<div class="box-body table-responsive no-padding">
 											<table class="table table-hover">
 												<tr class="default">
 													<th>
-														<input type="text" name="rank_#img.getHomePageImageId()#" value="#img.getRank()#" style="width:30px;text-align:center;" />
+														<input type="text" name="rank_#ad.getHomePageAdId()#" value="#ad.getRank()#" style="width:30px;text-align:center;" />
 													</th>
-													<th><a imageid="#img.getCategoryImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+													<th><a adid="#ad.getHomePageAdId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
 												</tr>
 												<tr>
 													<td colspan="2">
-														<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/homepage/#img.getName()#" />
+														<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/ads/#ad.getName()#" />
 													</td>
 												</tr>
 											</table>
