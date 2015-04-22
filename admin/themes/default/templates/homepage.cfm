@@ -45,7 +45,7 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Slide</label>
-						<textarea name="slide_content" id="slide_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.slideContent#</textarea>
+						<textarea name="slide_content" id="slide_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.slide_content#</textarea>
 					</div>
 					<div class="form-group">
 						<label>Advertise Images</label>
