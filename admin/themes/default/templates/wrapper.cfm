@@ -417,7 +417,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="home"><a href="#APPLICATION.absoluteUrlWeb#admin/home.cfm"><i class="fa fa-angle-double-right"></i> Home</a></li>
+                                <li class="homepage"><a href="#APPLICATION.absoluteUrlWeb#admin/homepage.cfm"><i class="fa fa-angle-double-right"></i> Home</a></li>
                                 <li class="about_us"><a href="#APPLICATION.absoluteUrlWeb#admin/about_us.cfm"><i class="fa fa-angle-double-right"></i> About Us</a></li>
                                 <li class="contact_us"><a href="#APPLICATION.absoluteUrlWeb#admin/contact_us.cfm"><i class="fa fa-angle-double-right"></i> Contact Us</a></li>
                                 <li class="privacy"><a href="#APPLICATION.absoluteUrlWeb#admin/privacy.cfm"><i class="fa fa-angle-double-right"></i> Privacy</a></li>
