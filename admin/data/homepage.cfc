@@ -37,6 +37,17 @@
 				</cfloop>
 			</cfif>
 			
+			<cfset LOCAL.homepageAds = EntityLoad("homepage_ad",{isDeleted=false}) />
+			
+			<cfif NOT ArrayIsEmpty(LOCAL.homepageAds)>
+				<cfloop array="#LOCAL.homepageAds#" index="LOCAL.ad">
+					<cfif StructKeyExists(FORM,"rank_#LOCAL.ad.getHomepageAdId()#") AND IsNumeric(FORM["rank_#LOCAL.ad.getHomepageAdId()#"])>
+						<cfset LOCAL.ad.setRank(FORM["rank_#LOCAL.ad.getHomepageAdId()#"]) />
+						<cfset EntitySave(LOCAL.ad) />
+					</cfif>
+				</cfloop>
+			</cfif>
+			
 			<cfset LOCAL.homePage.setContent(Trim(FORM.slide_content)) />			
 			<cfset EntitySave(LOCAL.homePage) />
 			
@@ -64,7 +75,7 @@
 		<cfset LOCAL.pageData.page = EntityLoad("page", {name="homepage"},true)> 
 		<cfset LOCAL.pageData.title = "Homepage | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
-		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false}) />	
+		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
 		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
