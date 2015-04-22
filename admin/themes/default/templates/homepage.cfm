@@ -1,12 +1,16 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {		
-		CKEDITOR.replace( 'slide',
+		CKEDITOR.replace( 'slide_content',
 		{
 			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
 			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
 			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html'}
 		 );
+		 
+		 $( ".delete-ad" ).click(function() {
+			$("##deleted_ad_id").val($(this).attr('adid'));
+		});
 	});
 </script>
 <section class="content-header">
@@ -21,6 +25,8 @@
 
 <!-- Main content -->
 <form method="post">
+<input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
+<input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -53,7 +59,7 @@
 													<th>
 														<input type="text" name="rank_#ad.getHomePageAdId()#" value="#ad.getRank()#" style="width:30px;text-align:center;" />
 													</th>
-													<th><a adid="#ad.getHomePageAdId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
+													<th><a adid="#ad.getHomePageAdId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
 												</tr>
 												<tr>
 													<td colspan="2">
@@ -72,17 +78,17 @@
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
-<!-- DELETE IMAGE MODAL -->
-<div class="modal fade" id="delete-image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- DELETE AD MODAL -->
+<div class="modal fade" id="delete-ad-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this image?</h4>
+				<h4 class="modal-title"> Delete this Ad?</h4>
 			</div>
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_image" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_ad" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

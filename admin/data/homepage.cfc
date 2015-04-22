@@ -6,34 +6,35 @@
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
-				
+		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.homePage = EntityLoadByPK("page", FORM.id)> 
+			<cfset LOCAL.homePage.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.homePage.setUpdatedDatetime(Now()) />
+		<cfelse>
+			<cfset LOCAL.homePage = EntityNew("page") />
+			<cfset LOCAL.homePage.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.homePage.setCreatedDatetime(Now()) />
+			<cfset LOCAL.homePage.setIsDeleted(false) />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.siteInfoArray = EntityLoad("site_info") /> 
+			<cfset LOCAL.homePage.setContent(Trim(FORM.slide_content)) />			
+			<cfset EntitySave(LOCAL.homePage) />
 			
-			<cfif ArrayLen(LOCAL.siteInfoArray) GT 0>
-				<cfset LOCAL.siteInfo = LOCAL.siteInfoArray[1] /> 
-			<cfelse>
-				<cfset LOCAL.siteInfo = EntityNew("site_info") /> 
-			</cfif>
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.homePage.getPageId()#" />
 			
-			<cfset LOCAL.siteInfo.setName(Trim(FORM.name)) />
-			<cfset LOCAL.siteInfo.setUnit(Trim(FORM.unit)) />
-			<cfset LOCAL.siteInfo.setStreet(Trim(FORM.street)) />
-			<cfset LOCAL.siteInfo.setCity(Trim(FORM.city)) />
-			<cfset LOCAL.siteInfo.setProvince(EntityLoadByPK("province",FORM.province_id)) />
-			<cfset LOCAL.siteInfo.setCountry(EntityLoadByPK("country",FORM.country_id)) />
-			<cfset LOCAL.siteInfo.setPostalCode(Trim(FORM.postal_code)) />
-			<cfset LOCAL.siteInfo.setPhone(Trim(FORM.phone)) />
-			<cfset LOCAL.siteInfo.setEmail(Trim(FORM.email)) />
-			<cfset LOCAL.siteInfo.setMap(Trim(FORM.map)) />
+		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
-			<cfset EntitySave(LOCAL.siteInfo) />
+			<cfset LOCAL.ad = EntityLoadByPK("homepage_ad",FORM.deleted_ad_id) />
+			<cfset LOCAL.ad.setDeleted(true) />
+			<cfset EntitySave(LOCAL.ad) />
 			
-			<cfset APPLICATION.siteInfo = LOCAL.siteInfo />			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Ad has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.ad.getAdId()#" />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Company information has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -42,40 +43,37 @@
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type") />
+		<cfset LOCAL.pageData.couponStatusTypes = EntityLoad("coupon_status_type") />
 		
-		<cfset LOCAL.pageData.title = "Company Information | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
-		<cfset LOCAL.pageData.countries = EntityLoad("country") />
-		
-		<cfif IsDefined("SESSION.temp.formData")>
-			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
-		<cfelse>
-			<cfset LOCAL.pageData.siteInfoArray = EntityLoad("site_info") /> 
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.pageData.coupon = EntityLoadByPK("coupon", URL.id)> 
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.coupon.getCouponCode()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
-			<cfif ArrayLen(LOCAL.pageData.siteInfoArray) GT 0>
-				<cfset LOCAL.pageData.siteInfo = LOCAL.pageData.siteInfoArray[1] /> 
-			
-				<cfset LOCAL.pageData.formData.name = LOCAL.pageData.siteInfo.getName() />
-				<cfset LOCAL.pageData.formData.unit = LOCAL.pageData.siteInfo.getUnit() />
-				<cfset LOCAL.pageData.formData.street = LOCAL.pageData.siteInfo.getStreet() />
-				<cfset LOCAL.pageData.formData.city = LOCAL.pageData.siteInfo.getCity() />
-				<cfset LOCAL.pageData.formData.province_id = LOCAL.pageData.siteInfo.getProvince().getProvinceId() />
-				<cfset LOCAL.pageData.formData.country_id = LOCAL.pageData.siteInfo.getCountry().getCountryId() />
-				<cfset LOCAL.pageData.formData.postal_code = LOCAL.pageData.siteInfo.getPostalCode() />
-				<cfset LOCAL.pageData.formData.phone = LOCAL.pageData.siteInfo.getPhone() />
-				<cfset LOCAL.pageData.formData.email = LOCAL.pageData.siteInfo.getEmail() />
-				<cfset LOCAL.pageData.formData.map = isNull(LOCAL.pageData.siteInfo.getMap())?"":LOCAL.pageData.siteInfo.getMap() />
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.name = "" />
-				<cfset LOCAL.pageData.formData.unit = "" />
-				<cfset LOCAL.pageData.formData.street = "" />
-				<cfset LOCAL.pageData.formData.city = "" />
-				<cfset LOCAL.pageData.formData.province_id = "" />
-				<cfset LOCAL.pageData.formData.country_id = "" />
-				<cfset LOCAL.pageData.formData.postal_code = "" />
-				<cfset LOCAL.pageData.formData.phone = "" />
-				<cfset LOCAL.pageData.formData.email = "" />
-				<cfset LOCAL.pageData.formData.map = "" />
+				<cfset LOCAL.pageData.formData.coupon_code = isNull(LOCAL.pageData.coupon.getCouponCode())?"":LOCAL.pageData.coupon.getCouponCode() />
+				<cfset LOCAL.pageData.formData.threshold_amount = isNull(LOCAL.pageData.coupon.getThresholdAmount())?"":LOCAL.pageData.coupon.getThresholdAmount() />
+				<cfset LOCAL.pageData.formData.start_date = isNull(LOCAL.pageData.coupon.getStartDate())?"":DateFormat(LOCAL.pageData.coupon.getStartDate(),"mm/dd/yyyy") />
+				<cfset LOCAL.pageData.formData.end_date = isNull(LOCAL.pageData.coupon.getEndDate())?"":DateFormat(LOCAL.pageData.coupon.getEndDate(),"mm/dd/yyyy") />
+				<cfset LOCAL.pageData.formData.discount_type_id = isNull(LOCAL.pageData.coupon.getDiscountType())?"":LOCAL.pageData.coupon.getDiscountType().getDiscountTypeId() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
+			</cfif>
+		<cfelse>
+			<cfset LOCAL.pageData.title = "New Coupon | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.coupon_code = "" />
+				<cfset LOCAL.pageData.formData.threshold_amount = "" />
+				<cfset LOCAL.pageData.formData.start_date = "" />
+				<cfset LOCAL.pageData.formData.end_date = "" />
+				<cfset LOCAL.pageData.formData.discount_type_id = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
 		
