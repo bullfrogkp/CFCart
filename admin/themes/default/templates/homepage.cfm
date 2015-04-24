@@ -89,53 +89,131 @@
 			</cfif>
 		</div>
 		<div class="col-md-12">
-			<!-- general form elements -->
-			<div class="box box-primary">
-				<div class="box-body">
-					<div class="form-group">
-						<label>Slide</label>
-						<textarea name="slide_content" id="slide_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.slide_content#</textarea>
-					</div>
-					<div class="form-group">
-						<label>Advertise Images</label>
-						<div class="row">
-							<cfif NOT IsNull(REQUEST.pageData.homepageAds)>
-								<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">						
-									<div class="col-xs-2">
-										<div class="box box-warning">
-											<div class="box-body table-responsive no-padding">
-												<table class="table table-hover">
-													<tr class="warning">
-														<th style="font-size:11px;line-height:20px;">
-															<input type="text" placeholder="Rank" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
-														</th>
-														<th><a adid="#ad.getHomepageAdId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
-													</tr>
-													<tr>
-														<td colspan="2">
-															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" />
-														</td>
-													</tr>
-												</table>
-											</div><!-- /.box-body -->
-										</div><!-- /.box -->
-									</div>
-								</cfloop>
-							</cfif>
-						</div>
-						
+			<!-- Custom Tabs -->
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Slide</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Advertise Images</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Top Selling</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Group Buying</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						<div class="form-group">
-							<div id="uploader">
-								<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+							<textarea name="slide_content" id="slide_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.slide_content#</textarea>
+						</div>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
+						<div class="form-group">
+							<div class="row">
+								<cfif NOT IsNull(REQUEST.pageData.homepageAds)>
+									<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">						
+										<div class="col-xs-2">
+											<div class="box box-warning">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="warning">
+															<th style="font-size:11px;line-height:20px;">
+																<input type="text" placeholder="Rank" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
+															</th>
+															<th><a adid="#ad.getHomepageAdId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" />
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
+							
+							<div class="form-group">
+								<div id="uploader">
+									<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					
-					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Content</button>
-					</div>
-				</div><!-- /.box-body -->
-			</div><!-- /.box -->
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
+						<div class="form-group">
+							<label>Related Products</label>
+							<a data-toggle="modal" data-target="##add-product-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Product</span></a>
+							<div class="row" style="margin-top:10px;">
+								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProducts())>
+									<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">	
+										<cfset productImg = EntityLoad("product_image",{product = product, isDefault = true},true) />
+										<cfif NOT IsNull(productImg)>
+											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
+										<cfelse>
+											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+										</cfif>
+										<div class="col-xs-2">
+											<div class="box">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="default">
+															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<img class="img-responsive" src="#imageLink#" />
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
+						</div>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
+						<div class="form-group">
+							<label>Related Products</label>
+							<a data-toggle="modal" data-target="##add-product-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Product</span></a>
+							<div class="row" style="margin-top:10px;">
+								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProducts())>
+									<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">	
+										<cfset productImg = EntityLoad("product_image",{product = product, isDefault = true},true) />
+										<cfif NOT IsNull(productImg)>
+											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
+										<cfelse>
+											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+										</cfif>
+										<div class="col-xs-2">
+											<div class="box">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="default">
+															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<img class="img-responsive" src="#imageLink#" />
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
+						</div>
+					</div><!-- /.tab-pane -->
+				</div><!-- /.tab-content -->
+			</div><!-- nav-tabs-custom -->
+		
+			<div class="form-group">
+				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Homepage</button>
+			</div>
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
