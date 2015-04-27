@@ -54,6 +54,74 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
 			
+		<cfelseif StructKeyExists(FORM,"add_top_selling_product")>
+		
+			<cfset LOCAL.topSellings = EntityLoad("top_selling") />
+		
+			<cfif StructKeyExists(FORM,"top_selling_product_group_id")>			
+				<cfloop list="#FORM.top_selling_product_group_id#" index="LOCAL.groupId">
+					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+						<cfset LOCAL.topSellings.addProduct(LOCAL.relatedProduct) />
+					</cfloop>
+				</cfloop>
+			</cfif>
+			
+			<cfif IsNumeric(FORM.new_top_selling_product_id)>
+				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_top_selling_product_id) />
+				<cfset LOCAL.topSellings.addProduct(LOCAL.newRelatedProduct) />
+			</cfif>
+			
+			<cfset EntitySave(LOCAL.topSellings) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_3" />
+			
+		<cfelseif StructKeyExists(FORM,"add_group_buying_product")>
+		
+			<cfset LOCAL.groupBuyings = EntityLoad("group_buying") />
+		
+			<cfif StructKeyExists(FORM,"group_buying_product_group_id")>			
+				<cfloop list="#FORM.group_buying_product_group_id#" index="LOCAL.groupId">
+					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+						<cfset LOCAL.groupBuyings.addProduct(LOCAL.relatedProduct) />
+					</cfloop>
+				</cfloop>
+			</cfif>
+			
+			<cfif IsNumeric(FORM.new_group_buying_product_id)>
+				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_group_buying_product_id) />
+				<cfset LOCAL.groupBuyings.addProduct(LOCAL.newRelatedProduct) />
+			</cfif>
+			
+			<cfset EntitySave(LOCAL.groupBuyings) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_3" />
+			
+		<cfelseif StructKeyExists(FORM,"delete_top_selling_product")>
+		
+			<cfset LOCAL.topSellings = EntityLoad("top_selling") />
+			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.delete_top_selling_product_id) />
+			<cfset LOCAL.topSellings.removeProduct(LOCAL.relatedProduct) />
+			
+			<cfset EntitySave(LOCAL.topSellings) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
+			
+		<cfelseif StructKeyExists(FORM,"delete_group_buying_product")>
+		
+			<cfset LOCAL.groupBuyings = EntityLoad("group_buying") />
+			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.delete_top_selling_product_id) />
+			<cfset LOCAL.groupBuyings.removeProduct(LOCAL.relatedProduct) />
+			
+			<cfset EntitySave(LOCAL.groupBuyings) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
+			
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
 			<cfset LOCAL.ad = EntityLoadByPK("homepage_ad",FORM.deleted_ad_id) />
