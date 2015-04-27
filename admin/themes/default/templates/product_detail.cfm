@@ -593,12 +593,6 @@
 							<div class="row" style="margin-top:10px;">
 								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProducts())>
 									<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">	
-										<cfset productImg = EntityLoad("product_image",{product = product, isDefault = true},true) />
-										<cfif NOT IsNull(productImg)>
-											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
-										<cfelse>
-											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
-										</cfif>
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
@@ -609,7 +603,7 @@
 														</tr>
 														<tr>
 															<td colspan="2">
-																<img class="img-responsive" src="#imageLink#" />
+																<img class="img-responsive" src="#product.getDefaultImageLink()#" />
 															</td>
 														</tr>
 													</table>
