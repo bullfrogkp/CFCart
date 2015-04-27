@@ -78,6 +78,7 @@
 		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
 		<cfset LOCAL.pageData.topSellings = EntityLoad("top_selling",{},"rank asc") />	
 		<cfset LOCAL.pageData.groupBuyings = EntityLoad("group_buying",{},"rank asc") />	
+		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
 		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
@@ -85,6 +86,7 @@
 			<cfset LOCAL.pageData.formData.slide_content = isNull(LOCAL.pageData.page)?"":LOCAL.pageData.page.getContent() />
 		</cfif>
 		
+		<cfset LOCAL.pageData.tabs = _setActiveTab() />
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
