@@ -220,5 +220,97 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!-- ADD TOP SELLING PRODUCT MODAL -->
+<div class="modal fade" id="add-top-selling-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add Top Selling Product</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Product Group</label>
+					<select name="top_selling_product_group_id" multiple class="form-control">
+						<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
+							<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Product ID</label>
+					<input id="new_top_selling_product_id" name="new_top_selling_product_id" type="text" class="form-control" placeholder="Product ID">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_top_selling_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ADD GROUP BUYING PRODUCT MODAL -->
+<div class="modal fade" id="add-group-buying-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add Group Buying Product</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Product Group</label>
+					<select name="group_buying_product_group_id" multiple class="form-control">
+						<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
+							<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Product ID</label>
+					<input id="new_group_buying_product_id" name="new_group_buying_product_id" type="text" class="form-control" placeholder="Product ID">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_group_buying_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE TOP SELLING PRODUCT MODAL -->
+<div class="modal fade" id="delete-top-selling-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this top selling product?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_top_selling_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE GROUP BUYING PRODUCT MODAL -->
+<div class="modal fade" id="delete-group-buying-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this group buying product?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_group_buying_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
