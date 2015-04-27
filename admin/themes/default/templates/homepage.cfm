@@ -140,18 +140,19 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="form-group">
-							<a data-toggle="modal" data-target="##add-product-modal" href="" style="margin-left:10px;">
+							<a data-toggle="modal" data-target="##add-top-selling-product-modal" href="">
 								<span class="label label-primary">Add New Product</span>
 							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfloop array="#REQUEST.pageData.topSellingProducts#" index="product">	
+								<cfloop array="#REQUEST.pageData.topSellings#" index="tp">	
+									<cfset product = tp.getProduct() />
 									<div class="col-xs-2">
 										<div class="box">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="default">
 														<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
-														<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a topsellingproductid="#product.getProductId()#" href="" class="delete-top-selling-product pull-right" data-toggle="modal" data-target="##delete-top-selling-product-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -168,35 +169,30 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
-							<a data-toggle="modal" data-target="##add-product-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Product</span></a>
+							<a data-toggle="modal" data-target="##add-group-buying-product-modal" href="">
+								<span class="label label-primary">Add New Product</span>
+							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProducts())>
-									<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">	
-										<cfset productImg = EntityLoad("product_image",{product = product, isDefault = true},true) />
-										<cfif NOT IsNull(productImg)>
-											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
-										<cfelse>
-											<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
-										</cfif>
-										<div class="col-xs-2">
-											<div class="box">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="default">
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
-															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
-														</tr>
-														<tr>
-															<td colspan="2">
-																<img class="img-responsive" src="#imageLink#" />
-															</td>
-														</tr>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</cfif>
+								<cfloop array="#REQUEST.pageData.groupBuyings#" index="gb">	
+									<cfset product = gb.getProduct() />
+									<div class="col-xs-2">
+										<div class="box">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr class="default">
+														<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+														<th><a groupbuyingproductid="#product.getProductId()#" href="" class="delete-group-buying-product pull-right" data-toggle="modal" data-target="##delete-group-buying-product-modal"><span class="label label-danger">Delete</span></a></th>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
+														</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfloop>
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
