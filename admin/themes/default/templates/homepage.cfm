@@ -61,6 +61,15 @@
 		$( ".delete-ad" ).click(function() {
 			$("##deleted_ad_id").val($(this).attr('adid'));
 		});
+		
+		$( ".delete-top-selling-product" ).click(function() {
+			$("##deleted_top_selling_product_id").val($(this).attr('productid'));
+		});
+		
+		$( ".delete-group-buying-product" ).click(function() {
+			$("##deleted_group_buying_product_id").val($(this).attr('productid'));
+		});
+		
 	});
 </script>
 <section class="content-header">
@@ -76,6 +85,8 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
+<input type="hidden" name="deleted_top_selling_product_id" id="deleted_top_selling_product_id" value="" />
+<input type="hidden" name="deleted_group_buying_product_id" id="deleted_group_buying_product_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -152,7 +163,7 @@
 												<table class="table table-hover">
 													<tr class="default">
 														<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
-														<th><a topsellingproductid="#product.getProductId()#" href="" class="delete-top-selling-product pull-right" data-toggle="modal" data-target="##delete-top-selling-product-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a productid="#product.getProductId()#" href="" class="delete-top-selling-product pull-right" data-toggle="modal" data-target="##delete-top-selling-product-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -181,7 +192,7 @@
 												<table class="table table-hover">
 													<tr class="default">
 														<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
-														<th><a groupbuyingproductid="#product.getProductId()#" href="" class="delete-group-buying-product pull-right" data-toggle="modal" data-target="##delete-group-buying-product-modal"><span class="label label-danger">Delete</span></a></th>
+														<th><a productid="#product.getProductId()#" href="" class="delete-group-buying-product pull-right" data-toggle="modal" data-target="##delete-group-buying-product-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
 														<td colspan="2">

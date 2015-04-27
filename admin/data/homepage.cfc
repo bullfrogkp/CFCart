@@ -76,6 +76,8 @@
 		<cfset LOCAL.pageData.title = "Homepage | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
+		<cfset LOCAL.pageData.topSellings = EntityLoad("top_selling",{},"rank asc") />	
+		<cfset LOCAL.pageData.groupBuyings = EntityLoad("group_buying",{},"rank asc") />	
 		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
