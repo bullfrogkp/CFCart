@@ -107,6 +107,7 @@
 					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Advertise Images</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Top Selling</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Group Buying</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Meta Data</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
@@ -205,6 +206,20 @@
 									</div>
 								</cfloop>
 							</div>
+						</div>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
+						<div class="form-group">
+							<label>Title</label>
+							<input type="text" class="form-control" placeholder="Enter ..." name="title" value="#REQUEST.pageData.formData.title#"/>
+						</div>
+						<div class="form-group">
+							<label>Keywords</label>
+							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->

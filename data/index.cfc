@@ -3,7 +3,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.page_title = "Prospect International Consulting Ltd." />
+		<cfset LOCAL.pageData.page_title = "Home | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "Prospect International Consulting Ltd." />
 		<cfset LOCAL.pageData.keywords = "Prospect International Consulting Ltd." />
 		
