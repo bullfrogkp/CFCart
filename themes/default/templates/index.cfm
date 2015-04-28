@@ -185,12 +185,9 @@
 			</div>
 		</div>
 		<div id="sidebar-wrapper">
-			<img src="#SESSION.absoluteUrlTheme#images/ad1.jpg" style="width:100%;border:1px solid ##CCC">
-			<img src="#SESSION.absoluteUrlTheme#images/ads2.jpg" style="width:100%;border:1px solid ##CCC">
-			<img src="#SESSION.absoluteUrlTheme#images/ads3.jpg" style="width:100%;border:1px solid ##CCC">
-			<img src="#SESSION.absoluteUrlTheme#images/ads4.jpg" style="width:100%;border:1px solid ##CCC">
-			<img src="#SESSION.absoluteUrlTheme#images/ads5.jpg" style="width:100%;border:1px solid ##CCC">
-			<img src="#SESSION.absoluteUrlTheme#images/ads3.jpg" style="width:100%;border:1px solid ##CCC">
+			<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">
+				<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:100%;border:1px solid ##CCC">
+			</cfloop>
 			<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
 				<h2>INFORMATION</h2>
 				<table style="width:100%;border-collapse: collapse;">
