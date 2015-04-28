@@ -24,6 +24,9 @@
 			<cfset LOCAL.pageData.slideContent = "" />
 		</cfif>
 		
+		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
