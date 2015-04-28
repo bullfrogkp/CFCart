@@ -144,7 +144,6 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.page = EntityLoad("page", {name=getPageName()},true)> 
 		<cfset LOCAL.pageData.title = "Homepage | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
@@ -155,10 +154,21 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.formData.slide_content = isNull(LOCAL.pageData.page)?"":LOCAL.pageData.page.getContent() />
-			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.page)?"":LOCAL.pageData.page.getTitle() />
-			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.page)?"":LOCAL.pageData.page.getKeywords() />
-			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.page)?"":LOCAL.pageData.page.getDescription() />
+			<cfset LOCAL.pageData.page = EntityLoad("page", {name=getPageName()},true)> 
+		
+			<cfif NOT IsNull(LOCAL.pageData.page)>
+				<cfset LOCAL.pageData.formData.title = LOCAL.pageData.page.getTitle() />
+				<cfset LOCAL.pageData.formData.keywords = LOCAL.pageData.page.getKeywords() />
+				<cfset LOCAL.pageData.formData.description = LOCAL.pageData.page.getDescription() />
+				
+				<cfset LOCAL.pageData.slide = EntityLoad("section", {name="slide",page=LOCAL.pageData.page},true)> 
+				<cfset LOCAL.pageData.formData.slide_content = isNull(LOCAL.pageData.slide)?"":LOCAL.pageData.slide.getContent() />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.title = "" />
+				<cfset LOCAL.pageData.formData.keywords = "" />
+				<cfset LOCAL.pageData.formData.description = "" />
+				<cfset LOCAL.pageData.formData.slide_content = "" />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
