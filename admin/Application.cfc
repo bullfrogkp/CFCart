@@ -9,6 +9,7 @@
 	<cfset this.sessionTimeout = Config().sessionTimeout>
 	<cfset this.clientManagement = Config().clientManagement>
     <cfset this.clientStorage = Config().dataSource>
+    <cfset this.setDomainCookies = Config().setDomainCookies>
  
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
 		<cfargument type="boolean" name="reload" required="false" default="false"/>
@@ -26,6 +27,7 @@
                 <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
                 <cfset THIS[ "$Config" ].ormSettings.cfcLocation = "/cfcart/core/entities/" />
                 <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
+                <cfset THIS[ "$Config" ].setDomainCookies = "yes" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
@@ -60,6 +62,7 @@
                 <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
 				<cfset THIS[ "$Config" ].ormSettings.cfclocation = "/core/entities/" />
                 <cfset THIS[ "$Config" ].dataSource = "bullfrog" />
+                <cfset THIS[ "$Config" ].setDomainCookies = "yes" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
