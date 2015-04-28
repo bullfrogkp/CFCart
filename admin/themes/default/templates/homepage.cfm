@@ -197,7 +197,7 @@
 													</tr>
 													<tr>
 														<td colspan="2">
-															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#product.getProductId()#/#productImg.getName()#" />
+															<img class="img-responsive" src="#product.getDefaultImageLink()#" />
 														</td>
 													</tr>
 												</table>

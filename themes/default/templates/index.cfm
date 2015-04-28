@@ -1,23 +1,14 @@
 ﻿<cfoutput>
 <div id="slide-div" style="width:722px;float:right;">
-	<div class="slide-container">
-		<div id="da-slider" class="da-slider">
-			#REQUEST.pageData.slideContent#
-			<nav class="da-arrows">
-				<span class="da-arrows-prev"></span>
-				<span class="da-arrows-next"></span>
-			</nav>
-		</div>
-	</div>
-	<img src="#SESSION.absoluteUrlTheme#images/story-feature-4-en.png" style="height:226px;" />
-	<img src="#SESSION.absoluteUrlTheme#images/ipad.png" style="height:226px;" />
+	#REQUEST.pageData.slideContent#
 </div>
 <div id="top-sidebar">
 	<img src="#SESSION.absoluteUrlTheme#images/week_deal.gif" style="width:230px;" />
 	<div id="sidenav" style="display:block;position:relative;top:0;">
 		<ul>
-			<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-				<li class="<cfif ArrayLen(cat.getSubCategories()) NEQ 0>has-sub-menu</cfif> first-level-menu" style="margin-top:6px;">
+			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
+				<cfset cat = REQUEST.pageData.categoryTree[i] />
+				<li class="<cfif ArrayLen(cat.getSubCategories()) NEQ 0>has-sub-menu</cfif> first-level-menu" <cfif i EQ 1>style="margin-top:6px;<cfelseif i EQ ArrayLen(REQUEST.pageData.categoryTree)>style="margin-bottom:6px;</cfif>">
 					<a href="#APPLICATION.absoluteUrlWeb#category_detail.cfm/#URLEncodedFormat(cat.getDisplayName())#/#cat.getCategoryId()#">#cat.getDisplayName()#</a>
 					<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 						<div class="cat-submenu">
