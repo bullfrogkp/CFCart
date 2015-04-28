@@ -7,11 +7,11 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfset LOCAL.homePage = EntityLoad("page", {name=getPageName()},true)> 
+		<cfset LOCAL.homePage = EntityLoad("page", {name="index"},true)> 
 		
 		<cfif IsNull(LOCAL.homePage)>
 			<cfset LOCAL.homePage = EntityNew("page") />
-			<cfset LOCAL.homePage.setName(getPageName()) />
+			<cfset LOCAL.homePage.setName("index") />
 			<cfset LOCAL.slideSection = EntityNew("section") />
 			<cfset LOCAL.slideSection.setName("slide") />
 			<cfset LOCAL.homePage.AddSection(LOCAL.slideSection) />
@@ -164,7 +164,7 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.page = EntityLoad("page", {name=getPageName()},true)> 
+			<cfset LOCAL.pageData.page = EntityLoad("page", {name="index"},true)> 
 		
 			<cfif NOT IsNull(LOCAL.pageData.page)>
 				<cfset LOCAL.pageData.formData.title = LOCAL.pageData.page.getTitle() />

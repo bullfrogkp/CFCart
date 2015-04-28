@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>China Wholesale</title>
+	<title>#REQUEST.pageData.title#</title>
+	<meta name="keywords" content="#REQUEST.pageData.keywords#" />
+	<meta name="description" content="#REQUEST.pageData.description#" />
+	
 	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/style2.css" />
 	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/style1.css" />
 	<link rel="stylesheet" href="#SESSION.absoluteUrlTheme#css/jquery-ui.css">

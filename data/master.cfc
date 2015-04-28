@@ -45,4 +45,23 @@
 				
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
+	
+	<cffunction name="loadMetaData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.metaData = {} />
+				
+		<cfset LOCAL.page = EntityLoad("page", {name=getPageName()},true)> 
+		
+		<cfif NOT IsNull(LOCAL.page)>
+			<cfset LOCAL.metaData.title = LOCAL.page.getTitle() />
+			<cfset LOCAL.metaData.description = LOCAL.page.getDescription() />
+			<cfset LOCAL.metaData.keywords = LOCAL.page.getKeywords() />
+		<cfelse>
+			<cfset LOCAL.metaData.title = "" />
+			<cfset LOCAL.metaData.description = "" />
+			<cfset LOCAL.metaData.keywords = "" />
+		</cfif>		
+				
+		<cfreturn LOCAL.metaData />	
+	</cffunction>
 </cfcomponent>

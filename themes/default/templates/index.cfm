@@ -1,32 +1,8 @@
 ﻿<cfoutput>
 <div id="slide-div" style="width:722px;float:right;">
-	<div calss="slide-container">
+	<div class="slide-container">
 		<div id="da-slider" class="da-slider">
-			<!--
-				<div class="da-slide">
-					<h2>Easy management</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<a href="##" class="da-link">Read more</a>
-					<div class="da-img"><img src="#SESSION.absoluteUrlTheme#images/slider/2.png" alt="image01" /></div>
-				</div>
-				<div class="da-slide">
-					<h2>Revolution</h2>
-					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-					<a href="##" class="da-link">Read more</a>
-					<div class="da-img"><img src="#SESSION.absoluteUrlTheme#images/slider/3.png" alt="image01" /></div>
-				</div>-->
-			<div class="da-slide">
-				<h2>Christmas Painting</h2>
-				<p>Christmas paintings for sale. Choose your favorite christmas paintings from thousands of available designs.</p>
-				<a href="##" class="da-link">Read more</a>
-				<div class="da-img"><img src="#SESSION.absoluteUrlTheme#images/slider/c.jpg" alt="image01" style="width:200px;" /></div>
-			</div>
-			<div class="da-slide">
-				<h2>Photographic Equipment On Sale!</h2>
-				<p>We carry a large inventory of both new and used photographic equipment to suit almost any photographer's need.</p>
-				<a href="##" class="da-link">Read more</a>
-				<div class="da-img"><img src="#SESSION.absoluteUrlTheme#images/slider/4.png" alt="image01" /></div>
-			</div>
+			#REQUEST.pageData.slideContent#
 			<nav class="da-arrows">
 				<span class="da-arrows-prev"></span>
 				<span class="da-arrows-next"></span>
