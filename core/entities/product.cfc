@@ -89,4 +89,27 @@
 		
 		<cfreturn imageLink />
 	</cffunction>
+	
+	<cffunction name="isFreeShipping" access="public" output="false" returnType="boolean">
+		<cfset var imageLink = "" />
+		<cfset var productImg = "" />
+		
+		<cfif NOT IsNull(getImages())>
+			<cfif ArrayLen(getImages()) EQ 1>
+				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#getImages()[1].getName()#" />
+			<cfelse>
+				<cfset productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
+				
+				<cfif IsNull(productImg)>
+					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+				<cfelse>
+					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#productImg.getName()#" />
+				</cfif>
+			</cfif>
+		<cfelse>
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+		</cfif>
+		
+		<cfreturn imageLink />
+	</cffunction>
 </cfcomponent>
