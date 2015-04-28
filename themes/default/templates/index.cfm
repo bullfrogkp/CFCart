@@ -51,129 +51,25 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<li class="single-products">
-							<a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t1.jpg" />
-							</a>
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-							<div class="thumbnail-price">US$4.51</div>
-							<img class="free-shipping-icon" src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+						<cfloop array="#REQUEST.pageData.topSellings#" index="topSell">
+							<cfset product = topSell.getProduct() />
+							<cfset productLink = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#" />
+							<li class="single-products">
+								<a href="#productLink#">
+									<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
+								</a>
+								<div class="thumbnail-name"><a href="#productLink#">#product.getDisplayName()#</a></div>
+								<div class="thumbnail-price">#product.getPrice()#</div>
+								<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="#productLink#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+										<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t2.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-							<div class="thumbnail-price">US$40.23</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-									<div class="thumbnail-overlay-price">$40.23</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t3.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-							<div class="thumbnail-price">US$68.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-									<div class="thumbnail-overlay-price">$68.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t4.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-							<div class="thumbnail-price">US$14.51</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-									<div class="thumbnail-overlay-price">$14.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t5.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-							<div class="thumbnail-price">US$2.51</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-									<div class="thumbnail-overlay-price">$2.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t6.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-							<div class="thumbnail-price">US$57.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-									<div class="thumbnail-overlay-price">$57.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t7.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-							<div class="thumbnail-price">US$22.51</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-overlay-price">$22.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t8.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-							<div class="thumbnail-price">US$43.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-overlay-price">$43.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
+							</li>
+						</cfloop>
 					</ul>
 				</div>
 			</div>
@@ -183,130 +79,25 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t1.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-							<div class="thumbnail-price">US$4.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">7 Colors Changing Glow LED Light Water Stream Faucet Tap</a></div>
-									<div class="thumbnail-overlay-price">$4.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
+						<cfloop array="#REQUEST.pageData.groupBuyings#" index="groupBuy">
+							<cfset product = groupBuy.getProduct() />
+							<cfset productLink = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#" />
+							<li class="single-products">
+								<a href="#productLink#">
+									<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
+								</a>
+								<div class="thumbnail-name"><a href="#productLink#">#product.getDisplayName()#</a></div>
+								<div class="thumbnail-price">#product.getPrice()#</div>
+								<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<div class="thumbnail-rating"></div>
+										<div class="thumbnail-review"><a href="#productLink#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+										<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t2.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-							<div class="thumbnail-price">US$40.23</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">2.4GHz Wireless Optical Pen Mouse Adjustable 500/1000DPI</a></div>
-									<div class="thumbnail-overlay-price">$40.23</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t3.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-							<div class="thumbnail-price">US$68.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">160 Lumen CREE Q5 LED Headlamp Zoomable Headlight</a></div>
-									<div class="thumbnail-overlay-price">$68.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t4.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-							<div class="thumbnail-price">US$14.51</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="">USB TO PC Game Controller Adapter Converter For PS2</a></div>
-									<div class="thumbnail-overlay-price">$14.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t5.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-							<div class="thumbnail-price">US$2.51</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="Safety Knife Innovative Pocket Credit Card Size Folding Safe">Safety Knife Innovative Pocket Credit Card Size Folding S...</a></div>
-									<div class="thumbnail-overlay-price">$2.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t6.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-							<div class="thumbnail-price">US$57.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="6pcs 150XL/.009in Electric Guitar Amp Strings Set">6pcs 150XL/.009in Electric Guitar Amp Strings Set</a></div>
-									<div class="thumbnail-overlay-price">$57.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t7.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-							<div class="thumbnail-price">US$22.51</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-overlay-price">$22.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
-						<li class="single-products">
-							<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t8.jpg" />
-							<div class="thumbnail-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-							<div class="thumbnail-price">US$43.51</div>
-							<img src="#SESSION.absoluteUrlTheme#images/freeshipping.jpg" style="width:120px;" />
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<div class="thumbnail-overlay-name"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm" title="Universal U-type Soft Frameless Bracketless Rubber Car Wifi">Universal U-type Soft Frameless Bracketless Rubber Car Wi...</a></div>
-									<div class="thumbnail-overlay-price">$43.51</div>
-									<div class="thumbnail-rating"></div>
-									<div class="thumbnail-review"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">(13 Reviews)</a></div>
-									<div class="thumbnail-cat-name"><a href="#APPLICATION.absoluteUrlWeb#products.cfm">In Home Living</a></div>
-									<div class="thumbnail-cart"><a href="##" class="btn" style="padding-right:13px;">Add to cart</a></div>
-								</div>
-							</div>
-						</li>
+							</li>
+						</cfloop>
 					</ul>
 				</div>
 			</div>
