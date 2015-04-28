@@ -7,17 +7,22 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfset LOCAL.homePage = EntityLoad("page", {name="homepage"}, true)> 
+		<cfset LOCAL.homePage = EntityLoad("page", {name=getPageName()},true)> 
 		
-		<cfif NOT IsNull(LOCAL.homePage)>
-			<cfset LOCAL.homePage.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.homePage.setUpdatedDatetime(Now()) />
-		<cfelse>
+		<cfif IsNull(LOCAL.homePage)>
 			<cfset LOCAL.homePage = EntityNew("page") />
-			<cfset LOCAL.homePage.setName("homepage") />
-			<cfset LOCAL.homePage.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.homePage.setCreatedDatetime(Now()) />
-			<cfset LOCAL.homePage.setIsDeleted(false) />
+			<cfset LOCAL.homePage.setName(getPageName()) />
+			<cfset LOCAL.slideSection = EntityNew("section") />
+			<cfset LOCAL.slideSection.setName("slide") />
+			<cfset LOCAL.homePage.AddSection(LOCAL.slideSection) />
+		<cfelse>
+			<cfset LOCAL.slideSection = EntityLoad("section", {name="slide",page=LOCAL.homePage},true)> 
+			
+			<cfif IsNull(LOCAL.slideSection)>
+				<cfset LOCAL.slideSection = EntityNew("section") />
+				<cfset LOCAL.slideSection.setName("slide") />
+				<cfset LOCAL.homePage.AddSection(LOCAL.slideSection) />
+			</cfif>
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
@@ -48,7 +53,12 @@
 				</cfloop>
 			</cfif>
 			
-			<cfset LOCAL.homePage.setContent(Trim(FORM.slide_content)) />			
+			<cfset LOCAL.homePage.setTitle(Trim(FORM.title)) />			
+			<cfset LOCAL.homePage.setKeywords(Trim(FORM.keywords)) />			
+			<cfset LOCAL.homePage.setDescription(Trim(FORM.description)) />	
+			<cfset LOCAL.slideSection.setContent(Trim(FORM.slide_content)) />
+			
+			<cfset EntitySave(LOCAL.slideSection) />
 			<cfset EntitySave(LOCAL.homePage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
