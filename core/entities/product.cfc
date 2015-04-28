@@ -91,25 +91,21 @@
 	</cffunction>
 	
 	<cffunction name="isFreeShipping" access="public" output="false" returnType="boolean">
-		<cfset var imageLink = "" />
-		<cfset var productImg = "" />
+		<cfset var LOCAL = {} />
+		<cfset var retValue = false />
 		
-		<cfif NOT IsNull(getImages())>
-			<cfif ArrayLen(getImages()) EQ 1>
-				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#getImages()[1].getName()#" />
-			<cfelse>
-				<cfset productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
-				
-				<cfif IsNull(productImg)>
-					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
-				<cfelse>
-					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#productImg.getName()#" />
-				</cfif>
-			</cfif>
-		<cfelse>
-			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+		<cfquery name="LOCAL.checkFreeShipping">
+			SELECT	1
+			FROM	product_shipping_method_rela psmr
+			JOIN	shipping_method sm ON psmr.shipping_method_id = sm.shipping_method_id
+			WHERE	sm.name = 'free shipping'
+			AND		psmr.product_id = #getProductId()#
+		</cfquery>
+		
+		<cfif LOCAL.checkFreeShipping.recordCount GT 0>
+			<cfset retValue = true />
 		</cfif>
 		
-		<cfreturn imageLink />
+		<cfreturn retValue />
 	</cffunction>
 </cfcomponent>
