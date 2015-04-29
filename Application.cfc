@@ -23,22 +23,32 @@
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
 		<cfargument type="String" name="targetPage" required="true"/>
 		
-		<cfset _setTrackingEntity() />
+		<cfset _setShoppingCart() />
 		<cfset super.onRequestStart(targetPage=ARGUMENTS.targetPage) />
 		
 		<cfreturn true>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_setTrackingEntity"  access="private" returnType="void" output="false">
+	<cffunction name="_setShoppingCart"  access="private" returnType="void" output="false">
 		
-		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
-		
-		<cfif IsNull(trackingEntity)>
-			<cfset trackingEntity = EntityNew("tracking_entity") />
-			<cfset trackingEntity.setCfid(COOKIE.cfid) />
-			<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
-			<cfset EntitySave(trackingEntity) />
+		<cfif NOT IsNull(SESSION.loggedinUserId)>
+			<cfset var shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.loggedinUserId}, true) />
+		<cfelse>
+			<cfset var shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
 		</cfif>
+		
+		<cfif IsNull(shoppingCart)>
+			<cfset shoppingCart = EntityNew("tracking_entity") />
+		</cfif>
+		
+		<cfset shoppingCart.setCfid(COOKIE.cfid) />
+		<cfset shoppingCart.setCftoken(COOKIE.cftoken) />
+		<cfif NOT IsNull(SESSION.loggedinUserId)>
+			<cfset shoppingCart.setUserId(SESSION.loggedinUserId) />
+		</cfif>
+		<cfset shoppingCart.setLastAccessDatetime(Now()) />
+		<cfset EntitySave(shoppingCart) />
+		
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<!----------------------------------------------------------------------------
