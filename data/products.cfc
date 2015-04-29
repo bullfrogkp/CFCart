@@ -3,39 +3,22 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.page = EntityLoad("page", {name=getPageName()},true)> 
-		
-		<cfif NOT IsNull(LOCAL.pageData.page)>
-			<cfset LOCAL.pageData.title = LOCAL.pageData.page.getTitle() />
-			<cfset LOCAL.pageData.description = LOCAL.pageData.page.getDescription() />
-			<cfset LOCAL.pageData.keywords = LOCAL.pageData.page.getKeywords() />
-			
-			<cfset LOCAL.pageData.slideSection = EntityLoad("section", {name="slide",page=LOCAL.pageData.page},true)>
-			
-			<cfif NOT IsNull(LOCAL.pageData.slideSection)>
-				<cfset LOCAL.pageData.slideContent = LOCAL.pageData.slideSection.getContent() />
-			<cfelse>
-				<cfset LOCAL.pageData.slideContent = "" />
-			</cfif>
-		<cfelse>
-			<cfset LOCAL.pageData.title = "" />
-			<cfset LOCAL.pageData.description = "" />
-			<cfset LOCAL.pageData.keywords = "" />
-			<cfset LOCAL.pageData.slideContent = "" />
-		</cfif>
-		
-		<cfif LOCAL.pageData.title EQ "">
-			<cfset LOCAL.pageData.title = "Home | #APPLICATION.applicationName#" />
-		</cfif>
+		<cfset LOCAL.categoryId = ListGet(CGI.PATH_INFO,2,"/")> 
+		<cfset LOCAL.pageNumber = ListGet(CGI.PATH_INFO,3,"/")> 
+		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
-		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
-		<cfset LOCAL.pageData.topSellings = EntityLoad("top_selling",{},"rank asc") />	
-		<cfset LOCAL.pageData.groupBuyings = EntityLoad("group_buying",{},"rank asc") />
+		<cfset LOCAL.categoryService.setIsDeleted(false) />
+		<cfset LOCAL.categoryService.setIsEnabled(true) />
+		<cfset LOCAL.categoryService.setPageNumber(LOCAL.pageNumber)) />
 		
-		<cfset LOCAL.pageData.topSellingCategory = EntityLoad("category",{displayName="Top Selling"},true) />
-		<cfset LOCAL.pageData.groupBuyingCategory = EntityLoad("category",{displayName="Group Buying"},true) />
+		<cfset LOCAL.recordStruct = LOCAL.categoryService.getRecords() />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />
+		
+		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
+		<cfset LOCAL.pageData.keywords = LOCAL.pageData.category.getKeywords() />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
