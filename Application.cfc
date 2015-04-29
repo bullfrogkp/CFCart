@@ -30,15 +30,16 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setShoppingCart"  access="private" returnType="void" output="false">
+		<cfset var LOCAL = {} />
 		
 		<cfif NOT IsNull(SESSION.loggedinUserId)>
-			<cfset var shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.loggedinUserId}, true) />
-		<cfelse>
-			<cfset var shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.loggedinUserId}, true) />
 		</cfif>
-		
+		<cfif IsNull(LOCAL.shoppingCart)>
+			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+		</cfif>
 		<cfif IsNull(shoppingCart)>
-			<cfset shoppingCart = EntityNew("tracking_entity") />
+			<cfset LOCAL.shoppingCart = EntityNew("tracking_entity") />
 		</cfif>
 		
 		<cfset shoppingCart.setCfid(COOKIE.cfid) />
