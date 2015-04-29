@@ -24,6 +24,10 @@
 			<cfset LOCAL.pageData.slideContent = "" />
 		</cfif>
 		
+		<cfif LOCAL.pageData.title EQ "">
+			<cfset LOCAL.pageData.title = "Home | #APPLICATION.applicationName#" />
+		</cfif>
+		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
