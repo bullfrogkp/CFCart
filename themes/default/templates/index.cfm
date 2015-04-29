@@ -9,16 +9,16 @@
 			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
 				<cfset cat = REQUEST.pageData.categoryTree[i] />
 				<li class="<cfif ArrayLen(cat.getSubCategories()) NEQ 0>has-sub-menu</cfif> first-level-menu" <cfif i EQ 1>style="margin-top:6px;<cfelseif i EQ ArrayLen(REQUEST.pageData.categoryTree)>style="margin-bottom:6px;</cfif>">
-					<a href="#APPLICATION.absoluteUrlWeb#category_detail.cfm/#URLEncodedFormat(cat.getDisplayName())#/#cat.getCategoryId()#">#cat.getDisplayName()#</a>
+					<a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(cat.getDisplayName())#/#cat.getCategoryId()#">#cat.getDisplayName()#</a>
 					<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 						<div class="cat-submenu">
 							<div style="z-index:1;position: relative;">
 								<cfloop array="#cat.getSubCategories()#" index="subCat">
 									<dl>
 										<div class="clear"></div>
-										<dt><a href="#APPLICATION.absoluteUrlWeb#category_detail.cfm/#URLEncodedFormat(subCat.getDisplayName())#/#subCat.getCategoryId()#">#subCat.getDisplayName()#</a></dt>
+										<dt><a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(subCat.getDisplayName())#/#subCat.getCategoryId()#">#subCat.getDisplayName()#</a></dt>
 										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-											<dd><a href="#APPLICATION.absoluteUrlWeb#category_detail.cfm/#URLEncodedFormat(thirdCat.getDisplayName())#/#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a></dd>
+											<dd><a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(thirdCat.getDisplayName())#/#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a></dd>
 										</cfloop>
 									</dl>
 								</cfloop>
@@ -46,7 +46,7 @@
 	<div class="container">
 		<div id="category-list">
 			<div class="cat-thumbnails">
-				<div class="cat-thumbnail-title"><a href="">Top Selling</a></div>
+				<div class="cat-thumbnail-title"><a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(REQUEST.pageData.topSellingCategory.getDisplayName())#/#REQUEST.pageData.topSellingCategory.getCategoryId()#">#REQUEST.pageData.topSellingCategory.getDisplayName()#</a></div>
 				<div class="cat-thumbnail-link"><a href="">More >></a></div>
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div class="cat-thumbnails">
-				<div class="cat-thumbnail-title"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">Group Buying</a></div>
+				<div class="cat-thumbnail-title"><a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(REQUEST.pageData.groupBuyingCategory.getDisplayName())#/#REQUEST.pageData.groupBuyingCategory.getCategoryId()#">#REQUEST.pageData.groupBuyingCategory.getDisplayName()#</a></div>
 				<div class="cat-thumbnail-link"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">More >></a></div>
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">

@@ -34,6 +34,9 @@
 		<cfset LOCAL.pageData.topSellings = EntityLoad("top_selling",{},"rank asc") />	
 		<cfset LOCAL.pageData.groupBuyings = EntityLoad("group_buying",{},"rank asc") />
 		
+		<cfset LOCAL.pageData.topSellingCategory = EntityLoad("category",{displayName="Top Selling"},true) />
+		<cfset LOCAL.pageData.groupBuyingCategory = EntityLoad("category",{displayName="Group Buying"},true) />
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
