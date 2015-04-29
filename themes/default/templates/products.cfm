@@ -59,13 +59,19 @@
 		.color td ul li:hover {
 		border:1px solid blue;
 		}
+		
+		.active-filter {
+		color:##fff;
+		background-color:##F2A000;
+		}
 		</style>
+		<cfif NOT IsNull(REQUEST.pageData.category.getFilterGroup())>
 		<table id="filters">
 			<tr class="price">
 				<td>Price:</td>
 				<td>
 					<ul>
-						<li style="color:##fff;background-color:##F2A000;">$0.00 - $24.99</li>
+						<li class="active-filter">$0.00 - $24.99</li>
 						<li>$25.00 - $49.99</li>
 						<li>$50.00 - $74.99</li>
 						<li>$75.00 - $99.99</li>
