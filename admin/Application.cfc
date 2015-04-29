@@ -7,9 +7,6 @@
 	<cfset this.dataSource = Config().dataSource> 
 	<cfset this.sessionManagement = Config().sessionManagement>
 	<cfset this.sessionTimeout = Config().sessionTimeout>
-	<cfset this.clientManagement = Config().clientManagement>
-    <cfset this.clientStorage = Config().dataSource>
-    <cfset this.setDomainCookies = Config().setDomainCookies>
  
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
 		<cfargument type="boolean" name="reload" required="false" default="false"/>
@@ -21,13 +18,11 @@
                 <!--- Set development environment. --->
                 <cfset THIS[ "$Config" ].isLive = false />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
-                <cfset THIS[ "$Config" ].clientManagement = "yes" />
                 <cfset THIS[ "$Config" ].ormEnabled = "true" />
                 <cfset THIS[ "$Config" ].ormSettings = {} />
                 <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
                 <cfset THIS[ "$Config" ].ormSettings.cfcLocation = "/cfcart/core/entities/" />
                 <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
-                <cfset THIS[ "$Config" ].setDomainCookies = "yes" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
@@ -56,13 +51,11 @@
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
-				<cfset THIS[ "$Config" ].clientManagement = "yes" />
                 <cfset THIS[ "$Config" ].ormEnabled = "true" />
                 <cfset THIS[ "$Config" ].ormSettings = {} />
                 <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
 				<cfset THIS[ "$Config" ].ormSettings.cfclocation = "/core/entities/" />
                 <cfset THIS[ "$Config" ].dataSource = "bullfrog" />
-                <cfset THIS[ "$Config" ].setDomainCookies = "yes" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
