@@ -20,6 +20,27 @@
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="onRequestStart" returntype="boolean" output="false">
+		<cfargument type="String" name="targetPage" required="true"/>
+		
+		<cfset _setTrackingEntity() />
+		<cfset super.onRequestStart(targetPage=ARGUMENTS.targetPage) />
+		
+		<cfreturn true>
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_setTrackingEntity"  access="private" returnType="void" output="false">
+		
+		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+		
+		<cfif IsNull(trackingEntity)>
+			<cfset trackingEntity = EntityNew("tracking_entity") />
+			<cfset trackingEntity.setCfid(COOKIE.cfid) />
+			<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
+			<cfset EntitySave(trackingEntity) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->
 	<!----------------------------------------------------------------------------
 	<cffunction name="onMissingTemplate" returnType="any">
 	    <cfargument name="targetPage" type="string" required=true/>

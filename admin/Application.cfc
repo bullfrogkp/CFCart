@@ -132,8 +132,6 @@
 			<cfset onSessionStart() />
 		</cfif>
 		
-		<cfset _setTrackingEntity() />
-		
 		<!--- add code for only admin can do it --->
 		<cfif StructKeyExists(URL,"resetappvars")>
 			<cfset StructAppend(APPLICATION, Config(reload = true).env,true) />
@@ -259,20 +257,6 @@
 		</cfif>
 			
 		<cfreturn true>
-	</cffunction>
-	
-	<!------------------------------------------------------------------------------->
-	<cffunction name="_setTrackingEntity"  access="private" returnType="void" output="false">
-		
-		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken, jsessionid = COOKIE.jsessionid}, true) />
-		
-		<cfif IsNull(trackingEntity)>
-			<cfset trackingEntity = EntityNew("tracking_entity") />
-			<cfset trackingEntity.setCfid(COOKIE.cfid) />
-			<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
-			<cfset trackingEntity.setJsessionid(COOKIE.jsessionid) />
-			<cfset EntitySave(trackingEntity) />
-		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">

@@ -21,12 +21,7 @@
 	<cfproperty name="orders" type="array" fieldtype="one-to-many" cfc="order" fkcolumn="customer_id" singularname="order">
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="customer_id" singularname="review">
 	
-	<cfproperty name="shoppingCartProducts" type="array" fieldtype="one-to-many" cfc="shopping_cart_product" fkcolumn="customer_id" singularname="shoppingCartProduct">
-	<cfproperty name="buyLaterProducts" type="array" fieldtype="one-to-many" cfc="buy_later_product" fkcolumn="customer_id" singularname="buyLaterProduct">
-	<cfproperty name="wishListProducts" type="array" fieldtype="one-to-many" cfc="wishlist_product" fkcolumn="customer_id" singularname="wishListProduct">
-	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
-	
 	
 	<cffunction name="getFullName" access="public" output="false" returnType="string">
 		
