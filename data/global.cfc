@@ -20,6 +20,10 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
+		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name="shopping_cart"},true) />
+		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken, jsessionid = COOKIE.jsessionid}, true) />
+		<cfset LOCAL.pageData.shoppingCartTrackingRecords = EntityLoad("tracking_record",{trackingEntity = LOCAL.trackingEntity, trackingRecordType = LOCAL.trackingRecordType}) />
+		
 		<cfreturn LOCAL.pageData />
 	</cffunction>
 	
