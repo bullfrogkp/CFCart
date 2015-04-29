@@ -49,7 +49,7 @@
 		</cfif>
 		<cfset shoppingCart.setLastAccessDatetime(Now()) />
 		<cfset EntitySave(shoppingCart) />
-		
+		<cfset ORMFlush() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<!----------------------------------------------------------------------------
