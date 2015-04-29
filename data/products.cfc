@@ -19,6 +19,7 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.category.getKeywords() />
+		<cfset LOCAL.pageData.breadcrumb = _getBreadcrumb(category = LOCAL.pageData.category) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

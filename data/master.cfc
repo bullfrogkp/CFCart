@@ -46,22 +46,18 @@
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
-	<cffunction name="loadMetaData" access="public" output="false" returnType="struct">
+	<cffunction name="_getBreadcrumb" access="private" output="false" returnType="array">
+		<cfargument name="category" type="object" required="true" />
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.metaData = {} />
 				
-		<cfset LOCAL.page = EntityLoad("page", {name=getPageName()},true)> 
+		<cfset LOCAL.categoryArray = [] />
+		<cfset LOCAL.category = ARGUMENTS.category />
 		
-		<cfif NOT IsNull(LOCAL.page)>
-			<cfset LOCAL.metaData.title = LOCAL.page.getTitle() />
-			<cfset LOCAL.metaData.description = LOCAL.page.getDescription() />
-			<cfset LOCAL.metaData.keywords = LOCAL.page.getKeywords() />
-		<cfelse>
-			<cfset LOCAL.metaData.title = "" />
-			<cfset LOCAL.metaData.description = "" />
-			<cfset LOCAL.metaData.keywords = "" />
-		</cfif>		
+		<cfloop condition = "NOT IsNull(LOCAL.category.getParentCategory())">
+			<cfset ArrayPrepend(LOCAL.categoryArray, LOCAL.category.getDisplayName()) />
+			<cfset LOCAL.category = LOCAL.category.getParentCategory() />
+		</cfloop>
 				
-		<cfreturn LOCAL.metaData />	
+		<cfreturn LOCAL.categoryArray />	
 	</cffunction>
 </cfcomponent>
