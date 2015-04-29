@@ -220,7 +220,7 @@
 		<div id="minicart">
 			<div style="position:relative;">
 				<a class="btn" href="#APPLICATION.absoluteUrlWeb#cart.cfm">Shopping Cart </a>
-				<div id="cart-info">12</div>
+				<div id="cart-info">#ArrayLen(REQUEST.pageData.shoppingCartTrackingRecords)#</div>
 			</div>
 		</div>
 		<div id="search">
