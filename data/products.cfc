@@ -19,8 +19,23 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.category.getKeywords() />
-		<cfset LOCAL.pageData.breadcrumb = _getBreadcrumb(category = LOCAL.pageData.category) />
+		<cfset LOCAL.pageData.categoryNameArray = _getCategoryNameArray(category = LOCAL.pageData.category) />
 		
 		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	<!---------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="_getCategoryNameArray" access="private" output="false" returnType="array">
+		<cfargument name="category" type="object" required="true" />
+		<cfset var LOCAL = {} />
+				
+		<cfset LOCAL.categoryArray = [] />
+		<cfset LOCAL.category = ARGUMENTS.category />
+		
+		<cfloop condition = "NOT IsNull(LOCAL.category.getParentCategory())">
+			<cfset ArrayPrepend(LOCAL.categoryArray, LOCAL.category.getDisplayName()) />
+			<cfset LOCAL.category = LOCAL.category.getParentCategory() />
+		</cfloop>
+				
+		<cfreturn LOCAL.categoryArray />	
 	</cffunction>
 </cfcomponent>

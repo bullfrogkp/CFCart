@@ -3,13 +3,11 @@
 <div id="slide-div" style="width:712px;float:right;">
 	<div id="breadcrumb">
 		<div class="breadcrumb-home-icon"></div>
-		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Computers / Networking</span> 
-		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Keyboards</span> 
+		<cfloop array="#REQUEST.pageData.categoryNameArray#" index="categoryName">
+			<div class="breadcrumb-arrow-icon"></div>
+			<span style="vertical-align:middle">Computers / Networking</span> 
+		</cfloop>
 	</div>
-	
-	
 	
 	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
 		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(185 total)</span></h1> 

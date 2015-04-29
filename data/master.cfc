@@ -45,19 +45,4 @@
 				
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
-	
-	<cffunction name="_getBreadcrumb" access="private" output="false" returnType="array">
-		<cfargument name="category" type="object" required="true" />
-		<cfset var LOCAL = {} />
-				
-		<cfset LOCAL.categoryArray = [] />
-		<cfset LOCAL.category = ARGUMENTS.category />
-		
-		<cfloop condition = "NOT IsNull(LOCAL.category.getParentCategory())">
-			<cfset ArrayPrepend(LOCAL.categoryArray, LOCAL.category.getDisplayName()) />
-			<cfset LOCAL.category = LOCAL.category.getParentCategory() />
-		</cfloop>
-				
-		<cfreturn LOCAL.categoryArray />	
-	</cffunction>
 </cfcomponent>
