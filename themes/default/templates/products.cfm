@@ -10,7 +10,7 @@
 	</div>
 	
 	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
-		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(185 total)</span></h1> 
+		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.paginationInfo.records)# total)</span></h1> 
 		<style>
 		##filters {
 		 font-size:12px;
