@@ -8,6 +8,9 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfset LOCAL.currentPage = EntityLoad("page", {adminPageName = getPageName()},true)> 
+		<cfset LOCAL.slideSection = EntityLoad("section", {name="slide",page=LOCAL.currentPage},true)> 
+		<cfset LOCAL.topSellingSection = EntityLoad("section", {name="top selling",page=LOCAL.currentPage},true)> 
+		<cfset LOCAL.groupBuyingSection = EntityLoad("section", {name="group buying",page=LOCAL.currentPage},true)> 
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
@@ -41,6 +44,15 @@
 					<cfif IsNumeric(FORM["top_selling_rank_#LOCAL.topSelling.getAdvertisementId()#"])>
 						<cfset LOCAL.topSelling.setRank(FORM["top_selling_rank_#LOCAL.topSelling.getAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.topSelling) />
+					</cfif>
+				</cfloop>
+			</cfif>
+			
+			<cfif NOT IsNull(LOCAL.currentPage.getGroupBuyings())>
+				<cfloop array="#LOCAL.currentPage.getGroupBuyings()#" index="LOCAL.groupBuying">
+					<cfif IsNumeric(FORM["group_buying_rank_#LOCAL.groupBuying.getAdvertisementId()#"])>
+						<cfset LOCAL.groupBuying.setRank(FORM["group_buying_rank_#LOCAL.groupBuying.getAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.groupBuying) />
 					</cfif>
 				</cfloop>
 			</cfif>
