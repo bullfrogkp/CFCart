@@ -7,52 +7,18 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfset LOCAL.currentPageName = "index" />
-		<cfset LOCAL.currentPageSections = "slide,top selling,group buying" />
-		
-		<cfset LOCAL.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)> 
-		
-		<cfif IsNull(LOCAL.currentPage)>
-			<cfset LOCAL.currentPage = EntityNew("page") />
-			<cfset LOCAL.currentPage.setName(LOCAL.currentPageName) />
-			
-			
-			
-			<cfset LOCAL.slideSection = EntityNew("section") />
-			<cfset LOCAL.topSellingSection = EntityNew("section") />
-			<cfset LOCAL.groupBuyingSection = EntityNew("section") />
-			<cfset LOCAL.slideSection.setName("slide") />
-			<cfset LOCAL.topSellingSection.setName("top selling") />
-			<cfset LOCAL.groupBuyingSection.setName("group buying") />
-			<cfset LOCAL.currentPage.AddSection(LOCAL.slideSection) />
-			<cfset LOCAL.currentPage.AddSection(LOCAL.topSellingSection) />
-			<cfset LOCAL.currentPage.AddSection(LOCAL.groupBuyingSection) />
-		<cfelse>
-			<cfset LOCAL.slideSection = EntityLoad("section", {name="slide",page=LOCAL.currentPage},true)> 
-			<cfset LOCAL.topSellingSection = EntityLoad("section", {name="top selling",page=LOCAL.currentPage},true)> 
-			<cfset LOCAL.groupBuyingSection = EntityLoad("section", {name="group buying",page=LOCAL.currentPage},true)> 
-			
-			<cfif IsNull(LOCAL.slideSection)>
-				<cfset LOCAL.slideSection = EntityNew("section") />
-				<cfset LOCAL.slideSection.setName("slide") />
-				<cfset LOCAL.currentPage.AddSection(LOCAL.slideSection) />
-			</cfif>
-			
-			<cfif IsNull(LOCAL.topSellingSection)>
-				<cfset LOCAL.topSellingSection = EntityNew("section") />
-				<cfset LOCAL.topSellingSection.setName("top selling") />
-				<cfset LOCAL.currentPage.AddSection(LOCAL.topSellingSection) />
-			</cfif>
-			
-			<cfif IsNull(LOCAL.groupBuyingSection)>
-				<cfset LOCAL.groupBuyingSection = EntityNew("section") />
-				<cfset LOCAL.groupBuyingSection.setName("group buying") />
-				<cfset LOCAL.currentPage.AddSection(LOCAL.groupBuyingSection) />
-			</cfif>
-		</cfif>
+		<cfset LOCAL.currentPage = EntityLoad("page", {adminPageName = getPageName()},true)> 
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
+			<cfif NOT IsNull(LOCAL.currentPage.getAdvertisements())>
+				<cfloop array="#LOCAL.currentPage.getAdvertisements()#" index="LOCAL.ad">
+					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getAdvertisementId()#"])>
+						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.ad) />
+					</cfif>
+				</cfloop>
+			</cfif>
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -70,11 +36,11 @@
 				</cfloop>
 			</cfif>
 			
-			<cfif NOT IsNull(LOCAL.currentPage.getAdvertisements())>
-				<cfloop array="#LOCAL.currentPage.getAdvertisements()#" index="LOCAL.ad">
-					<cfif StructKeyExists(FORM,"rank_#LOCAL.ad.getAdvertisementId()#") AND IsNumeric(FORM["rank_#LOCAL.ad.getAdvertisementId()#"])>
-						<cfset LOCAL.ad.setRank(FORM["rank_#LOCAL.ad.getAdvertisementId()#"]) />
-						<cfset EntitySave(LOCAL.ad) />
+			<cfif NOT IsNull(LOCAL.currentPage.getTopSellings())>
+				<cfloop array="#LOCAL.currentPage.getTopSellings()#" index="LOCAL.topSelling">
+					<cfif IsNumeric(FORM["top_selling_rank_#LOCAL.topSelling.getAdvertisementId()#"])>
+						<cfset LOCAL.topSelling.setRank(FORM["top_selling_rank_#LOCAL.topSelling.getAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.topSelling) />
 					</cfif>
 				</cfloop>
 			</cfif>
