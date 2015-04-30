@@ -5,5 +5,4 @@
     <cfproperty name="keywords" column="keywords" ormtype="text"> 
     <cfproperty name="description" column="description" ormtype="text"> 
 	<cfproperty name="sections" type="array" fieldtype="one-to-many" cfc="section" fkcolumn="page_id" singularname="section">
-	<cfproperty name="advertisements" type="array" fieldtype="one-to-many" cfc="advertisement" fkcolumn="page_id" singularname="advertisement">
 </cfcomponent>
