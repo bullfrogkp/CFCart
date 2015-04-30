@@ -190,7 +190,7 @@
 							<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
 						</a>
 						<div class="thumbnail-name"><a href="#productLink#">#product.getDisplayName()#</a></div>
-						<div class="thumbnail-price">#product.getPrice()#</div>
+						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
 						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 						<div class="product-overlay">
 							<div class="overlay-content">
@@ -295,116 +295,50 @@ padding: 0 8px 8px;">
 	<div class="recommendation">
 		Best Sellers
 	</div>
-	<div class="recommendation-list">
+	<div class="recommendation-list" style="margin-bottom:8px;">
 		<ul>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b1.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b2.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b3.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b4.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b5.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b6.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b7.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
-			<li>
-				<img src="#SESSION.absoluteUrlTheme#images/b1.jpg" />
-				<div class="recommendation-list-detail">
-					<div class="recommendation-list-name"><a href="">PC VGA to S-Video AV RCA TV Out</a></div>
-					<div class="recommendation-list-price">US $4.08</div>
-					<div class="recommendation-list-review"></div>
-					<div><a href="">(26 Reviews)</a></div>
-				</div>
-				<div style="clear:both;"></div>
-			</li>
+			<cfloop array="#REQUEST.pageData.bestSellers#" index="product">
+				<li>
+					<img src="#SESSION.absoluteUrlTheme#images/#product.getDefaultImageLink()#" />
+					<div class="recommendation-list-detail">
+						<div class="recommendation-list-name">
+							<a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#">
+								#product.getDisplayName()#
+							</a>
+						</div>
+						<div class="recommendation-list-price">#DollarFormat(product.getPrice())#</div>
+						<div class="recommendation-list-review"></div>
+						<div><a href="">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+					</div>
+					<div style="clear:both;"></div>
+				</li>
+			</cfloop>
 		</ul>
 	</div>
-	<img src="#SESSION.absoluteUrlTheme#images/ad1.jpg" style="width:228px;border:1px solid ##CCC;margin-top:8px;">
-		<img src="#SESSION.absoluteUrlTheme#images/ads2.jpg" style="width:228px;border:1px solid ##CCC">
-		<img src="#SESSION.absoluteUrlTheme#images/ads3.jpg" style="width:228px;border:1px solid ##CCC">
-		<img src="#SESSION.absoluteUrlTheme#images/ads4.jpg" style="width:228px;border:1px solid ##CCC">
-		<img src="#SESSION.absoluteUrlTheme#images/ads5.jpg" style="width:228px;border:1px solid ##CCC">
-		<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
-			<h2>INFORMATION</h2>
-			<table style="width:100%;border-collapse: collapse;">
-				<tr>
-					<td>
-						<ul>
-							<li>Order Tracking</li>
-							<li>Wholesale</li>
-							<li>Shipping</li>
-							<li>Returns</li>
-							<li>Privacy Policy</li>
-							<li>Contact Us</li>
-							<li>About Us</li>
-							<li>What We Sell</li>
-							<li>Why choose TOMTOP</li>
-							<li>FAQ's</li>
-						</ul>
-					</td>
-				</tr>
-			</table>
-		</div>
+	<cfloop array="#REQUEST.pageData.advertisements#" index="ad">
+		<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:228px;border:1px solid ##CCC">
+	</cfloop>
+	<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
+		<h2>INFORMATION</h2>
+		<table style="width:100%;border-collapse: collapse;">
+			<tr>
+				<td>
+					<ul>
+						<li>Order Tracking</li>
+						<li>Wholesale</li>
+						<li>Shipping</li>
+						<li>Returns</li>
+						<li>Privacy Policy</li>
+						<li>Contact Us</li>
+						<li>About Us</li>
+						<li>What We Sell</li>
+						<li>Why choose TOMTOP</li>
+						<li>FAQ's</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 </cfoutput>
