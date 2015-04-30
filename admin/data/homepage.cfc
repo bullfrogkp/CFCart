@@ -19,8 +19,8 @@
 			
 			<cfif NOT IsNull(LOCAL.advertisementSection.getAdvertisements())>
 				<cfloop array="#LOCAL.advertisementSection.getAdvertisements()#" index="LOCAL.ad">
-					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getAdvertisementId()#"])>
-						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getAdvertisementId()#"]) />
+					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
+						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
 					</cfif>
 				</cfloop>
@@ -31,7 +31,7 @@
 						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
 						<cfif StructFind(FORM,LOCAL.key) EQ "done">
 							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
-							<cfset LOCAL.newAdvertisement = EntityNew("advertisement") />
+							<cfset LOCAL.newAdvertisement = EntityNew("page_section_advertisement") />
 							<cfset LOCAL.newAdvertisement.setName(LOCAL.imgName) />
 							<cfset LOCAL.newAdvertisement.setSection(LOCAL.advertisementSection) />
 							<cfset EntitySave(LOCAL.newAdvertisement) />
@@ -42,20 +42,20 @@
 				</cfloop>
 			</cfif>
 			
-			<cfif NOT IsNull(LOCAL.topSellingSection.getPageProducts())>
-				<cfloop array="#LOCAL.topSellingSection.getPageProducts()#" index="LOCAL.pageProduct">
-					<cfif IsNumeric(FORM["top_selling_rank_#LOCAL.pageProduct.getPageProductId()#"])>
-						<cfset LOCAL.pageProduct.setRank(FORM["top_selling_rank_#LOCAL.pageProduct.getPageProductId()#"]) />
-						<cfset EntitySave(LOCAL.pageProduct) />
+			<cfif NOT IsNull(LOCAL.topSellingSection.getProducts())>
+				<cfloop array="#LOCAL.topSellingSection.getProducts()#" index="LOCAL.sectionProduct">
+					<cfif IsNumeric(FORM["top_selling_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
+						<cfset LOCAL.sectionProduct.setRank(FORM["top_selling_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
+						<cfset EntitySave(LOCAL.sectionProduct) />
 					</cfif>
 				</cfloop>
 			</cfif>
 			
-			<cfif NOT IsNull(LOCAL.groupBuyingSection.getPageProducts())>
-				<cfloop array="#LOCAL.groupBuyingSection.getPageProducts()#" index="LOCAL.pageProduct">
-					<cfif IsNumeric(FORM["group_buying_rank_#LOCAL.pageProduct.getPageProductId()#"])>
-						<cfset LOCAL.pageProduct.setRank(FORM["group_buying_rank_#LOCAL.pageProduct.getPageProductId()#"]) />
-						<cfset EntitySave(LOCAL.pageProduct) />
+			<cfif NOT IsNull(LOCAL.groupBuyingSection.getProducts())>
+				<cfloop array="#LOCAL.groupBuyingSection.getProducts()#" index="LOCAL.sectionProduct">
+					<cfif IsNumeric(FORM["group_buying_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
+						<cfset LOCAL.sectionProduct.setRank(FORM["group_buying_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
+						<cfset EntitySave(LOCAL.sectionProduct) />
 					</cfif>
 				</cfloop>
 			</cfif>
@@ -79,20 +79,20 @@
 				<cfloop list="#FORM.top_selling_product_group_id#" index="LOCAL.groupId">
 					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
 					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
-						<cfset LOCAL.newPageProduct = EntityNew("page_product") />
-						<cfset LOCAL.newPageProduct.setSection(LOCAL.topSellingSection) />
-						<cfset LOCAL.newPageProduct.setProduct(LOCAL.relatedProduct) />
-						<cfset EntitySave(LOCAL.newPageProduct) />
+						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
+						<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
+						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.relatedProduct) />
+						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
 			</cfif>
 			
 			<cfif IsNumeric(FORM.new_top_selling_product_id)>
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_top_selling_product_id) />
-				<cfset LOCAL.newPageProduct = EntityNew("page_product") />
-				<cfset LOCAL.newPageProduct.setSection(LOCAL.topSellingSection) />
-				<cfset LOCAL.newPageProduct.setProduct(LOCAL.newProduct) />
-				<cfset EntitySave(LOCAL.newPageProduct) />
+				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
+				<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
+				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
+				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
@@ -104,20 +104,20 @@
 				<cfloop list="#FORM.group_buying_product_group_id#" index="LOCAL.groupId">
 					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
 					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
-						<cfset LOCAL.newPageProduct = EntityNew("page_product") />
-						<cfset LOCAL.newPageProduct.setSection(LOCAL.groupBuyingSection) />
-						<cfset LOCAL.newPageProduct.setProduct(LOCAL.relatedProduct) />
-						<cfset EntitySave(LOCAL.newPageProduct) />
+						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
+						<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
+						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.relatedProduct) />
+						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
 			</cfif>
 			
 			<cfif IsNumeric(FORM.new_group_buying_product_id)>
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_group_buying_product_id) />
-				<cfset LOCAL.newPageProduct = EntityNew("page_product") />
-				<cfset LOCAL.newPageProduct.setSection(LOCAL.groupBuyingSection) />
-				<cfset LOCAL.newPageProduct.setProduct(LOCAL.newProduct) />
-				<cfset EntitySave(LOCAL.newPageProduct) />
+				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
+				<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
+				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
+				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
@@ -126,8 +126,8 @@
 		<cfelseif StructKeyExists(FORM,"delete_top_selling_product")>
 			
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_top_selling_product_id) />
-			<cfset LOCAL.pageProduct = EntityLoad("page_product", {section = LOCAL.topSellingSection, product = LOCAL.product}, true) />
-			<cfset LOCAL.topSellingSection.removePageProduct(LOCAL.pageProduct) />
+			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.topSellingSection, product = LOCAL.product}, true) />
+			<cfset LOCAL.topSellingSection.removePageProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.topSellingSection) />
 			
@@ -137,8 +137,8 @@
 		<cfelseif StructKeyExists(FORM,"delete_group_buying_product")>
 		
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_group_buying_product_id) />
-			<cfset LOCAL.pageProduct = EntityLoad("page_product", {section = LOCAL.groupBuyingSection, product = LOCAL.product}, true) />
-			<cfset LOCAL.groupBuyingSection.removePageProduct(LOCAL.pageProduct) />
+			<cfset LOCAL.sectionProduct = EntityLoad("page_product", {section = LOCAL.groupBuyingSection, product = LOCAL.product}, true) />
+			<cfset LOCAL.groupBuyingSection.removePageProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.groupBuyingSection) />
 			
@@ -147,7 +147,7 @@
 			
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
-			<cfset LOCAL.ad = EntityLoadByPK("advertisement",FORM.deleted_ad_id) />
+			<cfset LOCAL.ad = EntityLoadByPK("page_section_advertisement",FORM.deleted_ad_id) />
 			<cfset LOCAL.ad.setIsDeleted(true) />
 			<cfset EntitySave(LOCAL.ad) />
 			
@@ -171,10 +171,10 @@
 		
 		<cfset LOCAL.currentPageName = "index" />
 		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {adminPageName = LOCAL.currentPageName},true)> 
-		<cfset LOCAL.pageData.slideSection = EntityLoad("section", {name="slide",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.pageData.advertisementSection = EntityLoad("section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.pageData.topSellingSection = EntityLoad("section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
 		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
