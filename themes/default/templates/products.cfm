@@ -65,46 +65,66 @@
 		background-color:##F2A000;
 		}
 		</style>
-		<cfif NOT IsNull(REQUEST.pageData.category.getFilterGroup())>
-		<table id="filters">
-			<tr class="price">
-				<td>Price:</td>
-				<td>
-					<ul>
-						<li class="active-filter">$0.00 - $24.99</li>
-						<li>$25.00 - $49.99</li>
-						<li>$50.00 - $74.99</li>
-						<li>$75.00 - $99.99</li>
-					</ul>
-				</td>
-			</tr>
-			<tr class="brand">
-				<td>Brand:</td>
-				<td>
-					<ul>
-						<li>Bestbuy</li>
-						<li>Futureshop</li>
-						<li style="color:##fff;background-color:##F2A000;">Walmart</li>
-						<li>Amazon</li>
-						<li>Home Depot</li>
-						<li>Loblaws</li>
-					</ul>
-				</td>
-			</tr>
-			<tr class="color">
-				<td>Color:</td>
-				<td>
-					<ul>
-						<li style="background-color:red;"></li>
-						<li style="background-color:yellow;"></li>
-						<li style="background-color:green;border:1px solid blue;"></li>
-						<li style="background-color:blue;"></li>
-						<li style="background-color:black;"></li>
-						<li style="background-color:white;"></li>
-					</ul>
-				</td>
-			</tr>
-		</table>
+		
+		<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
+			<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">		
+				<cfset filter = categoryFilterRela.getFilter() />
+				<div class="col-xs-3">
+					<div class="box box-warning">
+						<div class="box-body table-responsive no-padding">
+							<table class="table table-hover">
+								<tr class="warning">
+									<th>#filter.getDisplayName()#</th>
+									<th></th>
+									<th><a categoryfilterrelaid="#categoryFilterRela.getCategoryFilterRelaId()#" filtername="#LCase(filter.getDisplayName())#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+								</tr>
+								
+								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
+									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
+										<tr>
+											<td>#filterValue.getDisplayName()#</td>
+											<td>
+											<cfif filter.getDisplayName() EQ "color">
+												<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
+											<cfelse>
+												#filterValue.getValue()#
+											</cfif>
+											</td>
+											<td>
+												<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
+											</td>
+										</tr>
+									</cfloop>
+								</cfif>
+							</table>
+						</div><!-- /.box-body -->
+					</div><!-- /.box -->
+				</div>
+			</cfloop>
+		</cfif>
+		
+		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas()))>
+			<table id="filters">
+				<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">
+					<cfset filter = categoryFilterRela.getFilter() />
+					<tr class="#filter.getName()#">
+						<td>#filter.getDisplayName()#:</td>
+						<td>
+							<ul>
+								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
+									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
+										<li 
+										<cfif ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>class="active-filter"</cfif>
+										<cfif filter.getName() EQ "color">style="background-color:#filterValue.getValue()#;"</cfif>
+										>#filterValue.getValue()#</li>
+									</cfloop>
+								</cfif>
+							</ul>
+						</td>
+					</tr>
+				</cfloop>
+			</table>
+		</cfif>
 	</div>
 	
 	<style>
