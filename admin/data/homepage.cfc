@@ -7,21 +7,47 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
-		<cfset LOCAL.homePage = EntityLoad("page", {name="index"},true)> 
+		<cfset LOCAL.currentPageName = "index" />
+		<cfset LOCAL.currentPageSections = "slide,top selling,group buying" />
 		
-		<cfif IsNull(LOCAL.homePage)>
-			<cfset LOCAL.homePage = EntityNew("page") />
-			<cfset LOCAL.homePage.setName("index") />
+		<cfset LOCAL.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)> 
+		
+		<cfif IsNull(LOCAL.currentPage)>
+			<cfset LOCAL.currentPage = EntityNew("page") />
+			<cfset LOCAL.currentPage.setName(LOCAL.currentPageName) />
+			
+			
+			
 			<cfset LOCAL.slideSection = EntityNew("section") />
+			<cfset LOCAL.topSellingSection = EntityNew("section") />
+			<cfset LOCAL.groupBuyingSection = EntityNew("section") />
 			<cfset LOCAL.slideSection.setName("slide") />
-			<cfset LOCAL.homePage.AddSection(LOCAL.slideSection) />
+			<cfset LOCAL.topSellingSection.setName("top selling") />
+			<cfset LOCAL.groupBuyingSection.setName("group buying") />
+			<cfset LOCAL.currentPage.AddSection(LOCAL.slideSection) />
+			<cfset LOCAL.currentPage.AddSection(LOCAL.topSellingSection) />
+			<cfset LOCAL.currentPage.AddSection(LOCAL.groupBuyingSection) />
 		<cfelse>
-			<cfset LOCAL.slideSection = EntityLoad("section", {name="slide",page=LOCAL.homePage},true)> 
+			<cfset LOCAL.slideSection = EntityLoad("section", {name="slide",page=LOCAL.currentPage},true)> 
+			<cfset LOCAL.topSellingSection = EntityLoad("section", {name="top selling",page=LOCAL.currentPage},true)> 
+			<cfset LOCAL.groupBuyingSection = EntityLoad("section", {name="group buying",page=LOCAL.currentPage},true)> 
 			
 			<cfif IsNull(LOCAL.slideSection)>
 				<cfset LOCAL.slideSection = EntityNew("section") />
 				<cfset LOCAL.slideSection.setName("slide") />
-				<cfset LOCAL.homePage.AddSection(LOCAL.slideSection) />
+				<cfset LOCAL.currentPage.AddSection(LOCAL.slideSection) />
+			</cfif>
+			
+			<cfif IsNull(LOCAL.topSellingSection)>
+				<cfset LOCAL.topSellingSection = EntityNew("section") />
+				<cfset LOCAL.topSellingSection.setName("top selling") />
+				<cfset LOCAL.currentPage.AddSection(LOCAL.topSellingSection) />
+			</cfif>
+			
+			<cfif IsNull(LOCAL.groupBuyingSection)>
+				<cfset LOCAL.groupBuyingSection = EntityNew("section") />
+				<cfset LOCAL.groupBuyingSection.setName("group buying") />
+				<cfset LOCAL.currentPage.AddSection(LOCAL.groupBuyingSection) />
 			</cfif>
 		</cfif>
 		
@@ -33,36 +59,35 @@
 						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
 						<cfif StructFind(FORM,LOCAL.key) EQ "done">
 							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
-							<cfset LOCAL.homepageAd = EntityNew("advertisement") />
-							<cfset LOCAL.homepageAd.setName(LOCAL.imgName) />
-							<cfset LOCAL.homepageAd.setPage(LOCAL.homePage) />
-							<cfset LOCAL.homepageAd.setIsDeleted(false) />
-							<cfset EntitySave(LOCAL.homepageAd) />
+							<cfset LOCAL.newAdvertisement = EntityNew("advertisement") />
+							<cfset LOCAL.newAdvertisement.setName(LOCAL.imgName) />
+							<cfset LOCAL.newAdvertisement.setPage(LOCAL.currentPage) />
+							<cfset EntitySave(LOCAL.newAdvertisement) />
+							
+							<cfset LOCAL.currentPage.addAdvertisement(LOCAL.newAdvertisement) />
 						</cfif>
 					</cfif>
 				</cfloop>
 			</cfif>
 			
-			<cfset LOCAL.homepageAds = EntityLoad("advertisement",{page=LOCAL.homePage,isDeleted=false}) />
-			
-			<cfif NOT ArrayIsEmpty(LOCAL.homepageAds)>
-				<cfloop array="#LOCAL.homepageAds#" index="LOCAL.ad">
+			<cfif NOT IsNull(LOCAL.currentPage.getAdvertisements())>
+				<cfloop array="#LOCAL.currentPage.getAdvertisements()#" index="LOCAL.ad">
 					<cfif StructKeyExists(FORM,"rank_#LOCAL.ad.getAdvertisementId()#") AND IsNumeric(FORM["rank_#LOCAL.ad.getAdvertisementId()#"])>
 						<cfset LOCAL.ad.setRank(FORM["rank_#LOCAL.ad.getAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
-						
-						<cfset LOCAL.homePage.addAdvertisement(LOCAL.ad) />
 					</cfif>
 				</cfloop>
 			</cfif>
 			
-			<cfset LOCAL.homePage.setTitle(Trim(FORM.title)) />			
-			<cfset LOCAL.homePage.setKeywords(Trim(FORM.keywords)) />			
-			<cfset LOCAL.homePage.setDescription(Trim(FORM.description)) />	
+			<cfset LOCAL.currentPage.setTitle(Trim(FORM.title)) />			
+			<cfset LOCAL.currentPage.setKeywords(Trim(FORM.keywords)) />			
+			<cfset LOCAL.currentPage.setDescription(Trim(FORM.description)) />	
 			<cfset LOCAL.slideSection.setContent(Trim(FORM.slide_content)) />
 			
 			<cfset EntitySave(LOCAL.slideSection) />
-			<cfset EntitySave(LOCAL.homePage) />
+			<cfset EntitySave(LOCAL.topSellingSection) />
+			<cfset EntitySave(LOCAL.groupBuyingSection) />
+			<cfset EntitySave(LOCAL.currentPage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
@@ -145,8 +170,8 @@
 			<cfset LOCAL.ad.setIsDeleted(true) />
 			<cfset EntitySave(LOCAL.ad) />
 			
-			<cfset LOCAL.homePage.removeAdvertisement(LOCAL.ad) />
-			<cfset EntitySave(LOCAL.homePage) />
+			<cfset LOCAL.currentPage.removeAdvertisement(LOCAL.ad) />
+			<cfset EntitySave(LOCAL.currentPage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
