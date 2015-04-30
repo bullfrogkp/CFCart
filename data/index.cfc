@@ -30,7 +30,7 @@
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.homepageAds = EntityLoad("homepage_ad",{isDeleted=false},"rank asc") />	
+		<cfset LOCAL.pageData.homepageAds = EntityLoad("advertisement",{page=LOCAL.pageData.page, isDeleted=false},"rank asc") />	
 		<cfset LOCAL.pageData.topSellings = EntityLoad("top_selling",{},"rank asc") />	
 		<cfset LOCAL.pageData.groupBuyings = EntityLoad("group_buying",{},"rank asc") />
 		

@@ -33,8 +33,9 @@
 						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
 						<cfif StructFind(FORM,LOCAL.key) EQ "done">
 							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
-							<cfset LOCAL.homepageAd = EntityNew("homepage_ad") />
+							<cfset LOCAL.homepageAd = EntityNew("advertisement") />
 							<cfset LOCAL.homepageAd.setName(LOCAL.imgName) />
+							<cfset LOCAL.homepageAd.setPage(LOCAL.homePage) />
 							<cfset LOCAL.homepageAd.setIsDeleted(false) />
 							<cfset EntitySave(LOCAL.homepageAd) />
 						</cfif>
@@ -42,13 +43,15 @@
 				</cfloop>
 			</cfif>
 			
-			<cfset LOCAL.homepageAds = EntityLoad("homepage_ad",{isDeleted=false}) />
+			<cfset LOCAL.homepageAds = EntityLoad("advertisement",{page=LOCAL.homePage,isDeleted=false}) />
 			
 			<cfif NOT ArrayIsEmpty(LOCAL.homepageAds)>
 				<cfloop array="#LOCAL.homepageAds#" index="LOCAL.ad">
-					<cfif StructKeyExists(FORM,"rank_#LOCAL.ad.getHomepageAdId()#") AND IsNumeric(FORM["rank_#LOCAL.ad.getHomepageAdId()#"])>
-						<cfset LOCAL.ad.setRank(FORM["rank_#LOCAL.ad.getHomepageAdId()#"]) />
+					<cfif StructKeyExists(FORM,"rank_#LOCAL.ad.getAdvertisementId()#") AND IsNumeric(FORM["rank_#LOCAL.ad.getAdvertisementId()#"])>
+						<cfset LOCAL.ad.setRank(FORM["rank_#LOCAL.ad.getAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
+						
+						<cfset LOCAL.homePage.addAdvertisement(LOCAL.ad) />
 					</cfif>
 				</cfloop>
 			</cfif>
@@ -138,9 +141,12 @@
 			
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
-			<cfset LOCAL.ad = EntityLoadByPK("homepage_ad",FORM.deleted_ad_id) />
+			<cfset LOCAL.ad = EntityLoadByPK("advertisement",FORM.deleted_ad_id) />
 			<cfset LOCAL.ad.setIsDeleted(true) />
 			<cfset EntitySave(LOCAL.ad) />
+			
+			<cfset LOCAL.homePage.removeAdvertisement(LOCAL.ad) />
+			<cfset EntitySave(LOCAL.homePage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />

@@ -126,9 +126,9 @@
 													<table class="table table-hover">
 														<tr class="warning">
 															<th style="font-size:11px;line-height:20px;">
-																<input type="text" placeholder="Rank" name="rank_#ad.getHomepageAdId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
+																<input type="text" placeholder="Rank" name="rank_#ad.getAdvertisementId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
 															</th>
-															<th><a adid="#ad.getHomepageAdId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
+															<th><a adid="#ad.getAdvertisementId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
 															<td colspan="2">
