@@ -126,9 +126,9 @@
 													<table class="table table-hover">
 														<tr class="warning">
 															<th style="font-size:11px;line-height:20px;">
-																<input type="text" placeholder="Rank" name="rank_#ad.getAdvertisementId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
+																<input type="text" placeholder="Rank" name="rank_#ad.getPageSectionAdvertisementId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
 															</th>
-															<th><a adid="#ad.getAdvertisementId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
+															<th><a adid="#ad.getPageSectionAdvertisementId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
 															<td colspan="2">
@@ -156,8 +156,8 @@
 								<span class="label label-primary">Add New Product</span>
 							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getPageProducts())>
-									<cfloop array="#REQUEST.pageData.topSellingSection.getPageProducts()#" index="tp">	
+								<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getProducts())>
+									<cfloop array="#REQUEST.pageData.topSellingSection.getProducts()#" index="tp">	
 										<cfset product = tp.getProduct() />
 										<div class="col-xs-2">
 											<div class="box">
@@ -187,8 +187,8 @@
 								<span class="label label-primary">Add New Product</span>
 							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getPageProducts())>
-									<cfloop array="#REQUEST.pageData.groupBuyingSection.getPageProducts()#" index="tp">	
+								<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getProducts())>
+									<cfloop array="#REQUEST.pageData.groupBuyingSection.getProducts()#" index="gb">	
 										<cfset product = gb.getProduct() />
 										<div class="col-xs-2">
 											<div class="box">
