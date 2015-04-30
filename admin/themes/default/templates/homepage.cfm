@@ -1,6 +1,11 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {		
+	
+		$(".tab-title").click(function() {
+		  $("##tab_id").val($(this).attr('tabid'));
+		});
+	
 		CKEDITOR.replace( 'slide_content',
 		{
 			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
@@ -84,6 +89,7 @@
 
 <!-- Main content -->
 <form method="post">
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
 <input type="hidden" name="deleted_top_selling_product_id" id="deleted_top_selling_product_id" value="" />
 <input type="hidden" name="deleted_group_buying_product_id" id="deleted_group_buying_product_id" value="" />

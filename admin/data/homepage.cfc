@@ -71,7 +71,7 @@
 			<cfset EntitySave(LOCAL.currentPage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=#FORM.tab_id#" />
 			
 		<cfelseif StructKeyExists(FORM,"add_top_selling_product")>
 		
@@ -132,7 +132,7 @@
 			<cfset EntitySave(LOCAL.topSellingSection) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_3" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_group_buying_product")>
 		
@@ -143,7 +143,7 @@
 			<cfset EntitySave(LOCAL.groupBuyingSection) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_4" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_4" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
@@ -155,7 +155,7 @@
 			<cfset EntitySave(LOCAL.currentPage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=tab_2" />
 			
 		</cfif>
 		
@@ -170,19 +170,21 @@
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		
 		<cfset LOCAL.currentPageName = "index" />
-		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {adminPageName = LOCAL.currentPageName},true)> 
+		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
 		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
 		
+		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
+		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.formData.title = LOCAL.pageData.page.getTitle() />
-			<cfset LOCAL.pageData.formData.keywords = LOCAL.pageData.page.getKeywords() />
-			<cfset LOCAL.pageData.formData.description = LOCAL.pageData.page.getDescription() />
-			<cfset LOCAL.pageData.formData.slide_content = isNull(LOCAL.pageData.slide)?"":LOCAL.pageData.slide.getContent() />
+			<cfset LOCAL.pageData.formData.title = LOCAL.pageData.currentPage.getTitle() />
+			<cfset LOCAL.pageData.formData.keywords = LOCAL.pageData.currentPage.getKeywords() />
+			<cfset LOCAL.pageData.formData.description = LOCAL.pageData.currentPage.getDescription() />
+			<cfset LOCAL.pageData.formData.slide_content = LOCAL.pageData.slideSection.getContent() />
 		</cfif>
 		
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
