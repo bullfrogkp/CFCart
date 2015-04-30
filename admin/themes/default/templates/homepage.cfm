@@ -132,7 +132,7 @@
 													<table class="table table-hover">
 														<tr class="warning">
 															<th style="font-size:11px;line-height:20px;">
-																<input type="text" placeholder="Rank" name="rank_#ad.getPageSectionAdvertisementId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
+																<input type="text" placeholder="Rank" name="advertisement_rank_#ad.getPageSectionAdvertisementId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
 															</th>
 															<th><a adid="#ad.getPageSectionAdvertisementId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
@@ -170,12 +170,16 @@
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="default">
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+															<th style="font-size:11px;line-height:20px;">
+																<input type="text" placeholder="Rank" name="top_selling_rank_#tp.getPageSectionProductId()#" value="#tp.getRank()#" style="width:40px;text-align:center;" />
+															</th>
 															<th><a productid="#product.getProductId()#" href="" class="delete-top-selling-product pull-right" data-toggle="modal" data-target="##delete-top-selling-product-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
 															<td colspan="2">
-																<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																<a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">
+																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																</a>
 															</td>
 														</tr>
 													</table>
@@ -201,12 +205,16 @@
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="default">
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+															<th style="font-size:11px;line-height:20px;">
+																<input type="text" placeholder="Rank" name="group_buying_rank_#gb.getPageSectionProductId()#" value="#gb.getRank()#" style="width:40px;text-align:center;" />
+															</th>
 															<th><a productid="#product.getProductId()#" href="" class="delete-group-buying-product pull-right" data-toggle="modal" data-target="##delete-group-buying-product-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
 															<td colspan="2">
-																<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																<a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">
+																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																</a>
 															</td>
 														</tr>
 													</table>
