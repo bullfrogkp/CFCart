@@ -66,43 +66,6 @@
 		}
 		</style>
 		
-		<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
-			<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">		
-				<cfset filter = categoryFilterRela.getFilter() />
-				<div class="col-xs-3">
-					<div class="box box-warning">
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover">
-								<tr class="warning">
-									<th>#filter.getDisplayName()#</th>
-									<th></th>
-									<th><a categoryfilterrelaid="#categoryFilterRela.getCategoryFilterRelaId()#" filtername="#LCase(filter.getDisplayName())#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
-								</tr>
-								
-								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
-									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
-										<tr>
-											<td>#filterValue.getDisplayName()#</td>
-											<td>
-											<cfif filter.getDisplayName() EQ "color">
-												<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
-											<cfelse>
-												#filterValue.getValue()#
-											</cfif>
-											</td>
-											<td>
-												<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
-											</td>
-										</tr>
-									</cfloop>
-								</cfif>
-							</table>
-						</div><!-- /.box-body -->
-					</div><!-- /.box -->
-				</div>
-			</cfloop>
-		</cfif>
-		
 		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas()))>
 			<table id="filters">
 				<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">
@@ -164,6 +127,11 @@
 	 float:right;
 	}
 	
+	##pages .active {
+	 color:##fff;
+	 background-color:##CCC;
+	}
+	
 	##pages ul {
 	 margin-left:-5px;
 	 list-style-type:none;
@@ -201,7 +169,7 @@
 	</div>
 	<div id="pages">
 		<ul>
-			<li style="color:##fff;background-color:##CCC;">1</li>
+			<li style="">1</li>
 			<li>2</li>
 			<li>3</li>
 			<li>4</li>
