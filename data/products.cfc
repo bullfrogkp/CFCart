@@ -15,7 +15,8 @@
 		
 		<cfset LOCAL.recordStruct = LOCAL.categoryService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 
-		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
+		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />
 		
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
