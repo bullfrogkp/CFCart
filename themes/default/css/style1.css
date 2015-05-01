@@ -1315,6 +1315,14 @@ padding-top:2px;
 font-size:12px;margin-top:8px;margin-bottom:13px;
 }
 
+#breadcrumb a {
+text-decoration:none;color:#000;
+}
+
+#breadcrumb a:hover {
+text-decoration:underline;
+}
+
 #search-img {
 height:28px;margin-top:1px;
 }
