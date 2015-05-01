@@ -19,31 +19,13 @@ float:left;
 margin-left:10px;
 cursor:hand;
 cursor:pointer;
-}
+border:1px solid #ccc;
+padding:4px 7px;
+}	
 
 #filters ul li:hover {
 color:#fff;
 background-color:#F2A000;
-}
-
-.price td ul li {
-border:1px solid #ccc;
-padding:4px 7px;
-}
-
-.brand td ul li {
-border:1px solid #ccc;
-padding:4px 7px;
-}
-
-.color td ul li {
-border:1px solid #ccc;
-width:20px;
-height:20px;
-}
-
-.color td ul li:hover {
-border:1px solid blue;
 }
 
 .active-filter {

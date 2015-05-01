@@ -5,7 +5,7 @@
 		
 		<cfset LOCAL.categoryId = ListGetAt(CGI.PATH_INFO,2,"/")> 
 		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
-		<cfset LOCAL.pageData.pageData.activeFilterValueIdList = ListGetAt(CGI.PATH_INFO,4,"/") />
+		<cfset LOCAL.pageData.activeFilterValueIdList = ListGetAt(CGI.PATH_INFO,4,"/") />
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />

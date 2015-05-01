@@ -20,16 +20,23 @@
 			<table id="filters">
 				<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">
 					<cfset filter = categoryFilterRela.getFilter() />
-					<tr class="#filter.getName()#">
+					<tr>
 						<td>#filter.getDisplayName()#:</td>
 						<td>
 							<ul>
 								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
 									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
-										<li 
-										<cfif REQUEST.pageData.activeFilterValueIdList NEQ 0 AND ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>class="active-filter"</cfif>
-										<cfif filter.getName() EQ "color">style="background-color:#filterValue.getValue()#;"</cfif>
-										>#filterValue.getValue()#</li>
+										<li class="filter-value <cfif REQUEST.pageData.activeFilterValueIdList NEQ 0 AND ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>active-filter</cfif>"
+										<cfif filter.getDisplayName() EQ "color">style="background-color:#filterValue.getValue()#;border:1px solid ##ccc;width:20px;height:20px;"</cfif>
+										>
+										
+										<cfif filter.getDisplayName() EQ "color">
+											#filterValue.getValue()#
+										<cfelse>
+											#filterValue.getDisplayName()#
+										</cfif>
+										
+										</li>
 									</cfloop>
 								</cfif>
 							</ul>
