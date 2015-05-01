@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/style1.css" />
 	<link rel="stylesheet" href="#SESSION.absoluteUrlTheme#css/jquery-ui.css">
 	<link rel="stylesheet" href="#SESSION.absoluteUrlTheme#css/ui.easytree.css">
+	<link rel="stylesheet" href="#SESSION.absoluteUrlTheme#css/custom.css">
 		
 	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/modernizr.custom.28468.js"></script>
 	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery-1.10.1.min.js"></script>

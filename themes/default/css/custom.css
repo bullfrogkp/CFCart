@@ -1,0 +1,132 @@
+##filters {
+font-size:12px;
+font-weight:bold;
+}
+
+##filters tr td:first-child { 
+width:60px;
+height:40px;
+color:##F2A000;
+}
+
+##filters ul {
+margin-left:-5px;
+list-style-type:none;
+}
+
+##filters ul li {
+float:left;
+margin-left:10px;
+cursor:hand;
+cursor:pointer;
+}
+
+##filters ul li:hover {
+color:##fff;
+background-color:##F2A000;
+}
+
+.price td ul li {
+border:1px solid ##ccc;
+padding:4px 7px;
+}
+
+.brand td ul li {
+border:1px solid ##ccc;
+padding:4px 7px;
+}
+
+.color td ul li {
+border:1px solid ##ccc;
+width:20px;
+height:20px;
+}
+
+.color td ul li:hover {
+border:1px solid blue;
+}
+
+.active-filter {
+color:##fff;
+background-color:##F2A000;
+}
+
+##sort-by {
+font-size:12px;
+margin-top:20px;
+float:left;
+}
+
+##sort-by ul {
+margin-left:-5px;
+list-style-type:none;
+float:left;
+}
+
+##sort-by ul li {
+float:left;
+margin-left:10px;
+cursor:hand;
+cursor:pointer;
+}
+
+##sort-by ul li:hover {
+color:##fff;
+background-color:##ccc;
+}
+
+##sort-by ul li {
+border:1px solid ##ccc;
+padding:4px 7px;
+}
+
+
+##pages {
+font-size:12px;
+margin-top:20px;
+float:right;
+}
+
+##pages .active {
+color:##fff;
+background-color:##CCC;
+}
+
+##pages ul {
+margin-left:-5px;
+list-style-type:none;
+float:left;
+}
+
+##pages ul li {
+float:left;
+margin-left:10px;
+cursor:hand;
+cursor:pointer;
+}
+
+##pages ul li:hover {
+color:##fff;
+background-color:##CCC;
+}
+
+##pages ul li {
+border:1px solid ##ccc;
+width:20px;
+height:20px;
+line-height:20px;
+text-align:center;
+}
+
+.grey_background {
+   background-color: ##cccccc;
+}
+.green_background {
+   background-color: ##909B19;
+}
+.red {
+   color: ##FF0000;
+}
+.blue {
+   color: ##0000FF;
+}

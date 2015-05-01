@@ -3,15 +3,15 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.categoryId = ListGet(CGI.PATH_INFO,2,"/")> 
-		<cfset LOCAL.pageData.pageNumber = ListGet(CGI.PATH_INFO,3,"/")> 
-		<cfset LOCAL.pageData.pageData.activeFilterValueIdList = ListGet(CGI.PATH_INFO,4,"/") />
+		<cfset LOCAL.categoryId = ListGetAt(CGI.PATH_INFO,2,"/")> 
+		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
+		<cfset LOCAL.pageData.pageData.activeFilterValueIdList = ListGetAt(CGI.PATH_INFO,4,"/") />
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.categoryService.setIsDeleted(false) />
 		<cfset LOCAL.categoryService.setIsEnabled(true) />
-		<cfset LOCAL.categoryService.setPageNumber(LOCAL.pageNumber)) />
+		<cfset LOCAL.categoryService.setPageNumber(LOCAL.pageData.pageNumber) />
 		
 		<cfset LOCAL.recordStruct = LOCAL.categoryService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 

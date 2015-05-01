@@ -5,66 +5,12 @@
 		<div class="breadcrumb-home-icon"></div>
 		<cfloop array="#REQUEST.pageData.categoryNameArray#" index="categoryName">
 			<div class="breadcrumb-arrow-icon"></div>
-			<span style="vertical-align:middle">Computers / Networking</span> 
+			<span style="vertical-align:middle">#categoryName#</span> 
 		</cfloop>
 	</div>
 	
 	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
 		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.paginationInfo.records)# total)</span></h1> 
-		<style>
-		##filters {
-		 font-size:12px;
-		 font-weight:bold;
-		}
-		
-		##filters tr td:first-child { 
-		width:60px;
-		height:40px;
-		color:##F2A000;
-		}
-		
-		##filters ul {
-		 margin-left:-5px;
-		 list-style-type:none;
-		}
-		
-		##filters ul li {
-		 float:left;
-		 margin-left:10px;
-		 cursor:hand;
-		 cursor:pointer;
-		}
-		
-		##filters ul li:hover {
-		color:##fff;
-		background-color:##F2A000;
-		}
-		
-		.price td ul li {
-		border:1px solid ##ccc;
-		padding:4px 7px;
-		}
-		
-		.brand td ul li {
-		border:1px solid ##ccc;
-		padding:4px 7px;
-		}
-		
-		.color td ul li {
-		border:1px solid ##ccc;
-		width:20px;
-		height:20px;
-		}
-		
-		.color td ul li:hover {
-		border:1px solid blue;
-		}
-		
-		.active-filter {
-		color:##fff;
-		background-color:##F2A000;
-		}
-		</style>
 		
 		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas()))>
 			<table id="filters">
@@ -77,7 +23,7 @@
 								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
 									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
 										<li 
-										<cfif ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>class="active-filter"</cfif>
+										<cfif REQUEST.pageData.activeFilterValueIdList NEQ 0 AND ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>class="active-filter"</cfif>
 										<cfif filter.getName() EQ "color">style="background-color:#filterValue.getValue()#;"</cfif>
 										>#filterValue.getValue()#</li>
 									</cfloop>
@@ -90,74 +36,6 @@
 		</cfif>
 	</div>
 	
-	<style>
-	##sort-by {
-	 font-size:12px;
-	 margin-top:20px;
-	 float:left;
-	}
-	
-	##sort-by ul {
-	 margin-left:-5px;
-	 list-style-type:none;
-	 float:left;
-	}
-	
-	##sort-by ul li {
-	 float:left;
-	 margin-left:10px;
-	 cursor:hand;
-	 cursor:pointer;
-	}
-	
-	##sort-by ul li:hover {
-	color:##fff;
-	background-color:##ccc;
-	}
-	
-	##sort-by ul li {
-	border:1px solid ##ccc;
-	padding:4px 7px;
-	}
-	
-	
-	##pages {
-	 font-size:12px;
-	 margin-top:20px;
-	 float:right;
-	}
-	
-	##pages .active {
-	 color:##fff;
-	 background-color:##CCC;
-	}
-	
-	##pages ul {
-	 margin-left:-5px;
-	 list-style-type:none;
-	 float:left;
-	}
-	
-	##pages ul li {
-	 float:left;
-	 margin-left:10px;
-	 cursor:hand;
-	 cursor:pointer;
-	}
-	
-	##pages ul li:hover {
-	color:##fff;
-	background-color:##CCC;
-	}
-	
-	##pages ul li {
-	border:1px solid ##ccc;
-	width:20px;
-	height:20px;
-	line-height:20px;
-	text-align:center;
-	}
-	</style>
 	<div id="sort-by">
 		<ul>
 			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
@@ -184,18 +62,17 @@
 		<div class="cat-thumbnail-section" style="border-top:none;">
 			<ul class="rig columns-4">
 				<cfloop array="REQUEST.pageData.getProducts()" array="product">
-					<cfset productLink = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#" />
 					<li class="single-products">
-						<a href="#productLink#">
+						<a href="#product.getDetailPageUrl()#">
 							<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
 						</a>
-						<div class="thumbnail-name"><a href="#productLink#">#product.getDisplayName()#</a></div>
+						<div class="thumbnail-name"><a href="#product.getDetailPageUrl()#">#product.getDisplayName()#</a></div>
 						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
 						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 						<div class="product-overlay">
 							<div class="overlay-content">
 								<div class="thumbnail-rating"></div>
-								<div class="thumbnail-review"><a href="#productLink#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+								<div class="thumbnail-review"><a href="#product.getDetailPageUrl()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
 								<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
 							</div>
 						</div>
@@ -277,20 +154,6 @@ padding: 0 8px 8px;">
 			   stylesheet.attr('href', '/content/skin-' + theme + '/ui.easytree.css');
 		   }
 		</script>
-		<style>
-		   .grey_background {
-			   background-color: ##cccccc;
-		   }
-		   .green_background {
-			   background-color: ##909B19;
-		   }
-		   .red {
-			   color: ##FF0000;
-		   }
-		   .blue {
-			   color: ##0000FF;
-		   }
-		</style>
 	</div>
 	<div class="recommendation">
 		Best Sellers
