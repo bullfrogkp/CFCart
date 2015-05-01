@@ -108,4 +108,8 @@
 		
 		<cfreturn retValue />
 	</cffunction>
+	
+	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
+		<cfreturn "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
+	</cffunction>
 </cfcomponent>

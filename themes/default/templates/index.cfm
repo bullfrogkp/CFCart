@@ -1,6 +1,6 @@
 ﻿<cfoutput>
 <div id="slide-div" style="width:722px;float:right;">
-	#REQUEST.pageData.slideContent#
+	#REQUEST.pageData.slideSection.getContent()#
 </div>
 <div id="top-sidebar">
 	<img src="#SESSION.absoluteUrlTheme#images/week_deal.gif" style="width:230px;" />
@@ -51,25 +51,26 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<cfloop array="#REQUEST.pageData.topSellings#" index="topSell">
-							<cfset product = topSell.getProduct() />
-							<cfset productLink = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#" />
-							<li class="single-products">
-								<a href="#productLink#">
-									<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
-								</a>
-								<div class="thumbnail-name"><a href="#productLink#">#product.getDisplayName()#</a></div>
-								<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
-								<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
-								<div class="product-overlay">
-									<div class="overlay-content">
-										<div class="thumbnail-rating"></div>
-										<div class="thumbnail-review"><a href="#productLink#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
-										<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+						<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getProducts())>
+							<cfloop array="#REQUEST.pageData.topSellingSection.getProducts()#" index="tp">	
+								<cfset product = tp.getProduct() />
+								<li class="single-products">
+									<a href="#product.getDetailPageURL()#">
+										<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
+									</a>
+									<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
+									<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
+									<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<div class="thumbnail-rating"></div>
+											<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+											<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+										</div>
 									</div>
-								</div>
-							</li>
-						</cfloop>
+								</li>
+							</cfloop>
+						</cfif>
 					</ul>
 				</div>
 			</div>
@@ -79,27 +80,28 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<cfloop array="#REQUEST.pageData.groupBuyings#" index="groupBuy">
-							<cfset product = groupBuy.getProduct() />
-							<cfset productLink = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#" />
-							<li class="single-products">
-								<a href="#productLink#">
-									<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
-								</a>
-								<div class="thumbnail-name"><a href="#productLink#">#product.getDisplayName()#</a></div>
-								<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
-								<cfif product.isFreeShipping()>
-									<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
-								</cfif>
-								<div class="product-overlay">
-									<div class="overlay-content">
-										<div class="thumbnail-rating"></div>
-										<div class="thumbnail-review"><a href="#productLink#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
-										<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+						<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getProducts())>
+							<cfloop array="#REQUEST.pageData.groupBuyingSection.getProducts()#" index="gb">	
+								<cfset product = gb.getProduct() />
+								<li class="single-products">
+									<a href="#productLink#">
+										<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
+									</a>
+									<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
+									<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
+									<cfif product.isFreeShipping()>
+										<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
+									</cfif>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<div class="thumbnail-rating"></div>
+											<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+											<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+										</div>
 									</div>
-								</div>
-							</li>
-						</cfloop>
+								</li>
+							</cfloop>
+						</cfif>
 					</ul>
 				</div>
 			</div>
@@ -185,9 +187,11 @@
 			</div>
 		</div>
 		<div id="sidebar-wrapper">
-			<cfloop array="#REQUEST.pageData.homepageAds#" index="ad">
-				<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:100%;border:1px solid ##CCC">
-			</cfloop>
+			<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getAdvertisements())>
+				<cfloop array="#REQUEST.pageData.advertisementSection.getAdvertisements()#" index="ad">	
+					<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:100%;border:1px solid ##CCC">
+				</cfloop>
+			</cfif>
 			<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
 				<h2>INFORMATION</h2>
 				<table style="width:100%;border-collapse: collapse;">

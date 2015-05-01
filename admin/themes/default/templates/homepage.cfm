@@ -177,7 +177,7 @@
 														</tr>
 														<tr>
 															<td colspan="2">
-																<a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">
+																<a href="#product.getDetailPageURL()#">
 																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
 																</a>
 															</td>
@@ -212,7 +212,7 @@
 														</tr>
 														<tr>
 															<td colspan="2">
-																<a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">
+																<a href="#product.getDetailPageURL()#">
 																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
 																</a>
 															</td>

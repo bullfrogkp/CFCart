@@ -3,36 +3,29 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.page = EntityLoad("page", {name=getPageName()},true)> 
+		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name=getPageName()},true)> 
 		
-		<cfif NOT IsNull(LOCAL.pageData.page)>
-			<cfset LOCAL.pageData.title = LOCAL.pageData.page.getTitle() />
-			<cfset LOCAL.pageData.description = LOCAL.pageData.page.getDescription() />
-			<cfset LOCAL.pageData.keywords = LOCAL.pageData.page.getKeywords() />
-			
-			<cfset LOCAL.pageData.slideSection = EntityLoad("section", {name="slide",page=LOCAL.pageData.page},true)>
-			
-			<cfif NOT IsNull(LOCAL.pageData.slideSection)>
-				<cfset LOCAL.pageData.slideContent = LOCAL.pageData.slideSection.getContent() />
-			<cfelse>
-				<cfset LOCAL.pageData.slideContent = "" />
-			</cfif>
+		<cfset LOCAL.pageData.title = LOCAL.pageData.currentPage.getTitle() />
+		<cfset LOCAL.pageData.description = LOCAL.pageData.currentPage.getDescription() />
+		<cfset LOCAL.pageData.keywords = LOCAL.pageData.currentPage.getKeywords() />
+		
+		<cfif NOT IsNull(LOCAL.pageData.slideSection)>
+			<cfset LOCAL.pageData.slideContent = LOCAL.pageData.slideSection.getContent() />
 		<cfelse>
-			<cfset LOCAL.pageData.title = "" />
-			<cfset LOCAL.pageData.description = "" />
-			<cfset LOCAL.pageData.keywords = "" />
 			<cfset LOCAL.pageData.slideContent = "" />
 		</cfif>
 		
-		<cfif LOCAL.pageData.title EQ "">
+		<cfif Trim(LOCAL.pageData.title) EQ "">
 			<cfset LOCAL.pageData.title = "Home | #APPLICATION.applicationName#" />
 		</cfif>
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.homepageAds = EntityLoad("advertisement",{page=LOCAL.pageData.page, isDeleted=false},"rank asc") />	
-		<cfset LOCAL.pageData.topSellings = EntityLoad("top_selling",{},"rank asc") />	
-		<cfset LOCAL.pageData.groupBuyings = EntityLoad("group_buying",{},"rank asc") />
+		
+		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
 		
 		<cfset LOCAL.pageData.topSellingCategory = EntityLoad("category",{displayName="Top Selling"},true) />
 		<cfset LOCAL.pageData.groupBuyingCategory = EntityLoad("category",{displayName="Group Buying"},true) />
