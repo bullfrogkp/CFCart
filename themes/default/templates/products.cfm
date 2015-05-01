@@ -3,16 +3,20 @@
 <div id="slide-div" style="width:712px;float:right;">
 	<div id="breadcrumb">
 		<div class="breadcrumb-home-icon"></div>
-		<cfloop array="#REQUEST.pageData.categoryNameArray#" index="categoryName">
+		<cfloop array="#REQUEST.pageData.categoryArray#" index="category">
 			<div class="breadcrumb-arrow-icon"></div>
-			<span style="vertical-align:middle">#categoryName#</span> 
+			<span style="vertical-align:middle">
+				<a href="#category.getDetailPageUrl()#">
+				#category.getDisplayName()#
+				</a>
+			</span> 
 		</cfloop>
 	</div>
 	
 	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
 		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.paginationInfo.records)# total)</span></h1> 
 		
-		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas()))>
+		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
 			<table id="filters">
 				<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">
 					<cfset filter = categoryFilterRela.getFilter() />
@@ -61,7 +65,7 @@
 	<div class="cat-thumbnails" style="margin-top:10px;">
 		<div class="cat-thumbnail-section" style="border-top:none;">
 			<ul class="rig columns-4">
-				<cfloop array="REQUEST.pageData.getProducts()" array="product">
+				<cfloop array="#REQUEST.pageData.category.getProducts()#" index="product">
 					<li class="single-products">
 						<a href="#product.getDetailPageUrl()#">
 							<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
@@ -93,16 +97,16 @@
 				<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
 					<cfset cat = REQUEST.pageData.categoryTree[i] />
 					<li class="<cfif ArrayLen(cat.getSubCategories()) NEQ 0>has-sub-menu</cfif> first-level-menu" <cfif i EQ 1>style="margin-top:6px;<cfelseif i EQ ArrayLen(REQUEST.pageData.categoryTree)>style="margin-bottom:6px;</cfif>">
-						<a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(cat.getDisplayName())#/#cat.getCategoryId()#">#cat.getDisplayName()#</a>
+						<a href="#cat.getDetailPageURL()#">#cat.getDisplayName()#</a>
 						<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 							<div class="cat-submenu">
 								<div style="z-index:1;position: relative;">
 									<cfloop array="#cat.getSubCategories()#" index="subCat">
 										<dl>
 											<div class="clear"></div>
-											<dt><a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(subCat.getDisplayName())#/#subCat.getCategoryId()#">#subCat.getDisplayName()#</a></dt>
+											<dt><a href="#subCat.getDetailPageURL()#">#subCat.getDisplayName()#</a></dt>
 											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-												<dd><a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(thirdCat.getDisplayName())#/#thirdCat.getCategoryId()#">#thirdCat.getDisplayName()#</a></dd>
+												<dd><a href="#thirdCat.getDetailPageURL()#">#thirdCat.getDisplayName()#</a></dd>
 											</cfloop>
 										</dl>
 									</cfloop>
@@ -129,13 +133,13 @@ padding: 0 8px 8px;">
 					<cfset cat = REQUEST.pageData.categoryTree[i] />
 					
 					<li class="isFolder isExpanded has-child" title="Bookmarks">
-						<a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(cat.getDisplayName())#/#cat.getCategoryId()#">
+						<a href="#cat.getDetailPageURL()#">
 							#cat.getDisplayName()#
 						</a>
 						<ul>
 							<cfloop array="#cat.getSubCategories()#" index="subCat">
 								<li>
-									<a href="#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(subCat.getDisplayName())#/#subCat.getCategoryId()#">
+									<a href="#subCat.getDetailPageURL()#">
 										#subCat.getDisplayName()#
 									</a>
 								</li>
@@ -160,27 +164,32 @@ padding: 0 8px 8px;">
 	</div>
 	<div class="recommendation-list" style="margin-bottom:8px;">
 		<ul>
-			<cfloop array="#REQUEST.pageData.bestSellers#" index="product">
-				<li>
-					<img src="#SESSION.absoluteUrlTheme#images/#product.getDefaultImageLink()#" />
-					<div class="recommendation-list-detail">
-						<div class="recommendation-list-name">
-							<a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#">
-								#product.getDisplayName()#
-							</a>
+			<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getProducts())>
+				<cfloop array="#REQUEST.pageData.bestSellerSection.getProducts()#" index="bs">	
+					<cfset product = bs.getProduct() />
+					<li>
+						<img src="#SESSION.absoluteUrlTheme#images/#product.getDefaultImageLink()#" />
+						<div class="recommendation-list-detail">
+							<div class="recommendation-list-name">
+								<a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#">
+									#product.getDisplayName()#
+								</a>
+							</div>
+							<div class="recommendation-list-price">#DollarFormat(product.getPrice())#</div>
+							<div class="recommendation-list-review"></div>
+							<div><a href="">(#ArrayLen(product.getReviews())# Reviews)</a></div>
 						</div>
-						<div class="recommendation-list-price">#DollarFormat(product.getPrice())#</div>
-						<div class="recommendation-list-review"></div>
-						<div><a href="">(#ArrayLen(product.getReviews())# Reviews)</a></div>
-					</div>
-					<div style="clear:both;"></div>
-				</li>
-			</cfloop>
+						<div style="clear:both;"></div>
+					</li>
+				</cfloop>
+			</cfif>
 		</ul>
 	</div>
-	<cfloop array="#REQUEST.pageData.advertisements#" index="ad">
-		<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:228px;border:1px solid ##CCC">
-	</cfloop>
+	<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getAdvertisements())>
+		<cfloop array="#REQUEST.pageData.advertisementSection.getAdvertisements()#" index="ad">	
+			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:228px;border:1px solid ##CCC">
+		</cfloop>
+	</cfif>
 	<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
 		<h2>INFORMATION</h2>
 		<table style="width:100%;border-collapse: collapse;">

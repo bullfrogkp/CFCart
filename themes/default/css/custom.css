@@ -1,43 +1,43 @@
-##filters {
+#filters {
 font-size:12px;
 font-weight:bold;
 }
 
-##filters tr td:first-child { 
+#filters tr td:first-child { 
 width:60px;
 height:40px;
-color:##F2A000;
+color:#F2A000;
 }
 
-##filters ul {
+#filters ul {
 margin-left:-5px;
 list-style-type:none;
 }
 
-##filters ul li {
+#filters ul li {
 float:left;
 margin-left:10px;
 cursor:hand;
 cursor:pointer;
 }
 
-##filters ul li:hover {
-color:##fff;
-background-color:##F2A000;
+#filters ul li:hover {
+color:#fff;
+background-color:#F2A000;
 }
 
 .price td ul li {
-border:1px solid ##ccc;
+border:1px solid #ccc;
 padding:4px 7px;
 }
 
 .brand td ul li {
-border:1px solid ##ccc;
+border:1px solid #ccc;
 padding:4px 7px;
 }
 
 .color td ul li {
-border:1px solid ##ccc;
+border:1px solid #ccc;
 width:20px;
 height:20px;
 }
@@ -47,71 +47,71 @@ border:1px solid blue;
 }
 
 .active-filter {
-color:##fff;
-background-color:##F2A000;
+color:#fff;
+background-color:#F2A000;
 }
 
-##sort-by {
+#sort-by {
 font-size:12px;
 margin-top:20px;
 float:left;
 }
 
-##sort-by ul {
+#sort-by ul {
 margin-left:-5px;
 list-style-type:none;
 float:left;
 }
 
-##sort-by ul li {
+#sort-by ul li {
 float:left;
 margin-left:10px;
 cursor:hand;
 cursor:pointer;
 }
 
-##sort-by ul li:hover {
-color:##fff;
-background-color:##ccc;
+#sort-by ul li:hover {
+color:#fff;
+background-color:#ccc;
 }
 
-##sort-by ul li {
-border:1px solid ##ccc;
+#sort-by ul li {
+border:1px solid #ccc;
 padding:4px 7px;
 }
 
 
-##pages {
+#pages {
 font-size:12px;
 margin-top:20px;
 float:right;
 }
 
-##pages .active {
-color:##fff;
-background-color:##CCC;
+#pages .active {
+color:#fff;
+background-color:#CCC;
 }
 
-##pages ul {
+#pages ul {
 margin-left:-5px;
 list-style-type:none;
 float:left;
 }
 
-##pages ul li {
+#pages ul li {
 float:left;
 margin-left:10px;
 cursor:hand;
 cursor:pointer;
 }
 
-##pages ul li:hover {
-color:##fff;
-background-color:##CCC;
+#pages ul li:hover {
+color:#fff;
+background-color:#CCC;
 }
 
-##pages ul li {
-border:1px solid ##ccc;
+#pages ul li {
+border:1px solid #ccc;
 width:20px;
 height:20px;
 line-height:20px;
@@ -119,14 +119,14 @@ text-align:center;
 }
 
 .grey_background {
-   background-color: ##cccccc;
+   background-color: #cccccc;
 }
 .green_background {
-   background-color: ##909B19;
+   background-color: #909B19;
 }
 .red {
-   color: ##FF0000;
+   color: #FF0000;
 }
 .blue {
-   color: ##0000FF;
+   color: #0000FF;
 }

@@ -21,21 +21,27 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.category.getKeywords() />
-		<cfset LOCAL.pageData.categoryNameArray = _getCategoryNameArray(category = LOCAL.pageData.category) />
-		
+		<cfset LOCAL.pageData.categoryArray = _getCategoryArray(category = LOCAL.pageData.category) />
+	
+		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = getPageName()},true)> 
+		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
+	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
-	<cffunction name="_getCategoryNameArray" access="private" output="false" returnType="array">
-		<cfargument name="category" type="object" required="true" />
+	<cffunction name="_getCategoryArray" access="private" output="false" returnType="array">
+		<cfargument name="category" type="any" required="true" />
 		<cfset var LOCAL = {} />
 				
 		<cfset LOCAL.categoryArray = [] />
 		<cfset LOCAL.category = ARGUMENTS.category />
 		
+		<cfset ArrayPrepend(LOCAL.categoryArray, LOCAL.category) />
+			
 		<cfloop condition = "NOT IsNull(LOCAL.category.getParentCategory())">
-			<cfset ArrayPrepend(LOCAL.categoryArray, LOCAL.category.getDisplayName()) />
 			<cfset LOCAL.category = LOCAL.category.getParentCategory() />
+			<cfset ArrayPrepend(LOCAL.categoryArray, LOCAL.category) />
 		</cfloop>
 				
 		<cfreturn LOCAL.categoryArray />	
