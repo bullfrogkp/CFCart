@@ -14,7 +14,7 @@
 	</div>
 	
 	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
-		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">Keyboards <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.paginationInfo.records)# total)</span></h1> 
+		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">#category.getDisplayName()# <span style="font-size:12px;">(#REQUEST.pageData.paginationInfo.totalCount# total)</span></h1> 
 		
 		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
 			<table id="filters">
