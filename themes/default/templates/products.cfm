@@ -27,12 +27,10 @@
 								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
 									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
 										<li class="filter-value <cfif REQUEST.pageData.activeFilterValueIdList NEQ 0 AND ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>active-filter</cfif>"
-										<cfif filter.getDisplayName() EQ "color">style="background-color:#filterValue.getValue()#;border:1px solid ##ccc;width:20px;height:20px;"</cfif>
+										<cfif filter.getDisplayName() EQ "color">style="background-color:#filterValue.getValue()#;border:1px solid ##ccc;width:20px;height:20px;padding:0;"</cfif>
 										>
 										
-										<cfif filter.getDisplayName() EQ "color">
-											#filterValue.getValue()#
-										<cfelse>
+										<cfif filter.getDisplayName() NEQ "color">
 											#filterValue.getDisplayName()#
 										</cfif>
 										
