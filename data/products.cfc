@@ -9,11 +9,12 @@
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
-		<cfset LOCAL.categoryService.setIsDeleted(false) />
-		<cfset LOCAL.categoryService.setIsEnabled(true) />
-		<cfset LOCAL.categoryService.setPageNumber(LOCAL.pageData.pageNumber) />
+		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+		<cfset LOCAL.productService.setIsDeleted(false) />
+		<cfset LOCAL.productService.setIsEnabled(true) />
+		<cfset LOCAL.productService.setPageNumber(LOCAL.pageData.pageNumber) />
 		
-		<cfset LOCAL.recordStruct = LOCAL.categoryService.getRecords() />
+		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />

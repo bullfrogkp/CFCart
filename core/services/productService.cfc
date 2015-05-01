@@ -15,21 +15,27 @@
 	   
 		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
 			<cfif ARGUMENTS.getCount EQ true>
-			SELECT COUNT(productId) 
+			SELECT COUNT(p.productId) 
 			</cfif>
-			FROM product 
+			FROM product p
+			<cfif NOT IsNull(getCategoryId())>
+			JOIN p.categories c
+			</cfif>
 			WHERE 1=1
 			<cfif getSearchKeywords() NEQ "">	
-			AND	(displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
+			AND	(p.displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
 			</cfif>
 			<cfif NOT IsNull(getId())>
-			AND productId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			AND p.productId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
-			AND isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
+			AND p.isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
 			</cfif>
 			<cfif NOT IsNull(getIsDeleted())>
-			AND isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
+			AND p.isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
+			</cfif>
+			<cfif NOT IsNull(getCategoryId())>
+			AND c.category_id =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />
 			</cfif>
 		</cfquery>
 	
