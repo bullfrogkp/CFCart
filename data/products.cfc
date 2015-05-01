@@ -13,9 +13,10 @@
 		<cfset LOCAL.productService.setIsDeleted(false) />
 		<cfset LOCAL.productService.setIsEnabled(true) />
 		<cfset LOCAL.productService.setPageNumber(LOCAL.pageData.pageNumber) />
+		<cfset LOCAL.productService.setCategoryId(LOCAL.categoryId) />
 		
-		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() />
-		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) /> 
+		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() /> <cfdump var="#LOCAL.recordStruct#" abort>
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />
 		

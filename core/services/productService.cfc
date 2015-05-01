@@ -35,7 +35,7 @@
 			AND p.isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
 			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
-			AND c.category_id =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />
+			AND c.categoryId =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />
 			</cfif>
 		</cfquery>
 	

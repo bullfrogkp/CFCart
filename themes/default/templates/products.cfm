@@ -6,7 +6,7 @@
 		<cfloop array="#REQUEST.pageData.categoryArray#" index="category">
 			<div class="breadcrumb-arrow-icon"></div>
 			<span style="vertical-align:middle">
-				<a href="#category.getDetailPageUrl()#">
+				<a href="#category.getDetailPageURL()#">
 				#category.getDisplayName()#
 				</a>
 			</span> 
@@ -72,10 +72,10 @@
 			<ul class="rig columns-4">
 				<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 					<li class="single-products">
-						<a href="#product.getDetailPageUrl()#">
+						<a href="#product.getDetailPageURL()#">
 							<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
 						</a>
-						<div class="thumbnail-name"><a href="#product.getDetailPageUrl()#">#product.getDisplayName()#</a></div>
+						<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
 						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
 						<cfif product.isFreeShipping()>
 						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
@@ -83,7 +83,7 @@
 						<div class="product-overlay">
 							<div class="overlay-content">
 								<div class="thumbnail-rating"></div>
-								<div class="thumbnail-review"><a href="#product.getDetailPageUrl()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+								<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
 								<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
 							</div>
 						</div>
