@@ -77,7 +77,9 @@
 						</a>
 						<div class="thumbnail-name"><a href="#product.getDetailPageUrl()#">#product.getDisplayName()#</a></div>
 						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
+						<cfif product.isFreeShipping()>
 						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
+						</cfif>
 						<div class="product-overlay">
 							<div class="overlay-content">
 								<div class="thumbnail-rating"></div>
