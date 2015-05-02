@@ -55,15 +55,7 @@
 		</ul>
 	</div>
 	<div id="pages">
-		<ul>
-			<li style="">1</li>
-			<li>2</li>
-			<li>3</li>
-			<li>4</li>
-			<li>5</li>
-			<li>></li>
-			<li>>></li>
-		</ul>
+		<cfinclude template="pagination.cfm" />
 	</div>
 	<div class="clear"></div>
 	
