@@ -18,9 +18,6 @@
 			SELECT COUNT(p.productId) 
 			</cfif>
 			FROM product p
-			<cfif NOT IsNull(getCategoryId())>
-			JOIN p.categories c
-			</cfif>
 			WHERE 1=1
 			<cfif getSearchKeywords() NEQ "">	
 			AND	(p.displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
@@ -35,7 +32,7 @@
 			AND p.isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
 			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
-			AND c.categoryId =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />
+			AND	EXISTS (FROM  p.categories c WHERE c.categoryId =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
 			</cfif>
 		</cfquery>
 

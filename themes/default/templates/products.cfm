@@ -70,8 +70,7 @@
 	<div class="cat-thumbnails" style="margin-top:10px;">
 		<div class="cat-thumbnail-section" style="border-top:none;">
 			<ul class="rig columns-4">
-				<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="item">
-					<cfset product = item[1] />
+				<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 					<li class="single-products">
 						<a href="#product.getDetailPageURL()#">
 							<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
