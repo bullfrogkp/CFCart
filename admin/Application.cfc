@@ -33,6 +33,7 @@
 				<cfset THIS[ "$Config" ].env.emailDevelopment = "dev@#THIS[ "$Config" ].env.domain#" />
 				<cfset THIS[ "$Config" ].env.emailInfo = "info@#THIS[ "$Config" ].env.domain#" />
 				<cfset THIS[ "$Config" ].env.recordsPerPage = 10 />
+				<cfset THIS[ "$Config" ].env.recordsPerPageFrontend = 20 />
 				
 				<!--- customized local vars --->
 				<cfset var folder_name = "cfcart" />
@@ -66,6 +67,7 @@
 				<cfset THIS[ "$Config" ].env.emailDevelopment = "dev@#THIS[ "$Config" ].env.domain#" />
 				<cfset THIS[ "$Config" ].env.emailInfo = "info@#THIS[ "$Config" ].env.domain#" />
 				<cfset THIS[ "$Config" ].env.recordsPerPage = 10 />
+				<cfset THIS[ "$Config" ].env.recordsPerPageFrontend = 20 />
 				
 				<!--- absolute url --->
 				<cfset THIS[ "$Config" ].env.absoluteUrlWeb = "/" />	

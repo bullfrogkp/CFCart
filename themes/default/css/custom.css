@@ -57,6 +57,11 @@ color:#fff;
 background-color:#ccc;
 }
 
+#sort-by ul li.active {
+color:#fff;
+background-color:#ccc;
+}
+
 #sort-by ul li {
 border:1px solid #ccc;
 padding:4px 7px;
