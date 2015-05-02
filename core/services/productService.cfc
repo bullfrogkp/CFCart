@@ -38,7 +38,7 @@
 			AND c.categoryId =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />
 			</cfif>
 		</cfquery>
-	
+
 		<cfreturn LOCAL.query />
     </cffunction>
 	
