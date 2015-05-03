@@ -31,6 +31,8 @@
 		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
 	
+		<cfset LOCAL.pageData.filterArray = _getFilterArray(category = LOCAL.pageData.category) />
+	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
@@ -51,17 +53,51 @@
 		<cfreturn LOCAL.categoryArray />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="_getFilterArray" access="private" output="false" returnType="array">
+		<cfargument name="category" type="any" required="true" />
+		<cfset var LOCAL = {} />
+				
+		<cfset LOCAL.filterArray = [] />
+		<cfset LOCAL.category = ARGUMENTS.category />
+		
+		<cfloop array="#LOCAL.category.getCategoryFilterRelas()#" index="LOCAL.categoryFilterRela">
+			<cfset LOCAL.filter = LOCAL.categoryFilterRela.getFilter() />
+			
+			<cfset LOCAL.filterStruct = {} />
+			<cfset LOCAL.filterStruct.filterName = LOCAL.filter.getDisplayName() />
+			<cfset LOCAL.filterStruct.filterValueArray = [] />
+			
+			<cfif NOT IsNull(LOCAL.categoryFilterRela.getFilterValues())>
+				<cfloop array="#LOCAL.categoryFilterRela.getFilterValues()#" index="LOCAL.filterValue">
+					<cfset LOCAL.newFilterValue = {} />
+					<cfset LOCAL.newFilterValue.name = LOCAL.filterValue.getDisplayName() />
+					<cfset LOCAL.newFilterValue.value = LOCAL.filterValue.getValue() />
+					<cfset LOCAL.newFilterValue.link = LOCAL.filterValue.getValue() />
+					<cfset ArrayPrepend(LOCAL.filterStruct.filterValueArray, LOCAL.newFilterValue) />
+				</cfloop>
+			</cfif>
+			
+			<cfset ArrayPrepend(LOCAL.filterArray, LOCAL.filterStruct) />
+		</cfloop>
+				
+		<cfreturn LOCAL.filterArray />	
+	</cffunction>
+	<!---------------------------------------------------------------------------------------------------------------------->
 	<cffunction name="_buildPathInfo" access="private" output="false" returnType="string">
 		<cfargument name="categoryName" type="string" required="true" />
 		<cfargument name="categoryId" type="numeric" required="true" />
 		<cfargument name="pageNumber" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
+		<cfargument name="filterValues" type="array" required="true" />
 		
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.pathInfo = "/#ARGUMENTS.categoryName#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/"
 		
+		<cfloop array="#ARGUMENTS.filterValues#" index="filterValue">
+			<cfset LOCAL.pathInfo &= "#filterValue.filterValueId#|" />
 		</cfloop>
 				
+		<cfreturn LOCAL.pathInfo />	
 	</cffunction>
 </cfcomponent>
