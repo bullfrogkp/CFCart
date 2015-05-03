@@ -55,7 +55,9 @@
 		</ul>
 	</div>
 	<div id="pages">
-		<cfinclude template="pagination.cfm" />
+		<cfloop array="#REQUEST.pageData.paginationInfo.pageArray#" index="page">
+			<a href="#page.link#">#page.number#</a>
+		</cfloop>
 	</div>
 	<div class="clear"></div>
 	
