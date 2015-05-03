@@ -18,25 +18,24 @@
 		
 		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
 			<table id="filters">
-				<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">
-					<cfset filter = categoryFilterRela.getFilter() />
+				<cfloop array="#REQUEST.pageData.filterArray#" index="filter">
 					<tr>
-						<td>#filter.getDisplayName()#:</td>
+						<td>#filter.filterName#:</td>
 						<td>
 							<ul>
-								<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
-									<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
-										<li class="filter-value <cfif REQUEST.pageData.activeFilterValueIdList NEQ 0 AND ListFind(REQUEST.pageData.activeFilterValueIdList,filterValue.getFilterValueId())>active-filter</cfif>"
-										<cfif filter.getDisplayName() EQ "color">style="background-color:#filterValue.getValue()#;border:1px solid ##ccc;width:20px;height:20px;padding:0;"</cfif>
-										>
-										
-										<cfif filter.getDisplayName() NEQ "color">
-											#filterValue.getDisplayName()#
-										</cfif>
-										
-										</li>
-									</cfloop>
-								</cfif>
+								<cfloop array="#filter.filterValueArray#" index="filterValue">
+									<a href="#filterValue.link#"
+									<li class="filter-value <cfif filterValue.selected>active-filter</cfif>"
+									<cfif filter.filterName EQ "color">style="background-color:#filterValue.value#;border:1px solid ##ccc;width:20px;height:20px;padding:0;"</cfif>
+									>
+									
+									<cfif filter.filterName NEQ "color">
+										#filterValue.name#
+									</cfif>
+									
+									</li>
+									</a>
+								</cfloop>
 							</ul>
 						</td>
 					</tr>
