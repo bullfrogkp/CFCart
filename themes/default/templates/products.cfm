@@ -47,10 +47,10 @@
 	<div id="sort-by">
 		<ul>
 			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
-			<li <cfif REQUEST.pageData.orderBy EQ 1>class="active"</cfif>>Reviews</li>
-			<li <cfif REQUEST.pageData.orderBy EQ 2>class="active"</cfif>>Top Selling</li>
-			<li <cfif REQUEST.pageData.orderBy EQ 3>class="active"</cfif>>Price</li>
-			<li <cfif REQUEST.pageData.orderBy EQ 4>class="active"</cfif>>New Arrivals</li>
+			<li <cfif REQUEST.pageData.sortTypeId EQ 1>class="active"</cfif>>Reviews</li>
+			<li <cfif REQUEST.pageData.sortTypeId EQ 2>class="active"</cfif>>Top Selling</li>
+			<li <cfif REQUEST.pageData.sortTypeId EQ 3>class="active"</cfif>>Price</li>
+			<li <cfif REQUEST.pageData.sortTypeId EQ 4>class="active"</cfif>>New Arrivals</li>
 		</ul>
 	</div>
 	<div id="pages">
