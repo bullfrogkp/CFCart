@@ -6,7 +6,7 @@
 		<cfset LOCAL.pageData.title = "Categories | #APPLICATION.applicationName#" />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
-		
+		<cfset LOCAL.categoryService.setRecordsPerPage(APPLICATION.recordsPerPage) />
 		<cfset LOCAL.categoryService.setIsDeleted(false) />
 		<cfif StructKeyExists(URL,"category_id") AND IsNumeric(URL.category_id)>
 			<cfset LOCAL.categoryService.setId(URL.category_id) />

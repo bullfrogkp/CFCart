@@ -6,7 +6,7 @@
 		<cfset LOCAL.pageData.title = "Customers | #APPLICATION.applicationName#" />
 		
 		<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
-		
+		<cfset LOCAL.customerService.setRecordsPerPage(APPLICATION.recordsPerPage) />
 		<cfset LOCAL.customerService.setIsDeleted(false) />
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.customerService.setCustomerId(URL.id) />

@@ -6,7 +6,7 @@
 		<cfset LOCAL.pageData.title = "Orders | #APPLICATION.applicationName#" />
 		
 		<cfset LOCAL.orderService = new "#APPLICATION.componentPathRoot#core.services.orderService"() />
-		
+		<cfset LOCAL.orderService.setRecordsPerPage(APPLICATION.recordsPerPage) />
 		<cfset LOCAL.orderService.setIsDeleted(false) />
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.orderService.setId(URL.id) />
