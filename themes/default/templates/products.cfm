@@ -55,9 +55,11 @@
 		</ul>
 	</div>
 	<div id="pages">
+		<ul class="pagination pagination-sm no-margin pull-right">
 		<cfloop array="#REQUEST.pageData.paginationInfo.pageArray#" index="page">
-			<a href="#page.link#">#page.number#</a>
+			<li><a href="#page.link#">#page.number#</a></li>
 		</cfloop>
+		</ul>
 	</div>
 	<div class="clear"></div>
 	
