@@ -50,4 +50,31 @@
 				
 		<cfreturn LOCAL.categoryArray />	
 	</cffunction>
+	<!---------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="_getPageArray" access="private" output="false" returnType="array">
+		<cfargument name="pageNumber" type="numeric" required="true" />
+		
+		<cfset var LOCAL = {} />
+				
+		<cfset LOCAL.pageArray = [] />
+		
+		<cfif page GT 3 AND total_page GT 5>
+			<cfset LOCAL.pageStruct = {} />
+			<cfset LOCAL.pageStruct.number = "&laquo;" />
+			<cfset LOCAL.pageStruct.link = "" />
+		</cfif>
+		
+		<cfif total_page LTE 5>
+			<cfloop from="1" to="#total_page#" index="i">
+				<cfset LOCAL.pageStruct = {} />
+				<cfset LOCAL.pageStruct.number = i />
+				<cfset LOCAL.pageStruct.link = "" />
+			</cfloop>
+		<cfelseif total_page GT 5 AND page LTE 3>
+		</cfif>
+		
+		&raquo;
+				
+		<cfreturn LOCAL.pageArray />	
+	</cffunction>
 </cfcomponent>
