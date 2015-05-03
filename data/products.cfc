@@ -50,5 +50,18 @@
 				
 		<cfreturn LOCAL.categoryArray />	
 	</cffunction>
-	
+	<!---------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="_buildPathInfo" access="private" output="false" returnType="string">
+		<cfargument name="categoryName" type="string" required="true" />
+		<cfargument name="categoryId" type="numeric" required="true" />
+		<cfargument name="pageNumber" type="numeric" required="true" />
+		<cfargument name="sortTypeId" type="numeric" required="true" />
+		
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.pathInfo = "/#ARGUMENTS.categoryName#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/"
+		
+		</cfloop>
+				
+	</cffunction>
 </cfcomponent>
