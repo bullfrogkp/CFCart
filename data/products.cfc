@@ -37,7 +37,7 @@
 	
 		<cfset LOCAL.currentFilterStruct = {} />
 		
-		<cfloop list="#LOCAL.pageData.filterList#" index="LOCAL.filterAndValue" delimiters="|">
+		<cfloop list="#LOCAL.pageData.filterList#" index="LOCAL.filterAndValue">
 			<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
 			<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
 			<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
@@ -146,7 +146,7 @@
 		<cfset var pathInfo = "/#URLEncodedFormat(ARGUMENTS.categoryName)#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/" />
 		
 		<cfloop collection="#ARGUMENTS.filterStruct#" item="LOCAL.filterId">
-			<cfset pathInfo &= LOCAL.filterId & "=" & ARGUMENTS.filterStruct["#LOCAL.filterId#"] & "|" />
+			<cfset pathInfo &= LOCAL.filterId & "=" & ARGUMENTS.filterStruct["#LOCAL.filterId#"] & "," />
 		</cfloop>
 		
 		<cfreturn pathInfo />	
