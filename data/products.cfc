@@ -23,6 +23,7 @@
 		
 		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(recordStruct = LOCAL.recordStruct, currentPage = LOCAL.pageData.pageNumber) />
+		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />
 		
@@ -48,7 +49,12 @@
 															, 	sortTypeId = LOCAL.pageData.sortTypeId
 															, 	currentFilterStruct = LOCAL.currentFilterStruct) />
 															
-
+		<cfset LOCAL.pageData.pageArray = _getPageArray(	currentPage = LOCAL.pageData.pageNumber
+														, 	totalPages = LOCAL.pageData.paginationInfo.totalPages
+														,	categoryName = LOCAL.pageData.category.getDisplayName()
+														,	categoryId = LOCAL.pageData.category.getCategoryId()
+														, 	sortTypeId = LOCAL.pageData.sortTypeId
+														, 	currentFilterStruct = LOCAL.currentFilterStruct) />
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
@@ -120,11 +126,11 @@
 					</cfif>
 					
 					<cfset LOCAL.newFilterValue.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = LOCAL.category.getDisplayName()
-																	, categoryId = LOCAL.category.getCategoryId()
-																	, pageNumber = ARGUMENTS.pageNumber
-																	, sortTypeId = ARGUMENTS.sortTypeId
-																	, filterStruct = LOCAL.currentFilterStruct
-																	) />
+																						, categoryId = LOCAL.category.getCategoryId()
+																						, pageNumber = ARGUMENTS.pageNumber
+																						, sortTypeId = ARGUMENTS.sortTypeId
+																						, filterStruct = LOCAL.currentFilterStruct
+																						) />
 					<cfset ArrayPrepend(LOCAL.filterStruct.filterValueArray, LOCAL.newFilterValue) />
 				</cfloop>
 			</cfif>
@@ -151,5 +157,67 @@
 		</cfloop>
 		
 		<cfreturn pathInfo />	
+	</cffunction>
+	<!---------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="_getPageArray" access="private" output="false" returnType="array">
+		<cfargument name="currentPage" type="string" required="true" />
+		<cfargument name="totalPages" type="string" required="true" />
+		<cfargument name="categoryName" type="string" required="true" />
+		<cfargument name="categoryId" type="numeric" required="true" />
+		<cfargument name="sortTypeId" type="numeric" required="true" />
+		<cfargument name="filterStruct" type="struct" required="true" />
+		
+		<cfset var LOCAL = {} />
+				
+		<cfset LOCAL.pageArray = [] />
+		
+		<cfif ARGUMENTS.currentPage GT 3 AND ARGUMENTS.totalPages GT 5>
+			<cfset LOCAL.pageStruct = {} />
+			<cfset LOCAL.pageStruct.number = "&laquo;" />
+			<cfset LOCAL.pageStruct.link = _buildPathInfo(categoryName = ARGUMENTS.categoryName
+														, categoryId = ARGUMENTS.categoryId
+														, pageNumber = 1
+														, sortTypeId = ARGUMENTS.sortTypeId
+														, filterStruct = ARGUMENTS.currentFilterStruct) />
+			<cfset ArrayAppend(LOCAL.pageArray, LOCAL.pageStruct) />
+		</cfif>
+		
+		<cfif ARGUMENTS.totalPages LTE 5>
+			<cfset LOCAL.from = 1 />
+			<cfset LOCAL.to = ARGUMENTS.totalPages />
+		<cfelseif ARGUMENTS.totalPages GT 5 AND ARGUMENTS.currentPage LTE 3>
+			<cfset LOCAL.from = 1 />
+			<cfset LOCAL.to = 5 />
+		<cfelseif ARGUMENTS.totalPages GT 5 AND ARGUMENTS.currentPage GT 3 AND ARGUMENTS.currentPage LTE (ARGUMENTS.totalPages - 3)>
+			<cfset LOCAL.from = ARGUMENTS.currentPage - 2 />
+			<cfset LOCAL.to = ARGUMENTS.currentPage + 2 />
+		<cfelseif ARGUMENTS.totalPages GT 5 AND ARGUMENTS.currentPage GT (ARGUMENTS.totalPages - 3)> 
+			<cfset LOCAL.from = ARGUMENTS.totalPages - 5 />
+			<cfset LOCAL.to = ARGUMENTS.totalPages />
+		</cfif>
+		
+		<cfloop from="#LOCAL.from#" to="#LOCAL.to#" index="LOCAL.i">
+			<cfset LOCAL.pageStruct = {} />
+			<cfset LOCAL.pageStruct.number = LOCAL.i />
+			<cfset LOCAL.pageStruct.link = _buildPathInfo(categoryName = ARGUMENTS.categoryName
+														, categoryId = ARGUMENTS.categoryId
+														, pageNumber = LOCAL.i
+														, sortTypeId = ARGUMENTS.sortTypeId
+														, filterStruct = ARGUMENTS.currentFilterStruct) />
+			<cfset ArrayAppend(LOCAL.pageArray, LOCAL.pageStruct) />
+		</cfloop>
+		
+		<cfif ARGUMENTS.currentPage LT ARGUMENTS.totalPages-2 AND ARGUMENTS.totalPages GT 5>
+			<cfset LOCAL.pageStruct = {} />
+			<cfset LOCAL.pageStruct.number = "&raquo;" />
+			<cfset LOCAL.pageStruct.link = _buildPathInfo(categoryName = ARGUMENTS.categoryName
+														, categoryId = ARGUMENTS.categoryId
+														, pageNumber = ARGUMENTS.totalPages
+														, sortTypeId = ARGUMENTS.sortTypeId
+														, filterStruct = ARGUMENTS.currentFilterStruct) />
+			<cfset ArrayAppend(LOCAL.pageArray, LOCAL.pageStruct) />
+		</cfif>
+				
+		<cfreturn LOCAL.pageArray />	
 	</cffunction>
 </cfcomponent>
