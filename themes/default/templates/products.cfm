@@ -24,7 +24,7 @@
 						<td>
 							<ul>
 								<cfloop array="#filter.filterValueArray#" index="filterValue">
-									<a href="#filterValue.link#"
+									<a href="#filterValue.link#">
 									<li class="filter-value <cfif filterValue.selected>active-filter</cfif>"
 									<cfif filter.filterName EQ "color">style="background-color:#filterValue.value#;border:1px solid ##ccc;width:20px;height:20px;padding:0;"</cfif>
 									>
