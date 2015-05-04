@@ -1,4 +1,4 @@
-﻿<cfcomponent extends="master">	
+<cfcomponent extends="master"> 
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
@@ -57,13 +57,13 @@
 		<cfargument name="category" type="any" required="true" />
 		<cfargument name="pageNumber" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
-		<cfargument name="filterValueIdList" type="array" required="true" />
+		<cfargument name="currentFilterStruct" type="struct" required="true" />
 		
 		<cfset var LOCAL = {} />
 				
 		<cfset LOCAL.filterArray = [] />
 		<cfset LOCAL.category = ARGUMENTS.category />
-		<cfset LOCAL.filterValueIdList = ARGUMENTS.filterValueIdList />
+		<cfset LOCAL.currentFilterStruct = ARGUMENTS.currentFilterStruct />
 		
 		<cfloop array="#LOCAL.category.getCategoryFilterRelas()#" index="LOCAL.categoryFilterRela">
 			<cfset LOCAL.filter = LOCAL.categoryFilterRela.getFilter() />
@@ -78,10 +78,29 @@
 					<cfset LOCAL.newFilterValue.name = LOCAL.filterValue.getDisplayName() />
 					<cfset LOCAL.newFilterValue.value = LOCAL.filterValue.getValue() />
 					
-					<cfif ListFind(LOCAL.filterValueIdList, LOCAL.filterValue.getFilterValueId())>
-						<cfset List
-					</cfif>
+					<cfset LOCAL.filterFound = false />
 					
+					<cfloop collection="#ARGUMENTS.currentFilterStruct#" item="LOCAL.currentFilterId">
+						<cfset LOCAL.currentFilterValueId = ARGUMENTS.currentFilterStruct["#LOCAL.currentFilterId#"] />
+						
+						<cfif 	LOCAL.currentFilterId EQ LOCAL.filter.getFilterId()
+								AND
+								LOCAL.currentFilterValueId NEQ LOCAL.filterValue.getFilterValueId()>
+							<cfset LOCAL.currentFilterStruct["#LOCAL.currentFilterId#"] = LOCAL.filterValue.getFilterValueId() />
+							<cfset LOCAL.filterFound = false />
+							<cfbreak />
+						<cfelseif 	LOCAL.currentFilterId EQ LOCAL.filter.getFilterId()
+									AND
+									LOCAL.currentFilterValueId EQ LOCAL.filterValue.getFilterValueId()>
+							<cfset StructDelete(LOCAL.currentFilterStruct, LOCAL.currentFilterId) />
+							<cfset LOCAL.filterFound = false />
+							<cfbreak />
+						</cfif>
+					</cfloop>
+					
+					<cfif LOCAL.filterFound EQ false>
+					
+					</cfif>
 					
 					<cfset LOCAL.newFilterValue.link = _buildPathInfo(categoryName = LOCAL.category.getDisplayName()
 																	, categoryId = LOCAL.category.getCategoryId()
