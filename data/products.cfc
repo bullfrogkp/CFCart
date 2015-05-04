@@ -79,7 +79,7 @@
 				
 		<cfset LOCAL.filterArray = [] />
 		<cfset LOCAL.category = ARGUMENTS.category />
-		
+		<cfset LOCAL.currentFilterStruct = Duplicate(ARGUMENTS.currentFilterStruct) />
 		
 		<cfloop array="#LOCAL.category.getCategoryFilterRelas()#" index="LOCAL.categoryFilterRela">
 			<cfset LOCAL.filter = LOCAL.categoryFilterRela.getFilter() />
@@ -87,7 +87,7 @@
 			<cfset LOCAL.filterStruct = {} />
 			<cfset LOCAL.filterStruct.filterName = LOCAL.filter.getDisplayName() />
 			<cfset LOCAL.filterStruct.filterValueArray = [] />
-			
+					
 			<cfif NOT IsNull(LOCAL.categoryFilterRela.getFilterValues())>
 				<cfloop array="#LOCAL.categoryFilterRela.getFilterValues()#" index="LOCAL.filterValue">
 					<cfset LOCAL.newFilterValue = {} />
@@ -97,7 +97,6 @@
 					
 					<cfset LOCAL.filterFound = false />
 					
-					<cfset LOCAL.currentFilterStruct = Duplicate(ARGUMENTS.currentFilterStruct) />
 					<cfloop collection="#ARGUMENTS.currentFilterStruct#" item="LOCAL.currentFilterId">
 						<cfset LOCAL.currentFilterValueId = ARGUMENTS.currentFilterStruct["#LOCAL.currentFilterId#"] />
 						
