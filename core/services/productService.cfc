@@ -67,7 +67,7 @@
 			<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
 				<cfset LOCAL.attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
 				<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.attribute},true) />
-				<cfif ArrayIsEmpty(LOCAL.productAttributeRela.getAttributeValues())>
+				<cfif IsNull(LOCAL.productAttributeRela) OR ArrayIsEmpty(LOCAL.productAttributeRela.getAttributeValues())>
 					<cfset LOCAL.retValue = false />
 					<cfbreak />
 				</cfif>
