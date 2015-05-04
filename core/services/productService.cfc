@@ -37,10 +37,16 @@
 			AND	EXISTS (FROM  p.categories c WHERE c.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
 			</cfif>
 			<cfif NOT IsNull(getFilters())>
-				<cfloop collection="#getFilters()#" item="LOCAL.filter">
-				
-				AND	EXISTS (FROM  p.productAttributeRelas par WHERE p.productId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
-							AND	  par.attributeValues = )
+				<cfloop collection="#getFilters()#" item="LOCAL.filterId">
+				AND	EXISTS (FROM    p.productAttributeRelas par 
+							JOIN	par.attributeValues av
+							WHERE	av.value = (SELECT	fv.value
+												FROM	filterValue fv
+												JOIN	fv.categoryFilterRela cfr
+												JOIN	cfr.filter f
+												WHERE	f.filterId = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.filterId#" />
+												AND		f.attribute = p.attribute
+												AND		fv.filterValue.filterValueId = <cfqueryparam cfsqltype="cf_sql_integer" value="#StructFind(getFilters(),LOCAL.filterId)#" />))
 				</cfloop>
 			</cfif>
 			<cfif ARGUMENTS.getCount EQ false>
