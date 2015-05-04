@@ -46,7 +46,7 @@
 												JOIN	cfr.filter f
 												WHERE	f.filterId = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.filterId#" />
 												AND		f.attribute = p.attribute
-												AND		fv.filterValue.filterValueId = <cfqueryparam cfsqltype="cf_sql_integer" value="#StructFind(getFilters(),LOCAL.filterId)#" />))
+												AND		fv.filterValueId = <cfqueryparam cfsqltype="cf_sql_integer" value="#StructFind(getFilters(),LOCAL.filterId)#" />))
 				</cfloop>
 			</cfif>
 			<cfif ARGUMENTS.getCount EQ false>
