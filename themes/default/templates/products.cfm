@@ -47,18 +47,19 @@
 	<div id="sort-by">
 		<ul>
 			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
-			<li <cfif REQUEST.pageData.sortTypeId EQ 1>class="active"</cfif>>Reviews</li>
-			<li <cfif REQUEST.pageData.sortTypeId EQ 2>class="active"</cfif>>Top Selling</li>
-			<li <cfif REQUEST.pageData.sortTypeId EQ 3>class="active"</cfif>>Price</li>
-			<li <cfif REQUEST.pageData.sortTypeId EQ 4>class="active"</cfif>>New Arrivals</li>
+			<cfloop array="#REQUEST.pageData.sortTypeArray#" index="sortType">
+				<li <cfif sortType.selected>class="active"</cfif>><a href="#sortType.link#" style="color:##000;text-decoration:none;padding:3px 4px;">#sortType.name#</a></li>
+			</cfloop>
 		</ul>
 	</div>
 	<div id="pages">
 		<ul class="pagination pagination-sm no-margin pull-right">
-		<cfloop array="#REQUEST.pageData.paginationInfo.pageArray#" index="page">
-			<li><a href="#page.link#">#page.number#</a></li>
+		<cfif ArrayLen(REQUEST.pageData.pageArray) GT 1>
+		<cfloop array="#REQUEST.pageData.pageArray#" index="page">
+			<li <cfif page.selected>class="active"</cfif>><a href="#page.link#" style="color:##000;text-decoration:none;padding:3px 4px;">#page.number#</a></li>
 		</cfloop>
 		</ul>
+		</cfif>
 	</div>
 	<div class="clear"></div>
 	
