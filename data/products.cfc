@@ -7,9 +7,9 @@
 		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
 		<cfset LOCAL.pageData.sortTypeId = ListGetAt(CGI.PATH_INFO,4,"/") />
 		<cfif ListLen(CGI.PATH_INFO) EQ 5>
-			<cfset LOCAL.pageData.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
+			<cfset LOCAL.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
 		<cfelse>
-			<cfset LOCAL.pageData.filterList = "" />
+			<cfset LOCAL.filterList = "" />
 		</cfif>
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
@@ -37,7 +37,7 @@
 	
 		<cfset LOCAL.currentFilterStruct = {} />
 		
-		<cfloop list="#LOCAL.pageData.filterList#" index="LOCAL.filterAndValue">
+		<cfloop list="#LOCAL.filterList#" index="LOCAL.filterAndValue">
 			<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
 			<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
 			<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
@@ -48,7 +48,7 @@
 															, 	sortTypeId = LOCAL.pageData.sortTypeId
 															, 	currentFilterStruct = LOCAL.currentFilterStruct) />
 															
-	
+	<cfdump var="#LOCAL.pageData.filterArray#" abort>
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
@@ -79,7 +79,7 @@
 				
 		<cfset LOCAL.filterArray = [] />
 		<cfset LOCAL.category = ARGUMENTS.category />
-		<cfset LOCAL.currentFilterStruct = ARGUMENTS.currentFilterStruct />
+		
 		
 		<cfloop array="#LOCAL.category.getCategoryFilterRelas()#" index="LOCAL.categoryFilterRela">
 			<cfset LOCAL.filter = LOCAL.categoryFilterRela.getFilter() />
@@ -98,6 +98,7 @@
 					<cfset LOCAL.filterFound = false />
 					
 					<cfloop collection="#ARGUMENTS.currentFilterStruct#" item="LOCAL.currentFilterId">
+						<cfset LOCAL.currentFilterStruct = Duplicate(ARGUMENTS.currentFilterStruct) />
 						<cfset LOCAL.currentFilterValueId = ARGUMENTS.currentFilterStruct["#LOCAL.currentFilterId#"] />
 						
 						<cfif 	LOCAL.currentFilterId EQ LOCAL.filter.getFilterId()
