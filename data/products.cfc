@@ -48,7 +48,7 @@
 															, 	sortTypeId = LOCAL.pageData.sortTypeId
 															, 	currentFilterStruct = LOCAL.currentFilterStruct) />
 															
-	<cfdump var="#LOCAL.pageData.filterArray#" abort>
+	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
@@ -97,8 +97,8 @@
 					
 					<cfset LOCAL.filterFound = false />
 					
+					<cfset LOCAL.currentFilterStruct = Duplicate(ARGUMENTS.currentFilterStruct) />
 					<cfloop collection="#ARGUMENTS.currentFilterStruct#" item="LOCAL.currentFilterId">
-						<cfset LOCAL.currentFilterStruct = Duplicate(ARGUMENTS.currentFilterStruct) />
 						<cfset LOCAL.currentFilterValueId = ARGUMENTS.currentFilterStruct["#LOCAL.currentFilterId#"] />
 						
 						<cfif 	LOCAL.currentFilterId EQ LOCAL.filter.getFilterId()
@@ -121,7 +121,7 @@
 						<cfset LOCAL.currentFilterStruct["#LOCAL.filter.getFilterId()#"] = LOCAL.filterValue.getFilterValueId() />
 					</cfif>
 					
-					<cfset LOCAL.newFilterValue.link = _buildPathInfo(categoryName = LOCAL.category.getDisplayName()
+					<cfset LOCAL.newFilterValue.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = LOCAL.category.getDisplayName()
 																	, categoryId = LOCAL.category.getCategoryId()
 																	, pageNumber = ARGUMENTS.pageNumber
 																	, sortTypeId = ARGUMENTS.sortTypeId
