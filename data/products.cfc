@@ -6,10 +6,10 @@
 		<cfset LOCAL.categoryId = ListGetAt(CGI.PATH_INFO,2,"/")> 
 		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
 		<cfset LOCAL.pageData.sortTypeId = ListGetAt(CGI.PATH_INFO,4,"/") />
-		<cfif IsNull(ListGetAt(CGI.PATH_INFO,5,"/"))>
-			<cfset LOCAL.pageData.filterList = "" />
-		<cfelse>
+		<cfif ListLen(CGI.PATH_INFO) EQ 5>
 			<cfset LOCAL.pageData.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
+		<cfelse>
+			<cfset LOCAL.pageData.filterList = "" />
 		</cfif>
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
@@ -37,7 +37,7 @@
 	
 		<cfset LOCAL.currentFilterStruct = {} />
 		
-		<cfloop list="#LOCAL.pageData.filterList#" index="LOCAL.filterAndValue" delimeter="|">
+		<cfloop list="#LOCAL.pageData.filterList#" index="LOCAL.filterAndValue" delimiters="|">
 			<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
 			<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
 			<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
@@ -46,7 +46,7 @@
 		<cfset LOCAL.pageData.filterArray = _getFilterArray(	category = LOCAL.pageData.category
 															, 	pageNumber = LOCAL.pageData.pageNumber
 															, 	sortTypeId = LOCAL.pageData.sortTypeId
-															, 	currentFilterStruct = LOCAL.currentFilterStruct />
+															, 	currentFilterStruct = LOCAL.currentFilterStruct) />
 															
 	
 		<cfreturn LOCAL.pageData />	
@@ -93,6 +93,7 @@
 					<cfset LOCAL.newFilterValue = {} />
 					<cfset LOCAL.newFilterValue.name = LOCAL.filterValue.getDisplayName() />
 					<cfset LOCAL.newFilterValue.value = LOCAL.filterValue.getValue() />
+					<cfset LOCAL.newFilterValue.selected = false />
 					
 					<cfset LOCAL.filterFound = false />
 					
@@ -103,13 +104,14 @@
 								AND
 								LOCAL.currentFilterValueId NEQ LOCAL.filterValue.getFilterValueId()>
 							<cfset LOCAL.currentFilterStruct["#LOCAL.currentFilterId#"] = LOCAL.filterValue.getFilterValueId() />
-							<cfset LOCAL.filterFound = false />
+							<cfset LOCAL.filterFound = true />
+							<cfset LOCAL.newFilterValue.selected = true />
 							<cfbreak />
 						<cfelseif 	LOCAL.currentFilterId EQ LOCAL.filter.getFilterId()
 									AND
 									LOCAL.currentFilterValueId EQ LOCAL.filterValue.getFilterValueId()>
 							<cfset StructDelete(LOCAL.currentFilterStruct, LOCAL.currentFilterId) />
-							<cfset LOCAL.filterFound = false />
+							<cfset LOCAL.filterFound = true />
 							<cfbreak />
 						</cfif>
 					</cfloop>
@@ -139,7 +141,7 @@
 		<cfargument name="categoryId" type="numeric" required="true" />
 		<cfargument name="pageNumber" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
-		<cfargument name="filterStruct" type="array" required="true" />
+		<cfargument name="filterStruct" type="struct" required="true" />
 		
 		<cfset var pathInfo = "/#URLEncodedFormat(ARGUMENTS.categoryName)#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/" />
 		

@@ -23,6 +23,6 @@
 	</cffunction>
 	
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
-		<cfreturn "#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(getDisplayName())#/#getCategoryId()#/1/1/0" />
+		<cfreturn "#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(getDisplayName())#/#getCategoryId()#/1/1" />
 	</cffunction>
 </cfcomponent>
