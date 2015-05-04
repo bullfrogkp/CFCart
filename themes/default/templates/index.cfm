@@ -84,7 +84,7 @@
 							<cfloop array="#REQUEST.pageData.groupBuyingSection.getProducts()#" index="gb">	
 								<cfset product = gb.getProduct() />
 								<li class="single-products">
-									<a href="#productLink#">
+									<a href="#product.getDetailPageURL()#">
 										<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
 									</a>
 									<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
