@@ -5,8 +5,8 @@
 		
 		<cfset LOCAL.categoryId = ListGetAt(CGI.PATH_INFO,2,"/")> 
 		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
-		<cfset LOCAL.pageData.activeFilterValueIdList = ListGetAt(CGI.PATH_INFO,4,"/") />
-		<cfset LOCAL.pageData.orderBy = ListGetAt(CGI.PATH_INFO,5,"/") />
+		<cfset LOCAL.pageData.sortTypeId = ListGetAt(CGI.PATH_INFO,4,"/") />
+		<cfset LOCAL.pageData.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
@@ -99,14 +99,14 @@
 					</cfloop>
 					
 					<cfif LOCAL.filterFound EQ false>
-					
+						<cfset LOCAL.currentFilterStruct["#LOCAL.filter.getFilterId()#"] = LOCAL.filterValue.getFilterValueId() />
 					</cfif>
 					
 					<cfset LOCAL.newFilterValue.link = _buildPathInfo(categoryName = LOCAL.category.getDisplayName()
 																	, categoryId = LOCAL.category.getCategoryId()
 																	, pageNumber = ARGUMENTS.pageNumber
 																	, sortTypeId = ARGUMENTS.sortTypeId
-																	, filterValues = ARGUMENTS.filterValues
+																	, filterStruct = LOCAL.currentFilterStruct
 																	) />
 					<cfset ArrayPrepend(LOCAL.filterStruct.filterValueArray, LOCAL.newFilterValue) />
 				</cfloop>
@@ -123,12 +123,14 @@
 		<cfargument name="categoryId" type="numeric" required="true" />
 		<cfargument name="pageNumber" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
-		<cfargument name="filterValueIdList" type="array" required="true" />
+		<cfargument name="filterStruct" type="array" required="true" />
 		
-		<cfset var LOCAL = {} />
+		<cfset var pathInfo = "/#URLEncodedFormat(ARGUMENTS.categoryName)#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/" />
 		
-		<cfset LOCAL.pathInfo = "/#URLEncodedFormat(ARGUMENTS.categoryName)#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/#ARGUMENTS.filterValueIdList#"
+		<cfloop collection="#ARGUMENTS.filterStruct#" item="LOCAL.filterId">
+			<cfset pathInfo &= LOCAL.filterId & "=" & ARGUMENTS.filterStruct["#LOCAL.filterId#"] & "|" />
+		</cfloop>
 		
-		<cfreturn LOCAL.pathInfo />	
+		<cfreturn pathInfo />	
 	</cffunction>
 </cfcomponent>
