@@ -41,17 +41,19 @@
 				AND	EXISTS (FROM    p.productAttributeRelas par 
 							JOIN	par.attributeValues av
 							WHERE	av.value = (SELECT	fv.value
-												FROM	filterValue fv
+												FROM	filter_value fv
 												JOIN	fv.categoryFilterRela cfr
 												JOIN	cfr.filter f
 												WHERE	f.filterId = <cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.filterId#" />
-												AND		f.attribute = p.attribute
+												AND		f.attribute = par.attribute
 												AND		fv.filterValueId = <cfqueryparam cfsqltype="cf_sql_integer" value="#StructFind(getFilters(),LOCAL.filterId)#" />))
 				</cfloop>
 			</cfif>
+			<!---
 			<cfif ARGUMENTS.getCount EQ false>
 			ORDER BY #getSortTypeId()#
 			</cfif>
+			--->
 		</cfquery>
 
 		<cfreturn LOCAL.query />

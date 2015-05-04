@@ -487,6 +487,7 @@
 								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 									<cfset attribute = attributeSetAttributeRela.getAttribute() />
 									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+									<cfif NOT IsNull(productAttributeRela)>
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
@@ -523,6 +524,7 @@
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
 									</div>
+									</cfif>
 								</cfloop>
 							</cfif>
 					
