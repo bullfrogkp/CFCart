@@ -55,6 +55,12 @@
 														,	categoryId = LOCAL.pageData.category.getCategoryId()
 														, 	sortTypeId = LOCAL.pageData.sortTypeId
 														, 	filterStruct = LOCAL.currentFilterStruct) />
+														
+		<cfset LOCAL.pageData.sortTypeArray = _getSortTypeArray(	currentPage = LOCAL.pageData.pageNumber
+																,	categoryName = LOCAL.pageData.category.getDisplayName()
+																,	categoryId = LOCAL.pageData.category.getCategoryId()
+																, 	sortTypeId = LOCAL.pageData.sortTypeId
+																, 	filterStruct = LOCAL.currentFilterStruct) />												
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
@@ -139,6 +145,85 @@
 		</cfloop>
 				
 		<cfreturn LOCAL.filterArray />	
+	</cffunction>
+	<!---------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="_getSortTypeArray" access="private" output="false" returnType="array">
+		<cfargument name="currentPage" type="string" required="true" />
+		<cfargument name="categoryName" type="string" required="true" />
+		<cfargument name="categoryId" type="numeric" required="true" />
+		<cfargument name="sortTypeId" type="numeric" required="true" />
+		<cfargument name="filterStruct" type="struct" required="true" />
+		
+		<cfset var LOCAL = {} />
+				
+		<cfset LOCAL.sortTypeArray = [] />
+		
+		<cfset LOCAL.sortType = {} />
+		<cfset LOCAL.sortType.name = "New Arrivals" />
+		<cfset LOCAL.sortType.id = 1 />
+		<cfif ARGUMENTS.sortTypeId EQ 1>
+			<cfset LOCAL.sortType.selected = true />
+		<cfelse>
+			<cfset LOCAL.sortType.selected = false />
+		</cfif>
+		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+																	, categoryId = ARGUMENTS.categoryId
+																	, pageNumber = ARGUMENTS.currentPage
+																	, sortTypeId = 1
+																	, filterStruct = ARGUMENTS.filterStruct) />
+																	
+		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
+		
+		<cfset LOCAL.sortType = {} />
+		<cfset LOCAL.sortType.name = "Top Selling" />
+		<cfset LOCAL.sortType.id = 2 />
+		<cfif ARGUMENTS.sortTypeId EQ 2>
+			<cfset LOCAL.sortType.selected = true />
+		<cfelse>
+			<cfset LOCAL.sortType.selected = false />
+		</cfif>
+		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+																	, categoryId = ARGUMENTS.categoryId
+																	, pageNumber = ARGUMENTS.currentPage
+																	, sortTypeId = 2
+																	, filterStruct = ARGUMENTS.filterStruct) />
+		
+		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
+		
+		<cfset LOCAL.sortType = {} />
+		<cfset LOCAL.sortType.name = "Price" />
+		<cfset LOCAL.sortType.id = 3 />
+		<cfif ARGUMENTS.sortTypeId EQ 3>
+			<cfset LOCAL.sortType.selected = true />
+		<cfelse>
+			<cfset LOCAL.sortType.selected = false />
+		</cfif>
+		
+		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+																	, categoryId = ARGUMENTS.categoryId
+																	, pageNumber = ARGUMENTS.currentPage
+																	, sortTypeId = 3
+																	, filterStruct = ARGUMENTS.filterStruct) />
+		
+		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
+		
+		<cfset LOCAL.sortType = {} />
+		<cfset LOCAL.sortType.name = "Review" />
+		<cfset LOCAL.sortType.id = 4 />
+		<cfif ARGUMENTS.sortTypeId EQ 4>
+			<cfset LOCAL.sortType.selected = true />
+		<cfelse>
+			<cfset LOCAL.sortType.selected = false />
+		</cfif>
+		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+																	, categoryId = ARGUMENTS.categoryId
+																	, pageNumber = ARGUMENTS.currentPage
+																	, sortTypeId = 4
+																	, filterStruct = ARGUMENTS.filterStruct) />
+																	
+		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
+				
+		<cfreturn LOCAL.sortTypeArray />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<cffunction name="_buildPathInfo" access="private" output="false" returnType="string">
