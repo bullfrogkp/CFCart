@@ -31,6 +31,7 @@ background-color:#F2A000;
 .active-filter {
 color:#fff;
 background-color:#F2A000;
+border:1px solid red !important;
 }
 
 #sort-by {
