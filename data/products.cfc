@@ -11,6 +11,15 @@
 		<cfelse>
 			<cfset LOCAL.filterList = "" />
 		</cfif>
+		
+		<cfset LOCAL.currentFilterStruct = {} />
+		
+		<cfloop list="#LOCAL.filterList#" index="LOCAL.filterAndValue">
+			<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
+			<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
+			<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
+		</cfloop>
+		
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
@@ -20,6 +29,9 @@
 		<cfset LOCAL.productService.setPageNumber(LOCAL.pageData.pageNumber) />
 		<cfset LOCAL.productService.setRecordsPerPage(APPLICATION.recordsPerPageFrontend) />
 		<cfset LOCAL.productService.setCategoryId(LOCAL.categoryId) />
+		
+		<cfset LOCAL.productService.setFilters(currentFilterStruct) />
+		<cfset LOCAL.productService.setSortTypeId(LOCAL.pageData.sortTypeId) />
 		
 		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(recordStruct = LOCAL.recordStruct, currentPage = LOCAL.pageData.pageNumber) />
@@ -36,13 +48,7 @@
 		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
 	
-		<cfset LOCAL.currentFilterStruct = {} />
 		
-		<cfloop list="#LOCAL.filterList#" index="LOCAL.filterAndValue">
-			<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
-			<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
-			<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
-		</cfloop>
 	
 		<cfset LOCAL.pageData.filterArray = _getFilterArray(	category = LOCAL.pageData.category
 															, 	pageNumber = LOCAL.pageData.pageNumber

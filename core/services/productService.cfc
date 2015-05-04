@@ -2,6 +2,8 @@
     <cfproperty name="attributeSetId" type="numeric"> 
     <cfproperty name="parentProductId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
+    <cfproperty name="sortTypeId" type="numeric"> 
+    <cfproperty name="filters" type="struct"> 
 
 	<cffunction name="_getQuery" output="false" access="private" returntype="array">
 		<cfargument name="getCount" type="boolean" required="false" default="false" />
@@ -32,7 +34,17 @@
 			AND p.isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
 			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
-			AND	EXISTS (FROM  p.categories c WHERE c.categoryId =	<cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
+			AND	EXISTS (FROM  p.categories c WHERE c.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
+			</cfif>
+			<cfif NOT IsNull(getFilters())>
+				<cfloop collection="#getFilters()#" item="LOCAL.filter">
+				
+				AND	EXISTS (FROM  p.productAttributeRelas par WHERE p.productId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+							AND	  par.attributeValues = )
+				</cfloop>
+			</cfif>
+			<cfif ARGUMENTS.getCount EQ false>
+			ORDER BY #getSortTypeId()#
 			</cfif>
 		</cfquery>
 
