@@ -51,7 +51,6 @@
 		
 	
 		<cfset LOCAL.pageData.filterArray = _getFilterArray(	category = LOCAL.pageData.category
-															, 	pageNumber = LOCAL.pageData.pageNumber
 															, 	sortTypeId = LOCAL.pageData.sortTypeId
 															, 	currentFilterStruct = LOCAL.currentFilterStruct) />
 															
@@ -62,8 +61,7 @@
 														, 	sortTypeId = LOCAL.pageData.sortTypeId
 														, 	filterStruct = LOCAL.currentFilterStruct) />
 														
-		<cfset LOCAL.pageData.sortTypeArray = _getSortTypeArray(	currentPage = LOCAL.pageData.pageNumber
-																,	categoryName = LOCAL.pageData.category.getDisplayName()
+		<cfset LOCAL.pageData.sortTypeArray = _getSortTypeArray(	categoryName = LOCAL.pageData.category.getDisplayName()
 																,	categoryId = LOCAL.pageData.category.getCategoryId()
 																, 	sortTypeId = LOCAL.pageData.sortTypeId
 																, 	filterStruct = LOCAL.currentFilterStruct) />												
@@ -89,7 +87,6 @@
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<cffunction name="_getFilterArray" access="private" output="false" returnType="array">
 		<cfargument name="category" type="any" required="true" />
-		<cfargument name="pageNumber" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
 		<cfargument name="currentFilterStruct" type="struct" required="true" />
 		
@@ -139,7 +136,7 @@
 					
 					<cfset LOCAL.newFilterValue.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = LOCAL.category.getDisplayName()
 																						, categoryId = LOCAL.category.getCategoryId()
-																						, pageNumber = ARGUMENTS.pageNumber
+																						, pageNumber = 1
 																						, sortTypeId = ARGUMENTS.sortTypeId
 																						, filterStruct = LOCAL.currentFilterStruct
 																						) />
@@ -154,7 +151,6 @@
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<cffunction name="_getSortTypeArray" access="private" output="false" returnType="array">
-		<cfargument name="currentPage" type="string" required="true" />
 		<cfargument name="categoryName" type="string" required="true" />
 		<cfargument name="categoryId" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
@@ -174,7 +170,7 @@
 		</cfif>
 		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
-																	, pageNumber = ARGUMENTS.currentPage
+																	, pageNumber = 1
 																	, sortTypeId = 1
 																	, filterStruct = ARGUMENTS.filterStruct) />
 																	
@@ -190,7 +186,7 @@
 		</cfif>
 		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
-																	, pageNumber = ARGUMENTS.currentPage
+																	, pageNumber = 1
 																	, sortTypeId = 2
 																	, filterStruct = ARGUMENTS.filterStruct) />
 		
@@ -207,7 +203,7 @@
 		
 		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
-																	, pageNumber = ARGUMENTS.currentPage
+																	, pageNumber = 1
 																	, sortTypeId = 3
 																	, filterStruct = ARGUMENTS.filterStruct) />
 		
@@ -223,7 +219,7 @@
 		</cfif>
 		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
-																	, pageNumber = ARGUMENTS.currentPage
+																	, pageNumber = 1
 																	, sortTypeId = 4
 																	, filterStruct = ARGUMENTS.filterStruct) />
 																	
