@@ -17,8 +17,8 @@
 		#category.getDisplayName()# <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.paginationInfo.records)# total)</span>
 	</h1> 
 	
-	<cfif REQUEST.pageData.category.getCustomDesign() NEQ true>
-	
+	<cfif REQUEST.pageData.category.getDisplayCustomDesign() EQ true>
+	#REQUEST.pageData.category.getCustomDesign()#
 	</cfif>
 	
 	<cfif REQUEST.pageData.category.getDisplayCategoryList() EQ true>

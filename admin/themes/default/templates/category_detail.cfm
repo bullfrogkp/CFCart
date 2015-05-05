@@ -312,6 +312,13 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
+							<label>Display Custom Design Section</label>
+							 <select class="form-control" name="display_custom_design">
+								<option value="1" <cfif REQUEST.pageData.formData.display_custom_design EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.display_custom_design EQ FALSE>selected</cfif>>No</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<textarea name="custom_design" id="custom_design" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.custom_design#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
