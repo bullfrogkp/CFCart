@@ -4,5 +4,5 @@
     <cfproperty name="title" column="title" ormtype="string"> 
     <cfproperty name="keywords" column="keywords" ormtype="text"> 
     <cfproperty name="description" column="description" ormtype="text"> 
-	<cfproperty name="sections" type="array" fieldtype="one-to-many" cfc="page_section" fkcolumn="page_id" singularname="section">
+	<cfproperty name="sections" type="array" fieldtype="one-to-many" cfc="page_section" fkcolumn="page_id" singularname="section" cascade="delete-orphan">
 </cfcomponent>

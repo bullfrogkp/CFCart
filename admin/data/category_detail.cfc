@@ -241,14 +241,23 @@
 			
 		<cfelseif StructKeyExists(FORM,"delete_best_seller_product")>
 			
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_best_seller_product_id) />
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.deleted_best_seller_product_id) />
 			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.bestSellerSection, product = LOCAL.product}, true) />
-			<cfset LOCAL.bestSellerSection.removePageProduct(LOCAL.sectionProduct) />
+			<cfset LOCAL.bestSellerSection.removeProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.bestSellerSection) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_8" />
+			
+		<cfelseif StructKeyExists(FORM,"delete_ad")>
+			
+			<cfset LOCAL.ad = EntityLoadByPK("page_section_advertisement",FORM.deleted_ad_id) />			
+			<cfset LOCAL.advertisementSection.removeAdvertisement(LOCAL.ad) />
+			<cfset EntitySave(LOCAL.advertisementSection) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=tab_7" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

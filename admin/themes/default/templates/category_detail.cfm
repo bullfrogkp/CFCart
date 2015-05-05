@@ -185,6 +185,14 @@
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
 		
+		$( ".delete-ad" ).click(function() {
+			$("##deleted_ad_id").val($(this).attr('adid'));
+		});
+		
+		$( ".delete-best-seller-product" ).click(function() {
+			$("##deleted_best_seller_product_id").val($(this).attr('productid'));
+		});
+		
 	});
 </script>
 <section class="content-header">
@@ -204,6 +212,8 @@
 <input type="hidden" name="new_filter_value_category_filter_rela_id" id="new_filter_value_category_filter_rela_id" value="" />
 <input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
+<input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
+<input type="hidden" name="deleted_best_seller_product_id" id="deleted_best_seller_product_id" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -665,6 +675,21 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_best_seller_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE AD MODAL -->
+<div class="modal fade" id="delete-ad-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this Ad?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_ad" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
