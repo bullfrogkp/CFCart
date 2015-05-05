@@ -94,7 +94,7 @@
 					</cfif>
 				</cfloop>
 			</cfif>
-		
+			
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -115,6 +115,23 @@
 							<cfset LOCAL.categoryImage.setIsDefault(false) />
 							<cfset EntitySave(LOCAL.categoryImage) />
 							<cfset LOCAL.category.addImage(LOCAL.categoryImage) />
+						</cfif>
+					</cfif>
+				</cfloop>
+			</cfif>
+			
+			<cfif FORM["uploader_count"] NEQ 0>
+				<cfloop collection="#FORM#" item="LOCAL.key">
+					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
+						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
+						<cfif StructFind(FORM,LOCAL.key) EQ "done">
+							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+							<cfset LOCAL.newAdvertisement = EntityNew("page_section_advertisement") />
+							<cfset LOCAL.newAdvertisement.setName(LOCAL.imgName) />
+							<cfset LOCAL.newAdvertisement.setSection(LOCAL.advertisementSection) />
+							<cfset EntitySave(LOCAL.newAdvertisement) />
+							
+							<cfset LOCAL.advertisementSection.addAdvertisement(LOCAL.newAdvertisement) />
 						</cfif>
 					</cfif>
 				</cfloop>
@@ -195,6 +212,42 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Filter value: #LOCAL.filterValue.getValue()# has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
+		
+		<cfelseif StructKeyExists(FORM,"add_best_seller_product")>
+		
+			<cfif StructKeyExists(FORM,"best_seller_product_group_id")>			
+				<cfloop list="#FORM.best_seller_product_group_id#" index="LOCAL.groupId">
+					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
+						<cfset LOCAL.newSectionProduct.setSection(LOCAL.bestSellerSection) />
+						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.relatedProduct) />
+						<cfset EntitySave(LOCAL.newSectionProduct) />
+					</cfloop>
+				</cfloop>
+			</cfif>
+			
+			<cfif IsNumeric(FORM.new_best_seller_product_id)>
+				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_best_seller_product_id) />
+				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
+				<cfset LOCAL.newSectionProduct.setSection(LOCAL.bestSellerSection) />
+				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
+				<cfset EntitySave(LOCAL.newSectionProduct) />
+			</cfif>
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_8" />
+			
+		<cfelseif StructKeyExists(FORM,"delete_best_seller_product")>
+			
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_best_seller_product_id) />
+			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.bestSellerSection, product = LOCAL.product}, true) />
+			<cfset LOCAL.bestSellerSection.removePageProduct(LOCAL.sectionProduct) />
+			
+			<cfset EntitySave(LOCAL.bestSellerSection) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_8" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
