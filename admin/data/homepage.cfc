@@ -146,9 +146,6 @@
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
 			<cfset LOCAL.ad = EntityLoadByPK("page_section_advertisement",FORM.deleted_ad_id) />
-			<cfset LOCAL.ad.setIsDeleted(true) />
-			<cfset EntitySave(LOCAL.ad) />
-			
 			<cfset LOCAL.currentPage.removeAdvertisement(LOCAL.ad) />
 			<cfset EntitySave(LOCAL.currentPage) />
 			
