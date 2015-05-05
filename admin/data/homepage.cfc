@@ -146,8 +146,8 @@
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
 			<cfset LOCAL.ad = EntityLoadByPK("page_section_advertisement",FORM.deleted_ad_id) />
-			<cfset LOCAL.currentPage.removeAdvertisement(LOCAL.ad) />
-			<cfset EntitySave(LOCAL.currentPage) />
+			<cfset LOCAL.advertisementSection.removeAdvertisement(LOCAL.ad) />
+			<cfset EntitySave(LOCAL.advertisementSection) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=tab_2" />
