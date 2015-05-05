@@ -209,6 +209,7 @@
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
+		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
@@ -221,6 +222,11 @@
 			</cfif>
 			<cfset LOCAL.recordStruct = LOCAL.categoryService.getProducts() />
 			<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
+			
+			<cfset LOCAL.currentPageName = "products" />
+			<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
+			<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+			<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
 						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
