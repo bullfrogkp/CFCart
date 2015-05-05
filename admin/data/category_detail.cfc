@@ -53,6 +53,7 @@
 			<cfset LOCAL.category.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
 			<cfset LOCAL.category.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.category.setDisplayCategoryList(FORM.display_category_list) />
 			<cfset LOCAL.category.setShowCategoryOnNavigation(FORM.show_category_on_navigation) />
 			<cfset LOCAL.category.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.category.setKeywords(Trim(FORM.keywords)) />
@@ -206,6 +207,7 @@
 				<cfset LOCAL.pageData.formData.parent_category_id = isNull(LOCAL.pageData.category.getParentCategory())?"":LOCAL.pageData.category.getParentCategory().getCategoryId() />
 				<cfset LOCAL.pageData.formData.rank = isNull(LOCAL.pageData.category.getRank())?"":LOCAL.pageData.category.getRank() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.category.getIsEnabled())?"":LOCAL.pageData.category.getIsEnabled() />
+				<cfset LOCAL.pageData.formData.display_category_list = isNull(LOCAL.pageData.category.getDisplayCategoryList())?"":LOCAL.pageData.category.getDisplayCategoryList() />
 				<cfset LOCAL.pageData.formData.show_category_on_navigation = isNull(LOCAL.pageData.category.getShowCategoryOnNavigation())?"":LOCAL.pageData.category.getShowCategoryOnNavigation() />
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.category.getTitle())?"":LOCAL.pageData.category.getTitle() />
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.category.getKeywords())?"":LOCAL.pageData.category.getKeywords() />
@@ -225,6 +227,7 @@
 				<cfset LOCAL.pageData.formData.parent_category_id = "" />
 				<cfset LOCAL.pageData.formData.rank = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
+				<cfset LOCAL.pageData.formData.display_category_list = "" />
 				<cfset LOCAL.pageData.formData.show_category_on_navigation = "" />
 				<cfset LOCAL.pageData.formData.title = "" />
 				<cfset LOCAL.pageData.formData.keywords = "" />

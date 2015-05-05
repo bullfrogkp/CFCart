@@ -13,10 +13,28 @@
 		</cfloop>
 	</div>
 	
-	<div style="border:1px solid ##CCC;width:692px;padding:10px;">
-		<h1 style="border-bottom:1px solid ##CCC;padding-bottom:10px;">#category.getDisplayName()# <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.category.getProducts())# total)</span></h1> 
+	<h1>
+		#category.getDisplayName()# <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.category.getProducts())# total)</span>
+	</h1> 
 		
-		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
+	<cfif REQUEST.pageData.category.getDisplayCategoryList() EQ true>
+		<div style="border:1px solid ##CCC;width:692px;padding:10px;margin-bottom:10px;">
+			<table id="new-products">
+				<tr class="categories">
+					<td>
+						<ul>   
+							<cfloop array="#REQUEST.pageData.allCategories#" index="category">
+								<li><a title="#category.getDisplayName()#" href="#category.getDetailPageUrl()#">#category.getDisplayName()#</a></li>
+							</cfloop>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</cfif>
+	
+	<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
+		<div style="border:1px solid ##CCC;width:692px;padding:10px;">
 			<table id="filters">
 				<cfloop array="#REQUEST.pageData.filterArray#" index="filter">
 					<tr>
@@ -41,8 +59,8 @@
 					</tr>
 				</cfloop>
 			</table>
-		</cfif>
-	</div>
+		</div>
+	</cfif>
 	
 	<div id="sort-by">
 		<ul>

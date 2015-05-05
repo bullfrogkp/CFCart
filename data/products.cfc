@@ -48,7 +48,9 @@
 		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
 	
-		
+		<cfif LOCAL.pageData.category.getDisplayCategoryList() EQ true>
+			<cfset LOCAL.pageData.allCategories = EntityLoad("category", {isDeleted = false, isEnabled = true})> 
+		</cfif>
 	
 		<cfset LOCAL.pageData.filterArray = _getFilterArray(	category = LOCAL.pageData.category
 															, 	sortTypeId = LOCAL.pageData.sortTypeId

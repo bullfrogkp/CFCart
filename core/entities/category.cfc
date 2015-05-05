@@ -1,6 +1,7 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="categoryId" column="category_id" fieldtype="id" generator="native"> 
     <cfproperty name="rank" column="rank" ormtype="float"> 
+    <cfproperty name="displayCategoryList" column="display_category_list" ormtype="boolean"> 
     <cfproperty name="showCategoryOnNavigation" column="show_category_on_navigation" ormtype="boolean"> 
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 

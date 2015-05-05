@@ -230,6 +230,13 @@
 								<option value="0" <cfif REQUEST.pageData.formData.show_category_on_navigation EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
+						<div class="form-group">
+							<label>Display Category List</label>
+							 <select class="form-control" name="display_category_list">
+								<option value="1" <cfif REQUEST.pageData.formData.display_category_list EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.display_category_list EQ FALSE>selected</cfif>>No</option>
+							</select>
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">

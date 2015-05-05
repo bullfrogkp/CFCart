@@ -118,3 +118,43 @@ text-align:center;
 .blue {
    color: #0000FF;
 }
+
+#new-products {
+ font-size:12px;
+ font-weight:bold;
+ width:100%;
+}
+
+#new-products tr td:first-child { 
+width:60px;
+height:40px;
+color:#F2A000;
+}
+
+#new-products ul {
+ margin-left:10px;
+}
+
+#new-products ul li {
+ float:left;
+ margin-left:10px;
+ cursor:hand;
+ cursor:pointer;
+ margin-bottom:5px;
+}
+
+#new-products ul li a {
+color:#333;
+text-decoration:none;
+padding:6px  0 6px 0;
+}
+
+#new-products ul li a:hover {
+text-decoration:underline;
+}
+
+.categories td ul li {
+padding:6px 0 6px 0;
+width:30%;
+margin-right:12px;
+}
