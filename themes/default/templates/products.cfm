@@ -14,9 +14,13 @@
 	</div>
 	
 	<h1>
-		#category.getDisplayName()# <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.category.getProducts())# total)</span>
+		#category.getDisplayName()# <span style="font-size:12px;">(#ArrayLen(REQUEST.pageData.paginationInfo.records)# total)</span>
 	</h1> 
-		
+	
+	<cfif REQUEST.pageData.category.getCustomDesign() NEQ true>
+	
+	</cfif>
+	
 	<cfif REQUEST.pageData.category.getDisplayCategoryList() EQ true>
 		<div style="border:1px solid ##CCC;width:692px;padding:10px;margin-bottom:10px;">
 			<table id="new-products">
