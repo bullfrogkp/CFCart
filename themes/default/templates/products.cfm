@@ -37,33 +37,35 @@
 		</div>
 	</cfif>
 	
-	<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
-		<div style="border:1px solid ##CCC;width:692px;padding:10px;">
-			<table id="filters">
-				<cfloop array="#REQUEST.pageData.filterArray#" index="filter">
-					<tr>
-						<td>#filter.filterName#:</td>
-						<td>
-							<ul>
-								<cfloop array="#filter.filterValueArray#" index="filterValue">
-									<a href="#filterValue.link#">
-									<li class="filter-value <cfif filterValue.selected>active-filter</cfif>"
-									<cfif filter.filterName EQ "color">style="background-color:#filterValue.value#;width:20px;height:20px;padding:0;"</cfif>
-									>
-									
-									<cfif filter.filterName NEQ "color">
-										#filterValue.name#
-									</cfif>
-									
-									</li>
-									</a>
-								</cfloop>
-							</ul>
-						</td>
-					</tr>
-				</cfloop>
-			</table>
-		</div>
+	<cfif REQUEST.pageData.category.getDisplayFilter() EQ true>
+		<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
+			<div style="border:1px solid ##CCC;width:692px;padding:10px;">
+				<table id="filters">
+					<cfloop array="#REQUEST.pageData.filterArray#" index="filter">
+						<tr>
+							<td>#filter.filterName#:</td>
+							<td>
+								<ul>
+									<cfloop array="#filter.filterValueArray#" index="filterValue">
+										<a href="#filterValue.link#">
+										<li class="filter-value <cfif filterValue.selected>active-filter</cfif>"
+										<cfif filter.filterName EQ "color">style="background-color:#filterValue.value#;width:20px;height:20px;padding:0;"</cfif>
+										>
+										
+										<cfif filter.filterName NEQ "color">
+											#filterValue.name#
+										</cfif>
+										
+										</li>
+										</a>
+									</cfloop>
+								</ul>
+							</td>
+						</tr>
+					</cfloop>
+				</table>
+			</div>
+		</cfif>
 	</cfif>
 	
 	<div id="sort-by">

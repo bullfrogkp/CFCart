@@ -329,6 +329,14 @@
 								</cfloop>
 							</select>
 						</div>
+						
+						<div class="form-group">
+							<label>Display Filter</label>
+							 <select class="form-control" name="display_filter">
+								<option value="1" <cfif REQUEST.pageData.formData.display_filter EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.display_filter EQ FALSE>selected</cfif>>No</option>
+							</select>
+						</div>
 					
 						<label>Filter(s)</label>
 						<div id="filters" class="row" style="margin-top:10px;">

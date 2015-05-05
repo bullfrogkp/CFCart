@@ -3,6 +3,7 @@
     <cfproperty name="rank" column="rank" ormtype="float"> 
     <cfproperty name="displayCategoryList" column="display_category_list" ormtype="boolean"> 
     <cfproperty name="displayCustomDesign" column="display_custom_design" ormtype="boolean"> 
+    <cfproperty name="displayFilter" column="display_filter" ormtype="boolean"> 
     <cfproperty name="showCategoryOnNavigation" column="show_category_on_navigation" ormtype="boolean"> 
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
