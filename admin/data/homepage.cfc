@@ -66,8 +66,6 @@
 			<cfset LOCAL.slideSection.setContent(Trim(FORM.slide_content)) />
 			
 			<cfset EntitySave(LOCAL.slideSection) />
-			<cfset EntitySave(LOCAL.topSellingSection) />
-			<cfset EntitySave(LOCAL.groupBuyingSection) />
 			<cfset EntitySave(LOCAL.currentPage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />

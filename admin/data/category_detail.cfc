@@ -31,11 +31,15 @@
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
+		<cfset LOCAL.currentPageName = "products" />
+		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)> 
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.tab_id = FORM.tab_id />
+			<cfset LOCAL.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.currentPage},true)> 
+			<cfset LOCAL.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.currentPage},true)> 
 		<cfelse>
 			<cfset LOCAL.category = EntityNew("category")> 
 			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
@@ -127,10 +131,27 @@
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
+			<cfif NOT IsNull(LOCAL.advertisementSection.getAdvertisements())>
+				<cfloop array="#LOCAL.advertisementSection.getAdvertisements()#" index="LOCAL.ad">
+					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
+						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.ad) />
+					</cfif>
+				</cfloop>
+			</cfif>
+			
+			<cfif NOT IsNull(LOCAL.bestSellerSection.getProducts())>
+				<cfloop array="#LOCAL.bestSellerSection.getProducts()#" index="LOCAL.sectionProduct">
+					<cfif IsNumeric(FORM["best_seller_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
+						<cfset LOCAL.sectionProduct.setRank(FORM["best_seller_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
+						<cfset EntitySave(LOCAL.sectionProduct) />
+					</cfif>
+				</cfloop>
+			</cfif>
+			
 			<cfset EntitySave(LOCAL.category) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully.") />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />
 		
 		<cfelseif StructKeyExists(FORM,"delete_item")>
