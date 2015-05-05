@@ -64,6 +64,56 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
+		$("##ads_uploader").plupload({
+			// General settings
+			runtimes: 'html5,flash,silverlight,html4',
+			
+			url: "#APPLICATION.absoluteUrlWeb#admin/ajax/upload_ads.cfm",
+
+			// Maximum file size
+			max_file_size: '1000mb',
+
+			// User can upload no more then 20 files in one go (sets multiple_queues to false)
+			max_file_count: 20,
+			
+			chunk_size: '1mb',
+
+			// Resize images on clientside if we can
+			resize : {
+				width: 200, 
+				height: 200, 
+				quality: 90,
+				crop: true // crop to exact dimensions
+			},
+
+			// Specify what files to browse for
+			filters: [
+				{ title: "Image files", extensions: "jpg,gif,png" }
+			],
+
+			// Rename files by clicking on their titles
+			rename: true,
+			
+			// Sort files
+			sortable: true,
+
+			// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+			dragdrop: true,
+
+			// Views to activate
+			views: {
+				thumbs: true,
+				list: false,
+				active: 'thumbs'
+			},
+
+			// Flash settings
+			flash_swf_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
+
+			// Silverlight settings
+			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
+		});
+		
 		var filtergroups = new Object();
 		var filtergroup, filter, key;
 		
@@ -172,10 +222,12 @@
 				<ul class="nav nav-tabs">
 					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Filters</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Filter</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Custom Design</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Thumbnail Image</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Products</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Product</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Advertisement</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Best Seller</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
@@ -420,6 +472,76 @@
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
+						<div class="form-group">
+							<div class="row">
+								<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getAdvertisements())>
+									<cfloop array="#REQUEST.pageData.advertisementSection.getAdvertisements()#" index="ad">						
+										<div class="col-xs-2">
+											<div class="box box-warning">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="warning">
+															<th style="font-size:11px;line-height:20px;">
+																<input type="text" placeholder="Rank" name="advertisement_rank_#ad.getPageSectionAdvertisementId()#" value="#ad.getRank()#" style="width:40px;text-align:center;" />
+															</th>
+															<th><a adid="#ad.getPageSectionAdvertisementId()#" href="" class="delete-ad pull-right" data-toggle="modal" data-target="##delete-ad-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" />
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
+							
+							<div class="form-group">
+								<div id="ads_uploader">
+									<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
+						<div class="form-group">
+							<a data-toggle="modal" data-target="##add-best-seller-product-modal" href="">
+								<span class="label label-primary">Add New Product</span>
+							</a>
+							<div class="row" style="margin-top:10px;">
+								<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getProducts())>
+									<cfloop array="#REQUEST.pageData.bestSellerSection.getProducts()#" index="bs">	
+										<cfset product = bs.getProduct() />
+										<div class="col-xs-2">
+											<div class="box">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="default">
+															<th style="font-size:11px;line-height:20px;">
+																<input type="text" placeholder="Rank" name="best_seller_rank_#bs.getPageSectionProductId()#" value="#bs.getRank()#" style="width:40px;text-align:center;" />
+															</th>
+															<th><a productid="#product.getProductId()#" href="" class="delete-best-seller-product pull-right" data-toggle="modal" data-target="##delete-best-seller-product-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<a href="#product.getDetailPageURL()#">
+																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																</a>
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
+						</div>
+					</div><!-- /.tab-pane -->
+					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
 		
@@ -497,6 +619,52 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_image" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ADD BEST SELLER PRODUCT MODAL -->
+<div class="modal fade" id="add-best-seller-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add Best Seller Product</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Product Group</label>
+					<select name="best_seller_product_group_id" multiple class="form-control">
+						<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
+							<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Product ID</label>
+					<input id="new_best_seller_product_id" name="new_best_seller_product_id" type="text" class="form-control" placeholder="Product ID">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_best_seller_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE BEST SELLER PRODUCT MODAL -->
+<div class="modal fade" id="delete-best-seller-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this best seller product?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_best_seller_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
