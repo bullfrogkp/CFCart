@@ -32,14 +32,15 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfset LOCAL.currentPageName = "products" />
+		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
+		<cfset LOCAL.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)> 
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.category.setUpdatedDatetime(Now()) />
 			<cfset LOCAL.tab_id = FORM.tab_id />
-			<cfset LOCAL.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.currentPage},true)> 
-			<cfset LOCAL.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.currentPage},true)> 
 		<cfelse>
 			<cfset LOCAL.category = EntityNew("category")> 
 			<cfset LOCAL.category.setCreatedUser(SESSION.adminUser) />
@@ -119,7 +120,7 @@
 					</cfif>
 				</cfloop>
 			</cfif>
-			
+			<!---
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -136,7 +137,7 @@
 					</cfif>
 				</cfloop>
 			</cfif>
-			
+			--->
 			<cfif StructKeyExists(FORM,"default_image_id") AND FORM.default_image_id NEQ "">
 				<cfset LOCAL.currentDefaultImage = EntityLoad("category_image",{category=LOCAL.category,isDefault=true},true) />
 				<cfif NOT IsNull(LOCAL.currentDefaultImage)>
@@ -264,6 +265,11 @@
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
 		
+		<cfset LOCAL.currentPageName = "products" />
+		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
+		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
+		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
@@ -275,11 +281,6 @@
 			</cfif>
 			<cfset LOCAL.recordStruct = LOCAL.categoryService.getProducts() />
 			<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
-			
-			<cfset LOCAL.currentPageName = "products" />
-			<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
-			<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
-			<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
 						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />

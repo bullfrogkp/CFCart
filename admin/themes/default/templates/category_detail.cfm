@@ -506,7 +506,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<div class="form-group">
 							<a data-toggle="modal" data-target="##add-best-seller-product-modal" href="">
 								<span class="label label-primary">Add New Product</span>
@@ -540,7 +541,6 @@
 								</cfif>
 							</div>
 						</div>
-					</div><!-- /.tab-pane -->
 					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
