@@ -95,7 +95,16 @@
 					</cfif>
 				</cfloop>
 			</cfif>
-			
+					
+			<cfif NOT IsNull(LOCAL.advertisementSection.getAdvertisements())>
+				<cfloop array="#LOCAL.advertisementSection.getAdvertisements()#" index="LOCAL.ad">
+					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
+						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.ad) />
+					</cfif>
+				</cfloop>
+			</cfif>
+		
 			<cfif FORM["uploader_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
 					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
@@ -120,13 +129,13 @@
 					</cfif>
 				</cfloop>
 			</cfif>
-			<!---
-			<cfif FORM["uploader_count"] NEQ 0>
+			
+			<cfif FORM["ads_image_count"] NEQ 0>
 				<cfloop collection="#FORM#" item="LOCAL.key">
-					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
-						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
+					<cfif Find("ADS_IMAGE_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
+						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"ADS_IMAGE_",""),"_STATUS","") />
 						<cfif StructFind(FORM,LOCAL.key) EQ "done">
-							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
+							<cfset LOCAL.imgName = StructFind(FORM,"ADS_IMAGE_#LOCAL.currentIndex#_NAME") />
 							<cfset LOCAL.newAdvertisement = EntityNew("page_section_advertisement") />
 							<cfset LOCAL.newAdvertisement.setName(LOCAL.imgName) />
 							<cfset LOCAL.newAdvertisement.setSection(LOCAL.advertisementSection) />
@@ -137,7 +146,7 @@
 					</cfif>
 				</cfloop>
 			</cfif>
-			--->
+			
 			<cfif StructKeyExists(FORM,"default_image_id") AND FORM.default_image_id NEQ "">
 				<cfset LOCAL.currentDefaultImage = EntityLoad("category_image",{category=LOCAL.category,isDefault=true},true) />
 				<cfif NOT IsNull(LOCAL.currentDefaultImage)>
@@ -147,15 +156,6 @@
 				<cfset LOCAL.newDefaultImage = EntityLoadByPK("category_image", FORM.default_image_id) />
 				<cfset LOCAL.newDefaultImage.setIsDefault(true) />
 				<cfset EntitySave(LOCAL.newDefaultImage) />
-			</cfif>
-			
-			<cfif NOT IsNull(LOCAL.advertisementSection.getAdvertisements())>
-				<cfloop array="#LOCAL.advertisementSection.getAdvertisements()#" index="LOCAL.ad">
-					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
-						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
-						<cfset EntitySave(LOCAL.ad) />
-					</cfif>
-				</cfloop>
 			</cfif>
 			
 			<cfif NOT IsNull(LOCAL.bestSellerSection.getProducts())>

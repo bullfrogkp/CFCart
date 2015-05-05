@@ -64,7 +64,7 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		$("##ads_uploader").plupload({
+		$("##ads_image").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
 			
@@ -501,7 +501,7 @@
 							</div>
 							
 							<div class="form-group">
-								<div id="ads_uploader">
+								<div id="ads_image">
 									<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
 								</div>
 							</div>
