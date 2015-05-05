@@ -195,7 +195,7 @@ padding: 0 8px 8px;">
 				<cfloop array="#REQUEST.pageData.bestSellerSection.getProducts()#" index="bs">	
 					<cfset product = bs.getProduct() />
 					<li>
-						<img src="#SESSION.absoluteUrlTheme#images/#product.getDefaultImageLink()#" />
+						<img src="#product.getDefaultImageLink()#" />
 						<div class="recommendation-list-detail">
 							<div class="recommendation-list-name">
 								<a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#">

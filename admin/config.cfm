@@ -221,3 +221,7 @@ VALUES
 ('default','Default',1),
 ('wholesaler','Wholesaler',0),
 ('retailer','Retailer',0);
+
+/*add page and page_section records*/
+/*add tracking_record_type records*/
+/*add top selling and group buying category*/
