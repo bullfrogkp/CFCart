@@ -1,7 +1,6 @@
 ﻿<cfoutput>
 
 <div id="breadcrumb">
-	<!---
 	<div class="breadcrumb-home-icon"></div>
 	<cfloop array="#REQUEST.pageData.categoryArray#" index="category">
 		<div class="breadcrumb-arrow-icon"></div>
@@ -11,7 +10,6 @@
 			</a>
 		</span> 
 	</cfloop>
-	--->
 </div>
 <div style="width:413px;float:left;">
 	<img src="#REQUEST.pageData.defaultImage.getImageLink()#" data-zoom-image="#REQUEST.pageData.defaultImage.getImageLink()#"/> 

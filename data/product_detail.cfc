@@ -7,11 +7,8 @@
 		
 		<cfset LOCAL.pageData.product = EntityLoadByPK("product",LOCAL.productId) />
 		
-		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
-		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-		
-		<cfset LOCAL.pageData.defaultImage = EntityLoad("product_image", {product = LOCAL.pageData.product, isDefault = true, isDeleted = false},true)> 
-		<cfset LOCAL.pageData.allImages = EntityLoad("product_image", {product = LOCAL.pageData.product, isDefault = true, isDeleted = false})> 
+		<cfset LOCAL.pageData.defaultImage = EntityLoad("product_image", {product = LOCAL.pageData.product, isDefault = true},true)> 
+		<cfset LOCAL.pageData.allImages = EntityLoad("product_image", {product = LOCAL.pageData.product, isDefault = true})> 
 		
 		<cfset LOCAL.reviewStatusType = EntityLoad("review_status_type", {name = "approved"})> 
 		<cfset LOCAL.pageData.reviews = EntityLoad("review", {product = LOCAL.pageData.product, reviewStatusType = LOCAL.reviewStatusType})> 
