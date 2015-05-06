@@ -243,7 +243,7 @@
 			</cfif>
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_8" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_8" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_best_seller_product")>
 			
@@ -254,7 +254,7 @@
 			<cfset EntitySave(LOCAL.bestSellerSection) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_8" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_8" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_ad")>
 			
@@ -263,7 +263,7 @@
 			<cfset EntitySave(LOCAL.advertisementSection) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=tab_7" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_7" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

@@ -6,8 +6,8 @@
 	<cfproperty name="products" type="array" fieldtype="one-to-many" cfc="page_section_product" fkcolumn="page_section_id" singularname="product" orderby="rank">
 	<cfproperty name="advertisements" type="array" fieldtype="one-to-many" cfc="page_section_advertisement" fkcolumn="page_section_id" singularname="advertisement" orderby="rank">
 	
-	<cfproperty name="category" persistent="false" type="object"> 
-	<cfproperty name="product" persistent="false" type="object"> 
+	<cfproperty name="category" persistent="false" type="any"> 
+	<cfproperty name="product" persistent="false" type="any"> 
 	
 	<cffunction name="getSectionData" access="public" output="false" returnType="any">
 		

@@ -533,7 +533,7 @@
 							<div class="row" style="margin-top:10px;">
 								<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getProducts())>
 									<cfloop array="#REQUEST.pageData.bestSellerSection.getProducts()#" index="bs">	
-										<cfset product = bs.getProduct() />
+										<cfset product = bs.getSectionProduct() />
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
