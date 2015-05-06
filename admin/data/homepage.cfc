@@ -79,7 +79,7 @@
 					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.relatedProduct) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -89,7 +89,7 @@
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_top_selling_product_id) />
 				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 				<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.newProduct) />
 				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
@@ -104,7 +104,7 @@
 					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.relatedProduct) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -114,7 +114,7 @@
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_group_buying_product_id) />
 				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 				<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.newProduct) />
 				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
@@ -124,7 +124,7 @@
 		<cfelseif StructKeyExists(FORM,"delete_top_selling_product")>
 			
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_top_selling_product_id) />
-			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.topSellingSection, product = LOCAL.product}, true) />
+			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.topSellingSection, sectionProduct = LOCAL.product}, true) />
 			<cfset LOCAL.topSellingSection.removePageProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.topSellingSection) />

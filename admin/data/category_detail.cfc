@@ -140,6 +140,7 @@
 							<cfset LOCAL.newAdvertisement = EntityNew("page_section_advertisement") />
 							<cfset LOCAL.newAdvertisement.setName(LOCAL.imgName) />
 							<cfset LOCAL.newAdvertisement.setSection(LOCAL.advertisementSection) />
+							<cfset LOCAL.newAdvertisement.setCategory(LOCAL.category) />
 							<cfset EntitySave(LOCAL.newAdvertisement) />
 							
 							<cfset LOCAL.advertisementSection.addAdvertisement(LOCAL.newAdvertisement) />
@@ -223,7 +224,8 @@
 					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.bestSellerSection) />
-						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setCategory(LOCAL.category) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -233,7 +235,8 @@
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_best_seller_product_id) />
 				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 				<cfset LOCAL.newSectionProduct.setSection(LOCAL.bestSellerSection) />
-				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newSectionProduct.setCategory(LOCAL.category) />
 				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
@@ -243,7 +246,7 @@
 		<cfelseif StructKeyExists(FORM,"delete_best_seller_product")>
 			
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.deleted_best_seller_product_id) />
-			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.bestSellerSection, product = LOCAL.product}, true) />
+			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.bestSellerSection, sectionProduct = LOCAL.product}, true) />
 			<cfset LOCAL.bestSellerSection.removeProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.bestSellerSection) />
