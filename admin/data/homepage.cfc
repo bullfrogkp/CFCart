@@ -17,8 +17,8 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfif NOT IsNull(LOCAL.advertisementSection.getAdvertisements())>
-				<cfloop array="#LOCAL.advertisementSection.getAdvertisements()#" index="LOCAL.ad">
+			<cfif NOT IsNull(LOCAL.advertisementSection.getSectionData())>
+				<cfloop array="#LOCAL.advertisementSection.getSectionData()#" index="LOCAL.ad">
 					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
 						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
@@ -42,8 +42,8 @@
 				</cfloop>
 			</cfif>
 			
-			<cfif NOT IsNull(LOCAL.topSellingSection.getProducts())>
-				<cfloop array="#LOCAL.topSellingSection.getProducts()#" index="LOCAL.sectionProduct">
+			<cfif NOT IsNull(LOCAL.topSellingSection.getSectionData())>
+				<cfloop array="#LOCAL.topSellingSection.getSectionData()#" index="LOCAL.sectionProduct">
 					<cfif IsNumeric(FORM["top_selling_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
 						<cfset LOCAL.sectionProduct.setRank(FORM["top_selling_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
 						<cfset EntitySave(LOCAL.sectionProduct) />
@@ -51,8 +51,8 @@
 				</cfloop>
 			</cfif>
 			
-			<cfif NOT IsNull(LOCAL.groupBuyingSection.getProducts())>
-				<cfloop array="#LOCAL.groupBuyingSection.getProducts()#" index="LOCAL.sectionProduct">
+			<cfif NOT IsNull(LOCAL.groupBuyingSection.getSectionData())>
+				<cfloop array="#LOCAL.groupBuyingSection.getSectionData()#" index="LOCAL.sectionProduct">
 					<cfif IsNumeric(FORM["group_buying_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
 						<cfset LOCAL.sectionProduct.setRank(FORM["group_buying_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
 						<cfset EntitySave(LOCAL.sectionProduct) />

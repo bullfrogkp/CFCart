@@ -1,6 +1,6 @@
 ﻿<cfoutput>
 <div id="slide-div" style="width:722px;float:right;">
-	#REQUEST.pageData.slideSection.getContent()#
+	#REQUEST.pageData.slideSection.getSectionData()#
 </div>
 <div id="top-sidebar">
 	<img src="#SESSION.absoluteUrlTheme#images/week_deal.gif" style="width:230px;" />
@@ -50,9 +50,9 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getProducts())>
-							<cfloop array="#REQUEST.pageData.topSellingSection.getProducts()#" index="tp">	
-								<cfset product = tp.getProduct() />
+						<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getSectionData())>
+							<cfloop array="#REQUEST.pageData.topSellingSection.getSectionData()#" index="tp">	
+								<cfset product = tp.getSectionProduct() />
 								<li class="single-products">
 									<a href="#product.getDetailPageURL()#">
 										<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
@@ -78,9 +78,9 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getProducts())>
-							<cfloop array="#REQUEST.pageData.groupBuyingSection.getProducts()#" index="gb">	
-								<cfset product = gb.getProduct() />
+						<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getSectionData())>
+							<cfloop array="#REQUEST.pageData.groupBuyingSection.getSectionData()#" index="gb">	
+								<cfset product = gb.getSectionProduct() />
 								<li class="single-products">
 									<a href="#product.getDetailPageURL()#">
 										<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />

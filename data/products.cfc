@@ -46,7 +46,9 @@
 	
 		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = getPageName()},true)> 
 		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.advertisementSection.setCategory(LOCAL.pageData.category) />
 		<cfset LOCAL.pageData.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.pageData.bestSellerSection.setCategory(LOCAL.pageData.category) />
 	
 		<cfif LOCAL.pageData.category.getDisplayCategoryList() EQ true>
 			<cfset LOCAL.pageData.allCategories = EntityLoad("category", {isDeleted = false, isEnabled = true})> 

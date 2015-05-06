@@ -97,8 +97,8 @@
 				</cfloop>
 			</cfif>
 					
-			<cfif NOT IsNull(LOCAL.advertisementSection.getAdvertisements())>
-				<cfloop array="#LOCAL.advertisementSection.getAdvertisements()#" index="LOCAL.ad">
+			<cfif NOT IsNull(LOCAL.advertisementSection.getSectionData())>
+				<cfloop array="#LOCAL.advertisementSection.getSectionData()#" index="LOCAL.ad">
 					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
 						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
@@ -159,8 +159,8 @@
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
-			<cfif NOT IsNull(LOCAL.bestSellerSection.getProducts())>
-				<cfloop array="#LOCAL.bestSellerSection.getProducts()#" index="LOCAL.sectionProduct">
+			<cfif NOT IsNull(LOCAL.bestSellerSection.getSectionData())>
+				<cfloop array="#LOCAL.bestSellerSection.getSectionData()#" index="LOCAL.sectionProduct">
 					<cfif IsNumeric(FORM["best_seller_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
 						<cfset LOCAL.sectionProduct.setRank(FORM["best_seller_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
 						<cfset EntitySave(LOCAL.sectionProduct) />
