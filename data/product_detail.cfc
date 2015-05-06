@@ -13,6 +13,9 @@
 		<cfset LOCAL.pageData.defaultImage = EntityLoad("product_image", {product = LOCAL.pageData.product, isDefault = true, isDeleted = false},true)> 
 		<cfset LOCAL.pageData.allImages = EntityLoad("product_image", {product = LOCAL.pageData.product, isDefault = true, isDeleted = false})> 
 		
+		<cfset LOCAL.reviewStatusType = EntityLoad("review_status_type", {name = "approved"})> 
+		<cfset LOCAL.pageData.reviews = EntityLoad("review", {product = LOCAL.pageData.product, reviewStatusType = LOCAL.reviewStatusType})> 
+		
 		<!---
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />

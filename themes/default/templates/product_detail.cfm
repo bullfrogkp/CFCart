@@ -22,25 +22,18 @@
 			</a> 
 		</cfloop>
 	</div>
+	<!---
 	<div id="videos"> 
 		<div style="padding-bottom:5px;">Videos:</div>
 		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
 			<img id="img_02" src="#SESSION.absoluteUrlTheme#images/thumb/image1.jpg" /> 
 		</a> 
-		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
-			<img id="img_03" src="#SESSION.absoluteUrlTheme#images/thumb/image2.jpg" /> 
-		</a> 
-		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
-			<img id="img_04" src="#SESSION.absoluteUrlTheme#images/thumb/image3.jpg" /> 
-		</a> 
-		<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
-			<img id="img_05" src="#SESSION.absoluteUrlTheme#images/thumb/image4.jpg" /> 
-		</a> 
 	</div>
+	--->
 </div>
 <div style="width:523px;float:right;">
 	<div id="product-name" style="font-size:18px;font-weight:bold;">
-		USB TO PC Game Controller Adapter Converter For PS2
+		#REQUEST.pageData.product.getDisplayName()#
 	</div>
 	<div id="product-share" style="margin-top:10px;">
 		<img class="logo facebook-logo" onclick="affShareOnFacebook('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Facebook" src="#SESSION.absoluteUrlTheme#images/p_facebook-color.png">
@@ -49,10 +42,10 @@
 		<img src="#SESSION.absoluteUrlTheme#images/p_pinterest.png">
 	</div>
 	<div id="product-sku" style="font-size:12px;margin-top:10px;">
-		SKU:GAME006
+		SKU:#REQUEST.pageData.product.getSku()#
 	</div>
 	<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
-		US $6.04
+		#DollarFormat(REQUEST.pageData.product.getPrice())#
 	</div>
 	<div id="product-addtocart" style="margin-top:30px;">
 		<span style="font-size:13px;">Qty: </span>
@@ -64,51 +57,32 @@
 	</div>
 	
 	<div id="product-description">
-	  <ul>
-		<li><a href="##tabs-1">Product Description</a></li>
-		<li><a href="##tabs-2">Reviews</a></li>
-	  </ul>
-	  <div id="tabs-1">
-		<p>Wanna use your PSX controller to play PC games without waste extra money? Wanna find the easiest and fastest way to use your PS/PS2 Controller on your PC? Now, you get it! The worlds first support Real vibration PS &amp; ps2 USB Adaptor for the PC is available now, It supports Dual Player Games Win95/98/ME/2000/XP &amp; Real vibration &amp; even the most popular DDR dancing controller! Go to share it now!</p><p><strong>Features:</strong></p><p>1. Convert all the PSX controller to be used on PC.</p><p>2. Easy and convenient to use, simply hot-plug the C USB socket and install the driver, then it works perfectly.</p><p>3. Real vibration feedback function</p><p>4. Both Digital &amp; Analog modes are available.</p><p>5. Support all vibration types.</p><p>6. Compatible with Win98, Win98SE, WinME, Win2000&amp;the newly announced WinXP, together with the Direct X 7.0 a or above.</p><p>7. DDR dancing controller is compatible.</p><p>8. Build-in flashing signal indicator.<br>&nbsp;<br><strong>Item included:</strong><br>1* TWO PORT Cable</p>
-	  </div>
+		<ul>
+			<li><a href="##tabs-1">Product Description</a></li>
+			<li><a href="##tabs-2">Reviews</a></li>
+		</ul>
+		<div id="tabs-1">
+			#REQUEST.pageData.product.getProductDetail()#
+		</div>
 	  <div id="tabs-2">
-		<div style="border-bottom: 1px dashed ##CCCCCC;">
-			<p style="font-weight:bold;">wonderful gift for christmas! Review by Linda</p>
-			<p style="width:200px;height: 13px;
-background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
-background-position: left -1500px;
-background-repeat: no-repeat;"></p>
-			<p>
-				Pros:The surface touches very soft and dressed body perfectly.So hot ,and so cute.Love it!
-			</p>
-			<p>	Cons: a exact size would be more perfect. </p>
-
-			<p>	Bottomline:nice item,and good price,highly recommended!</p>
-				<p>(Posted on 11/20/10)</p>
-			</p>
-		</div>
-		<div style="border-bottom: 1px dashed ##CCCCCC;">
-			<p style="font-weight:bold;">wonderful gift for christmas! Review by Linda</p>
-			<p style="width:200px;height: 13px;
-background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
-background-position: left -1500px;
-background-repeat: no-repeat;"></p>
-			<p>
-				Pros:The surface touches very soft and dressed body perfectly.So hot ,and so cute.Love it!
-			</p>
-			<p>	Cons: a exact size would be more perfect. </p>
-
-			<p>	Bottomline:nice item,and good price,highly recommended!</p>
-				<p>(Posted on 11/20/10)</p>
-			</p>
-		</div>
+		<cfloop array="#REQUEST.pageData.reviews#" index="review">
+			<div style="border-bottom: 1px dashed ##CCCCCC;">
+				<p style="font-weight:bold;">#review.getSubject()# Review by #review.getName()#</p>
+				<p style="width:200px;height: 13px;
+					background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
+					background-position: left -1500px;
+					background-repeat: no-repeat;"></p>
+				<p>#review.getMessage()#</p>
+				<p>(Posted on #DateFormat(review.getCreatedDatetime(),"mmm dd, yyyy")#)</p>
+			</div>
+		</cfloop>
 		<div>
 			<p style="font-weight:bold;">Write Your Own Review</p>
 			<p style="font-weight:bold;">How do you rate this product?</p>
 			<p style="width:200px;height: 13px;
-background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
-background-position: left -1500px;
-background-repeat: no-repeat;"></p>
+						background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
+						background-position: left -1500px;
+						background-repeat: no-repeat;"></p>
 			<p style="font-weight:bold;">Name</p>
 			<p><input type="text" style="width:100%;" /></p>
 			<p style="font-weight:bold;">Subject</p>
