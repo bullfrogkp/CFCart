@@ -30,12 +30,7 @@
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
-		
-		<cfset LOCAL.currentPageName = "products" />
-		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
-		<cfset LOCAL.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
-		
+				
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.category = EntityLoadByPK("category", FORM.id)> 
 			<cfset LOCAL.category.setUpdatedUser(SESSION.adminUser) />
@@ -48,6 +43,13 @@
 			<cfset LOCAL.category.setIsDeleted(false) />
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
+		
+		<cfset LOCAL.currentPageName = "products" />
+		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
+		<cfset LOCAL.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.advertisementSection.setCategory(LOCAL.category)> 
+		<cfset LOCAL.bestSellerSection = EntityLoad("page_section", {name="best seller",page=LOCAL.pageData.currentPage},true)> 
+		<cfset LOCAL.bestSellerSection.setCategory(LOCAL.category)> 
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
@@ -287,6 +289,9 @@
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
+			
+			<cfset LOCAL.pageData.advertisementSection.setCategory(LOCAL.pageData.category)> 
+			<cfset LOCAL.pageData.bestSellerSection.setCategory(LOCAL.pageData.category)> 
 			
 			<cfset LOCAL.categoryService.setId(URL.id) />
 			<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
