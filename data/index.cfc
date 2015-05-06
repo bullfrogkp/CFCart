@@ -27,9 +27,6 @@
 		<cfset LOCAL.pageData.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
 		
-		<cfset LOCAL.pageData.topSellingCategory = EntityLoad("category",{displayName="Top Selling"},true) />
-		<cfset LOCAL.pageData.groupBuyingCategory = EntityLoad("category",{displayName="Group Buying"},true) />
-		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>

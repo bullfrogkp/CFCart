@@ -46,8 +46,7 @@
 	<div class="container">
 		<div id="category-list">
 			<div class="cat-thumbnails">
-				<div class="cat-thumbnail-title"><a href="#REQUEST.pageData.topSellingCategory.getDetailPageURL()#">#REQUEST.pageData.topSellingCategory.getDisplayName()#</a></div>
-				<div class="cat-thumbnail-link"><a href="">More >></a></div>
+				<div class="cat-thumbnail-title">Top Selling</div>
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
@@ -75,8 +74,7 @@
 				</div>
 			</div>
 			<div class="cat-thumbnails">
-				<div class="cat-thumbnail-title"><a href="#REQUEST.pageData.groupBuyingCategory.getDetailPageURL()#">#REQUEST.pageData.groupBuyingCategory.getDisplayName()#</a></div>
-				<div class="cat-thumbnail-link"><a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm">More >></a></div>
+				<div class="cat-thumbnail-title">Group Buying</div>
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
