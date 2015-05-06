@@ -162,9 +162,9 @@
 								<span class="label label-primary">Add New Product</span>
 							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getProducts())>
-									<cfloop array="#REQUEST.pageData.topSellingSection.getProducts()#" index="tp">	
-										<cfset product = tp.getProduct() />
+								<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getSectionData())>
+									<cfloop array="#REQUEST.pageData.topSellingSection.getSectionData()#" index="tp">	
+										<cfset product = tp.getSectionProduct() />
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
@@ -197,9 +197,9 @@
 								<span class="label label-primary">Add New Product</span>
 							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getProducts())>
-									<cfloop array="#REQUEST.pageData.groupBuyingSection.getProducts()#" index="gb">	
-										<cfset product = gb.getProduct() />
+								<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getSectionData())>
+									<cfloop array="#REQUEST.pageData.groupBuyingSection.getSectionData()#" index="gb">	
+										<cfset product = gb.getSectionProduct() />
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
