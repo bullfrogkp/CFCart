@@ -493,8 +493,8 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
 						<div class="form-group">
 							<div class="row">
-								<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getAdvertisements())>
-									<cfloop array="#REQUEST.pageData.advertisementSection.getAdvertisements()#" index="ad">						
+								<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getSectionData())>
+									<cfloop array="#REQUEST.pageData.advertisementSection.getSectionData()#" index="ad">						
 										<div class="col-xs-2">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
@@ -531,8 +531,8 @@
 								<span class="label label-primary">Add New Product</span>
 							</a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getProducts())>
-									<cfloop array="#REQUEST.pageData.bestSellerSection.getProducts()#" index="bs">	
+								<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getSectionData())>
+									<cfloop array="#REQUEST.pageData.bestSellerSection.getSectionData()#" index="bs">	
 										<cfset product = bs.getSectionProduct() />
 										<div class="col-xs-2">
 											<div class="box">

@@ -23,9 +23,9 @@
 		<cfelseif  page.getName() EQ "index" AND getName() EQ "group buying">
 			<cfset sectionData = getProducts() />
 		<cfelseif  page.getName() EQ "products" AND getName() EQ "advertisement">
-			<cfset sectionData = EntityLoad("page_section_advertisement", {section = this, category = getCategory()},true)> 
+			<cfset sectionData = EntityLoad("page_section_advertisement", {section = this, category = getCategory()})> 
 		<cfelseif  page.getName() EQ "products" AND getName() EQ "best seller">
-			<cfset sectionData = EntityLoad("page_section_product", {section = this, category = getCategory()},true)> 
+			<cfset sectionData = EntityLoad("page_section_product", {section = this, category = getCategory()})> 
 		</cfif>
 		
 		<cfreturn sectionData />
