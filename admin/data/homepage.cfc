@@ -123,9 +123,9 @@
 			
 		<cfelseif StructKeyExists(FORM,"delete_top_selling_product")>
 			
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_top_selling_product_id) />
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.deleted_top_selling_product_id) />
 			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.topSellingSection, sectionProduct = LOCAL.product}, true) />
-			<cfset LOCAL.topSellingSection.removePageProduct(LOCAL.sectionProduct) />
+			<cfset LOCAL.topSellingSection.removeProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.topSellingSection) />
 			
@@ -134,9 +134,9 @@
 			
 		<cfelseif StructKeyExists(FORM,"delete_group_buying_product")>
 		
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.delete_group_buying_product_id) />
-			<cfset LOCAL.sectionProduct = EntityLoad("page_product", {section = LOCAL.groupBuyingSection, product = LOCAL.product}, true) />
-			<cfset LOCAL.groupBuyingSection.removePageProduct(LOCAL.sectionProduct) />
+			<cfset LOCAL.product = EntityLoadByPK("product",FORM.deleted_group_buying_product_id) />
+			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.groupBuyingSection, sectionProduct = LOCAL.product}, true) />
+			<cfset LOCAL.groupBuyingSection.removeProduct(LOCAL.sectionProduct) />
 			
 			<cfset EntitySave(LOCAL.groupBuyingSection) />
 			
