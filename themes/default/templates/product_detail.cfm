@@ -1,39 +1,26 @@
 ﻿<cfoutput>
 
 <div id="breadcrumb">
-		<div class="breadcrumb-home-icon"></div>
+	<!---
+	<div class="breadcrumb-home-icon"></div>
+	<cfloop array="#REQUEST.pageData.categoryArray#" index="category">
 		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Computers / Networking</span> 
-		<div class="breadcrumb-arrow-icon"></div>
-		<span style="vertical-align:middle">Keyboards</span> 
-	</div>
+		<span style="vertical-align:middle">
+			<a href="#category.getDetailPageURL()#">
+			#category.getDisplayName()#
+			</a>
+		</span> 
+	</cfloop>
+	--->
+</div>
 <div style="width:413px;float:left;">
-	<img id="img_01" src="#SESSION.absoluteUrlTheme#images/small/image1.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image1.jpg"/> 
+	<img src="#REQUEST.pageData.defaultImage.getImageLink()#" data-zoom-image="#REQUEST.pageData.defaultImage.getImageLink()#"/> 
 	<div id="gallery_01"> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image1.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image1.jpg"> 
-			<img id="img_02" src="#SESSION.absoluteUrlTheme#images/thumb/image1.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image2.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image2.jpg"> 
-			<img id="img_03" src="#SESSION.absoluteUrlTheme#images/thumb/image2.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image3.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image3.jpg"> 
-			<img id="img_04" src="#SESSION.absoluteUrlTheme#images/thumb/image3.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image4.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image4.jpg"> 
-			<img id="img_05" src="#SESSION.absoluteUrlTheme#images/thumb/image4.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image1.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image1.jpg"> 
-			<img id="img_06" src="#SESSION.absoluteUrlTheme#images/thumb/image1.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image2.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image2.jpg"> 
-			<img id="img_07" src="#SESSION.absoluteUrlTheme#images/thumb/image2.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image3.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image3.jpg"> 
-			<img id="img_08" src="#SESSION.absoluteUrlTheme#images/thumb/image3.jpg" /> 
-		</a> 
-		<a href="##" data-image="#SESSION.absoluteUrlTheme#images/small/image4.png" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image4.jpg"> 
-			<img id="img_09" src="#SESSION.absoluteUrlTheme#images/thumb/image4.jpg" /> 
-		</a> 
+		<cfloop array="#REQUEST.pageData.allImages#" index="img">
+			<a href="##" data-image="#img.getImageLink()#" data-zoom-image="#img.getImageLink()#"> 
+				<img src="#img.getImageLink()#" /> 
+			</a> 
+		</cfloop>
 	</div>
 	<div id="videos"> 
 		<div style="padding-bottom:5px;">Videos:</div>
