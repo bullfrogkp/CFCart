@@ -5,7 +5,7 @@
 		<div id="gallery_01"> 
 			<cfloop array="#REQUEST.pageData.allImages#" index="img">
 				<a href="##" data-image="#img.getImageLink()#" data-zoom-image="#img.getImageLink()#"> 
-					<img src="#img.getImageLink()#" /> 
+					<img style="height:67px;" src="#img.getImageLink()#" /> 
 				</a> 
 			</cfloop>
 		</div>
