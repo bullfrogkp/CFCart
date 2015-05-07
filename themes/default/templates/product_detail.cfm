@@ -1,7 +1,7 @@
 ﻿<cfoutput>
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
-		<img src="#REQUEST.pageData.defaultImage.getImageLink()#" data-zoom-image="#REQUEST.pageData.defaultImage.getImageLink()#"/> 
+		<img style="width:300px;" id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink()#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/> 
 		<div id="gallery_01"> 
 			<cfloop array="#REQUEST.pageData.allImages#" index="img">
 				<a href="##" data-image="#img.getImageLink()#" data-zoom-image="#img.getImageLink()#"> 
@@ -101,7 +101,7 @@
 						</cfif>
 						<div class="product-overlay">
 							<div class="overlay-content">
-								<div class="thumbnail-rating"></div>
+								<div class="thumbnail-rating" style="background-position: 30px -1512px;"></div>
 								<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
 								<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
 							</div>
