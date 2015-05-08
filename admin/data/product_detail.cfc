@@ -537,8 +537,8 @@
 				<cfset ImageResize(LOCAL.newImage, "", LOCAL.size.height) />
 			</cfif>
 			
-			<cfset LOCAL.imageName = ListGetAt(ARGUMENTS.imageName, "1", ".") />
-			<cfset LOCAL.imageExtension = ListGetAt(ARGUMENTS.imageName, "2", ".") />
+			<cfset LOCAL.imageName = ListGetAt(ARGUMENTS.imageNameWithExtension, "1", ".") />
+			<cfset LOCAL.imageExtension = ListGetAt(ARGUMENTS.imageNameWithExtension, "2", ".") />
 			
 			<cfset ImageWrite(LOCAL.newImage,"#ARGUMENTS.imagePath##LOCAL.imageName#_#LOCAL.size.name#.#LOCAL.imageExtension#")> 
 		</cfloop>
