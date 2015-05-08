@@ -68,12 +68,19 @@
 	</cffunction>
 	
 	<cffunction name="getDefaultImageLink" access="public" output="false" returnType="string">
+		<cfargument name="type" type="string" required="false" default="" />
+		
+		<cfset var imageType = "" />
+		<cfif Trim(ARGUMENTS.type) NEQ "">
+			<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
+		</cfif>
+		
 		<cfset var imageLink = "" />
 		<cfset var productImg = "" />
 		
 		<cfif NOT IsNull(getImages())>
 			<cfif ArrayLen(getImages()) EQ 1>
-				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/small_#getImages()[1].getName()#" />
+				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##getImages()[1].getName()#" />
 			<cfelse>
 				<cfset productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
 				

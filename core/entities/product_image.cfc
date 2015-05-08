@@ -5,7 +5,7 @@
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
 	
 	<cffunction name="getImageLink" access="public" output="false" returnType="string">
-		<cfargument name="type" type="string" required="false" />
+		<cfargument name="type" type="string" required="false" default="" />
 		
 		<cfset var imageType = "" />
 		<cfif Trim(ARGUMENTS.type) NEQ "">
