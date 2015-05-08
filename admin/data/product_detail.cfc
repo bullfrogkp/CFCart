@@ -168,6 +168,9 @@
 							
 							<cffile action = "move" source = "#LOCAL.imagePath##LOCAL.imgName#" destination = "#LOCAL.imagePath##LOCAL.product.getProductId()#\#LOCAL.imgName#">
 						
+							<cfset _createImages(	imagePath = "#LOCAL.imagePath##LOCAL.product.getProductId()#\",
+													imageNameWithExtension = LOCAL.imgName) />
+						
 							<cfset LOCAL.productImage = EntityNew("product_image") />
 							<cfset LOCAL.productImage.setName(LOCAL.imgName) />
 							<cfset EntitySave(LOCAL.productImage) />
@@ -513,25 +516,31 @@
 	
 	<cffunction name="_createImages" access="private" output="false" returnType="void">
 		<cfargument name="imagePath" type="string" required="true">
+		<cfargument name="imageNameWithExtension" type="string" required="true">
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
-		<cfset LOCAL.pic = ImageRead(ARGUMENTS.imagePath)>
+		<cfset LOCAL.image = ImageRead(ARGUMENTS.imagePath & ARGUMENTS.imageNameWithExtension)>
 		
-		<cfset LOCAL.sizeArray = [{size = "medium", width = "411", height = "", position=""}
-								, {size = "small", width = "200", height = "200", position="center"}
+		<cfset LOCAL.sizeArray = [{name = "medium", width = "411", height = "", position=""}
+								, {name = "small", width = "200", height = "200", position="center"}
 								] />
 		
 		<cfloop array="#LOCAL.sizeArray#" index="LOCAL.size">
-			<cfset LOCAL.newImage = ImageNew(pic)>
+			<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
 				
 			<cfif IsNumeric(LOCAL.size.width) AND IsNumeric(LOCAL.size.height)>
 				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height, LOCAL.size.position)>
 			<cfelseif  IsNumeric(LOCAL.size.width)>
-				<cfset imageResize(LOCAL.newImage, LOCAL.size.width, "") />
+				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, "") />
 			<cfelseif  IsNumeric(LOCAL.size.height)>
-				<cfset imageResize(LOCAL.newImage, "", LOCAL.size.height) />
+				<cfset ImageResize(LOCAL.newImage, "", LOCAL.size.height) />
 			</cfif>
+			
+			<cfset LOCAL.imageName = ListGetAt(ARGUMENTS.imageName, "1", ".") />
+			<cfset LOCAL.imageExtension = ListGetAt(ARGUMENTS.imageName, "2", ".") />
+			
+			<cfset ImageWrite(LOCAL.newImage,"#ARGUMENTS.imagePath##LOCAL.imageName#_#LOCAL.size.name#.#LOCAL.imageExtension#")> 
 		</cfloop>
 		
 	</cffunction>
