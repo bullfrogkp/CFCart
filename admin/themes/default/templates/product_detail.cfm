@@ -421,7 +421,7 @@
 													</tr>
 													<tr>
 														<td colspan="2">
-															<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/#img.getName()#" />
+															<img class="img-responsive" src="#img.getImageLink(type = "small")#" />
 														</td>
 													</tr>
 													<tr>

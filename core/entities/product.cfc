@@ -73,7 +73,7 @@
 		
 		<cfif NOT IsNull(getImages())>
 			<cfif ArrayLen(getImages()) EQ 1>
-				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#getImages()[1].getName()#" />
+				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/small_#getImages()[1].getName()#" />
 			<cfelse>
 				<cfset productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
 				

@@ -1,7 +1,7 @@
 ﻿<cfoutput>
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
-		<img id="img_01" style="width:411px;" src="#REQUEST.pageData.product.getDefaultImageLink()#" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image1.jpg"/>
+		<img id="img_01" style="width:411px;" src="#REQUEST.pageData.product.getDefaultImageLink(type = "medium")#" data-zoom-image="#SESSION.absoluteUrlTheme#images/large/image1.jpg"/>
 		<div id="gallery_01"> 
 			<cfloop array="#REQUEST.pageData.allImages#" index="img">
 				<a href="##" data-image="#img.getImageLink()#" data-zoom-image="#img.getImageLink()#"> 

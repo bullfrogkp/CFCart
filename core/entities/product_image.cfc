@@ -5,6 +5,13 @@
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
 	
 	<cffunction name="getImageLink" access="public" output="false" returnType="string">
-		<cfreturn "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProduct().getProductId()#/#getName()#" />
+		<cfargument name="type" type="string" required="false" />
+		
+		<cfset var imageType = "" />
+		<cfif Trim(ARGUMENTS.type) NEQ "">
+			<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
+		</cfif>
+		
+		<cfreturn "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProduct().getProductId()#/#imageType##getName()#" />
 	</cffunction>
 </cfcomponent>
