@@ -510,4 +510,29 @@
 	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
+	
+	<cffunction name="_createImages" access="private" output="false" returnType="void">
+		<cfargument name="imagePath" type="string" required="true">
+		
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
+		<cfset LOCAL.pic = ImageRead(ARGUMENTS.imagePath)>
+		
+		<cfset LOCAL.sizeArray = [{size = "medium", width = "411", height = "", position=""}
+								, {size = "small", width = "200", height = "200", position="center"}
+								] />
+		
+		<cfloop array="#LOCAL.sizeArray#" index="LOCAL.size">
+			<cfset LOCAL.newImage = ImageNew(pic)>
+				
+			<cfif IsNumeric(LOCAL.size.width) AND IsNumeric(LOCAL.size.height)>
+				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height, LOCAL.size.position)>
+			<cfelseif  IsNumeric(LOCAL.size.width)>
+				<cfset imageResize(LOCAL.newImage, LOCAL.size.width, "") />
+			<cfelseif  IsNumeric(LOCAL.size.height)>
+				<cfset imageResize(LOCAL.newImage, "", LOCAL.size.height) />
+			</cfif>
+		</cfloop>
+		
+	</cffunction>
 </cfcomponent>
