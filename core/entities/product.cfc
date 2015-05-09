@@ -76,22 +76,16 @@
 		</cfif>
 		
 		<cfset var imageLink = "" />
-		<cfset var productImg = "" />
+		<cfset var productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
 		
-		<cfif NOT IsNull(getImages())>
-			<cfif ArrayLen(getImages()) EQ 1>
+		<cfif IsNull(productImg)>
+			<cfif NOT IsNull(getImages()) AND ArrayLen(getImages()) GT 0>
 				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##getImages()[1].getName()#" />
 			<cfelse>
-				<cfset productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
-				
-				<cfif IsNull(productImg)>
-					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
-				<cfelse>
-					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#productImg.getName()#" />
-				</cfif>
+				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
 			</cfif>
 		<cfelse>
-			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#productImg.getName()#" />
 		</cfif>
 		
 		<cfreturn imageLink />
