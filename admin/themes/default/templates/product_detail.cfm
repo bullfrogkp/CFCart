@@ -1078,6 +1078,7 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</cfif>
 <!-- DELETE IMAGE MODAL -->
 <div class="modal fade" id="delete-image-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
@@ -1093,6 +1094,6 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-</cfif>
+
 </form>
 </cfoutput>

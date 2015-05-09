@@ -93,7 +93,7 @@
 				<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 					<li class="single-products">
 						<a href="#product.getDetailPageURL()#">
-							<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
+							<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 						</a>
 						<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
 						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
@@ -195,7 +195,7 @@ padding: 0 8px 8px;">
 				<cfloop array="#REQUEST.pageData.bestSellerSection.getSectionData()#" index="bs">	
 					<cfset product = bs.getSectionProduct() />
 					<li>
-						<img src="#product.getDefaultImageLink()#" />
+						<img src="#product.getDefaultImageLink(type='small')#" />
 						<div class="recommendation-list-detail">
 							<div class="recommendation-list-name">
 								<a href="#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(product.getDisplayName())#/#product.getProductId()#">
