@@ -83,7 +83,7 @@
 								<cfset product = gb.getSectionProduct() />
 								<li class="single-products">
 									<a href="#product.getDetailPageURL()#">
-										<img class="thumbnail-img" src="#product.getDefaultImageLink()#" />
+										<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 									</a>
 									<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
 									<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>

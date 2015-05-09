@@ -597,7 +597,7 @@
 														</tr>
 														<tr>
 															<td colspan="2">
-																<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																<img class="img-responsive" src="#product.getDefaultImageLink(type='small')#" />
 															</td>
 														</tr>
 													</table>

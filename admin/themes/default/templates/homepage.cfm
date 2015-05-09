@@ -170,7 +170,7 @@
 														<tr>
 															<td colspan="2">
 																<a href="#product.getDetailPageURL()#">
-																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																	<img class="img-responsive" src="#product.getDefaultImageLink(type='small')#" />
 																</a>
 															</td>
 														</tr>
@@ -205,7 +205,7 @@
 														<tr>
 															<td colspan="2">
 																<a href="#product.getDetailPageURL()#">
-																	<img class="img-responsive" src="#product.getDefaultImageLink()#" />
+																	<img class="img-responsive" src="#product.getDefaultImageLink(type='small')#" />
 																</a>
 															</td>
 														</tr>
