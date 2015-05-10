@@ -243,8 +243,7 @@
 		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
 		
 			<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",FORM.deleted_attribute_value_id) />
-			<cfset LOCAL.product.removeAttributeValue(LOCAL.attributeValue) /> 
-			<cfset EntitySave(LOCAL.product) />
+			<cfset EntityDelete(LOCAL.attributeValue) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute option has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
