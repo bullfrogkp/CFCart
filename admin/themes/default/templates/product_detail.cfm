@@ -484,7 +484,7 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th colspan="2">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
+														<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
 														<th><a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
@@ -493,19 +493,23 @@
 															<tr>
 																<td>#attributeValue.getDisplayName()#</td>
 																<td>
-																	<cfif attributeValue.getThumbnameImageName() NEQ "">
-																		<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																	<cfif attributeValue.getThumbnailImageName() NEQ "">
+																		<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
 																			<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
 																		</div>
 																	<cfelse>
 																		<cfif attribute.getDisplayName() EQ "color">
-																			<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:3px;"></div>
+																			<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
 																		<cfelse>
 																			#attributeValue.getThumbnailLabel()#
 																		</cfif>
 																	</cfif>
 																</td>
-																<td>#attributeValue.getImageLink(type = small)#</td>
+																<td>
+																	<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+																		<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																	</div>
+																</td>
 																<td>
 																	<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 																</td>
