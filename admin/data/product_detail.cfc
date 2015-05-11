@@ -240,7 +240,7 @@
 					<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
 					<cfset LOCAL.image = ImageRead(LOCAL.imageDir & LOCAL.newAttributeValue.getImageName())>
 					<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
-					<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 50, 50, "center")>
+					<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
 					<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#LOCAL.newAttributeValue.getImageName()#")> 
 					<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#LOCAL.newAttributeValue.getImageName()#") />
 				<cfelseif Trim(FORM.new_attribute_option_thumbnail_image) NEQ "">
