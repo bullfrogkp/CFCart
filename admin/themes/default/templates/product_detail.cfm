@@ -475,7 +475,6 @@
 						<label>Attribute Option(s)</label>
 						<div id="attributes" class="row" style="margin-top:10px;">
 							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
-							
 								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 									<cfset attribute = attributeSetAttributeRela.getAttribute() />
 									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
