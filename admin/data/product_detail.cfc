@@ -484,10 +484,6 @@
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
 			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
-			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSet())>
-				<cfset LOCAL.pageData.isProductAttributeComplete = LOCAL.productService.isProductAttributeComplete() />
-			</cfif>
-			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>

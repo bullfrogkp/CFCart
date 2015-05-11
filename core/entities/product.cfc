@@ -113,4 +113,27 @@
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
 		<cfreturn "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
 	</cffunction>
+	
+	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
+		<cfset var LOCAL = {} />
+	   
+		<cfset LOCAL.retValue = true />
+		
+		<cfif IsNull(getAttributeSet())>
+			<cfset LOCAL.retValue = false />
+		<cfelse>
+			<cfloop array="#getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
+				<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
+					<cfset LOCAL.attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
+					<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela", {product=this,attribute=LOCAL.attribute, required=true},true) />
+					<cfif IsNull(LOCAL.productAttributeRela) OR ArrayIsEmpty(LOCAL.productAttributeRela.getAttributeValues())>
+						<cfset LOCAL.retValue = false />
+						<cfbreak />
+					</cfif>
+				</cfif>
+			</cfloop>
+		</cfif>
+		
+		<cfreturn LOCAL.retValue />
+    </cffunction>
 </cfcomponent>

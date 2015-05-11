@@ -31,35 +31,31 @@
 		<div id="product-sku" style="font-size:12px;margin-top:10px;">
 			SKU:#REQUEST.pageData.product.getSku()#
 		</div>
-		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
+		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
 			<div id="product-filters" style="font-size:12px;margin-top:10px;">
 				<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 					<cfset attribute = attributeSetAttributeRela.getAttribute() />
 					<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
-					<cfif NOT IsNull(productAttributeRela)>
-						<table>
-							<tr class="warning">
-								<td>#attribute.getDisplayName()#</td>
-								<td>
-									<cfif NOT IsNull(productAttributeRela.getAttributeValues())>
-										<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-											<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-												<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-													<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-												</div>
-											<cfelse>
-												<cfif attribute.getDisplayName() EQ "color">
-													<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:3px;"></div>
-												<cfelse>
-													#attributeValue.getThumbnailLabel()#
-												</cfif>
-											</cfif>
-										</cfloop>
+					<table>
+						<tr class="warning">
+							<td>#attribute.getDisplayName()#</td>
+							<td>
+								<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+									<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
+										<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+											<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+										</div>
+									<cfelse>
+										<cfif attribute.getDisplayName() EQ "color">
+											<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:3px;"></div>
+										<cfelse>
+											#attributeValue.getThumbnailLabel()#
+										</cfif>
 									</cfif>
-								</td>
-							</tr>
-						</table>
-					</cfif>
+								</cfloop>
+							</td>
+						</tr>
+					</table>
 				</cfloop>
 			</div>
 		</cfif>

@@ -76,27 +76,6 @@
 		<cfreturn LOCAL.getProductGroupPrices />
     </cffunction>
 	
-	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
-		<cfset var LOCAL = {} />
-	   
-		<cfset LOCAL.retValue = true />
-		
-		<cfset LOCAL.product = EntityLoadByPK("product",getId()) />
-		
-		<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
-			<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
-				<cfset LOCAL.attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
-				<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.attribute},true) />
-				<cfif IsNull(LOCAL.productAttributeRela) OR ArrayIsEmpty(LOCAL.productAttributeRela.getAttributeValues())>
-					<cfset LOCAL.retValue = false />
-					<cfbreak />
-				</cfif>
-			</cfif>
-		</cfloop>
- 
-		<cfreturn LOCAL.retValue />
-    </cffunction>
-	
 	<cffunction name="getProductShippingMethods" output="false" access="public" returntype="query">
 		<cfset var LOCAL = {} />
 	   

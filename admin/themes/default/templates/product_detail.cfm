@@ -524,7 +524,7 @@
 						<div id="new_attributes" class="row" style="margin-top:10px;">
 						</div>
 						
-						<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
+						<cfif REQUEST.pageData.product.isProductAttributeComplete() EQ true>
 							<div class="form-group" id="attribute_option_values">
 								<label>Attribute Value(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
