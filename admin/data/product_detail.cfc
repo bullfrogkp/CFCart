@@ -236,18 +236,23 @@
 				
 				<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
 				
+				<cfset _createAttributeOptionImages(imagePath = LOCAL.imageDir, imageNameWithExtension = LOCAL.newAttributeValue.getImageName()) />
+				
 				<cfif StructKeyExists(FORM, "generate_thumbnail")>
-					<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
-					<cfset LOCAL.image = ImageRead(LOCAL.imageDir & LOCAL.newAttributeValue.getImageName())>
-					<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
-					<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
-					<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#LOCAL.newAttributeValue.getImageName()#")> 
 					<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#LOCAL.newAttributeValue.getImageName()#") />
 				<cfelseif Trim(FORM.new_attribute_option_thumbnail_image) NEQ "">
+					<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
+					
 					<cffile action = "upload"  
 							fileField = "new_attribute_option_thumbnail_image"
 							destination = "#LOCAL.imageDir#"
 							nameConflict = "MakeUnique"> 
+							
+					<cfset LOCAL.image = ImageRead(cffile.serverFile)>
+					<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
+					<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
+					<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir##thumbnail_#ARGUMENTS.imageNameWithExtension#")> 
+					
 					<cfset LOCAL.newAttributeValue.setThumbnailImageName(cffile.serverFile) />
 				</cfif>
 			</cfif>
@@ -549,6 +554,37 @@
 				
 			<cfif IsNumeric(LOCAL.size.width) AND IsNumeric(LOCAL.size.height)>
 				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height, LOCAL.size.position)>
+			<cfelseif  IsNumeric(LOCAL.size.width)>
+				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, "") />
+			<cfelseif  IsNumeric(LOCAL.size.height)>
+				<cfset ImageResize(LOCAL.newImage, "", LOCAL.size.height) />
+			</cfif>
+						
+			<cfset ImageWrite(LOCAL.newImage,"#ARGUMENTS.imagePath##LOCAL.size.name#_#ARGUMENTS.imageNameWithExtension#")> 
+		</cfloop>
+		
+	</cffunction>
+	
+	<cffunction name="_createAttributeOptionImages" access="private" output="false" returnType="void">
+		<cfargument name="imagePath" type="string" required="true">
+		<cfargument name="imageNameWithExtension" type="string" required="true">
+		
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
+		<cfset LOCAL.image = ImageRead(ARGUMENTS.imagePath & ARGUMENTS.imageNameWithExtension)>
+		
+		<cfset LOCAL.sizeArray = [{name = "medium", width = "411", height = "", position="", crop = false}
+								, {name = "small", width = "200", height = "200", position="center", crop = true}
+								, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
+								] />
+		
+		<cfloop array="#LOCAL.sizeArray#" index="LOCAL.size">
+			<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
+				
+			<cfif LOCAL.size.crop EQ true>
+				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height, LOCAL.size.position)>
+			<cfelseif  IsNumeric(LOCAL.size.width) AND IsNumeric(LOCAL.size.height)>
+				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height) />
 			<cfelseif  IsNumeric(LOCAL.size.width)>
 				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, "") />
 			<cfelseif  IsNumeric(LOCAL.size.height)>
