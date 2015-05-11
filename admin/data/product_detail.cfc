@@ -251,9 +251,9 @@
 					<cfset LOCAL.image = ImageRead(cffile.serverFile)>
 					<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
 					<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
-					<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir##thumbnail_#ARGUMENTS.imageNameWithExtension#")> 
+					<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#ARGUMENTS.imageNameWithExtension#")> 
 					
-					<cfset LOCAL.newAttributeValue.setThumbnailImageName(cffile.serverFile) />
+					<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#ARGUMENTS.imageNameWithExtension#") />
 				</cfif>
 			</cfif>
 			
