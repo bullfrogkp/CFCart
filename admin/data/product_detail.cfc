@@ -222,6 +222,11 @@
 			<cfset LOCAL.newAttributeValue.setName(LCase(Trim(FORM.new_attribute_option_name))) />
 			<cfset LOCAL.newAttributeValue.setThumbnailLabel(Trim(FORM.new_attribute_option_thumbnail_label)) />
 			
+			<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_product_attribute_rela_id#\" />
+			<cfif NOT DirectoryExists(LOCAL.imageDir)>
+				<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+			</cfif>	
+			
 			<cfif 	Trim(FORM.new_attribute_option_thumbnail_image) NEQ ""
 					AND
 					NOT(Trim(FORM.new_attribute_option_image) NEQ "" AND StructKeyExists(FORM, "generate_thumbnail"))>
@@ -232,22 +237,16 @@
 						fileField = "new_attribute_option_thumbnail_image"
 						destination = "#LOCAL.imageDir#"
 						nameConflict = "MakeUnique"> 
-						
-				<cfset LOCAL.image = ImageRead(cffile.serverFile)>
+				
+				<cfset LOCAL.image = ImageRead("#cffile.serverDirectory#\#cffile.serverFile#")>
 				<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
 				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
-				<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#ARGUMENTS.imageNameWithExtension#")> 
+				<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#cffile.serverFile#")> 
 				
-				<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#ARGUMENTS.imageNameWithExtension#") />
+				<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
 			</cfif>
 			
 			<cfif Trim(FORM.new_attribute_option_image) NEQ "">
-				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_product_attribute_rela_id#" />
-				
-				<cfif NOT DirectoryExists(LOCAL.imageDir)>
-					<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-				</cfif>
-				
 				<cffile action = "upload"  
 						fileField = "new_attribute_option_image"
 						destination = "#LOCAL.imageDir#"
