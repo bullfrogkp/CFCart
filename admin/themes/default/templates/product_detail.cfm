@@ -72,11 +72,11 @@
 			
 			if($(this).attr('attributename') == 'color')
 			{
-				$('##new_attribute_option').colorpicker();
+				$('##new_attribute_option_thumbnail_label').colorpicker();
 			}
 			else
 			{
-				$('##new_attribute_option').unbind();
+				$('##new_attribute_option_thumbnail_label').unbind();
 			}
 		});		
 		
@@ -912,6 +912,9 @@
 				<div class="form-group">
 					<input id="new_attribute_option_thumbnail_label" name="new_attribute_option_thumbnail_label" type="text" class="form-control" placeholder="Thumbnail Label">
 				</div>	
+				<div class="form-group">
+					<input id="new_attribute_option_value" name="new_attribute_option_value" type="text" class="form-control" placeholder="Value">
+				</div>
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;">
 						<i class="fa fa-paperclip"></i> Thumbnail Image
