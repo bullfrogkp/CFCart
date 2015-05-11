@@ -105,6 +105,7 @@
 						<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
 						<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.product) />
 						<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
+						<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeSetAttributeRela.getRequired()) />
 						<cfset EntitySave(LOCAL.newProductAttributeRela) />
 						
 						<cfset LOCAL.product.addProductAttributeRela(LOCAL.newProductAttributeRela) />
@@ -282,6 +283,7 @@
 					<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
 					<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
 					<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
+					<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeSetAttributeRela.getRequired()) />
 					<cfset EntitySave(LOCAL.newProductAttributeRela) />
 				
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />

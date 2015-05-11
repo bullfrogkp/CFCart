@@ -1038,16 +1038,18 @@
 			</div>
 			<div class="modal-body">
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-					<div class="form-group">
-						<select class="form-control<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#productAttributeRela.getAttribute().getAttributeId()#">
-							<option value="">#productAttributeRela.getAttribute().getDisplayName()#</option>
-							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-								<option value="#attributeValue.getAttributeValueId()#" imagename="#attributeValue.getImageName()#">
-									#attributeValue.getDisplayName()#
-								</option>
-							</cfloop>
-						</select>
-					</div>	
+					<cfif productAttributeRela.getRequired() EQ true>
+						<div class="form-group">
+							<select class="form-control<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#productAttributeRela.getAttribute().getAttributeId()#">
+								<option value="">#productAttributeRela.getAttribute().getDisplayName()#</option>
+								<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+									<option value="#attributeValue.getAttributeValueId()#" imagename="#attributeValue.getImageName()#">
+										#attributeValue.getDisplayName()#
+									</option>
+								</cfloop>
+							</select>
+						</div>	
+					</cfif>
 				</cfloop>
 				<div class="form-group">
 					<input id="new_price" name="new_price" type="text" class="form-control" placeholder="Price">
