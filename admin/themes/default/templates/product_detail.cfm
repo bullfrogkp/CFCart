@@ -903,10 +903,10 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_attribute_option_name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Attribute Name">
+					<input id="new_attribute_option_name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Name">
 				</div>
 				<div class="form-group">
-					<input id="new_attribute_option_thumbnail" name="new_attribute_option_thumbnail" type="text" class="form-control" placeholder="Attribute Thumbnail">
+					<input id="new_attribute_option_thumbnail_label" name="new_attribute_option_thumbnail_label" type="text" class="form-control" placeholder="Thumbnail Label">
 				</div>	
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;">

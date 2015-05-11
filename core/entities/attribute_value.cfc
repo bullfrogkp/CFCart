@@ -2,7 +2,7 @@
     <cfproperty name="attributeValueId" column="attribute_value_id" fieldtype="id" generator="native">
 	<cfproperty name="name" column="name" ormtype="string">
 	<cfproperty name="displayName" column="display_name" ormtype="string">
-    <cfproperty name="thumbnail" column="thumbnail" ormtype="string">
+    <cfproperty name="thumbnailLabel" column="thumbnail" ormtype="string">
     <cfproperty name="thumbnailImageName" column="thumbnail_image_name" ormtype="string">
     <cfproperty name="imageName" column="image_name" ormtype="string">
     <cfproperty name="value" column="value" ormtype="string">

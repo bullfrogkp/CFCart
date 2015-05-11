@@ -219,8 +219,10 @@
 			<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 			<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option)) />
 			<cfset LOCAL.newAttributeValue.setDisplayName(Trim(FORM.new_attribute_option_name)) />
+			<cfset LOCAL.newAttributeValue.setName(LCase(Trim(FORM.new_attribute_option_name))) />
+			<cfset LOCAL.newAttributeValue.setThumbnail(Trim(FORM.new_attribute_option_thumbnail_label)) />
 			
-			<cfif Trim(FORM.new_attribute_option_attachment) NEQ "">
+			<cfif Trim(FORM.new_attribute_option_image) NEQ "">
 				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_product_attribute_rela_id#" />
 				
 				<cfif NOT DirectoryExists(LOCAL.imageDir)>
@@ -228,11 +230,26 @@
 				</cfif>
 				
 				<cffile action = "upload"  
-						fileField = "new_attribute_option_attachment"
+						fileField = "new_attribute_option_image"
 						destination = "#LOCAL.imageDir#"
 						nameConflict = "MakeUnique"> 
 				
 				<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+				
+				<cfif StructKeyExists(FORM, "generate_thumbnail")>
+					<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
+					<cfset LOCAL.image = ImageRead(LOCAL.imageDir & LOCAL.newAttributeValue.getImageName())>
+					<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
+					<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 50, 50, "center")>
+					<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#LOCAL.newAttributeValue.getImageName()#")> 
+					<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#LOCAL.newAttributeValue.getImageName()#") />
+				<cfelseif Trim(FORM.new_attribute_option_thumbnail_image) NEQ "">
+					<cffile action = "upload"  
+							fileField = "new_attribute_option_thumbnail_image"
+							destination = "#LOCAL.imageDir#"
+							nameConflict = "MakeUnique"> 
+					<cfset LOCAL.newAttributeValue.setThumbnailImageName(cffile.serverFile) />
+				</cfif>
 			</cfif>
 			
 			<cfset EntitySave(LOCAL.newAttributeValue) />
