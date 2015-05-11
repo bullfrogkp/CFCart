@@ -906,14 +906,21 @@
 					<input id="new_attribute_option_name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Attribute Name">
 				</div>
 				<div class="form-group">
-					<input id="new_attribute_option" name="new_attribute_option" type="text" class="form-control" placeholder="Attribute option">
+					<input id="new_attribute_option_thumbnail" name="new_attribute_option_thumbnail" type="text" class="form-control" placeholder="Attribute Thumbnail">
 				</div>	
-				 <div class="form-group">
-					<div class="btn btn-success btn-file">
-						<i class="fa fa-paperclip"></i> Attachment
-						<input type="file" name="new_attribute_option_attachment"/>
+				<div class="form-group">
+					<div class="btn btn-success btn-file" style="width:150px;">
+						<i class="fa fa-paperclip"></i> Thumbnail Image
+						<input type="file" name="new_attribute_option_thumbnail_image"/>
 					</div>
-					<p class="help-block">Max. 32MB</p>
+				</div>
+				<div class="form-group">
+					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
+						<i class="fa fa-paperclip"></i> Display Image
+						<input type="file" name="new_attribute_option_image"/>
+					</div>
+					
+					<input type="checkbox" class="form-control" name="generate_thumbnail"/> Generate Thumbnail
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
