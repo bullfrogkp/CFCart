@@ -7,4 +7,27 @@
     <cfproperty name="imageName" column="image_name" ormtype="string">
     <cfproperty name="value" column="value" ormtype="string">
 	<cfproperty name="productAttributeRela" fieldtype="many-to-one" cfc="product_attribute_rela" fkcolumn="product_attribute_rela_id">
+	
+	<cffunction name="getThumbnailImageLink" access="public" output="false" returnType="string">
+		<cfreturn "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductAttributeRela().getProduct().getProductId()#/attribute/#getProductAttributeRela().getProductAttributeRelaId()#/#getThumbnailImageName()#" />
+	</cffunction>
+	
+	<cffunction name="getImageLink" access="public" output="false" returnType="string">
+		<cfargument name="type" type="string" required="false" default="" />
+		
+		<cfset var imageType = "" />
+		<cfif Trim(ARGUMENTS.type) NEQ "">
+			<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
+		</cfif>
+		
+		<cfset var imageLink = "" />
+		
+		<cfif IsNull(getImageName())>
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+		<cfelse>
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductAttributeRela().getProduct().getProductId()#/attribute/#getProductAttributeRela().getProductAttributeRelaId()#/#imageType##getImageName()#" />
+		</cfif>
+		
+		<cfreturn imageLink />
+	</cffunction>
 </cfcomponent>
