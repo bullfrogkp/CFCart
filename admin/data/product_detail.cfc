@@ -222,7 +222,7 @@
 			<cfset LOCAL.newAttributeValue.setName(LCase(Trim(FORM.new_attribute_option_name))) />
 			<cfset LOCAL.newAttributeValue.setThumbnailLabel(Trim(FORM.new_attribute_option_thumbnail_label)) />
 			
-			<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\attribute\#FORM.new_attribute_option_product_attribute_rela_id#\" />
+			<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
 			<cfif NOT DirectoryExists(LOCAL.imageDir)>
 				<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
 			</cfif>	
