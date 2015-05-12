@@ -253,8 +253,13 @@
 						nameConflict = "MakeUnique"> 
 				
 				<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+				<cfset LOCAL.productImage = EntityNew("product_image") />
+				<cfset LOCAL.productImage.setName(cffile.serverFile) />
+				<cfset EntitySave(LOCAL.productImage) />
+				<cfset LOCAL.product.addImage(LOCAL.productImage) />
+				<cfset EntitySave(LOCAL.product) />
 				
-				<cfset _createAttributeOptionImages(imagePath = LOCAL.imageDir, imageNameWithExtension = LOCAL.newAttributeValue.getImageName()) />
+				<cfset _createImages(imagePath = LOCAL.imageDir, imageNameWithExtension = LOCAL.newAttributeValue.getImageName()) />
 				
 				<cfif StructKeyExists(FORM, "generate_thumbnail")>
 					<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#LOCAL.newAttributeValue.getImageName()#") />
@@ -263,7 +268,8 @@
 			
 			<cfset EntitySave(LOCAL.newAttributeValue) />
 			<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-			<cfset EntitySave(LOCAL.product) />
+			<cfset EntitySave(LOCAL.ProductAttributeRela) />
+			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
@@ -538,34 +544,6 @@
 	</cffunction>
 	
 	<cffunction name="_createImages" access="private" output="false" returnType="void">
-		<cfargument name="imagePath" type="string" required="true">
-		<cfargument name="imageNameWithExtension" type="string" required="true">
-		
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
-		<cfset LOCAL.image = ImageRead(ARGUMENTS.imagePath & ARGUMENTS.imageNameWithExtension)>
-		
-		<cfset LOCAL.sizeArray = [{name = "medium", width = "411", height = "", position=""}
-								, {name = "small", width = "200", height = "200", position="center"}
-								] />
-		
-		<cfloop array="#LOCAL.sizeArray#" index="LOCAL.size">
-			<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
-				
-			<cfif IsNumeric(LOCAL.size.width) AND IsNumeric(LOCAL.size.height)>
-				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height, LOCAL.size.position)>
-			<cfelseif  IsNumeric(LOCAL.size.width)>
-				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, "") />
-			<cfelseif  IsNumeric(LOCAL.size.height)>
-				<cfset ImageResize(LOCAL.newImage, "", LOCAL.size.height) />
-			</cfif>
-						
-			<cfset ImageWrite(LOCAL.newImage,"#ARGUMENTS.imagePath##LOCAL.size.name#_#ARGUMENTS.imageNameWithExtension#")> 
-		</cfloop>
-		
-	</cffunction>
-	
-	<cffunction name="_createAttributeOptionImages" access="private" output="false" returnType="void">
 		<cfargument name="imagePath" type="string" required="true">
 		<cfargument name="imageNameWithExtension" type="string" required="true">
 		
