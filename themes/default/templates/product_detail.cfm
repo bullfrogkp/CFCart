@@ -1,4 +1,12 @@
 ﻿<cfoutput>
+<script>
+	$(document).ready(function() {
+		$(".filter-options div").click(function() {
+			$(this).parent().parent().css("border-color","red");
+			$(this).parent().siblings().css("border-color","##CCC");
+		});
+	});
+</script>
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
 		<img id="img_01" style="width:411px;" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/>
@@ -46,7 +54,7 @@
 								<a href="##" data-image="http://127.0.0.1:8500/cfcart/images/uploads/product/17/medium_image2.jpg" 
 								data-zoom-image="http://127.0.0.1:8500/cfcart/images/uploads/product/17/image4.jpg">
 								<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-									<img src="#attributeValue.getThumbnailImageLink()#" style="width:20px;height:20px;vertical-align:top;" />
+									<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;"></div>
 								<cfelse>
 									<cfif attribute.getDisplayName() EQ "color">
 										<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;"></div>
