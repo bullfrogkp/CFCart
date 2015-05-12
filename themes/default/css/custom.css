@@ -158,3 +158,13 @@ padding:6px 0 6px 0;
 width:30%;
 margin-right:12px;
 }
+
+#product-filters ul {
+list-style-type:none;
+padding-bottom:30px;
+}
+
+#product-filters ul li {
+float:left;
+margin-right:7px;
+}
