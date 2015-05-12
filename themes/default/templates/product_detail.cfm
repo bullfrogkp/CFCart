@@ -33,6 +33,7 @@
 		</div>
 		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
 			<div id="product-filters" style="font-size:12px;margin-top:30px;">
+				<div id="gallery_01">
 				<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 					<cfset attribute = attributeSetAttributeRela.getAttribute() />
 					<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
@@ -41,25 +42,27 @@
 							<li style="width:40px;">#attribute.getDisplayName()#: </li>
 							
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-								<li>
+								<li class="filter-options">
+								<a href="##" data-image="http://127.0.0.1:8500/cfcart/images/uploads/product/17/medium_image2.jpg" 
+								data-zoom-image="http://127.0.0.1:8500/cfcart/images/uploads/product/17/image4.jpg">
 								<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-									<div style="width:20px;height:20px;border:1px solid ##CCC;">
-										<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-									</div>
+									<img src="#attributeValue.getThumbnailImageLink()#" style="width:20px;height:20px;vertical-align:top;" />
 								<cfelse>
 									<cfif attribute.getDisplayName() EQ "color">
-										<div style="width:20px;height:20px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;"></div>
+										<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;"></div>
 									<cfelse>
-										<div style="border:1px solid ##CCC;padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
+										<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
 									</cfif>
 								</cfif>
 								</li>
+								</a>
 							</cfloop>
 							
 						</ul>
 						<div style="clear:both;"></div>
 					</cfif>
 				</cfloop>
+				</div>
 			</div>
 		</cfif>
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
