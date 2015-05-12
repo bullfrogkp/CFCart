@@ -3,7 +3,7 @@
 	$(document).ready(function() {
 		$(".filter-options div").click(function() {
 			$(this).parent().parent().css("border-color","red");
-			$(this).parent().siblings().css("border-color","##CCC");
+			$(this).parent().parent().siblings().css("border-color","##CCC");
 		});
 	});
 </script>
