@@ -168,3 +168,13 @@ padding-bottom:30px;
 float:left;
 margin-right:7px;
 }
+
+.filter-options {
+cursor:pointer;
+cursor:hand;
+border:1px solid #CCC;
+}
+
+.filter-options:hover {
+border:1px solid red;
+}
