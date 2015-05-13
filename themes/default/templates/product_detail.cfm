@@ -40,15 +40,14 @@
 			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
 			{
 				$.ajax({
-					
-						url: "#APPLICATION.absoluteUrlWeb#core/services/productServices.cfc?method=getProduct",
-					
+						type: "get"
+						url: "#APPLICATION.absoluteUrlWeb#core/services/productServices.cfc",
 						dataType: 'json',
 						data: {
+							method:getProduct,
 							idlist: optionList,
 							group: 'default'
-						},
-									
+						},		
 						success: function(result) {
 							console.log(result);
 						}
