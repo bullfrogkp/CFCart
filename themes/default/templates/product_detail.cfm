@@ -53,8 +53,9 @@
 						dataType: 'json',
 						data: {
 							method: 'getProduct',
-							idlist: optionList,
-							group: '#SESSION.user.userGroup#'
+							parentProductId: #REQUEST.pageData.product.getProductId()#,
+							attributeValueIdList: optionList,
+							groupName: '#SESSION.user.userGroup#'
 						},		
 						success: function(result) {
 							console.log(result);

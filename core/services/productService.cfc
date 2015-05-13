@@ -99,13 +99,46 @@
     </cffunction>
 	
 	<cffunction name="getProduct" access="remote" returntype="struct" returnformat="json" output="false">
-		<cfargument name="idlist" type="string" required="true">
-		<cfargument name="group" type="string" required="true">
+		<cfargument name="parentProductId" type="numeric" required="true">
+		<cfargument name="attributeValueIdList" type="string" required="true">
+		<cfargument name="groupName" type="string" required="true">
 		
+		<cfset var LOCAL = {} />
 		<cfset var retStruct = {} />
-		<cfset retStruct.productid = 1 />
-		<cfset retStruct.price = 10 />
-		<cfset retStruct.stock = 100 />
+		
+		<cfquery name="LOCAL.getProduct">
+			SELECT	p.product_id
+			,		pcgr.price
+			,		pcgr.special_price
+			,		pcgr.special_price_from_date
+			,		pcgr.special_price_to_date
+			,		pcgr.stock
+			FROM	product_customer_group_rela pcgr
+			JOIN	product p ON p.product_id = pcgr.product_id
+			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
+			WHERE	p.parent_product_id = <cfqueryparam value="#ARGUMENTS.parentProductId#" cfsqltype="cf_sql_integer" />
+			AND		cg.name = <cfqueryparam value="#ARGUMENTS.groupName#" cfsqltype="cf_sql_varchar" />
+			<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
+			AND		EXISTS(	SELECT	1
+							FROM	product_attribute_rela par
+							JOIN	attribute_value av ON av.product_attribute_rela_id = par.product_attribute_rela_id
+							WHERE	par.product_id = p.product_id
+							AND		av.attribute_value_id = <cfqueryparam value="#LOCAL.attributeValueId#" cfsqltype="cf_sql_integer" />
+							)
+			</cfloop>
+		</cfquery>
+		
+		<cfset retStruct.productid = LOCAL.getProduct.product_id />
+		<cfset retStruct.stock = LOCAL.getProduct.stock />
+		
+		<cfif 	DateCompare(LOCAL.getProduct.special_price_from_date, DateFormat(Now())) LTE 0
+				AND
+				DateCompare(DateFormat(Now()), LOCAL.getProduct.special_price_to_date) LTE 0>
+				
+			<cfset retStruct.price = LOCAL.getProduct.special_price />
+		<cfelse>
+			<cfset retStruct.price = LOCAL.getProduct.price />
+		</cfif>
 		
 		<cfreturn retStruct>
 	</cffunction>
