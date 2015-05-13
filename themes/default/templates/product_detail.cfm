@@ -31,9 +31,9 @@
 			#REQUEST.pageData.product.getDisplayName()#
 		</div>
 		<div id="product-share" style="margin-top:10px;">
-			<img class="logo facebook-logo" onclick="affShareOnFacebook('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Facebook" src="#SESSION.absoluteUrlTheme#images/p_facebook-color.png">
-			<img class="logo twitter-logo" onclick="affShareOnTwitter('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Twitter" src="#SESSION.absoluteUrlTheme#images/p_tweet.png">
-			<img class="logo google-logo" onclick="affShareGooglePlus('http://www.tomtop.com/usb-to-pc-game-controller-adapter-converter-for-ps2-game006.html')" title="Share on Google Plus" src="#SESSION.absoluteUrlTheme#images/p_gplus-color.png">
+			<img class="logo facebook-logo" title="Share on Facebook" src="#SESSION.absoluteUrlTheme#images/p_facebook-color.png">
+			<img class="logo twitter-logo" title="Share on Twitter" src="#SESSION.absoluteUrlTheme#images/p_tweet.png">
+			<img class="logo google-logo" title="Share on Google Plus" src="#SESSION.absoluteUrlTheme#images/p_gplus-color.png">
 			<img src="#SESSION.absoluteUrlTheme#images/p_pinterest.png">
 		</div>
 		<div id="product-sku" style="font-size:12px;margin-top:10px;">
@@ -51,19 +51,18 @@
 							
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 								<li class="filter-options">
-								<a href="##" data-image="http://127.0.0.1:8500/cfcart/images/uploads/product/17/medium_image2.jpg" 
-								data-zoom-image="http://127.0.0.1:8500/cfcart/images/uploads/product/17/image4.jpg">
-								<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-									<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;"></div>
-								<cfelse>
-									<cfif attribute.getDisplayName() EQ "color">
-										<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;"></div>
+									<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
+									<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
+										<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;"></div>
 									<cfelse>
-										<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
+										<cfif attribute.getDisplayName() EQ "color">
+											<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;"></div>
+										<cfelse>
+											<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
+										</cfif>
 									</cfif>
-								</cfif>
+									</a>
 								</li>
-								</a>
 							</cfloop>
 							
 						</ul>
