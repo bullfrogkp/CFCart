@@ -1041,7 +1041,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<cfif NOT IsNull(REQUEST.pageData.isProductAttributeComplete) AND REQUEST.pageData.isProductAttributeComplete EQ true>
+<cfif REQUEST.pageData.product.isProductAttributeComplete() EQ true>
 <!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
 <div class="modal fade" id="add-attribute-option-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">

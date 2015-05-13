@@ -4,7 +4,7 @@
 		
 		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
 			var optionList = '';
-			var optionStruct = new object();
+			var optionStruct = new Object();
 			
 			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 				<cfif productAttributeRela.getRequired() EQ true>
@@ -40,7 +40,7 @@
 			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
 			{
 				$.ajax({
-						type: "get"
+						type: "get",
 						url: "#APPLICATION.absoluteUrlWeb#core/services/productServices.cfc",
 						dataType: 'json',
 						data: {
@@ -94,7 +94,7 @@
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 					<cfif productAttributeRela.getRequired() EQ true>
 						<ul>
-							<li style="width:40px;">#attribute.getDisplayName()#: </li>
+							<li style="width:40px;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 								<li class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
 									<cfif NOT IsNull(attributeValue.getImageName())>
@@ -103,7 +103,7 @@
 									<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
 										<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;"></div>
 									<cfelse>
-										<cfif attribute.getDisplayName() EQ "color">
+										<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
 											<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;"></div>
 										<cfelse>
 											<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>

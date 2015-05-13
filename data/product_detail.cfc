@@ -16,7 +16,7 @@
 		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywords() />
 		
-		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+		<cfif LOCAL.pageData.product.isProductAttributeComplete()>
 			<cfset LOCAL.pageData.requiredAttributeCount = ArrayLen(EntityLoad("attribute_set_attribute_rela", {attributeSet = LOCAL.pageData.product.getAttributeSet()})) />
 		</cfif>	
 														
