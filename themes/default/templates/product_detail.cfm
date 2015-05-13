@@ -5,6 +5,7 @@
 		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
 			var optionList = '';
 			var optionStruct = new Object();
+			var optionArray = new Array();
 			
 			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 				<cfif productAttributeRela.getRequired() EQ true>
@@ -22,7 +23,7 @@
 			var index = $(this).closest('.filter-options').attr('attributevalueid');
 			var value = optionStruct['index'];
 			var insert = true;
-			var optionArray = split(optionList,',');
+			
 			for (var i = 0; i < optionArray.length; i++) {
 				if(optionStruct[optionArray[i]] == value)
 				{
