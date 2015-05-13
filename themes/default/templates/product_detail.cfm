@@ -54,7 +54,7 @@
 						data: {
 							method: 'getProduct',
 							idlist: optionList,
-							group: 'default'
+							group: '#SESSION.user.userGroup#'
 						},		
 						success: function(result) {
 							console.log(result);

@@ -1,12 +1,10 @@
 ﻿<cfcomponent output="false">
-	<cffunction name="getUser" access="public" returntype="string">
-	    <cfset var LOCAL = StructNew() />
-		<cfif IsDefined("SESSION.admin_name")>
-			<cfset LOCAL.user_name = SESSION.admin_name />
-		<cfelse>
-			<cfset LOCAL.user_name = CGI.REMOTE_ADDR />
-		</cfif>
+	<cffunction name="getUser" access="public" returntype="struct">
+	    <cfset var LOCAL = {} />
+		
+		<cfset LOCAL.userName = CGI.REMOTE_ADDR />
+		<cfset LOCAL.userGroup = "default" />
 	   
-		<cfreturn LOCAL.user_name />
+		<cfreturn LOCAL />
 	</cffunction>
 </cfcomponent>

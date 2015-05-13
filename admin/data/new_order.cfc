@@ -50,7 +50,7 @@
 				<cfset LOCAL.newCustomer.setIsEnabled(false) />
 				<cfset LOCAL.newCustomer.setIsDeleted(false) />
 				<cfset LOCAL.newCustomer.setCreatedDatetime(Now()) />
-				<cfset LOCAL.newCustomer.setCreatedUser(SESSION.user) />
+				<cfset LOCAL.newCustomer.setCreatedUser(SESSION.adminUser) />
 				
 				<cfset LOCAL.newCustomer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 				
@@ -62,7 +62,7 @@
 				<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
 				<cfset LOCAL.newAddress.setPostalCode(Trim(FORM.shipping_postal_code)) />
 				<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
-				<cfset LOCAL.newAddress.setCreatedUser(SESSION.user) />
+				<cfset LOCAL.newAddress.setCreatedUser(SESSION.adminUser) />
 				
 				<cfset EntitySave(LOCAL.newAddress) />
 				<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
@@ -82,7 +82,7 @@
 					<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
 					<cfset LOCAL.newAddress.setPostalCode(Trim(FORM.billing_postal_code)) />
 					<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
-					<cfset LOCAL.newAddress.setCreatedUser(SESSION.user) />
+					<cfset LOCAL.newAddress.setCreatedUser(SESSION.adminUser) />
 					
 					<cfset EntitySave(LOCAL.newAddress) />
 					<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
@@ -108,7 +108,7 @@
 			<cfset LOCAL.order.setBillingPostalCode(Trim(FORM.billing_postal_code)) />
 			
 			<cfset LOCAL.order.setCreatedDatetime(Now()) />
-			<cfset LOCAL.order.setCreatedUser(SESSION.user) />
+			<cfset LOCAL.order.setCreatedUser(SESSION.adminUser) />
 			
 			<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
 			
