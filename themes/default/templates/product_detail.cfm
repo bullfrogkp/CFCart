@@ -3,7 +3,7 @@
 	$(document).ready(function() {
 		
 		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
-			var optionArray = new Array();
+			var optionList = '';
 			var optionStruct = new object();
 			
 			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
@@ -22,8 +22,9 @@
 			var index = $(this).closest('.filter-options').attr('attributevalueid');
 			var value = optionStruct['index'];
 			var insert = true;
+			var optionArray = split(optionList,',');
 			for (var i = 0; i < optionArray.length; i++) {
-				if(optionArray[i] == value)
+				if(optionStruct[optionArray[i]] == value)
 				{
 					insert = false;
 					break;
@@ -32,12 +33,26 @@
 			
 			if(insert == true)
 			{
-				optionArray.push(value);
+				optionArray.push(index);
+				optionList = optionList + index + ',';
 			}
 			
 			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
 			{
-				//make ajax call
+				$.ajax({
+					
+						url: "#APPLICATION.absoluteUrlWeb#core/services/productServices.cfc?method=getProduct",
+					
+						dataType: 'json',
+						data: {
+							idlist: optionList,
+							group: 'default'
+						},
+									
+						success: function(result) {
+							console.log(result);
+						}
+				});
 			}
 		});
 	});

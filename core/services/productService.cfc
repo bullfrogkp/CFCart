@@ -98,4 +98,16 @@
 		<cfreturn LOCAL.getProductShippingMethods />
     </cffunction>
 	
+	<cffunction name="getProduct" access="remote" returntype="struct" returnformat="json" output="false">
+		<cfargument name="idlist" type="string" required="true">
+		<cfargument name="group" type="string" required="true">
+		
+		<cfset var retStruct = {} />
+		<cfset retStruct.productid = 1 />
+		<cfset retStruct.price = 10 />
+		<cfset retStruct.stock = 100 />
+		
+		<cfreturn retStruct>
+	</cffunction>
+	
 </cfcomponent>
