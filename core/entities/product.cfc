@@ -85,7 +85,7 @@
 				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
 			</cfif>
 		<cfelse>
-			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#productImg.getName()#" />
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##productImg.getName()#" />
 		</cfif>
 		
 		<cfreturn imageLink />
