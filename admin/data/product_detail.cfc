@@ -551,7 +551,7 @@
 		<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
 		<cfset LOCAL.image = ImageRead(ARGUMENTS.imagePath & ARGUMENTS.imageNameWithExtension)>
 		
-		<cfset LOCAL.sizeArray = [{name = "medium", width = "411", height = "", position="", crop = false}
+		<cfset LOCAL.sizeArray = [{name = "medium", width = "", height = "274", position="", crop = false}
 								, {name = "small", width = "200", height = "200", position="center", crop = true}
 								, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
 								] />
