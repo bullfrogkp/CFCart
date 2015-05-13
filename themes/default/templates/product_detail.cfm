@@ -2,8 +2,8 @@
 <script>
 	$(document).ready(function() {
 		$(".filter-options div").click(function() {
-			$(this).parent().parent().css("border-color","red");
-			$(this).parent().parent().siblings().css("border-color","##CCC");
+			$(this).closest('.filter-options').css("border-color","red");
+			$(this).closest('.filter-options').siblings().css("border-color","##CCC");
 		});
 	});
 </script>
@@ -48,10 +48,11 @@
 					<cfif productAttributeRela.getRequired() EQ true>
 						<ul>
 							<li style="width:40px;">#attribute.getDisplayName()#: </li>
-							
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 								<li class="filter-options">
-									<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
+									<cfif NOT IsNull(attributeValue.getImageName())>
+										<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
+									</cfif>
 									<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
 										<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;"></div>
 									<cfelse>
@@ -61,7 +62,9 @@
 											<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
 										</cfif>
 									</cfif>
+									<cfif NOT IsNull(attributeValue.getImageName())>
 									</a>
+									</cfif>
 								</li>
 							</cfloop>
 							
