@@ -3,7 +3,6 @@
 	$(document).ready(function() {
 		
 		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
-			var optionList = '';
 			var optionStruct = new Object();
 			var optionArray = new Array();
 			
@@ -25,9 +24,9 @@
 			var insert = true;
 			
 			for (var i = 0; i < optionArray.length; i++) {
-				console.log(optionStruct[optionArray[i]]);
-				if(optionStruct[optionArray[i]] == value)
+				if(optionArray[i].attributeid == value)
 				{
+					optionArray[i].attributevalueid = index;
 					insert = false;
 					break;
 				}
@@ -35,18 +34,25 @@
 			
 			if(insert == true)
 			{
-				optionArray.push(index);
-				optionList = optionList + index + ',';
+				var option = new Object();
+				option.attributeid = value;
+				option.attributevalueid = index;
+				optionArray.push(option);
 			}
 		
 			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
 			{
+				var optionList = '';
+				for (var i = 0; i < optionArray.length; i++) {
+					optionList = optionList + optionArray[i].attributevalueid + ',';
+				}
+				
 				$.ajax({
 						type: "get",
-						url: "#APPLICATION.absoluteUrlWeb#core/services/productServices.cfc",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
 						dataType: 'json',
 						data: {
-							method:getProduct,
+							method: 'getProduct',
 							idlist: optionList,
 							group: 'default'
 						},		
