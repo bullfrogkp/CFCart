@@ -1,9 +1,44 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {
+		
+		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+			var optionArray = new Array();
+			var optionStruct = new object();
+			
+			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+				<cfif productAttributeRela.getRequired() EQ true>
+					<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+						optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
+					</cfloop>
+				</cfif>
+			</cfloop>
+		</cfif>
+		
 		$(".filter-options div").click(function() {
 			$(this).closest('.filter-options').css("border-color","red");
 			$(this).closest('.filter-options').siblings().css("border-color","##CCC");
+			
+			var index = $(this).closest('.filter-options').attr('attributevalueid');
+			var value = optionStruct['index'];
+			var insert = true;
+			for (var i = 0; i < optionArray.length; i++) {
+				if(optionArray[i] == value)
+				{
+					insert = false;
+					break;
+				}
+			}
+			
+			if(insert == true)
+			{
+				optionArray.push(value);
+			}
+			
+			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
+			{
+				//make ajax call
+			}
 		});
 	});
 </script>
@@ -42,14 +77,12 @@
 		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
 			<div id="product-filters" style="font-size:12px;margin-top:30px;">
 				<div id="gallery_01">
-				<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
-					<cfset attribute = attributeSetAttributeRela.getAttribute() />
-					<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 					<cfif productAttributeRela.getRequired() EQ true>
 						<ul>
 							<li style="width:40px;">#attribute.getDisplayName()#: </li>
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-								<li class="filter-options">
+								<li class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
 									<cfif NOT IsNull(attributeValue.getImageName())>
 										<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
 									</cfif>
