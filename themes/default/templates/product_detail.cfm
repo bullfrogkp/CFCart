@@ -21,10 +21,11 @@
 			$(this).closest('.filter-options').siblings().css("border-color","##CCC");
 			
 			var index = $(this).closest('.filter-options').attr('attributevalueid');
-			var value = optionStruct['index'];
+			var value = optionStruct[index];
 			var insert = true;
 			
 			for (var i = 0; i < optionArray.length; i++) {
+				console.log(optionStruct[optionArray[i]]);
 				if(optionStruct[optionArray[i]] == value)
 				{
 					insert = false;
@@ -37,7 +38,7 @@
 				optionArray.push(index);
 				optionList = optionList + index + ',';
 			}
-			
+		
 			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
 			{
 				$.ajax({
