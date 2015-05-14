@@ -22,10 +22,16 @@
 		
 		<cfset var imageLink = "" />
 		
+		<cfif NOT IsNull(getProductAttributeRela().getProduct().getParentProduct())>
+			<cfset LOCAL.productId = getProductAttributeRela().getProduct().getParentProduct().getProductId() />
+		<cfelse>
+			<cfset LOCAL.productId = getProductAttributeRela().getProduct().getProductId() />
+		</cfif>
+		
 		<cfif IsNull(getImageName())>
 			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
 		<cfelse>
-			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductAttributeRela().getProduct().getProductId()#/#imageType##getImageName()#" />
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#LOCAL.productId#/#imageType##getImageName()#" />
 		</cfif>
 		
 		<cfreturn imageLink />

@@ -325,9 +325,9 @@
 					<cfset LOCAL.newAttributeValue.setValue(LOCAL.originalAttributeValue.getValue()) />
 					<cfset LOCAL.newAttributeValue.setName(LOCAL.originalAttributeValue.getName()) />
 					<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.originalAttributeValue.getDisplayName()) />
-					<cfif FORM.new_attribute_imagename NEQ "">
-						<cfset LOCAL.newAttributeValue.setImageName(FORM.new_attribute_imagename) />
-					</cfif>
+					<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.originalAttributeValue.getThumbnailLabel()) />
+					<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.originalAttributeValue.getThumbnailImageName()) />
+					<cfset LOCAL.newAttributeValue.setImageName(LOCAL.originalAttributeValue.getImageName()) />
 					
 					<cfset EntitySave(LOCAL.newAttributeValue) />
 					<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />

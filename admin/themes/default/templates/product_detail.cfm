@@ -96,13 +96,6 @@
 			$("##product_shipping_method_rela_id").val($(this).attr('productshippingmethodrelaid'));
 		});
 		
-		
-		$( ".new-attribute-option-value-attribute-id" ).change(function() {
-			$("##new_attribute_imagename").val($(this).find(":selected").attr('imagename'));
-		});
-		
-		
-		
 		var attributesets = new Object();
 		var attributeset, attribute, key;
 		
@@ -556,7 +549,7 @@
 																	<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
 																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
 																			<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																				<img src="#APPLICATION.absoluteUrlWeb#images/uploads/product/#REQUEST.pageData.product.getProductId()#/attribute/#productAttributeRela.getAttribute().getAttributeId()#/#productAttributeRela.getAttributeValues()[1].getImageName()#" style="width:100%;height:100%;vertical-align:top;" />
+																				<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
 																			</div>
 																		<cfelse>
 																			<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
@@ -1054,10 +1047,10 @@
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 					<cfif productAttributeRela.getRequired() EQ true>
 						<div class="form-group">
-							<select class="form-control<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color"> new-attribute-option-value-attribute-id</cfif>" name="new_attribute_value_#productAttributeRela.getAttribute().getAttributeId()#">
+							<select class="form-control" name="new_attribute_value_#productAttributeRela.getAttribute().getAttributeId()#">
 								<option value="">#productAttributeRela.getAttribute().getDisplayName()#</option>
 								<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-									<option value="#attributeValue.getAttributeValueId()#" imagename="#attributeValue.getImageName()#">
+									<option value="#attributeValue.getAttributeValueId()#">
 										#attributeValue.getDisplayName()#
 									</option>
 								</cfloop>
