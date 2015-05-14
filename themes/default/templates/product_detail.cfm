@@ -79,7 +79,7 @@
 
 			if (url.indexOf('youtube.com') > -1) {
 				<!-- CHANGED -->
-				id = url.split('v=')[1].split('&')[0];
+				id = url.split('/embed/')[1];
 				return processYouTube(id);
 			} else if (url.indexOf('youtu.be') > -1) {
 				id = url.split('/')[1];
@@ -111,7 +111,7 @@
 			function processYouTube(id) {
 				if (!id) {
 					throw new Error('Unsupported YouTube URL');
-				}
+				}console.log(id);
 				<!-- CHANGED -->
 				success('http://i2.ytimg.com/vi/' + id + '/hqdefault.jpg', divid);
 			}
