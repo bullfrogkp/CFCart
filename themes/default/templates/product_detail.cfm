@@ -70,7 +70,8 @@
 		</cfloop>
 		
 		function success(imgurl, divid) {
-			$('#' + divid).html('<img src="' + imgurl + '" />');
+			$('##' + divid).html('<img src="' + imgurl + '" />');
+			console.log($('##' + divid).html());
 		}
 		
 		function processURL(url, divid){
@@ -87,8 +88,8 @@
 				<!-- CHANGED -->
 				if (url.match(/http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/)) {
 					id = url.split('/')[1];
-				} else if (url.match(/^vimeo.com\/channels\/[\d\w]+#[0-9]+/)) {
-					id = url.split('#')[1];
+				} else if (url.match(/^vimeo.com\/channels\/[\d\w]+##[0-9]+/)) {
+					id = url.split('##')[1];
 				} else if (url.match(/vimeo.com\/groups\/[\d\w]+\/videos\/[0-9]+/)) {
 					id = url.split('/')[4];
 				} else {
