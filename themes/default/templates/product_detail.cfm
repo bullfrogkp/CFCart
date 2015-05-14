@@ -64,6 +64,57 @@
 				});
 			}
 		});
+		
+		<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
+			processURL('#productVideo.getUrl()#', 'video_#productVideo.getProductVideoId()#');
+		</cfloop>
+		
+		function success(imgurl, divid) {
+			$('#' + divid).html('<img src="' + imgurl + '" />');
+		}
+		
+		function processURL(url, divid){
+			var id;
+
+			if (url.indexOf('youtube.com') > -1) {
+				<!-- CHANGED -->
+				id = url.split('v=')[1].split('&')[0];
+				return processYouTube(id);
+			} else if (url.indexOf('youtu.be') > -1) {
+				id = url.split('/')[1];
+				return processYouTube(id);
+			} else if (url.indexOf('vimeo.com') > -1) {
+				<!-- CHANGED -->
+				if (url.match(/http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/)) {
+					id = url.split('/')[1];
+				} else if (url.match(/^vimeo.com\/channels\/[\d\w]+#[0-9]+/)) {
+					id = url.split('#')[1];
+				} else if (url.match(/vimeo.com\/groups\/[\d\w]+\/videos\/[0-9]+/)) {
+					id = url.split('/')[4];
+				} else {
+					throw new Error('Unsupported Vimeo URL');
+				}
+
+				$.ajax({
+					url: 'http://vimeo.com/api/v2/video/' + id + '.json',
+					dataType: 'jsonp',
+					success: function(data) {
+						<!-- CHANGED -->
+						 success(data[0].thumbnail_large, divid);
+					}
+				});
+			} else {
+				throw new Error('Unrecognised URL');
+			}
+
+			function processYouTube(id) {
+				if (!id) {
+					throw new Error('Unsupported YouTube URL');
+				}
+				<!-- CHANGED -->
+				success('http://i2.ytimg.com/vi/' + id + '/hqdefault.jpg', divid);
+			}
+		}
 	});
 </script>
 <div style="margin-top:20px;">
@@ -76,14 +127,12 @@
 				</a> 
 			</cfloop>
 		</div>
-		<!---
+		
 		<div id="videos"> 
-			<div style="padding-bottom:5px;">Videos:</div>
-			<a class="various fancybox.iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">
-				<img id="img_02" src="#SESSION.absoluteUrlTheme#images/thumb/image1.jpg" /> 
-			</a> 
+			<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
+				<a class="various fancybox.iframe" href="#productVideo.getUrl()#" id="video_#productVideo.getProductVideoId()#"></a> 
+			</cfloop>
 		</div>
-		--->
 	</div>
 	<div style="width:523px;float:right;">
 		<div id="product-name" style="font-size:18px;font-weight:bold;">
