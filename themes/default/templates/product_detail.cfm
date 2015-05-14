@@ -129,11 +129,14 @@
 			</cfloop>
 		</div>
 		
-		<div id="videos"> 
-			<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
-				<a class="various fancybox.iframe" href="#productVideo.getUrl()#" id="video_#productVideo.getProductVideoId()#"></a> 
-			</cfloop>
-		</div>
+		<cfif ArrayLen(REQUEST.pageData.product.getProductVideos()) GT 0>
+			<div id="videos">
+				<div style="padding-bottom:5px;">Videos:</div>
+				<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
+					<a class="various fancybox.iframe" href="#productVideo.getUrl()#" id="video_#productVideo.getProductVideoId()#"></a> 
+				</cfloop>
+			</div>
+		</cfif>
 	</div>
 	<div style="width:523px;float:right;">
 		<div id="product-name" style="font-size:18px;font-weight:bold;">
