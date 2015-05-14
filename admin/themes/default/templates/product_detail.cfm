@@ -222,6 +222,7 @@
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_9']#" tabid="tab_9"><a href="##tab_9" data-toggle="tab">Video</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
@@ -729,6 +730,35 @@
 							</div>
 						</div>
 						<cfoutput>
+					</div>
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_9']# #REQUEST.pageData.deleteButtonClass#" id="tab_9">
+						<div class="form-group">
+							<label>Videos</label>
+							<a data-toggle="modal" data-target="##add-video-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Video</span></a>
+							<div class="row" style="margin-top:10px;">
+								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideos())>
+									<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="video">	
+										<div class="col-xs-2">
+											<div class="box">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="default">
+															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<img class="img-responsive" src="#product.getDefaultImageLink(type='small')#" />
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</cfif>
+							</div>
+						</div>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
