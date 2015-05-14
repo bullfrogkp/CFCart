@@ -169,6 +169,11 @@
 			<cfset retStruct.price = LOCAL.getProduct.price />
 		</cfif>
 		
+		<cfset retStruct.price = DollarFormat(retStruct.price) />
+		<cfif NOT IsNumeric(retStruct.stock)>
+			<cfset retStruct.stock = 0 />
+		</cfif>
+		
 		<cfreturn retStruct>
 	</cffunction>
 	

@@ -58,7 +58,8 @@
 							groupName: '#SESSION.user.userGroup#'
 						},		
 						success: function(result) {
-							console.log(result);
+							$("##price-amount").html(result.PRICE);
+							$("##stock-count").html(result.STOCK + ' in stock');
 						}
 				});
 			}
@@ -132,7 +133,8 @@
 			</div>
 		</cfif>
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
-			#DollarFormat(REQUEST.pageData.product.getPrice())#
+			<span id="price-amount">Please choose your options</span>
+			<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;"></div>
 		</div>
 		<div id="product-addtocart" style="margin-top:30px;">
 			<span style="font-size:13px;">Qty: </span>
