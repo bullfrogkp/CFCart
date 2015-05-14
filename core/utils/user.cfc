@@ -3,7 +3,8 @@
 	    <cfset var LOCAL = {} />
 		
 		<cfset LOCAL.userName = CGI.REMOTE_ADDR />
-		<cfset LOCAL.userGroup = "default" />
+		<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
+		<cfset LOCAL.userGroup = LOCAL.defaultCustomerGroup.getName() />
 	   
 		<cfreturn LOCAL />
 	</cffunction>

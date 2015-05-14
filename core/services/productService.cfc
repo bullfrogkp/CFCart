@@ -112,18 +112,30 @@
 			,		pcgr.special_price
 			,		pcgr.special_price_from_date
 			,		pcgr.special_price_to_date
-			,		pcgr.stock
+			,		p.stock
 			FROM	product_customer_group_rela pcgr
 			JOIN	product p ON p.product_id = pcgr.product_id
 			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
 			WHERE	p.parent_product_id = <cfqueryparam value="#ARGUMENTS.parentProductId#" cfsqltype="cf_sql_integer" />
 			AND		cg.name = <cfqueryparam value="#ARGUMENTS.groupName#" cfsqltype="cf_sql_varchar" />
 			<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
-			AND		EXISTS(	SELECT	1
-							FROM	product_attribute_rela par
-							JOIN	attribute_value av ON av.product_attribute_rela_id = par.product_attribute_rela_id
-							WHERE	par.product_id = p.product_id
-							AND		av.attribute_value_id = <cfqueryparam value="#LOCAL.attributeValueId#" cfsqltype="cf_sql_integer" />
+			AND		EXISTS	(	SELECT	1
+								FROM	product_attribute_rela par
+								JOIN	attribute_value av ON av.product_attribute_rela_id = par.product_attribute_rela_id
+								WHERE	par.product_id = p.product_id
+								AND		par.attribute_id = 
+								(
+									SELECT	par_sub.attribute_id
+									FROM	product_attribute_rela par_sub
+									JOIN	attribute_value av_sub ON av_sub.product_attribute_rela_id = par_sub.product_attribute_rela_id
+									WHERE	av_sub.attribute_value_id = <cfqueryparam value="#LOCAL.attributeValueId#" cfsqltype="cf_sql_integer" />
+								)
+								AND		av.value = 
+								(
+									SELECT	av_sub.value
+									FROM	attribute_value av_sub 
+									WHERE	av_sub.attribute_value_id = <cfqueryparam value="#LOCAL.attributeValueId#" cfsqltype="cf_sql_integer" />
+								)
 							)
 			</cfloop>
 		</cfquery>
@@ -131,11 +143,28 @@
 		<cfset retStruct.productid = LOCAL.getProduct.product_id />
 		<cfset retStruct.stock = LOCAL.getProduct.stock />
 		
-		<cfif 	DateCompare(LOCAL.getProduct.special_price_from_date, DateFormat(Now())) LTE 0
-				AND
-				DateCompare(DateFormat(Now()), LOCAL.getProduct.special_price_to_date) LTE 0>
-				
-			<cfset retStruct.price = LOCAL.getProduct.special_price />
+		<cfif IsNumeric(LOCAL.getProduct.special_price)>
+			<cfif IsDate(LOCAL.getProduct.special_price_from_date) AND IsDate(LOCAL.getProduct.special_price_to_date)>
+				<cfif 	DateCompare(LOCAL.getProduct.special_price_from_date, DateFormat(Now())) LTE 0
+						AND
+						DateCompare(DateFormat(Now()), LOCAL.getProduct.special_price_to_date) LTE 0>
+					<cfset retStruct.price = LOCAL.getProduct.special_price />
+				<cfelse>
+					<cfset retStruct.price = LOCAL.getProduct.price />
+				</cfif>
+			<cfelseif IsDate(LOCAL.getProduct.special_price_from_date)>
+				<cfif DateCompare(LOCAL.getProduct.special_price_from_date, DateFormat(Now())) LTE 0>
+					<cfset retStruct.price = LOCAL.getProduct.special_price />
+				<cfelse>
+					<cfset retStruct.price = LOCAL.getProduct.price />
+				</cfif>
+			<cfelseif IsDate(LOCAL.getProduct.special_price_to_date)>
+				<cfif 	DateCompare(DateFormat(Now()), LOCAL.getProduct.special_price_to_date) LTE 0>
+					<cfset retStruct.price = LOCAL.getProduct.special_price />
+				<cfelse>
+					<cfset retStruct.price = LOCAL.getProduct.price />
+				</cfif>
+			</cfif>
 		<cfelse>
 			<cfset retStruct.price = LOCAL.getProduct.price />
 		</cfif>
