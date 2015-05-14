@@ -210,7 +210,18 @@
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_4" />	
+		
+		<cfelseif StructKeyExists(FORM,"add_new_video")>
+		
+			<cfset LOCAL.newProductVideo = EntityNew("product_video") />
+			<cfset LOCAL.newProductVideo.setURL(Trim(FORM.new_video_url)) />
+			<cfset EntitySave(LOCAL.newProductVideo) />
+			<cfset LOCAL.product.addProductVideo(LOCAL.newProductVideo) />
+			<cfset EntitySave(LOCAL.product) />
 			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Video has been added.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_9" />
+		
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
 		
 			<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_attribute_option_product_attribute_rela_id) />
@@ -280,6 +291,13 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute option has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
+		<cfelseif StructKeyExists(FORM,"delete_video")>
+		
+			<cfset LOCAL.productVideo = EntityLoadByPK("product_video",FORM.deleted_product_video_id) />
+			<cfset EntityDelete(LOCAL.productVideo) />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Video has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_9" />
+		
 		<cfelseif StructKeyExists(FORM,"delete_attribute_option_value")>
 		
 			<cfset LOCAL.product.removeSubProduct(EntityLoadByPK("product",FORM.sub_product_id)) />

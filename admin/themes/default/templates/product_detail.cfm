@@ -167,6 +167,10 @@
 			$("##deleted_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
 		});
 		
+		$( ".delete-video" ).click(function() {
+			$("##deleted_product_video_id").val($(this).attr('productvideoid'));
+		});
+		
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
@@ -197,6 +201,7 @@
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <input type="hidden" name="edit_product_customer_group_rela_id" id="edit_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
+<input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
 <section class="content">
 	<div class="row">
@@ -738,17 +743,17 @@
 							<div class="row" style="margin-top:10px;">
 								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideos())>
 									<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="video">	
-										<div class="col-xs-2">
+										<div class="col-xs-3">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="default">
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
-															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
+															<th><a href="#video.getUrl()#">Link</a></th>
+															<th><a productvideoid="#video.getProductVideoId()#" href="" class="delete-video pull-right" data-toggle="modal" data-target="##delete-video-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
 															<td colspan="2">
-																<img class="img-responsive" src="#product.getDefaultImageLink(type='small')#" />
+																<iframe width="100%" height="100%" src="#video.getUrl()#" frameborder="0" allowfullscreen></iframe>
 															</td>
 														</tr>
 													</table>
@@ -1133,6 +1138,41 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+<!-- ADD VIDEO MODAL -->
+<div class="modal fade" id="add-video-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Video</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>URL</label>
+					<input id="new_video_url" name="new_video_url" type="text" class="form-control" placeholder="Video URL">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE VIDEO MODAL -->
+<div class="modal fade" id="delete-video-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this video?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_video" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
