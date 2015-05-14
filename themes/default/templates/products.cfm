@@ -159,17 +159,8 @@ padding: 0 8px 8px;">
 				<cfloop from="1" to="#ArrayLen(REQUEST.pageData.subCategoryTree)#" index="i">
 					<cfset cat = REQUEST.pageData.categoryTree[i] />
 					<li class=" 
-						<cfif 	NOT IsNull(REQUEST.pageData.category.getParentCategory()) 
-								AND 
-								cat.getCategoryId() EQ REQUEST.pageData.category.getParentCategory().getCategoryId()
-								OR
-								NOT IsNull(REQUEST.pageData.category.getParentCategory()) 
-								AND 
-								NOT IsNull(REQUEST.pageData.category.getParentCategory().getParentCategory()) 
-								AND 
-								cat.getCategoryId() EQ REQUEST.pageData.category.getParentCategory().getParentCategory().getCategoryId()
-						>isExpanded</cfif>
-						<cfif cat.getCategoryId() EQ REQUEST.pageData.category.getCategoryId()>easytree-active</cfif>
+						<cfif cat.getIsExpanded()>isExpanded</cfif>
+						<cfif cat.getIsActive()>easytree-active</cfif>
 						" title="#cat.getDisplayName()#">
 						<a href="#cat.getDetailPageURL()#">
 							#cat.getDisplayName()#
@@ -177,8 +168,8 @@ padding: 0 8px 8px;">
 						<ul>
 							<cfloop array="#cat.getSubCategories()#" index="subCat">
 								<li class="
-									<cfif NOT IsNull(REQUEST.pageData.category.getParentCategory()) AND subCat.getCategoryId() EQ REQUEST.pageData.category.getParentCategory().getCategoryId()>isExpanded</cfif>
-									<cfif subCat.getCategoryId() EQ REQUEST.pageData.category.getCategoryId()>easytree-active</cfif>
+									<cfif subCat.getIsExpanded()>isExpanded</cfif>
+									<cfif subCat.getIsActive()>easytree-active</cfif>
 								">
 									<a href="#subCat.getDetailPageURL()#">
 										#subCat.getDisplayName()#
@@ -186,7 +177,8 @@ padding: 0 8px 8px;">
 									<ul>
 										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
 											<li class="
-												<cfif thirdCat.getCategoryId() EQ REQUEST.pageData.category.getCategoryId()>easytree-active</cfif>
+												<cfif thirdCat.getIsExpanded()>isExpanded</cfif>
+												<cfif thirdCat.getIsActive()>easytree-active</cfif>
 											">
 												<a href="#thirdCat.getDetailPageURL()#">
 													#thirdCat.getDisplayName()#

@@ -58,10 +58,11 @@
     </cffunction>
 	
 	<cffunction name="getCategoryTree" access="public" returntype="array">
-		<cfargument name="parentCategoryId" type="numeric" required="false" />
 		<cfargument name="isEnabled" type="boolean" required="false" default="true" />
 		<cfargument name="showCategoryOnNavigation" type="boolean" required="false" default="true" />
 		<cfargument name="orderBy" type="string" required="false" default="displayName ASC" />
+		<cfargument name="parentCategoryId" type="numeric" required="false" />
+		<cfargument name="currentCategoryId" type="numeric" required="false" />
 		
 		<cfset var LOCAL = {} />
 		
@@ -72,7 +73,25 @@
 		</cfif>
 		
 		<cfloop array="#LOCAL.categories#" index="LOCAL.c">
-			<cfset LOCAL.c.setSubCategories(getCategoryTree(parentCategoryId = LOCAL.c.getCategoryId())) />
+			<cfset LOCAL.c.setIsActive(false) />
+			<cfset LOCAL.c.setIsExpanded(false) />
+					
+			<cfif NOT IsNull(ARGUMENTS.currentCategoryId) AND IsNumeric(ARGUMENTS.currentCategoryId)>
+				<cfif ARGUMENTS.currentCategoryId EQ LOCAL.c.getCategoryId()>
+					<cfset LOCAL.c.setIsActive(true) />
+					<cfset LOCAL.c.setIsExpanded(true) />
+					<cfif NOT IsNull(LOCAL.c.getParentCategory()) >
+						<cfset LOCAL.c.getParentCategory().setIsExpanded(true) />
+						<cfif NOT IsNull(LOCAL.c.getParentCategory().getParentCategory()) >
+							<cfset LOCAL.c.getParentCategory().getParentCategory().setIsExpanded(true) />
+						</cfif>
+					</cfif>
+				</cfif>
+				
+				<cfset LOCAL.c.setSubCategories(getCategoryTree(parentCategoryId = LOCAL.c.getCategoryId(), currentCategoryId = ARGUMENTS.currentCategoryId)) />
+			<cfelse>
+				<cfset LOCAL.c.setSubCategories(getCategoryTree(parentCategoryId = LOCAL.c.getCategoryId())) />
+			</cfif>
 		</cfloop>
 		
         <cfreturn LOCAL.categories />

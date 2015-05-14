@@ -16,6 +16,8 @@
 	<cfproperty name="categoryFilterRelas" type="array" fieldtype="one-to-many" cfc="category_filter_rela" fkcolumn="category_id" singularname="categoryFilterRela">
 	<cfproperty name="products" fieldtype="many-to-many" cfc="product" linktable="category_product_rela" fkcolumn="category_id" inversejoincolumn="product_id">
 	
+	<cfproperty name="isActive" type="boolean" persistent="false"> 
+	<cfproperty name="isExpanded" type="boolean" persistent="false"> 
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	<cfproperty name="subCategories" type="array" persistent="false"> 
 	
