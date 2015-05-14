@@ -186,12 +186,12 @@ padding: 0 8px 8px;">
 		   }
 		</script>
 	</div>
-	<div class="recommendation">
-		Best Sellers
-	</div>
-	<div class="recommendation-list" style="margin-bottom:8px;">
-		<ul>
-			<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getSectionData())>
+	<cfif ArrayLen(REQUEST.pageData.bestSellerSection.getSectionData()) GT 0>
+		<div class="recommendation">
+			Best Sellers
+		</div>
+		<div class="recommendation-list" style="margin-bottom:8px;">
+			<ul>
 				<cfloop array="#REQUEST.pageData.bestSellerSection.getSectionData()#" index="bs">	
 					<cfset product = bs.getSectionProduct() />
 					<li>
@@ -209,10 +209,10 @@ padding: 0 8px 8px;">
 						<div style="clear:both;"></div>
 					</li>
 				</cfloop>
-			</cfif>
-		</ul>
-	</div>
-	<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getSectionData())>
+			</ul>
+		</div>
+	</cfif>
+	<cfif ArrayLen(REQUEST.pageData.advertisementSection.getSectionData()) GT 0>
 		<cfloop array="#REQUEST.pageData.advertisementSection.getSectionData()#" index="ad">	
 			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:228px;border:1px solid ##CCC">
 		</cfloop>

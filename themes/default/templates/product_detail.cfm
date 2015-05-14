@@ -238,34 +238,35 @@
 	</div>
 	</div>
 	<div style="clear:both;"></div>
-	<div class="container">
-	<div class="related-thumbnails">
-		<div class="cat-thumbnail-title"><a href="">Related Products</a></div>
-		<div class="clear"></div>
-		<div class="cat-thumbnail-section">
-			<ul class="rig columns-4">
-				<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
-					<li class="single-products">
-						<a href="#product.getDetailPageURL()#">
-							<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
-						</a>
-						<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
-						<cfif product.isFreeShipping()>
-						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
-						</cfif>
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<div class="thumbnail-rating" style="background-position: 30px -1512px;"></div>
-								<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
-								<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+	<cfif ArrayLen(REQUEST.pageData.product.getRelatedProducts()) GT 0>
+		<div class="related-thumbnails">
+			<div class="cat-thumbnail-title"><a href="">Related Products</a></div>
+			<div class="clear"></div>
+			<div class="cat-thumbnail-section">
+				<ul class="rig columns-4">
+					<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+						<li class="single-products">
+							<a href="#product.getDetailPageURL()#">
+								<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
+							</a>
+							<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
+							<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
+							<cfif product.isFreeShipping()>
+							<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
+							</cfif>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<div class="thumbnail-rating" style="background-position: 30px -1512px;"></div>
+									<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+									<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
+								</div>
 							</div>
-						</div>
-					</li>
-				</cfloop>
-			</ul>
+						</li>
+					</cfloop>
+				</ul>
+			</div>
 		</div>
-	</div>
+	</cfif>
 </div>
 </cfoutput>
 	

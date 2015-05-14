@@ -38,6 +38,14 @@
 		
 		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.categoryId) />
 		
+		<cfif ArrayLen(LOCAL.pageData.subCategoryTree) EQ 0>
+			<cfif IsNull(LOCAL.pageData.category.getParentCategory())>
+				<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree() />
+			<cfelse>
+				<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(parentCategoryId = LOCAL.pageData.category.getParentCategory().getCategoryId()) />
+			</cfif>
+		</cfif>
+		
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.category.getKeywords() />
