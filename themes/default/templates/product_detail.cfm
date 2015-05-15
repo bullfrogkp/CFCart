@@ -106,7 +106,7 @@
 		});
 
 		$( ".add-to-cart" ).on( "click", function() {
-		dialog.dialog( "open" );
+			dialog.dialog( "open" );
 		});
 
 		var valueElement = $('##value');
@@ -355,7 +355,7 @@
 		<div id="product-addtocart" style="margin-top:30px;">
 			<span style="font-size:13px;">Qty: </span>
 			<button id="minus">-</button>
-			<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
+			<input id="value" type="text" value="1" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
 			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
 			<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
