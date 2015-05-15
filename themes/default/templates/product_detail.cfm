@@ -197,12 +197,20 @@
 									$("##price-amount").html('$' + result.PRICE);
 									$("##stock-count").html(result.STOCK + ' in stock');
 									$("##selected_product_id").val(result.PRICE);
+									$("##add-current-to-cart").show();
+									$("##add-current-to-cart-disabled").hide();
+									$("##add-current-to-wishlist").show();
+									$("##add-current-to-wishlist-disabled").hide();
 								}
 								else
 								{
 									$("##price-amount").html('Out of stock');
 									$("##stock-count").html('');
 									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
+									$("##add-current-to-cart").hide();
+									$("##add-current-to-cart-disabled").show();
+									$("##add-current-to-wishlist").hide();
+									$("##add-current-to-wishlist-disabled").show();
 								}
 							}
 					});
@@ -349,10 +357,10 @@
 			<button id="minus">-</button>
 			<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
-			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
-			<a id="add-current-to-cart" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
-			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
-			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Wishlist</a>
+			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
+			<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
+			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;display:none;">Add to Wishlist</a>
+			<a id="add-current-to-wishlist-disabled" class="btn-wish" style="padding-right:13px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Wishlist</a>
 		</div>
 		
 		<div id="product-description">
