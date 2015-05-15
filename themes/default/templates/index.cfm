@@ -1,4 +1,12 @@
 ﻿<cfoutput>
+<script type="text/javascript">
+	$(function() {
+		$('##da-slider').cslider({
+			autoplay	: true,
+			bgincrement	: 0
+		});
+	});
+</script>
 <div id="slide-div" style="width:722px;float:right;">
 	#REQUEST.pageData.slideSection.getSectionData()#
 </div>
