@@ -68,8 +68,8 @@
 
 		dialog = $( "##dialog-form" ).dialog({
 		autoOpen: false,
-		height: 350,
-		width: 300,
+		height: 370,
+		width: 350,
 		modal: true,
 		show: 'fade',
 		hide: 'fade',
@@ -435,7 +435,7 @@
 </div>
 <div id="dialog-form" title="Product has been added to the cart">
 	<div style="margin-top:10px;text-align:center;">
-		<img class="thumbnail-img" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" style="width:80%" />
+		<img class="thumbnail-img" src="#REQUEST.pageData.product.getDefaultImageLink(type='small')#" />
 	
 		<p>#REQUEST.pageData.product.getDisplayName()#</p>
 	</div>
