@@ -59,8 +59,16 @@
 								groupName: '#SESSION.user.userGroup#'
 							},		
 							success: function(result) {
-								$("##price-amount").html(result.PRICE);
-								$("##stock-count").html(result.STOCK + ' in stock');
+								if(result.STOCK != '0')
+								{
+									$("##price-amount").html(result.PRICE);
+									$("##stock-count").html(result.STOCK + ' in stock');
+								}
+								else
+								{
+									$("##price-amount").html('Out of stock');
+									$("##stock-count").html('');
+								}
 							}
 					});
 				}

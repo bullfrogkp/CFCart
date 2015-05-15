@@ -531,7 +531,7 @@
 						<div id="new_attributes" class="row" style="margin-top:10px;">
 						</div>
 						
-						<cfif REQUEST.pageData.product.isProductAttributeComplete() EQ true>
+						<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.isProductAttributeComplete() EQ true>
 							<div class="form-group" id="attribute_option_values">
 								<label>Attribute Value(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
@@ -1073,7 +1073,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<cfif REQUEST.pageData.product.isProductAttributeComplete() EQ true>
+<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.isProductAttributeComplete() EQ true>
 <!-- ADD/UPDATE ATTRIBUTE VALUE MODAL -->
 <div class="modal fade" id="add-attribute-option-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
