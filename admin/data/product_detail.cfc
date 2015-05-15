@@ -57,6 +57,7 @@
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
+			<cfset LOCAL.product.setStock(Trim(FORM.stock)) />
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDetail(Trim(FORM.detail)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
@@ -518,6 +519,7 @@
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.product.getDisplayName())?"":LOCAL.pageData.product.getDisplayName() />
 				<cfset LOCAL.pageData.formData.detail = isNull(LOCAL.pageData.product.getDetail())?"":LOCAL.pageData.product.getDetail() />
 				<cfset LOCAL.pageData.formData.sku = isNull(LOCAL.pageData.product.getSku())?"":LOCAL.pageData.product.getSku() />
+				<cfset LOCAL.pageData.formData.stock = isNull(LOCAL.pageData.product.getStock())?"":LOCAL.pageData.product.getStock() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.product.getIsEnabled())?"":LOCAL.pageData.product.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitle())?"":LOCAL.pageData.product.getTitle() />
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />
@@ -541,6 +543,7 @@
 				<cfset LOCAL.pageData.formData.display_name = "" />
 				<cfset LOCAL.pageData.formData.detail = "" />
 				<cfset LOCAL.pageData.formData.sku = "" />
+				<cfset LOCAL.pageData.formData.stock = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.title = "" />
 				<cfset LOCAL.pageData.formData.keywords = "" />

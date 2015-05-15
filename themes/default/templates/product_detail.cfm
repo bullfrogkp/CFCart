@@ -15,107 +15,110 @@
 			</cfloop>
 		</cfif>
 		
-		$(".filter-options div").click(function() {
-			$(this).closest('.filter-options').css("border-color","red");
-			$(this).closest('.filter-options').siblings().css("border-color","##CCC");
-			
-			var index = $(this).closest('.filter-options').attr('attributevalueid');
-			var value = optionStruct[index];
-			var insert = true;
-			
-			for (var i = 0; i < optionArray.length; i++) {
-				if(optionArray[i].attributeid == value)
-				{
-					optionArray[i].attributevalueid = index;
-					insert = false;
-					break;
-				}
-			}
-			
-			if(insert == true)
-			{
-				var option = new Object();
-				option.attributeid = value;
-				option.attributevalueid = index;
-				optionArray.push(option);
-			}
-		
-			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
-			{
-				var optionList = '';
+		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+			$(".filter-options div").click(function() {
+				$(this).closest('.filter-options').css("border-color","red");
+				$(this).closest('.filter-options').siblings().css("border-color","##CCC");
+				
+				var index = $(this).closest('.filter-options').attr('attributevalueid');
+				var value = optionStruct[index];
+				var insert = true;
+				
 				for (var i = 0; i < optionArray.length; i++) {
-					optionList = optionList + optionArray[i].attributevalueid + ',';
+					if(optionArray[i].attributeid == value)
+					{
+						optionArray[i].attributevalueid = index;
+						insert = false;
+						break;
+					}
 				}
 				
-				$.ajax({
-						type: "get",
-						url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
-						dataType: 'json',
-						data: {
-							method: 'getProduct',
-							parentProductId: #REQUEST.pageData.product.getProductId()#,
-							attributeValueIdList: optionList,
-							groupName: '#SESSION.user.userGroup#'
-						},		
-						success: function(result) {
-							$("##price-amount").html(result.PRICE);
-							$("##stock-count").html(result.STOCK + ' in stock');
-						}
-				});
+				if(insert == true)
+				{
+					var option = new Object();
+					option.attributeid = value;
+					option.attributevalueid = index;
+					optionArray.push(option);
+				}
+			
+				if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
+				{
+					var optionList = '';
+					for (var i = 0; i < optionArray.length; i++) {
+						optionList = optionList + optionArray[i].attributevalueid + ',';
+					}
+					
+					$.ajax({
+							type: "get",
+							url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
+							dataType: 'json',
+							data: {
+								method: 'getProduct',
+								parentProductId: #REQUEST.pageData.product.getProductId()#,
+								attributeValueIdList: optionList,
+								groupName: '#SESSION.user.userGroup#'
+							},		
+							success: function(result) {
+								$("##price-amount").html(result.PRICE);
+								$("##stock-count").html(result.STOCK + ' in stock');
+							}
+					});
+				}
+			});
+		</cfif>
+		<cfif ArrayLen(REQUEST.pageData.product.getProductVideos()) GT 0>
+			<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
+				processURL('#productVideo.getUrl()#', 'video_#productVideo.getProductVideoId()#');
+			</cfloop>
+			
+			function success(imgurl, divid) {
+				$('##' + divid).html('<img src="' + imgurl + '" />');
+				console.log($('##' + divid).html());
 			}
-		});
-		
-		<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
-			processURL('#productVideo.getUrl()#', 'video_#productVideo.getProductVideoId()#');
-		</cfloop>
-		
-		function success(imgurl, divid) {
-			$('##' + divid).html('<img src="' + imgurl + '" />');
-			console.log($('##' + divid).html());
-		}
-		
-		function processURL(url, divid){
-			var id;
+			
+			function processURL(url, divid){
+				var id;
 
-			if (url.indexOf('youtube.com') > -1) {
-				<!-- CHANGED -->
-				id = url.split('/embed/')[1];
-				return processYouTube(id);
-			} else if (url.indexOf('youtu.be') > -1) {
-				id = url.split('/')[1];
-				return processYouTube(id);
-			} else if (url.indexOf('vimeo.com') > -1) {
-				<!-- CHANGED -->
-				if (url.match(/http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/)) {
+				if (url.indexOf('youtube.com') > -1) {
+					<!-- CHANGED -->
+					id = url.split('/embed/')[1];
+					return processYouTube(id);
+				} else if (url.indexOf('youtu.be') > -1) {
 					id = url.split('/')[1];
-				} else if (url.match(/^vimeo.com\/channels\/[\d\w]+##[0-9]+/)) {
-					id = url.split('##')[1];
-				} else if (url.match(/vimeo.com\/groups\/[\d\w]+\/videos\/[0-9]+/)) {
-					id = url.split('/')[4];
+					return processYouTube(id);
+				} else if (url.indexOf('vimeo.com') > -1) {
+					<!-- CHANGED -->
+					if (url.match(/http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/)) {
+						id = url.split('/')[1];
+					} else if (url.match(/^vimeo.com\/channels\/[\d\w]+##[0-9]+/)) {
+						id = url.split('##')[1];
+					} else if (url.match(/vimeo.com\/groups\/[\d\w]+\/videos\/[0-9]+/)) {
+						id = url.split('/')[4];
+					} else {
+						throw new Error('Unsupported Vimeo URL');
+					}
+
+					$.ajax({
+						url: 'http://vimeo.com/api/v2/video/' + id + '.json',
+						dataType: 'jsonp',
+						success: function(data) {
+							<!-- CHANGED -->
+							 success(data[0].thumbnail_large, divid);
+						}
+					});
 				} else {
-					throw new Error('Unsupported Vimeo URL');
+					throw new Error('Unrecognised URL');
 				}
 
-				$.ajax({
-					url: 'http://vimeo.com/api/v2/video/' + id + '.json',
-					dataType: 'jsonp',
-					success: function(data) {
-						<!-- CHANGED -->
-						 success(data[0].thumbnail_large, divid);
-					}
-				});
-			} else {
-				throw new Error('Unrecognised URL');
+				function processYouTube(id) {
+					if (!id) {
+						throw new Error('Unsupported YouTube URL');
+					}console.log(id);
+					<!-- CHANGED -->
+					success('http://i2.ytimg.com/vi/' + id + '/hqdefault.jpg', divid);
+				}
 			}
-
-			function processYouTube(id) {
-				if (!id) {
-					throw new Error('Unsupported YouTube URL');
-				}console.log(id);
-				<!-- CHANGED -->
-				success('http://i2.ytimg.com/vi/' + id + '/hqdefault.jpg', divid);
-			}
-		}
+		</cfif>
 	});
 </script>
 <div style="margin-top:20px;">
@@ -186,8 +189,15 @@
 			</div>
 		</cfif>
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
-			<span id="price-amount">Please choose your options</span>
-			<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;"></div>
+			<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+				<span id="price-amount">Please choose your options</span>
+				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;"></div>
+			<cfelse>
+				#DollarFormat(REQUEST.pageData.product.getPrice())#
+				<div style="color:##8F8F8F;margin-top:10px;font-size:14px;">
+					#REQUEST.pageData.product.getStock()# in stock
+				</div>
+			</cfif>
 		</div>
 		<div id="product-addtocart" style="margin-top:30px;">
 			<span style="font-size:13px;">Qty: </span>

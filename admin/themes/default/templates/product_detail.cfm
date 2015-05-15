@@ -252,6 +252,10 @@
 							<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
 						</div>
 						<div class="form-group">
+							<label>Stock</label>
+							<input name="stock" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+						</div>
+						<div class="form-group">
 							<label>Status</label>
 							 <select class="form-control" name="is_enabled">
 								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>

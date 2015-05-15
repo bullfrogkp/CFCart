@@ -108,11 +108,6 @@
 		
 		<cfquery name="LOCAL.getProduct">
 			SELECT	p.product_id
-			,		pcgr.price
-			,		pcgr.special_price
-			,		pcgr.special_price_from_date
-			,		pcgr.special_price_to_date
-			,		p.stock
 			FROM	product_customer_group_rela pcgr
 			JOIN	product p ON p.product_id = pcgr.product_id
 			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
@@ -140,38 +135,18 @@
 			</cfloop>
 		</cfquery>
 		
-		<cfset retStruct.productid = LOCAL.getProduct.product_id />
-		<cfset retStruct.stock = LOCAL.getProduct.stock />
-		
-		<cfif IsNumeric(LOCAL.getProduct.special_price)>
-			<cfif IsDate(LOCAL.getProduct.special_price_from_date) AND IsDate(LOCAL.getProduct.special_price_to_date)>
-				<cfif 	DateCompare(LOCAL.getProduct.special_price_from_date, DateFormat(Now())) LTE 0
-						AND
-						DateCompare(DateFormat(Now()), LOCAL.getProduct.special_price_to_date) LTE 0>
-					<cfset retStruct.price = LOCAL.getProduct.special_price />
-				<cfelse>
-					<cfset retStruct.price = LOCAL.getProduct.price />
-				</cfif>
-			<cfelseif IsDate(LOCAL.getProduct.special_price_from_date)>
-				<cfif DateCompare(LOCAL.getProduct.special_price_from_date, DateFormat(Now())) LTE 0>
-					<cfset retStruct.price = LOCAL.getProduct.special_price />
-				<cfelse>
-					<cfset retStruct.price = LOCAL.getProduct.price />
-				</cfif>
-			<cfelseif IsDate(LOCAL.getProduct.special_price_to_date)>
-				<cfif 	DateCompare(DateFormat(Now()), LOCAL.getProduct.special_price_to_date) LTE 0>
-					<cfset retStruct.price = LOCAL.getProduct.special_price />
-				<cfelse>
-					<cfset retStruct.price = LOCAL.getProduct.price />
-				</cfif>
+		<cfif IsNumeric(LOCAL.getProduct.product_id)>
+			<cfset LOCAL.product = EntityLoadByPK("product", LOCAL.getProduct.product_id) />
+			<cfset retStruct.productid = LOCAL.product.getProductId() />
+			<cfset retStruct.stock = LOCAL.product.getStock() />
+			<cfset retStruct.price = DollarFormat(LOCAL.product.getPrice()) />
+			<cfif NOT IsNumeric(retStruct.stock)>
+				<cfset retStruct.stock = 0 />
 			</cfif>
 		<cfelse>
-			<cfset retStruct.price = LOCAL.getProduct.price />
-		</cfif>
-		
-		<cfset retStruct.price = DollarFormat(retStruct.price) />
-		<cfif NOT IsNumeric(retStruct.stock)>
+			<cfset retStruct.productid = "" />
 			<cfset retStruct.stock = 0 />
+			<cfset retStruct.price = DollarFormat(0) />
 		</cfif>
 		
 		<cfreturn retStruct>
