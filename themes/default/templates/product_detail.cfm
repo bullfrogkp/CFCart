@@ -350,27 +350,9 @@
 			<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
 			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
-			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;
-			background-color: ##fff;
-  border-color: ##ccc;
-  background-image: -webkit-linear-gradient(top,##fff 0,##e0e0e0 100%);
-  background-image: linear-gradient(to bottom,##fff 0,##e0e0e0 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='##ffffffff', endColorstr='##ffe0e0e0', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  background-repeat: repeat-x;
-  border-color: ##dbdbdb;
-  text-shadow: 0 1px 0 ##fff;
-  border-color: ##ccc;
-			cursor: not-allowed;
-  pointer-events: none;
-  opacity: .65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-			">Add to Cart</a>
-			
-			
+			<a id="add-current-to-cart" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
 			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
+			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Wishlist</a>
 		</div>
 		
 		<div id="product-description">
