@@ -192,15 +192,17 @@
 								groupName: '#SESSION.user.userGroup#'
 							},		
 							success: function(result) {
-								if(result.STOCK != '0')
+								if(result.PRICE > 0 && result.STOCK > 0)
 								{
-									$("##price-amount").html(result.PRICE);
+									$("##price-amount").html('$' + result.PRICE);
 									$("##stock-count").html(result.STOCK + ' in stock');
+									$("##selected_product_id").val(result.PRICE);
 								}
 								else
 								{
 									$("##price-amount").html('Out of stock');
 									$("##stock-count").html('');
+									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
 								}
 							}
 					});
@@ -262,6 +264,8 @@
 		</cfif>
 	});
 </script>
+<form method="post">
+<input type="hidden" name="selected_product_id" value="#REQUEST.pageData.product.getProductId()#" />
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
 		<img id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/>
@@ -345,8 +349,8 @@
 			<button id="minus">-</button>
 			<input id="value" type="text" value="0" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
-			<a class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
-			<a class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
+			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
+			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
 		</div>
 		
 		<div id="product-description">
@@ -427,5 +431,6 @@
 		<p>7 Colors Changing Glow LED Light Water Stream Faucet Tap</p>
 	</div>
 </div>
+</form>
 </cfoutput>
 	

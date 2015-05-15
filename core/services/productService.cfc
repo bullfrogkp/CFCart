@@ -139,7 +139,7 @@
 			<cfset LOCAL.product = EntityLoadByPK("product", LOCAL.getProduct.product_id) />
 			<cfset retStruct.productid = LOCAL.product.getProductId() />
 			<cfset retStruct.stock = LOCAL.product.getStock() />
-			<cfset retStruct.price = DollarFormat(LOCAL.product.getPrice()) />
+			<cfset retStruct.price = LOCAL.product.getPrice() />
 			<cfif NOT IsNumeric(retStruct.stock)>
 				<cfset retStruct.stock = 0 />
 			</cfif>
