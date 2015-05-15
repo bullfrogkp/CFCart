@@ -196,7 +196,7 @@
 								{
 									$("##price-amount").html('$' + result.PRICE);
 									$("##stock-count").html(result.STOCK + ' in stock');
-									$("##selected_product_id").val(result.PRICE);
+									$("##selected_product_id").val(result.PRODUCTID);
 									$("##add-current-to-cart").show();
 									$("##add-current-to-cart-disabled").hide();
 									$("##add-current-to-wishlist").show();
@@ -435,10 +435,9 @@
 </div>
 <div id="dialog-form" title="Product has been added to the cart">
 	<div style="margin-top:10px;text-align:center;">
-		
-		<img class="thumbnail-img" src="#SESSION.absoluteUrlTheme#images/t1.jpg" />
+		<img class="thumbnail-img" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" style="width:80%" />
 	
-		<p>7 Colors Changing Glow LED Light Water Stream Faucet Tap</p>
+		<p>#REQUEST.pageData.product.getDisplayName()#</p>
 	</div>
 </div>
 </form>
