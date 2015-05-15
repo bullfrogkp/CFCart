@@ -205,7 +205,7 @@
 								else
 								{
 									$("##price-amount").html('Out of stock');
-									$("##stock-count").html('');
+									$("##stock-count").html('Stock is not available');
 									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
@@ -344,7 +344,7 @@
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
 			<cfif REQUEST.pageData.product.isProductAttributeComplete()>
 				<span id="price-amount">Please choose your options</span>
-				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;"></div>
+				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
 			<cfelse>
 				#DollarFormat(REQUEST.pageData.product.getPrice())#
 				<div style="color:##8F8F8F;margin-top:10px;font-size:14px;">
