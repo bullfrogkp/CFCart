@@ -13,6 +13,10 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid SKU.") />
 		</cfif>
 		
+		<cfif NOT IsNumeric(FORM.id) AND NOT IsNumeric(Trim(FORM.price))>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid price.") />
+		</cfif>
+		
 		<cfif StructKeyExists(FORM,"add_new_product") AND NOT IsNumeric(FORM.new_product_id)>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product ID.") />
 		</cfif>
@@ -57,7 +61,9 @@
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
-			<cfset LOCAL.product.setStock(Trim(FORM.stock)) />
+			<cfif IsNumeric(Trim(FORM.stock))>
+				<cfset LOCAL.product.setStock(Trim(FORM.stock)) />
+			</cfif>
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDetail(Trim(FORM.detail)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
@@ -80,9 +86,15 @@
 				<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
 				<cfset LOCAL.groupPrice.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 				<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
-				<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
-				<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
-				<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+				<cfif IsNumeric(Trim(FORM.special_price))>
+					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+				</cfif>
+				<cfif IsDate(Trim(FORM.special_price_from_date))>
+					<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+				</cfif>
+				<cfif IsDate(Trim(FORM.special_price_to_date))>
+					<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+				</cfif>
 				
 				<cfset EntitySave(LOCAL.groupPrice) />
 				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
