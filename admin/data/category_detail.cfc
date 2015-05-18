@@ -144,8 +144,12 @@
 							<cfset LOCAL.newAdvertisement.setSection(LOCAL.advertisementSection) />
 							<cfset LOCAL.newAdvertisement.setCategory(LOCAL.category) />
 							<cfset EntitySave(LOCAL.newAdvertisement) />
-							
 							<cfset LOCAL.advertisementSection.addAdvertisement(LOCAL.newAdvertisement) />
+							
+							<cfset LOCAL.sizeArray = [{name = "small", width = "200", height = "200", position="center", crop = true}] />	
+							<cfset _createImages(	imagePath = "#APPLICATION.absoluteUrlWeb#images/uploads/advertisement/",
+													imageNameWithExtension = LOCAL.imgName,
+													sizeArray = LOCAL.sizeArray) />
 						</cfif>
 					</cfif>
 				</cfloop>

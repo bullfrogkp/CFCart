@@ -129,4 +129,31 @@
 		
 		<cfreturn LOCAL /> 
 	</cffunction>
+	
+	<cffunction name="_createImages" access="private" output="false" returnType="void">
+		<cfargument name="imagePath" type="string" required="true">
+		<cfargument name="imageNameWithExtension" type="string" required="true">
+		<cfargument name="sizeArray" type="array" required="true">
+		
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
+		<cfset LOCAL.image = ImageRead(ARGUMENTS.imagePath & ARGUMENTS.imageNameWithExtension)>
+		
+		<cfloop array="#ARGUMENTS.sizeArray#" index="LOCAL.size">
+			<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
+				
+			<cfif LOCAL.size.crop EQ true>
+				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height, LOCAL.size.position)>
+			<cfelseif  IsNumeric(LOCAL.size.width) AND IsNumeric(LOCAL.size.height)>
+				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, LOCAL.size.height) />
+			<cfelseif  IsNumeric(LOCAL.size.width)>
+				<cfset ImageResize(LOCAL.newImage, LOCAL.size.width, "") />
+			<cfelseif  IsNumeric(LOCAL.size.height)>
+				<cfset ImageResize(LOCAL.newImage, "", LOCAL.size.height) />
+			</cfif>
+						
+			<cfset ImageWrite(LOCAL.newImage,"#ARGUMENTS.imagePath##LOCAL.size.name#_#ARGUMENTS.imageNameWithExtension#")> 
+		</cfloop>
+		
+	</cffunction>
 </cfcomponent>

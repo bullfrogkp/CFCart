@@ -130,7 +130,7 @@
 														</tr>
 														<tr>
 															<td colspan="2">
-																<img class="img-responsive" src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" />
+																<img class="img-responsive" src="#ad.getImageLink(type = "small")#" />
 															</td>
 														</tr>
 													</table>
