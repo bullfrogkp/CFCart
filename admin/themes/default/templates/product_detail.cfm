@@ -419,7 +419,7 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr <cfif img.getIsDefault() EQ true>class="danger"<cfelse>class="default"</cfif>>
-														<th style="font-size:11px;line-height:20px;">#img.getName()#</th>
+														<th style="font-size:11px;line-height:20px;">#Left(img.getName(),"10")#</th>
 														<th><a imageid="#img.getProductImageId()#" href="" class="delete-image pull-right" data-toggle="modal" data-target="##delete-image-modal"><span class="label label-danger">Delete</span></a></th>
 													</tr>
 													<tr>
@@ -599,7 +599,7 @@
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="default">
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">#product.getDisplayName()#</a></th>
+															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">ID: #product.getProductId()#</a></th>
 															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
 														</tr>
 														<tr>
