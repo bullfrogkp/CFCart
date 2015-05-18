@@ -21,3 +21,7 @@ display:none !important;
 .info-section {
 color:#3c8dbc;
 }
+
+.img-responsive {
+width:100%;
+}
