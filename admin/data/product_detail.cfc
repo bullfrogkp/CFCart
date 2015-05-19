@@ -618,13 +618,10 @@
 	</cffunction>
 	
 	<cffunction name="_createPermutaionArray" access="private" output="false" returnType="array">
-	
-	</cffunction>
-	
-	<cfscript>
-		public array function _createPermutaionArray(_arrays=[]) {
+		<cfargument name="attributeValueIdArray" type="array" required="true">
+		<cfscript>
 			var result = [];
-			var _arrayslen = arraylen(arguments._arrays);
+			var _arrayslen = ArrayLen(arguments.attributeValueIdArray);
 			var _size = (_arrayslen) ? 1 : 0;
 			var _array = '';
 			var x = 0;
@@ -657,6 +654,6 @@
 			}
 
 			return result;
-		}
 		</cfscript>
+	</cffunction>
 </cfcomponent>
