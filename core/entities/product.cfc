@@ -83,6 +83,8 @@
 					<cfelse>
 						<cfset price = productCustomeGroupRela.getPrice() />
 					</cfif>
+				<cfelse>
+					<cfset price = productCustomeGroupRela.getPrice() />
 				</cfif>
 			<cfelse>
 				<cfset price = productCustomeGroupRela.getPrice() />
