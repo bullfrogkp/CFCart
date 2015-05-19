@@ -534,6 +534,7 @@
 							<div class="form-group" id="attribute_option_values">
 								<label>Attribute Value(s)</label>
 								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
+								<button name="generate_attribute_option_values" type="submit" class="label label-primary" style="border:none;padding:.3em .6em .4em;">Generate Attribute Values</button>
 								
 								<cfif NOT IsNull(REQUEST.pageData.product.getSubProducts())>
 									<div id="attributes" class="row" style="margin-top:10px;">

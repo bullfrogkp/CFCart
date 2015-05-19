@@ -305,28 +305,28 @@
 			<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 			<cfset EntitySave(LOCAL.ProductAttributeRela) />
 			
-			<!--- create sub product when creating options, so the option has a default price for each active group --->
-			<cfif LOCAL.product.isProductAttributeComplete()>
-				<cfset LOCAL.attributeValueIdArray = [] />
-				<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-				<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
-					<cfif LOCAL.productAttributeRela.isRequired() EQ true>
-						<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdList(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
-					</cfif>
-				</cfloop>
-				
-				<cfset LOCAL.attributeValueIdPermutaionArray = _array_cartesian_product(LOCAL.attributeValueIdArray)  />
-			</cfif>
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
+		<cfelseif StructKeyExists(FORM,"generate_attribute_option_values")>
+		
+			<cfset LOCAL.attributeValueIdArray = [] />
+			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+			
+			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
+				<cfif LOCAL.productAttributeRela.isRequired() EQ true>
+					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdList(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
+				</cfif>
+			</cfloop>
+			
+			<cfset LOCAL.attributeValueIdPermutaionArray = _array_cartesian_product(LOCAL.attributeValueIdArray)  />
+		
 			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
 				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = , attributeValueIdList = , groupName = ) />
 				<cfif LOCAL.subProduct.productid EQ "">
 					<cfset _createSubProduct() />
 				</cfif>
 			</cfloop>
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
 		
@@ -587,6 +587,69 @@
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="_createSubProduct" access="public" output="false" returnType="void">
+		<cfargument name="parentProduct" type="any" required="true">
+		<cfargument name="sku" type="string" required="true">
+		<cfargument name="stock" type="string" required="true">
+	
+	
+		<cfset LOCAL.newProduct = EntityNew("product")>
+		<cfset LOCAL.newProduct.setParentProduct(ARGUMENTS.parentProduct) />
+		
+		<cfset LOCAL.newProduct.setName(ARGUMENTS.parentProduct.getName()) />
+		<cfset LOCAL.newProduct.setDisplayName(ARGUMENTS.parentProduct.getDisplayName()) />
+		<cfset LOCAL.newProduct.setSku(ARGUMENTS.sku) />
+		<cfset LOCAL.newProduct.setTaxCategory(ARGUMENTS.parentProduct.getTaxCategory()) />
+		<cfset LOCAL.newProduct.setAttributeSet(ARGUMENTS.parentProduct.getAttributeSet()) />
+		<cfset LOCAL.newProduct.setStock(ARGUMENTS.stock) />
+		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
+		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
+		
+		<cfloop array="#ARGUMENTS.parentProduct.getProductCustomerGroupRelas()#" index="LOCAL.productCustomerGroupRela">
+			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
+			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.productCustomerGroupRela.getCustomerGroup()) />
+			<cfset LOCAL.groupPrice.setPrice(LOCAL.productCustomerGroupRela.getPrice()) />
+			<cfset LOCAL.groupPrice.setSpecialPrice(LOCAL.productCustomerGroupRela.getPrice()) />
+			<cfset LOCAL.groupPrice.setSpecialPriceFromDate(LOCAL.productCustomerGroupRela.getSpecialPriceFromDate()) />
+			<cfset LOCAL.groupPrice.setSpecialPriceToDate(LOCAL.productCustomerGroupRela.getSpecialPriceToDate()) />
+			<cfset EntitySave(LOCAL.groupPrice) />
+		
+			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
+		</cfloop>	
+			
+		<cfset EntitySave(LOCAL.newProduct) />
+	
+		<cfloop array="#ARGUMENTS.parentProduct.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
+			<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
+				<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
+				<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
+				<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeSetAttributeRela.getRequired()) />
+				<cfset EntitySave(LOCAL.newProductAttributeRela) />
+			
+				<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+				<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
+				
+				<cfset LOCAL.originalAttributeValue = EntityLoadByPK("attribute_value",FORM["new_attribute_value_#LOCAL.attributeSetAttributeRela.getAttribute().getAttributeId()#"]) />
+				<cfset LOCAL.newAttributeValue.setValue(LOCAL.originalAttributeValue.getValue()) />
+				<cfset LOCAL.newAttributeValue.setName(LOCAL.originalAttributeValue.getName()) />
+				<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.originalAttributeValue.getDisplayName()) />
+				<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.originalAttributeValue.getThumbnailLabel()) />
+				<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.originalAttributeValue.getThumbnailImageName()) />
+				<cfset LOCAL.newAttributeValue.setImageName(LOCAL.originalAttributeValue.getImageName()) />
+				
+				<cfset EntitySave(LOCAL.newAttributeValue) />
+				<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
+			</cfif>
+		</cfloop>
+		
+		<cfset EntitySave(LOCAL.newProduct) />
+		
+		<cfset ARGUMENTS.parentProduct.addSubProduct(LOCAL.newProduct) />
+		<cfset EntitySave(ARGUMENTS.parentProduct) />
 	</cffunction>
 	
 	<cfscript>
