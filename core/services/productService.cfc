@@ -101,7 +101,7 @@
 	<cffunction name="getProduct" access="remote" returntype="struct" returnformat="json" output="false">
 		<cfargument name="parentProductId" type="numeric" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
-		<cfargument name="groupName" type="string" required="true">
+		<cfargument name="groupName" type="string" required="false">
 		
 		<cfset var LOCAL = {} />
 		<cfset var retStruct = {} />
@@ -112,7 +112,9 @@
 			JOIN	product p ON p.product_id = pcgr.product_id
 			JOIN	customer_group cg ON cg.customer_group_id = pcgr.customer_group_id
 			WHERE	p.parent_product_id = <cfqueryparam value="#ARGUMENTS.parentProductId#" cfsqltype="cf_sql_integer" />
+			<cfif StructKeyExists(ARGUMENTS,"groupName")>
 			AND		cg.name = <cfqueryparam value="#ARGUMENTS.groupName#" cfsqltype="cf_sql_varchar" />
+			</cfif>
 			<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
 			AND		EXISTS	(	SELECT	1
 								FROM	product_attribute_rela par

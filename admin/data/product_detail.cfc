@@ -322,7 +322,7 @@
 			<cfset LOCAL.attributeValueIdPermutaionArray = _array_cartesian_product(LOCAL.attributeValueIdArray)  />
 		
 			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
-				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = , attributeValueIdList = , groupName = ) />
+				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getParentProductId(), attributeValueIdList = LOCAL.attributeValueIdList) />
 				<cfif LOCAL.subProduct.productid EQ "">
 					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = LOCAL.attributeValueIdList) />
 				</cfif>
