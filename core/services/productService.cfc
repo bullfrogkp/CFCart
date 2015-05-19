@@ -140,11 +140,12 @@
 		<cfif IsNumeric(LOCAL.getProduct.product_id)>
 			<cfset LOCAL.product = EntityLoadByPK("product", LOCAL.getProduct.product_id) />
 			<cfset retStruct.productid = LOCAL.product.getProductId() />
-			<cfset retStruct.stock = LOCAL.product.getStock() />
-			<cfset retStruct.price = LOCAL.product.getPrice() />
-			<cfif NOT IsNumeric(retStruct.stock)>
+			<cfif NOT IsNull(LOCAL.product.getStock())>
+				<cfset retStruct.stock = LOCAL.product.getStock() />
+			<cfelse>
 				<cfset retStruct.stock = 0 />
 			</cfif>
+			<cfset retStruct.price = LOCAL.product.getPrice() />
 		<cfelse>
 			<cfset retStruct.productid = "" />
 			<cfset retStruct.stock = 0 />
