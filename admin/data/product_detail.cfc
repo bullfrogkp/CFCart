@@ -314,17 +314,17 @@
 			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 			
 			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
-				<cfif LOCAL.productAttributeRela.isRequired() EQ true>
-					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdList(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
+				<cfif LOCAL.productAttributeRela.getRequired() EQ true>
+					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
 				</cfif>
 			</cfloop>
 			
 			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
 		
-			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
-				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getParentProductId(), attributeValueIdList = LOCAL.attributeValueIdList) />
+			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
+				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = LOCAL.attributeValueIdList) />
+					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				</cfif>
 			</cfloop>
 			
@@ -548,7 +548,7 @@
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
-	<cffunction name="_getAttributeValueIdList" access="private" output="false" returnType="string">
+	<cffunction name="_getAttributeValueIdArray" access="private" output="false" returnType="array">
 		<cfargument name="productAttributeRelaId" type="numeric" required="true">
 		<cfset var LOCAL = {} />
 		
@@ -558,7 +558,7 @@
 			WHERE	product_attribute_rela_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.productAttributeRelaId#" />
 		</cfquery>
 		
-		<cfreturn ValueList(LOCAL.getAttributeValueIdList.attribute_value_id) />
+		<cfreturn ListToArray(ValueList(LOCAL.getAttributeValueIdList.attribute_value_id)) />
 	</cffunction>
 	
 	<cffunction name="_createSubProduct" access="private" output="false" returnType="any">
@@ -630,7 +630,7 @@
 			var _current = [];
 
 			for (x=1; x lte _arrayslen; x++) {
-				_size = _size * arraylen(arguments._arrays[x]);
+				_size = _size * ArrayLen(arguments.attributeValueIdArray[x]);
 				_current[x] = 1;
 			}
 
@@ -638,11 +638,11 @@
 				result[i] = [];
 
 				for (j=1; j lte _arrayslen; j++) {
-					arrayappend(result[i], arguments._arrays[j][_current[j]]);
+					arrayappend(result[i], arguments.attributeValueIdArray[j][_current[j]]);
 				}
 
 				for (j=_arrayslen; j gt 0; j--) {
-					if (arraylen(arguments._arrays[j]) gt _current[j])  {
+					if (ArrayLen(arguments.attributeValueIdArray[j]) gt _current[j])  {
 						_current[j]++;
 						break;
 					}
@@ -650,7 +650,6 @@
 						_current[j] = 1;
 					}
 				}
-
 			}
 
 			return result;
