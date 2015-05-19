@@ -319,7 +319,7 @@
 				</cfif>
 			</cfloop>
 			
-			<cfset LOCAL.attributeValueIdPermutaionArray = _array_cartesian_product(LOCAL.attributeValueIdArray)  />
+			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
 		
 			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
 				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getParentProductId(), attributeValueIdList = LOCAL.attributeValueIdList) />
@@ -548,7 +548,20 @@
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
-	<cffunction name="_createSubProduct" access="public" output="false" returnType="any">
+	<cffunction name="_getAttributeValueIdList" access="private" output="false" returnType="string">
+		<cfargument name="productAttributeRelaId" type="numeric" required="true">
+		<cfset var LOCAL = {} />
+		
+		<cfquery name="LOCAL.getAttributeValueIdList">
+			SELECT	attribute_value_id
+			FROM	attribute_value
+			WHERE	product_attribute_rela_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.productAttributeRelaId#" />
+		</cfquery>
+		
+		<cfreturn ValueList(LOCAL.getAttributeValueIdList.attribute_value_id) />
+	</cffunction>
+	
+	<cffunction name="_createSubProduct" access="private" output="false" returnType="any">
 		<cfargument name="parentProduct" type="any" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
 	
@@ -604,8 +617,12 @@
 		<cfreturn LOCAL.newProduct />
 	</cffunction>
 	
+	<cffunction name="_createPermutaionArray" access="private" output="false" returnType="array">
+	
+	</cffunction>
+	
 	<cfscript>
-		public array function array_cartesian_product(_arrays=[]) {
+		public array function _createPermutaionArray(_arrays=[]) {
 			var result = [];
 			var _arrayslen = arraylen(arguments._arrays);
 			var _size = (_arrayslen) ? 1 : 0;
