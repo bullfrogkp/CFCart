@@ -101,7 +101,7 @@
 	<cffunction name="getProduct" access="remote" returntype="struct" returnformat="json" output="false">
 		<cfargument name="parentProductId" type="numeric" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
-		<cfargument name="groupName" type="string" required="false">
+		<cfargument name="customerGroupName" type="string" required="false">
 		
 		<cfset var LOCAL = {} />
 		<cfset var retStruct = {} />
@@ -145,7 +145,7 @@
 			<cfelse>
 				<cfset retStruct.stock = 0 />
 			</cfif>
-			<cfset retStruct.price = LOCAL.product.getPrice() />
+			<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
 		<cfelse>
 			<cfset retStruct.productid = "" />
 			<cfset retStruct.stock = 0 />
