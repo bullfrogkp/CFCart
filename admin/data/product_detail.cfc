@@ -324,7 +324,7 @@
 			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
 				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = , attributeValueIdList = , groupName = ) />
 				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct(parentProduct = LOCAL.product) />
+					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = LOCAL.attributeValueIdList) />
 				</cfif>
 			</cfloop>
 			
@@ -350,8 +350,12 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option_value")>
+			<cfset LOCAL.attributeValueIdList = "" />
+			<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
+				<cfset LOCAL.attributeValueIdList &= FORM["new_attribute_value_#LOCAL.attributeSetAttributeRela.getAttribute().getAttributeId()#"] & "," />
+			</cfloop>
 			
-			<cfset LOCAL.newProduct = _createSubProduct(parentProduct = LOCAL.product) />
+			<cfset LOCAL.newProduct = _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = LOCAL.attributeValueIdList) />
 			
 			<cfset LOCAL.newProduct.setSku(FORM.new_sku) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
