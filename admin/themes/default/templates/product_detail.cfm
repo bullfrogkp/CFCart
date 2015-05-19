@@ -573,13 +573,27 @@
 																<td colspan="2">#p.getSku()#</td>
 															</tr>
 															<tr>
-																<td>price</td>
-																<td colspan="2">#p.getPrice()#</td>
-															</tr>
-															<tr>
 																<td>stock</td>
 																<td colspan="2">#p.getStock()#</td>
 															</tr>
+															<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
+															<tr>
+																<td>price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
+																<td colspan="2">#productCustomerGroupRela.getPrice()#</td>
+															</tr>
+															<tr>
+																<td>special price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
+																<td colspan="2">#productCustomerGroupRela.getSpecialPrice()#</td>
+															</tr>
+															<tr>
+																<td>from date (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
+																<td colspan="2">#productCustomerGroupRela.getSpecialPriceFromDate()#</td>
+															</tr>
+															<tr>
+																<td>to date (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
+																<td colspan="2">#productCustomerGroupRela.getSpecialPriceToDate()#</td>
+															</tr>
+															</cfloop>
 														</table>
 													</div><!-- /.box-body -->
 												</div><!-- /.box -->
