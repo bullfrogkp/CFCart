@@ -546,6 +546,7 @@
 	
 	<cffunction name="_createSubProduct" access="public" output="false" returnType="any">
 		<cfargument name="parentProduct" type="any" required="true">
+		<cfargument name="attributeValueIdList" type="string" required="true">
 	
 		<cfset LOCAL.newProduct = EntityNew("product")>
 		<cfset LOCAL.newProduct.setParentProduct(ARGUMENTS.parentProduct) />
@@ -568,36 +569,31 @@
 			<cfset EntitySave(LOCAL.groupPrice) />
 		
 			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
-		</cfloop>	
-			
-		<cfset EntitySave(LOCAL.newProduct) />
+		</cfloop>
 	
-		<cfloop array="#ARGUMENTS.parentProduct.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
-			<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
-				<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
-				<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
-				<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
-				<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeSetAttributeRela.getRequired()) />
-				<cfset EntitySave(LOCAL.newProductAttributeRela) />
+		<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
+			<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value", LOCAL.attributeValueId) />
 			
-				<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-				<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
-				
-				<cfset LOCAL.originalAttributeValue = EntityLoadByPK("attribute_value",FORM["new_attribute_value_#LOCAL.attributeSetAttributeRela.getAttribute().getAttributeId()#"]) />
-				<cfset LOCAL.newAttributeValue.setValue(LOCAL.originalAttributeValue.getValue()) />
-				<cfset LOCAL.newAttributeValue.setName(LOCAL.originalAttributeValue.getName()) />
-				<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.originalAttributeValue.getDisplayName()) />
-				<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.originalAttributeValue.getThumbnailLabel()) />
-				<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.originalAttributeValue.getThumbnailImageName()) />
-				<cfset LOCAL.newAttributeValue.setImageName(LOCAL.originalAttributeValue.getImageName()) />
-				
-				<cfset EntitySave(LOCAL.newAttributeValue) />
-				<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-			</cfif>
+			<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
+			<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
+			<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeValue.getProductAttributeRela().getAttribute()) />
+			<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeValue.getProductAttributeRela().getRequired()) />
+			<cfset EntitySave(LOCAL.newProductAttributeRela) />
+			
+			<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+			<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
+			<cfset LOCAL.newAttributeValue.setValue(LOCAL.attributeValue.getValue()) />
+			<cfset LOCAL.newAttributeValue.setName(LOCAL.attributeValue.getName()) />
+			<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.attributeValue.getDisplayName()) />
+			<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.attributeValue.getThumbnailLabel()) />
+			<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.attributeValue.getThumbnailImageName()) />
+			<cfset LOCAL.newAttributeValue.setImageName(LOCAL.attributeValue.getImageName()) />
+			<cfset EntitySave(LOCAL.newAttributeValue) />
+			
+			<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 		</cfloop>
 		
 		<cfset EntitySave(LOCAL.newProduct) />
-		
 		<cfset ARGUMENTS.parentProduct.addSubProduct(LOCAL.newProduct) />
 		<cfset EntitySave(ARGUMENTS.parentProduct) />
 		
