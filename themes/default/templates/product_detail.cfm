@@ -187,7 +187,7 @@
 								method: 'getProduct',
 								parentProductId: #REQUEST.pageData.product.getProductId()#,
 								attributeValueIdList: optionList,
-								groupName: '#SESSION.user.userGroup#'
+								groupName: '#SESSION.user.customerGroupName#'
 							},		
 							success: function(result) {
 								if(result.PRICE > 0)
