@@ -14,6 +14,6 @@
 			<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
 		</cfif>
 		
-		<cfreturn "#APPLICATION.absoluteUrlWeb#images/uploads/advertisement/#imageType##getName()#" />
+		<cfreturn "#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#imageType##getName()#" />
 	</cffunction>
 </cfcomponent>
