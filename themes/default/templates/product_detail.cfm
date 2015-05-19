@@ -135,7 +135,7 @@
 			closeEffect	: 'none'
 		});
 		
-		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND  REQUEST.pageData.product.isProductAttributeComplete()>
 			var optionStruct = new Object();
 			var optionArray = new Array();
 			
@@ -146,9 +146,7 @@
 					</cfloop>
 				</cfif>
 			</cfloop>
-		</cfif>
-		
-		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+			
 			$(".filter-options div").click(function() {
 				$(this).closest('.filter-options').css("border-color","red");
 				$(this).closest('.filter-options').siblings().css("border-color","##CCC");
@@ -321,7 +319,7 @@
 		<div id="product-sku" style="font-size:12px;margin-top:10px;">
 			SKU:#REQUEST.pageData.product.getSku()#
 		</div>
-		<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
 			<div id="product-filters" style="font-size:12px;margin-top:30px;">
 				<div id="gallery_01">
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
@@ -356,7 +354,7 @@
 			</div>
 		</cfif>
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
-			<cfif REQUEST.pageData.product.isProductAttributeComplete()>
+			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
 			<cfelse>
