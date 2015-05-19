@@ -287,7 +287,6 @@
 						<cfif IsNumeric(REQUEST.pageData.formData.id)>
 							<div class="form-group">
 								<label>Price(s)</label>
-								<a href="" data-toggle="modal" data-target="##add-group-price-modal" style="margin-left:10px;"><span class="label label-primary">Add Price(s)</span></a>
 								<div class="row" style="margin-top:10px;">
 									<cfloop query="REQUEST.pageData.customerGroupPrices">				
 										<cfset group = REQUEST.pageData.customerGroupPrices />
@@ -779,55 +778,7 @@
 		
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
-<!-- ADD GROUP PRICE MODAL -->
-<div class="modal fade" id="add-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add New Group Price</h4>
-			</div>
-		
-			<div class="modal-body">
-				<div class="form-group">
-					<label>Customer Group</label>
-					<select class="form-control" name="customer_group_id" multiple>
-						<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						<option value="#group.getCustomerGroupId()#">#group.getDisplayName()#</option>
-						</cfloop>
-					</select>
-				</div>
-				<div class="form-group">
-					<input name="new_group_price" type="text" class="form-control" placeholder="Price">
-				</div>
-				<div class="form-group">
-					<input name="new_special_price" type="text" class="form-control" placeholder="Special Price"/>
-				</div>
-				 <div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon">
-							<i class="fa fa-calendar"></i>
-						</div>
-						<input type="text" class="form-control pull-right" name="new_special_price_from_date" id="new_special_price_from_date" placeholder="Special Price From Date" />
-					</div><!-- /.input group -->
-				</div><!-- /.form group -->
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon">
-							<i class="fa fa-calendar"></i>
-						</div>
-						<input type="text" class="form-control pull-right" name="new_special_price_to_date" id="new_special_price_to_date" placeholder="Special Price To Date" />
-					</div><!-- /.input group -->
-				</div><!-- /.form group -->
-			</div>
-			<div class="modal-footer clearfix">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_group_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
-			</div>
-		
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
 <!-- EDIT GROUP PRICE MODAL -->
 <div class="modal fade" id="edit-group-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
