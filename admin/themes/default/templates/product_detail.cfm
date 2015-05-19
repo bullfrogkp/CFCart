@@ -569,6 +569,10 @@
 																</tr>
 															</cfloop>
 															<tr>
+																<td>sku</td>
+																<td colspan="2">#p.getSku()#</td>
+															</tr>
+															<tr>
 																<td>price</td>
 																<td colspan="2">#p.getPrice()#</td>
 															</tr>
