@@ -146,7 +146,7 @@
 		<cfelse>
 			<cfset retStruct.productid = "" />
 			<cfset retStruct.stock = 0 />
-			<cfset retStruct.price = DollarFormat(0) />
+			<cfset retStruct.price = EntityLoadByPK("product",ARGUMENTS.parentProductId).getPrice() />
 		</cfif>
 		
 		<cfreturn retStruct>

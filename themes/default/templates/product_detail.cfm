@@ -192,10 +192,26 @@
 								groupName: '#SESSION.user.userGroup#'
 							},		
 							success: function(result) {
+								if(result.PRICE > 0)
+								{
+									$("##price-amount").html('$' + result.PRICE.toFixed(2));
+								}
+								else
+								{
+									$("##price-amount").html('Price is not available');
+								}
+								
+								if(result.STOCK > 0)
+								{
+									$("##stock-count").html(result.STOCK + ' in stock');
+								}
+								else
+								{
+									$("##stock-count").html('Stock is not available');
+								}
+								
 								if(result.PRICE > 0 && result.STOCK > 0)
 								{
-									$("##price-amount").html('$' + result.PRICE);
-									$("##stock-count").html(result.STOCK + ' in stock');
 									$("##selected_product_id").val(result.PRODUCTID);
 									$("##add-current-to-cart").show();
 									$("##add-current-to-cart-disabled").hide();
@@ -204,8 +220,6 @@
 								}
 								else
 								{
-									$("##price-amount").html('Out of stock');
-									$("##stock-count").html('Stock is not available');
 									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
