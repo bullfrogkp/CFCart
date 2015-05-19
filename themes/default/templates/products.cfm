@@ -96,7 +96,7 @@
 							<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 						</a>
 						<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-						<div class="thumbnail-price">#DollarFormat(product.getPrice())#</div>
+						<div class="thumbnail-price">#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</div>
 						<cfif product.isFreeShipping()>
 						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 						</cfif>
@@ -219,7 +219,7 @@ padding: 0 8px 8px;">
 									#product.getDisplayName()#
 								</a>
 							</div>
-							<div class="recommendation-list-price">#DollarFormat(product.getPrice())#</div>
+							<div class="recommendation-list-price">#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</div>
 							<div class="recommendation-list-review"></div>
 							<div><a href="">(#ArrayLen(product.getReviews())# Reviews)</a></div>
 						</div>

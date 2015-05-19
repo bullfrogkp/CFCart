@@ -579,19 +579,7 @@
 															<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
 															<tr>
 																<td>price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
-																<td colspan="2">#productCustomerGroupRela.getPrice()#</td>
-															</tr>
-															<tr>
-																<td>special price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
-																<td colspan="2">#productCustomerGroupRela.getSpecialPrice()#</td>
-															</tr>
-															<tr>
-																<td>from date (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
-																<td colspan="2">#productCustomerGroupRela.getSpecialPriceFromDate()#</td>
-															</tr>
-															<tr>
-																<td>to date (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
-																<td colspan="2">#productCustomerGroupRela.getSpecialPriceToDate()#</td>
+																<td colspan="2">#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#</td>
 															</tr>
 															</cfloop>
 														</table>

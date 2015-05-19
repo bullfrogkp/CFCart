@@ -56,7 +56,9 @@
 	</cffunction>
 	
 	<cffunction name="getPrice" access="public" output="false" returnType="string">
-		<cfset var customerGroup = EntityLoad("customer_group",{name = SESSION.user.userGroup},true) />
+		<cfargument name="customerGroupName" type="string" required="true">
+		
+		<cfset var customerGroup = EntityLoad("customer_group",{name = ARGUMENTS.customerGroupName},true) />
 		<cfset var product = EntityLoadByPK("product",getProductId()) />
 		<cfset var productCustomeGroupRela = EntityLoad("product_customer_group_rela",{customerGroup=customerGroup,product=product},true) />
 		<cfset var price = 0 />

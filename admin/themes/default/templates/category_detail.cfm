@@ -444,7 +444,6 @@
 												<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 													<tr>
 														<td>#product[1].getDisplayName()#</td>
-														<td>#product[1].getPrice()#</td>
 														<td>#DateFormat(product[1].getCreatedDatetime(),"mmm dd,yyyy")#</td>
 														<td>#product[1].getSku()#</td>
 														<td>#product[1].getIsEnabled()#</td>
