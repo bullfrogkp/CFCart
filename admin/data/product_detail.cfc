@@ -324,7 +324,7 @@
 			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
 				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = , attributeValueIdList = , groupName = ) />
 				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct() />
+					<cfset _createSubProduct(parentProduct = LOCAL.product) />
 				</cfif>
 			</cfloop>
 			
@@ -351,56 +351,11 @@
 			
 		<cfelseif StructKeyExists(FORM,"add_new_attribute_option_value")>
 			
-			<cfset LOCAL.newProduct = EntityNew("product")>
-			<cfset LOCAL.newProduct.setParentProduct(LOCAL.product) />
+			<cfset LOCAL.newProduct = _createSubProduct(parentProduct = LOCAL.product) />
 			
-			<cfset LOCAL.newProduct.setName(LOCAL.product.getName()) />
-			<cfset LOCAL.newProduct.setDisplayName(LOCAL.product.getDisplayName()) />
-			<cfset LOCAL.newProduct.setSku(LOCAL.product.getSku()) />
-			<cfset LOCAL.newProduct.setTaxCategory(LOCAL.product.getTaxCategory()) />
-			<cfset LOCAL.newProduct.setAttributeSet(LOCAL.product.getAttributeSet()) />
+			<cfset LOCAL.newProduct.setSku(FORM.new_sku) />
 			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
-			<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 			
-			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
-			<cfset LOCAL.groupPrice.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
-			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_price)) />
-			<cfset EntitySave(LOCAL.groupPrice) />
-			
-			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
-			<cfset EntitySave(LOCAL.newProduct) />
-		
-			<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
-				<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
-					<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
-					<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
-					<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeSetAttributeRela.getAttribute()) />
-					<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeSetAttributeRela.getRequired()) />
-					<cfset EntitySave(LOCAL.newProductAttributeRela) />
-				
-					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
-					
-					<cfset LOCAL.originalAttributeValue = EntityLoadByPK("attribute_value",FORM["new_attribute_value_#LOCAL.attributeSetAttributeRela.getAttribute().getAttributeId()#"]) />
-					<cfset LOCAL.newAttributeValue.setValue(LOCAL.originalAttributeValue.getValue()) />
-					<cfset LOCAL.newAttributeValue.setName(LOCAL.originalAttributeValue.getName()) />
-					<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.originalAttributeValue.getDisplayName()) />
-					<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.originalAttributeValue.getThumbnailLabel()) />
-					<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.originalAttributeValue.getThumbnailImageName()) />
-					<cfset LOCAL.newAttributeValue.setImageName(LOCAL.originalAttributeValue.getImageName()) />
-					
-					<cfset EntitySave(LOCAL.newAttributeValue) />
-					<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-				</cfif>
-			</cfloop>
-			
-			<cfset EntitySave(LOCAL.newProduct) />
-			
-			<cfset LOCAL.product.addSubProduct(LOCAL.newProduct) />
-			
-			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New attribute value has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 		
@@ -589,21 +544,16 @@
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
-	<cffunction name="_createSubProduct" access="public" output="false" returnType="void">
+	<cffunction name="_createSubProduct" access="public" output="false" returnType="any">
 		<cfargument name="parentProduct" type="any" required="true">
-		<cfargument name="sku" type="string" required="true">
-		<cfargument name="stock" type="string" required="true">
-	
 	
 		<cfset LOCAL.newProduct = EntityNew("product")>
 		<cfset LOCAL.newProduct.setParentProduct(ARGUMENTS.parentProduct) />
 		
 		<cfset LOCAL.newProduct.setName(ARGUMENTS.parentProduct.getName()) />
 		<cfset LOCAL.newProduct.setDisplayName(ARGUMENTS.parentProduct.getDisplayName()) />
-		<cfset LOCAL.newProduct.setSku(ARGUMENTS.sku) />
 		<cfset LOCAL.newProduct.setTaxCategory(ARGUMENTS.parentProduct.getTaxCategory()) />
 		<cfset LOCAL.newProduct.setAttributeSet(ARGUMENTS.parentProduct.getAttributeSet()) />
-		<cfset LOCAL.newProduct.setStock(ARGUMENTS.stock) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 		
@@ -650,6 +600,8 @@
 		
 		<cfset ARGUMENTS.parentProduct.addSubProduct(LOCAL.newProduct) />
 		<cfset EntitySave(ARGUMENTS.parentProduct) />
+		
+		<cfreturn LOCAL.newProduct />
 	</cffunction>
 	
 	<cfscript>
