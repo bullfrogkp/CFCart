@@ -305,6 +305,26 @@
 			<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 			<cfset EntitySave(LOCAL.ProductAttributeRela) />
 			
+			<!--- create sub product when creating options, so the option has a default price for each active group --->
+			<cfif LOCAL.product.isProductAttributeComplete()>
+				<cfset LOCAL.attributeValueIdArray = [] />
+				<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+				<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
+					<cfif LOCAL.productAttributeRela.isRequired() EQ true>
+						<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdList(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
+					</cfif>
+				</cfloop>
+				
+				<cfset LOCAL.attributeValueIdPermutaionArray = _array_cartesian_product(LOCAL.attributeValueIdArray)  />
+			</cfif>
+			
+			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdList">
+				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = , attributeValueIdList = , groupName = ) />
+				<cfif LOCAL.subProduct.productid EQ "">
+					<cfset _createSubProduct() />
+				</cfif>
+			</cfloop>
+			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
 			
@@ -568,4 +588,43 @@
 	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
+	
+	<cfscript>
+		public array function array_cartesian_product(_arrays=[]) {
+			var result = [];
+			var _arrayslen = arraylen(arguments._arrays);
+			var _size = (_arrayslen) ? 1 : 0;
+			var _array = '';
+			var x = 0;
+			var i = 0;
+			var j = 0;
+			var _current = [];
+
+			for (x=1; x lte _arrayslen; x++) {
+				_size = _size * arraylen(arguments._arrays[x]);
+				_current[x] = 1;
+			}
+
+			for (i=1; i lte _size; i++) {
+				result[i] = [];
+
+				for (j=1; j lte _arrayslen; j++) {
+					arrayappend(result[i], arguments._arrays[j][_current[j]]);
+				}
+
+				for (j=_arrayslen; j gt 0; j--) {
+					if (arraylen(arguments._arrays[j]) gt _current[j])  {
+						_current[j]++;
+						break;
+					}
+					else {
+						_current[j] = 1;
+					}
+				}
+
+			}
+
+			return result;
+		}
+		</cfscript>
 </cfcomponent>
