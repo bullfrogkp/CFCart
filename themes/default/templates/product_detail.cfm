@@ -233,12 +233,19 @@
 							url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
 							dataType: 'json',
 							data: {
-								method: 'addProduct',
+								method: 'addTrackingRecord',
 								productId: $("##selected-product-id").val(),
 								count: $("##product-count").val()
 							},		
 							success: function(result) {
-								dialog.dialog( "open" );
+								if(result.TRACKINGRECORDID)
+								{
+									dialog.dialog( "open" );
+								}
+								else
+								{
+									console.log('Fail to add record');
+								}
 							}
 				});
 			});
