@@ -483,7 +483,6 @@
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.categories = EntityLoad("category",{isDeleted=false}) />
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />

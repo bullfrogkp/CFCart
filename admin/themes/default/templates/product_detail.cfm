@@ -237,13 +237,29 @@
 						</div>
 						<div class="form-group">
 							<label>Category</label>
-							<select name="category_id" multiple class="form-control">
-								<cfloop array="#REQUEST.pageData.categories#" index="category">
-									<option value="#category.getCategoryId()#"
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),category)>
+							<select class="form-control" multiple name="category_id">
+								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+									<option value="#cat.getCategoryId()#"
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),cat)>
 									selected
 									</cfif>
-									>#category.getDisplayName()#</option>
+									>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+									<cfloop array="#cat.getSubCategories()#" index="subCat">
+										<option value="#subCat.getCategoryId()#"
+										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),subCat)>
+										selected
+										</cfif>
+										>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+											<option value="#thirdCat.getCategoryId()#"
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),thirdCat)>
+											selected
+											</cfif>
+											>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+										</cfloop>
+										</li>
+									</cfloop>
+									</li>
 								</cfloop>
 							</select>
 						</div>
