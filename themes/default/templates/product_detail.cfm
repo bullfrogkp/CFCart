@@ -307,6 +307,7 @@
 </script>
 <form method="post">
 <input type="hidden" id="selected-product-id" name="selected-product-id" value="#REQUEST.pageData.product.getProductId()#" />
+<input type="hidden" id="current-product-id" name="current-product-id" value="#REQUEST.pageData.product.getProductId()#" />
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
 		<img id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/>
@@ -419,17 +420,18 @@
 			<div>
 				<p style="font-weight:bold;">Write Your Own Review</p>
 				<p style="font-weight:bold;">How do you rate this product?</p>
-				<p style="width:200px;height: 13px;
-							background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
-							background-position: left -1500px;
-							background-repeat: no-repeat;"></p>
+				<input type="radio" name="review_rating" value="1" /> 1
+				<input type="radio" name="review_rating" value="2" /> 2
+				<input type="radio" name="review_rating" value="3" /> 3
+				<input type="radio" name="review_rating" value="4" /> 4
+				<input type="radio" name="review_rating" value="5" /> 5
 				<p style="font-weight:bold;">Name</p>
-				<p><input type="text" style="width:100%;" /></p>
+				<p><input name="review_name" type="text" style="width:100%;" /></p>
 				<p style="font-weight:bold;">Subject</p>
-				<p><input type="text" style="width:100%;" /></p>
+				<p><input name="review_subject" type="text" style="width:100%;" /></p>
 				<p style="font-weight:bold;">Content</p>
-				<p><textarea style="width:100%;height:100px;" /></textarea></p>
-				<p><input type="button" value="Submit" style="padding:5px 10px;" /></p>
+				<p><textarea name="review_content" style="width:100%;height:100px;" /></textarea></p>
+				<p><input name="add_review" type="submit" value="Submit" style="padding:5px 10px;" /></p>
 			</div>
 		  </div>
 		</div>

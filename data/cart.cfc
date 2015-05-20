@@ -3,9 +3,9 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.page_title = "Prospect International Consulting Ltd." />
-		<cfset LOCAL.pageData.description = "Prospect International Consulting Ltd." />
-		<cfset LOCAL.pageData.keywords = "Prospect International Consulting Ltd." />
+		<cfset LOCAL.pageData.title = "Shopping Cart | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.description = "" />
+		<cfset LOCAL.pageData.keywords = "" />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

@@ -1,5 +1,6 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="reviewId" column="review_id" fieldtype="id" generator="native"> 
+    <cfproperty name="reviewerName" column="reviewer_name" ormtype="string"> 
     <cfproperty name="subject" column="subject" ormtype="string"> 
     <cfproperty name="rating" column="rating" ormtype="integer"> 
     <cfproperty name="message" column="message" ormtype="string"> 

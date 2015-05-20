@@ -1,4 +1,15 @@
 <cfcomponent extends="master"> 
+	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfif StructKeyExists(FORM,"add_review")>
+			<cfset LOCAL.
+			
+		</cfif>
+		
+		<cfreturn LOCAL />	
+	</cffunction>	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
