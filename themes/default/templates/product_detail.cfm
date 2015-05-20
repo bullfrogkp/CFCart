@@ -226,8 +226,6 @@
 			});
 			
 			$("##add-current-to-cart").click(function() {
-				$("##cart-info").html( $("##cart-info").html() + $("##product-count").val());
-				
 				$.ajax({
 							type: "get",
 							url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
@@ -241,6 +239,8 @@
 								if(result.TRACKINGRECORDID)
 								{
 									dialog.dialog( "open" );
+									$("##cart-info").html( parseInt($("##cart-info").html(), 10) + parseInt($("##product-count").val(), 10));
+				
 								}
 								else
 								{

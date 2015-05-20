@@ -7,7 +7,7 @@
 		<cfset var retStruct = {} />
 		
 		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
-		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_entity_type",{name = "shipping cart"},true) />
+		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
 		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		
 		<cfset LOCAL.trackingRecord = EntityNew("tracking_record") />
