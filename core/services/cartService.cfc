@@ -9,17 +9,10 @@
 		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_entity_type",{name = "shipping cart"},true) />
 		
-		<cfif IsDefined("SESSION.user.userId")>
-			<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{userId = SESSION.user.userId},true) />
-		<cfelse>
-			<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
-		</cfif>
+		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		
 		<cfif IsNull(LOCAL.trackingEntity)>
 			<cfset LOCAL.trackingEntity = EntityNew("tracking_entity") />
-			<cfif IsDefined("SESSION.user.userId")>
-				<cfset LOCAL.trackingEntity.setUserId(SESSION.user.userId) />
-			</cfif>
 			<cfset LOCAL.trackingEntity.setCfid(COOKIE.cfid) />
 			<cfset LOCAL.trackingEntity.setCftoken(COOKIE.cftoken) />
 			<cfset LOCAL.trackingEntity.setLastAccessDatetime(Now()) />

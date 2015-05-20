@@ -134,34 +134,9 @@
 		
 		<cfset SESSION.user = {} />
 		<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
-		<cfset SESSION.user.customerGroupName = defaultCustomerGroup.getName() />
+		<cfset SESSION.user.userId = "" />
+		<cfset SESSION.user.customerGroupName = LOCAL.defaultCustomerGroup.getName() />
 		<cfset SESSION.user.ip = CGI.IP_ADDRESS />
-		<cfset SESSION.user.cart = _getCart() />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
-	<cffunction name="_getCart"  access="private" returnType="void" output="false">
-		<cfset var LOCAL = {} />
-		
-		<cfif IsNull(LOCAL.shoppingCart)>
-			<cfif NOT IsNull(SESSION.user.userId)>
-				<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.user.userId}, true) />
-			</cfif>
-			<cfif IsNull(LOCAL.shoppingCart)>
-				<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
-			</cfif>
-			<cfif IsNull(shoppingCart)>
-				<cfset LOCAL.shoppingCart = EntityNew("tracking_entity") />
-			</cfif>
-			
-			<cfset shoppingCart.setCfid(COOKIE.cfid) />
-			<cfset shoppingCart.setCftoken(COOKIE.cftoken) />
-			<cfif NOT IsNull(SESSION.user.userId)>
-				<cfset shoppingCart.setUserId(SESSION.user.userId) />
-			</cfif>
-			<cfset shoppingCart.setLastAccessDatetime(Now()) />
-			<cfset EntitySave(shoppingCart) />
-			<cfset ORMFlush() />
-		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">

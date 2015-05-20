@@ -65,7 +65,7 @@
 		<div id="minicart">
 			<div style="position:relative;">
 				<a class="btn" href="#APPLICATION.absoluteUrlWeb#cart.cfm">Shopping Cart </a>
-				<div id="cart-info">#ArrayLen(REQUEST.pageData.shoppingCartProducts)#</div>
+				<div id="cart-info">#ArrayLen(REQUEST.pageData.shoppingCartItems)#</div>
 			</div>
 		</div>
 		<div id="search">
