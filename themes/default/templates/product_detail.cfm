@@ -105,10 +105,6 @@
 		addUser();
 		});
 
-		$( ".add-to-cart" ).on( "click", function() {
-			dialog.dialog( "open" );
-		});
-
 		var valueElement = $('##value');
 		
 		function incrementValue(e){
@@ -210,7 +206,7 @@
 								
 								if(result.PRICE > 0 && result.STOCK > 0)
 								{
-									$("##selected_product_id").val(result.PRODUCTID);
+									$("##selected-product-id").val(result.PRODUCTID);
 									$("##add-current-to-cart").show();
 									$("##add-current-to-cart-disabled").hide();
 									$("##add-current-to-wishlist").show();
@@ -218,7 +214,7 @@
 								}
 								else
 								{
-									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
+									$("##selected-product-id").val(#REQUEST.pageData.product.getProductId()#);
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
 									$("##add-current-to-wishlist").hide();
@@ -227,6 +223,24 @@
 							}
 					});
 				}
+			});
+			
+			$("##add-current-to-cart").click(function() {
+				$("##cart-info").html( $("##cart-info").html() + $("##product-count").val());
+				
+				$.ajax({
+							type: "get",
+							url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+							dataType: 'json',
+							data: {
+								method: 'addProduct',
+								productId: $("##selected-product-id").val(),
+								count: $("##product-count").val()
+							},		
+							success: function(result) {
+								dialog.dialog( "open" );
+							}
+				});
 			});
 		</cfif>
 		<cfif ArrayLen(REQUEST.pageData.product.getProductVideos()) GT 0>
@@ -285,7 +299,7 @@
 	});
 </script>
 <form method="post">
-<input type="hidden" name="selected_product_id" value="#REQUEST.pageData.product.getProductId()#" />
+<input type="hidden" id="selected-product-id" name="selected-product-id" value="#REQUEST.pageData.product.getProductId()#" />
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
 		<img id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/>
@@ -367,7 +381,7 @@
 		<div id="product-addtocart" style="margin-top:30px;">
 			<span style="font-size:13px;">Qty: </span>
 			<button id="minus">-</button>
-			<input id="value" type="text" value="1" style="width:30px;text-align:center;" />
+			<input id="product-count" type="text" value="1" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
 			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
 			<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
