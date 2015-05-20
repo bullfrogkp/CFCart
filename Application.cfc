@@ -136,9 +136,10 @@
 		<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
 		<cfset SESSION.user.customerGroupName = defaultCustomerGroup.getName() />
 		<cfset SESSION.user.ip = CGI.IP_ADDRESS />
+		<cfset SESSION.user.cart = _getCart() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_setShoppingCart"  access="private" returnType="void" output="false">
+	<cffunction name="_getCart"  access="private" returnType="void" output="false">
 		<cfset var LOCAL = {} />
 		
 		<cfif IsNull(LOCAL.shoppingCart)>
