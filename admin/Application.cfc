@@ -242,10 +242,10 @@
 	<cffunction name="_setAdminTheme"  access="private" returnType="void" output="false">
 		<cfargument type="string" name="folderNameTheme" required=true /> 
 		
-		<cfset SESSION.folderNameThemeAdmin = ARGUMENTS.folderNameTheme>		
-		<cfset SESSION.urlThemeAdmin = "#APPLICATION.urlWeb#admin/themes/#SESSION.folderNameThemeAdmin#/">
-		<cfset SESSION.absoluteUrlThemeAdmin = "#APPLICATION.absoluteUrlWeb#admin/themes/#SESSION.folderNameThemeAdmin#/">
-		<cfset SESSION.absolutePathThemeAdmin = "#APPLICATION.absolutePathRoot#admin\themes\#SESSION.folderNameThemeAdmin#\">
+		<cfset var folderNameThemeAdmin = ARGUMENTS.folderNameTheme>		
+		<cfset SESSION.urlThemeAdmin = "#APPLICATION.urlWeb#admin/themes/#folderNameThemeAdmin#/">
+		<cfset SESSION.absoluteUrlThemeAdmin = "#APPLICATION.absoluteUrlWeb#admin/themes/#folderNameThemeAdmin#/">
+		<cfset SESSION.absolutePathThemeAdmin = "#APPLICATION.absolutePathRoot#admin\themes\#folderNameThemeAdmin#\">
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_getCurrentURL" output="false" access="private" returnType="string">

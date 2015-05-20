@@ -23,7 +23,6 @@
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
 		<cfset _setTheme("default") />
-		<cfset _setShoppingCart() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
@@ -31,6 +30,13 @@
 		
 		<cfif NOT StructKeyExists(SESSION,"user")>
 			<cfset onSessionStart() />
+		</cfif>
+		
+		<cfif StructKeyExists(URL,"sitetheme")>
+			<cfset _setTheme(URL.sitetheme) />
+			<cfif StructKeyExists(URL,"page") AND Trim(URL.page) NEQ "">
+				<cflocation url="#URL.page#" addToken="false" />
+			</cfif>
 		</cfif>
 		
 		<!--- exclude ajax request --->
