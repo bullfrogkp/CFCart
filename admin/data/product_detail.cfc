@@ -21,6 +21,10 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product ID.") />
 		</cfif>
 		
+		<cfif NOT StructKeyExists(FORM,"category_id")>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one category.") />
+		</cfif>
+		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />

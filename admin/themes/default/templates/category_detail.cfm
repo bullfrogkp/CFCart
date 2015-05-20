@@ -433,7 +433,6 @@
 											
 											<tr class="default">
 												<th>Name</th>
-												<th>Price</th>
 												<th>Create Datetime</th>
 												<th>SKU</th>
 												<th>Status</th>
@@ -458,7 +457,6 @@
 										
 											<tr class="default">
 												<th>Name</th>
-												<th>Price</th>
 												<th>Create Datetime</th>
 												<th>SKU</th>
 												<th>Status</th>
