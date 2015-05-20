@@ -20,38 +20,151 @@
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="onSessionStart" returnType="void">
+		<cfset _setUser() />
+		<cfset _setTheme("default") />
+		<cfset _setShoppingCart() />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
 		<cfargument type="String" name="targetPage" required="true"/>
 		
-		<cfset _setShoppingCart() />
-		<cfset super.onRequestStart(targetPage=ARGUMENTS.targetPage) />
+		<cfif NOT StructKeyExists(SESSION,"user")>
+			<cfset onSessionStart() />
+		</cfif>
+		
+		<!--- exclude ajax request --->
+		<cfif NOT StructKeyExists(URL,"method")>
+			<cfset var currentPageName = Replace(Replace(CGI.SCRIPT_NAME,GetDirectoryFromPath(CGI.SCRIPT_NAME),""),".cfm","") />
+			<!---
+			<cftry>		
+			--->
+				<cfset var args = {} />
+				<cfset args.pageName = currentPageName />
+				
+				<cfset var globalPageObj = _initGlobalPageObject(argumentCollection = args) />
+				<cfset var pageObj = _initPageObject(argumentCollection = args) />
+				<cfset var returnStruct = {} />
+			
+				<!--- form.file is image upload plugin --->
+				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM) AND NOT StructKeyExists(FORM,"file")>
+					<!--- global data handler --->
+					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					</cfif>
+					
+					<cfset returnStruct = globalPageObj.validateGlobalFormData() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					<cfelse>
+						<cfif IsDefined("SESSION.temp.formData")>
+							<cfset StructDelete(SESSION.temp,"formData") />
+						</cfif>
+					</cfif>
+					
+					<cfset returnStruct = globalPageObj.processGlobalFormDataAfterValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					</cfif>
+				
+					<!--- page data handler --->
+					<cfset returnStruct = pageObj.processFormDataBeforeValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					</cfif>
+					
+					<cfset returnStruct = pageObj.validateFormData() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					<cfelse>
+						<cfif IsDefined("SESSION.temp.formData")>
+							<cfset StructDelete(SESSION.temp,"formData") />
+						</cfif>
+					</cfif>
+					
+					<cfset returnStruct = pageObj.processFormDataAfterValidation() />
+					<cfif returnStruct.redirectUrl NEQ "">
+						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+					</cfif>
+					
+					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
+				</cfif>
+						
+				<cfset returnStruct = globalPageObj.validateGlobalAccessData() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+				</cfif>		
+						
+				<cfset returnStruct = pageObj.validateAccessData() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+				</cfif>
+				
+				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
+				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
+			
+				<cfif StructKeyExists(SESSION,"temp")>	
+					<cfset StructDelete(SESSION,"temp") />
+				</cfif>
+			
+				<cfset REQUEST.pageData.currentPageName = currentPageName />
+				<cfset REQUEST.pageData.templatePath = currentPageName & ".cfm" />
+			<!---	
+				<cfcatch type="any">
+					<cfset new "#APPLICATION.componentPathRoot#core.utils.utils().handleError(cfcatch = cfcatch) />
+					<cflocation url="#APPLICATION.absoluteUrlWeb#error.cfm" addtoken="false" />
+				</cfcatch>
+			</cftry>
+			--->
+		</cfif>
 		
 		<cfreturn true>
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_setUser"  access="private" returnType="void" output="false">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
+		
+		<cfset SESSION.user = {} />
+		<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
+		<cfset SESSION.user.customerGroupName = defaultCustomerGroup.getName() />
+		<cfset SESSION.user.ip = CGI.IP_ADDRESS />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setShoppingCart"  access="private" returnType="void" output="false">
 		<cfset var LOCAL = {} />
 		
-		<cfif NOT IsNull(SESSION.user.userId)>
-			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.user.userId}, true) />
-		</cfif>
 		<cfif IsNull(LOCAL.shoppingCart)>
-			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+			<cfif NOT IsNull(SESSION.user.userId)>
+				<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.user.userId}, true) />
+			</cfif>
+			<cfif IsNull(LOCAL.shoppingCart)>
+				<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+			</cfif>
+			<cfif IsNull(shoppingCart)>
+				<cfset LOCAL.shoppingCart = EntityNew("tracking_entity") />
+			</cfif>
+			
+			<cfset shoppingCart.setCfid(COOKIE.cfid) />
+			<cfset shoppingCart.setCftoken(COOKIE.cftoken) />
+			<cfif NOT IsNull(SESSION.user.userId)>
+				<cfset shoppingCart.setUserId(SESSION.user.userId) />
+			</cfif>
+			<cfset shoppingCart.setLastAccessDatetime(Now()) />
+			<cfset EntitySave(shoppingCart) />
+			<cfset ORMFlush() />
 		</cfif>
-		<cfif IsNull(shoppingCart)>
-			<cfset LOCAL.shoppingCart = EntityNew("tracking_entity") />
-		</cfif>
-		
-		<cfset shoppingCart.setCfid(COOKIE.cfid) />
-		<cfset shoppingCart.setCftoken(COOKIE.cftoken) />
-		<cfif NOT IsNull(SESSION.user.userId)>
-			<cfset shoppingCart.setUserId(SESSION.user.userId) />
-		</cfif>
-		<cfset shoppingCart.setLastAccessDatetime(Now()) />
-		<cfset EntitySave(shoppingCart) />
-		<cfset ORMFlush() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="_setTheme"  access="private" returnType="void" output="false">
+		<cfargument type="string" name="folderNameTheme" required=true /> 
+		
+		<cfset SESSION.folderNameTheme = ARGUMENTS.folderNameTheme>		
+		<cfset SESSION.urlTheme = "#APPLICATION.urlWeb#themes/#SESSION.folderNameTheme#/">
+		<cfset SESSION.absoluteUrlTheme = "#APPLICATION.absoluteUrlWeb#themes/#SESSION.folderNameTheme#/">
+		<cfset SESSION.absolutePathTheme = "#APPLICATION.absolutePathRoot#themes\#SESSION.folderNameTheme#\">
+	</cffunction>
 	<!----------------------------------------------------------------------------
 	<cffunction name="onMissingTemplate" returnType="any">
 	    <cfargument name="targetPage" type="string" required=true/>
