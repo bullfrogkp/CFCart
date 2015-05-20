@@ -33,6 +33,11 @@
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name="shopping cart"},true) />
 		<cfset LOCAL.pageData.shoppingCartItems = EntityLoad("tracking_record",{trackingEntity = LOCAL.trackingEntity, trackingRecordType = LOCAL.trackingRecordType}) />
 		
+		<cfset LOCAL.pageData.shoppingCartItemTotalCount = 0 />
+		<cfloop array="#LOCAL.pageData.shoppingCartItems#" index="LOCAL.shoppingCartItem">
+			<cfset LOCAL.pageData.shoppingCartItemTotalCount += LOCAL.shoppingCartItem.getCount() />
+		</cfloop>
+		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 				
