@@ -32,8 +32,8 @@
 	<cffunction name="_setShoppingCart"  access="private" returnType="void" output="false">
 		<cfset var LOCAL = {} />
 		
-		<cfif NOT IsNull(SESSION.loggedinUserId)>
-			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.loggedinUserId}, true) />
+		<cfif NOT IsNull(SESSION.user.userId)>
+			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{userId = SESSION.user.userId}, true) />
 		</cfif>
 		<cfif IsNull(LOCAL.shoppingCart)>
 			<cfset LOCAL.shoppingCart = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
@@ -44,8 +44,8 @@
 		
 		<cfset shoppingCart.setCfid(COOKIE.cfid) />
 		<cfset shoppingCart.setCftoken(COOKIE.cftoken) />
-		<cfif NOT IsNull(SESSION.loggedinUserId)>
-			<cfset shoppingCart.setUserId(SESSION.loggedinUserId) />
+		<cfif NOT IsNull(SESSION.user.userId)>
+			<cfset shoppingCart.setUserId(SESSION.user.userId) />
 		</cfif>
 		<cfset shoppingCart.setLastAccessDatetime(Now()) />
 		<cfset EntitySave(shoppingCart) />
