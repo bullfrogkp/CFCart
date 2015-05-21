@@ -303,6 +303,14 @@
 				}
 			}
 		</cfif>
+		
+		$('##shipping_methods').ddslick({
+			width: 300,
+			imagePosition: "left",
+			onSelected: function (data) {
+				console.log(data);
+			}
+		});
 	});
 </script>
 <form method="post">
@@ -342,7 +350,7 @@
 			SKU:#REQUEST.pageData.product.getSku()#
 		</div>
 		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
-			<div id="product-filters" style="font-size:12px;margin-top:30px;">
+			<div id="product-filters" style="font-size:12px;margin:10px 0 14px 0;padding:7px 0 0 0;border-top:1px solid ##ccc;border-bottom:1px solid ##ccc;">
 				<div id="gallery_01">
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 					<cfif productAttributeRela.getRequired() EQ true>
@@ -375,6 +383,21 @@
 				</div>
 			</div>
 		</cfif>
+		
+		<div id="shipping_methods_div" style="border-bottom:1px solid ##ccc;padding-bottom:16px;">
+			<select id="shipping_methods">
+				<option>Select your favorite social network</option>
+				<option value="0" data-imagesrc="http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
+					data-description="Description with Facebook">Facebook</option>
+				<option value="1" data-imagesrc="http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
+					data-description="Description with Twitter">Twitter</option>
+				<option value="2" data-imagesrc="http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
+					data-description="Description with LinkedIn">LinkedIn</option>
+				<option value="3" data-imagesrc="http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+					data-description="Description with Foursquare">Foursquare</option>
+			</select>
+		</div>
+		
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
 			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
 				<span id="price-amount">Please choose your options</span>

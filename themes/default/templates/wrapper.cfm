@@ -22,6 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="#SESSION.absoluteUrlTheme#css/jquery.fancybox.css?v=2.1.5" media="screen" />
 	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery.fancybox.pack.js?v=2.1.5"></script>
 	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery.fancybox-media.js?v=1.0.6"></script>
+	<script type="text/javascript" src="#SESSION.absoluteUrlTheme#js/jquery.ddslick.min.js"></script>
 </head>
 
 <body>
