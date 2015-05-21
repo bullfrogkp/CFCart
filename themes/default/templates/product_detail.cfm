@@ -389,15 +389,15 @@
 						<ul>
 							<li style="width:40px;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-								<li class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
+								<li style="-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;" class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
 									<cfif NOT IsNull(attributeValue.getImageName())>
 										<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
 									</cfif>
 									<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-										<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;"></div>
+										<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
 									<cfelse>
 										<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-											<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;"></div>
+											<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
 										<cfelse>
 											<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
 										</cfif>
