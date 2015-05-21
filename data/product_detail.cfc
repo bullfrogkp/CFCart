@@ -4,12 +4,22 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"add_review")>
-			<cfset LOCAL.
-			
+			<cfset LOCAL.review = EntityNew("review") />
+			<cfset LOCAL.review.setReviewerName(Trim(FORM.reviewer_name)) />
+			<cfset LOCAL.review.setSubject(Trim(FORM.review_subject)) />
+			<cfset LOCAL.review.setRating(FORM.review_rating) />
+			<cfset LOCAL.review.setMessage(Trim(FORM.review_message)) />			
+			<cfset LOCAL.review.setCreatedDatetime(Now()) />			
+			<cfset LOCAL.review.setCreatedUser(SESSION.user.userName) />			
+			<cfset LOCAL.review.setIsDeleted(false) />			
+			<cfset LOCAL.review.setProduct(EntityLoadByPK("product",FORM.current_product_id)) />			
+			<cfset LOCAL.review.setReviewStatusType(EntityLoad("review_status_type",{name = "pending"},true)) />
+			<cfset EntitySave(LOCAL.review) />
 		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />

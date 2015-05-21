@@ -206,7 +206,7 @@
 								
 								if(result.PRICE > 0 && result.STOCK > 0)
 								{
-									$("##selected-product-id").val(result.PRODUCTID);
+									$("##selected_product_id").val(result.PRODUCTID);
 									$("##add-current-to-cart").show();
 									$("##add-current-to-cart-disabled").hide();
 									$("##add-current-to-wishlist").show();
@@ -214,7 +214,7 @@
 								}
 								else
 								{
-									$("##selected-product-id").val(#REQUEST.pageData.product.getProductId()#);
+									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
 									$("##add-current-to-wishlist").hide();
@@ -232,7 +232,7 @@
 							dataType: 'json',
 							data: {
 								method: 'addTrackingRecord',
-								productId: $("##selected-product-id").val(),
+								productId: $("##selected_product_id").val(),
 								count: $("##product-count").val()
 							},		
 							success: function(result) {
@@ -306,8 +306,8 @@
 	});
 </script>
 <form method="post">
-<input type="hidden" id="selected-product-id" name="selected-product-id" value="#REQUEST.pageData.product.getProductId()#" />
-<input type="hidden" id="current-product-id" name="current-product-id" value="#REQUEST.pageData.product.getProductId()#" />
+<input type="hidden" id="selected_product_id" name="selected_product_id" value="#REQUEST.pageData.product.getProductId()#" />
+<input type="hidden" id="current_product_id" name="current_product_id" value="#REQUEST.pageData.product.getProductId()#" />
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
 		<img id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/>
@@ -408,7 +408,7 @@
 		  <div id="tabs-2">
 			<cfloop array="#REQUEST.pageData.reviews#" index="review">
 				<div style="border-bottom: 1px dashed ##CCCCCC;">
-					<p style="font-weight:bold;">#review.getSubject()# Review by #review.getName()#</p>
+					<p style="font-weight:bold;">#review.getSubject()# Review by #review.getReviewerName()#</p>
 					<p style="width:200px;height: 13px;
 						background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
 						background-position: left -1500px;
@@ -426,11 +426,11 @@
 				<input type="radio" name="review_rating" value="4" /> 4
 				<input type="radio" name="review_rating" value="5" /> 5
 				<p style="font-weight:bold;">Name</p>
-				<p><input name="review_name" type="text" style="width:100%;" /></p>
+				<p><input name="reviewer_name" type="text" style="width:100%;" /></p>
 				<p style="font-weight:bold;">Subject</p>
 				<p><input name="review_subject" type="text" style="width:100%;" /></p>
 				<p style="font-weight:bold;">Content</p>
-				<p><textarea name="review_content" style="width:100%;height:100px;" /></textarea></p>
+				<p><textarea name="review_message" style="width:100%;height:100px;" /></textarea></p>
 				<p><input name="add_review" type="submit" value="Submit" style="padding:5px 10px;" /></p>
 			</div>
 		  </div>
