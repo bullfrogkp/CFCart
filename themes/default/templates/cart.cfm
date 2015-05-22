@@ -13,92 +13,46 @@
 			<div class="myaccount-table">
 				<table>
 					
-						<tr class="cart_menu">
-							<td class="image">Product</td>
-							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					
+					<tr class="cart_menu">
+						<td class="image">Product</td>
+						<td class="description"></td>
+						<td class="price">Price</td>
+						<td class="quantity">Quantity</td>
+						<td class="total">Total</td>
+						<td></td>
+					</tr>
+				
+					<cfloop array="#REQUEST.pageData.trackingRecords#" index="cartItem">
+						<cfset product = cartItem.getProduct() />
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="#SESSION.absoluteUrlTheme#images/one.png" alt=""></a>
+								<a href="#product.getDetailPageURL()#">
+									<img src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
+								</a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>SKU: 1089772</p>
+								<h4><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></h4>
+								<p>SKU: #product.getSku()#</p>
 							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<button id="minus">-</button>
-									<input id="value" name="count" type="text" value="2" style="width:30px;text-align:center;" size="2" />
+									<input id="value" name="count" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
 									<button id="plus">+</button>
+									<input type="submit" name="update_count" value="update" />
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">#DollarFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</p>
 							</td>
 							<td class="cart_delete">
 								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="#SESSION.absoluteUrlTheme#images/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>SKU: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<button id="minus">-</button>
-									<input id="value" type="text" value="1" style="width:30px;text-align:center;" size="2" />
-									<button id="plus">+</button>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="#SESSION.absoluteUrlTheme#images/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>SKU: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<button id="minus">-</button>
-									<input id="value" type="text" value="0" style="width:30px;text-align:center;" size="2" />
-									<button id="plus">+</button>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
-							</td>
-						</tr>
-					
+					</cfloop>
 				</table>
 			</div>
 			
