@@ -308,10 +308,9 @@
 			<cfset s = REQUEST.pageData.shippingMethods />
 			<cfloop query="s">
 				{
-					text: "#s.shipping_carrier_name# - #s.shipping_method_name#",
-					value: #product_shipping_method_rela_id#,
+					text: "#s.shipping_carrier_name# - #s.shipping_method_name#: #DollarFormat(s.shipping_price)#",
+					value: #s.product_shipping_method_rela_id#,
 					selected: false,
-					description: "#s.shipping_price#",
 					imageSrc: "#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#"
 				}
 				<cfif s.currentRow LT s.recordCount>
@@ -336,12 +335,14 @@
   font-size:12px;
 }
 
-.dd-option-text {
-	font-size:14px;
+.dd-option-text, .dd-selected-text {
+	font-size:12px;
+	float:right;
+	margin-right:20px;
 }
 
-.dd-option-description {
-	font-size:12px;
+.dd-option-image, .dd-selected-image {
+	height:23px;
 }
 </style>
 
