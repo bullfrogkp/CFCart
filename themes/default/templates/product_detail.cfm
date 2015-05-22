@@ -303,6 +303,62 @@
 				}
 			}
 		</cfif>
+		
+		<cfset s = REQUEST.pageData.shippingMethods />
+			<cfoutput query="s" group="shipping_carrier_name">						
+				<div class="col-xs-3">
+					<div class="box box-warning">
+						<div class="box-body table-responsive no-padding">
+							<table class="table table-hover">
+								<tr class="warning">
+									<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
+									<th colspan="2" style="text-align:right;padding-right:10px;">#s.shipping_carrier_name#</th>
+								</tr>
+								<cfoutput>
+								<cfif IsNumeric(s.product_shipping_method_rela_id)>
+									<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",s.product_shipping_method_rela_id) />
+									<cfset defaultPrice = productShippingMethodRela.getDefaultPrice() />
+								<cfelse>
+									<cfset defaultPrice = 0 />
+								</cfif>
+								<input type="hidden" name="default_price_#s.shipping_method_id#" value="#defaultPrice#" />
+								<tr>
+									<td>#s.shipping_method_name#</td>
+									<td>#DollarFormat(defaultPrice)#</td>
+									
+									<cfif IsNumeric(s.product_shipping_method_rela_id)>
+										<td>
+											<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
+
+											<cfif IsNumeric(s.product_shipping_method_rela_id)>
+												checked
+											</cfif>
+
+											/>
+										</td>
+										<td>
+											<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-shipping-price-modal"><span class="label label-primary">Edit</span></a>
+										</td>
+									<cfelse>
+										<td colspan="2" style="text-align:right;">
+											<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
+
+											<cfif IsNumeric(s.product_shipping_method_rela_id)>
+												checked
+											</cfif>
+
+											/>
+										</td>
+									</cfif>
+								</tr>
+								</cfoutput>
+							</table>
+						</div><!-- /.box-body -->
+					</div><!-- /.box -->
+				</div>
+			</cfoutput>
+		
+		
 		var ddData = [
 			{
 				text: "Facebook",
@@ -338,13 +394,27 @@
 			data: ddData,
 			width: 300,
 			imagePosition: "left",
-			selectText: "Select your favorite social network",
+			selectText: "Select your shipping method",
 			onSelected: function (data) {
 				console.log(data);
 			}
 		});
 	});
 </script>
+<style>
+.dd-select {
+  font-size:12px;
+}
+
+.dd-option-text {
+	font-size:14px;
+}
+
+.dd-option-description {
+	font-size:12px;
+}
+</style>
+
 <form method="post">
 <input type="hidden" id="selected_product_id" name="selected_product_id" value="#REQUEST.pageData.product.getProductId()#" />
 <input type="hidden" id="current_product_id" name="current_product_id" value="#REQUEST.pageData.product.getProductId()#" />
@@ -382,12 +452,12 @@
 			SKU:#REQUEST.pageData.product.getSku()#
 		</div>
 		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
-			<div id="product-filters" style="font-size:12px;margin:10px 0 14px 0;padding:7px 0 0 0;border-top:1px solid ##ccc;border-bottom:1px solid ##ccc;">
+			<div id="product-filters" style="font-size:12px;margin:10px 0 14px 0;padding:7px 0 0 0;border-top:1px dashed ##ccc;border-bottom:1px dashed ##ccc;">
 				<div id="gallery_01">
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 					<cfif productAttributeRela.getRequired() EQ true>
 						<ul>
-							<li style="width:40px;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
+							<li style="width:40px;font-weight:bold;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
 							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 								<li style="-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;" class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
 									<cfif NOT IsNull(attributeValue.getImageName())>
@@ -416,7 +486,7 @@
 			</div>
 		</cfif>
 		
-		<div id="shipping_methods_div" style="border-bottom:1px solid ##ccc;padding-bottom:16px;">
+		<div id="shipping_methods_div" style="border-bottom:1px dashed ##ccc;padding-bottom:15px;">
 			<div id="shipping_methods"></div>
 		</div>
 		
