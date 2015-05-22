@@ -24,7 +24,9 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
+		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		<cfset LOCAL.productId = ListGetAt(CGI.PATH_INFO,2,"/")> 
+		<cfset LOCAL.productService.setId(LOCAL.productId) />
 		
 		<cfset LOCAL.pageData.product = EntityLoadByPK("product",LOCAL.productId) />
 		
@@ -36,6 +38,8 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywords() />
+		
+		<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getFrontendProductShippingMethods() />
 		
 		<cfif LOCAL.pageData.product.isProductAttributeComplete()>
 			<cfset LOCAL.pageData.requiredAttributeCount = ArrayLen(EntityLoad("attribute_set_attribute_rela", {attributeSet = LOCAL.pageData.product.getAttributeSet(), required = true})) />

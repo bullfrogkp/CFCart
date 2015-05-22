@@ -105,7 +105,8 @@
 			SELECT	*
 			FROM	
 			(
-				SELECT	sc.display_name AS shipping_carrier_name
+				SELECT	psmr.product_shipping_method_rela_id
+				,		sc.display_name AS shipping_carrier_name
 				,		sm.display_name AS shipping_method_name
 				,		sc.image_name
 				,		COALESCE(psmr.calculated_price, psmr.default_price) AS shipping_price

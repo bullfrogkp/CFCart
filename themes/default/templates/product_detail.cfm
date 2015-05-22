@@ -304,90 +304,20 @@
 			}
 		</cfif>
 		
-		<cfset s = REQUEST.pageData.shippingMethods />
-			<cfoutput query="s" group="shipping_carrier_name">						
-				<div class="col-xs-3">
-					<div class="box box-warning">
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover">
-								<tr class="warning">
-									<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#" style="height:25px;vertical-align:top;" /></th>
-									<th colspan="2" style="text-align:right;padding-right:10px;">#s.shipping_carrier_name#</th>
-								</tr>
-								<cfoutput>
-								<cfif IsNumeric(s.product_shipping_method_rela_id)>
-									<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",s.product_shipping_method_rela_id) />
-									<cfset defaultPrice = productShippingMethodRela.getDefaultPrice() />
-								<cfelse>
-									<cfset defaultPrice = 0 />
-								</cfif>
-								<input type="hidden" name="default_price_#s.shipping_method_id#" value="#defaultPrice#" />
-								<tr>
-									<td>#s.shipping_method_name#</td>
-									<td>#DollarFormat(defaultPrice)#</td>
-									
-									<cfif IsNumeric(s.product_shipping_method_rela_id)>
-										<td>
-											<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
-
-											<cfif IsNumeric(s.product_shipping_method_rela_id)>
-												checked
-											</cfif>
-
-											/>
-										</td>
-										<td>
-											<a productshippingmethodrelaid="#s.product_shipping_method_rela_id#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-shipping-price-modal"><span class="label label-primary">Edit</span></a>
-										</td>
-									<cfelse>
-										<td colspan="2" style="text-align:right;">
-											<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shipping_method_id#"
-
-											<cfif IsNumeric(s.product_shipping_method_rela_id)>
-												checked
-											</cfif>
-
-											/>
-										</td>
-									</cfif>
-								</tr>
-								</cfoutput>
-							</table>
-						</div><!-- /.box-body -->
-					</div><!-- /.box -->
-				</div>
-			</cfoutput>
-		
-		
 		var ddData = [
-			{
-				text: "Facebook",
-				value: 1,
-				selected: false,
-				description: "Description with Facebook",
-				imageSrc: "http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
-			},
-			{
-				text: "Twitter",
-				value: 2,
-				selected: false,
-				description: "Description with Twitter",
-				imageSrc: "http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
-			},
-			{
-				text: "LinkedIn",
-				value: 3,
-				selected: false,
-				description: "Description with LinkedIn",
-				imageSrc: "http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
-			},
-			{
-				text: "Foursquare",
-				value: 4,
-				selected: false,
-				description: "Description with Foursquare",
-				imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
-			}
+			<cfset s = REQUEST.pageData.shippingMethods />
+			<cfloop query="s">
+				{
+					text: "#s.shipping_carrier_name# - #s.shipping_method_name#",
+					value: #product_shipping_method_rela_id#,
+					selected: false,
+					description: "#s.shipping_price#",
+					imageSrc: "#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#"
+				}
+				<cfif s.currentRow LT s.recordCount>
+				,
+				</cfif>
+			</cfloop>
 		];
 
 		$('##shipping_methods').ddslick({
