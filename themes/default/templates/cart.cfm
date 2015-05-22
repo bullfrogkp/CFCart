@@ -27,7 +27,7 @@
 						<tr>
 							<td class="cart_product">
 								<a href="#product.getDetailPageURL()#">
-									<img src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
+									<img style="width:150px" src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
 								</a>
 							</td>
 							<td class="cart_description">
