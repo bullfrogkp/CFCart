@@ -1,8 +1,10 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {
+		<cfif Find("no_image_available",REQUEST.pageData.product.getDefaultImageLink()) EQ 0>
 		$("##img_01").elevateZoom({constrainType:"height", constrainSize:274, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', borderSize: '1', imageCrossfade: true, loadingIcon: '#SESSION.absoluteUrlTheme#images/loader.gif'}); 
 		$("##img_01").bind("click", function(e) { var ez = $('##img_01').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false; }); 
+		</cfif>
 		
 		var dialog, form,
  
@@ -351,7 +353,8 @@
 <input type="hidden" id="current_product_id" name="current_product_id" value="#REQUEST.pageData.product.getProductId()#" />
 <div style="margin-top:20px;">
 	<div style="width:413px;float:left;">
-		<img id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#"/>
+		<img id="img_01" src="#REQUEST.pageData.product.getDefaultImageLink(type='medium')#" data-zoom-image="#REQUEST.pageData.product.getDefaultImageLink()#" />
+		
 		<div id="gallery_01"> 
 			<cfloop array="#REQUEST.pageData.allImages#" index="img">
 				<a href="##" data-image="#img.getImageLink(type='medium')#" data-zoom-image="#img.getImageLink()#"> 
