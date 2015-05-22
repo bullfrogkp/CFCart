@@ -98,6 +98,28 @@
 		<cfreturn LOCAL.getProductShippingMethods />
     </cffunction>
 	
+	<cffunction name="getFrontendProductShippingMethods" output="false" access="public" returntype="query">
+		<cfset var LOCAL = {} />
+	   
+		<cfquery name="LOCAL.getProductShippingMethods">
+			SELECT	*
+			FROM	
+			(
+				SELECT	sc.display_name AS shipping_carrier_name
+				,		sm.display_name AS shipping_method_name
+				,		sc.image_name
+				,		COALESCE(psmr.calculated_price, psmr.default_price) AS shipping_price
+				FROM 	product_shipping_method_rela psmr
+				JOIN	shipping_method sm ON psmr.shipping_method_id = sm.shipping_method_id
+				JOIN	shipping_carrier sc ON sc.shipping_carrier_id = sm.shipping_carrier_id
+				WHERE 	psmr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />	
+			) sub
+			ORDER BY shipping_price;
+		</cfquery>
+		 
+		<cfreturn LOCAL.getProductShippingMethods />
+    </cffunction>
+	
 	<cffunction name="getProduct" access="remote" returntype="struct" returnformat="json" output="false">
 		<cfargument name="parentProductId" type="numeric" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
