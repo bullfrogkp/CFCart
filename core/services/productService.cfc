@@ -34,7 +34,13 @@
 			AND p.isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
 			</cfif>
 			<cfif NOT IsNull(getCategoryId())>
-			AND	EXISTS (FROM  p.categories c WHERE c.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
+			AND	(
+					EXISTS (FROM  p.categories c WHERE c.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
+					OR
+					EXISTS (FROM  p.categories c WHERE c.parentCategory.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
+					OR
+					EXISTS (FROM  p.categories c WHERE c.parentCategory.parentCategory.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getCategoryId()#" />)
+				)
 			</cfif>
 			<cfif NOT IsNull(getFilters())>
 				<cfloop collection="#getFilters()#" item="LOCAL.filterId">

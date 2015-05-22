@@ -386,7 +386,7 @@
 			SKU:#REQUEST.pageData.product.getSku()#
 		</div>
 		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
-			<div id="product-filters" style="font-size:12px;margin:10px 0 14px 0;padding:7px 0 0 0;border-top:1px dashed ##ccc;border-bottom:1px dashed ##ccc;">
+			<div id="product-filters" style="font-size:12px;margin-top:14px;padding-top:7px;border-top:1px dashed ##ccc;margin-bottom:-16px;">
 				<div id="gallery_01">
 				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 					<cfif productAttributeRela.getRequired() EQ true>
@@ -420,11 +420,11 @@
 			</div>
 		</cfif>
 		
-		<div id="shipping_methods_div" style="border-bottom:1px dashed ##ccc;padding-bottom:15px;">
+		<div id="shipping_methods_div" style="margin-top:15px;padding-top:17px;border-top:1px dashed ##ccc;">
 			<div id="shipping_methods"></div>
 		</div>
 		
-		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:20px;">
+		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:18px;border-top:1px dashed ##ccc;padding-top:15px;">
 			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
