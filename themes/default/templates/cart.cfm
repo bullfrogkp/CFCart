@@ -78,7 +78,7 @@
 					</cfloop>
 				</table>
 			</div>
-			
+			<!---
 			<div id="shipping-estimate">
 				<div style="font-weight:bold;">Estimate Shipping and Tax</div>
 				<p>Enter your destination to get a shipping estimate.</p>
@@ -120,10 +120,11 @@
 					</li>
 				</ul>
 			</div>
+			--->
 			<div id="coupon">
 				<div style="font-weight:bold;">Discount Codes</div>
 				<p>Enter your coupon code if you have one.</p>
-				<input type="text" id="coupon_code" name="coupon_code" value="" style="width:275px">
+				<input type="text" id="coupon_code" name="coupon_code" value="" style="width:564px">
 				<div style="margin-top:10px;"><button class="btn-signup" type="button" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button></div>
 			</div>
 			<div id="checkout">
