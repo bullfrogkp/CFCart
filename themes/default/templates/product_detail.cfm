@@ -107,7 +107,7 @@
 		addUser();
 		});
 
-		var valueElement = $('##value');
+		var valueElement = $('##product-count');
 		
 		function incrementValue(e){
 			valueElement.val(Math.max(parseInt(valueElement.val()) + e.data.increment, 0));
@@ -226,32 +226,32 @@
 					});
 				}
 			});
+		</cfif>	
+		$("##add-current-to-cart").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'addTrackingRecord',
+							productId: $("##selected_product_id").val(),
+							count: $("##product-count").val()
+						},		
+						success: function(result) {
+							if(result.TRACKINGRECORDID)
+							{
+								dialog.dialog( "open" );
+								$("##cart-info").html( parseInt($("##cart-info").html(), 10) + parseInt($("##product-count").val(), 10));
 			
-			$("##add-current-to-cart").click(function() {
-				$.ajax({
-							type: "get",
-							url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
-							dataType: 'json',
-							data: {
-								method: 'addTrackingRecord',
-								productId: $("##selected_product_id").val(),
-								count: $("##product-count").val()
-							},		
-							success: function(result) {
-								if(result.TRACKINGRECORDID)
-								{
-									dialog.dialog( "open" );
-									$("##cart-info").html( parseInt($("##cart-info").html(), 10) + parseInt($("##product-count").val(), 10));
-				
-								}
-								else
-								{
-									console.log('Fail to add record');
-								}
 							}
-				});
+							else
+							{
+								console.log('Fail to add record');
+							}
+						}
 			});
-		</cfif>
+		});
+		
 		<cfif ArrayLen(REQUEST.pageData.product.getProductVideos()) GT 0>
 			<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="productVideo">
 				processURL('#productVideo.getUrl()#', 'video_#productVideo.getProductVideoId()#');
@@ -305,7 +305,7 @@
 				}
 			}
 		</cfif>
-		
+		<!---
 		var ddData = [
 			<cfset s = REQUEST.pageData.shippingMethods />
 			<cfloop query="s">
@@ -330,6 +330,7 @@
 				console.log(data);
 			}
 		});
+		--->
 	});
 </script>
 <style>
@@ -419,10 +420,11 @@
 				</div>
 			</div>
 		</cfif>
-		
+		<!---
 		<div id="shipping_methods_div" style="margin-top:15px;padding-top:17px;border-top:1px dashed ##ccc;">
 			<div id="shipping_methods"></div>
 		</div>
+		--->
 		
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:18px;border-top:1px dashed ##ccc;padding-top:15px;">
 			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
@@ -440,10 +442,15 @@
 			<button id="minus">-</button>
 			<input id="product-count" type="text" value="1" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
-			<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
-			<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
-			<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;display:none;">Add to Wishlist</a>
-			<a id="add-current-to-wishlist-disabled" class="btn-wish" style="padding-right:13px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Wishlist</a>
+			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
+				<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
+				<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
+				<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;display:none;">Add to Wishlist</a>
+				<a id="add-current-to-wishlist-disabled" class="btn-wish" style="padding-right:13px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Wishlist</a>
+			<cfelse>
+				<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
+				<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
+			</cfif>
 		</div>
 		
 		<div id="product-description">
