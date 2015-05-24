@@ -1,4 +1,22 @@
 ﻿<cfoutput>
+<script>
+	$(document).ready(function() {
+		function incrementValue(eid, increment){
+			$('##eid').val(Math.max(parseInt($('##eid').val()) + increment, 0));
+		}
+		
+		$(".plus").click(function() {
+			var e = $("##product_count_" + $(this).attr("trid"));
+			e.val(Math.max(parseInt(e.val()) + 1, 0));
+		});
+		
+		$(".minus").click(function() {
+			var e = $("##product_count_" + $(this).attr("trid"));
+			e.val(Math.max(parseInt(e.val()) - 1, 0));
+		});
+	});
+</script>
+
 <div id="breadcrumb">
 	<div class="breadcrumb-home-icon"></div>
 	<div class="breadcrumb-arrow-icon"></div>
@@ -24,14 +42,19 @@
 				
 					<cfloop array="#REQUEST.pageData.trackingRecords#" index="cartItem">
 						<cfset product = cartItem.getProduct() />
+						<cfif NOT IsNull(product.getParentProduct())>
+							<cfset productLink = product.getParentProduct().getDetailPageURL() />
+						<cfelse>
+							<cfset productLink = product.getDetailPageURL() />
+						</cfif>
 						<tr>
 							<td class="cart_product">
-								<a href="#product.getDetailPageURL()#">
+								<a href="#productLink#">
 									<img style="width:150px" src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
 								</a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></h4>
+								<h4><a href="#productLink#">#product.getDisplayName()#</a></h4>
 								<p>SKU: #product.getSku()#</p>
 							</td>
 							<td class="cart_price">
@@ -39,9 +62,9 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<button id="minus">-</button>
-									<input id="value" name="count" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
-									<button id="plus">+</button>
+									<button type="button" class="minus" trid="#cartItem.getTrackingRecordId()#">-</button>
+									<input id="product_count_#cartItem.getTrackingRecordId()#" name="count" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
+									<button type="button" class="plus" trid="#cartItem.getTrackingRecordId()#">+</button>
 									<input type="submit" name="update_count" value="update" />
 								</div>
 							</td>
