@@ -26,9 +26,10 @@
 						dataType: 'json',
 						data: {
 							method: 'applyCouponCode',
-							trackingEntityId:#REQUEST.pageData.trackingEntity.getTrackingEntityId()#,
+							trackingEntityId:'#REQUEST.pageData.trackingEntity.getTrackingEntityId()#',
 							couponCode: $("##coupon_code").val(),
-							customerId: #SESSION.user.customerId#
+							customerId: '#SESSION.user.customerId#',
+							total: '#REQUEST.pageData.total#'
 						},		
 						success: function(result) {
 							if(result.SUCCESS == 'true')
@@ -62,6 +63,9 @@
 			text-align:center;
 			}
 			</style>
+			
+			<cfif ArrayLen(REQUEST.pageData.trackingRecords) GT 0>
+			
 			<form method="post">
 			<input type="hidden" name="tracking_record_id" value="" />
 			<input type="hidden" name="coupon_code_applied" value="" />
@@ -176,4 +180,7 @@
 				<input type="image" name="submit_cart" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
 			</div>
 			</form>
+			<cfelse>
+			Your cart is empty.
+			</cfif>
 </cfoutput>

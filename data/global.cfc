@@ -21,7 +21,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
-		
+	
 		<cfif IsNull(LOCAL.trackingEntity)>
 			<cfset LOCAL.trackingEntity = EntityNew("tracking_entity") />
 			<cfset LOCAL.trackingEntity.setCfid(COOKIE.cfid) />
