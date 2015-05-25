@@ -1,4 +1,27 @@
 ﻿<cfcomponent extends="master">	
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset LOCAL.messageArray = [] />
+		
+		<cfif StructKeyExists(FORM,"update_count")>
+			<cfloop collection="#FORM#" item="LOCAL.field">
+				<cfif FindNoCase("product_count_", LOCAL.field) AND NOT IsNumeric(FORM["#LOCAL.field#"])>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid value for the number of products in the order.") />
+					<cfbreak />
+				</cfif>
+			</cfloop>
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
@@ -22,12 +45,20 @@
 		
 		<cfset LOCAL.pageData.total = LOCAL.pageData.subTotal + LOCAL.pageData.tax />
 		
+		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
+			<cfset LOCAL.pageData.message.messageArray = SESSION.temp.message.messageArray />
+		</cfif>
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfif StructKeyExists(FORM,"submit_cart")>
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
+		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	

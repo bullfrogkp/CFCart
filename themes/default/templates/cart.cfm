@@ -72,6 +72,16 @@
 			<form method="post">
 			<input type="hidden" name="tracking_record_id" value="" />
 			<input type="hidden" name="coupon_code_applied" value="" />
+			
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
+					<ul>
+						<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+							<li>#msg#</li>
+						</cfloop>
+					</ul>
+				</div>
+			</cfif>
 			<div class="myaccount-table">
 				<table>
 					
@@ -107,7 +117,7 @@
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<button type="button" class="minus" trid="#cartItem.getTrackingRecordId()#">-</button>
-									<input id="product_count_#cartItem.getTrackingRecordId()#" name="count" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
+									<input id="product_count_#cartItem.getTrackingRecordId()#" name="product_count_#cartItem.getTrackingRecordId()#" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
 									<button type="button" class="plus" trid="#cartItem.getTrackingRecordId()#">+</button>
 									<input type="submit" class="update-count" trid="#cartItem.getTrackingRecordId()#" name="update_count" value="update" />
 								</div>
