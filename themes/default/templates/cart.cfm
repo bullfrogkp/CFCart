@@ -16,7 +16,7 @@
 		});
 		
 		$(".update-count").click(function() {
-			$("##tracking_record_id") = $(this).attr("trid"));
+			$("##tracking_record_id").val($(this).attr("trid"));
 		});
 		
 		$("##apply_coupon").click(function() {
@@ -28,22 +28,22 @@
 							method: 'applyCouponCode',
 							trackingEntityId:#REQUEST.pageData.trackingEntity.getTrackingEntityId()#,
 							couponCode: $("##coupon_code").val(),
-							customerId: SESSION.user.customerId
+							customerId: #SESSION.user.customerId#
 						},		
 						success: function(result) {
 							if(result.SUCCESS == 'true')
 							{
 								$("##coupon").html("Coupon has been applied successfully.");
 								$("##coupon_code_applied").val($("##coupon_code").val());
-								$( "<li style="color:white;background-color:red;">Discount <span>$"+result.DISCOUNT+"</span></li>" ).insertBefore( "##total-price" );
+								$( "<li style='color:white;background-color:red;'>Discount <span>$"+result.DISCOUNT+"</span></li>" ).insertBefore( "##total-price" );
 							}
 							else
 							{
 								if(result.MESSAGETYPE == 1)
 									$("##coupon-message").html("This coupon can only be applied to order more than " + result.THRESHOLDAMOUNT);
-								else if result.MESSAGETYPE == 2)
+								else if (result.MESSAGETYPE == 2)
 									$("##coupon-message").html("This coupon is expired.");
-								else if result.MESSAGETYPE == 3)
+								else if (result.MESSAGETYPE == 3)
 									$("##coupon-message").html("Coupon is not assigned to the current customer, please try login and apply the coupon again.");
 							}	
 						}
