@@ -57,13 +57,13 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif StructKeyExists(FORM,"submit_cart")>
+		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
 		<cfelseif StructKeyExists(FORM,"update_count")>
 			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.tracking_record_id) />
 			<cfset LOCAL.trackingRecord.setCount(FORM["product_count_#FORM.tracking_record_id#"]) />
 			<cfset EntitySave(LOCAL.trackingRecord) />
-		<cfelseif StructKeyExists(FORM,"remove_product")>
+		<cfelseif StructKeyExists(FORM,"remove_product") OR StructKeyExists(FORM,"remove_product.x")>
 			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.remove_product) />
 			<cfset EntityDelete(LOCAL.trackingRecord) />
 		</cfif>
