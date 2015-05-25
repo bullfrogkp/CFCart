@@ -61,10 +61,10 @@
 		</cfif>
 		
 		<cfif retStruct.success EQ true>
-			<cfif LOCAL.coupon.getDiscounType().getCalculationType().getName() EQ "fixed">
-				<cfset retStruct.newTotal = ARGUMENTS.total - LOCAL.coupon.getDiscounType().getAmount() />
-			<cfelseif LOCAL.coupon.getDiscounType().getCalculationType().getName() EQ "percentage">
-				<cfset retStruct.newTotal = ARGUMENTS.total * (1 - LOCAL.coupon.getDiscounType().getAmount()) />
+			<cfif LOCAL.coupon.getDiscountType().getCalculationType().getName() EQ "fixed">
+				<cfset retStruct.newTotal = ARGUMENTS.total - LOCAL.coupon.getDiscountType().getAmount() />
+			<cfelseif LOCAL.coupon.getDiscountType().getCalculationType().getName() EQ "percentage">
+				<cfset retStruct.newTotal = ARGUMENTS.total * (1 - LOCAL.coupon.getDiscountType().getAmount()) />
 			</cfif>
 		<cfelse>
 			<cfset retStruct.newTotal = ARGUMENTS.total />

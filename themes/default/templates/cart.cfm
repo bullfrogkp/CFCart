@@ -32,7 +32,7 @@
 							total: '#REQUEST.pageData.total#'
 						},		
 						success: function(result) {
-							if(result.SUCCESS == 'true')
+							if(result.SUCCESS == true)
 							{
 								$("##coupon").html("Coupon has been applied successfully.");
 								$("##coupon_code_applied").val($("##coupon_code").val());
