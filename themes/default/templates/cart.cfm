@@ -14,6 +14,10 @@
 			var e = $("##product_count_" + $(this).attr("trid"));
 			e.val(Math.max(parseInt(e.val()) - 1, 0));
 		});
+		
+		$(".update-count").click(function() {
+			$("##tracking_record_id") = $(this).attr("trid"));
+		});
 	});
 </script>
 
@@ -28,6 +32,7 @@
 			}
 			</style>
 			<form method="post">
+			<input type="hidden" name="tracking_record_id" value="" />
 			<div class="myaccount-table">
 				<table>
 					
@@ -65,7 +70,7 @@
 									<button type="button" class="minus" trid="#cartItem.getTrackingRecordId()#">-</button>
 									<input id="product_count_#cartItem.getTrackingRecordId()#" name="count" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
 									<button type="button" class="plus" trid="#cartItem.getTrackingRecordId()#">+</button>
-									<input type="submit" name="update_count" value="update" />
+									<input type="submit" class="update-count" trid="#cartItem.getTrackingRecordId()#" name="update_count" value="update" />
 								</div>
 							</td>
 							<td class="cart_total">
@@ -125,17 +130,18 @@
 				<div style="font-weight:bold;">Discount Codes</div>
 				<p>Enter your coupon code if you have one.</p>
 				<input type="text" id="coupon_code" name="coupon_code" value="" style="width:564px">
-				<div style="margin-top:10px;"><button class="btn-signup" type="button" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button></div>
+				<div style="margin-top:10px;">
+					<button class="btn-signup" type="submit" name="apply_coupon" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button>
+				</div>
 			</div>
 			<div id="checkout">
 				<ul>
-					<li>Cart Sub Total <span>$59</span></li>
-					<li>Eco Tax <span>$2</span></li>
-					<li>Shipping Cost <span>Free</span></li>
-					<li>Total <span>$61</span></li>
+					<li>Sub Total <span>#DollarFormat(REQUEST.pageData.subTotal)#</span></li>
+					<li>Tax <span>#DollarFormat(REQUEST.pageData.tax)#</span></li>
+					<li>Total <span>#DollarFormat(REQUEST.pageData.total)#</span></li>
 				</ul>
-				<p style="float:right;font-weight:bold;">PayPal securely processes payments for TomTop</p>
-				<input type="image" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
+				<p style="float:right;font-weight:bold;">PayPal securely processes payments for PinMyDeals</p>
+				<input type="image" name="submit_cart" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
 			</div>
 			</form>
 </cfoutput>
