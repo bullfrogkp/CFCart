@@ -36,7 +36,8 @@
 							{
 								$("##coupon").html("Coupon has been applied successfully.");
 								$("##coupon_code_applied").val($("##coupon_code").val());
-								$( "<li style='color:white;background-color:red;'>Discount <span>$"+result.DISCOUNT+"</span></li>" ).insertBefore( "##total-price" );
+								$("##total-price-amount").html("$" + result.NEWTOTAL.toFixed(2));
+								$( "<li style='color:white;background-color:red;'>Discount <span>$"+result.DISCOUNT.toFixed(2)+"</span></li>" ).insertBefore( "##total-price" );
 							}
 							else
 							{
@@ -174,7 +175,7 @@
 				<ul>
 					<li>Sub Total <span>#DollarFormat(REQUEST.pageData.subTotal)#</span></li>
 					<li>Tax <span>#DollarFormat(REQUEST.pageData.tax)#</span></li>
-					<li id="total-price">Total <span>#DollarFormat(REQUEST.pageData.total)#</span></li>
+					<li id="total-price">Total <span id="total-price-amount">#DollarFormat(REQUEST.pageData.total)#</span></li>
 				</ul>
 				<p style="float:right;font-weight:bold;">PayPal securely processes payments for PinMyDeals</p>
 				<input type="image" name="submit_cart" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
