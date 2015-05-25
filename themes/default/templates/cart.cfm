@@ -126,7 +126,7 @@
 								<p class="cart_total_price">#DollarFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</p>
 							</td>
 							<td class="cart_delete">
-								<img src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
+								<input type="image" name="remove_product" value="#cartItem.getTrackingRecordId()#" src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
 							</td>
 						</tr>
 					</cfloop>
