@@ -40,6 +40,7 @@
 		<cfset retStruct.messageType = "" />
 		<cfset retStruct.newTotal = "" />
 		<cfset retStruct.thresholdAmount = "" />
+		<cfset retStruct.discount = "" />
 		
 		<cfset LOCAL.couponStatusType = EntityLoad("coupon_status_type",{name="active"},true) />
 		<cfset LOCAL.coupon = EntityLoad("coupon",{couponStatusType = LOCAL.couponStatusType, couponCode = Trim(ARGUMENTS.couponCode)},true) />
@@ -62,10 +63,11 @@
 		
 		<cfif retStruct.success EQ true>
 			<cfif LOCAL.coupon.getDiscountType().getCalculationType().getName() EQ "fixed">
-				<cfset retStruct.newTotal = ARGUMENTS.total - LOCAL.coupon.getDiscountType().getAmount() />
+				<cfset retStruct.discount = LOCAL.coupon.getDiscountType().getAmount() />
 			<cfelseif LOCAL.coupon.getDiscountType().getCalculationType().getName() EQ "percentage">
-				<cfset retStruct.newTotal = ARGUMENTS.total * (1 - LOCAL.coupon.getDiscountType().getAmount()) />
+				<cfset retStruct.discount = ARGUMENTS.total * LOCAL.coupon.getDiscountType().getAmount() />
 			</cfif>
+			<cfset retStruct.newTotal = ARGUMENTS.total - retStruct.discount />
 		<cfelse>
 			<cfset retStruct.newTotal = ARGUMENTS.total />
 		</cfif>
