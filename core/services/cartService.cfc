@@ -37,6 +37,7 @@
 		<cfset var retStruct = {} />
 		<cfset retStruct.success = true />
 		<cfset retStruct.messageType = "" />
+		<cfset retStruct.newTotal = "" />
 		
 		<cfset LOCAL.couponStatusType = EntityLoad("coupon_status_type",{name="active"},true) />
 		<cfset LOCAL.coupon = EntityLoad("coupon",{couponStatusType = LOCAL.couponStatusType, couponCode = Trim(ARGUMENTS.couponCode)},true) />
@@ -44,31 +45,22 @@
 		<cfif LOCAL.coupon.getThresholdAmount() LT ARGUMENTS.total>
 			<cfset retStruct.success = false />
 			<cfset retStruct.messageType = 1 />
-		<cfelseif LOCAL.coupon.
+		<cfelseif 	IsDate(LOCAL.coupon.getStartDate()) AND DateCompare(Now(), LOCAL.coupon.getStartDate()) EQ -1
+					OR
+					IsDate(LOCAL.coupon.getEndDate()) AND DateCompare(LOCAL.coupon.getEndDate(), Now()) EQ -1>
+			<cfset retStruct.success = false />
+			<cfset retStruct.messageType = 2 />
 		</cfif>
 		
-		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
-		<cfset LOCAL.trackingEntity = EntityLoadByPK("tracking_entity", ARGUMENTS.trackingEntityId) />
-		
-		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity}) />
-		
-		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
-		
-		</cfloop>
-		
-		
-		<cfif NOT IsNull(LOCAL.trackingRecord)>
-			<cfset LOCAL.trackingRecord.setCount(LOCAL.trackingRecord.getCount() + ARGUMENTS.count) />
+		<cfif retStruct.success EQ true>
+			<cfif LOCAL.coupon.getDiscounType().getCalculationType().getName() EQ "fixed">
+				<cfset retStruct.newTotal = ARGUMENTS.total - LOCAL.coupon.getDiscounType().getAmount() />
+			<cfelseif LOCAL.coupon.getDiscounType().getCalculationType().getName() EQ "percentage">
+				<cfset retStruct.newTotal = ARGUMENTS.total * (1 - LOCAL.coupon.getDiscounType().getAmount()) />
+			</cfif>
 		<cfelse>
-			<cfset LOCAL.trackingRecord = EntityNew("tracking_record") />
-			<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
-			<cfset LOCAL.trackingRecord.setTrackingEntity(LOCAL.trackingEntity) />
-			<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
-			<cfset LOCAL.trackingRecord.setCount(ARGUMENTS.count) />
-			<cfset EntitySave(LOCAL.trackingRecord) />
+			<cfset retStruct.newTotal = ARGUMENTS.total />
 		</cfif>
-		
-		<cfset retStruct.trackingRecordId = LOCAL.trackingRecord.getTrackingRecordId() />
 		
 		<cfreturn retStruct />
 	</cffunction>
