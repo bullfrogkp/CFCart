@@ -70,8 +70,8 @@
 			<cfif ArrayLen(REQUEST.pageData.trackingRecords) GT 0>
 			
 			<form method="post">
-			<input type="hidden" name="tracking_record_id" value="" />
-			<input type="hidden" name="coupon_code_applied" value="" />
+			<input type="hidden" id="tracking_record_id" name="tracking_record_id" value="" />
+			<input type="hidden" id="coupon_code_applied" name="coupon_code_applied" value="" />
 			
 			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
 				<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">

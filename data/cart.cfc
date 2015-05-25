@@ -17,6 +17,7 @@
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
 		</cfif>
 		
 		<cfreturn LOCAL />
@@ -58,6 +59,10 @@
 		
 		<cfif StructKeyExists(FORM,"submit_cart")>
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
+		<cfelseif StructKeyExists(FORM,"update_count")>
+			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.tracking_record_id) />
+			<cfset LOCAL.trackingRecord.setCount(FORM["product_count_#FORM.tracking_record_id#"]) />
+			<cfset EntitySave(LOCAL.trackingRecord) />
 		</cfif>
 		
 		<cfreturn LOCAL />	
