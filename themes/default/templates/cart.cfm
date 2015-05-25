@@ -47,6 +47,8 @@
 									$("##coupon-message").html("This coupon is expired.");
 								else if (result.MESSAGETYPE == 3)
 									$("##coupon-message").html("Coupon is not assigned to the current customer, please try login and apply the coupon again.");
+								else if (result.MESSAGETYPE == 4)
+									$("##coupon-message").html("Coupon is not valid.");
 							}	
 						}
 			});
