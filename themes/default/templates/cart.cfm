@@ -27,10 +27,25 @@
 						data: {
 							method: 'applyCouponCode',
 							trackingEntityId:#REQUEST.pageData.trackingEntity().getTrackingEntityId()#,
-							couponCode: $("##coupon_code").val()
+							couponCode: $("##coupon_code").val(),
+							customerId: SESSION.user.customerId
 						},		
 						success: function(result) {
-							$( "<li style="color:white;background-color:red;">Discount <span>$"+result.DISCOUNT+"</span></li>" ).insertBefore( "##total-price" );
+							if(result.SUCCESS == 'true')
+							{
+								$("##coupon").html("Coupon has been applied successfully.");
+								$("##coupon_code_applied").val($("##coupon_code").val());
+								$( "<li style="color:white;background-color:red;">Discount <span>$"+result.DISCOUNT+"</span></li>" ).insertBefore( "##total-price" );
+							}
+							else
+							{
+								if(result.MESSAGETYPE == 1)
+									$("##coupon-message").html("This coupon can only be applied to order more than " + result.THRESHOLDAMOUNT);
+								else if result.MESSAGETYPE == 2)
+									$("##coupon-message").html("This coupon is expired.");
+								else if result.MESSAGETYPE == 3)
+									$("##coupon-message").html("Coupon is not assigned to the current customer, please try login and apply the coupon again.");
+							}	
 						}
 			});
 		});
@@ -145,7 +160,7 @@
 			--->
 			<div id="coupon">
 				<div style="font-weight:bold;">Discount Codes</div>
-				<p>Enter your coupon code if you have one.</p>
+				<p id="coupon-message">Enter your coupon code if you have one.</p>
 				<input type="text" id="coupon_code" name="coupon_code" value="" style="width:564px">
 				<div style="margin-top:10px;">
 					<button class="btn-signup" type="button" name="apply_coupon" id="apply_coupon" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button>

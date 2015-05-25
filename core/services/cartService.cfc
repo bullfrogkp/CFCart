@@ -39,13 +39,15 @@
 		<cfset retStruct.success = true />
 		<cfset retStruct.messageType = "" />
 		<cfset retStruct.newTotal = "" />
+		<cfset retStruct.thresholdAmount = "" />
 		
 		<cfset LOCAL.couponStatusType = EntityLoad("coupon_status_type",{name="active"},true) />
 		<cfset LOCAL.coupon = EntityLoad("coupon",{couponStatusType = LOCAL.couponStatusType, couponCode = Trim(ARGUMENTS.couponCode)},true) />
 		
-		<cfif LOCAL.coupon.getThresholdAmount() LT ARGUMENTS.total>
+		<cfif ARGUMENTS.total LT LOCAL.coupon.getThresholdAmount()>
 			<cfset retStruct.success = false />
 			<cfset retStruct.messageType = 1 />
+			<cfset retStruct.thresholdAmount = LOCAL.coupon.getThresholdAmount() />
 		<cfelseif 	IsDate(LOCAL.coupon.getStartDate()) AND DateCompare(Now(), LOCAL.coupon.getStartDate()) EQ -1
 					OR
 					IsDate(LOCAL.coupon.getEndDate()) AND DateCompare(LOCAL.coupon.getEndDate(), Now()) EQ -1>
