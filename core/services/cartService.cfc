@@ -31,6 +31,7 @@
 	<cffunction name="applyCouponCode" access="remote" returntype="struct" returnformat="json" output="false">
 		<cfargument name="trackingEntityId" type="numeric" required="true">
 		<cfargument name="couponCode" type="string" required="true">
+		<cfargument name="customerId" type="string" required="true">
 		<cfargument name="total" type="numeric" required="true">
 		
 		<cfset var LOCAL = {} />
@@ -50,6 +51,11 @@
 					IsDate(LOCAL.coupon.getEndDate()) AND DateCompare(LOCAL.coupon.getEndDate(), Now()) EQ -1>
 			<cfset retStruct.success = false />
 			<cfset retStruct.messageType = 2 />
+		<cfelseif NOT IsNull(LOCAL.coupon.getCustomer()) AND IsNumeric(ARGUMENTS.customerId)>
+			<cfif LOCAL.coupon.getCustomer().getCustomerId() NEQ ARGUMENTS.customerId>
+				<cfset retStruct.success = false />
+				<cfset retStruct.messageType = 3 />
+			</cfif>
 		</cfif>
 		
 		<cfif retStruct.success EQ true>
