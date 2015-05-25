@@ -26,7 +26,7 @@
 						dataType: 'json',
 						data: {
 							method: 'applyCouponCode',
-							trackingEntityId:#REQUEST.pageData.trackingEntity().getTrackingEntityId()#,
+							trackingEntityId:#REQUEST.pageData.trackingEntity.getTrackingEntityId()#,
 							couponCode: $("##coupon_code").val(),
 							customerId: SESSION.user.customerId
 						},		
