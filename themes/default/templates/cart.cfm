@@ -18,6 +18,22 @@
 		$(".update-count").click(function() {
 			$("##tracking_record_id") = $(this).attr("trid"));
 		});
+		
+		$("##apply_coupon").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'applyCouponCode',
+							trackingEntityId:#REQUEST.pageData.trackingEntity().getTrackingEntityId()#,
+							couponCode: $("##coupon_code").val()
+						},		
+						success: function(result) {
+							$( "<li style="color:white;background-color:red;">Discount <span>$"+result.DISCOUNT+"</span></li>" ).insertBefore( "##total-price" );
+						}
+			});
+		});
 	});
 </script>
 
@@ -33,6 +49,7 @@
 			</style>
 			<form method="post">
 			<input type="hidden" name="tracking_record_id" value="" />
+			<input type="hidden" name="coupon_code_applied" value="" />
 			<div class="myaccount-table">
 				<table>
 					
@@ -131,14 +148,14 @@
 				<p>Enter your coupon code if you have one.</p>
 				<input type="text" id="coupon_code" name="coupon_code" value="" style="width:564px">
 				<div style="margin-top:10px;">
-					<button class="btn-signup" type="submit" name="apply_coupon" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button>
+					<button class="btn-signup" type="button" name="apply_coupon" id="apply_coupon" value="Apply Coupon" style="font-size:12px;"><span>Apply Coupon</span></button>
 				</div>
 			</div>
 			<div id="checkout">
 				<ul>
 					<li>Sub Total <span>#DollarFormat(REQUEST.pageData.subTotal)#</span></li>
 					<li>Tax <span>#DollarFormat(REQUEST.pageData.tax)#</span></li>
-					<li>Total <span>#DollarFormat(REQUEST.pageData.total)#</span></li>
+					<li id="total-price">Total <span>#DollarFormat(REQUEST.pageData.total)#</span></li>
 				</ul>
 				<p style="float:right;font-weight:bold;">PayPal securely processes payments for PinMyDeals</p>
 				<input type="image" name="submit_cart" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />
