@@ -7,10 +7,10 @@
 	<span style="vertical-align:middle">Customer Information</span> 
 </div>
 	<form method="post">
-	<cfif IsDefined("SESSION.temp.messagee") AND NOT StructIsEmpty(SESSION.temp.message)>
+	<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
 		<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
 			<ul>
-				<cfloop array="#SESSION.temp.message.messageArray#" index="msg">
+				<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
 					<li>#msg#</li>
 				</cfloop>
 			</ul>
