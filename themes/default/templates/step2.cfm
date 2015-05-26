@@ -3,10 +3,10 @@
 	$(document).ready(function() {
 		<cfloop array="#SESSION.order.productArray#" index="item">
 		var ddData#item.product.getProductId()# = [
-			<cfset s = item.product.getShippingMethods() />
+			<cfset s = item.product.getProductShippingMethodRelas() />
 			<cfloop query="s">
 				{
-					text: "#s.shipping_carrier_name# - #s.shipping_method_name#: #DollarFormat(s.shipping_price)#",
+					text: "#s.getShippingMethod().getShippingCarrier().getDisplayName()# - #s.getShippingMethod().getDisplayName()#: #DollarFormat(s.getCalculatedPrice())#",
 					value: #s.product_shipping_method_rela_id#,
 					selected: false,
 					imageSrc: "#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#"
