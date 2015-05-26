@@ -20,6 +20,7 @@
 				];
 
 				$('##shipping-methods-#product.getProductId()#').ddslick({
+					name: "shipping_method_id_#s.getProductShippingMethodRelaId()#",
 					data: ddData#product.getProductId()#,
 					width: 300,
 					imagePosition: "left",
