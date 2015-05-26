@@ -3,6 +3,8 @@
 	<div class="breadcrumb-home-icon"></div>
 	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">Checkout</span> 
+	<div class="breadcrumb-arrow-icon"></div>
+	<span style="vertical-align:middle">Customer Information</span> 
 </div>
 	<form method="post">
 	<div id="checkout-info" class="single_field">
@@ -427,62 +429,9 @@
 		</tbody></table>
 		-->
 		</div>
-		<div id="checkout-shipping" style="width:60%;float:right;padding-top:20px;">
-		<table>
-				<tbody><tr>
-					<th id="shipping-header" colspan="2" align="left">
-						<div style="padding-bottom:30px;line-height:18px;">
-						<img src="http://www.soofanphotography.com/images/ups.jpg" width="38" style="float:left;margin-right:15px;">
-						The shipping cost is calculate by using the UPS API. UPS shipping will allow customers to get up-to-the-minute access to UPS shipping services while checking out orders, based on the cart and location.
-						</div>
-						<div class="clear"></div>
-					</th>
-				</tr>
-				<tr>
-					<th id="shipping-header" colspan="2" align="left">
-						<span style="font-size:14px;font-weight:bold;padding-bottom:20px;">Choose Shipping Method</span>
-						<div align="center" class="validation-falied" style="margin-left:20px;float:left;padding:3px 4px 3px 4px;width:240px;color:white;display:none;background-color:red;font-size:12px;font-weight:bold;" id="shipping-validation">Please select your shipping method</div>
-						<div style="clear:both;height:10px;"></div>	
-					</th>
-				</tr>
-				
-				
-					<tr>
-						<td style="padding-top:4px;width:20px;">
-							<input name="shipping_method_id" type="radio" value="1" id="shipping_method_id_1" class="shipping-method-radio"> 
-						</td>
-						<td>
-							<strong>UPS Standard</strong>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						
-							<td style="padding-bottom:10px;line-height:18px;">
-						Rely on guaranteed economical ground delivery for your less-urgent shipments.</td>
-					</tr>
-				
-					<tr>
-						<td style="padding-top:4px;width:20px;">
-							<input name="shipping_method_id" type="radio" value="2" id="shipping_method_id_2" class="shipping-method-radio"> 
-						</td>
-						<td>
-							<strong>UPS Express</strong>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						
-							<td style="line-height:18px;">
-						Take advantage of this faster one-to-three day shipping service with guaranteed morning delivery times throughout the world</td>
-					</tr>
-				
-				
-			</tbody></table>
-		</div>
 	</div>
 	<div style="clear:both;"></div>
-	<div  style="border-top:1px solid ##CCC;text-align:right;margin-top:20px;">
+	<div  style="border-top:1px solid ##CCC;margin-top:20px;">
 	<input type="submit" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
 	</div>
 	</form>

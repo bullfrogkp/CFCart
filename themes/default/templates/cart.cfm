@@ -194,6 +194,6 @@
 			</div>
 			</form>
 			<cfelse>
-			Your cart is empty.
+			<span style="font-size:12px;">Your cart is empty.</span>
 			</cfif>
 </cfoutput>
