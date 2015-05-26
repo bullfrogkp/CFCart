@@ -22,11 +22,12 @@
 </div>
 <style>
 ##products {
+margin-top:20px;
 list-style-type:none;
 margin-left:-12px;
 font-size:12px;
 }
-##products li {
+##products > li {
 float:left;
 width: 231px;
 text-align:center;
@@ -44,7 +45,7 @@ width: 200px;
 			<li style="border:1px solid ##ccc">
 				<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#">
 				<div class="thumbnail-name">#product.getDisplayName()#</div>
-				<div id="shipping_methods_div" style="margin-top:15px;padding-top:17px;">
+				<div id="shipping_methods_div" style="margin-top:15px;padding:10px;text-align:center;">
 					<select id="shipping-methods-#product.getProductId()#">
 						<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
 							<cfset s = product.getProductShippingMethodRelas()[i] />
