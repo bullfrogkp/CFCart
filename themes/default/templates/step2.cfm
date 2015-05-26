@@ -36,16 +36,31 @@ margin-left:12px;
 
 ##products li .thumbnail-img {
 width: 200px;
+margin-bottom:10px;
+}
+
+.dd-select {
+  font-size:12px;
+}
+
+.dd-option-text, .dd-selected-text {
+	font-size:12px;
+	float:right;
+	margin-right:20px;
+}
+
+.dd-option-image, .dd-selected-image {
+	height:23px;
 }
 </style>
 <form method="post">
 	<ul id="products">
 		<cfloop array="#SESSION.order.productArray#" index="item">
 			<cfset product = EntityLoadByPK("product",item.productId) />
-			<li style="border:1px solid ##ccc">
+			<li style="border:1px solid ##ccc;padding-top:10px;">
 				<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#">
 				<div class="thumbnail-name">#product.getDisplayName()#</div>
-				<div id="shipping_methods_div" style="margin-top:15px;padding:10px;text-align:center;">
+				<div id="shipping_methods_div" style="margin-top:10px;padding:10px;text-align:center;">
 					<select id="shipping-methods-#product.getProductId()#">
 						<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
 							<cfset s = product.getProductShippingMethodRelas()[i] />
