@@ -1,8 +1,9 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {
-		var ddData = [
-			<cfset s = REQUEST.pageData.shippingMethods />
+		<cfloop array="#SESSION.order.productArray#" index="item">
+		var ddData#item.product.getProductId()# = [
+			<cfset s = item.product.getShippingMethods() />
 			<cfloop query="s">
 				{
 					text: "#s.shipping_carrier_name# - #s.shipping_method_name#: #DollarFormat(s.shipping_price)#",
@@ -16,8 +17,8 @@
 			</cfloop>
 		];
 
-		$('.shipping-methods').ddslick({
-			data: ddData,
+		$('.order-product-#item.product.getProductId()#').ddslick({
+			data: ddData#item.product.getProductId()#,
 			width: 300,
 			imagePosition: "left",
 			selectText: "Select your shipping method",
@@ -25,6 +26,7 @@
 				console.log(data);
 			}
 		});
+		</cfloop>
 	});
 </script>
 <div id="breadcrumb">
