@@ -73,10 +73,10 @@
 			<input type="hidden" id="tracking_record_id" name="tracking_record_id" value="" />
 			<input type="hidden" id="coupon_code_applied" name="coupon_code_applied" value="" />
 			
-			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+			<cfif IsDefined("SESSION.temp.messagee") AND NOT StructIsEmpty(SESSION.temp.message)>
 				<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
 					<ul>
-						<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+						<cfloop array="#SESSION.temp.message.messageArray#" index="msg">
 							<li>#msg#</li>
 						</cfloop>
 					</ul>
