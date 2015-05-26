@@ -2,7 +2,7 @@
 <script>
 	$(document).ready(function() {
 		<cfloop array="#SESSION.order.productArray#" index="item">
-			<cfset product = EntityLoadByPK("product",item.productId) /><cfdump var="#product.getProductShippingMethodRelas()#" top="1" abort>
+			<cfset product = EntityLoadByPK("product",item.productId) />
 			<cfif ArrayLen(product.getProductShippingMethodRelas()) GT 0>
 				var ddData#product.getProductId()# = [
 					<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
@@ -19,7 +19,7 @@
 					</cfloop>
 				];
 
-				$('.shipping-methods-#product.getProductId()#').ddslick({
+				$('##shipping-methods-#product.getProductId()#').ddslick({
 					data: ddData#product.getProductId()#,
 					width: 300,
 					imagePosition: "left",
