@@ -1,5 +1,6 @@
 ﻿<cfcomponent persistent="true"> 
     <cfproperty name="productShippingMethodRelaId" column="product_shipping_method_rela_id" fieldtype="id" generator="native">
+	<cfproperty name="price" column="price" ormtype="float"> 
 	<cfproperty name="defaultPrice" column="default_price" ormtype="float"> 
 	<cfproperty name="calculatedPrice" column="calculated_price" ormtype="float"> 
 	
