@@ -1,4 +1,77 @@
 ﻿<cfcomponent extends="master">	
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset LOCAL.messageArray = [] />
+		
+		<cfif StructKeyExists(FORM,"update_cutomer_info")>
+			<cfif NOT IsValid("email",Trim(FORM.new_email))>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email address.") />
+			</cfif>
+			
+			<cfif Trim(FORM.shipto_first_name) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping first name.") />
+			</cfif>
+			<cfif Trim(FORM.shipto_last_name) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping last name.") />
+			</cfif>
+			<cfif Trim(FORM.shipto_phone) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping phone number.") />
+			</cfif>
+			<cfif Trim(FORM.shipto_street) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping street name.") />
+			</cfif>
+			<cfif Trim(FORM.shipto_city) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping city name.") />
+			</cfif>
+			<cfif NOT IsNumeric(FORM.shipto_province_id)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping province.") />
+			</cfif>
+			<cfif Trim(FORM.shipto_postal_code) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping postal code.") />
+			</cfif>
+			<cfif NOT IsNumeric(FORM.shipto_country_id)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
+			</cfif>
+			
+			<cfif StructKeyExists(FORM,"billing_info_is_different")>
+				<cfif Trim(FORM.billto_first_name) EQ "">
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing first name.") />
+				</cfif>
+				<cfif Trim(FORM.billto_last_name) EQ "">
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing last name.") />
+				</cfif>
+				<cfif Trim(FORM.billto_phone) EQ "">
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing phone number.") />
+				</cfif>
+				<cfif Trim(FORM.billto_street) EQ "">
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing street name.") />
+				</cfif>
+				<cfif Trim(FORM.billto_city) EQ "">
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing city name.") />
+				</cfif>
+				<cfif NOT IsNumeric(FORM.billto_province_id)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please choose your billing province.") />
+				</cfif>
+				<cfif Trim(FORM.billto_postal_code) EQ "">
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing postal code.") />
+				</cfif>
+				<cfif NOT IsNumeric(FORM.billto_country_id)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please choose your billing country.") />
+				</cfif>
+			</cfif>
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />

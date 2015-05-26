@@ -16,7 +16,7 @@
 			<tr>
 				<td style="font-weight:bold;width:93px;">Email:</td>
 				<td>
-					<input name="new_email" id="new_contact_email" type="text" maxlength="32" size="30" style="width:180px;"> 
+					<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
 					&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="email-validation">Please enter a valid email address</span>
 				</td>
 			</tr>
@@ -104,7 +104,7 @@
 				<table style="margin-left:-3px;">
 					<tbody><tr>
 						<td>
-							<input type="checkbox" name="billing_info_different" id="billing_info_different" value="1" onclick="if(this.checked) $('##new-billing-address').slideDown(500); else $('##new-billing-address').slideUp(500);">
+							<input type="checkbox" name="billing_info_is_different" id="billing_info_is_different" value="1" onclick="if(this.checked) $('##new-billing-address').slideDown(500); else $('##new-billing-address').slideUp(500);">
 						</td>
 						<td>&nbsp;Check here is your billing information is different</td>
 					</tr>
@@ -197,7 +197,7 @@
 	</div>
 	<div style="clear:both;"></div>
 	<div  style="border-top:1px solid ##CCC;margin-top:20px;">
-	<input type="submit" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
+	<input type="submit" name="update_cutomer_info" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
 	</div>
 	</form>
 
