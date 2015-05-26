@@ -31,6 +31,7 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
+		<cfset LOCAL.pageData.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		<cfset LOCAL.pageData.trackingRecords = _getTrackingRecords() />
 		
 		<cfset LOCAL.pageData.subTotal = 0 />
@@ -62,7 +63,7 @@
 			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords() />
 			
-			<cfloop array="#LOCAL.pageData.trackingRecords#" index="LOCAL.record">
+			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 				<cfset LOCAL.product = LOCAL.record.getProduct() />
 				
 				<cfset LOCAL.productStruct = {} />
