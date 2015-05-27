@@ -18,18 +18,36 @@
 	</cfif>
 	<div id="checkout-info" class="single_field">
 		<div id="checkout-addresses" style="width:40%;float:left;margin-top:20px;">
-			<table style="width:100%;">	
-				<tr>
-					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Contact</th>
-				</tr>
-				<tr>
-					<td style="font-weight:bold;width:93px;">Email:</td>
-					<td>
-						<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
-						&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="email-validation">Please enter a valid email address</span>
-					</td>
-				</tr>
-			</table>
+		
+			<cfif IsNumeric(SESSION.user.customerId)>
+				<cfset customer = EntiyLoadByPK("customer",SESSION.user.customerId) />
+				<cfif ArrayLen(customer.getAddresses()) GT 0>
+					<ul>
+						<cfloop array="#customer.getAddresses()#" index="address">
+							<li>
+								#address.getFullName()#<br/>
+								#address.getUnit()# #address.getStreet()#<br/>
+								#address.getCity()#, #address.getProvince().getDisplayName()# #address.getPostalCode()#<br/>
+								#address.getCountry().getDisplayName()#<br/>
+								<input type="submit" name="user_this_address" value="Use this address" />
+							</li>
+						</cfloop>
+					</ul>
+				</cfif>
+			<cfelse>
+				<table style="width:100%;">	
+					<tr>
+						<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Contact</th>
+					</tr>
+					<tr>
+						<td style="font-weight:bold;width:93px;">Email:</td>
+						<td>
+							<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
+							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="email-validation">Please enter a valid email address</span>
+						</td>
+					</tr>
+				</table>
+			</cfif>
 			
 			<table id="current-address-table" class="shipping-address-selected" style="width:100%;margin-top:20px;">	
 				<tr>
