@@ -2,7 +2,9 @@
 <div id="breadcrumb">
 	<div class="breadcrumb-home-icon"></div>
 	<div class="breadcrumb-arrow-icon"></div>
-	<span style="vertical-align:middle">Order Confirmation</span> 
+	<span style="vertical-align:middle">Checkout</span> 
+	<div class="breadcrumb-arrow-icon"></div>
+	<span style="vertical-align:middle">Confirmation</span> 
 </div>
 			<div id="order-confirmation" class="single_field" style="margin-top:20px;">
 				<div id="shipping-addresses" style="width:33%;float:left;">

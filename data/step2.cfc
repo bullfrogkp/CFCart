@@ -17,9 +17,10 @@
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
 			<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
 			<cfloop array="#SESSION.order.productArray#" index="LOCAL.product">
-				<cfif LOCAL.product.productId = LOCAL.productId />
-				<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
-				<cfbreak />
+				<cfif LOCAL.product.productId EQ LOCAL.productId>
+					<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
+					<cfbreak />
+				</cfif>
 			</cfloop>
 		</cfloop>
 		
