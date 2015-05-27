@@ -56,22 +56,21 @@
 			<cfset LOCAL.address = SESSION.order.shippingAddress.address />
 		</cfif>	
 			
-				
 		<cfset LOCAL.order.setShippingCompany(LOCAL.address.getCompany())) />
-		<cfset LOCAL.order.setShippingUnit(SESSION.order.shippingAddress.unit) />
-		<cfset LOCAL.order.setShippingStreet(SESSION.order.shippingAddress.street) />
-		<cfset LOCAL.order.setShippingCity(SESSION.order.shippingAddress.city) />
-		<cfset LOCAL.order.setShippingProvince(SESSION.order.shippingAddress.province) />
-		<cfset LOCAL.order.setShippingCountry(SESSION.order.shippingAddress.country) />
-		<cfset LOCAL.order.setShippingPostalCode(SESSION.order.shippingAddress.postalCode) />
+		<cfset LOCAL.order.setShippingUnit(LOCAL.address.getUnit()) />
+		<cfset LOCAL.order.setShippingStreet(LOCAL.address.getStreet()) />
+		<cfset LOCAL.order.setShippingCity(LOCAL.address.getCity()) />
+		<cfset LOCAL.order.setShippingProvince(LOCAL.address.getProvince()) />
+		<cfset LOCAL.order.setShippingCountry(LOCAL.address.getCountry()) />
+		<cfset LOCAL.order.setShippingPostalCode(LOCAL.address.getPostalCode()) />
 				
-		<cfset LOCAL.order.setBillingCompany(SESSION.order.billingAddress.province)) />
-		<cfset LOCAL.order.setBillingUnit(SESSION.order.billingAddress.unit) />
-		<cfset LOCAL.order.setBillingStreet(SESSION.order.billingAddress.street) />
-		<cfset LOCAL.order.setBillingCity(SESSION.order.billingAddress.city) />
-		<cfset LOCAL.order.setBillingProvince(SESSION.order.billingAddress.province) />
-		<cfset LOCAL.order.setBillingCountry(SESSION.order.billingAddress.country) />
-		<cfset LOCAL.order.setBillingPostalCode(SESSION.order.billingAddress.postalCode) />
+		<cfset LOCAL.order.setBillingCompany(LOCAL.address.getCompany())) />
+		<cfset LOCAL.order.setBillingUnit(LOCAL.address.getUnit()) />
+		<cfset LOCAL.order.setBillingStreet(LOCAL.address.getStreet()) />
+		<cfset LOCAL.order.setBillingCity(LOCAL.address.getCity()) />
+		<cfset LOCAL.order.setBillingProvince(LOCAL.address.getProvince()) />
+		<cfset LOCAL.order.setBillingCountry(LOCAL.address.getCountry()) />
+		<cfset LOCAL.order.setBillingPostalCode(LOCAL.address.getPostalCode()) />
 		
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
