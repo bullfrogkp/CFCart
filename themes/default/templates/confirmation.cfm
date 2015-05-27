@@ -17,6 +17,7 @@
 			<table>
 				<tr class="cart_menu">
 					<td>Product</td>
+					<td>SKU</td>
 					<td>Quantity</td>
 					<td>Price</td>
 					<td>Subtotal</td>
@@ -30,6 +31,8 @@
 					<tr>
 						<td>
 							<h4>#product.getDisplayName()#</h4>
+						</td>
+						<td>
 							<p>SKU: #product.getSku()#</p>
 						</td>
 						<td>
@@ -51,99 +54,100 @@
 				</cfloop>
 			</table>
 		</div>
-		<div id="shipping-addresses" style="width:27%;float:left;margin-top:27px;">
+		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;">
 			<table>
 				<tr>
-				<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Address</th>
+					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Address</th>
 				</tr>
-					<tbody><tr>
+				<tbody>
+					<tr>
 						<td class="first-col">First Name:</td>
-						<td>fff</td>
+						<td>#SESSION.order.shippingAddress.firstName#</td>
 					</tr>
 					
 					<tr>
 						<td class="first-col">Last Name:</td>
-						<td>ffff</td>
+						<td>#SESSION.order.shippingAddress.lastName#</td>
 					</tr>
 					
 					<tr>
-						<td class="first-col">Phnoe:</td>
-						<td>6476666666</td>
+						<td class="first-col">Phone:</td>
+						<td>#SESSION.order.shippingAddress.phone#</td>
 					</tr>
 					
 					<tr>
 						<td style="padding-top:3px;padding-bottom:3px;" class="first-col">Street:</td>
-						<td style="padding-top:3px;padding-bottom:3px;">6087A yonge st.</td>
+						<td style="padding-top:3px;padding-bottom:3px;">#SESSION.order.shippingAddress.street#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">City:</td>
-						<td>north york</td>
+						<td>#SESSION.order.shippingAddress.city#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">Province:</td>
-						<td>Ontario</td>
+						<td>#SESSION.order.shippingAddress.province.getDisplayName()#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Postal Code:</td>
-						<td>m2m 3w2</td>
+						<td>#SESSION.order.shippingAddress.postalCode#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Country:</td>
-						<td>Canada</td>
+						<td>#SESSION.order.shippingAddress.country.getDisplayName()#</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div id="billing-addresses" style="width:27%;float:left;margin-top:27px;">
+		<div id="billing-addresses" style="width:27%;float:left;margin-top:17px;">
 			<table>
 				<tr>
 					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Address</th>
 				</tr>
-					<tbody><tr>
+				<tbody>
+					<tr>
 						<td class="first-col">First Name:</td>
-						<td>fff</td>
+						<td>#SESSION.order.billingAddress.firstName#</td>
 					</tr>
 					
 					<tr>
 						<td class="first-col">Last Name:</td>
-						<td>ffff</td>
+						<td>#SESSION.order.billingAddress.lastName#</td>
 					</tr>
 					
 					<tr>
-						<td class="first-col">Phnoe:</td>
-						<td>6476666666</td>
+						<td class="first-col">Phone:</td>
+						<td>#SESSION.order.billingAddress.phone#</td>
 					</tr>
 					
 					<tr>
 						<td style="padding-top:3px;padding-bottom:3px;" class="first-col">Street:</td>
-						<td style="padding-top:3px;padding-bottom:3px;">6087A yonge st.</td>
+						<td style="padding-top:3px;padding-bottom:3px;">#SESSION.order.billingAddress.street#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">City:</td>
-						<td>north york</td>
+						<td>#SESSION.order.billingAddress.city#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">Province:</td>
-						<td>Ontario</td>
+						<td>#SESSION.order.billingAddress.province.getDisplayName()#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Postal Code:</td>
-						<td>m2m 3w2</td>
+						<td>#SESSION.order.billingAddress.postalCode#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Country:</td>
-						<td>Canada</td>
+						<td>#SESSION.order.billingAddress.country.getDisplayName()#</td>
 					</tr>
-					
 				</tbody>
 			</table>
 		</div>
 	
-		<div id="checkout" style="height:auto;margin-top:30px;">
+		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
 				<li>Cart Sub Total <span>$59</span></li>
 				<li>Eco Tax <span>$2</span></li>
