@@ -16,48 +16,39 @@
 		<div class="myaccount-table" style="width:100%;float:margin-top:30px;">
 			<table>
 				<tr class="cart_menu">
-					<td class="image">Product</td>
-					<td class="quantity">Quantity</td>
-					<td class="quantity">Shipping Method</td>
+					<td>Product</td>
+					<td>Quantity</td>
+					<td>Price</td>
+					<td>Subtotal</td>
+					<td>Tax</td>
+					<td>Shipping</td>
 				</tr>
-		
-				<tr>
-					<td class="cart_description">
-						<h4><a href="">Colorblock Scuba</a></h4>
-						<p>SKU: 1089772</p>
-					</td>
-					<td class="cart_price">
-						<p>5</p>
-					</td>
-					<td class="cart_total">
-						<p class="cart_total_price">$59</p>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="cart_description">
-						<h4><a href="">Colorblock Scuba</a></h4>
-						<p>SKU: 1089772</p>
-					</td>
-					<td class="cart_price">
-						<p>5</p>
-					</td>
-					<td class="cart_total">
-						<p class="cart_total_price">$59</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="cart_description">
-						<h4><a href="">Colorblock Scuba</a></h4>
-						<p>SKU: 1089772</p>
-					</td>
-					<td class="cart_price">
-						<p>5</p>
-					</td>
-					<td class="cart_total">
-						<p class="cart_total_price">$59</p>
-					</td>
-				</tr>
+				
+				<cfloop array="#SESSION.order.productArray#" index="item">
+					<cfset product = EntityLoadByPK("product",item.productId) />
+					<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
+					<tr>
+						<td>
+							<h4>#product.getDisplayName()#</h4>
+							<p>SKU: #product.getSku()#</p>
+						</td>
+						<td>
+							<p>#item.count#</p>
+						</td>
+						<td>
+							<p>#item.price#</p>
+						</td>
+						<td>
+							<p>#item.productSubTotal#</p>
+						</td>
+						<td>
+							<p>#item.productTaxSubTotal#</p>
+						</td>
+						<td>
+							<p>#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - #productShippingMethodRela.getShippingMethod().getDisplayName()#: #productShippingMethodRela.getPrice()# (2 - 3 days)</p>
+						</td>
+					</tr>
+				</cfloop>
 			</table>
 		</div>
 		<div id="shipping-addresses" style="width:27%;float:left;margin-top:27px;">
