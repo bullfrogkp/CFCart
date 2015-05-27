@@ -31,8 +31,8 @@
 			<cfset LOCAL.order = EntityLoadByPK("order", FORM.id) /> 
 		<cfelse>
 			<cfset LOCAL.order = EntityNew("order") /> 
-			<cfset LOCAL.newOrderTrackingNumber = "OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")#" />
-			<cfset LOCAL.order.setOrderTrackingNumber("#LOCAL.newOrderTrackingNumber##LOCAL.order.getOrderId()#") />
+			<cfset LOCAL.newOrderTrackingNumber = "OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#" />
+			<cfset LOCAL.order.setOrderTrackingNumber(LOCAL.newOrderTrackingNumber) />
 			<cfset LOCAL.order.setIsDeleted(false) />
 		</cfif>
 		

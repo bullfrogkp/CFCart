@@ -45,6 +45,12 @@
 						</td>
 					</tr>
 					<tr>
+						<td style="font-weight:bold;width:93px;">Middle Name:</td>
+						<td>
+							<input name="shipto_middle_name" id="shipto_middle_name" type="text" maxlength="32" size="30" style="width:180px;">
+						</td>
+					</tr>
+					<tr>
 						<td style="font-weight:bold;">Last Name:</td>
 						<td>
 							<input name="shipto_last_name" id="shipto_last_name" type="text" maxlength="32" size="30" style="width:180px;">
