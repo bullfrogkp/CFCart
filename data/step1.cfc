@@ -1,4 +1,5 @@
 ﻿<cfcomponent extends="master">	
+	<!---
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
@@ -71,6 +72,7 @@
 		
 		<cfreturn LOCAL />
 	</cffunction>
+	--->
 	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
@@ -93,9 +95,16 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		<cfset SESSION.order.email = Trim(FORM.new_email) />
+		<cfif NOT IsNumeric(SESSION.user.customerId)>
+			<cfset SESSION.order.email = Trim(FORM.new_email) />
+		</cfif>
 		
 		<cfset SESSION.order.shippingAddress = {} />
+			
+		<cfif StructKeyExists(FORM,"user_this_address")>
+			<cfset SESSION.order.shippingAddress.useExistingAddress = true />
+			<cfset SESSION.order.shippingAddress.addressId = FORM.existing_address_id />
+		<cfelse>
 		<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
 		<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />
 		<cfset SESSION.order.shippingAddress.middleName = Trim(FORM.shipto_middle_name) />
