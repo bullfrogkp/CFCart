@@ -31,7 +31,6 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		<cfset LOCAL.pageData.trackingRecords = _getTrackingRecords() />
 		
 		<cfset LOCAL.pageData.subTotal = 0 />
@@ -84,7 +83,13 @@
 			<cfset SESSION.order.total = SESSION.order.subTotal + SESSION.order.totalTax />
 			
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
-				<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
+				<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
+				<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.total) />
+				
+				<cfif LOCAL.applyCoupon.success EQ true>
+					<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
+					<cfset SESSION.order.total = LOCAL.applyCoupon.newTotal />
+				</cfif>
 			</cfif>
 		
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
