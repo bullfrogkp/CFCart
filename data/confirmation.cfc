@@ -93,7 +93,6 @@
 			<cfset LOCAL.newStatus = EntityNew("order_status") />
 			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.newStatus.setCurrent(true) />
-			<cfset LOCAL.newStatus.setComments(Trim(FORM.comments)) />
 			<cfset LOCAL.newStatus.setOrderStatusType(LOCAL.newStatusType) />
 			<cfset EntitySave(LOCAL.newStatus) /> 
 			
@@ -101,15 +100,10 @@
 			
 			<cfset EntitySave(LOCAL.order) />
 			
-			<cfif FORM.save_customer_and_addresses EQ 1>
-				<cfset LOCAL.newCustomer.addOrder(LOCAL.order) />
-				<cfset EntitySave(LOCAL.newCustomer) />
-			</cfif>
+			<cfset LOCAL.newCustomer.addOrder(LOCAL.order) />
+			<cfset EntitySave(LOCAL.newCustomer) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Order has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#" />
 			
-		<cfelseif StructKeyExists(FORM,"add_new_product")>
 		
 			<cfset LOCAL.product = EntityLoadByPK("product",FORM.new_order_product_id) />
 			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id) />
