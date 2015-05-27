@@ -64,6 +64,7 @@
 			<cfset SESSION.order.totalTax = 0 />
 			<cfset SESSION.order.totalShippingFee = 0 />
 			<cfset SESSION.order.total = 0 />
+			<cfset SESSION.order.couponCode = "" />
 			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords() />
 		
@@ -81,6 +82,10 @@
 			</cfloop>
 			
 			<cfset SESSION.order.total = SESSION.order.subTotal + SESSION.order.totalTax />
+			
+			<cfif Trim(FORM.coupon_code_applied) NEQ "">
+				<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
+			</cfif>
 		
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
 		<cfelseif StructKeyExists(FORM,"update_count")>
