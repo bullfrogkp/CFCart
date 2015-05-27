@@ -149,10 +149,10 @@
 	
 		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
-				<li>Cart Sub Total <span>$59</span></li>
-				<li>Eco Tax <span>$2</span></li>
-				<li>Shipping Cost <span>Free</span></li>
-				<li>Total <span>$61</span></li>
+				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotal)#</span></li>
+				<li>Tax <span>#DollarFormat(SESSION.order.totalTax)#</span></li>
+				<li>Shipping Cost <span>#DollarFormat(SESSION.order.totalShippingFee)#</span></li>
+				<li>Total <span>#DollarFormat(SESSION.order.subTotal + SESSION.order.totalTax + SESSION.order.totalShippingFee)#</span></li>
 			</ul>
 		</div>
 	</div>

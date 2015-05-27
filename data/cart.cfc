@@ -62,7 +62,7 @@
 			<cfset SESSION.order.productArray = [] />
 			<cfset SESSION.order.subTotal = 0 />
 			<cfset SESSION.order.totalTax = 0 />
-			<cfset SESSION.order.shipping = 0 />
+			<cfset SESSION.order.totalShippingFee = 0 />
 			<cfset SESSION.order.total = 0 />
 			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords() />
