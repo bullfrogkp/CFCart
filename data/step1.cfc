@@ -111,7 +111,7 @@
 		
 		<cfset SESSION.order.shippingAddress = {} />
 			
-		<cfif StructKeyExists(FORM,"user_this_address")>
+		<cfif StructKeyExists(FORM,"shipto_this_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = true />
 			<cfset SESSION.order.shippingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
 		<cfelse>
