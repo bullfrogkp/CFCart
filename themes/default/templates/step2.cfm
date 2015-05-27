@@ -69,7 +69,7 @@ margin-bottom:10px;
 			<cfset product = EntityLoadByPK("product",item.productId) />
 			<li style="border:1px solid ##ccc;padding-top:20px;">
 				<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#">
-				<div class="thumbnail-name">#product.getDisplayName()#</div>
+				<div class="thumbnail-name">#product.getDisplayName()# x #item.count#</div>
 				<div id="shipping_methods_div" style="margin-top:10px;padding:10px;text-align:center;">
 					<select id="shipping-methods-#product.getProductId()#">
 						<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
