@@ -1,12 +1,4 @@
 ﻿<cfcomponent extends="master">	
-	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "" />
-		<cfdump var="#FORM#" abort>	
-		
-		
-		<cfreturn LOCAL />
-	</cffunction>
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
@@ -21,7 +13,9 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		<cfdump var="#FORM#" abort>
+		<cfloop list="#FORM.product_shipping_method_rela_id_list#" index="LOCAL.productShippingMethodRelaId">
+		
+		</cfloop>
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
 		
