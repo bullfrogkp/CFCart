@@ -24,14 +24,15 @@
 ##products {
 margin-top:20px;
 list-style-type:none;
-margin-left:-12px;
+margin-left:-17px;
 font-size:12px;
+width:100%;
 }
 ##products > li {
 float:left;
-width: 231px;
+width: 300px;
 text-align:center;
-margin-left:12px;
+margin-left:17px;
 }
 
 ##products li .thumbnail-img {
@@ -50,14 +51,23 @@ margin-bottom:10px;
 }
 
 .dd-option-image, .dd-selected-image {
-	height:23px;
+	height:33px;
+}
+
+.dd-option-description, .dd-selected-description {
+	float:right;
+	text-align:right;
+	margin-top:3px;
+	margin-right:20px;
+	width:160px;
+	font-size:12px;
 }
 </style>
 <form method="post">
 	<ul id="products">
 		<cfloop array="#SESSION.order.productArray#" index="item">
 			<cfset product = EntityLoadByPK("product",item.productId) />
-			<li style="border:1px solid ##ccc;padding-top:10px;">
+			<li style="border:1px solid ##ccc;padding-top:20px;">
 				<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#">
 				<div class="thumbnail-name">#product.getDisplayName()#</div>
 				<div id="shipping_methods_div" style="margin-top:10px;padding:10px;text-align:center;">
@@ -65,7 +75,7 @@ margin-bottom:10px;
 						<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
 							<cfset s = product.getProductShippingMethodRelas()[i] />
 							<option value="#s.getProductShippingMethodRelaId()#" data-imagesrc="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.getShippingMethod().getShippingCarrier().getImageName()#"
-								data-description="#DollarFormat(s.getPrice())#">#s.getShippingMethod().getShippingCarrier().getDisplayName()# - #s.getShippingMethod().getDisplayName()#</option>
+								data-description="#DollarFormat(s.getPrice())# (2 - 3 Days)">#s.getShippingMethod().getShippingCarrier().getDisplayName()# - #s.getShippingMethod().getDisplayName()#</option>
 						</cfloop>
 					</select>
 				</div>
