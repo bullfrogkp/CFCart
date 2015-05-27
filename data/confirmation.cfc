@@ -62,77 +62,69 @@
 		</cfif>	
 			
 				
-			<cfset LOCAL.order.setShippingCompany(SESSION.order.shippingAddress.province)) />
-			<cfset LOCAL.order.setShippingUnit(SESSION.order.shippingAddress.unit) />
-			<cfset LOCAL.order.setShippingStreet(SESSION.order.shippingAddress.street) />
-			<cfset LOCAL.order.setShippingCity(SESSION.order.shippingAddress.city) />
-			<cfset LOCAL.order.setShippingProvince(SESSION.order.shippingAddress.province) />
-			<cfset LOCAL.order.setShippingCountry(SESSION.order.shippingAddress.country) />
-			<cfset LOCAL.order.setShippingPostalCode(SESSION.order.shippingAddress.postalCode) />
-					
-			<cfset LOCAL.order.setBillingCompany(SESSION.order.billingAddress.province)) />
-			<cfset LOCAL.order.setBillingUnit(SESSION.order.billingAddress.unit) />
-			<cfset LOCAL.order.setBillingStreet(SESSION.order.billingAddress.street) />
-			<cfset LOCAL.order.setBillingCity(SESSION.order.billingAddress.city) />
-			<cfset LOCAL.order.setBillingProvince(SESSION.order.billingAddress.province) />
-			<cfset LOCAL.order.setBillingCountry(SESSION.order.billingAddress.country) />
-			<cfset LOCAL.order.setBillingPostalCode(SESSION.order.billingAddress.postalCode) />
-			
-			<cfset LOCAL.order.setCreatedDatetime(Now()) />
-			<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
-			
-			<!---
-			<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
-			--->
-			
-			<cfif IsNumeric(SESSION.order.couponId)>
-				<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
-			</cfif>
-						
-			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
-			<cfset LOCAL.newStatus = EntityNew("order_status") />
-			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
-			<cfset LOCAL.newStatus.setCurrent(true) />
-			<cfset LOCAL.newStatus.setOrderStatusType(LOCAL.newStatusType) />
-			<cfset EntitySave(LOCAL.newStatus) /> 
-			
-			<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
-			
-			<cfset EntitySave(LOCAL.order) />
-			
-			<cfset LOCAL.newCustomer.addOrder(LOCAL.order) />
-			<cfset EntitySave(LOCAL.newCustomer) />
-			
-			
-		
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.new_order_product_id) />
-			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",FORM.new_order_product_shipping_method_id) />
-			<cfset LOCAL.image = EntityLoad("product_image",{product=LOCAL.product,isDefault=true},true) />
+		<cfset LOCAL.order.setShippingCompany(SESSION.order.shippingAddress.province)) />
+		<cfset LOCAL.order.setShippingUnit(SESSION.order.shippingAddress.unit) />
+		<cfset LOCAL.order.setShippingStreet(SESSION.order.shippingAddress.street) />
+		<cfset LOCAL.order.setShippingCity(SESSION.order.shippingAddress.city) />
+		<cfset LOCAL.order.setShippingProvince(SESSION.order.shippingAddress.province) />
+		<cfset LOCAL.order.setShippingCountry(SESSION.order.shippingAddress.country) />
+		<cfset LOCAL.order.setShippingPostalCode(SESSION.order.shippingAddress.postalCode) />
 				
+		<cfset LOCAL.order.setBillingCompany(SESSION.order.billingAddress.province)) />
+		<cfset LOCAL.order.setBillingUnit(SESSION.order.billingAddress.unit) />
+		<cfset LOCAL.order.setBillingStreet(SESSION.order.billingAddress.street) />
+		<cfset LOCAL.order.setBillingCity(SESSION.order.billingAddress.city) />
+		<cfset LOCAL.order.setBillingProvince(SESSION.order.billingAddress.province) />
+		<cfset LOCAL.order.setBillingCountry(SESSION.order.billingAddress.country) />
+		<cfset LOCAL.order.setBillingPostalCode(SESSION.order.billingAddress.postalCode) />
+		
+		<cfset LOCAL.order.setCreatedDatetime(Now()) />
+		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
+		
+		<!---
+		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
+		--->
+		
+		<cfif IsNumeric(SESSION.order.couponId)>
+			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
+		</cfif>
+					
+		<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
+		<cfset LOCAL.newStatus = EntityNew("order_status") />
+		<cfset LOCAL.newStatus.setStartDatetime(Now()) />
+		<cfset LOCAL.newStatus.setCurrent(true) />
+		<cfset LOCAL.newStatus.setOrderStatusType(LOCAL.newStatusType) />
+		<cfset EntitySave(LOCAL.newStatus) /> 
+		
+		<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
+		
+		<cfset EntitySave(LOCAL.order) />
+		
+		<cfset LOCAL.newCustomer.addOrder(LOCAL.order) />
+		<cfset EntitySave(LOCAL.newCustomer) />
+		
+		<cfloop array="#SESSION.order.productArray#" index="item">
+			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
+			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
+						
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
-			<cfset LOCAL.orderProduct.setDisplayName(LOCAL.product.getDisplayName()) />
-			<cfset LOCAL.orderProduct.setRegularPrice(LOCAL.product.getPrice()) />
-			<cfset LOCAL.orderProduct.setOrderPrice(LOCAL.product.getPrice()) />
+			<cfset LOCAL.orderProduct.setPrice(item.price) />
 			<cfset LOCAL.orderProduct.setTaxCategoryName(LOCAL.product.getTaxCategory().getDisplayName()) />
-			<cfset LOCAL.orderProduct.setSubtotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice()) />
-			<cfset LOCAL.orderProduct.setTaxAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * LOCAL.product.getTaxCategory().getRate()) />
-			<cfset LOCAL.orderProduct.setShippingAmount(LOCAL.product.getPrice()) />
-			<cfset LOCAL.orderProduct.setTotalAmount(FORM.new_order_product_quantity * LOCAL.product.getPrice() * (1+LOCAL.product.getTaxCategory().getRate())) />
-			<cfset LOCAL.orderProduct.setQuantity(FORM.new_order_product_quantity) />
-			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.shippingMethod.getShippingCarrier().getDisplayName()) />
-			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.shippingMethod.getDisplayName()) />
+			<cfset LOCAL.orderProduct.setSubtotalAmount(item.price * item.count) />
+			<cfset LOCAL.orderProduct.setTaxAmount(item.tax) />
+			<cfset LOCAL.orderProduct.setShippingAmount(item.shippingFee) />
+			<cfset LOCAL.orderProduct.setQuantity(item.count) />
+			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()) />
+			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.productShippingMethodRela.getShippingMethod().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setProductId(LOCAL.product.getProductId()) />
 			<cfset LOCAL.orderProduct.setProductName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
-			<cfif NOT IsNull(LOCAL.image)>
-				<cfset LOCAL.orderProduct.setImageName(LOCAL.image.getName()) />
-			</cfif>
+			<cfset LOCAL.orderProduct.setImageName(product.getDefaultImageLink(type='small')) />
 			
 			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
 			<cfset LOCAL.newProductStatus = EntityNew("order_product_status") />
 			<cfset LOCAL.newProductStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.newProductStatus.setCurrent(true) />
-			<cfset LOCAL.newProductStatus.setComments(Trim(FORM.new_order_product_comments)) />
 			<cfset LOCAL.newProductStatus.setOrderProductStatusType(LOCAL.newProductStatusType) />
 			<cfset EntitySave(LOCAL.newProductStatus) /> 
 			
@@ -143,12 +135,7 @@
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
 			
 			<cfset EntitySave(LOCAL.order) /> 
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New product has been added.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.order.getOrderId()#" />
-		</cfif>
-		
-		
+		</cfloop>
 		
 		<!---
 		<cfset StructDelete(SESSION,"order") />
