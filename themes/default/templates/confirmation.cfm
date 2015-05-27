@@ -152,6 +152,9 @@
 				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotal)#</span></li>
 				<li>Tax <span>#DollarFormat(SESSION.order.totalTax)#</span></li>
 				<li>Shipping Cost <span>#DollarFormat(SESSION.order.totalShippingFee)#</span></li>
+				<cfif SESSION.order.discount GT 0>
+				<li>Discount <span>- #DollarFormat(SESSION.order.discount)#</span></li>
+				</cfif>
 				<li>Total <span>#DollarFormat(SESSION.order.subTotal + SESSION.order.totalTax + SESSION.order.totalShippingFee)#</span></li>
 			</ul>
 		</div>

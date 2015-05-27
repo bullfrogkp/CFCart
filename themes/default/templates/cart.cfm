@@ -36,7 +36,7 @@
 								$("##coupon").html("Coupon has been applied successfully.");
 								$("##coupon_code_applied").val($("##coupon_code").val());
 								$("##total-price-amount").html("$" + result.NEWTOTAL.toFixed(2));
-								$( "<li style='color:white;background-color:red;'>Discount <span>$"+result.DISCOUNT.toFixed(2)+"</span></li>" ).insertBefore( "##total-price" );
+								$( "<li style='color:white;background-color:red;'>Discount <span>- $"+result.DISCOUNT.toFixed(2)+"</span></li>" ).insertBefore( "##total-price" );
 							}
 							else
 							{

@@ -96,6 +96,7 @@
 		<cfset SESSION.order.email = Trim(FORM.new_email) />
 		
 		<cfset SESSION.order.shippingAddress = {} />
+		<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
 		<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />
 		<cfset SESSION.order.shippingAddress.middleName = Trim(FORM.shipto_middle_name) />
 		<cfset SESSION.order.shippingAddress.lastName = Trim(FORM.shipto_last_name) />
@@ -110,6 +111,7 @@
 		<cfif StructKeyExists(FORM,"billing_info_is_different")>
 			<cfset SESSION.order.billingInfoIsDifferent = true />
 			<cfset SESSION.order.billingAddress = {} />
+			<cfset SESSION.order.billingAddress.company = Trim(FORM.billto_company) />
 			<cfset SESSION.order.billingAddress.firstName = Trim(FORM.billto_first_name) />
 			<cfset SESSION.order.billingAddress.middleName = Trim(FORM.billto_middle_name) />
 			<cfset SESSION.order.billingAddress.lastName = Trim(FORM.billto_last_name) />

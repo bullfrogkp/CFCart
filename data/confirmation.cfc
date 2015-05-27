@@ -62,29 +62,31 @@
 		</cfif>	
 			
 				
-			<cfset LOCAL.order.setShippingCompany(Trim(FORM.shipping_company)) />
-			<cfset LOCAL.order.setShippingUnit(Trim(FORM.shipping_unit)) />
-			<cfset LOCAL.order.setShippingStreet(Trim(FORM.shipping_street)) />
-			<cfset LOCAL.order.setShippingCity(Trim(FORM.shipping_city)) />
-			<cfset LOCAL.order.setShippingProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
-			<cfset LOCAL.order.setShippingCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
-			<cfset LOCAL.order.setShippingPostalCode(Trim(FORM.shipping_postal_code)) />
+			<cfset LOCAL.order.setShippingCompany(SESSION.order.shippingAddress.province)) />
+			<cfset LOCAL.order.setShippingUnit(SESSION.order.shippingAddress.unit) />
+			<cfset LOCAL.order.setShippingStreet(SESSION.order.shippingAddress.street) />
+			<cfset LOCAL.order.setShippingCity(SESSION.order.shippingAddress.city) />
+			<cfset LOCAL.order.setShippingProvince(SESSION.order.shippingAddress.province) />
+			<cfset LOCAL.order.setShippingCountry(SESSION.order.shippingAddress.country) />
+			<cfset LOCAL.order.setShippingPostalCode(SESSION.order.shippingAddress.postalCode) />
 					
-			<cfset LOCAL.order.setBillingCompany(Trim(FORM.billing_company)) />
-			<cfset LOCAL.order.setBillingUnit(Trim(FORM.billing_unit)) />
-			<cfset LOCAL.order.setBillingStreet(Trim(FORM.billing_street)) />
-			<cfset LOCAL.order.setBillingCity(Trim(FORM.billing_city)) />
-			<cfset LOCAL.order.setBillingProvince(EntityLoadByPK("province",FORM.billing_province_id)) />
-			<cfset LOCAL.order.setBillingCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
-			<cfset LOCAL.order.setBillingPostalCode(Trim(FORM.billing_postal_code)) />
+			<cfset LOCAL.order.setBillingCompany(SESSION.order.billingAddress.province)) />
+			<cfset LOCAL.order.setBillingUnit(SESSION.order.billingAddress.unit) />
+			<cfset LOCAL.order.setBillingStreet(SESSION.order.billingAddress.street) />
+			<cfset LOCAL.order.setBillingCity(SESSION.order.billingAddress.city) />
+			<cfset LOCAL.order.setBillingProvince(SESSION.order.billingAddress.province) />
+			<cfset LOCAL.order.setBillingCountry(SESSION.order.billingAddress.country) />
+			<cfset LOCAL.order.setBillingPostalCode(SESSION.order.billingAddress.postalCode) />
 			
 			<cfset LOCAL.order.setCreatedDatetime(Now()) />
-			<cfset LOCAL.order.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 			
+			<!---
 			<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
+			--->
 			
-			<cfif FORM.coupon_code NEQ "">
-				<cfset LOCAL.order.addCoupon(EntityLoad("coupon",{couponCode = FORM.coupon_code}, true)) />
+			<cfif SESSION.order.couponCode NEQ "">
+				<cfset LOCAL.order.addCoupon(EntityLoad("coupon",{couponCode = SESSION.order.couponCode}, true)) />
 			</cfif>
 						
 			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />

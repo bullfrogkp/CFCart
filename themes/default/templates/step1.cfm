@@ -37,6 +37,12 @@
 				</tr>
 				<tbody>
 					<tr>
+						<td style="font-weight:bold;width:93px;">Company:</td>
+						<td>
+							<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
+						</td>
+					</tr>
+					<tr>
 						<td style="font-weight:bold;width:93px;">First Name:</td>
 						<td>
 							<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:180px;">
@@ -144,6 +150,12 @@
 						<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Information</th>
 					</tr>
 					<tbody>
+						<tr>
+							<td style="font-weight:bold;width:93px;">Company:</td>
+							<td>
+								<input name="billto_company" id="billto_company" type="text" maxlength="32" size="30" style="width:180px;">
+							</td>
+						</tr>
 						<tr>
 							<td style="font-weight:bold;width:93px;">First Name:</td>
 							<td>
