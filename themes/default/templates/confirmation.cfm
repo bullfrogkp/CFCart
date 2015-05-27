@@ -36,16 +36,16 @@
 							<p>#item.count#</p>
 						</td>
 						<td>
-							<p>#item.price#</p>
+							<p>#DollarFormat(item.price)#</p>
 						</td>
 						<td>
-							<p>#item.productSubTotal#</p>
+							<p>#DollarFormat(item.price * item.count)#</p>
 						</td>
 						<td>
-							<p>#item.productTaxSubTotal#</p>
+							<p>#DollarFormat(item.tax)#</p>
 						</td>
 						<td>
-							<p>#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - #productShippingMethodRela.getShippingMethod().getDisplayName()#: #productShippingMethodRela.getPrice()# (2 - 3 days)</p>
+							<p>#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - #productShippingMethodRela.getShippingMethod().getDisplayName()#: #DollarFormat(productShippingMethodRela.getPrice())# (2 - 3 days)</p>
 						</td>
 					</tr>
 				</cfloop>
