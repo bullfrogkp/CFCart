@@ -23,53 +23,44 @@
 			<cfset LOCAL.newCustomer.setFirstName(SESSION.order.billingAdress.firstName)) />
 			<cfset LOCAL.newCustomer.setMiddleName(SESSION.order.billingAdress.firstName) />
 			<cfset LOCAL.newCustomer.setLastName(SESSION.order.billingAdress.lastName) />
-			<cfset LOCAL.newCustomer.setPrefix(Trim(FORM.prefix)) />
-			<cfset LOCAL.newCustomer.setSuffix(Trim(FORM.suffix)) />
-			<cfset LOCAL.newCustomer.setEmail(Trim(FORM.email)) />
-			<cfset LOCAL.newCustomer.setPhone(Trim(FORM.phone)) />
+			<cfset LOCAL.newCustomer.setEmail(SESSION.order.email) />
+			<cfset LOCAL.newCustomer.setPhone(SESSION.order.billingAdress.phone) />
 			<cfset LOCAL.newCustomer.setIsEnabled(false) />
 			<cfset LOCAL.newCustomer.setIsDeleted(false) />
 			<cfset LOCAL.newCustomer.setCreatedDatetime(Now()) />
-			<cfset LOCAL.newCustomer.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.newCustomer.setCreatedUser(SESSION.user.userName) />
 			
 			<cfset LOCAL.newCustomer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 			
 			<cfset LOCAL.newAddress = EntityNew("address") />
-			<cfset LOCAL.newAddress.setUnit(Trim(FORM.shipping_unit)) />
-			<cfset LOCAL.newAddress.setStreet(Trim(FORM.shipping_street)) />
-			<cfset LOCAL.newAddress.setCity(Trim(FORM.shipping_city)) />
-			<cfset LOCAL.newAddress.setProvince(EntityLoadByPK("province",FORM.shipping_province_id)) />
-			<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("country",FORM.shipping_country_id)) />
-			<cfset LOCAL.newAddress.setPostalCode(Trim(FORM.shipping_postal_code)) />
+			<cfset LOCAL.newAddress.setUnit(SESSION.order.shippingAddress.unit)) />
+			<cfset LOCAL.newAddress.setStreet(SESSION.order.shippingAddress.street) />
+			<cfset LOCAL.newAddress.setCity(SESSION.order.shippingAddress.city)) />
+			<cfset LOCAL.newAddress.setProvince(SESSION.order.shippingAddress.province) />
+			<cfset LOCAL.newAddress.setCountry(SESSION.order.shippingAddress.country) />
+			<cfset LOCAL.newAddress.setPostalCode(SESSION.order.shippingAddress.postalCode) />
 			<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
-			<cfset LOCAL.newAddress.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.newAddress.setCreatedUser(SESSION.user.userName) />
 			
 			<cfset EntitySave(LOCAL.newAddress) />
 			<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
+			
+			<cfif SESSION.order.billingInfoIsDifferent EQ true>
+				<cfset LOCAL.newAddress = EntityNew("address") />
+				<cfset LOCAL.newAddress.setUnit(SESSION.order.billingAddress.unit)) />
+				<cfset LOCAL.newAddress.setStreet(SESSION.order.billingAddress.street) />
+				<cfset LOCAL.newAddress.setCity(SESSION.order.billingAddress.city)) />
+				<cfset LOCAL.newAddress.setProvince(SESSION.order.billingAddress.province) />
+				<cfset LOCAL.newAddress.setCountry(SESSION.order.billingAddress.country) />
+				<cfset LOCAL.newAddress.setPostalCode(SESSION.order.billingAddress.postalCode) />
+				<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
+				<cfset LOCAL.newAddress.setCreatedUser(SESSION.user.userName) />
 				
-				<cfif Trim(FORM.shipping_unit) NEQ Trim(FORM.billing_unit)
-				OR	Trim(FORM.shipping_street) NEQ Trim(FORM.billing_street)
-				OR	Trim(FORM.shipping_city) NEQ Trim(FORM.billing_city)
-				OR	Trim(FORM.shipping_province_id) NEQ Trim(FORM.billing_province_id)
-				OR	Trim(FORM.shipping_country_id) NEQ Trim(FORM.billing_country_id)
-				OR	Trim(FORM.shipping_postal_code) NEQ Trim(FORM.billing_postal_code)>
-					
-					<cfset LOCAL.newAddress = EntityNew("address") />
-					<cfset LOCAL.newAddress.setUnit(Trim(FORM.billing_unit)) />
-					<cfset LOCAL.newAddress.setStreet(Trim(FORM.billing_street)) />
-					<cfset LOCAL.newAddress.setCity(Trim(FORM.billing_city)) />
-					<cfset LOCAL.newAddress.setProvince(EntityLoadByPK("province",FORM.billing_province_id)) />
-					<cfset LOCAL.newAddress.setCountry(EntityLoadByPK("country",FORM.billing_country_id)) />
-					<cfset LOCAL.newAddress.setPostalCode(Trim(FORM.billing_postal_code)) />
-					<cfset LOCAL.newAddress.setCreatedDatetime(Now()) />
-					<cfset LOCAL.newAddress.setCreatedUser(SESSION.adminUser) />
-					
-					<cfset EntitySave(LOCAL.newAddress) />
-					<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
-				</cfif>
-				
-				<cfset EntitySave(LOCAL.newCustomer) />
+				<cfset EntitySave(LOCAL.newAddress) />
+				<cfset LOCAL.newCustomer.addAddress(LOCAL.newAddress) />
 			</cfif>
+		</cfif>	
+			
 				
 			<cfset LOCAL.order.setShippingCompany(Trim(FORM.shipping_company)) />
 			<cfset LOCAL.order.setShippingUnit(Trim(FORM.shipping_unit)) />

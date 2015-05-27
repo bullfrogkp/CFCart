@@ -93,11 +93,14 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		<cfset SESSION.order.email = Trim(FORM.new_email) />
+		
 		<cfset SESSION.order.shippingAddress = {} />
 		<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />
 		<cfset SESSION.order.shippingAddress.middleName = Trim(FORM.shipto_middle_name) />
 		<cfset SESSION.order.shippingAddress.lastName = Trim(FORM.shipto_last_name) />
 		<cfset SESSION.order.shippingAddress.phone = Trim(FORM.shipto_phone) />
+		<cfset SESSION.order.shippingAddress.unit = Trim(FORM.shipto_unit) />
 		<cfset SESSION.order.shippingAddress.street = Trim(FORM.shipto_street) />
 		<cfset SESSION.order.shippingAddress.city = Trim(FORM.shipto_city) />
 		<cfset SESSION.order.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
@@ -105,17 +108,20 @@
 		<cfset SESSION.order.shippingAddress.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 		
 		<cfif StructKeyExists(FORM,"billing_info_is_different")>
+			<cfset SESSION.order.billingInfoIsDifferent = true />
 			<cfset SESSION.order.billingAddress = {} />
 			<cfset SESSION.order.billingAddress.firstName = Trim(FORM.billto_first_name) />
 			<cfset SESSION.order.billingAddress.middleName = Trim(FORM.billto_middle_name) />
 			<cfset SESSION.order.billingAddress.lastName = Trim(FORM.billto_last_name) />
 			<cfset SESSION.order.billingAddress.phone = Trim(FORM.billto_phone) />
+			<cfset SESSION.order.billingAddress.unit = Trim(FORM.billto_unit) />
 			<cfset SESSION.order.billingAddress.street = Trim(FORM.billto_street) />
 			<cfset SESSION.order.billingAddress.city = Trim(FORM.billto_city) />
 			<cfset SESSION.order.billingAddress.postalCode = Trim(FORM.billto_postal_code) />
 			<cfset SESSION.order.billingAddress.province = EntityLoadByPK("province",FORM.billto_province_id) />
 			<cfset SESSION.order.billingAddress.country = EntityLoadByPK("country",FORM.billto_country_id) />
 		<cfelse>
+			<cfset SESSION.order.billingInfoIsDifferent = false />
 			<cfset SESSION.order.billingAddress = Duplicate(SESSION.order.shippingAddress) />
 		</cfif>
 		

@@ -67,6 +67,14 @@
 						</td>
 					</tr>
 					<tr>
+						<td style="font-weight:bold;">Unit: </td>
+						<td>
+							<input name="shipto_unit" id="shipto_unit" type="text" maxlength="100" size="25" style="width:180px;">
+							
+							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="street-validation-shipping">Please enter your street</span>
+						</td>
+					</tr>
+					<tr>
 						<td style="font-weight:bold;">Street: </td>
 						<td>
 							<input name="shipto_street" id="shipto_street" type="text" maxlength="100" size="25" style="width:180px;">
@@ -158,6 +166,14 @@
 								<input name="billto_phone" id="billto_phone" type="text" maxlength="32" size="30" style="width:180px;">
 								
 								&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="phone-validation-billing">Please enter your phone number</span>
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">Unit: </td>
+							<td>
+								<input name="billto_unit" id="billto_unit" type="text" maxlength="100" size="25" style="width:180px;">
+								
+								&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="street-validation-billing">Please enter your street</span>
 							</td>
 						</tr>
 						<tr>
