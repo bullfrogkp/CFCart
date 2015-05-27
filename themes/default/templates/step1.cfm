@@ -62,7 +62,7 @@
 			
 			<table id="current-address-table" class="shipping-address-selected" style="width:100%;margin-top:20px;">	
 				<tr>
-					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Information</th>
+					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Add a new address</th>
 				</tr>
 				<tbody>
 					<tr>
