@@ -63,6 +63,7 @@
 			<cfset SESSION.order.totalTax = 0 />
 			<cfset SESSION.order.totalShippingFee = 0 />
 			<cfset SESSION.order.total = 0 />
+			<cfset SESSION.order.discount = 0 />
 			<cfset SESSION.order.couponCode = "" />
 			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords() />
@@ -88,6 +89,7 @@
 				
 				<cfif LOCAL.applyCoupon.success EQ true>
 					<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
+					<cfset SESSION.order.discount = LOCAL.applyCoupon.discount />
 					<cfset SESSION.order.total = LOCAL.applyCoupon.newTotal />
 				</cfif>
 			</cfif>
