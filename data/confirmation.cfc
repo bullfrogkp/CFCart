@@ -12,6 +12,11 @@
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
+		
+		<!---
+		<cfset StructDelete(SESSION,"order") />
+		--->
+		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" />
 		
 		<cfreturn LOCAL />	
