@@ -110,11 +110,16 @@
 		</cfif>
 		
 		<cfset SESSION.order.shippingAddress = {} />
+		<cfset SESSION.order.billingAddress = {} />
+		<cfset SESSION.order.sameAddress = true />
 			
 		<cfif StructKeyExists(FORM,"shipto_this_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = true />
 			<cfset SESSION.order.shippingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			<cfset SESSION.order.billingAddress.useExistingAddress = true />
+			<cfset SESSION.order.billingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
 		<cfelse>
+			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
 			<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />
 			<cfset SESSION.order.shippingAddress.middleName = Trim(FORM.shipto_middle_name) />
@@ -126,6 +131,19 @@
 			<cfset SESSION.order.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
 			<cfset SESSION.order.shippingAddress.province = EntityLoadByPK("province",FORM.shipto_province_id) />
 			<cfset SESSION.order.shippingAddress.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+			
+			<cfset SESSION.order.billingAddress.useExistingAddress = false />
+			<cfset SESSION.order.billingAddress.company = Trim(FORM.shipto_company) />
+			<cfset SESSION.order.billingAddress.firstName = Trim(FORM.shipto_first_name) />
+			<cfset SESSION.order.billingAddress.middleName = Trim(FORM.shipto_middle_name) />
+			<cfset SESSION.order.billingAddress.lastName = Trim(FORM.shipto_last_name) />
+			<cfset SESSION.order.billingAddress.phone = Trim(FORM.shipto_phone) />
+			<cfset SESSION.order.billingAddress.unit = Trim(FORM.shipto_unit) />
+			<cfset SESSION.order.billingAddress.street = Trim(FORM.shipto_street) />
+			<cfset SESSION.order.billingAddress.city = Trim(FORM.shipto_city) />
+			<cfset SESSION.order.billingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+			<cfset SESSION.order.billingAddress.province = EntityLoadByPK("province",FORM.shipto_province_id) />
+			<cfset SESSION.order.billingAddress.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 		</cfif>		
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step2.cfm" />
