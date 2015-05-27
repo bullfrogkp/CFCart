@@ -40,6 +40,7 @@
 		<cfset retStruct.newTotal = "" />
 		<cfset retStruct.thresholdAmount = "" />
 		<cfset retStruct.discount = "" />
+		<cfset retStruct.couponId = "" />
 		
 		<cfset LOCAL.couponStatusType = EntityLoad("coupon_status_type",{name="active"},true) />
 		<cfset LOCAL.coupon = EntityLoad("coupon",{couponStatusType = LOCAL.couponStatusType, couponCode = Trim(ARGUMENTS.couponCode)},true) />
@@ -68,6 +69,7 @@
 					<cfset retStruct.discount = ARGUMENTS.total * LOCAL.coupon.getDiscountType().getAmount() />
 				</cfif>
 				<cfset retStruct.newTotal = ARGUMENTS.total - retStruct.discount />
+				<cfset retStruct.couponId = LOCAL.coupon.getCouponId() />
 			<cfelse>
 				<cfset retStruct.newTotal = ARGUMENTS.total />
 			</cfif>

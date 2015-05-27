@@ -89,6 +89,7 @@
 				
 				<cfif LOCAL.applyCoupon.success EQ true>
 					<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
+					<cfset SESSION.order.couponId = LOCAL.applyCoupon.couponId />
 					<cfset SESSION.order.discount = LOCAL.applyCoupon.discount />
 					<cfset SESSION.order.total = LOCAL.applyCoupon.newTotal />
 				</cfif>

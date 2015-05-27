@@ -85,8 +85,8 @@
 			<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
 			--->
 			
-			<cfif SESSION.order.couponCode NEQ "">
-				<cfset LOCAL.order.addCoupon(EntityLoad("coupon",{couponCode = SESSION.order.couponCode}, true)) />
+			<cfif IsNumeric(SESSION.order.couponId)>
+				<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
 			</cfif>
 						
 			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
