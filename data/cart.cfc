@@ -65,6 +65,7 @@
 			<cfset SESSION.order.totalPrice = 0 />
 			<cfset SESSION.order.discount = 0 />
 			<cfset SESSION.order.couponCode = "" />
+			<cfset SESSION.order.couponId = "" />
 			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords() />
 		

@@ -4,6 +4,7 @@
     <cfproperty name="firstName" column="first_name" ormtype="string"> 
     <cfproperty name="middleName" column="middle_name" ormtype="string"> 
     <cfproperty name="lastName" column="last_name" ormtype="string"> 
+    <cfproperty name="phone" column="phone" ormtype="string"> 
     <cfproperty name="unit" column="unit" ormtype="string"> 
     <cfproperty name="street" column="street" ormtype="string"> 
     <cfproperty name="city" column="city" ormtype="string"> 

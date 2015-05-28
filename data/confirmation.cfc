@@ -180,7 +180,7 @@
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
 						
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
-			<cfset LOCAL.orderProduct.setPrice(item.price) />
+			<cfset LOCAL.orderProduct.setPrice(item.singlePrice) />
 			<cfset LOCAL.orderProduct.setTaxCategoryName(LOCAL.product.getTaxCategory().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setSubtotalAmount(item.totalPrice) />
 			<cfset LOCAL.orderProduct.setTaxAmount(item.totalTax) />
@@ -188,7 +188,7 @@
 			<cfset LOCAL.orderProduct.setQuantity(item.count) />
 			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.productShippingMethodRela.getShippingMethod().getDisplayName()) />
-			<cfset LOCAL.orderProduct.setProductId(LOCAL.product.getProductId()) />
+			<cfset LOCAL.orderProduct.setProduct(LOCAL.product) />
 			<cfset LOCAL.orderProduct.setProductName(LOCAL.product.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
 			<cfset LOCAL.orderProduct.setImageName(product.getDefaultImageLink(type='small')) />
@@ -197,7 +197,7 @@
 			<cfset LOCAL.orderProductStatus = EntityNew("order_product_status") />
 			<cfset LOCAL.orderProductStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.orderProductStatus.setCurrent(true) />
-			<cfset LOCAL.orderProductStatus.setOrderProductStatusType(LOCAL.newProductStatusType) />
+			<cfset LOCAL.orderProductStatus.setOrderProductStatusType(LOCAL.orderProductStatusType) />
 			<cfset EntitySave(LOCAL.orderProductStatus) /> 
 			
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.orderProductStatus) />
