@@ -170,9 +170,9 @@
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setPrice(item.price) />
 			<cfset LOCAL.orderProduct.setTaxCategoryName(LOCAL.product.getTaxCategory().getDisplayName()) />
-			<cfset LOCAL.orderProduct.setSubtotalAmount(item.price * item.count) />
-			<cfset LOCAL.orderProduct.setTaxAmount(item.tax) />
-			<cfset LOCAL.orderProduct.setShippingAmount(item.shippingFee) />
+			<cfset LOCAL.orderProduct.setSubtotalAmount(item.totalPrice) />
+			<cfset LOCAL.orderProduct.setTaxAmount(item.totalTax) />
+			<cfset LOCAL.orderProduct.setShippingAmount(item.totalShippingFee) />
 			<cfset LOCAL.orderProduct.setQuantity(item.count) />
 			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.productShippingMethodRela.getShippingMethod().getDisplayName()) />
@@ -181,19 +181,16 @@
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
 			<cfset LOCAL.orderProduct.setImageName(product.getDefaultImageLink(type='small')) />
 			
-			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
-			<cfset LOCAL.newProductStatus = EntityNew("order_product_status") />
-			<cfset LOCAL.newProductStatus.setStartDatetime(Now()) />
-			<cfset LOCAL.newProductStatus.setCurrent(true) />
-			<cfset LOCAL.newProductStatus.setOrderProductStatusType(LOCAL.newProductStatusType) />
-			<cfset EntitySave(LOCAL.newProductStatus) /> 
+			<cfset LOCAL.orderProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
+			<cfset LOCAL.orderProductStatus = EntityNew("order_product_status") />
+			<cfset LOCAL.orderProductStatus.setStartDatetime(Now()) />
+			<cfset LOCAL.orderProductStatus.setCurrent(true) />
+			<cfset LOCAL.orderProductStatus.setOrderProductStatusType(LOCAL.newProductStatusType) />
+			<cfset EntitySave(LOCAL.orderProductStatus) /> 
 			
-			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.newProductStatus) />
-			
+			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.orderProductStatus) />
 			<cfset EntitySave(LOCAL.orderProduct) /> 
-			
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
-			
 			<cfset EntitySave(LOCAL.order) /> 
 		</cfloop>
 		
