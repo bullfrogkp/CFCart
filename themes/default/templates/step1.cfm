@@ -27,23 +27,38 @@
 			</ul>
 		</div>
 	</cfif>
-	<div id="checkout-info" class="single_field">
-		<div id="checkout-addresses" style="width:40%;float:left;margin-top:20px;">
+	<style>
+		.current-addresses {
+			list-style-type:none;
+			margin-left:-20px;
+			margin-bottom:20px;
+		}
 		
+		.current-addresses li {
+			border:1px solid ##ccc;
+			float:left;
+			padding:20px;
+			line-height:20px;
+			margin-left:20px;
+		}
+	</style>	
+	<div id="checkout-info" class="single_field">
+		<div id="checkout-addresses" style="width:100%;float:left;margin-top:20px;">
 			<cfif IsNumeric(SESSION.user.customerId)>
-				<cfset customer = EntiyLoadByPK("customer",SESSION.user.customerId) />
+				<cfset customer = EntityLoadByPK("customer",SESSION.user.customerId) />
 				<cfif ArrayLen(customer.getAddresses()) GT 0>
-					<ul>
+					<ul class="current-addresses">
 						<cfloop array="#customer.getAddresses()#" index="address">
 							<li>
 								#address.getFullName()#<br/>
 								#address.getUnit()# #address.getStreet()#<br/>
 								#address.getCity()#, #address.getProvince().getDisplayName()# #address.getPostalCode()#<br/>
-								#address.getCountry().getDisplayName()#<br/>
-								<input type="submit" class="use-this-address" addressid="#address.getAddressId()#" name="user_this_address" value="Use this address" />
+								#address.getCountry().getDisplayName()#<br/><br/>
+								<button class="btn-signup use-this-address" addressid="#address.getAddressId()#" type="submit" name="user_this_address" id="user_this_address" value="Use this address" style="font-size:12px;"><span>Use this address</span></button>
 							</li>
 						</cfloop>
 					</ul>
+					<div style="clear:both;"></div>
 				</cfif>
 			<cfelse>
 				<table style="width:100%;">	
@@ -129,7 +144,7 @@
 					<tr>
 						<td style="font-weight:bold;">Province: </td>
 						<td>
-							<select name="shipto_province_id" id="shipto_province_id" style="width:186px;">
+							<select name="shipto_province_id" id="shipto_province_id" style="width:190px;">
 								<option value="">Please select...</option>
 								<cfloop array="#REQUEST.pageData.provinces#" index="province">
 									<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
@@ -149,7 +164,7 @@
 					<tr>
 						<td style="font-weight:bold;">Country: </td>
 						<td>
-							<select name="shipto_country_id" id="shipto_country_id" style="width:186px;">
+							<select name="shipto_country_id" id="shipto_country_id" style="width:190px;">
 								<option value="">Please select...</option>
 								<cfloop array="#REQUEST.pageData.countries#" index="country">
 									<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
@@ -160,7 +175,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" style="padding-top:10px;">
-							<input type="submit" value="Ship to this address" name="shipping_to_new_address" />
+							<button class="btn-signup" type="submit" name="shipping_to_new_address" id="shipping_to_new_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
 						</td>
 					</tr>
 				</tbody>

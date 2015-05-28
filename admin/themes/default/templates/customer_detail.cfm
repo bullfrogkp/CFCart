@@ -77,6 +77,7 @@
 										</tr>
 									</thead>
 									<tbody>
+										<!---
 										<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getShoppingCartProducts()) AND ArrayLen(REQUEST.pageData.customer.getShoppingCartProducts()) NEQ 0>
 											<cfloop array="#REQUEST.pageData.customer.getShoppingCartProducts()#" index="product">
 											<tr>
@@ -86,10 +87,13 @@
 											</tr>
 											</cfloop>
 										<cfelse>
+										--->
 											<tr>
 												<td colspan="3">No result found</td>
 											</tr>
+										<!---
 										</cfif>
+										--->
 									</tbody>
 								</table>
 							</div>
@@ -104,6 +108,7 @@
 										</tr>
 									</thead>
 									<tbody>
+										<!---
 										<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getBuyLaterProducts()) AND ArrayLen(REQUEST.pageData.customer.getBuyLaterProducts()) NEQ 0>
 											<cfloop array="#REQUEST.pageData.customer.getBuyLaterProducts()#" index="product">
 												<tr>
@@ -113,10 +118,13 @@
 												</tr>
 											</cfloop>
 										<cfelse>
+										--->
 											<tr>
 												<td colspan="3">No result found</td>
 											</tr>
+										<!---
 										</cfif>
+										--->
 									</tbody>
 								</table>
 							</div>
@@ -132,6 +140,7 @@
 										</tr>
 									</thead>
 									<tbody>
+										<!---
 										<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getWishListProducts()) AND ArrayLen(REQUEST.pageData.customer.getWishListProducts()) NEQ 0>
 											<cfloop array="#REQUEST.pageData.customer.getWishListProducts()#" index="product">
 												<tr>
@@ -141,10 +150,13 @@
 												</tr>
 											</cfloop>
 										<cfelse>
+										--->
 											<tr>
 												<td colspan="3">No result found</td>
 											</tr>
+										<!---
 										</cfif>
+										--->
 									</tbody>
 								</table>
 							</div>
