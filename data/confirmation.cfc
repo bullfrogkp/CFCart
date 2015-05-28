@@ -185,6 +185,7 @@
 			<cfset LOCAL.orderProduct.setSubtotalAmount(item.totalPrice) />
 			<cfset LOCAL.orderProduct.setTaxAmount(item.totalTax) />
 			<cfset LOCAL.orderProduct.setShippingAmount(item.totalShippingFee) />
+			<cfset LOCAL.orderProduct.setTotalAmount(item.totalPrice + item.totalTax + item.totalShippingFee) />
 			<cfset LOCAL.orderProduct.setQuantity(item.count) />
 			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.productShippingMethodRela.getShippingMethod().getDisplayName()) />
