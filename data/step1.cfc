@@ -113,11 +113,34 @@
 		<cfset SESSION.order.billingAddress = {} />
 		<cfset SESSION.order.sameAddress = true />
 			
-		<cfif StructKeyExists(FORM,"shipto_this_address")>
+		<cfif StructKeyExists(FORM,"shipto_this_address")>			
 			<cfset SESSION.order.shippingAddress.useExistingAddress = true />
 			<cfset SESSION.order.shippingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			<cfset SESSION.order.shippingAddress.company = SESSION.order.shippingAddress.address.getCompany() />
+			<cfset SESSION.order.shippingAddress.firstName = SESSION.order.shippingAddress.address.getFirstName() />
+			<cfset SESSION.order.shippingAddress.middleName = SESSION.order.shippingAddress.address.getMiddleName() />
+			<cfset SESSION.order.shippingAddress.lastName = SESSION.order.shippingAddress.address.getLastName() />
+			<cfset SESSION.order.shippingAddress.phone = SESSION.order.shippingAddress.address.getPhone() />
+			<cfset SESSION.order.shippingAddress.unit = SESSION.order.shippingAddress.address.getUnit() />
+			<cfset SESSION.order.shippingAddress.street = SESSION.order.shippingAddress.address.getStreet() />
+			<cfset SESSION.order.shippingAddress.city = SESSION.order.shippingAddress.address.getCity() />
+			<cfset SESSION.order.shippingAddress.postalCode = SESSION.order.shippingAddress.address.getPostalCode() />
+			<cfset SESSION.order.shippingAddress.province = SESSION.order.shippingAddress.address.getProvince() />
+			<cfset SESSION.order.shippingAddress.country = SESSION.order.shippingAddress.address.getCountry() />
+			
 			<cfset SESSION.order.billingAddress.useExistingAddress = true />
 			<cfset SESSION.order.billingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			<cfset SESSION.order.billingAddress.company = SESSION.order.billingAddress.address.getCompany() />
+			<cfset SESSION.order.billingAddress.firstName = SESSION.order.billingAddress.address.getFirstName() />
+			<cfset SESSION.order.billingAddress.middleName = SESSION.order.billingAddress.address.getMiddleName() />
+			<cfset SESSION.order.billingAddress.lastName = SESSION.order.billingAddress.address.getLastName() />
+			<cfset SESSION.order.billingAddress.phone = SESSION.order.billingAddress.address.getPhone() />
+			<cfset SESSION.order.billingAddress.unit = SESSION.order.billingAddress.address.getUnit() />
+			<cfset SESSION.order.billingAddress.street = SESSION.order.billingAddress.address.getStreet() />
+			<cfset SESSION.order.billingAddress.city = SESSION.order.billingAddress.address.getCity() />
+			<cfset SESSION.order.billingAddress.postalCode = SESSION.order.billingAddress.address.getPostalCode() />
+			<cfset SESSION.order.billingAddress.province = SESSION.order.billingAddress.address.getProvince() />
+			<cfset SESSION.order.billingAddress.country = SESSION.order.billingAddress.address.getCountry() />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />

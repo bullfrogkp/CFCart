@@ -50,7 +50,7 @@
 					<ul class="current-addresses">
 						<cfloop array="#customer.getAddresses()#" index="address">
 							<li>
-								#address.getFullName()#<br/>
+								<span style="font-weight:bold;line-height:32px">#address.getFullName()#</span><br/>
 								#address.getUnit()# #address.getStreet()#<br/>
 								#address.getCity()#, #address.getProvince().getDisplayName()# #address.getPostalCode()#<br/>
 								#address.getCountry().getDisplayName()#<br/><br/>
