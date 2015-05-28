@@ -58,6 +58,9 @@
 				<cfset LOCAL.shippingAddress = SESSION.order.shippingAddress.address />
 			</cfif>	
 				
+			<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
+			<cfset LOCAL.order.setShippingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
+			<cfset LOCAL.order.setShippingLastName(LOCAL.shippingAddress.getLastName()) />
 			<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany()) />
 			<cfset LOCAL.order.setShippingUnit(LOCAL.shippingAddress.getUnit()) />
 			<cfset LOCAL.order.setShippingStreet(LOCAL.shippingAddress.getStreet()) />
@@ -66,6 +69,9 @@
 			<cfset LOCAL.order.setShippingCountry(LOCAL.shippingAddress.getCountry()) />
 			<cfset LOCAL.order.setShippingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
 			
+			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
+			<cfset LOCAL.order.setBillingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
+			<cfset LOCAL.order.setBillingLastName(LOCAL.shippingAddress.getLastName()) />
 			<cfset LOCAL.order.setBillingCompany(LOCAL.shippingAddress.getCompany()) />
 			<cfset LOCAL.order.setBillingUnit(LOCAL.shippingAddress.getUnit()) />
 			<cfset LOCAL.order.setBillingStreet(LOCAL.shippingAddress.getStreet()) />
@@ -98,6 +104,9 @@
 				<cfset LOCAL.shippingAddress = SESSION.order.shippingAddress.address />
 			</cfif>	
 				
+			<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
+			<cfset LOCAL.order.setShippingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
+			<cfset LOCAL.order.setShippingLastName(LOCAL.shippingAddress.getLastName()) />
 			<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany()) />
 			<cfset LOCAL.order.setShippingUnit(LOCAL.shippingAddress.getUnit()) />
 			<cfset LOCAL.order.setShippingStreet(LOCAL.shippingAddress.getStreet()) />
@@ -130,6 +139,9 @@
 				<cfset LOCAL.billingAddress = SESSION.order.billingAddress.address />
 			</cfif>	
 				
+			<cfset LOCAL.order.setBillingFirstName(LOCAL.billingAddress.getFirstName()) />
+			<cfset LOCAL.order.setBillingMiddleName(LOCAL.billingAddress.getMiddleName()) />
+			<cfset LOCAL.order.setBillingLastName(LOCAL.billingAddress.getLastName()) />
 			<cfset LOCAL.order.setBillingCompany(LOCAL.billingAddress.getCompany()) />
 			<cfset LOCAL.order.setBillingUnit(LOCAL.billingAddress.getUnit()) />
 			<cfset LOCAL.order.setBillingStreet(LOCAL.billingAddress.getStreet()) />
