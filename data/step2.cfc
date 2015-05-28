@@ -19,12 +19,12 @@
 			<cfloop array="#SESSION.order.productArray#" index="LOCAL.product">
 				<cfif LOCAL.product.productId EQ LOCAL.productId>
 					<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
-					<cfset LOCAL.product.shippingFee = LOCAL.productShippingMethodRela.getPrice() />
+					<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getPrice() />
+					<cfset SESSION.order.totalShippingFee += LOCAL.product.totalShippingFee />
+					<cfset SESSION.order.totalPrice += LOCAL.product.totalShippingFee />
 					<cfbreak />
 				</cfif>
 			</cfloop>
-			<cfset SESSION.order.totalShippingFee += LOCAL.product.shippingFee />
-			<cfset SESSION.order.totalPrice += LOCAL.product.shippingFee />
 		</cfloop>
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />

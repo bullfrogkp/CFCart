@@ -19,7 +19,7 @@
 		
 		<cfif SESSION.order.customer.isExistingCustomer EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
-			<cfset LOCAL.customer.setFirstName(SESSION.order.customer.firstName)) />
+			<cfset LOCAL.customer.setFirstName(SESSION.order.customer.firstName) />
 			<cfset LOCAL.customer.setMiddleName(SESSION.order.customer.firstName) />
 			<cfset LOCAL.customer.setLastName(SESSION.order.customer.lastName) />
 			<cfset LOCAL.customer.setEmail(SESSION.order.customer.email) />
@@ -37,7 +37,7 @@
 		<cfif SESSION.order.sameAddress EQ true>	
 			<cfif SESSION.order.shippingAddress.useExistingAddress EQ false>
 				<cfset LOCAL.shippingAddress = EntityNew("address") />
-				<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company)) />
+				<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company) />
 				<cfset LOCAL.shippingAddress.setFirstName(SESSION.order.shippingAddress.firstName) />
 				<cfset LOCAL.shippingAddress.setMiddleName(SESSION.order.shippingAddress.firstName) />
 				<cfset LOCAL.shippingAddress.setLastName(SESSION.order.shippingAddress.lastName) />

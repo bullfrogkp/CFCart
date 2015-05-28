@@ -39,7 +39,7 @@
 							<p>#item.count#</p>
 						</td>
 						<td>
-							<p>#DollarFormat(item.price)#</p>
+							<p>#DollarFormat(item.singlePrice)#</p>
 						</td>
 						<td>
 							<p>#DollarFormat(item.totalPrice)#</p>
@@ -149,7 +149,7 @@
 	
 		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
-				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotal)#</span></li>
+				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotalPrice)#</span></li>
 				<li>Tax <span>#DollarFormat(SESSION.order.totalTax)#</span></li>
 				<li>Shipping Cost <span>#DollarFormat(SESSION.order.totalShippingFee)#</span></li>
 				<cfif SESSION.order.discount GT 0>
