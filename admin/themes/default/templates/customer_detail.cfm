@@ -294,6 +294,14 @@
 														</th>
 													</tr>
 													<tr>
+														<td>Company</td>
+														<td>#address.getCompany()#</td>
+													</tr>
+													<tr>
+														<td>Name</td>
+														<td>#address.getFullName()#</td>
+													</tr>
+													<tr>
 														<td>Street</td>
 														<td>#address.getStreet()#</td>
 													</tr>
@@ -398,6 +406,18 @@
 			</div>
 		
 			<div class="modal-body">
+				<div class="form-group">
+					<input id="new_address_company" name="new_address_company" type="text" class="form-control" placeholder="Company">
+				</div>
+				<div class="form-group">
+					<input id="new_address_first_name" name="new_address_first_name" type="text" class="form-control" placeholder="First Name">
+				</div>
+				<div class="form-group">
+					<input id="new_address_middle_name" name="new_address_middle_name" type="text" class="form-control" placeholder="Middle Name">
+				</div>
+				<div class="form-group">
+					<input id="new_address_last_name" name="new_address_last_name" type="text" class="form-control" placeholder="Last Name">
+				</div>
 				<div class="form-group">
 					<input id="new_address_street" name="new_address_street" type="text" class="form-control" placeholder="Street">
 				</div>
