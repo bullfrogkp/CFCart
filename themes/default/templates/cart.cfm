@@ -1,18 +1,15 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {
-		function incrementValue(eid, increment){
-			$('##eid').val(Math.max(parseInt($('##eid').val()) + increment, 0));
-		}
 		
 		$(".plus").click(function() {
 			var e = $("##product_count_" + $(this).attr("trid"));
-			e.val(Math.max(parseInt(e.val()) + 1, 0));
+			e.val(Math.max(parseInt(e.val()) + 1, 1));
 		});
 		
 		$(".minus").click(function() {
 			var e = $("##product_count_" + $(this).attr("trid"));
-			e.val(Math.max(parseInt(e.val()) - 1, 0));
+			e.val(Math.max(parseInt(e.val()) - 1, 1));
 		});
 		
 		$(".update-count").click(function() {
@@ -103,7 +100,7 @@
 						<tr>
 							<td class="cart_product">
 								<a href="#productLink#">
-									<img style="width:150px" src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
+									<img style="width:70px" src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
 								</a>
 							</td>
 							<td class="cart_description">

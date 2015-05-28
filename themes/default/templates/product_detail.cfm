@@ -110,7 +110,7 @@
 		var valueElement = $('##product-count');
 		
 		function incrementValue(e){
-			valueElement.val(Math.max(parseInt(valueElement.val()) + e.data.increment, 0));
+			valueElement.val(Math.max(parseInt(valueElement.val()) + e.data.increment, 1));
 			return false;
 		}
 

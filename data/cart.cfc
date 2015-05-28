@@ -7,7 +7,7 @@
 		
 		<cfif StructKeyExists(FORM,"update_count")>
 			<cfloop collection="#FORM#" item="LOCAL.field">
-				<cfif FindNoCase("product_count_", LOCAL.field) AND NOT IsNumeric(FORM["#LOCAL.field#"])>
+				<cfif FindNoCase("product_count_", LOCAL.field) AND (NOT IsNumeric(FORM["#LOCAL.field#"]) OR FORM["#LOCAL.field#"] LT 1)>
 					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid value for the number of products in the order.") />
 					<cfbreak />
 				</cfif>
