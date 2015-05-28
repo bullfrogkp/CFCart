@@ -154,9 +154,7 @@
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		
-		<!---
-		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",FORM.payment_method_id)) />
-		--->
+		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",1)) />
 		
 		<cfif IsNumeric(SESSION.order.couponId)>
 			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
