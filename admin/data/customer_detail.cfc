@@ -102,6 +102,7 @@
 			<cfset LOCAL.newAddress.setFirstName(FORM.new_address_first_name) />
 			<cfset LOCAL.newAddress.setMiddleName(FORM.new_address_middle_name) />
 			<cfset LOCAL.newAddress.setLastName(FORM.new_address_last_name) />
+			<cfset LOCAL.newAddress.setPhone(FORM.new_address_phone) />
 			<cfset LOCAL.newAddress.setStreet(FORM.new_address_street) />
 			<cfset LOCAL.newAddress.setUnit(FORM.new_address_unit) />
 			<cfset LOCAL.newAddress.setCity(FORM.new_address_city) />

@@ -302,6 +302,10 @@
 														<td>#address.getFullName()#</td>
 													</tr>
 													<tr>
+														<td>Phone</td>
+														<td>#address.getPhone()#</td>
+													</tr>
+													<tr>
 														<td>Street</td>
 														<td>#address.getStreet()#</td>
 													</tr>
@@ -417,6 +421,9 @@
 				</div>
 				<div class="form-group">
 					<input id="new_address_last_name" name="new_address_last_name" type="text" class="form-control" placeholder="Last Name">
+				</div>
+				<div class="form-group">
+					<input id="new_address_phone" name="new_address_phone" type="text" class="form-control" placeholder="Phone">
 				</div>
 				<div class="form-group">
 					<input id="new_address_street" name="new_address_street" type="text" class="form-control" placeholder="Street">
