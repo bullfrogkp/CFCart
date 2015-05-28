@@ -14,8 +14,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.order = EntityNew("order") /> 
-		<cfset LOCAL.newOrderTrackingNumber = "OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#" />
-		<cfset LOCAL.order.setOrderTrackingNumber(LOCAL.newOrderTrackingNumber) />
+		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setIsDeleted(false) />
 		
 		<cfif SESSION.order.customer.isExistingCustomer EQ false>
@@ -35,8 +34,7 @@
 			<cfset LOCAL.customer = SESSION.order.customer.customer />
 		</cfif>
 						
-		<cfif SESSION.order.sameAddress EQ true>		
-		
+		<cfif SESSION.order.sameAddress EQ true>	
 			<cfif SESSION.order.shippingAddress.useExistingAddress EQ false>
 				<cfset LOCAL.shippingAddress = EntityNew("address") />
 				<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company)) />

@@ -24,6 +24,7 @@
 				</cfif>
 			</cfloop>
 			<cfset SESSION.order.totalShippingFee += LOCAL.product.shippingFee />
+			<cfset SESSION.order.totalPrice += LOCAL.product.shippingFee />
 		</cfloop>
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
