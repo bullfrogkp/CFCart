@@ -118,7 +118,7 @@
 			<cfset SESSION.order.shippingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
 			<cfset SESSION.order.billingAddress.useExistingAddress = true />
 			<cfset SESSION.order.billingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
-		<cfelse>
+		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
 			<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />

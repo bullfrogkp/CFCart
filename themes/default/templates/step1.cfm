@@ -168,9 +168,5 @@
 		</div>
 	</div>
 	<div style="clear:both;"></div>
-	<div  style="border-top:1px solid ##CCC;margin-top:20px;">
-	<input type="submit" name="update_cutomer_info" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
-	</div>
 	</form>
-
 </cfoutput>
