@@ -59,10 +59,10 @@
 		
 			<cfset SESSION.order = {} />
 			<cfset SESSION.order.productArray = [] />
-			<cfset SESSION.order.subTotal = 0 />
+			<cfset SESSION.order.subTotalPrice = 0 />
 			<cfset SESSION.order.totalTax = 0 />
 			<cfset SESSION.order.totalShippingFee = 0 />
-			<cfset SESSION.order.total = 0 />
+			<cfset SESSION.order.totalPrice = 0 />
 			<cfset SESSION.order.discount = 0 />
 			<cfset SESSION.order.couponCode = "" />
 			
@@ -71,27 +71,29 @@
 			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 				<cfset LOCAL.productStruct = {} />
 				<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
-				<cfset LOCAL.productStruct.price = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName) />
 				<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-				<cfset LOCAL.productStruct.tax = LOCAL.productStruct.price * LOCAL.record.getProduct().getTaxCategory().getRate() * LOCAL.record.getCount() />
+				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName) />
+				<cfset LOCAL.productStruct.singleTax = LOCAL.productStruct.singlePrice * LOCAL.record.getProduct().getTaxCategory().getRate() />
+				<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
+				<cfset LOCAL.productStruct.totalTax = LOCAL.productStruct.singleTax * LOCAL.productStruct.count />
 			
 				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />
 			
-				<cfset SESSION.order.subTotal += LOCAL.productStruct.price />
-				<cfset SESSION.order.totalTax += LOCAL.productStruct.tax />
+				<cfset SESSION.order.subTotalPrice += LOCAL.productStruct.totalPrice />
+				<cfset SESSION.order.totalTax += LOCAL.productStruct.totalTax />
 			</cfloop>
 			
-			<cfset SESSION.order.total = SESSION.order.subTotal + SESSION.order.totalTax />
+			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
 			
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
 				<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-				<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.total) />
+				<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.totalPrice) />
 				
 				<cfif LOCAL.applyCoupon.success EQ true>
 					<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
 					<cfset SESSION.order.couponId = LOCAL.applyCoupon.couponId />
 					<cfset SESSION.order.discount = LOCAL.applyCoupon.discount />
-					<cfset SESSION.order.total = LOCAL.applyCoupon.newTotal />
+					<cfset SESSION.order.totalPrice = LOCAL.applyCoupon.newTotal />
 				</cfif>
 			</cfif>
 		
