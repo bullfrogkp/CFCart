@@ -38,13 +38,13 @@
 			<cfif SESSION.order.shippingAddress.useExistingAddress EQ false>
 				<cfset LOCAL.shippingAddress = EntityNew("address") />
 				<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company)) />
-				<cfset LOCAL.shippingAddress.setFirstName(SESSION.order.shippingAddress.firstName)) />
+				<cfset LOCAL.shippingAddress.setFirstName(SESSION.order.shippingAddress.firstName) />
 				<cfset LOCAL.shippingAddress.setMiddleName(SESSION.order.shippingAddress.firstName) />
 				<cfset LOCAL.shippingAddress.setLastName(SESSION.order.shippingAddress.lastName) />
 				<cfset LOCAL.shippingAddress.setPhone(SESSION.order.shippingAddress.phone) />
-				<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit)) />
+				<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit) />
 				<cfset LOCAL.shippingAddress.setStreet(SESSION.order.shippingAddress.street) />
-				<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city)) />
+				<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city) />
 				<cfset LOCAL.shippingAddress.setProvince(SESSION.order.shippingAddress.province) />
 				<cfset LOCAL.shippingAddress.setCountry(SESSION.order.shippingAddress.country) />
 				<cfset LOCAL.shippingAddress.setPostalCode(SESSION.order.shippingAddress.postalCode) />
@@ -58,7 +58,7 @@
 				<cfset LOCAL.shippingAddress = SESSION.order.shippingAddress.address />
 			</cfif>	
 				
-			<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany())) />
+			<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany()) />
 			<cfset LOCAL.order.setShippingUnit(LOCAL.shippingAddress.getUnit()) />
 			<cfset LOCAL.order.setShippingStreet(LOCAL.shippingAddress.getStreet()) />
 			<cfset LOCAL.order.setShippingCity(LOCAL.shippingAddress.getCity()) />
@@ -66,26 +66,25 @@
 			<cfset LOCAL.order.setShippingCountry(LOCAL.shippingAddress.getCountry()) />
 			<cfset LOCAL.order.setShippingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
 			
-			<cfset LOCAL.order.setBillingCompany(LOCAL.shippingAddress.getCompany())) />
+			<cfset LOCAL.order.setBillingCompany(LOCAL.shippingAddress.getCompany()) />
 			<cfset LOCAL.order.setBillingUnit(LOCAL.shippingAddress.getUnit()) />
 			<cfset LOCAL.order.setBillingStreet(LOCAL.shippingAddress.getStreet()) />
 			<cfset LOCAL.order.setBillingCity(LOCAL.shippingAddress.getCity()) />
 			<cfset LOCAL.order.setBillingProvince(LOCAL.shippingAddress.getProvince()) />
 			<cfset LOCAL.order.setBillingCountry(LOCAL.shippingAddress.getCountry()) />
 			<cfset LOCAL.order.setBillingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
-		
 		<cfelse>
 			<!---  shipping --->
 			<cfif SESSION.order.shippingAddress.useExistingAddress EQ false>
 				<cfset LOCAL.shippingAddress = EntityNew("address") />
-				<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company)) />
-				<cfset LOCAL.shippingAddress.setFirstName(SESSION.order.shippingAddress.firstName)) />
+				<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company) />
+				<cfset LOCAL.shippingAddress.setFirstName(SESSION.order.shippingAddress.firstName) />
 				<cfset LOCAL.shippingAddress.setMiddleName(SESSION.order.shippingAddress.firstName) />
 				<cfset LOCAL.shippingAddress.setLastName(SESSION.order.shippingAddress.lastName) />
 				<cfset LOCAL.shippingAddress.setPhone(SESSION.order.shippingAddress.phone) />
-				<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit)) />
+				<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit) />
 				<cfset LOCAL.shippingAddress.setStreet(SESSION.order.shippingAddress.street) />
-				<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city)) />
+				<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city) />
 				<cfset LOCAL.shippingAddress.setProvince(SESSION.order.shippingAddress.province) />
 				<cfset LOCAL.shippingAddress.setCountry(SESSION.order.shippingAddress.country) />
 				<cfset LOCAL.shippingAddress.setPostalCode(SESSION.order.shippingAddress.postalCode) />
@@ -99,7 +98,7 @@
 				<cfset LOCAL.shippingAddress = SESSION.order.shippingAddress.address />
 			</cfif>	
 				
-			<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany())) />
+			<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany()) />
 			<cfset LOCAL.order.setShippingUnit(LOCAL.shippingAddress.getUnit()) />
 			<cfset LOCAL.order.setShippingStreet(LOCAL.shippingAddress.getStreet()) />
 			<cfset LOCAL.order.setShippingCity(LOCAL.shippingAddress.getCity()) />
@@ -110,14 +109,14 @@
 			<!--- billing --->
 			<cfif SESSION.order.billingAddress.useExistingAddress EQ false>
 				<cfset LOCAL.billingAddress = EntityNew("address") />
-				<cfset LOCAL.billingAddress.setCompany(SESSION.order.billingAddress.company)) />
-				<cfset LOCAL.billingAddress.setFirstName(SESSION.order.billingAddress.firstName)) />
+				<cfset LOCAL.billingAddress.setCompany(SESSION.order.billingAddress.company) />
+				<cfset LOCAL.billingAddress.setFirstName(SESSION.order.billingAddress.firstName) />
 				<cfset LOCAL.billingAddress.setMiddleName(SESSION.order.billingAddress.firstName) />
 				<cfset LOCAL.billingAddress.setLastName(SESSION.order.billingAddress.lastName) />
 				<cfset LOCAL.billingAddress.setPhone(SESSION.order.billingAddress.phone) />
-				<cfset LOCAL.billingAddress.setUnit(SESSION.order.billingAddress.unit)) />
+				<cfset LOCAL.billingAddress.setUnit(SESSION.order.billingAddress.unit) />
 				<cfset LOCAL.billingAddress.setStreet(SESSION.order.billingAddress.street) />
-				<cfset LOCAL.billingAddress.setCity(SESSION.order.billingAddress.city)) />
+				<cfset LOCAL.billingAddress.setCity(SESSION.order.billingAddress.city) />
 				<cfset LOCAL.billingAddress.setProvince(SESSION.order.billingAddress.province) />
 				<cfset LOCAL.billingAddress.setCountry(SESSION.order.billingAddress.country) />
 				<cfset LOCAL.billingAddress.setPostalCode(SESSION.order.billingAddress.postalCode) />
@@ -131,7 +130,7 @@
 				<cfset LOCAL.billingAddress = SESSION.order.billingAddress.address />
 			</cfif>	
 				
-			<cfset LOCAL.order.setBillingCompany(LOCAL.billingAddress.getCompany())) />
+			<cfset LOCAL.order.setBillingCompany(LOCAL.billingAddress.getCompany()) />
 			<cfset LOCAL.order.setBillingUnit(LOCAL.billingAddress.getUnit()) />
 			<cfset LOCAL.order.setBillingStreet(LOCAL.billingAddress.getStreet()) />
 			<cfset LOCAL.order.setBillingCity(LOCAL.billingAddress.getCity()) />
@@ -151,15 +150,14 @@
 			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
 		</cfif>
 					
-		<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
-		<cfset LOCAL.newStatus = EntityNew("order_status") />
-		<cfset LOCAL.newStatus.setStartDatetime(Now()) />
-		<cfset LOCAL.newStatus.setCurrent(true) />
-		<cfset LOCAL.newStatus.setOrderStatusType(LOCAL.newStatusType) />
-		<cfset EntitySave(LOCAL.newStatus) /> 
+		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
+		<cfset LOCAL.orderStatus = EntityNew("order_status") />
+		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
+		<cfset LOCAL.orderStatus.setCurrent(true) />
+		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
+		<cfset EntitySave(LOCAL.orderStatus) /> 
 		
-		<cfset LOCAL.order.addOrderStatus(LOCAL.newStatus) />
-		
+		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
 		<cfset EntitySave(LOCAL.order) />
 		
 		<cfset LOCAL.customer.addOrder(LOCAL.order) />
