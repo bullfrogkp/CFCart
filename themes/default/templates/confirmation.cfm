@@ -42,13 +42,13 @@
 							<p>#DollarFormat(item.price)#</p>
 						</td>
 						<td>
-							<p>#DollarFormat(item.price * item.count)#</p>
+							<p>#DollarFormat(item.totalPrice)#</p>
 						</td>
 						<td>
-							<p>#DollarFormat(item.tax)#</p>
+							<p>#DollarFormat(item.totalTax)#</p>
 						</td>
 						<td>
-							<p>#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - #productShippingMethodRela.getShippingMethod().getDisplayName()#: #DollarFormat(productShippingMethodRela.getPrice())# (2 - 3 days)</p>
+							<p>#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - #productShippingMethodRela.getShippingMethod().getDisplayName()#: #DollarFormat(item.totalShippingFee)# (2 - 3 days)</p>
 						</td>
 					</tr>
 				</cfloop>
@@ -155,7 +155,7 @@
 				<cfif SESSION.order.discount GT 0>
 				<li>Discount <span>- #DollarFormat(SESSION.order.discount)#</span></li>
 				</cfif>
-				<li>Total <span>#DollarFormat(SESSION.order.subTotal + SESSION.order.totalTax + SESSION.order.totalShippingFee)#</span></li>
+				<li>Total <span>#DollarFormat(SESSION.order.totalPrice)#</span></li>
 			</ul>
 		</div>
 	</div>
