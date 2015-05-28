@@ -2,9 +2,6 @@
     <cfproperty name="orderId" column="order_id" fieldtype="id" generator="native">
 	<cfproperty name="prefix" column="prefix" ormtype="string"> 
 	<cfproperty name="suffix" column="suffix" ormtype="string"> 
-	<cfproperty name="firstName" column="shipping_first_name" ormtype="string"> 
-	<cfproperty name="middleName" column="shipping_middle_name" ormtype="string"> 
-	<cfproperty name="lastName" column="shipping_last_name" ormtype="string">
 	<cfproperty name="comments" column="comments" ormtype="string">
 	<cfproperty name="orderTrackingNumber" column="order_tracking_number" ormtype="string">
 	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
@@ -13,6 +10,10 @@
 	
 	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">	
 	
+	
+	<cfproperty name="shippingFirstName" column="shipping_first_name" ormtype="string"> 
+	<cfproperty name="shippingMiddleName" column="shipping_middle_name" ormtype="string"> 
+	<cfproperty name="shippingLastName" column="shipping_last_name" ormtype="string">
     <cfproperty name="shippingCompany" column="shipping_company" ormtype="string"> 
     <cfproperty name="shippingUnit" column="shipping_unit" ormtype="string"> 
     <cfproperty name="shippingStreet" column="shipping_street" ormtype="string"> 
@@ -21,6 +22,10 @@
 	<cfproperty name="shippingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="shipping_country_id">
 	<cfproperty name="shippingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="shipping_province_id">	
 	
+	
+	<cfproperty name="billingFirstName" column="billing_first_name" ormtype="string"> 
+	<cfproperty name="billingMiddleName" column="billing_middle_name" ormtype="string"> 
+	<cfproperty name="billingLastName" column="billing_last_name" ormtype="string">
     <cfproperty name="billingCompany" column="billing_company" ormtype="string"> 
     <cfproperty name="billingUnit" column="billing_unit" ormtype="string"> 
     <cfproperty name="billingStreet" column="billing_street" ormtype="string"> 
