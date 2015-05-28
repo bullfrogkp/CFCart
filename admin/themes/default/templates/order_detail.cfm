@@ -398,7 +398,7 @@
 												<td>#product.getQuantity()#</td>
 												<td>#product.getSku()#</td>
 												<td>#product.getProductName()#</td>
-												<td>#DollarFormat(product.getOrderPrice() * product.getQuantity())#</td>
+												<td>#DollarFormat(product.getPrice() * product.getQuantity())#</td>
 											</tr>
 											</cfloop>
 										</tbody>

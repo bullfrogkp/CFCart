@@ -42,9 +42,9 @@
 
 	<cffunction name="getCustomerFullName" access="public" output="false" returnType="string">
 		
-		<cfset var firstName = isNull(getFirstName())?"":getFirstName() />
-		<cfset var middleName = isNull(getMiddleName())?"":getMiddleName() />
-		<cfset var lastName = isNull(getLastName())?"":getLastName() />
+		<cfset var firstName = isNull(getCustomer().getFirstName())?"":getCustomer().getFirstName() />
+		<cfset var middleName = isNull(getCustomer().getMiddleName())?"":getCustomer().getMiddleName() />
+		<cfset var lastName = isNull(getCustomer().getLastName())?"":getCustomer().getLastName() />
 		
 		<cfif middleName EQ "">
 			<cfset var fullName = firstName & " " & lastName />
