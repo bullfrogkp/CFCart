@@ -125,8 +125,8 @@
 			<cfset SESSION.order.shippingAddress.street = SESSION.order.shippingAddress.address.getStreet() />
 			<cfset SESSION.order.shippingAddress.city = SESSION.order.shippingAddress.address.getCity() />
 			<cfset SESSION.order.shippingAddress.postalCode = SESSION.order.shippingAddress.address.getPostalCode() />
-			<cfset SESSION.order.shippingAddress.province = SESSION.order.shippingAddress.address.getProvince() />
-			<cfset SESSION.order.shippingAddress.country = SESSION.order.shippingAddress.address.getCountry() />
+			<cfset SESSION.order.shippingAddress.province = EntityLoadByPK("province",SESSION.order.shippingAddress.address.getProvince().getProvinceId()) />
+			<cfset SESSION.order.shippingAddress.country = EntityLoadByPK("country",SESSION.order.shippingAddress.address.getCountry().getCountryId()) />
 			
 			<cfset SESSION.order.billingAddress.useExistingAddress = true />
 			<cfset SESSION.order.billingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
@@ -139,8 +139,8 @@
 			<cfset SESSION.order.billingAddress.street = SESSION.order.billingAddress.address.getStreet() />
 			<cfset SESSION.order.billingAddress.city = SESSION.order.billingAddress.address.getCity() />
 			<cfset SESSION.order.billingAddress.postalCode = SESSION.order.billingAddress.address.getPostalCode() />
-			<cfset SESSION.order.billingAddress.province = SESSION.order.billingAddress.address.getProvince() />
-			<cfset SESSION.order.billingAddress.country = SESSION.order.billingAddress.address.getCountry() />
+			<cfset SESSION.order.billingAddress.province = EntityLoadByPK("province",SESSION.order.billingAddress.address.getProvince().getProvinceId()) />
+			<cfset SESSION.order.billingAddress.country = EntityLoadByPK("country",SESSION.order.billingAddress.address.getCountry().getCountryId()) />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />

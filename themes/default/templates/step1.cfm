@@ -3,7 +3,7 @@
 	$(document).ready(function() {
 		
 		$(".use-this-address").click(function() {
-			$("##existing_address_id").val($(this).attr("addressid"));
+			$("##existing-address-id").val($(this).attr("addressid"));
 		});
 		
 	});
@@ -17,7 +17,7 @@
 	<span style="vertical-align:middle">Customer Information</span> 
 </div>
 	<form method="post">
-	<input type="hidden" name="existing_address_id" value="" />
+	<input type="hidden" name="existing_address_id" id="existing-address-id" value="" />
 	<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
 		<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
 			<ul>
@@ -54,7 +54,7 @@
 								#address.getUnit()# #address.getStreet()#<br/>
 								#address.getCity()#, #address.getProvince().getDisplayName()# #address.getPostalCode()#<br/>
 								#address.getCountry().getDisplayName()#<br/><br/>
-								<button class="btn-signup use-this-address" addressid="#address.getAddressId()#" type="submit" name="user_this_address" id="user_this_address" value="Use this address" style="font-size:12px;"><span>Use this address</span></button>
+								<button class="btn-signup use-this-address" addressid="#address.getAddressId()#" type="submit" name="shipto_this_address" id="shipto_this_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
 							</li>
 						</cfloop>
 					</ul>

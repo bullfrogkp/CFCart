@@ -31,7 +31,7 @@
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
-			<cfset LOCAL.customer = SESSION.order.customer.customer />
+			<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.order.customer.customer.getCustomerId()) />
 		</cfif>
 						
 		<cfif SESSION.order.sameAddress EQ true>	
