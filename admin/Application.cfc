@@ -94,7 +94,6 @@
 		<cfset SetEncoding("url","utf-8") />
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
-		<cfset APPLICATION.siteInfo = EntityLoad("site_info") />	
 		
 		<cfreturn true>
 	</cffunction>

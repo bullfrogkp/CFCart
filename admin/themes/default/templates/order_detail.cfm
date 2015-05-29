@@ -343,7 +343,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<h2 class="page-header">
-										<i class="fa fa-globe"></i> #APPLICATION.siteInfo.getName()#
+										<i class="fa fa-globe"></i> #REQUEST.pageData.siteInfo.getName()#
 										<small class="pull-right">Date: #DateFormat(REQUEST.pageData.order.getCreatedDatetime(),"mmm dd, yyyy")# #TimeFormat(REQUEST.pageData.order.getCreatedDatetime(),"hh:mm:ss")#</small>
 									</h2>
 								</div><!-- /.col -->
@@ -353,11 +353,11 @@
 								<div class="col-sm-4 invoice-col">
 									From
 									<address>
-										<strong>#APPLICATION.siteInfo.getName()#</strong><br>
-										#APPLICATION.siteInfo.getStreet()#, #APPLICATION.siteInfo.getUnit()#<br>
-										#APPLICATION.siteInfo.getCity()#, #APPLICATION.siteInfo.getProvince().getDisplayName()# #APPLICATION.siteInfo.getPostalCode()#<br>
-										Phone: #APPLICATION.siteInfo.getPhone()#<br/>
-										Email: #APPLICATION.siteInfo.getEmail()#
+										<strong>#REQUEST.pageData.siteInfo.getName()#</strong><br>
+										#REQUEST.pageData.siteInfo.getStreet()#, #REQUEST.pageData.siteInfo.getUnit()#<br>
+										#REQUEST.pageData.siteInfo.getCity()#, #REQUEST.pageData.siteInfo.getProvince().getDisplayName()# #REQUEST.pageData.siteInfo.getPostalCode()#<br>
+										Phone: #REQUEST.pageData.siteInfo.getPhone()#<br/>
+										Email: #REQUEST.pageData.siteInfo.getEmail()#
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">
