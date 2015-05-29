@@ -165,4 +165,12 @@
 		
 		<cfreturn LOCAL.retValue />
     </cffunction>
+	
+	<cffunction name="getTaxRate" access="public" output="false" returnType="string">
+		<cfargument name="provinceId" type="numeric" required="true" />
+		
+		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=getTaxCategory()},true) />
+		
+		<cfreturn tax.getRate() />
+	</cffunction>
 </cfcomponent>
