@@ -174,7 +174,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" style="padding-top:10px;">
+						<td></td>
+						<td style="padding-top:10px;">
 							<button class="btn-signup" type="submit" name="shipping_to_new_address" id="shipping_to_new_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
 						</td>
 					</tr>
