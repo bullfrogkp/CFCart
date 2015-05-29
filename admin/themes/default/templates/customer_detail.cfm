@@ -258,7 +258,7 @@
 									<tr>
 										<td>#order.getOrderTrackingNumber()#</td>
 										<td>#order.getCreatedDatetime()#</td>
-										<td>#order.getFirstName()# #order.getMiddleName()# #order.getLastName()#</td>
+										<td>#order.getBillingFirstName()# #order.getBillingMiddleName()# #order.getBillingLastName()#</td>
 										<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">View Detail</a></td>
 									</tr>
 								</cfloop>
