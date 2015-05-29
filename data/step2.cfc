@@ -13,6 +13,8 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		<cfset SESSION.order.totalShippingFee = 0 />
+		
 		<cfloop list="#FORM.product_shipping_method_rela_id_list#" index="LOCAL.productShippingMethodRelaId">
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
 			<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
@@ -21,11 +23,12 @@
 					<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
 					<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getPrice() />
 					<cfset SESSION.order.totalShippingFee += LOCAL.product.totalShippingFee />
-					<cfset SESSION.order.totalPrice += LOCAL.product.totalShippingFee />
 					<cfbreak />
 				</cfif>
 			</cfloop>
 		</cfloop>
+		
+		<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax + SESSION.order.totalShippingFee />
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
 		
