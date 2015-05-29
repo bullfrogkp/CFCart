@@ -1,4 +1,5 @@
 ﻿<cfoutput>
+<cfif ArrayLen(REQUEST.pageData.trackingRecords) GT 0>
 <script>
 	$(document).ready(function() {
 		
@@ -51,7 +52,7 @@
 		});
 	});
 </script>
-
+</cfif>
 <div id="breadcrumb">
 	<div class="breadcrumb-home-icon"></div>
 	<div class="breadcrumb-arrow-icon"></div>
