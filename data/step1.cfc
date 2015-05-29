@@ -167,7 +167,16 @@
 			<cfset SESSION.order.billingAddress.postalCode = Trim(FORM.shipto_postal_code) />
 			<cfset SESSION.order.billingAddress.province = EntityLoadByPK("province",FORM.shipto_province_id) />
 			<cfset SESSION.order.billingAddress.country = EntityLoadByPK("country",FORM.shipto_country_id) />
-		</cfif>		
+		</cfif>	
+
+		<cfset SESSION.order.totalTax = 0 />
+		
+		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
+			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
+			<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.province.getProvinceId()) />
+			<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
+			<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
+		</cfloop>
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step2.cfm" />
 		
