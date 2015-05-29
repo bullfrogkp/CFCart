@@ -45,8 +45,8 @@
 				<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit) />
 				<cfset LOCAL.shippingAddress.setStreet(SESSION.order.shippingAddress.street) />
 				<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city) />
-				<cfset LOCAL.shippingAddress.setProvince(SESSION.order.shippingAddress.province) />
-				<cfset LOCAL.shippingAddress.setCountry(SESSION.order.shippingAddress.country) />
+				<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",SESSION.order.shippingAddress.provinceId)) />
+				<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",SESSION.order.shippingAddress.countryId)) />
 				<cfset LOCAL.shippingAddress.setPostalCode(SESSION.order.shippingAddress.postalCode) />
 				<cfset LOCAL.shippingAddress.setCreatedDatetime(Now()) />
 				<cfset LOCAL.shippingAddress.setCreatedUser(SESSION.user.userName) />
@@ -55,7 +55,7 @@
 				<cfset LOCAL.customer.addAddress(LOCAL.shippingAddress) />
 				<cfset EntitySave(LOCAL.customer) />
 			<cfelse>
-				<cfset LOCAL.shippingAddress = SESSION.order.shippingAddress.address />
+				<cfset LOCAL.shippingAddress = EntityLoadByPK("address",SESSION.order.shippingAddress.addressId) />
 			</cfif>	
 				
 			<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
@@ -91,8 +91,8 @@
 				<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit) />
 				<cfset LOCAL.shippingAddress.setStreet(SESSION.order.shippingAddress.street) />
 				<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city) />
-				<cfset LOCAL.shippingAddress.setProvince(SESSION.order.shippingAddress.province) />
-				<cfset LOCAL.shippingAddress.setCountry(SESSION.order.shippingAddress.country) />
+				<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",SESSION.order.shippingAddress.provinceId)) />
+				<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",SESSION.order.shippingAddress.countryId)) />
 				<cfset LOCAL.shippingAddress.setPostalCode(SESSION.order.shippingAddress.postalCode) />
 				<cfset LOCAL.shippingAddress.setCreatedDatetime(Now()) />
 				<cfset LOCAL.shippingAddress.setCreatedUser(SESSION.user.userName) />
@@ -101,7 +101,7 @@
 				<cfset LOCAL.customer.addAddress(LOCAL.shippingAddress) />
 				<cfset EntitySave(LOCAL.customer) />
 			<cfelse>
-				<cfset LOCAL.shippingAddress = SESSION.order.shippingAddress.address />
+				<cfset LOCAL.shippingAddress = EntityLoadByPK("address",SESSION.order.shippingAddress.addressId) />
 			</cfif>	
 				
 			<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
@@ -136,7 +136,7 @@
 				<cfset LOCAL.customer.addAddress(LOCAL.billingAddress) />
 				<cfset EntitySave(LOCAL.customer) />
 			<cfelse>
-				<cfset LOCAL.billingAddress = SESSION.order.billingAddress.address />
+				<cfset LOCAL.billingAddress = EntityLoadByPK("address",SESSION.order.billingAddress.addressId) />
 			</cfif>	
 				
 			<cfset LOCAL.order.setBillingFirstName(LOCAL.billingAddress.getFirstName()) />

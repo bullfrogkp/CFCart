@@ -87,7 +87,7 @@
 
 					<tr>
 						<td class="first-col">Province:</td>
-						<td>#SESSION.order.shippingAddress.province.getDisplayName()#</td>
+						<td>#EntityLoadByPK("province",SESSION.order.shippingAddress.provinceId).getDisplayName()#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Postal Code:</td>
@@ -95,7 +95,7 @@
 					</tr>
 					<tr>
 						<td class="first-col">Country:</td>
-						<td>#SESSION.order.shippingAddress.country.getDisplayName()#</td>
+						<td>#EntityLoadByPK("country",SESSION.order.shippingAddress.countryId).getDisplayName()#</td>
 					</tr>
 				</tbody>
 			</table>
@@ -133,7 +133,7 @@
 
 					<tr>
 						<td class="first-col">Province:</td>
-						<td>#SESSION.order.billingAddress.province.getDisplayName()#</td>
+						<td>#EntityLoadByPK("province",SESSION.order.billingAddress.provinceId).getDisplayName()#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Postal Code:</td>
@@ -141,7 +141,7 @@
 					</tr>
 					<tr>
 						<td class="first-col">Country:</td>
-						<td>#SESSION.order.billingAddress.country.getDisplayName()#</td>
+						<td>#EntityLoadByPK("country",SESSION.order.billingAddress.countryId).getDisplayName()#</td>
 					</tr>
 				</tbody>
 			</table>

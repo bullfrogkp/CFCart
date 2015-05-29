@@ -127,8 +127,8 @@
 			<cfset SESSION.order.shippingAddress.street = SESSION.order.shippingAddress.address.getStreet() />
 			<cfset SESSION.order.shippingAddress.city = SESSION.order.shippingAddress.address.getCity() />
 			<cfset SESSION.order.shippingAddress.postalCode = SESSION.order.shippingAddress.address.getPostalCode() />
-			<cfset SESSION.order.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId()) />
-			<cfset SESSION.order.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId()) />
+			<cfset SESSION.order.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
+			<cfset SESSION.order.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
 			
 			<cfset SESSION.order.billingAddress.useExistingAddress = true />
 			<cfset SESSION.order.billingAddress.addressId = FORM.existing_address_id />
@@ -141,8 +141,8 @@
 			<cfset SESSION.order.billingAddress.street = SESSION.order.billingAddress.address.getStreet() />
 			<cfset SESSION.order.billingAddress.city = SESSION.order.billingAddress.address.getCity() />
 			<cfset SESSION.order.billingAddress.postalCode = SESSION.order.billingAddress.address.getPostalCode() />
-			<cfset SESSION.order.billingAddress.provinceId = LOCAL.address.getProvince().getProvinceId()) />
-			<cfset SESSION.order.billingAddress.countryId = LOCAL.address.getCountry().getCountryId()) />
+			<cfset SESSION.order.billingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
+			<cfset SESSION.order.billingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
@@ -175,7 +175,7 @@
 		
 		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
 			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
-			<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.province.getProvinceId()) />
+			<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId) />
 			<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
 			<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
 		</cfloop>
