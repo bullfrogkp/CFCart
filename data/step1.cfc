@@ -99,7 +99,7 @@
 			
 		<cfif IsNumeric(SESSION.user.customerId)>
 			<cfset SESSION.order.customer.isExistingCustomer = true />
-			<cfset SESSION.order.customer.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
+			<cfset SESSION.order.customer.customerId = SESSION.user.customerId />
 		<cfelse>
 			<cfset SESSION.order.customer.isExistingCustomer = false />
 			<cfset SESSION.order.customer.email = Trim(FORM.new_email) />
@@ -114,8 +114,10 @@
 		<cfset SESSION.order.sameAddress = true />
 			
 		<cfif StructKeyExists(FORM,"shipto_this_address")>			
+			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			
 			<cfset SESSION.order.shippingAddress.useExistingAddress = true />
-			<cfset SESSION.order.shippingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			<cfset SESSION.order.shippingAddress.addressId = FORM.existing_address_id />
 			<cfset SESSION.order.shippingAddress.company = SESSION.order.shippingAddress.address.getCompany() />
 			<cfset SESSION.order.shippingAddress.firstName = SESSION.order.shippingAddress.address.getFirstName() />
 			<cfset SESSION.order.shippingAddress.middleName = SESSION.order.shippingAddress.address.getMiddleName() />
@@ -125,11 +127,11 @@
 			<cfset SESSION.order.shippingAddress.street = SESSION.order.shippingAddress.address.getStreet() />
 			<cfset SESSION.order.shippingAddress.city = SESSION.order.shippingAddress.address.getCity() />
 			<cfset SESSION.order.shippingAddress.postalCode = SESSION.order.shippingAddress.address.getPostalCode() />
-			<cfset SESSION.order.shippingAddress.province = EntityLoadByPK("province",SESSION.order.shippingAddress.address.getProvince().getProvinceId()) />
-			<cfset SESSION.order.shippingAddress.country = EntityLoadByPK("country",SESSION.order.shippingAddress.address.getCountry().getCountryId()) />
+			<cfset SESSION.order.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId()) />
+			<cfset SESSION.order.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId()) />
 			
 			<cfset SESSION.order.billingAddress.useExistingAddress = true />
-			<cfset SESSION.order.billingAddress.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			<cfset SESSION.order.billingAddress.addressId = FORM.existing_address_id />
 			<cfset SESSION.order.billingAddress.company = SESSION.order.billingAddress.address.getCompany() />
 			<cfset SESSION.order.billingAddress.firstName = SESSION.order.billingAddress.address.getFirstName() />
 			<cfset SESSION.order.billingAddress.middleName = SESSION.order.billingAddress.address.getMiddleName() />
@@ -139,8 +141,8 @@
 			<cfset SESSION.order.billingAddress.street = SESSION.order.billingAddress.address.getStreet() />
 			<cfset SESSION.order.billingAddress.city = SESSION.order.billingAddress.address.getCity() />
 			<cfset SESSION.order.billingAddress.postalCode = SESSION.order.billingAddress.address.getPostalCode() />
-			<cfset SESSION.order.billingAddress.province = EntityLoadByPK("province",SESSION.order.billingAddress.address.getProvince().getProvinceId()) />
-			<cfset SESSION.order.billingAddress.country = EntityLoadByPK("country",SESSION.order.billingAddress.address.getCountry().getCountryId()) />
+			<cfset SESSION.order.billingAddress.provinceId = LOCAL.address.getProvince().getProvinceId()) />
+			<cfset SESSION.order.billingAddress.countryId = LOCAL.address.getCountry().getCountryId()) />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
@@ -152,8 +154,8 @@
 			<cfset SESSION.order.shippingAddress.street = Trim(FORM.shipto_street) />
 			<cfset SESSION.order.shippingAddress.city = Trim(FORM.shipto_city) />
 			<cfset SESSION.order.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
-			<cfset SESSION.order.shippingAddress.province = EntityLoadByPK("province",FORM.shipto_province_id) />
-			<cfset SESSION.order.shippingAddress.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+			<cfset SESSION.order.shippingAddress.provinceId = FORM.shipto_province_id />
+			<cfset SESSION.order.shippingAddress.countryId = FORM.shipto_country_id />
 			
 			<cfset SESSION.order.billingAddress.useExistingAddress = false />
 			<cfset SESSION.order.billingAddress.company = Trim(FORM.shipto_company) />
@@ -165,8 +167,8 @@
 			<cfset SESSION.order.billingAddress.street = Trim(FORM.shipto_street) />
 			<cfset SESSION.order.billingAddress.city = Trim(FORM.shipto_city) />
 			<cfset SESSION.order.billingAddress.postalCode = Trim(FORM.shipto_postal_code) />
-			<cfset SESSION.order.billingAddress.province = EntityLoadByPK("province",FORM.shipto_province_id) />
-			<cfset SESSION.order.billingAddress.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+			<cfset SESSION.order.billingAddress.provinceId = FORM.shipto_province_id />
+			<cfset SESSION.order.billingAddress.countryId = FORM.shipto_country_id />
 		</cfif>	
 
 		<cfset SESSION.order.totalTax = 0 />
