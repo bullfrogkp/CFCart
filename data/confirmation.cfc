@@ -126,8 +126,8 @@
 				<cfset LOCAL.billingAddress.setUnit(SESSION.order.billingAddress.unit) />
 				<cfset LOCAL.billingAddress.setStreet(SESSION.order.billingAddress.street) />
 				<cfset LOCAL.billingAddress.setCity(SESSION.order.billingAddress.city) />
-				<cfset LOCAL.billingAddress.setProvince(SESSION.order.billingAddress.province) />
-				<cfset LOCAL.billingAddress.setCountry(SESSION.order.billingAddress.country) />
+				<cfset LOCAL.billingAddress.setProvince(EntityLoadByPK("province",SESSION.order.billingAddress.provinceId)) />
+				<cfset LOCAL.billingAddress.setCountry(EntityLoadByPK("country",SESSION.order.billingAddress.countryId)) />
 				<cfset LOCAL.billingAddress.setPostalCode(SESSION.order.billingAddress.postalCode) />
 				<cfset LOCAL.billingAddress.setCreatedDatetime(Now()) />
 				<cfset LOCAL.billingAddress.setCreatedUser(SESSION.user.userName) />
