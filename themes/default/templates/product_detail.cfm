@@ -2,7 +2,7 @@
 <script>
 	$(document).ready(function() {
 		<cfif Find("no_image_available",REQUEST.pageData.product.getDefaultImageLink()) EQ 0>
-		$("##img_01").elevateZoom({constrainType:"height", constrainSize:274, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', borderSize: '1', imageCrossfade: true, loadingIcon: '#SESSION.absoluteUrlTheme#images/loader.gif'}); 
+		$("##img_01").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', borderSize: '1', imageCrossfade: true, loadingIcon: '#SESSION.absoluteUrlTheme#images/loader.gif'}); 
 		$("##img_01").bind("click", function(e) { var ez = $('##img_01').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false; }); 
 		</cfif>
 		
