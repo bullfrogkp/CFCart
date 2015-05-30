@@ -67,11 +67,10 @@
 						<td>
 							<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
 						</td>
-						<td style="font-weight:bold;">Unit: </td>
+						<td style="width:20px;"></td>
+						<td style="font-weight:bold;width:93px;">Unit: </td>
 						<td>
 							<input name="shipto_unit" id="shipto_unit" type="text" maxlength="100" size="25" style="width:180px;">
-							
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="street-validation-shipping">Please enter your street</span>
 						</td>
 					</tr>
 					<tr>
@@ -79,25 +78,21 @@
 						<td>
 							<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
 						</td>
-						<td style="font-weight:bold;">Street: </td>
+						<td style="width:20px;"></td>
+						<td style="font-weight:bold;width:93px;">Street: </td>
 						<td>
 							<input name="shipto_street" id="shipto_street" type="text" maxlength="100" size="25" style="width:180px;">
-							
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="street-validation-shipping">Please enter your street</span>
 						</td>
 					</tr>
 					<tr>
 						<td style="font-weight:bold;width:93px;">First Name:</td>
 						<td>
 							<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:180px;">
-							
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="first-name-validation-shipping">Please enter your first name</span>
 						</td>
-						<td style="font-weight:bold;">City: </td>
+						<td style="width:20px;"></td>
+						<td style="font-weight:bold;width:93px;">City: </td>
 						<td>
 							<input name="shipto_city" id="shipto_city" type="text" maxlength="40" size="25" style="width:180px;">
-							
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="city-validation-shipping">Please enter your city</span>
 						</td>
 					</tr>
 					<tr>
@@ -105,7 +100,8 @@
 						<td>
 							<input name="shipto_middle_name" id="shipto_middle_name" type="text" maxlength="32" size="30" style="width:180px;">
 						</td>
-						<td style="font-weight:bold;">Province: </td>
+						<td style="width:20px;"></td>
+						<td style="font-weight:bold;width:93px;">Province: </td>
 						<td>
 							<select name="shipto_province_id" id="shipto_province_id" style="width:190px;">
 								<option value="">Please select...</option>
@@ -113,7 +109,6 @@
 									<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
 								</cfloop>
 							</select>
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="province-validation-shipping">Please select your province</span>
 						</td>
 					</tr>
 					<tr>
@@ -123,21 +118,19 @@
 							
 							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="last-name-validation-shipping">Please enter your last name</span>
 						</td>
-						<td style="font-weight:bold;">Postal Code: </td>
+						<td style="width:20px;"></td>
+						<td style="font-weight:bold;width:93px;">Postal Code: </td>
 						<td>
 							<input name="shipto_postal_code" id="shipto_postal_code" type="text" maxlength="10" size="10" style="width:180px;">
-							
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="postal-code-validation-shipping">Please enter your postal code</span>
 						</td>
 					</tr>
 					<tr>
 						<td style="font-weight:bold;">Phone:</td>
 						<td>
 							<input name="shipto_phone" id="shipto_phone" type="text" maxlength="32" size="30" style="width:180px;">
-							
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="phone-validation-shipping">Please enter your phone number</span>
 						</td>
-						<td style="font-weight:bold;">Country: </td>
+						<td style="width:20px;"></td>
+						<td style="font-weight:bold;width:93px;">Country: </td>
 						<td>
 							<select name="shipto_country_id" id="shipto_country_id" style="width:190px;">
 								<option value="">Please select...</option>
@@ -145,12 +138,10 @@
 									<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
 								</cfloop>
 							</select>
-							&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="country-validation-shipping">Please select your country</span>
 						</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td style="padding-top:10px;">
+						<td colspan="5" style="padding-top:10px;border-top:1px solid ##ccc;">
 							<button class="btn-signup" type="submit" name="shipping_to_new_address" id="shipping_to_new_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
 						</td>
 					</tr>
