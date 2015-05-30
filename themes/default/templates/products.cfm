@@ -234,27 +234,6 @@ padding: 0 8px 8px;">
 			<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:228px;border:1px solid ##CCC">
 		</cfloop>
 	</cfif>
-	<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
-		<h2>INFORMATION</h2>
-		<table style="width:100%;border-collapse: collapse;">
-			<tr>
-				<td>
-					<ul>
-						<li>Order Tracking</li>
-						<li>Wholesale</li>
-						<li>Shipping</li>
-						<li>Returns</li>
-						<li>Privacy Policy</li>
-						<li>Contact Us</li>
-						<li>About Us</li>
-						<li>What We Sell</li>
-						<li>Why choose TOMTOP</li>
-						<li>FAQ's</li>
-					</ul>
-				</td>
-			</tr>
-		</table>
-	</div>
 </div>
 
 </cfoutput>
