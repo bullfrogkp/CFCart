@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td style="padding-top:10px;">
-					<input type="submit" name="login" class="btn-signup" value="Login">
+					<input type="submit" name="checkout_login" class="btn-signup" value="Login">
 				</td>
 			</tr>
 		</table>
