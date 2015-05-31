@@ -42,9 +42,8 @@
 			margin-left:20px;
 		}
 	</style>	
-	<div id="checkout-info" class="single_field">
-		<div id="checkout-addresses" style="float:left;">
-		
+	<div id="checkout-info">
+		<div id="checkout-addresses">
 			<cfset customer = EntityLoadByPK("customer",SESSION.user.customerId) />
 			<cfif ArrayLen(customer.getAddresses()) GT 0>
 				<ul class="current-addresses">
@@ -60,7 +59,10 @@
 				</ul>
 				<div style="clear:both;"></div>
 			</cfif>
-			
+		</div>
+	</div>
+	<div style="margin-top:10px;padding-top:10px;border-top:1px solid ##ccc;font-size:12px;">
+		<div style="float:left;" class="single_field">
 			<table>	
 				<tr>
 					<td style="font-weight:bold;width:93px;">Email:</td>
@@ -149,29 +151,30 @@
 				</tr>
 			</table>
 		</div>
+		<div class="info-sidebar" style="margin-top:3px;">
+			<strong>You can choose picking up your order!</strong>
+			<p>9030 Leslie st. unit 3, Richmond Hill, ON</p>
+			
+			<table style="width:100%;margin-top:13px;">	
+				<tr>
+					<td style="font-weight:bold;width:73px;">Email:</td>
+					<td>
+						<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:220px;">
+					</td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold;width:73px;">Phone:</td>
+					<td>
+						<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:220px;">
+					</td>
+				</tr>
+			</table>
+			<div style="padding-top:12px;border-top:1px solid ##ccc;margin-top:10px;">
+				<button class="btn-signup" type="submit" name="pickup_order" id="pickup_order" value="Pick up my order" style="font-size:12px;"><span>Pick up my order</span></button>
+			</div>					
+		</div>
 	</div>
-	<div class="info-sidebar" style="margin-top:3px;">
-		<strong>You can choose picking up your order!</strong>
-		<p>9030 Leslie st. unit 3, Richmond Hill, ON</p>
 		
-		<table style="width:100%;margin-top:13px;">	
-			<tr>
-				<td style="font-weight:bold;width:73px;">Email:</td>
-				<td>
-					<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:220px;">
-				</td>
-			</tr>
-			<tr>
-				<td style="font-weight:bold;width:73px;">Phone:</td>
-				<td>
-					<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:220px;">
-				</td>
-			</tr>
-		</table>
-		<div style="padding-top:12px;border-top:1px solid ##ccc;margin-top:10px;">
-			<button class="btn-signup" type="submit" name="pickup_order" id="pickup_order" value="Pick up my order" style="font-size:12px;"><span>Pick up my order</span></button>
-		</div>					
-	</div>	
 	<div style="clear:both;"></div>
 	</form>
 </cfoutput>
