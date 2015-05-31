@@ -96,19 +96,42 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset SESSION.order.customer = {} />
+		<cfset SESSION.order.sameAddress = true />
 
-		<cfif StructKeyExists(FORM,"shipping_to_new_address")>
-			<cfset SESSION.order.customer.isExistingCustomer = false />
+		<cfset SESSION.order.customer.isExistingCustomer = false />
+		<cfset SESSION.order.customer.customerId = "" />
+		
+		<cfif StructKeyExists(FORM,"pickup_order")>	
+			<cfset SESSION.order.pickupOrder = true />
+			
+			<cfset SESSION.order.customer.email = Trim(FORM.pickup_email) />
+			<cfset SESSION.order.customer.phone = Trim(FORM.pickup_phone) />
+			
+			<cfset SESSION.order.totalShippingFee = 0 />
+			<cfset SESSION.order.totalTax = 0 />
+			<cfset LOCAL.provinceId = EntityLoad("site_info",{},true).getProvince().getProvinceId() />
+			<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
+				<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
+				<cfset LOCAL.item.productShippingMethodRelaId = "" />
+				<cfset LOCAL.item.totalShippingFee = 0 />
+				<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = LOCAL.provinceId) />
+				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
+				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
+			</cfloop>
+			
+			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
+			
+		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
+			<cfset SESSION.order.pickupOrder = false />
+			
 			<cfset SESSION.order.customer.email = Trim(FORM.new_email) />
 			<cfset SESSION.order.customer.firstName = Trim(FORM.shipto_first_name) />
 			<cfset SESSION.order.customer.middleName = Trim(FORM.shipto_middle_name) />
 			<cfset SESSION.order.customer.lastName = Trim(FORM.shipto_last_name) />
 			<cfset SESSION.order.customer.phone = Trim(FORM.shipto_phone) />
-			
+						
 			<cfset SESSION.order.shippingAddress = {} />
-			<cfset SESSION.order.billingAddress = {} />
-			<cfset SESSION.order.sameAddress = true />
-				
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
 			<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />
@@ -134,8 +157,6 @@
 			</cfloop>
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step2.cfm" />
-		<cfelseif StructKeyExists(FORM,"pickup_order")>
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
