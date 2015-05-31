@@ -122,18 +122,7 @@
 			<cfset SESSION.order.shippingAddress.provinceId = FORM.shipto_province_id />
 			<cfset SESSION.order.shippingAddress.countryId = FORM.shipto_country_id />
 			
-			<cfset SESSION.order.billingAddress.useExistingAddress = false />
-			<cfset SESSION.order.billingAddress.company = Trim(FORM.shipto_company) />
-			<cfset SESSION.order.billingAddress.firstName = Trim(FORM.shipto_first_name) />
-			<cfset SESSION.order.billingAddress.middleName = Trim(FORM.shipto_middle_name) />
-			<cfset SESSION.order.billingAddress.lastName = Trim(FORM.shipto_last_name) />
-			<cfset SESSION.order.billingAddress.phone = Trim(FORM.shipto_phone) />
-			<cfset SESSION.order.billingAddress.unit = Trim(FORM.shipto_unit) />
-			<cfset SESSION.order.billingAddress.street = Trim(FORM.shipto_street) />
-			<cfset SESSION.order.billingAddress.city = Trim(FORM.shipto_city) />
-			<cfset SESSION.order.billingAddress.postalCode = Trim(FORM.shipto_postal_code) />
-			<cfset SESSION.order.billingAddress.provinceId = FORM.shipto_province_id />
-			<cfset SESSION.order.billingAddress.countryId = FORM.shipto_country_id />
+			<cfset SESSION.order.billingAddress = Duplicate(SESSION.order.shippingAddress) />
 			
 			<cfset SESSION.order.totalTax = 0 />
 			
