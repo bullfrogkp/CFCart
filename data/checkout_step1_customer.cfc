@@ -95,33 +95,45 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		<cfset SESSION.order.customer = {} />
-		<cfset SESSION.order.customer.isExistingCustomer = true />
-		<cfset SESSION.order.customer.customerId = SESSION.user.customerId />
-		<cfset SESSION.order.shippingAddress = {} />
-		<cfset SESSION.order.billingAddress = {} />
 		<cfset SESSION.order.sameAddress = true />
+		<cfset SESSION.order.isExistingCustomer = true />
+		<cfset SESSION.order.customer = {} />
+		<cfset SESSION.order.customer.customerId = SESSION.user.customerId />
 			
 		<cfif StructKeyExists(FORM,"pickup_order")>	
-			<cfset LOCAL.pickupOrder = true />
-			<cfset LOCAL.provinceId = EntityLoad("site_info",{},true).getProvince().getProvinceId() />
+			<cfset SESSION.order.pickupOrder = true />
+			
+			<cfset SESSION.order.customer.email = Trim(FORM.pickup_email) />
+			<cfset SESSION.order.customer.phone = Trim(FORM.pickup_phone) />
+			<cfset SESSION.order.customer.firstName = "" />
+			<cfset SESSION.order.customer.middleName = "" />
+			<cfset SESSION.order.customer.lastName = "" />
+			<cfset SESSION.order.customer.company = "" />
 			
 			<cfset SESSION.order.totalShippingFee = 0 />
-			
 			<cfset SESSION.order.totalTax = 0 />
+			<cfset LOCAL.provinceId = EntityLoad("site_info",{},true).getProvince().getProvinceId() />
 			<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
 				<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
 				<cfset LOCAL.item.productShippingMethodRelaId = "" />
 				<cfset LOCAL.item.totalShippingFee = 0 />
-				<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId) />
+				<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = LOCAL.provinceId) />
 				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
 				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
 			</cfloop>
 			
 			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
-			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
 		<cfelse>
+			<cfset LOCAL.customer = EntityLoadByPK("customer", SESSION.user.customerId) />
+		
+			<cfset SESSION.order.customer.email = LOCAL.customer.getEmail() />
+			<cfset SESSION.order.customer.phone = LOCAL.customer.getPhone() />
+			<cfset SESSION.order.customer.firstName = LOCAL.customer.getFirstName() />
+			<cfset SESSION.order.customer.middleName = LOCAL.customer.getMiddleName() />
+			<cfset SESSION.order.customer.lastName = LOCAL.customer.getLastName() />
+			<cfset SESSION.order.customer.company = LOCAL.customer.getCompany() />
+			
 			<cfif StructKeyExists(FORM,"shipto_this_address")>			
 				<cfset LOCAL.useExistingAddress = true />
 				<cfset LOCAL.pickupOrder = false />
@@ -145,6 +157,7 @@
 				<cfset EntitySave(LOCAL.address) />
 			</cfif>
 				
+			<cfset SESSION.order.shippingAddress = {} />
 			<cfset SESSION.order.shippingAddress.useExistingAddress = LOCAL.useExistingAddress />
 			<cfset SESSION.order.shippingAddress.addressId = LOCAL.address.getAddressId() />
 			<cfset SESSION.order.shippingAddress.company = LOCAL.address.getCompany() />
