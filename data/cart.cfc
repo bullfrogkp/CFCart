@@ -86,7 +86,11 @@
 				</cfif>
 			</cfif>
 		
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step1.cfm" />
+			<cfif IsNumeric(SESSION.user.customerId)>
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1.cfm" />
+			<cfelse>
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_signin.cfm" />
+			</cfif>
 		<cfelseif StructKeyExists(FORM,"update_count")>
 			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.tracking_record_id) />
 			<cfset LOCAL.trackingRecord.setCount(FORM["product_count_#FORM.tracking_record_id#"]) />
