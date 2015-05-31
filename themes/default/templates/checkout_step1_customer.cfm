@@ -159,13 +159,13 @@
 				<tr>
 					<td style="font-weight:bold;width:73px;">Email:</td>
 					<td>
-						<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:220px;">
+						<input name="pickup_email" id="pickup_email" type="text" maxlength="32" size="30" style="width:220px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;width:73px;">Phone:</td>
 					<td>
-						<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:220px;">
+						<input name="pickup_phone" id="pickup_phone" type="text" maxlength="32" size="30" style="width:220px;">
 					</td>
 				</tr>
 			</table>

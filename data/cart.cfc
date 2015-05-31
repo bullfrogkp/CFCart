@@ -87,7 +87,7 @@
 			</cfif>
 		
 			<cfif IsNumeric(SESSION.user.customerId)>
-				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1.cfm" />
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1_customer.cfm" />
 			<cfelse>
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_signin.cfm" />
 			</cfif>
