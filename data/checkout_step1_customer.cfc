@@ -105,6 +105,21 @@
 		<cfif StructKeyExists(FORM,"pickup_order")>	
 			<cfset LOCAL.pickupOrder = true />
 			<cfset LOCAL.provinceId = EntityLoad("site_info",{},true).getProvince().getProvinceId() />
+			
+			<cfset SESSION.order.totalShippingFee = 0 />
+			
+			<cfset SESSION.order.totalTax = 0 />
+			<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
+				<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
+				<cfset LOCAL.item.productShippingMethodRelaId = "" />
+				<cfset LOCAL.item.totalShippingFee = 0 />
+				<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId) />
+				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
+				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
+			</cfloop>
+			
+			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
+			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
 		<cfelse>
 			<cfif StructKeyExists(FORM,"shipto_this_address")>			
@@ -146,18 +161,16 @@
 			
 			<cfset SESSION.order.billingAddress = Duplicate(SESSION.order.shippingAddress) />
 			
-			<cfset LOCAL.provinceId = SESSION.order.shippingAddress.provinceId />
+			<cfset SESSION.order.totalTax = 0 />
+			<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
+				<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
+				<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId) />
+				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
+				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
+			</cfloop>
+			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step2.cfm" />
 		</cfif>
-		
-		<cfset SESSION.order.totalTax = 0 />
-		
-		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
-			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
-			<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = LOCAL.provinceId) />
-			<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
-			<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
-		</cfloop>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
