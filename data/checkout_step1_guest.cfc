@@ -96,18 +96,13 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset SESSION.order.customer = {} />
-			
-		<cfif IsNumeric(SESSION.user.customerId)>
-			<cfset SESSION.order.customer.isExistingCustomer = true />
-			<cfset SESSION.order.customer.customerId = SESSION.user.customerId />
-		<cfelse>
-			<cfset SESSION.order.customer.isExistingCustomer = false />
-			<cfset SESSION.order.customer.email = Trim(FORM.new_email) />
-			<cfset SESSION.order.customer.firstName = Trim(FORM.shipto_first_name) />
-			<cfset SESSION.order.customer.middleName = Trim(FORM.shipto_middle_name) />
-			<cfset SESSION.order.customer.lastName = Trim(FORM.shipto_last_name) />
-			<cfset SESSION.order.customer.phone = Trim(FORM.shipto_phone) />
-		</cfif>
+
+		<cfset SESSION.order.customer.isExistingCustomer = false />
+		<cfset SESSION.order.customer.email = Trim(FORM.new_email) />
+		<cfset SESSION.order.customer.firstName = Trim(FORM.shipto_first_name) />
+		<cfset SESSION.order.customer.middleName = Trim(FORM.shipto_middle_name) />
+		<cfset SESSION.order.customer.lastName = Trim(FORM.shipto_last_name) />
+		<cfset SESSION.order.customer.phone = Trim(FORM.shipto_phone) />
 		
 		<cfset SESSION.order.shippingAddress = {} />
 		<cfset SESSION.order.billingAddress = {} />
