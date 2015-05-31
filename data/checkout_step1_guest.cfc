@@ -145,7 +145,7 @@
 			</cfloop>
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/step2.cfm" />
-		<cfif StructKeyExists(FORM,"pickup_order")>
+		<cfelseif StructKeyExists(FORM,"pickup_order")>
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
 		</cfif>
 		

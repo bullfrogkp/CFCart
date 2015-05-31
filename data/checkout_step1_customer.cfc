@@ -96,12 +96,8 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset SESSION.order.customer = {} />
-			
-		
 		<cfset SESSION.order.customer.isExistingCustomer = true />
 		<cfset SESSION.order.customer.customerId = SESSION.user.customerId />
-		
-		
 		<cfset SESSION.order.shippingAddress = {} />
 		<cfset SESSION.order.billingAddress = {} />
 		<cfset SESSION.order.sameAddress = true />

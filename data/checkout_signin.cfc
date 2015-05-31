@@ -20,11 +20,10 @@
 			<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
 			<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
 			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/checkout_step1_customer.cfm" />
-		
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1_customer.cfm" />
 		<cfelseif StructKeyExists(FORM,"guest_checkout")>
-		
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/checkout_step1_guest.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1_guest.cfm" />
+		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
