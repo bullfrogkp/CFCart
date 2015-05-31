@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td style="padding-top:10px;">
-					<input type="submit" class="btn-signup" value="Login">
+					<input type="submit" name="login" class="btn-signup" value="Login">
 				</td>
 			</tr>
 		</table>
@@ -61,7 +61,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
 	<div id="signup-form"><!--sign up form-->
 		<h2>Guest Checkout</h2>
 		<p style="font-size:12px;">Save time now. You don't need an account to checkout.</p>
-		<input type="submit" class="btn-signup" value="Continue">
+		<input type="submit" name="guest_checkout" class="btn-signup" value="Continue">
 	</div>
 	<div style="clear:both;"></div>
 </div>	
