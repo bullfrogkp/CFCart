@@ -54,6 +54,7 @@
 				</cfloop>
 			</table>
 		</div>
+		<cfif SESSION.order.pickupOrder EQ false>
 		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;">
 			<table>
 				<tr>
@@ -146,7 +147,7 @@
 				</tbody>
 			</table>
 		</div>
-	
+		</cfif>
 		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
 				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotalPrice)#</span></li>
