@@ -3,7 +3,9 @@
 		<div id="breadcrumb">
 			<div class="breadcrumb-home-icon"></div>
 			<div class="breadcrumb-arrow-icon"></div>
-			<span style="vertical-align:middle">Thank you</span> 
+			<span style="vertical-align:middle">Checkout</span> 
+			<div class="breadcrumb-arrow-icon"></div>
+			<span style="vertical-align:middle">Thank You</span> 
 		</div>
 		<div class="info-detail">
 		<h2>Thank you for your order!</h2>
