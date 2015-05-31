@@ -95,9 +95,10 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		<cfset SESSION.order.isExistingCustomer = false />
 		<cfset SESSION.order.sameAddress = true />
 		<cfset SESSION.order.customer = {} />
-		<cfset SESSION.order.customer.isExistingCustomer = false />
+		<cfset SESSION.order.customer.customerId = "" />
 		
 		<cfif StructKeyExists(FORM,"pickup_order")>	
 			<cfset SESSION.order.pickupOrder = true />
@@ -135,6 +136,7 @@
 				
 			<cfset SESSION.order.shippingAddress = {} />
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
+			<cfset SESSION.order.shippingAddress.addressId = "" />
 			<cfset SESSION.order.shippingAddress.company = Trim(FORM.shipto_company) />
 			<cfset SESSION.order.shippingAddress.firstName = Trim(FORM.shipto_first_name) />
 			<cfset SESSION.order.shippingAddress.middleName = Trim(FORM.shipto_middle_name) />
