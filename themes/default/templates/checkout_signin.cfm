@@ -6,37 +6,36 @@
 	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">Sign In</span> 
 </div>
+<form method="post">
 <div id="login-wrapper">
 	<div id="login-form"><!--login form-->
-		<form method="post">
-			<h2>Login to your account</h2>
-			<table>
-				<tr>
-					<td colspan="2">
-						<input type="text" name="username" placeholder="Username">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="password" name="userpass" placeholder="Password">
-					</td>
-				</tr>
-				<tr>
-					<td style="width:20px;">
-						<input type="checkbox" class="checkbox">
-					</td>
-					<td style="font-size: 12px;">
-						<div style="margin-left:-40px;float:left;">Keep me signed in</div>
-						<div style="float:right;"><a href="#APPLICATION.absoluteUrlWeb#forget_password.cfm">Forget Password?</a></div>
-					</td>
-				</tr>
-				<tr>
-					<td style="padding-top:10px;">
-						<input type="submit" class="btn-signup" value="Login">
-					</td>
-				</tr>
-			</table>
-		</form>
+		<h2>Login to your account</h2>
+		<table>
+			<tr>
+				<td colspan="2">
+					<input type="text" name="username" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="password" name="userpass" placeholder="Password">
+				</td>
+			</tr>
+			<tr>
+				<td style="width:20px;">
+					<input type="checkbox" class="checkbox">
+				</td>
+				<td style="font-size: 12px;">
+					<div style="margin-left:-40px;float:left;">Keep me signed in</div>
+					<div style="float:right;"><a href="#APPLICATION.absoluteUrlWeb#forget_password.cfm">Forget Password?</a></div>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-top:10px;">
+					<input type="submit" class="btn-signup" value="Login">
+				</td>
+			</tr>
+		</table>
 	</div>
 	<div id="or" style="font-size:14px;text-align:center;line-height:60px;float:left;margin:50px 50px 0 66px;width: 60px;
     height: 60px;
@@ -60,42 +59,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
 					OR
 	</div>
 	<div id="signup-form"><!--sign up form-->
-		<form method="post">
-			<h2>New User Signup</h2>
-			<table>
-				<tr>
-					<td colspan="2">
-						<input type="email" name="email_address" placeholder="Email Address">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="password" name="new_password" placeholder="Password">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="password" name="confirm_password" placeholder="Confirm Password">
-					</td>
-				</tr>
-				<tr>
-					<td style="width:20px;">
-						<input type="checkbox" class="checkbox" checked>
-					</td>
-					<td style="font-size: 12px;">
-						<div>Sign Up for Product Newsletter</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="padding-top:10px;">
-						<input type="submit" class="btn-signup" value="Signup">
-					</td>
-				</tr>
-			</table>
-		</form>
+		<h2>Guest Checkout</h2>
+		<p style="font-size:12px;">Save time now. You don't need an account to checkout.</p>
+		<input type="submit" class="btn-signup" value="Continue">
 	</div>
 	<div style="clear:both;"></div>
-</div>
-				
+</div>	
+</form>
 		
 </cfoutput>
