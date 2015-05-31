@@ -83,8 +83,9 @@
 				<table>
 					
 					<tr class="cart_menu">
-						<td class="image">Product</td>
-						<td class="description"></td>
+						<td class="image" style="width:75px;">Product</td>
+						<td class="description">Name</td>
+						<td class="description">SKU</td>
 						<td class="price">Price</td>
 						<td class="quantity">Quantity</td>
 						<td class="total">Sub Total</td>
@@ -106,6 +107,8 @@
 							</td>
 							<td class="cart_description">
 								<h4><a href="#productLink#">#product.getDisplayName()#</a></h4>
+							</td>
+							<td class="cart_description">
 								<p>SKU: #product.getSku()#</p>
 							</td>
 							<td class="cart_price">
