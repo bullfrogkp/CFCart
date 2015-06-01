@@ -103,8 +103,8 @@
 											<dl>
 												<dd>#REQUEST.pageData.order.getBillingStreet()#</dd>
 												<dd>#REQUEST.pageData.order.getBillingCity()#</dd>
-												<dd>#REQUEST.pageData.order.getBillingCountry().getDisplayName()#</dd>
-												<dd>#REQUEST.pageData.order.getBillingProvince().getDisplayName()#</dd>
+												<dd><cfif NOT IsNull(REQUEST.pageData.order.getBillingCountry())>#REQUEST.pageData.order.getBillingCountry().getDisplayName()#</cfif></dd>
+												<dd><cfif NOT IsNull(REQUEST.pageData.order.getBillingProvince())>#REQUEST.pageData.order.getBillingProvince().getDisplayName()#</cfif></dd>
 												<dd>#REQUEST.pageData.order.getBillingPostalCode()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
@@ -119,8 +119,8 @@
 											<dl>
 												<dd>#REQUEST.pageData.order.getShippingStreet()#</dd>
 												<dd>#REQUEST.pageData.order.getShippingCity()#</dd>
-												<dd>#REQUEST.pageData.order.getShippingCountry().getDisplayName()#</dd>
-												<dd>#REQUEST.pageData.order.getShippingProvince().getDisplayName()#</dd>
+												<dd><cfif NOT IsNull(REQUEST.pageData.order.getShippingCountry())>#REQUEST.pageData.order.getShippingCountry().getDisplayName()#</cfif></dd>
+												<dd><cfif NOT IsNull(REQUEST.pageData.order.getShippingProvince())>#REQUEST.pageData.order.getShippingProvince().getDisplayName()#</cfif></dd>
 												<dd>#REQUEST.pageData.order.getShippingPostalCode()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
