@@ -115,7 +115,8 @@
 			<cfset LOCAL.provinceId = EntityLoad("site_info",{},true).getProvince().getProvinceId() />
 			<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
 				<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
-				<cfset LOCAL.item.productShippingMethodRelaId = "" />
+				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{name="pickup"},true) />
+				<cfset LOCAL.productShippingMethodRela = EntityLoad("product_shipping_method_rela",{product=LOCAL.product,shippingMethod=LOCAL.shippingMethod},true) />
 				<cfset LOCAL.item.totalShippingFee = 0 />
 				<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = LOCAL.provinceId) />
 				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
