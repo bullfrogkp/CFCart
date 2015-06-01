@@ -718,7 +718,7 @@
 													<cfoutput>
 													<cfif IsNumeric(s.product_shipping_method_rela_id)>
 														<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",s.product_shipping_method_rela_id) />
-														<cfset defaultPrice = productShippingMethodRela.getDefaultPrice() />
+														<cfset defaultPrice = productShippingMethodRela.getPrice() />
 													<cfelse>
 														<cfset defaultPrice = 0 />
 													</cfif>

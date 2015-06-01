@@ -155,9 +155,9 @@
 					<cfset LOCAL.newProductShippingMethodRela.setProduct(LOCAL.product) />
 					
 					<cfif IsNumeric(FORM["default_price_#LOCAL.shippingMethodId#"])>
-						<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
+						<cfset LOCAL.newProductShippingMethodRela.setPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
 					<cfelse>
-						<cfset LOCAL.newProductShippingMethodRela.setDefaultPrice(0) />
+						<cfset LOCAL.newProductShippingMethodRela.setPrice(0) />
 					</cfif>
 					
 					<cfset EntitySave(LOCAL.newProductShippingMethodRela) />
@@ -420,10 +420,17 @@
 			
 			<cfset LOCAL.groupPrice = EntityLoadByPK("product_customer_group_rela",FORM.edit_product_customer_group_rela_id) />
 			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.edit_price)) />
-			<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.edit_special_price)) />
-			<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.edit_special_price_from_date)) />
-			<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.edit_special_price_to_date)) />
 			
+			<cfif IsNumeric(Trim(FORM.edit_special_price))>
+				<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.edit_special_price)) />
+			</cfif>
+			<cfif IsDate(Trim(FORM.edit_special_price_from_date))>
+				<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.edit_special_price_from_date)) />
+			</cfif>
+			<cfif IsDate(Trim(FORM.edit_special_price_to_date))>
+				<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.edit_special_price_to_date)) />
+			</cfif>
+						
 			<cfset EntitySave(LOCAL.groupPrice) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New group price has been saved successfully.") />
@@ -476,7 +483,7 @@
 		
 		<cfelseif StructKeyExists(FORM,"edit_default_price")>
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", FORM.product_shipping_method_rela_id) />
-			<cfset LOCAL.productShippingMethodRela.setDefaultPrice(FORM.new_default_price) />
+			<cfset LOCAL.productShippingMethodRela.setPrice(FORM.new_default_price) />
 			
 			<cfset EntitySave(LOCAL.productShippingMethodRela) />
 			
