@@ -101,7 +101,13 @@
 				</cfif>
 				
 				<cfset EntitySave(LOCAL.groupPrice) />
-				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+				
+				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{name="pickup"},true) />
+				<cfset LOCAL.productShippingMethodRela = EntityNew("product_shipping_method_rela") />
+				<cfset LOCAL.productShippingMethodRela.setProduct(LOCAL.product) />
+				<cfset LOCAL.productShippingMethodRela.setShippingMethod(LOCAL.shippingMethod) />
+				<cfset LOCAL.productShippingMethodRela.setPrice(0) />
+				<cfset EntitySave(LOCAL.productShippingMethodRela) />
 			</cfif>
 			
 			<cfif FORM.tax_category_id NEQ "">
