@@ -48,7 +48,11 @@
 							<p>#DollarFormat(item.totalTax)#</p>
 						</td>
 						<td>
-							<p>#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - #productShippingMethodRela.getShippingMethod().getDisplayName()#: #DollarFormat(item.totalShippingFee)# (2 - 3 days)</p>
+							<p>
+							<cfif NOT IsNull(productShippingMethodRela.getShippingMethod().getShippingCarrier())>
+							#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - 
+							</cfif>
+							#productShippingMethodRela.getShippingMethod().getDisplayName()#: #DollarFormat(item.totalShippingFee)#</p>
 						</td>
 					</tr>
 				</cfloop>
