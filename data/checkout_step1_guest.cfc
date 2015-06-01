@@ -123,7 +123,7 @@
 			</cfloop>
 			
 			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.pickupOrder = false />
 			

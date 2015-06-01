@@ -123,7 +123,7 @@
 			</cfloop>
 			
 			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 		<cfelse>
 			<cfset LOCAL.customer = EntityLoadByPK("customer", SESSION.user.customerId) />
 		

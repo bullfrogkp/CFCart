@@ -30,7 +30,7 @@
 		
 		<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax + SESSION.order.totalShippingFee />
 		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/confirmation.cfm" />
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
