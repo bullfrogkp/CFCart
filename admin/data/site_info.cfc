@@ -48,11 +48,9 @@
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
-			<cfset LOCAL.pageData.siteInfoArray = EntityLoad("site_info") /> 
+			<cfset LOCAL.pageData.siteInfo = EntityLoad("site_info",{},true) /> 
 			
-			<cfif ArrayLen(LOCAL.pageData.siteInfoArray) GT 0>
-				<cfset LOCAL.pageData.siteInfo = LOCAL.pageData.siteInfoArray[1] /> 
-			
+			<cfif NOT IsNull(LOCAL.pageData.siteInfo)>
 				<cfset LOCAL.pageData.formData.name = LOCAL.pageData.siteInfo.getName() />
 				<cfset LOCAL.pageData.formData.unit = LOCAL.pageData.siteInfo.getUnit() />
 				<cfset LOCAL.pageData.formData.street = LOCAL.pageData.siteInfo.getStreet() />

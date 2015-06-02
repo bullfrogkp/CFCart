@@ -1,4 +1,4 @@
-<cfcomponent extends="service" output="false" accessors="true">
+<cfcomponent output="false" accessors="true">
 	<cfproperty name="shippingMethodId" type="numeric"> 
 	<cfproperty name="productId" type="numeric"> 
     <cfproperty name="address" type="struct"> 
@@ -6,8 +6,9 @@
 	<cffunction name="getShippingFee" access="public" returntype="numeric">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",getShippingMethodId()) />
-						
-		<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = APPLICATION.siteInfo.getAddress()
+		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
+		
+		<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = LOCAL.siteInfo.getAddress()
 													,	toAddress = getAddress()
 													,	serviceCode = LOCAL.shippingMethod.getServiceCode())>										
 										
@@ -58,18 +59,18 @@
 						<Address>
 							<AddressLine1>#ARGUMENTS.fromAddress.street#</AddressLine1>
 							<City>#ARGUMENTS.fromAddress.city#</City>
-							<StateProvinceCode>#ARGUMENTS.fromAddress.province_code#</StateProvinceCode>
-							<PostalCode>#ARGUMENTS.fromAddress.postal_code#</PostalCode>
-							<CountryCode>#ARGUMENTS.fromAddress.country_code#</CountryCode>
+							<StateProvinceCode>#ARGUMENTS.fromAddress.provinceCode#</StateProvinceCode>
+							<PostalCode>#ARGUMENTS.fromAddress.postalCode#</PostalCode>
+							<CountryCode>#ARGUMENTS.fromAddress.countryCode#</CountryCode>
 						</Address>
 					</Shipper>
 					<ShipTo>
 						<Address>
 							<AddressLine1>#ARGUMENTS.toAddress.street#</AddressLine1>
 							<City>#ARGUMENTS.toAddress.city#</City>
-							<StateProvinceCode>#ARGUMENTS.toAddress.province_code#</StateProvinceCode>
-							<PostalCode>#ARGUMENTS.toAddress.postal_code#</PostalCode>
-							<CountryCode>#ARGUMENTS.toAddress.country_code#</CountryCode>
+							<StateProvinceCode>#ARGUMENTS.toAddress.provinceCode#</StateProvinceCode>
+							<PostalCode>#ARGUMENTS.toAddress.postalCode#</PostalCode>
+							<CountryCode>#ARGUMENTS.toAddress.countryCode#</CountryCode>
 						</Address>
 					</ShipTo>
 					<Service>

@@ -10,4 +10,16 @@
 	<cfproperty name="map" column="map" ormtype="text"> 
 	<cfproperty name="province" fieldtype="many-to-one" cfc="province" fkcolumn="province_id">
 	<cfproperty name="country" fieldtype="many-to-one" cfc="country" fkcolumn="country_id">
+	
+	<cffunction name="getAddress" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.address = {} />
+		<cfset LOCAL.address.street = getStreet() />
+		<cfset LOCAL.address.city = getCity() />
+		<cfset LOCAL.address.provinceCode = getProvince().getProvinceCode() />
+		<cfset LOCAL.address.postalCode = getPostalCode() />
+		<cfset LOCAL.address.countryCode = getCountryCode() />
+		
+		<cfreturn LOCAL.address />
+	</cffunction>
 </cfcomponent>
