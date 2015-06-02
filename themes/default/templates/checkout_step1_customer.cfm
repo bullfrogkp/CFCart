@@ -49,6 +49,8 @@
 						<cfloop array="#customer.getAddresses()#" index="address">
 							<li>
 								<span style="font-weight:bold;line-height:32px;font-size:14px;">#address.getFullName()#</span><br/>
+								#address.getPhone()#<br/>
+								#address.getCompany()#<br/>
 								#address.getUnit()# #address.getStreet()#<br/>
 								#address.getCity()#, #address.getProvince().getDisplayName()# #address.getPostalCode()#<br/>
 								#address.getCountry().getDisplayName()#<br/><br/>
@@ -153,25 +155,25 @@
 			<strong>Order Summary</strong>
 			<table style="width:100%;margin-top:13px;">	
 				<tr>
-					<td style="font-weight:bold;width:73px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
+					<td style="font-weight:bold;width:173px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
 					<td>
 						#DollarFormat(SESSION.order.subTotalPrice)#
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:73px;">Tax:</td>
+					<td style="font-weight:bold;width:173px;">Tax:</td>
 					<td>
 						-
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:73px;">Shipping & Handling:</td>
+					<td style="font-weight:bold;width:173px;">Shipping & Handling:</td>
 					<td>
 						-
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:73px;">Total:</td>
+					<td style="font-weight:bold;width:173px;">Total:</td>
 					<td>
 						#DollarFormat(SESSION.order.subTotalPrice)#
 					</td>

@@ -82,7 +82,7 @@ margin-bottom:10px;
 				<input type="submit" value="Next Step" class="btn-signup" style="margin-top:10px;font-size:12px;">
 			</div>
 		</div>
-		<div class="info-sidebar" style="margin-top:3px;">
+		<div class="info-sidebar" style="margin-top:0;">
 			<strong>Order Summary</strong>
 			<table style="width:100%;margin-top:13px;line-height:20px;">	
 				<tr>
@@ -100,7 +100,7 @@ margin-bottom:10px;
 				<tr>
 					<td style="font-weight:bold;width:173px;">Shipping & Handling:</td>
 					<td>
-						#DollarFormat(SESSION.order.totalShippingFee)#
+						-
 					</td>
 				</tr>
 				<tr>

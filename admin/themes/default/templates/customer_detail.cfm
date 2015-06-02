@@ -163,7 +163,10 @@
 						</cfif>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
-					
+						<div class="form-group">
+							<label>Company</label>
+							<input type="text" name="company" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.company#"/>
+						</div>
 						<div class="form-group">
 							<label>Prefix</label>
 							<input type="text" name="prefix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.prefix#"/>

@@ -2,6 +2,7 @@
     <cfproperty name="customerId" column="customer_id" fieldtype="id" generator="native"> 
 	<cfproperty name="email" column="email" ormtype="string"> 
 	<cfproperty name="phone" column="phone" ormtype="string"> 
+	<cfproperty name="company" column="company" ormtype="string"> 
     <cfproperty name="password" column="password" ormtype="string"> 
     <cfproperty name="lastLoginDatetime" column="last_login_datetime" ormtype="date"> 
     <cfproperty name="lastLoginIP" column="last_login_ip" ormtype="string"> 

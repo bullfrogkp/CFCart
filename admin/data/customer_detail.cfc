@@ -67,6 +67,7 @@
 			<cfset LOCAL.customer.setFirstName(Trim(FORM.first_name)) />
 			<cfset LOCAL.customer.setMiddleName(Trim(FORM.middle_name)) />
 			<cfset LOCAL.customer.setLastName(Trim(FORM.last_name)) />
+			<cfset LOCAL.customer.setCompany(Trim(FORM.company)) />
 			<cfset LOCAL.customer.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.customer.setPrefix(Trim(FORM.prefix)) />
 			<cfset LOCAL.customer.setSuffix(Trim(FORM.suffix)) />
@@ -148,6 +149,7 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
+				<cfset LOCAL.pageData.formData.company = isNull(LOCAL.pageData.customer.getCompany())?"":LOCAL.pageData.customer.getCompany() />
 				<cfset LOCAL.pageData.formData.first_name = isNull(LOCAL.pageData.customer.getFirstName())?"":LOCAL.pageData.customer.getFirstName() />
 				<cfset LOCAL.pageData.formData.middle_name = isNull(LOCAL.pageData.customer.getFirstName())?"":LOCAL.pageData.customer.getMiddleName() />
 				<cfset LOCAL.pageData.formData.last_name = isNull(LOCAL.pageData.customer.getFirstName())?"":LOCAL.pageData.customer.getLastName() />
@@ -171,6 +173,7 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
+				<cfset LOCAL.pageData.formData.company = "" />
 				<cfset LOCAL.pageData.formData.first_name = "" />
 				<cfset LOCAL.pageData.formData.middle_name = "" />
 				<cfset LOCAL.pageData.formData.last_name = "" />

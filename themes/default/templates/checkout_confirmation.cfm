@@ -58,8 +58,7 @@
 				</cfloop>
 			</table>
 		</div>
-		<cfif SESSION.order.pickupOrder EQ false>
-		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;line-height:20px;">
+		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;line-height:18px;">
 			<table>
 				<tr>
 					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Address</th>
@@ -105,7 +104,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="billing-addresses" style="width:27%;float:left;margin-top:17px;line-height:20px;">
+		<div id="billing-addresses" style="width:27%;float:left;margin-top:17px;line-height:18px;">
 			<table>
 				<tr>
 					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Address</th>
@@ -151,7 +150,6 @@
 				</tbody>
 			</table>
 		</div>
-		</cfif>
 		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
 				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotalPrice)#</span></li>

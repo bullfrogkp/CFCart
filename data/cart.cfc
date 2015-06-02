@@ -56,6 +56,9 @@
 			<cfset SESSION.order = {} />
 			<cfset SESSION.order.productArray = [] />
 			<cfset SESSION.order.subTotalPrice = 0 />
+			<cfset SESSION.order.totalPrice = 0 />
+			<cfset SESSION.order.totalTax = 0 />
+			<cfset SESSION.order.totalShippingFee = 0 />
 			<cfset SESSION.order.discount = 0 />
 			<cfset SESSION.order.couponCode = "" />
 			<cfset SESSION.order.couponId = "" />
