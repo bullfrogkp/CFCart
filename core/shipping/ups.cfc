@@ -1,5 +1,6 @@
 <cfcomponent extends="service" output="false" accessors="true">
 	<cfproperty name="shippingMethodId" type="numeric"> 
+	<cfproperty name="productId" type="numeric"> 
     <cfproperty name="address" type="struct"> 
 	<!------------------------------------------------------------------------------->
 	<cffunction name="getShippingAmount" access="public" returntype="numeric">
