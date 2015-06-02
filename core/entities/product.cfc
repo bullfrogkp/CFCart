@@ -178,7 +178,15 @@
 		<cfargument name="address" type="struct" required="true" />
 		<cfargument name="shippingMethodId" type="numeric" required="true" />
 		
-		<cfreturn 123 />
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
+		<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
+		
+		<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
+		<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
+		<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
+		
+		<cfreturn LOCAL.shippingComponent.getShippingFee() />
 	</cffunction>
 	
 </cfcomponent>

@@ -48,6 +48,14 @@
 				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "#folder_name#." />
+				
+				<cfset THIS[ "$Config" ].ups = {} />
+				<cfset THIS[ "$Config" ].ups.accesskey = "CC9C9C10118EBCF0">
+				<cfset THIS[ "$Config" ].ups.upsuserid = "berserk_2nd">
+				<cfset THIS[ "$Config" ].ups.upspassword = "Shabishini1">
+				<cfset THIS[ "$Config" ].ups.rate_url = "https://wwwcie.ups.com/ups.app/xml/Rate">
+				<cfset THIS[ "$Config" ].ups.av_url = "https://wwwcie.ups.com/ups.app/xml/AV">
+				<cfset THIS[ "$Config" ].ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
             <cfelse>
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
@@ -79,6 +87,14 @@
 				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "" />
+				
+				<cfset THIS[ "$Config" ].ups = {} />
+				<cfset THIS[ "$Config" ].ups.accesskey = "CC9C9C10118EBCF0">
+				<cfset THIS[ "$Config" ].ups.upsuserid = "berserk_2nd">
+				<cfset THIS[ "$Config" ].ups.upspassword = "Shabishini1">
+				<cfset THIS[ "$Config" ].ups.rate_url = "https://wwwcie.ups.com/ups.app/xml/Rate">
+				<cfset THIS[ "$Config" ].ups.av_url = "https://wwwcie.ups.com/ups.app/xml/AV">
+				<cfset THIS[ "$Config" ].ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
             </cfif>
         </cfif>
        
