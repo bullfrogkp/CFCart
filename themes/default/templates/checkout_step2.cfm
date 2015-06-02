@@ -69,10 +69,8 @@ margin-bottom:10px;
 							<select id="shipping-methods-#product.getProductId()#">
 								<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
 									<cfset s = product.getProductShippingMethodRelas()[i] />
-									<cfif NOT IsNull(s.getShippingMethod().getShippingCarrier())>
 									<option value="#s.getProductShippingMethodRelaId()#" data-imagesrc="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.getShippingMethod().getShippingCarrier().getImageName()#"
 										data-description="#DollarFormat(s.getPrice())#">Quantity: #item.count# &nbsp;&nbsp;#s.getShippingMethod().getShippingCarrier().getDisplayName()# - #s.getShippingMethod().getDisplayName()#</option>
-									</cfif>
 								</cfloop>
 							</select>
 						</div>
