@@ -134,26 +134,33 @@
 		</div>
 	</div>
 	<div class="info-sidebar" style="margin-top:3px;">
-		<strong>You can choose picking up your order!</strong>
-		<p>9030 Leslie st. unit 3, Richmond Hill, ON</p>
-		
+		<strong>Order Summary</strong>
 		<table style="width:100%;margin-top:13px;">	
 			<tr>
-				<td style="font-weight:bold;width:73px;">Email:</td>
+				<td style="font-weight:bold;width:73px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
 				<td>
-					<input name="pickup_email" id="pickup_email" type="text" maxlength="32" size="30" style="width:220px;">
+					#DollarFormat(SESSION.order.subTotalPrice)#
 				</td>
 			</tr>
 			<tr>
-				<td style="font-weight:bold;width:73px;">Phone:</td>
+				<td style="font-weight:bold;width:73px;">Tax:</td>
 				<td>
-					<input name="pickup_phone" id="pickup_phone" type="text" maxlength="32" size="30" style="width:220px;">
+					-
 				</td>
 			</tr>
-		</table>
-		<div style="padding-top:12px;border-top:1px solid ##ccc;margin-top:10px;">
-			<button class="btn-signup" type="submit" name="pickup_order" id="pickup_order" value="Pick up my order" style="font-size:12px;"><span>Pick up my order</span></button>
-		</div>					
+			<tr>
+				<td style="font-weight:bold;width:73px;">Shipping & Handling:</td>
+				<td>
+					-
+				</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;width:73px;">Total:</td>
+				<td>
+					#DollarFormat(SESSION.order.subTotalPrice)#
+				</td>
+			</tr>
+		</table>			
 	</div>	
 	<div style="clear:both;"></div>
 	</form>
