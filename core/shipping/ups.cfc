@@ -43,7 +43,6 @@
 		<cfargument name="serviceCode" type="string" required="true">
 		
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.total_weight = 0 />
 		
 		<cfxml variable="LOCAL.xmlShippingRequest" casesensitive="true">
 			<cfoutput>
@@ -86,7 +85,7 @@
 							<UnitOfMeasurement>
 								<Code>LBS</Code>
 							</UnitOfMeasurement>
-							<Weight>#xmlFormat(getProduct().getWeight())#</Weight>
+							<Weight>#xmlFormat(EntityLoadByPK("product",getProductId()).getWeight())#</Weight>
 						</PackageWeight>
 					</Package>
 					

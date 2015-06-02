@@ -16,9 +16,9 @@
 		<cfset LOCAL.address = {} />
 		<cfset LOCAL.address.street = getStreet() />
 		<cfset LOCAL.address.city = getCity() />
-		<cfset LOCAL.address.provinceCode = getProvince().getProvinceCode() />
+		<cfset LOCAL.address.provinceCode = getProvince().getCode() />
 		<cfset LOCAL.address.postalCode = getPostalCode() />
-		<cfset LOCAL.address.countryCode = getCountryCode() />
+		<cfset LOCAL.address.countryCode = getCountry().getCode() />
 		
 		<cfreturn LOCAL.address />
 	</cffunction>
