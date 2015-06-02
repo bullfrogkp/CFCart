@@ -365,7 +365,7 @@
 									<address>
 										<strong>#REQUEST.pageData.order.getCustomerFullName()#</strong><br>
 										#REQUEST.pageData.order.getShippingStreet()#, #REQUEST.pageData.order.getShippingUnit()#<br>
-										#REQUEST.pageData.order.getShippingCity()#, #REQUEST.pageData.order.getShippingProvince().getDisplayName()# #REQUEST.pageData.order.getShippingPostalCode()#<br>
+										#REQUEST.pageData.order.getShippingCity()#, <cfif NOT IsNull(REQUEST.pageData.order.getShippingProvince())>#REQUEST.pageData.order.getShippingProvince().getDisplayName()#</cfif> #REQUEST.pageData.order.getShippingPostalCode()#<br>
 										Phone: #REQUEST.pageData.order.getPhone()#<br/>
 										Email: #REQUEST.pageData.order.getEmail()#
 									</address>
