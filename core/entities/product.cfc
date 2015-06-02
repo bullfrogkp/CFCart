@@ -173,4 +173,12 @@
 		
 		<cfreturn tax.getRate() />
 	</cffunction>
+	
+	<cffunction name="getShippingFee" access="public" output="false" returnType="string">
+		<cfargument name="address" type="struct" required="true" />
+		<cfargument name="shippingMethodId" type="numeric" required="true" />
+		
+		<cfreturn 123 />
+	</cffunction>
+	
 </cfcomponent>
