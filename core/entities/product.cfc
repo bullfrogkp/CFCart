@@ -183,7 +183,7 @@
 		<cfif NOT IsNull(getWeight())>
 			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
-			
+	<cfdump var="#LOCAL.shippingMethod#" top="1" cfabort>		
 			<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
 			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />

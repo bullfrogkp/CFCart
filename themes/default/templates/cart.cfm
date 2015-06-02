@@ -100,7 +100,7 @@
 							<cfset productLink = product.getDetailPageURL() />
 						</cfif>
 						<tr>
-							<td class="cart_product">
+							<td class="cart_product" pid="#product.getProductId()#">
 								<a href="#productLink#">
 									<img style="width:70px" src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
 								</a>
