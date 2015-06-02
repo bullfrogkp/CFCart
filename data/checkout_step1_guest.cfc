@@ -119,8 +119,14 @@
 		<cfset SESSION.order.shippingAddress.street = Trim(FORM.shipto_street) />
 		<cfset SESSION.order.shippingAddress.city = Trim(FORM.shipto_city) />
 		<cfset SESSION.order.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+		
+		<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
 		<cfset SESSION.order.shippingAddress.provinceId = FORM.shipto_province_id />
+		<cfset SESSION.order.shippingAddress.provinceCode = LOCAL.province.getCode() />
+		
+		<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 		<cfset SESSION.order.shippingAddress.countryId = FORM.shipto_country_id />
+		<cfset SESSION.order.shippingAddress.countryCode = LOCAL.country.getCode() />
 		
 		<cfset SESSION.order.billingAddress = Duplicate(SESSION.order.shippingAddress) />
 		

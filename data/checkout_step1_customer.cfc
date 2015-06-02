@@ -125,7 +125,9 @@
 			<cfset SESSION.order.shippingAddress.city = LOCAL.address.getCity() />
 			<cfset SESSION.order.shippingAddress.postalCode = LOCAL.address.getPostalCode() />
 			<cfset SESSION.order.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
+			<cfset SESSION.order.shippingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
 			<cfset SESSION.order.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
+			<cfset SESSION.order.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset SESSION.order.shippingAddress = {} />
 			<cfset SESSION.order.shippingAddress.useExistingAddress = false />
@@ -139,8 +141,14 @@
 			<cfset SESSION.order.shippingAddress.street = Trim(FORM.shipto_street) />
 			<cfset SESSION.order.shippingAddress.city = Trim(FORM.shipto_city) />
 			<cfset SESSION.order.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+			
+			<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
 			<cfset SESSION.order.shippingAddress.provinceId = FORM.shipto_province_id />
+			<cfset SESSION.order.shippingAddress.provinceCode = LOCAL.province.getCode() />
+			
+			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 			<cfset SESSION.order.shippingAddress.countryId = FORM.shipto_country_id />
+			<cfset SESSION.order.shippingAddress.countryCode = LOCAL.country.getCode() />
 		</cfif>
 		
 		<cfset SESSION.order.billingAddress = Duplicate(SESSION.order.shippingAddress) />
