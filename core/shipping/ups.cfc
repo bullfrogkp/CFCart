@@ -1,4 +1,30 @@
-<cfcomponent output="false">
+<cfcomponent extends="service" output="false" accessors="true">
+	<cfproperty name="shippingMethodId" type="numeric"> 
+    <cfproperty name="address" type="struct"> 
+	<!------------------------------------------------------------------------------->
+	<cffunction name="getShippingAmount" access="public" returntype="numeric">
+		<cfargument name="shipping_method_id" type="numeric" required="true">
+	    <cfargument name="items_array" type="array" required="true">
+	    <cfargument name="address_struct" type="struct" required="false">
+		
+		<cfset var LOCAL = StructNew() />
+		
+		<cfinvoke component="#APPLICATION.db_cfc_path#db.shipping_methods" method="getShippingMethods" returnvariable="LOCAL.shipping_method_detail">
+			<cfinvokeargument name="shipping_method_id" value="#ARGUMENTS.shipping_method_id#">
+		</cfinvoke>
+						
+		<cfset LOCAL.xmlData = createShippingRateXml(	items_array = ARGUMENTS.items_array
+													,	ship_from_address = APPLICATION.ship_from_address
+													,	ship_to_address = ARGUMENTS.address_struct
+													,	service_code = LOCAL.shipping_method_detail.service_code)>										
+										
+		
+		<cfset LOCAL.shippingRate = submitXml(xml_data = LOCAL.xmlData, xml_data_type = "rate")>			
+	
+		<cfreturn LOCAL.shippingRate["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText>
+		
+	</cffunction>	
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="createShippingRateXml" displayname="Create XML Documents" description="Creates the XML needed to send to UPS" access="private" output="false" returntype="Any">
 		<cfargument name="items_array" type="Array" required="true">
 		<cfargument name="ship_from_address" type="struct" required="true">
@@ -172,29 +198,6 @@
 		<cfreturn LOCAL.xmlDataParsed>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="getShippingAmount" access="public" returntype="numeric">
-		<cfargument name="shipping_method_id" type="numeric" required="true">
-	    <cfargument name="items_array" type="array" required="true">
-	    <cfargument name="address_struct" type="struct" required="false">
-		
-		<cfset var LOCAL = StructNew() />
-		
-		<cfinvoke component="#APPLICATION.db_cfc_path#db.shipping_methods" method="getShippingMethods" returnvariable="LOCAL.shipping_method_detail">
-			<cfinvokeargument name="shipping_method_id" value="#ARGUMENTS.shipping_method_id#">
-		</cfinvoke>
-						
-		<cfset LOCAL.xmlData = createShippingRateXml(	items_array = ARGUMENTS.items_array
-													,	ship_from_address = APPLICATION.ship_from_address
-													,	ship_to_address = ARGUMENTS.address_struct
-													,	service_code = LOCAL.shipping_method_detail.service_code)>										
-										
-		
-		<cfset LOCAL.shippingRate = submitXml(xml_data = LOCAL.xmlData, xml_data_type = "rate")>			
-	
-		<cfreturn LOCAL.shippingRate["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText>
-		
-	</cffunction>	
-	<!------------------------------------------------------------------------------->	
 	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="validateAddressUPS" access="public" returntype="boolean">
