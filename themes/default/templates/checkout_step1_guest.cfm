@@ -135,27 +135,27 @@
 	</div>
 	<div class="info-sidebar" style="margin-top:3px;">
 		<strong>Order Summary</strong>
-		<table style="width:100%;margin-top:13px;">	
+		<table style="width:100%;margin-top:13px;line-height:20px;">	
 			<tr>
-				<td style="font-weight:bold;width:73px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
+				<td style="font-weight:bold;width:173px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
 				<td>
 					#DollarFormat(SESSION.order.subTotalPrice)#
 				</td>
 			</tr>
 			<tr>
-				<td style="font-weight:bold;width:73px;">Tax:</td>
+				<td style="font-weight:bold;width:173px;">Tax:</td>
 				<td>
 					-
 				</td>
 			</tr>
 			<tr>
-				<td style="font-weight:bold;width:73px;">Shipping & Handling:</td>
+				<td style="font-weight:bold;width:173px;">Shipping & Handling:</td>
 				<td>
 					-
 				</td>
 			</tr>
 			<tr>
-				<td style="font-weight:bold;width:73px;">Total:</td>
+				<td style="font-weight:bold;width:173px;">Total:</td>
 				<td>
 					#DollarFormat(SESSION.order.subTotalPrice)#
 				</td>

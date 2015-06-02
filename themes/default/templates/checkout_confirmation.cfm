@@ -59,7 +59,7 @@
 			</table>
 		</div>
 		<cfif SESSION.order.pickupOrder EQ false>
-		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;">
+		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;line-height:20px;">
 			<table>
 				<tr>
 					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Shipping Address</th>
@@ -105,7 +105,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="billing-addresses" style="width:27%;float:left;margin-top:17px;">
+		<div id="billing-addresses" style="width:27%;float:left;margin-top:17px;line-height:20px;">
 			<table>
 				<tr>
 					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Address</th>
