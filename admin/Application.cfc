@@ -56,6 +56,9 @@
 				<cfset THIS[ "$Config" ].env.ups.rate_url = "https://wwwcie.ups.com/ups.app/xml/Rate">
 				<cfset THIS[ "$Config" ].env.ups.av_url = "https://wwwcie.ups.com/ups.app/xml/AV">
 				<cfset THIS[ "$Config" ].env.ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
+				
+				<cfset THIS[ "$Config" ].env.canadapost = {} />
+				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://ct.soa-gw.canadapost.ca/rs/soap/rating/v3*">
             <cfelse>
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
@@ -95,6 +98,9 @@
 				<cfset THIS[ "$Config" ].env.ups.rate_url = "https://wwwcie.ups.com/ups.app/xml/Rate">
 				<cfset THIS[ "$Config" ].env.ups.av_url = "https://wwwcie.ups.com/ups.app/xml/AV">
 				<cfset THIS[ "$Config" ].env.ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
+				
+				<cfset THIS[ "$Config" ].env.canadapost = {} />
+				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/soap/rating/v3">
             </cfif>
         </cfif>
        

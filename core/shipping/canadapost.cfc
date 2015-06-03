@@ -5,6 +5,7 @@
 	
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
+		<cfdump var="#response#" abort>
 		<cfset LOCAL.retStruct.rate = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
 		
 		<cfreturn LOCAL.retStruct>
@@ -21,8 +22,6 @@
 			<cfoutput>
 			<get-rates-request>
 				<mailing-scenario>
-					<customer-number>1111111</customer-number>
-					<contract-id>12345678</contract-id>
 					<parcel-characteristics>
 						<weight>1</weight>
 					</parcel-characteristics>
@@ -42,13 +41,6 @@
 
 		<cfsavecontent variable="LOCAL.xmlShippingData">
 			<?xml version="1.0"?>
-			<AccessRequest xml:lang="en-US">
-				<cfoutput>
-					<AccessLicenseNumber>#xmlFormat(APPLICATION.ups.accesskey)#</AccessLicenseNumber>
-					<UserId>#xmlFormat(APPLICATION.ups.upsuserid)#</UserId>
-					<Password>#xmlFormat(APPLICATION.ups.upspassword)#</Password>
-				</cfoutput>
-			</AccessRequest>
 			<cfoutput>#LOCAL.xmlShippingRequest#</cfoutput>
 		</cfsavecontent>	
 		<cfreturn LOCAL.xmlShippingData>
