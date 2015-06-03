@@ -18,30 +18,24 @@
 		
 		<cfset var LOCAL = {} />
 		
-		<cfxml variable="LOCAL.xmlShippingRequest" casesensitive="true">
-			<cfoutput>
-			<get-rates-request>
+		<cfsavecontent variable="LOCAL.xmlShippingData">
+			<?xml version="1.0"?>
+			
 				<mailing-scenario>
 					<parcel-characteristics>
-						<weight>1</weight>
+						<weight>0.9</weight>
 					</parcel-characteristics>
 					<services>
 						<service-code>DOM.XP</service-code>
 					</services>
-					<origin-postal-code>V6B4A2</origin-postal-code>
+					<origin-postal-code>L4S2S1</origin-postal-code>
 					<destination>
 						<domestic>
-							<postal-code>J0E1X0</postal-code>
+							<postal-code>M2M4M6</postal-code>
 						</domestic>
 					</destination>
 				</mailing-scenario>
-			</get-rates-request>
-			</cfoutput>
-		</cfxml>
-
-		<cfsavecontent variable="LOCAL.xmlShippingData">
-			<?xml version="1.0"?>
-			<cfoutput>#LOCAL.xmlShippingRequest#</cfoutput>
+			
 		</cfsavecontent>	
 		<cfreturn LOCAL.xmlShippingData>
 	</cffunction>
