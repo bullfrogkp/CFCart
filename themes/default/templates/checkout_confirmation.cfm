@@ -110,6 +110,11 @@
 					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Billing Address</th>
 				</tr>
 				<tbody>
+					<cfif SESSION.order.sameAddress EQ true>
+					<tr>
+						<td>Billing address is same as shipping address. If you would like to change it, please click <a href="#APPLICATION.absoluteUrlWeb#checkout/checkout_change_address.cfm">here</a>.</td>
+					</tr>
+					<cfelse>
 					<tr>
 						<td class="first-col">First Name:</td>
 						<td>#SESSION.order.billingAddress.firstName#</td>
@@ -147,6 +152,7 @@
 						<td class="first-col">Country:</td>
 						<td>#EntityLoadByPK("country",SESSION.order.billingAddress.countryId).getDisplayName()#</td>
 					</tr>
+					</cfif>
 				</tbody>
 			</table>
 		</div>
