@@ -161,6 +161,7 @@
 			<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
 		</cfloop>
 		
+		<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
 		
 		<cfreturn LOCAL />	

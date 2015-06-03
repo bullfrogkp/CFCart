@@ -1,4 +1,7 @@
-<cfcomponent extends="shipping" output="false" accessors="true">
+<cfcomponent extend="shipping" output="false" accessors="true">
+	<cfproperty name="shippingMethodId" type="numeric"> 
+	<cfproperty name="productId" type="numeric"> 
+    <cfproperty name="address" type="struct"> 
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="struct">
 		<cfargument name="response" type="any" required="true">
@@ -81,5 +84,4 @@
 		</cfsavecontent>	
 		<cfreturn LOCAL.xmlShippingData>
 	</cffunction>
-	<!------------------------------------------------------------------------------->
 </cfcomponent>
