@@ -30,18 +30,19 @@
 	<style>
 		.current-addresses {
 			list-style-type:none;
-			margin-left:-20px;
+			margin-left:-60px;
 			margin-bottom:20px;
 		}
 		
 		.current-addresses li {
 			float:left;
 			line-height:20px;
-			margin-left:20px;
+			margin-left:60px;
+			margin-bottom:20px;
 		}
 	</style>	
 	<div id="checkout-info">
-		<div style="float:left;">
+		<div style="float:left;width:607px;">
 			<div id="checkout-addresses">
 				<cfset customer = EntityLoadByPK("customer",SESSION.user.customerId) />
 				<cfif ArrayLen(customer.getAddresses()) GT 0>
@@ -61,7 +62,7 @@
 					<div style="clear:both;"></div>
 				</cfif>
 			</div>
-			<div style="margin-top:20px;padding-top:20px;border-top:1px solid ##ccc;" class="single_field">
+			<div style="padding-top:20px;border-top:1px solid ##ccc;" class="single_field">
 				<table>	
 					<tr>
 						<td style="font-weight:bold;width:93px;">Email:</td>

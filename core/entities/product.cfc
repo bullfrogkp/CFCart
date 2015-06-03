@@ -177,6 +177,7 @@
 	<cffunction name="getShippingFee" access="public" output="false" returnType="string">
 		<cfargument name="address" type="struct" required="true" />
 		<cfargument name="shippingMethodId" type="numeric" required="true" />
+		<cfargument name="customerGroupName" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
 		
@@ -192,7 +193,7 @@
 			
 			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
 		<cfelse>
-			<cfset LOCAL.shippingFee = getPrice() />
+			<cfset LOCAL.shippingFee = getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
 		</cfif>
 		
 		<cfreturn LOCAL.shippingFee />

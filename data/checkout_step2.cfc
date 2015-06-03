@@ -19,7 +19,7 @@
 			<cfloop array="#SESSION.order.productArray#" index="LOCAL.product">
 				<cfif LOCAL.product.productId EQ LOCAL.productId>
 					<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
-					<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = SESSION.order.shippingAddress, shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId()) * LOCAL.product.count />
+					<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = SESSION.order.shippingAddress, shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = SESSION.user.customerGroupName) * LOCAL.product.count />
 					<cfset SESSION.order.totalShippingFee += LOCAL.product.totalShippingFee />
 					<cfbreak />
 				</cfif>
