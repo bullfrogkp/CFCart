@@ -4,7 +4,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset LOCAL.messageArray = [] />
-		
+		<!---
 		<cfif SESSION.order.couponCode NEQ "">
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
 			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = SESSION.order.couponCode, customerId = SESSION.user.customerId, total = SESSION.order.subTotalPrice) />
@@ -18,7 +18,7 @@
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
 			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
 		</cfif>
-		
+		--->
 		<cfreturn LOCAL />
 	</cffunction>
 	
