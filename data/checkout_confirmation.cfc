@@ -1,4 +1,27 @@
 ﻿<cfcomponent extends="master">	
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset LOCAL.messageArray = [] />
+		
+		<cfif SESSION.order.couponCode NEQ "">
+			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = SESSION.order.couponCode, customerId = SESSION.user.customerId, total = SESSION.order.subTotalPrice) />
+			<cfif LOCAL.applyCoupon.success EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"The coupon is not valid.") />
+			</cfif>
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />

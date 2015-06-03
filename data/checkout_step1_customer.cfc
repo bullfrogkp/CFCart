@@ -153,6 +153,7 @@
 		
 		<cfset SESSION.order.billingAddress = Duplicate(SESSION.order.shippingAddress) />
 		
+		<cfset SESSION.order.totalTax = 0 />
 		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
 			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
 			<cfset LOCAL.item.singleTax = LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId) />

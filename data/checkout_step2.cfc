@@ -13,6 +13,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		<cfset SESSION.order.totalShippingFee = 0 />
 		<cfloop list="#FORM.product_shipping_method_rela_id_list#" index="LOCAL.productShippingMethodRelaId">
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
 			<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
