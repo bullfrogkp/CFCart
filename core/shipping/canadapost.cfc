@@ -20,22 +20,24 @@
 		
 		<cfsavecontent variable="LOCAL.xmlShippingData">
 			<?xml version="1.0"?>
-			
+			<get-rates-request>
 				<mailing-scenario>
+					<customer-number>1111111</customer-number>
+					<contract-id>12345678</contract-id>
 					<parcel-characteristics>
-						<weight>0.9</weight>
+						<weight>1</weight>
 					</parcel-characteristics>
 					<services>
 						<service-code>DOM.XP</service-code>
 					</services>
-					<origin-postal-code>L4S2S1</origin-postal-code>
+					<origin-postal-code>V6B4A2</origin-postal-code>
 					<destination>
 						<domestic>
-							<postal-code>M2M4M6</postal-code>
+							<postal-code>J0E1X0</postal-code>
 						</domestic>
 					</destination>
 				</mailing-scenario>
-			
+			</get-rates-request>
 		</cfsavecontent>	
 		<cfreturn LOCAL.xmlShippingData>
 	</cffunction>
