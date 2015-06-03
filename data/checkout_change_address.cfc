@@ -143,7 +143,7 @@
 			<cfset SESSION.order.billingAddress.countryCode = LOCAL.country.getCode() />
 		</cfif>
 				
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation" />
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
