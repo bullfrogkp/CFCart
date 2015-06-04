@@ -58,9 +58,9 @@
 				<cfset THIS[ "$Config" ].env.ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
 				
 				<cfset THIS[ "$Config" ].env.canadapost = {} />
-				<cfset THIS[ "$Config" ].env.canadapost.username = "c99f11dd351dff97">
-				<cfset THIS[ "$Config" ].env.canadapost.password = "07f7734b06eff2abd252ab">
-				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://ct.soa-gw.canadapost.ca/rs/soap/rating/v3*">
+				<cfset THIS[ "$Config" ].env.canadapost.username = "03ac5bc25c8f08e5">
+				<cfset THIS[ "$Config" ].env.canadapost.password = "e87558a6b864af93152ab1">
+				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/ship/price">
             <cfelse>
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
@@ -104,7 +104,7 @@
 				<cfset THIS[ "$Config" ].env.canadapost = {} />
 				<cfset THIS[ "$Config" ].env.canadapost.username = "03ac5bc25c8f08e5">
 				<cfset THIS[ "$Config" ].env.canadapost.password = "e87558a6b864af93152ab1">
-				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/soap/rating/v3">
+				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/ship/price">
             </cfif>
         </cfif>
        
