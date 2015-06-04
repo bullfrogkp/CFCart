@@ -64,7 +64,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
 			<table>
 				<tr>
 					<td colspan="2">
-						<input type="email" name="email_address" placeholder="Email Address">
+						<input type="email" name="new_username" placeholder="Email Address">
 					</td>
 				</tr>
 				<tr>
