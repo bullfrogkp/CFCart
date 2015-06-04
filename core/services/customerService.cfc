@@ -1,4 +1,7 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">	
+	<cfproperty name="username" type="string"> 
+    <cfproperty name="password" type="string"> 
+	
 	<cffunction name="_getQuery" output="false" access="private" returntype="array">
 		<cfargument name="getCount" type="boolean" required="false" default="false" />
 		<cfset LOCAL = {} />
@@ -30,5 +33,17 @@
 		</cfquery>
 	
 		<cfreturn LOCAL.query />
+    </cffunction>
+	
+	<cffunction name="isUserValid" output="false" access="public" returntype="boolean">
+		<cfset LOCAL = {} />
+		<cfset LOCAL.retValue = false />
+		
+		<cfset LOCAL.customer = EntityLoad("customer",{username=getUsername(),password=Hash(getPassword()),isDeleted=false,isEnabled=true},true) />
+		<cfif NOT IsNull(LOCAL.customer)>
+			<cfset LOCAL.retValue = true />
+		</cfif>
+	
+		<cfreturn LOCAL.retValue />
     </cffunction>
 </cfcomponent>
