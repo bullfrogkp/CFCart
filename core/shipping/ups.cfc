@@ -12,7 +12,7 @@
 													,	toAddress = getAddress()
 													,	serviceCode = LOCAL.shippingMethod.getServiceCode())>										
 										
-		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>
+		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
 		<cfset LOCAL.rate = _parseResponse(LOCAL.shippingRateResponse).rate />
 		
 		<cfreturn LOCAL.rate />

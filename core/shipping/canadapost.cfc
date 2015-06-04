@@ -18,7 +18,7 @@
 					<service-code>DOM.XP</service-code>
 				</services>
 				<parcel-characteristics>
-					<weight>1</weight>
+					<weight>#LOCAL.product.getWeight()#</weight>
 				</parcel-characteristics>
 				<origin-postal-code>#UCase(Replace(LOCAL.siteInfo.getPostalCode()," ","","all"))#</origin-postal-code>
 				<destination>
