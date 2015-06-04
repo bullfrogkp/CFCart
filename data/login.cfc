@@ -61,14 +61,21 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"user_login")>
-			<cfset LOCAL.customer = EntityLoad("customer",{username=getUsername(),password=Hash(getPassword()),isDeleted=false,isEnabled=true},true) />
-			
-			<cfset SESSION.user.userName = LOCAL.customer.getFullName() />
-			<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
-			<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
+			<cfset LOCAL.customer = EntityLoad("customer",{email=getUsername(),password=Hash(getPassword()),isDeleted=false,isEnabled=true},true) />
 		<cfelseif StructKeyExists(FORM,"user_signup")>
-			<cfset LOCAL.customer = EntityNew() />
+			<cfset LOCAL.customer = EntityNew("customer") />
+			<cfset LOCAL.customer.setEmail(Trim(FORM.new_username)) />
+			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
+			
+			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
+			<cfset LOCAL.customer.setCustomerGroup(LOCAL.defaultCustomerGroup) />
+			
+			<cfset EntitySave(LOCAL.customer) />
 		</cfif>
+		
+		<cfset SESSION.user.userName = LOCAL.customer.getEmail() />
+		<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
+		<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm" />
 		
