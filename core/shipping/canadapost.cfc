@@ -9,35 +9,38 @@
 		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 		<cfset LOCAL.product = EntityLoadByPK("product",getProductId()) /> 
 				
-		<cfsavecontent variable="xmlRequest">
+		<cfsavecontent variable="LOCAL.xmlRequest">
+			<cfoutput>
 			<?xml version="1.0" encoding="utf-8"?>
 			<mailing-scenario xmlns="http://www.canadapost.ca/ws/ship/rate-v3">
 				<quote-type>counter</quote-type>
 				<parcel-characteristics>
-					<weight>#LOCAL.product.getWeight()#</weight>
+					<weight>1</weight>
 				</parcel-characteristics>
-				<origin-postal-code>#LOCAL.siteInfo.getPostalCode()#</origin-postal-code>
+				<origin-postal-code>#UCase(Replace(LOCAL.siteInfo.getPostalCode()," ","","all"))#</origin-postal-code>
 				<destination>
 					<cfif getAddress().countryCode EQ "CA">
 						<domestic>
-							<postal-code>#getAddress().postalCode#</postal-code>
+							<postal-code>#UCase(Replace(getAddress().postalCode," ","","all"))#</postal-code>
 						</domestic>
 					<cfelseif getAddress().countryCode EQ "US">
 						<united-states>
-							<zip-code>#getAddress().postalCode#</zip-code>
+							<zip-code>#Replace(getAddress().postalCode," ","","all")#</zip-code>
 						</united-states>
 					<cfelse>
 						<international>
 							<country-code>#getAddress().countryCode#</country-code>
 						</international>
 					</cfif>
+				</destination>
 			</mailing-scenario>
+			</cfoutput>
 		</cfsavecontent>
 
 		<cfhttp
 		url="#APPLICATION.canadapost.rate_url#"
 		method="post"
-		result="httpResponse"
+		result="LOCAL.httpResponse"
 		username="#APPLICATION.canadapost.username#" password="#APPLICATION.canadapost.password#">
 			<cfhttpparam
 			type="header"
@@ -46,13 +49,13 @@
 			/>
 			<cfhttpparam
 			type="xml"
-			value="#trim(xmlRequest)#"
+			value="#trim(LOCAL.xmlRequest)#"
 			/>
 			<cfhttpparam type="header" name="Content-type" value="application/vnd.cpc.ship.rate-v3+xml">
 			<cfhttpparam type="header" name="Accept-language" value="en-CA">
 		</cfhttp>
 
-		<cfdump var="#httpResponse#" abort>
+		<cfset LOCAL.rate= _parseResponse(LOCAL.httpResponse) />
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="struct">
@@ -60,7 +63,7 @@
 	
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfdump var="#response#" abort>
+		<cfdump var="#XMLParse(ARGUMENTS.response.fileContent)#" abort>
 		<cfset LOCAL.retStruct.rate = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
 		
 		<cfreturn LOCAL.retStruct>
