@@ -14,7 +14,7 @@
 			</cfif>
 			
 			<cfif Trim(FORM.username) NEQ "" AND Trim(FORM.password) NEQ "">
-				<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.userService"() />
+				<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
 				<cfset LOCAL.customerService.setUsername(Trim(FORM.username)) />
 				<cfset LOCAL.customerService.setPassword(Trim(FORM.password)) />
 				<cfif LOCAL.customerService.isUserValid() EQ false>
@@ -61,14 +61,16 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"user_login")>
-			<cfset LOCAL.customer = EntityLoad("customer",{email=getUsername(),password=Hash(getPassword()),isDeleted=false,isEnabled=true},true) />
+			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.username),password=Hash(Trim(FORM.password)),isDeleted=false,isEnabled=true},true) />
+			<cfset LOCAL.customer.setLastLoginDatetime(Now()) />
 		<cfelseif StructKeyExists(FORM,"user_signup")>
 			<cfset LOCAL.customer = EntityNew("customer") />
 			<cfset LOCAL.customer.setEmail(Trim(FORM.new_username)) />
-			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
+			<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
 			<cfset LOCAL.customer.setIsEnabled(true) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
-			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
+			<cfset LOCAL.customer.setLastLoginDatetime(Now()) />
+			<cfset LOCAL.customer.setCreatedUser(SESSION.user.ip) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			
 			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />

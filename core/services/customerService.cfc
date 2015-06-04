@@ -39,7 +39,7 @@
 		<cfset LOCAL = {} />
 		<cfset LOCAL.retValue = false />
 		
-		<cfset LOCAL.customer = EntityLoad("customer",{username=getUsername(),password=Hash(getPassword()),isDeleted=false,isEnabled=true},true) />
+		<cfset LOCAL.customer = EntityLoad("customer",{email=getUsername(),password=Hash(getPassword()),isDeleted=false,isEnabled=true},true) />
 		<cfif NOT IsNull(LOCAL.customer)>
 			<cfset LOCAL.retValue = true />
 		</cfif>
