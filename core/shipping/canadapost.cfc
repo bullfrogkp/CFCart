@@ -18,10 +18,19 @@
 				</parcel-characteristics>
 				<origin-postal-code>#LOCAL.siteInfo.getPostalCode()#</origin-postal-code>
 				<destination>
-					<domestic>
-						<postal-code>#getAddress().postalCode#</postal-code>
-					</domestic>
-				</destination>
+					<cfif getAddress().countryCode EQ "CA">
+						<domestic>
+							<postal-code>#getAddress().postalCode#</postal-code>
+						</domestic>
+					<cfelseif getAddress().countryCode EQ "US">
+						<united-states>
+							<zip-code>#getAddress().postalCode#</zip-code>
+						</united-states>
+					<cfelse>
+						<international>
+							<country-code>#getAddress().countryCode#</country-code>
+						</international>
+					</cfif>
 			</mailing-scenario>
 		</cfsavecontent>
 
