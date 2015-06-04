@@ -14,6 +14,9 @@
 			<?xml version="1.0" encoding="utf-8"?>
 			<mailing-scenario xmlns="http://www.canadapost.ca/ws/ship/rate-v3">
 				<quote-type>counter</quote-type>
+				<services>
+					<service-code>DOM.XP</service-code>
+				</services>
 				<parcel-characteristics>
 					<weight>1</weight>
 				</parcel-characteristics>
@@ -55,7 +58,9 @@
 			<cfhttpparam type="header" name="Accept-language" value="en-CA">
 		</cfhttp>
 
-		<cfset LOCAL.rate= _parseResponse(LOCAL.httpResponse) />
+		<cfset LOCAL.rate = _parseResponse(LOCAL.httpResponse).rate />
+		
+		<cfreturn LOCAL.rate />
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="struct">
@@ -63,9 +68,9 @@
 	
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfdump var="#XMLParse(ARGUMENTS.response.fileContent)#" abort>
-		<cfset LOCAL.retStruct.rate = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
-		
+		<cfset LOCAL.response = XMLParse(ARGUMENTS.response.fileContent) />
+		<cfset LOCAL.retStruct.rate = LOCAL.response["price-quotes"]["price-quote"]["price-details"].due.XmlText />
+	
 		<cfreturn LOCAL.retStruct>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
