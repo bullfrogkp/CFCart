@@ -4,7 +4,7 @@
 	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">My Account</span> 
 	<div class="breadcrumb-arrow-icon"></div>
-	<span style="vertical-align:middle">Dashboard</span> 
+	<span style="vertical-align:middle">Orders</span> 
 </div>
 <cfinclude template="myaccount_sidenav.cfm" />
 <div id="myaccount-content">
@@ -13,189 +13,27 @@
 		<div class="myaccount-table" >
 			<table >
 				<tr>
-					<td>
-						Order No.
-					</td>
-					<td >
-							Email
-					</td>
-					<td>
-							Name
-					</td>
-					<td >
-						Total	
-					</td>
-					<td >
-							Create Datetime	
-					</td>
-					<td >
-							Status	
-					</td>
-					<td >
-							Invoice
-					</td>
-					<td >
-					</td>
+					<td>Order No.</td>
+					<td>Email</td>
+					<td>Name</td>
+					<td>Total</td>
+					<td>Create Datetime	</td>
+					<td>Status</td>
+					<td></td>
 				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-					<td>
-						<a href="order_detail.cfm">Detail</a>
-					</td>
-				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-					<td>
-						<a href="order_detail.cfm">Detail</a>
-					</td>
-				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-					<td>
-						<a href="order_detail.cfm">Detail</a>
-					</td>
-				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-					<td>
-						<a href="order_detail.cfm">Detail</a>
-					</td>
-				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-					<td>
-						<a href="order_detail.cfm">Detail</a>
-					</td>
-				</tr>
-				<tr>
-					<td >
-						OR20141227227 
-					</td>
-					<td>
-						michelle@aaa.com
-					</td>
-					<td>
-						Michell
-					</td>
-					<td>
-						700
-					</td>
-					<td>
-						2014 Dec 27 02:14:32
-					</td>
-					<td>
-						Shipped
-					</td>
-					<td>
-						<a href="">Invoice</a>
-					</td>
-					<td>
-						<a href="order_detail.cfm">Detail</a>
-					</td>
-				</tr>
+				<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
+					<tr>
+						<td>#order.getOrderTrackingNumber()#</td>
+						<td>#order.getEmail()#</td>
+						<td>#order.getCustomerFullName()#</td>
+						<td>#order.getTotalPrice()#</td>
+						<td>#order.getCreatedDatetime()#</td>
+						<td>#order.getCurrentOrderStatus()#</td>
+						<td><a href="order_detail.cfm">Detail</a></td>
+					</tr>
+				</cfloop>
 			</table>
 		</div>
-		
 		<div style="clear:both;"></div>
 	</div>
 </div>
