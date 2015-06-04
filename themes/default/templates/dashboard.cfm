@@ -26,24 +26,6 @@
 				<p>You are currently subscribed to our newsletter.</p>
 				<p>Change Password</p>
 			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid ##CCC;height:171px;">
-				
-				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
-					Primary Billing Address
-					<button style="float:right;font-size:12px;">Edit</button>
-				</div>
-				<p>366 Adelaide Street West, Suite 701</p>
-				<p>Toronto, ON M5V 1R9</p>
-			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:171px;border-left:1px solid ##CCC;">
-				
-				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
-					Primary Shipping Address
-					<button style="float:right;font-size:12px;">Edit</button>
-				</div>
-				<p>366 Adelaide Street West, Suite 701</p>
-				<p>Toronto, ON M5V 1R9</p>
-			</li>
 		</ul>
 		<div style="clear:both;"></div>
 	</div>

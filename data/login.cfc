@@ -22,7 +22,7 @@
 				</cfif>
 			</cfif>
 		<cfelseif StructKeyExists(FORM,"user_signup")>
-			<cfif Trim(FORM.email_address) EQ "">
+			<cfif Trim(FORM.new_username) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email address.") />
 			</cfif>
 			<cfif Trim(FORM.new_password) EQ "">
@@ -66,6 +66,10 @@
 			<cfset LOCAL.customer = EntityNew("customer") />
 			<cfset LOCAL.customer.setEmail(Trim(FORM.new_username)) />
 			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
+			<cfset LOCAL.customer.setIsEnabled(true) />
+			<cfset LOCAL.customer.setIsDeleted(false) />
+			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
+			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			
 			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
 			<cfset LOCAL.customer.setCustomerGroup(LOCAL.defaultCustomerGroup) />
