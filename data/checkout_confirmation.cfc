@@ -65,7 +65,8 @@
 				
 				<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
 				<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
-				<cfset LOCAL.orderTransaction.setOrderTransactionType() />
+				<cfset LOCAL.orderTransaction.setTransactionType(LOCAL.orderTransactionType) />
+				<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionid) />
 				
 				<cfinvoke component="#APPLICATION.db_cfc_path#db.order_transactions" method="addOrderTransaction" returnvariable="order_transaction_id">
 					<cfinvokeargument name="transaction_id" value="#LOCAL.responseStruct.transactionid#">
