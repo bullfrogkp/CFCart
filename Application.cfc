@@ -22,6 +22,7 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
+		<cfset _setCurrency() />
 		<cfset _setTheme("default") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
@@ -137,6 +138,11 @@
 		<cfset SESSION.user.customerId = "" />
 		<cfset SESSION.user.customerGroupName = LOCAL.defaultCustomerGroup.getName() />
 		<cfset SESSION.user.ip = CGI.REMOTE_ADDR />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_setCurrency"  access="private" returnType="void" output="false">
+		<cfset SESSION.currency = {} />
+		<cfset SESSION.currency.code = "CAD" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">
