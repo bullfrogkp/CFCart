@@ -40,4 +40,26 @@
 		
 		<cfreturn fullName />
 	</cffunction>
+	
+	<cffunction name="getActiveOrders" access="public" output="false" returnType="array">
+		<cfreturn EntityLoad("order",{customer = this, isDeleted = false}) />
+	</cffunction>
+	
+	<cffunction name="getActiveAddresses" access="public" output="false" returnType="array">
+		<cfreturn EntityLoad("address",{customer = this, isDeleted = false}) />
+	</cffunction>
+	
+	<cffunction name="getActiveReviews" access="public" output="false" returnType="array">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.approvedStatusType = EntityLoad("review_status_type",{name="approved"},true) />
+		
+		<cfreturn EntityLoad("review",{customer = this, isDeleted = false, reviewStatusType = LOCAL.approvedStatusType}) />
+	</cffunction>
+	
+	<cffunction name="getActiveCoupons" access="public" output="false" returnType="array">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.activeStatusType = EntityLoad("coupon_status_type",{name="active"},true) />
+		
+		<cfreturn EntityLoad("coupon",{customer = this, isDeleted = false, couponStatusType = LOCAL.activeStatusType}) />
+	</cffunction>
 </cfcomponent>

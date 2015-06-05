@@ -22,7 +22,7 @@
 					<td></td>
 				</tr>
 				<cfif ArrayLen(REQUEST.pageData.customer.getOrders()) GT 0>
-					<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
+					<cfloop array="#REQUEST.pageData.customer.getActiveOrders()#" index="order">
 						<tr>
 							<td>#order.getOrderTrackingNumber()#</td>
 							<td>#order.getEmail()#</td>

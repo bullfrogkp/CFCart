@@ -19,7 +19,7 @@
 					<td>Subject</td>
 					<td></td>
 				</tr>
-				<cfif ArrayLen(REQUEST.pageData.customer.getReviews()) GT 0>
+				<cfif ArrayLen(REQUEST.pageData.customer.getActiveReviews()) GT 0>
 					<cfloop array="#REQUEST.pageData.customer.getReviews()#" index="review">
 					<tr>
 						<td>#review.getReviewId()#</td>

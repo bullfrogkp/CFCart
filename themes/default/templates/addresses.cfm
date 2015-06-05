@@ -12,7 +12,7 @@
 	<h1>My Addresses</h1>
 	<div style="margin-top:25px;" class="single_field">
 		<cfif ArrayLen(REQUEST.pageData.customer.getAddresses()) GT 0>
-			<cfloop array="#REQUEST.pageData.customer.getAddresses()#" index="address">
+			<cfloop array="#REQUEST.pageData.customer.getActiveAddresses()#" index="address">
 				<div style="width:49%;float:left;">
 					<table id="current-address-table" class="shipping-address-selected" style="width:100%;">	
 						<tr>

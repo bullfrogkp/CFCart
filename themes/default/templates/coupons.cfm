@@ -18,7 +18,7 @@
 					<td>Status</td>
 					<td></td>
 				</tr>
-				<cfif ArrayLen(REQUEST.pageData.customer.getCoupons()) GT 0>
+				<cfif ArrayLen(REQUEST.pageData.customer.getActiveCoupons()) GT 0>
 					<cfloop array="#REQUEST.pageData.customer.getCoupons()#" index="coupon">
 						<tr>
 							<td>#coupon.getCode()#</td>
