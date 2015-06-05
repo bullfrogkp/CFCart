@@ -20,19 +20,19 @@
 				<tr>
 					<td style="font-weight:bold;">First Name: </td>
 					<td>
-						<input name="first_name" id="first_name" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="first_name" id="first_name" type="text" maxlength="100" size="25" style="width:180px;" value="#REQUEST.pageData.formData.first_name#">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Middle Name: </td>
 					<td>
-						<input name="middle_name" id="middle_name" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="middle_name" id="middle_name" type="text" maxlength="100" size="25" style="width:180px;" value="#REQUEST.pageData.formData.middle_name#">
 					</td>
 				</tr>  
 				<tr>
 					<td style="font-weight:bold;">Last Name: </td>
 					<td>
-						<input name="last_name" id="last_name" type="text" maxlength="40" size="25" style="width:180px;">
+						<input name="last_name" id="last_name" type="text" maxlength="40" size="25" style="width:180px;" value="#REQUEST.pageData.formData.last_name#">
 					</td>
 				</tr>
 				<tr>
@@ -41,24 +41,24 @@
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Phone: </td>
-					<td><input name="phone" id="phone" type="text" maxlength="40" size="25" style="width:180px;"></td>
+					<td><input name="phone" id="phone" type="text" maxlength="40" size="25" style="width:180px;" value="#REQUEST.pageData.formData.phone#"></td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Date of Birth: </td>
 					<td>
-						<input name="date_of_birth" id="date_of_birth" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="date_of_birth" id="date_of_birth" type="text" maxlength="100" size="25" style="width:180px;" value="#REQUEST.pageData.formData.date_of_birth#">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Company: </td>
 					<td>
-						<input name="company" id="company" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="company" id="company" type="text" maxlength="100" size="25" style="width:180px;" value="#REQUEST.pageData.formData.company#">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Website: </td>
 					<td>
-						<input name="website" id="website" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="website" id="website" type="text" maxlength="100" size="25" style="width:180px;" value="#REQUEST.pageData.formData.website#">
 					</td>
 				</tr>
 				<tr>
@@ -66,7 +66,7 @@
 					<table style="margin-left:-3px;">
 						<tbody><tr>
 							<td>
-								<input type="checkbox" name="billing_info_different" id="billing_info_different" value="1" onclick="if(this.checked) $('##new-billing-address').slideDown(500); else $('##new-billing-address').slideUp(500);">
+								<input type="checkbox" name="subscribed" id="subscribed" value="1" <cfif REQUEST.pageData.formData.subscribed EQ true>checked</cfif>">
 							</td>
 							<td>&nbsp;Check here if you want to subscribe our new product information</td>
 						</tr>
