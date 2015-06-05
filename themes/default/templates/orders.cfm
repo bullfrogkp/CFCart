@@ -21,17 +21,23 @@
 					<td>Status</td>
 					<td></td>
 				</tr>
-				<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
+				<cfif ArrayLen(REQUEST.pageData.customer.getOrders()) GT 0>
+					<cfloop array="#REQUEST.pageData.customer.getOrders()#" index="order">
+						<tr>
+							<td>#order.getOrderTrackingNumber()#</td>
+							<td>#order.getEmail()#</td>
+							<td>#order.getCustomerFullName()#</td>
+							<td>#order.getTotalPrice()#</td>
+							<td>#order.getCreatedDatetime()#</td>
+							<td>#order.getCurrentOrderStatus()#</td>
+							<td><a href="order_detail.cfm">Detail</a></td>
+						</tr>
+					</cfloop>
+				<cfelse>
 					<tr>
-						<td>#order.getOrderTrackingNumber()#</td>
-						<td>#order.getEmail()#</td>
-						<td>#order.getCustomerFullName()#</td>
-						<td>#order.getTotalPrice()#</td>
-						<td>#order.getCreatedDatetime()#</td>
-						<td>#order.getCurrentOrderStatus()#</td>
-						<td><a href="order_detail.cfm">Detail</a></td>
+						<td colspan="7">No order record found.</td>
 					</tr>
-				</cfloop>
+				</cfif>
 			</table>
 		</div>
 		<div style="clear:both;"></div>
