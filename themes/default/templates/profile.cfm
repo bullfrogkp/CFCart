@@ -9,14 +9,18 @@
 <cfinclude template="myaccount_sidenav.cfm" />
 <div id="myaccount-content">
 	<h1>My Profile</h1>
-	<div style="margin-top:20px;" class="single_field">
+	<div style="margin-top:30px;" class="single_field">
 		<div>
 			<table id="current-address-table" class="shipping-address-selected" style="width:100%;margin-top:20px;">	
 				<tr>
-					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:20px;">Account Information
+					<th colspan="2" align="left" style="font-size:14px;font-weight:bold;padding-bottom:10px;">Account Information
 					</th>
 				</tr>
 				<tbody>
+				<tr>
+					<td style="font-weight:bold;line-height:30px;">Email: </td>
+					<td style="line-height:30px;">#REQUEST.pageData.customer.getEmail()#</td>
+				</tr>
 				<tr>
 					<td style="font-weight:bold;">First Name: </td>
 					<td>
@@ -34,10 +38,6 @@
 					<td>
 						<input name="last_name" id="last_name" type="text" maxlength="40" size="25" style="width:180px;" value="#REQUEST.pageData.formData.last_name#">
 					</td>
-				</tr>
-				<tr>
-					<td style="font-weight:bold;">Email: </td>
-					<td><input name="email" id="email" type="text" maxlength="40" size="25" style="width:180px;" value="#REQUEST.pageData.customer.getEmail()#" disabled></td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Phone: </td>
