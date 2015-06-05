@@ -31,7 +31,7 @@
 			<cfif Trim(FORM.confirm_password) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please confirm your password.") />
 			</cfif>
-			<cfif Trim(FORM.new_password) NEQ Trim(FORM.confirm_password)>
+			<cfif Trim(FORM.new_password) NEQ "" AND Trim(FORM.confirm_password) NEQ "" AND Trim(FORM.new_password) NEQ Trim(FORM.confirm_password)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match.") />
 			</cfif>
 		</cfif>
