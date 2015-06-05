@@ -21,6 +21,8 @@
 	<cfproperty name="addresses" type="array" fieldtype="one-to-many" cfc="address" fkcolumn="customer_id" singularname="address">
 	<cfproperty name="orders" type="array" fieldtype="one-to-many" cfc="order" fkcolumn="customer_id" singularname="order">
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="customer_id" singularname="review">
+	<cfproperty name="wishlistProducts" type="array" fieldtype="one-to-many" cfc="wishlist_product" fkcolumn="customer_id" singularname="wishlistProduct">
+	<cfproperty name="coupons" type="array" fieldtype="one-to-many" cfc="coupon" fkcolumn="customer_id" singularname="coupon">
 	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	
