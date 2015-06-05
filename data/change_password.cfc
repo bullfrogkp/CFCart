@@ -15,15 +15,17 @@
 			<cfif Trim(FORM.confirm_password) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please confirm your new password.") />
 			</cfif>
-			<cfif Trim(FORM.new_password) NEQ Trim(FORM.confirm_password)>
+			<cfif Trim(FORM.new_password) NEQ "" AND Trim(FORM.confirm_password) NEQ "" AND Trim(FORM.new_password) NEQ Trim(FORM.confirm_password)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match.") />
 			</cfif>
 			
-			<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
-			<cfset LOCAL.customerService.setUsername(SESSION.user.userName) />
-			<cfset LOCAL.customerService.setPassword(Trim(FORM.current_password)) />
-			<cfif LOCAL.customerService.isUserValid() EQ false>
-				<cfset ArrayAppend(LOCAL.messageArray,"Password is not correct.") />
+			<cfif ArrayLen(LOCAL.messageArray) EQ 0>
+				<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
+				<cfset LOCAL.customerService.setUsername(SESSION.user.userName) />
+				<cfset LOCAL.customerService.setPassword(Trim(FORM.current_password)) />
+				<cfif LOCAL.customerService.isUserValid() EQ false>
+					<cfset ArrayAppend(LOCAL.messageArray,"Password is not correct.") />
+				</cfif>
 			</cfif>
 		</cfif>
 		
