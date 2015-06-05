@@ -61,18 +61,16 @@
 		<cfset LOCAL.requestData.SHIPTOZIP = SESSION.order.shippingAddress.postalCode>
 		<cfset LOCAL.requestData.SHIPTOPHONENUM = SESSION.order.shippingAddress.phone>
 		
-		<cfloop array="#SESSION.order.productArray#" index="item">
-			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
-		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="i">
-			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[i].productId) />
+		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="LOCAL.i">
+			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[LOCAL.i].productId) />
 			<cfset l_name = LOCAL.product.getDisplayName()>
-			<cfset l_amt = SESSION.order.productArray[i].singlePrice)>
-			<cfset l_qty = SESSION.order.productArray[i].count>
-			<cfset l_number = SESSION.order.productArray[i].productId>
-			<cfset StructInsert(LOCAL.requestData,"L_NAME#i-1#",l_name)>
-			<cfset StructInsert(LOCAL.requestData,"L_AMT#i-1#",l_amt)>
-			<cfset StructInsert(LOCAL.requestData,"L_QTY#i-1#",l_qty)>
-			<cfset StructInsert(LOCAL.requestData,"L_NUMBER#i-1#",l_number)>
+			<cfset l_amt = SESSION.order.productArray[LOCAL.i].singlePrice)>
+			<cfset l_qty = SESSION.order.productArray[LOCAL.i].count>
+			<cfset l_number = SESSION.order.productArray[LOCAL.i].productId>
+			<cfset StructInsert(LOCAL.requestData,"L_NAME#LOCAL.i-1#",l_name)>
+			<cfset StructInsert(LOCAL.requestData,"L_AMT#LOCAL.i-1#",l_amt)>
+			<cfset StructInsert(LOCAL.requestData,"L_QTY#LOCAL.i-1#",l_qty)>
+			<cfset StructInsert(LOCAL.requestData,"L_NUMBER#LOCAL.i-1#",l_number)>
 		</cfloop>
 		<cfset LOCAL.requestData.ITEMAMT = SESSION.order.subTotalPrice>
 		<cfset LOCAL.requestData.SHIPPINGAMT = SESSION.order.totalShippingFee>
@@ -89,22 +87,25 @@
 			<cfinvokeargument name="useProxy" value="#APPLICATION.paypal.useProxy#">
 		</cfinvoke>							
 			
-		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="getNVPResponse" returnvariable="responseStruct">
+		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="getNVPResponse" returnvariable="LOCAL.responseStruct">
 			<cfinvokeargument name="nvpString" value="#URLDecode(LOCAL.response)#">
 		</cfinvoke>	
 
-		<cfif responseStruct.Ack EQ "Success">
+		<cfif LOCAL.responseStruct.Ack EQ "Success">
 			<cfset _processOrder() />
 					
-			<cfset TOKEN = #responseStruct.TOKEN#>
+			<cfset TOKEN = #LOCAL.responseStruct.TOKEN#>
 			<cfset redirecturl = #APPLICATION.paypal.PayPalURL# & #TOKEN#>
 			<cfset LOCAL.redirectUrl = redirecturl />
 		<cfelse>
+			<cfdump var="#LOCAL.responseStruct.L_LONGMESSAGE0#" abort>
+			<!---
 			<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "http post error",
-																content = "error: #responseStruct.L_LONGMESSAGE0#") />
+																content = "error: #LOCAL.responseStruct.L_LONGMESSAGE0#") />
 
-			<cfset SESSION.order.transaction_failed_reason = responseStruct.L_LONGMESSAGE0 />	
+			<cfset SESSION.order.transaction_failed_reason = LOCAL.responseStruct.L_LONGMESSAGE0 />	
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
+			--->
 		</cfif>
 		
 		<cfreturn LOCAL />	
