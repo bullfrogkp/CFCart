@@ -70,7 +70,7 @@
 			<cfset LOCAL.customer.setIsEnabled(true) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
 			<cfset LOCAL.customer.setLastLoginDatetime(Now()) />
-			<cfset LOCAL.customer.setCreatedUser(SESSION.user.ip) />
+			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			
 			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />

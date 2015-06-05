@@ -136,7 +136,7 @@
 		<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
 		<cfset SESSION.user.customerId = "" />
 		<cfset SESSION.user.customerGroupName = LOCAL.defaultCustomerGroup.getName() />
-		<cfset SESSION.user.ip = CGI.IP_ADDRESS />
+		<cfset SESSION.user.ip = CGI.REMOTE_ADDR />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">

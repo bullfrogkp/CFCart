@@ -25,4 +25,31 @@
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
+	<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		
+		<cfif StructKeyExists(FORM,"update_profile")>
+			<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
+			<cfset LOCAL.customer.setFirstName(Trim(FORM.first_name)) />
+			<cfset LOCAL.customer.setMiddleName(Trim(FORM.middle_name)) />
+			<cfset LOCAL.customer.setLastName(Trim(FORM.last_name)) />
+			<cfset LOCAL.customer.setPhone(Trim(FORM.phone)) />
+			<cfset LOCAL.customer.setWebsite(Trim(FORM.website)) />
+			<cfset LOCAL.customer.setCompany(Trim(FORM.company)) />
+			<cfset LOCAL.customer.setDateOfBirth(Trim(FORM.date_of_birth)) />
+			<cfset LOCAL.customer.setUpdatedUser(SESSION.user.userName) />
+			<cfset LOCAL.customer.setUpdatedDatetime(Now()) />
+			<cfif StructKeyExists(FORM,"subscribed")>
+				<cfset LOCAL.customer.setSubscribed(true) />
+			<cfelse>
+				<cfset LOCAL.customer.setSubscribed(false) />
+			</cfif>
+			<cfset EntitySave(LOCAL.customer) />
+		</cfif>
+		
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/profile.cfm" />
+		
+		<cfreturn LOCAL />	
+	</cffunction>	
 </cfcomponent>

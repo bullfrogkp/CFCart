@@ -7,6 +7,7 @@
 	<span style="vertical-align:middle">Profile</span> 
 </div>
 <cfinclude template="myaccount_sidenav.cfm" />
+<form method="post">
 <div id="myaccount-content">
 	<h1>My Profile</h1>
 	<div style="margin-top:30px;" class="single_field">
@@ -75,7 +76,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td style="padding-top:10px;"><button>Update</button></td>
+					<td style="padding-top:10px;"><input name="update_profile" type="submit" value="Update"></td>
 				</tr>
 				
 			</tbody>
@@ -85,4 +86,5 @@
 		<div style="clear:both;"></div>
 	</div>
 </div>
+</form>
 </cfoutput>
