@@ -48,7 +48,7 @@
 			<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
 			<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
 					
-			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="response">
+			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
 				<cfinvokeargument name="requestData" value="#LOCAL.requestData#">
 				<cfinvokeargument name="serverURL" value="#APPLICATION.paypal_info.serverURL#">
 				<cfinvokeargument name="proxyName" value="#APPLICATION.paypal_info.proxyName#">
@@ -56,15 +56,19 @@
 				<cfinvokeargument name="useProxy" value="#APPLICATION.paypal_info.useProxy#">
 			</cfinvoke>
 			
-			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="getNVPResponse" returnvariable="responseStruct">
-				<cfinvokeargument name="nvpString" value="#URLDecode(response)#">
+			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="getNVPResponse" returnvariable="LOCAL.responseStruct">
+				<cfinvokeargument name="nvpString" value="#URLDecode(LOCAL.response)#">
 			</cfinvoke>
 			
-			<cfif responseStruct.Ack is "Success">
+			<cfif LOCAL.responseStruct.Ack is "Success">
 				<cfset _processOrder() />
 				
+				<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
+				<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
+				<cfset LOCAL.orderTransaction.setOrderTransactionType() />
+				
 				<cfinvoke component="#APPLICATION.db_cfc_path#db.order_transactions" method="addOrderTransaction" returnvariable="order_transaction_id">
-					<cfinvokeargument name="transaction_id" value="#responseStruct.transactionid#">
+					<cfinvokeargument name="transaction_id" value="#LOCAL.responseStruct.transactionid#">
 					<cfinvokeargument name="order_id" value="#SESSION.new_order.order_id#">
 					<cfinvokeargument name="order_transaction_type_name" value="purchase">
 					<cfinvokeargument name="user" value="#SESSION.user#">
