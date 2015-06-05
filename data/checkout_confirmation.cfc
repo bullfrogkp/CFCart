@@ -36,9 +36,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		
-		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" />
+		<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
@@ -96,20 +94,20 @@
 		</cfinvoke>	
 
 		<cfif responseStruct.Ack EQ "Success">
-			<cfinclude template= "include_process_order.cfm" />	
+			<cfset _processOrder() />
 					
 			<cfset TOKEN = #responseStruct.TOKEN#>
 			<cfset redirecturl = #APPLICATION.paypal.PayPalURL# & #TOKEN#>
-			<cflocation url="#redirecturl#" ADDTOKEN="no">	
+			<cfset LOCAL.redirectUrl = redirecturl />
 		<cfelse>
 			<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "http post error",
 																content = "error: #responseStruct.L_LONGMESSAGE0#") />
 
 			<cfset SESSION.order.transaction_failed_reason = responseStruct.L_LONGMESSAGE0 />	
-			<cflocation url = "#APPLICATION.https_root_url#checkout/order_confirmation.cfm" addToken = "no" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 		</cfif>
 		
-		<cfreturn LOCAL.pageData />	
+		<cfreturn LOCAL />	
 	</cffunction>
 	
 	<cffunction name="_processOrder" access="private" output="false" returnType="void">
