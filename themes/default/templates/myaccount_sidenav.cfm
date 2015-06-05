@@ -26,7 +26,7 @@
 			<li>
 				<a href="#APPLICATION.absoluteUrlWeb#myaccount/profile.cfm">My Profile</a>
 			</li>
-			<li style="#APPLICATION.absoluteUrlWeb#myaccount/border-bottom:none;">
+			<li style="border-bottom:none;">
 				<a href="#APPLICATION.absoluteUrlWeb#myaccount/change_password.cfm">Change Password</a>
 			</li>
 		</ul>
