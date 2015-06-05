@@ -36,6 +36,83 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		
+		
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" />
+		
+		<cfreturn LOCAL />	
+	</cffunction>	
+	
+	<cffunction name="_sendPayPalRequest" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.requestData = {}>
+		<cfset LOCAL.requestData.METHOD = "SetExpressCheckout">
+		<cfset LOCAL.requestData.PAYMENTACTION = "sale">
+		<cfset LOCAL.requestData.USER = APPLICATION.paypal.APIUserName>
+		<cfset LOCAL.requestData.PWD = APPLICATION.paypal.APIPassword>
+		<cfset LOCAL.requestData.SIGNATURE = APPLICATION.paypal.APISignature>
+		<cfset LOCAL.requestData.VERSION = APPLICATION.paypal.version>
+		<cfset LOCAL.requestData.ADDRESSOVERRIDE = "1">
+		<cfset LOCAL.requestData.Email = SESSION.order.customer.email>
+		<cfset LOCAL.requestData.SHIPTONAME = SESSION.order.customer.fullName>
+		<cfset LOCAL.requestData.SHIPTOSTREET = SESSION.order.shippingAddress.street>
+		<cfset LOCAL.requestData.SHIPTOCITY = SESSION.order.shippingAddress.city>
+		<cfset LOCAL.requestData.SHIPTOSTATE = SESSION.order.billingAddress.provinceCode>
+		<cfset LOCAL.requestData.SHIPTOCOUNTRYCODE = SESSION.order.billingAddress.countryCode>
+		<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
+		<cfset LOCAL.requestData.SHIPTOZIP = SESSION.order.shippingAddress.postalCode>
+		<cfset LOCAL.requestData.SHIPTOPHONENUM = SESSION.order.shippingAddress.phone>
+		
+		<cfloop array="#SESSION.order.productArray#" index="item">
+			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
+		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="i">
+			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[i].productId) />
+			<cfset l_name = LOCAL.product.getDisplayName()>
+			<cfset l_amt = SESSION.order.productArray[i].singlePrice)>
+			<cfset l_qty = SESSION.order.productArray[i].count>
+			<cfset l_number = SESSION.order.productArray[i].productId>
+			<cfset StructInsert(LOCAL.requestData,"L_NAME#i-1#",l_name)>
+			<cfset StructInsert(LOCAL.requestData,"L_AMT#i-1#",l_amt)>
+			<cfset StructInsert(LOCAL.requestData,"L_QTY#i-1#",l_qty)>
+			<cfset StructInsert(LOCAL.requestData,"L_NUMBER#i-1#",l_number)>
+		</cfloop>
+		<cfset LOCAL.requestData.ITEMAMT = SESSION.order.subTotalPrice>
+		<cfset LOCAL.requestData.SHIPPINGAMT = SESSION.order.totalShippingFee>
+		<cfset LOCAL.requestData.TAXAMT = SESSION.order.totalTax>
+		<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
+		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" >
+		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.https_root_url#checkout/checkout_thankyou.cfm">
+
+		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
+			<cfinvokeargument name="LOCAL.requestData" value="#LOCAL.requestData#">
+			<cfinvokeargument name="serverURL" value="#APPLICATION.paypal.serverURL#">
+			<cfinvokeargument name="proxyName" value="#APPLICATION.paypal.proxyName#">
+			<cfinvokeargument name="proxyPort" value="#APPLICATION.paypal.proxyPort#">
+			<cfinvokeargument name="useProxy" value="#APPLICATION.paypal.useProxy#">
+		</cfinvoke>							
+			
+		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="getNVPResponse" returnvariable="responseStruct">
+			<cfinvokeargument name="nvpString" value="#URLDecode(LOCAL.response)#">
+		</cfinvoke>	
+
+		<cfif responseStruct.Ack EQ "Success">
+			<cfinclude template= "include_process_order.cfm" />	
+					
+			<cfset TOKEN = #responseStruct.TOKEN#>
+			<cfset redirecturl = #APPLICATION.paypal.PayPalURL# & #TOKEN#>
+			<cflocation url="#redirecturl#" ADDTOKEN="no">	
+		<cfelse>
+			<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "http post error",
+																content = "error: #responseStruct.L_LONGMESSAGE0#") />
+
+			<cfset SESSION.order.transaction_failed_reason = responseStruct.L_LONGMESSAGE0 />	
+			<cflocation url = "#APPLICATION.https_root_url#checkout/order_confirmation.cfm" addToken = "no" />
+		</cfif>
+		
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="_processOrder" access="private" output="false" returnType="void">
 		<cfset LOCAL.order = EntityNew("order") /> 
 		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setIsDeleted(false) />
@@ -200,78 +277,5 @@
 		<!---
 		<cfset StructDelete(SESSION,"order") />
 		--->
-		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" />
-		
-		<cfreturn LOCAL />	
-	</cffunction>	
-	
-	<cffunction name="_sendPayPalRequest" access="private" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset requestData = {}>
-		<cfset requestData.METHOD = "SetExpressCheckout">
-		<cfset requestData.PAYMENTACTION = "sale">
-		<cfset requestData.USER = APPLICATION.paypal.APIUserName>
-		<cfset requestData.PWD = APPLICATION.paypal.APIPassword>
-		<cfset requestData.SIGNATURE = APPLICATION.paypal.APISignature>
-		<cfset requestData.VERSION = APPLICATION.paypal.version>
-		<cfset requestData.ADDRESSOVERRIDE = "1">
-		<cfset requestData.Email = SESSION.order.customer.email>
-		<cfset requestData.SHIPTONAME = SESSION.order.customer.fullName>
-		<cfset requestData.SHIPTOSTREET = SESSION.order.shippingAddress.street>
-		<cfset requestData.SHIPTOCITY = SESSION.order.shippingAddress.city>
-		<cfset requestData.SHIPTOSTATE = SESSION.order.billingAddress.provinceCode>
-		<cfset requestData.SHIPTOCOUNTRYCODE = SESSION.order.billingAddress.countryCode>
-		<cfset requestData.CURRENCYCODE = SESSION.currency.code>
-		<cfset requestData.SHIPTOZIP = SESSION.order.shippingAddress.postalCode>
-		<cfset requestData.SHIPTOPHONENUM = SESSION.order.shippingAddress.phone>
-		
-		<cfloop array="#SESSION.order.productArray#" index="item">
-			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
-		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="i">
-			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[i].productId) />
-			<cfset l_name = LOCAL.product.getDisplayName()>
-			<cfset l_amt = SESSION.order.productArray[i].singlePrice)>
-			<cfset l_qty = SESSION.order.productArray[i].count>
-			<cfset l_number = SESSION.order.productArray[i].productId>
-			<cfset StructInsert(requestData,"L_NAME#i-1#",l_name)>
-			<cfset StructInsert(requestData,"L_AMT#i-1#",l_amt)>
-			<cfset StructInsert(requestData,"L_QTY#i-1#",l_qty)>
-			<cfset StructInsert(requestData,"L_NUMBER#i-1#",l_number)>
-		</cfloop>
-		<cfset requestData.ITEMAMT = SESSION.order.subTotalPrice>
-		<cfset requestData.SHIPPINGAMT = SESSION.order.totalShippingFee>
-		<cfset requestData.TAXAMT = SESSION.order.totalTax>
-		<cfset requestData.AMT = SESSION.order.totalPrice>
-		<cfset requestData.CancelURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" >
-		<cfset requestData.ReturnURL = "#APPLICATION.https_root_url#checkout/checkout_thankyou.cfm">
-
-		<cfinvoke component="#APPLICATION.db_cfc_path#cfc.callerservice" method="doHttppost" returnvariable="response">
-			<cfinvokeargument name="requestData" value="#requestData#">
-			<cfinvokeargument name="serverURL" value="#APPLICATION.paypal.serverURL#">
-			<cfinvokeargument name="proxyName" value="#APPLICATION.paypal.proxyName#">
-			<cfinvokeargument name="proxyPort" value="#APPLICATION.paypal.proxyPort#">
-			<cfinvokeargument name="useProxy" value="#APPLICATION.paypal.useProxy#">
-		</cfinvoke>							
-			
-		<cfinvoke component="#APPLICATION.db_cfc_path#cfc.callerservice" method="getNVPResponse" returnvariable="responseStruct">
-			<cfinvokeargument name="nvpString" value="#URLDecode(response)#">
-		</cfinvoke>	
-
-		<cfif responseStruct.Ack EQ "Success">
-			<cfinclude template= "include_process_order.cfm" />	
-					
-			<cfset TOKEN = #responseStruct.TOKEN#>
-			<cfset redirecturl = #APPLICATION.paypal.PayPalURL# & #TOKEN#>
-			<cflocation url="#redirecturl#" ADDTOKEN="no">	
-		<cfelse>
-			<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "http post error",
-																content = "error: #responseStruct.L_LONGMESSAGE0#") />
-
-			<cfset SESSION.order.transaction_failed_reason = responseStruct.L_LONGMESSAGE0 />	
-			<cflocation url = "#APPLICATION.https_root_url#checkout/order_confirmation.cfm" addToken = "no" />
-		</cfif>
-		
-		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
