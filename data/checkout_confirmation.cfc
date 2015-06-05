@@ -36,6 +36,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		<cfset _addOrderLog() />
 		<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
 		
 		<cfreturn LOCAL />	
@@ -94,7 +95,7 @@
 		<cfif LOCAL.responseStruct.Ack EQ "Success">
 			<cfset _processOrder() />
 					
-			<cfset TOKEN = #LOCAL.responseStruct.TOKEN#>
+			<cfset TOKEN = LOCAL.responseStruct.TOKEN>
 			<cfset redirecturl = #APPLICATION.paypal.PayPalURL# & #TOKEN#>
 			<cfset LOCAL.redirectUrl = redirecturl />
 		<cfelse>
@@ -276,5 +277,8 @@
 		<!---
 		<cfset StructDelete(SESSION,"order") />
 		--->
+	</cffunction>
+	
+	<cffunction name="_addOrderLog" access="private" output="false" returnType="void">
 	</cffunction>
 </cfcomponent>
