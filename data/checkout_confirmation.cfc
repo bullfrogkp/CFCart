@@ -36,7 +36,7 @@
 		
 		<cfif StructKeyExists(URL,"token") AND StructKeyExists(URL,"payerId")>
 		
-			<cfset LOCAL.order = entityLoadByPK("order",SESSION.order.orderId) />
+			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.order.orderId) />
 			<cfset LOCAL.order.setToken(URL.token) />
 			<cfset LOCAL.order.setPayerId(URL.payerId) />
 			<cfset EntitySave(LOCAL.order) />
@@ -224,7 +224,7 @@
 		</cfinvoke>	
 
 		<cfif LOCAL.responseStruct.Ack EQ "Success">
-			<cfset LOCAL.redirectUrl = #APPLICATION.paypal.PayPalURL# & LOCAL.responseStruct.TOKEN>
+			<cfset LOCAL.redirectUrl = #APPLICATION.paypal.PayPalURL# & LOCAL.responseStruct.token>
 		<cfelse>
 			<cfdump var="#LOCAL.responseStruct#" abort>
 			<!---
