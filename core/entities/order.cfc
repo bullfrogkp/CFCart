@@ -41,6 +41,7 @@
 	<cfproperty name="paymentMethod" fieldtype="many-to-one" cfc="payment_method" fkcolumn="payment_method_id">	
 	
 	<cfproperty name="orderStatus" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_id" singularname="orderStatus">
+	<cfproperty name="orderTransactions" type="array" fieldtype="one-to-many" cfc="order_transaction" fkcolumn="order_id" singularname="orderTransaction">
 	<cfproperty name="products" type="array" fieldtype="one-to-many" cfc="order_product" fkcolumn="order_id" singularname="product">
 
 	<cffunction name="getCustomerFullName" access="public" output="false" returnType="string">
