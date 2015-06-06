@@ -186,7 +186,7 @@
 		<cfset LOCAL.requestData.TAXAMT = SESSION.order.totalTax>
 		<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
 		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" >
-		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.https_root_url#checkout/checkout_confirmation.cfm">
+		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm">
 
 		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
 			<cfinvokeargument name="LOCAL.requestData" value="#LOCAL.requestData#">
@@ -201,9 +201,7 @@
 		</cfinvoke>	
 
 		<cfif LOCAL.responseStruct.Ack EQ "Success">
-			<cfset TOKEN = LOCAL.responseStruct.TOKEN>
-			<cfset redirecturl = #APPLICATION.paypal.PayPalURL# & #TOKEN#>
-			<cfset LOCAL.redirectUrl = redirecturl />
+			<cfset LOCAL.redirectUrl = #APPLICATION.paypal.PayPalURL# & LOCAL.responseStruct.TOKEN>
 		<cfelse>
 			<cfdump var="#LOCAL.responseStruct.L_LONGMESSAGE0#" abort>
 			<!---
