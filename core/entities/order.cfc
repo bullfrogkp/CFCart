@@ -8,6 +8,9 @@
 	<cfproperty name="phone" column="phone" ormtype="string"> 
 	<cfproperty name="email" column="email" ormtype="string"> 
 	
+	<cfproperty name="token" column="token" ormtype="string"> 
+	<cfproperty name="payerId" column="payerId" ormtype="string"> 
+	
 	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">	
 	
 	

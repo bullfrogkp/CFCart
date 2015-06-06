@@ -32,16 +32,17 @@
 		
 		<cfif StructKeyExists(URL,"token") AND StructKeyExists(URL,"payerId")>
 		
-			<cfset LOCAL.orderLog = entityLoadByPK("order_log",SESSION.order.orderLogId) />
-			<cfset LOCAL.orderLog.setToken(URL.token) />
-			<cfset EntitySave(LOCAL.orderLog) />
+			<cfset LOCAL.order = entityLoadByPK("order",SESSION.order.orderId) />
+			<cfset LOCAL.order.setToken(URL.token) />
+			<cfset LOCAL.order.setPayerId(URL.payerId) />
+			<cfset EntitySave(LOCAL.order) />
 			
 			<cfset LOCAL.requestData = StructNew()>
 			<cfset LOCAL.requestData.METHOD = "DoExpressCheckoutPayment">		
-			<cfset LOCAL.requestData.USER = APPLICATION.paypal_info.APIUserName>
-			<cfset LOCAL.requestData.PWD = APPLICATION.paypal_info.APIPassword>
-			<cfset LOCAL.requestData.SIGNATURE = APPLICATION.paypal_info.APISignature>
-			<cfset LOCAL.requestData.VERSION = APPLICATION.paypal_info.version>
+			<cfset LOCAL.requestData.USER = APPLICATION.paypal.APIUserName>
+			<cfset LOCAL.requestData.PWD = APPLICATION.paypal.APIPassword>
+			<cfset LOCAL.requestData.SIGNATURE = APPLICATION.paypal.APISignature>
+			<cfset LOCAL.requestData.VERSION = APPLICATION.paypal.version>
 			<cfset LOCAL.requestData.TOKEN = URL.token>
 			<cfset LOCAL.requestData.PAYERID = URL.payerId>
 			<cfset LOCAL.requestData.PAYMENTACTION = "sale">
@@ -50,10 +51,10 @@
 					
 			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
 				<cfinvokeargument name="requestData" value="#LOCAL.requestData#">
-				<cfinvokeargument name="serverURL" value="#APPLICATION.paypal_info.serverURL#">
-				<cfinvokeargument name="proxyName" value="#APPLICATION.paypal_info.proxyName#">
-				<cfinvokeargument name="proxyPort" value="#APPLICATION.paypal_info.proxyPort#">
-				<cfinvokeargument name="useProxy" value="#APPLICATION.paypal_info.useProxy#">
+				<cfinvokeargument name="serverURL" value="#APPLICATION.paypal.serverURL#">
+				<cfinvokeargument name="proxyName" value="#APPLICATION.paypal.proxyName#">
+				<cfinvokeargument name="proxyPort" value="#APPLICATION.paypal.proxyPort#">
+				<cfinvokeargument name="useProxy" value="#APPLICATION.paypal.useProxy#">
 			</cfinvoke>
 			
 			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="getNVPResponse" returnvariable="LOCAL.responseStruct">
@@ -61,7 +62,21 @@
 			</cfinvoke>
 			
 			<cfif LOCAL.responseStruct.Ack is "Success">
-				<cfset _processOrder() />
+			
+				<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
+				<cfset LOCAL.currentOrderStatus.setCurrent(false) />
+				<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
+				<cfset EntitySave(LOCAL.currentOrderStatus) /> 
+				
+				<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{displayName = "paid"},true) />
+				<cfset LOCAL.orderStatus = EntityNew("order_status") />
+				<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
+				<cfset LOCAL.orderStatus.setCurrent(true) />
+				<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
+				<cfset EntitySave(LOCAL.orderStatus) /> 
+				
+				<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+				<cfset EntitySave(LOCAL.order) />
 				
 				<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
 				<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
@@ -144,7 +159,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		<cfset SESSION.order.orderLogId = _addOrderLog() />
+		<cfset SESSION.order.orderId = _processOrder() />
 		<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
 		
 		<cfreturn LOCAL />	
