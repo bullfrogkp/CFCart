@@ -7,12 +7,12 @@
 	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
 	<cfproperty name="phone" column="phone" ormtype="string"> 
 	<cfproperty name="email" column="email" ormtype="string"> 
+	<cfproperty name="isComplete" column="is_complete" ormtype="boolean"> 
 	
 	<cfproperty name="token" column="token" ormtype="string"> 
 	<cfproperty name="payerId" column="payerId" ormtype="string"> 
 	
 	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">	
-	
 	
 	<cfproperty name="shippingFirstName" column="shipping_first_name" ormtype="string"> 
 	<cfproperty name="shippingMiddleName" column="shipping_middle_name" ormtype="string"> 
@@ -24,7 +24,6 @@
     <cfproperty name="shippingPostalCode" column="shipping_postal_code" ormtype="string"> 
 	<cfproperty name="shippingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="shipping_country_id">
 	<cfproperty name="shippingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="shipping_province_id">	
-	
 	
 	<cfproperty name="billingFirstName" column="billing_first_name" ormtype="string"> 
 	<cfproperty name="billingMiddleName" column="billing_middle_name" ormtype="string"> 

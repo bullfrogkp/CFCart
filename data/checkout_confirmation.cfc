@@ -62,7 +62,6 @@
 			</cfinvoke>
 			
 			<cfif LOCAL.responseStruct.Ack is "Success">
-			
 				<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
 				<cfset LOCAL.currentOrderStatus.setCurrent(false) />
 				<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
@@ -75,7 +74,6 @@
 				<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 				<cfset EntitySave(LOCAL.orderStatus) /> 
 				<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
-				<cfset EntitySave(LOCAL.order) />
 				
 				<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
 				<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
@@ -83,8 +81,11 @@
 				<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionId) />
 				<cfset EntitySave(LOCAL.orderTransaction) />
 				<cfset LOCAL.order.addOrderTransaction(LOCAL.orderTransaction) />
+				<cfset LOCAL.order.setIsComplete(true) />
 				<cfset EntitySave(LOCAL.order) />
 			<cfelse>
+				<cfdump var="#LOCAL.responseStruct#" abort>
+				<!---
 				<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "place order error",
 																	content = "error: token=#URL.token#, payerId=#URL.payerId#") />
 															
@@ -94,6 +95,7 @@
 				</cfinvoke>
 				<cfset function = "order express payment failed" />
 				<cfset logger.addlog(function, "token=#URL.token#") />
+				--->
 			</cfif>
 			
 			<cfset replace_struct = StructNew() />
@@ -212,7 +214,7 @@
 		<cfif LOCAL.responseStruct.Ack EQ "Success">
 			<cfset LOCAL.redirectUrl = #APPLICATION.paypal.PayPalURL# & LOCAL.responseStruct.TOKEN>
 		<cfelse>
-			<cfdump var="#LOCAL.responseStruct.L_LONGMESSAGE0#" abort>
+			<cfdump var="#LOCAL.responseStruct#" abort>
 			<!---
 			<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "http post error",
 																content = "error: #LOCAL.responseStruct.L_LONGMESSAGE0#") />
@@ -232,6 +234,7 @@
 		<cfset LOCAL.order = EntityNew("order") /> 
 		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setIsDeleted(false) />
+		<cfset LOCAL.order.setIsComplete(false) />
 		
 		<cfif SESSION.order.isExistingCustomer EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
