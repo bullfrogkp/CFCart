@@ -71,7 +71,7 @@
 				<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
 				<cfset EntitySave(LOCAL.currentOrderStatus) /> 
 				
-				<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{displayName = "paid"},true) />
+				<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "paid"},true) />
 				<cfset LOCAL.orderStatus = EntityNew("order_status") />
 				<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
 				<cfset LOCAL.orderStatus.setCurrent(true) />
@@ -196,7 +196,7 @@
 		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="LOCAL.i">
 			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[LOCAL.i].productId) />
 			<cfset l_name = LOCAL.product.getDisplayName()>
-			<cfset l_amt = SESSION.order.productArray[LOCAL.i].singlePrice)>
+			<cfset l_amt = SESSION.order.productArray[LOCAL.i].singlePrice>
 			<cfset l_qty = SESSION.order.productArray[LOCAL.i].count>
 			<cfset l_number = SESSION.order.productArray[LOCAL.i].productId>
 			<cfset StructInsert(LOCAL.requestData,"L_NAME#LOCAL.i-1#",l_name)>
@@ -343,13 +343,13 @@
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		
-		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",{name="paypal"},true)) />
+		<cfset LOCAL.order.setPaymentMethod(EntityLoad("payment_method",{name="paypal"},true)) />
 		
 		<cfif IsNumeric(SESSION.order.couponId)>
 			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
 		</cfif>
 					
-		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
+		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "placed"},true) />
 		<cfset LOCAL.orderStatus = EntityNew("order_status") />
 		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
 		<cfset LOCAL.orderStatus.setCurrent(true) />
@@ -382,7 +382,7 @@
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
 			<cfset LOCAL.orderProduct.setImageName(product.getDefaultImageLink(type='small')) />
 			
-			<cfset LOCAL.orderProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
+			<cfset LOCAL.orderProductStatusType = EntityLoad("order_product_status_type",{name = "placed"},true) />
 			<cfset LOCAL.orderProductStatus = EntityNew("order_product_status") />
 			<cfset LOCAL.orderProductStatus.setStartDatetime(Now()) />
 			<cfset LOCAL.orderProductStatus.setCurrent(true) />

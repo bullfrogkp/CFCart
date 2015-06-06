@@ -63,15 +63,15 @@
 				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/ship/price">
 				
 				<cfset THIS[ "$Config" ].env.paypal = {} >
-				<cfset THIS[ "$Config" ].env.paypal.APIuserName = "hongbipeter_api1.gmail.com">
-				<cfset THIS[ "$Config" ].env.paypal.APIPassword = "3B2Q4UCZMU3QNG2M">
-				<cfset THIS[ "$Config" ].env.paypal.APISignature = "AFPzIMm64vMzVa.kyymjRctkbUSdA0uHO3l1Hcns6KfG35SaSGroZQYj"> 
-				<cfset THIS[ "$Config" ].env.paypal.version = "94.0">
-				<cfset THIS[ "$Config" ].env.paypal.serverURL = "https://api-3t.paypal.com/nvp"> 
+				<cfset THIS[ "$Config" ].env.paypal.APIuserName = "pqhitp_1341165924_biz_api1.hotmail.com">
+				<cfset THIS[ "$Config" ].env.paypal.APIPassword = "1341165955">
+				<cfset THIS[ "$Config" ].env.paypal.APISignature = "AiPC9BjkCyDFQXbSkoZcgqH3hpacATbKynOthb8vHNx-Us8jDe7sMzsE"> 
+				<cfset THIS[ "$Config" ].env.paypal.version = "60.0">
+				<cfset THIS[ "$Config" ].env.paypal.serverURL = "https://api-3t.sandbox.paypal.com/nvp"> 
 				<cfset THIS[ "$Config" ].env.paypal.useProxy = "false">
 				<cfset THIS[ "$Config" ].env.paypal.proxyName = "">
 				<cfset THIS[ "$Config" ].env.paypal.proxyPort = "">
-				<cfset THIS[ "$Config" ].env.paypal.PayPalURL = "https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&useraction=commit&token=">
+				<cfset THIS[ "$Config" ].env.paypal.PayPalURL = "https://www.sandbox.paypal.com/cgi-bin/soofanscr?cmd=_express-checkout&useraction=commit&token=">
             <cfelse>
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
@@ -118,15 +118,15 @@
 				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/ship/price">
 				
 				<cfset THIS[ "$Config" ].env.paypal = {} >
-				<cfset THIS[ "$Config" ].env.paypal.APIuserName = "hongbipeter_api1.gmail.com">
-				<cfset THIS[ "$Config" ].env.paypal.APIPassword = "3B2Q4UCZMU3QNG2M">
-				<cfset THIS[ "$Config" ].env.paypal.APISignature = "AFPzIMm64vMzVa.kyymjRctkbUSdA0uHO3l1Hcns6KfG35SaSGroZQYj"> 
-				<cfset THIS[ "$Config" ].env.paypal.version = "94.0">
-				<cfset THIS[ "$Config" ].env.paypal.serverURL = "https://api-3t.paypal.com/nvp"> 
+				<cfset THIS[ "$Config" ].env.paypal.APIuserName = "pqhitp_1341165924_biz_api1.hotmail.com">
+				<cfset THIS[ "$Config" ].env.paypal.APIPassword = "1341165955">
+				<cfset THIS[ "$Config" ].env.paypal.APISignature = "AiPC9BjkCyDFQXbSkoZcgqH3hpacATbKynOthb8vHNx-Us8jDe7sMzsE"> 
+				<cfset THIS[ "$Config" ].env.paypal.version = "60.0">
+				<cfset THIS[ "$Config" ].env.paypal.serverURL = "https://api-3t.sandbox.paypal.com/nvp"> 
 				<cfset THIS[ "$Config" ].env.paypal.useProxy = "false">
 				<cfset THIS[ "$Config" ].env.paypal.proxyName = "">
 				<cfset THIS[ "$Config" ].env.paypal.proxyPort = "">
-				<cfset THIS[ "$Config" ].env.paypal.PayPalURL = "https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&useraction=commit&token=">
+				<cfset THIS[ "$Config" ].env.paypal.PayPalURL = "https://www.sandbox.paypal.com/cgi-bin/soofanscr?cmd=_express-checkout&useraction=commit&token=">
             </cfif>
         </cfif>
        
