@@ -4,6 +4,8 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset LOCAL.messageArray = [] />
+		
+		<cfif StructKeyExists(FORM,"place_order")>
 		<!---
 		<cfif SESSION.order.couponCode NEQ "">
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
@@ -19,6 +21,8 @@
 			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
 		</cfif>
 		--->
+		</cfif>
+		
 		<cfreturn LOCAL />
 	</cffunction>
 	
@@ -83,6 +87,10 @@
 				<cfset LOCAL.order.addOrderTransaction(LOCAL.orderTransaction) />
 				<cfset LOCAL.order.setIsComplete(true) />
 				<cfset EntitySave(LOCAL.order) />
+				
+				<!---
+				<cfset StructDelete(SESSION,"order") />
+				--->
 			<cfelse>
 				<cfdump var="#LOCAL.responseStruct#" abort>
 				<!---
@@ -98,6 +106,7 @@
 				--->
 			</cfif>
 			
+			<!---
 			<cfset replace_struct = StructNew() />
 			<cfset replace_struct.first_name = SESSION.new_order.shipping_address.first_name />
 			<cfset replace_struct.last_name = SESSION.new_order.shipping_address.last_name />
@@ -147,6 +156,7 @@
 				<cfinvokeargument name="email_content" value="#APPLICATION.https_root_url#bg/index.cfm?content=order_maint&submited_order_id=#SESSION.new_order.order_id#">
 				<cfinvokeargument name="email_type" value="html">
 			</cfinvoke>	
+			--->
 		</cfif>
 		
 		<cfreturn LOCAL.pageData />	
@@ -155,8 +165,10 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		<cfset SESSION.order.orderId = _processOrder() />
-		<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
+		<cfif StructKeyExists(FORM,"place_order")>
+			<cfset SESSION.order.orderId = _processOrder() />
+			<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
+		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
@@ -227,10 +239,7 @@
 		<cfreturn LOCAL />	
 	</cffunction>
 	
-	<cffunction name="_addOrderLog" access="private" output="false" returnType="numeric">
-	</cffunction>
-	
-	<cffunction name="_processOrder" access="private" output="false" returnType="void">
+	<cffunction name="_processOrder" access="private" output="false" returnType="numeric">
 		<cfset LOCAL.order = EntityNew("order") /> 
 		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setIsDeleted(false) />
@@ -248,7 +257,6 @@
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
-			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
 			<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.order.customer.customerId) />
 		</cfif>
@@ -271,7 +279,6 @@
 			
 			<cfset EntitySave(LOCAL.shippingAddress) />
 			<cfset LOCAL.customer.addAddress(LOCAL.shippingAddress) />
-			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
 			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",SESSION.order.shippingAddress.addressId) />
 		</cfif>	
@@ -288,7 +295,6 @@
 		<cfset LOCAL.order.setShippingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
 		
 		<cfif SESSION.order.sameAddress EQ true>
-		
 			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
 			<cfset LOCAL.order.setBillingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
 			<cfset LOCAL.order.setBillingLastName(LOCAL.shippingAddress.getLastName()) />
@@ -299,9 +305,7 @@
 			<cfset LOCAL.order.setBillingProvince(LOCAL.shippingAddress.getProvince()) />
 			<cfset LOCAL.order.setBillingCountry(LOCAL.shippingAddress.getCountry()) />
 			<cfset LOCAL.order.setBillingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
-			
 		<cfelse>
-		
 			<cfif SESSION.order.billingAddress.useExistingAddress EQ false>
 				<cfset LOCAL.billingAddress = EntityNew("address") />
 				<cfset LOCAL.billingAddress.setCompany(SESSION.order.billingAddress.company) />
@@ -320,7 +324,6 @@
 				
 				<cfset EntitySave(LOCAL.billingAddress) />
 				<cfset LOCAL.customer.addAddress(LOCAL.billingAddress) />
-				<cfset EntitySave(LOCAL.customer) />
 			<cfelse>
 				<cfset LOCAL.billingAddress = EntityLoadByPK("address",SESSION.order.billingAddress.addressId) />
 			</cfif>	
@@ -340,7 +343,7 @@
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		
-		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",1)) />
+		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",{name="paypal"},true)) />
 		
 		<cfif IsNumeric(SESSION.order.couponId)>
 			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
@@ -354,7 +357,6 @@
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		
 		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
-		<cfset EntitySave(LOCAL.order) />
 		
 		<cfset LOCAL.customer.addOrder(LOCAL.order) />
 		<cfset EntitySave(LOCAL.customer) />
@@ -390,11 +392,10 @@
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.orderProductStatus) />
 			<cfset EntitySave(LOCAL.orderProduct) /> 
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
-			<cfset EntitySave(LOCAL.order) /> 
 		</cfloop>
 		
-		<!---
-		<cfset StructDelete(SESSION,"order") />
-		--->
+		<cfset EntitySave(LOCAL.order) />
+		
+		<cfreturn LOCAL.order.getOrderId() />
 	</cffunction>
 </cfcomponent>
