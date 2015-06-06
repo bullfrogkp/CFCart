@@ -74,22 +74,16 @@
 				<cfset LOCAL.orderStatus.setCurrent(true) />
 				<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 				<cfset EntitySave(LOCAL.orderStatus) /> 
-				
 				<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
 				<cfset EntitySave(LOCAL.order) />
 				
 				<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
 				<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
-				<cfset LOCAL.orderTransaction.setTransactionType(LOCAL.orderTransactionType) />
-				<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionid) />
-				
-				<cfinvoke component="#APPLICATION.db_cfc_path#db.order_transactions" method="addOrderTransaction" returnvariable="order_transaction_id">
-					<cfinvokeargument name="transaction_id" value="#LOCAL.responseStruct.transactionid#">
-					<cfinvokeargument name="order_id" value="#SESSION.new_order.order_id#">
-					<cfinvokeargument name="order_transaction_type_name" value="purchase">
-					<cfinvokeargument name="user" value="#SESSION.user#">
-				</cfinvoke>
-
+				<cfset LOCAL.orderTransaction.setOrderTransactionType(LOCAL.orderTransactionType) />
+				<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionId) />
+				<cfset EntitySave(LOCAL.orderTransaction) />
+				<cfset LOCAL.order.addOrderTransaction(LOCAL.orderTransaction) />
+				<cfset EntitySave(LOCAL.order) />
 			<cfelse>
 				<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "place order error",
 																	content = "error: token=#URL.token#, payerId=#URL.payerId#") />
