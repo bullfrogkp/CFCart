@@ -50,7 +50,7 @@
 			<cfset LOCAL.requestData.TOKEN = URL.token>
 			<cfset LOCAL.requestData.PAYERID = URL.payerId>
 			<cfset LOCAL.requestData.PAYMENTACTION = "sale">
-			<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
+			<cfset LOCAL.requestData.AMT = NumberFormat(SESSION.order.totalPrice,"0.00")>
 			<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
 					
 			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
@@ -91,6 +91,7 @@
 				<!---
 				<cfset StructDelete(SESSION,"order") />
 				--->
+				<cflocation url="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" addToken="false" />
 			<cfelse>
 				<cfdump var="#LOCAL.responseStruct#" abort>
 				<!---
@@ -206,8 +207,8 @@
 		</cfloop>
 		<cfset LOCAL.requestData.ITEMAMT = SESSION.order.subTotalPrice>
 		<cfset LOCAL.requestData.SHIPPINGAMT = SESSION.order.totalShippingFee>
-		<cfset LOCAL.requestData.TAXAMT = SESSION.order.totalTax>
-		<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
+		<cfset LOCAL.requestData.TAXAMT = NumberFormat(SESSION.order.totalTax,"0.00")>
+		<cfset LOCAL.requestData.AMT = NumberFormat(SESSION.order.totalPrice,"0.00")>
 		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm" >
 		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm">
 
