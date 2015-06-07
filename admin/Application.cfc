@@ -49,30 +49,7 @@
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "#folder_name#." />
 				
-				<cfset THIS[ "$Config" ].env.ups = {} />
-				<cfset THIS[ "$Config" ].env.ups.accesskey = "CC9C9C10118EBCF0">
-				<cfset THIS[ "$Config" ].env.ups.upsuserid = "berserk_2nd">
-				<cfset THIS[ "$Config" ].env.ups.upspassword = "Shabishini1">
-				<cfset THIS[ "$Config" ].env.ups.rate_url = "https://wwwcie.ups.com/ups.app/xml/Rate">
-				<cfset THIS[ "$Config" ].env.ups.av_url = "https://wwwcie.ups.com/ups.app/xml/AV">
-				<cfset THIS[ "$Config" ].env.ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
-				
-				<cfset THIS[ "$Config" ].env.canadapost = {} />
-				<cfset THIS[ "$Config" ].env.canadapost.username = "03ac5bc25c8f08e5">
-				<cfset THIS[ "$Config" ].env.canadapost.password = "e87558a6b864af93152ab1">
-				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/ship/price">
-				
-				<cfset THIS[ "$Config" ].env.paypal = {} >
-				<cfset THIS[ "$Config" ].env.paypal.APIuserName = "pqhitp_1341165924_biz_api1.hotmail.com">
-				<cfset THIS[ "$Config" ].env.paypal.APIPassword = "1341165955">
-				<cfset THIS[ "$Config" ].env.paypal.APISignature = "AiPC9BjkCyDFQXbSkoZcgqH3hpacATbKynOthb8vHNx-Us8jDe7sMzsE"> 
-				<cfset THIS[ "$Config" ].env.paypal.version = "60.0">
-				<cfset THIS[ "$Config" ].env.paypal.serverURL = "https://api-3t.sandbox.paypal.com/nvp"> 
-				<cfset THIS[ "$Config" ].env.paypal.useProxy = "false">
-				<cfset THIS[ "$Config" ].env.paypal.proxyName = "">
-				<cfset THIS[ "$Config" ].env.paypal.proxyPort = "">
-				<cfset THIS[ "$Config" ].env.paypal.PayPalURL = "https://www.sandbox.paypal.com/cgi-bin/soofanscr?cmd=_express-checkout&useraction=commit&token=">
-            <cfelse>
+			<cfelse>
                 <!--- Set production environment. --->
                 <cfset THIS[ "$Config" ].isLive = true />
                 <cfset THIS[ "$Config" ].name = "PinMyDeals" />
@@ -103,31 +80,7 @@
 				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "" />
-				
-				<cfset THIS[ "$Config" ].env.ups = {} />
-				<cfset THIS[ "$Config" ].env.ups.accesskey = "CC9C9C10118EBCF0">
-				<cfset THIS[ "$Config" ].env.ups.upsuserid = "berserk_2nd">
-				<cfset THIS[ "$Config" ].env.ups.upspassword = "Shabishini1">
-				<cfset THIS[ "$Config" ].env.ups.rate_url = "https://wwwcie.ups.com/ups.app/xml/Rate">
-				<cfset THIS[ "$Config" ].env.ups.av_url = "https://wwwcie.ups.com/ups.app/xml/AV">
-				<cfset THIS[ "$Config" ].env.ups.tracking_url = "https://wwwcie.ups.com/ups.app/xml/Track">
-				
-				<cfset THIS[ "$Config" ].env.canadapost = {} />
-				<cfset THIS[ "$Config" ].env.canadapost.username = "03ac5bc25c8f08e5">
-				<cfset THIS[ "$Config" ].env.canadapost.password = "e87558a6b864af93152ab1">
-				<cfset THIS[ "$Config" ].env.canadapost.rate_url = "https://soa-gw.canadapost.ca/rs/ship/price">
-				
-				<cfset THIS[ "$Config" ].env.paypal = {} >
-				<cfset THIS[ "$Config" ].env.paypal.APIuserName = "pqhitp_1341165924_biz_api1.hotmail.com">
-				<cfset THIS[ "$Config" ].env.paypal.APIPassword = "1341165955">
-				<cfset THIS[ "$Config" ].env.paypal.APISignature = "AiPC9BjkCyDFQXbSkoZcgqH3hpacATbKynOthb8vHNx-Us8jDe7sMzsE"> 
-				<cfset THIS[ "$Config" ].env.paypal.version = "60.0">
-				<cfset THIS[ "$Config" ].env.paypal.serverURL = "https://api-3t.sandbox.paypal.com/nvp"> 
-				<cfset THIS[ "$Config" ].env.paypal.useProxy = "false">
-				<cfset THIS[ "$Config" ].env.paypal.proxyName = "">
-				<cfset THIS[ "$Config" ].env.paypal.proxyPort = "">
-				<cfset THIS[ "$Config" ].env.paypal.PayPalURL = "https://www.sandbox.paypal.com/cgi-bin/soofanscr?cmd=_express-checkout&useraction=commit&token=">
-            </cfif>
+			</cfif>
         </cfif>
        
         <cfreturn THIS[ "$Config" ] />
