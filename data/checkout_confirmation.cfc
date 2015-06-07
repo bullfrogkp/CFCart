@@ -208,8 +208,8 @@
 		<cfset LOCAL.requestData.SHIPPINGAMT = SESSION.order.totalShippingFee>
 		<cfset LOCAL.requestData.TAXAMT = SESSION.order.totalTax>
 		<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
-		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" >
-		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm">
+		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm" >
+		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm">
 
 		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
 			<cfinvokeargument name="requestData" value="#LOCAL.requestData#">

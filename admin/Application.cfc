@@ -45,7 +45,7 @@
 				<cfset THIS[ "$Config" ].env.absolutePathRoot = ExpandPath(THIS[ "$Config" ].env.absoluteUrlWeb) />
 				<!--- url --->
 				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
-				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "https://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
+				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "http://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
 				<!--- component --->
 				<cfset THIS[ "$Config" ].env.componentPathRoot = "#folder_name#." />
 				
