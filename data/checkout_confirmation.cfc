@@ -88,9 +88,13 @@
 				<cfset LOCAL.order.setIsComplete(true) />
 				<cfset EntitySave(LOCAL.order) />
 				
-				<!---
 				<cfset StructDelete(SESSION,"order") />
-				--->
+				
+				<cfset LOCAL.trackingRecords = _getTrackingRecords() />
+				<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
+					<cfset EntityDelete(LOCAL.record) />
+				</cfloop>
+				
 				<cflocation url="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" addToken="false" />
 			<cfelse>
 				<cfdump var="#LOCAL.responseStruct#" abort>
