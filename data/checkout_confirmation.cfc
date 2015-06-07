@@ -212,7 +212,7 @@
 		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm">
 
 		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
-			<cfinvokeargument name="LOCAL.requestData" value="#LOCAL.requestData#">
+			<cfinvokeargument name="requestData" value="#LOCAL.requestData#">
 			<cfinvokeargument name="serverURL" value="#APPLICATION.paypal.serverURL#">
 			<cfinvokeargument name="proxyName" value="#APPLICATION.paypal.proxyName#">
 			<cfinvokeargument name="proxyPort" value="#APPLICATION.paypal.proxyPort#">

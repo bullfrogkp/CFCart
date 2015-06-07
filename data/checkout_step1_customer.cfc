@@ -107,6 +107,7 @@
 		<cfset SESSION.order.customer.firstName = LOCAL.customer.getFirstName() />
 		<cfset SESSION.order.customer.middleName = LOCAL.customer.getMiddleName() />
 		<cfset SESSION.order.customer.lastName = LOCAL.customer.getLastName() />
+		<cfset SESSION.order.customer.fullName = LOCAL.customer.getFullName() />
 		<cfset SESSION.order.customer.company = LOCAL.customer.getCompany() />
 		
 		<cfif StructKeyExists(FORM,"shipto_this_address")>			

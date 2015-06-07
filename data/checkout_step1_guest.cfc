@@ -105,6 +105,13 @@
 		<cfset SESSION.order.customer.firstName = Trim(FORM.shipto_first_name) />
 		<cfset SESSION.order.customer.middleName = Trim(FORM.shipto_middle_name) />
 		<cfset SESSION.order.customer.lastName = Trim(FORM.shipto_last_name) />
+		
+		<cfif SESSION.order.customer.middleName EQ "">
+			<cfset SESSION.order.customer.fullName = SESSION.order.customer.firstName & " " & SESSION.order.customer.lastName />
+		<cfelse>
+			<cfset SESSION.order.customer.fullName = SESSION.order.customer.firstName & " " & SESSION.order.customer.middleName & " " & SESSION.order.customer.lastName />
+		</cfif>
+		
 		<cfset SESSION.order.customer.company = Trim(FORM.shipto_company) />
 			
 		<cfset SESSION.order.shippingAddress = {} />
