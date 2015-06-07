@@ -93,7 +93,7 @@
 			</cfif>
 		</cfif>
 		
-		<cfreturn price />
+		<cfreturn NumberFormat(price,"0.00") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDefaultImageLink" access="public" output="false" returnType="string">
@@ -196,7 +196,7 @@
 			<cfset LOCAL.shippingFee = getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
 		</cfif>
 		
-		<cfreturn LOCAL.shippingFee />
+		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 </cfcomponent>

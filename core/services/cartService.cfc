@@ -79,6 +79,9 @@
 			<cfset retStruct.newTotal = ARGUMENTS.total />
 		</cfif>
 		
+		<cfset retStruct.newTotal = NumberFormat(retStruct.newTotal,"0.00") />
+		<cfset retStruct.discount = NumberFormat(retStruct.discount,"0.00") />
+		
 		<cfreturn retStruct />
 	</cffunction>
 	
