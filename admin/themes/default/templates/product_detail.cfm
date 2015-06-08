@@ -108,12 +108,12 @@
 			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
 				attribute = new Object();
 				attribute.name = '#attr.getAttribute().getDisplayName()#';
+				attribute.required = '#attr.getRequired()#';
 				attributes.push(attribute);
 			</cfloop>
 			
 			attributesets[key] = attributes;
-		</cfloop>
-				
+		</cfloop>				
 		
 		$( "##attribute_set_id" ).change(function() {
 			<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>		
@@ -123,11 +123,15 @@
 				$('##new_attributes').empty();
 				$('##attribute_option_values').hide();
 				
-				current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
+				var current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
 			
 				for(var i=0;i<attributesets[current_key].length;i++)
 				{
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+attributesets[current_key][i].name+'</th></tr></table></div></div></div>'); 
+					if(attributesets[current_key][i].required == 'YES')
+						var required_info = ' (required)'; 
+					else
+						var required_info = '';
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -141,11 +145,15 @@
 			$('##new_attributes').empty();
 			$('##attribute_option_values').hide();
 			
-			current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
+			var current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
 		
 			for(var i=0;i<attributesets[current_key].length;i++)
 			{
-				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+attributesets[current_key][i].name+'</th></tr></table></div></div></div>'); 
+				if(attributesets[current_key][i].required == 'YES')
+					var required_info = ' (required)'; 
+				else
+					var required_info = '';
+				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th></tr></table></div></div></div>'); 
 			}
 			</cfif>
 			
