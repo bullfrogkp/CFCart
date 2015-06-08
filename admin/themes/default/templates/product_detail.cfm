@@ -182,22 +182,18 @@
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 			
 			var thumbnail_content = '';
-			var thumbnail_image = $("##new_attribute_option_image").val();
 			
-			if(thumbnail_image != '')
+			if($("##new_attribute_option_image").val() != '')
 			{
 				var reader = new FileReader();
 				var e = reader.readAsDataURL($("##new_attribute_option_image").files[0]);
 				
-				thumbnail_content = '
-				<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-					<img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" />
-				</div>';
+				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 			}
 			else
 			{
 				if($("##attribute_name").val() == 'color')
-					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>';
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val(+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
 			}
@@ -206,13 +202,7 @@
 			$("##tr-" + $("##attribute_id").val()).append('
 			<tr>
 				<td>'+$("##new_attribute_option_name").val()+'</td>
-				<td>
-					<cfif attributeValue.getThumbnailImageName() NEQ "">
-						
-					<cfelse>
-						
-					</cfif>
-				</td>
+				<td>'+thumbnail_content+'</td>
 				<td>
 					<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
 						<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
