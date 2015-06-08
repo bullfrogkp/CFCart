@@ -187,10 +187,12 @@
 			if($("##new_attribute_option_image").val() != '')
 			{
 				var reader = new FileReader();
-				var e = reader.readAsDataURL($("##new_attribute_option_image").files[0]);
+				reader.readAsDataURL($("##new_attribute_option_image")[0].files[0]);
+				console.log(reader);
+				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+reader.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+reader.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 				
-				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+				console.log(thumbnail_content);
 			}
 			else
 			{
