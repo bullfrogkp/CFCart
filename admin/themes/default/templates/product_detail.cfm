@@ -113,7 +113,7 @@
 			</cfloop>
 			
 			attributesets[key] = attributes;
-		</cfloop>				
+		</cfloop>	
 		
 		$( "##attribute_set_id" ).change(function() {
 			<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>		
@@ -131,7 +131,7 @@
 						var required_info = ' (required)'; 
 					else
 						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th></tr></table></div></div></div>'); 
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th><th><a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -153,7 +153,7 @@
 					var required_info = ' (required)'; 
 				else
 					var required_info = '';
-				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th></tr></table></div></div></div>'); 
+				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th><th><a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 			}
 			</cfif>
 			
