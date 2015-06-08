@@ -122,7 +122,7 @@
 						var required_info = ' (required)'; 
 					else
 						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributesets[current_key][i].attribute_set_id+'-'+attributesets[current_key][i].attribute_id+'"><th colspan="2">'+attributesets[current_key][i].display_name+required_info+'</th><th colspan="2"><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -144,7 +144,7 @@
 					var required_info = ' (required)'; 
 				else
 					var required_info = '';
-				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributesets[current_key][i].attribute_set_id+'-'+attributesets[current_key][i].attribute_id+'"><th colspan="2">'+attributesets[current_key][i].display_name+required_info+'</th><th colspan="2"><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 			}
 			</cfif>
 			
@@ -201,7 +201,7 @@
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
 			}
-			$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).append('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		});
 		
 	});
