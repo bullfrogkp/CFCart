@@ -121,7 +121,7 @@
 						var required_info = ' (required)'; 
 					else
 						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributename="+attributesets[current_key][i].name+" attributeid="+attributesets[current_key][i].attribute_id+" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -172,12 +172,12 @@
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
-		
-		$( ".add-new-attribute-option" ).click(function() {
+				
+		$('##new_attributes').on("click","a.add-new-attribute-option", function() {
 			$("##attribute_id").val($(this).attr('attributeid'));
 			$("##attribute_name").val($(this).attr('attributename'));
 		});
-				
+
 		$( "##add_new_attribute_option" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 			
@@ -188,11 +188,9 @@
 			{
 				var reader = new FileReader();
 				reader.readAsDataURL($("##new_attribute_option_image")[0].files[0]);
-				console.log(reader);
+				console.log(reader.result);
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+reader.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+reader.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-				
-				console.log(thumbnail_content);
 			}
 			else
 			{
@@ -201,7 +199,7 @@
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
 			}
-			
+			console.log($("##tr-" + $("##attribute_id").val()));
 			$("##tr-" + $("##attribute_id").val()).append('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		});
 		
