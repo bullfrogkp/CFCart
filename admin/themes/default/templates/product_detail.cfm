@@ -191,10 +191,11 @@
 				var reader = new FileReader();
 				reader.readAsDataURL($("##new_attribute_option_image")[0].files[0]);
 				reader.onloadend = function () {
-					$("##src").val(reader.result);
+					$("##image_source").val(reader.result);
 				}
-				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##src").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##src").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+					console.log($("##image_source").val());
+				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##image_source").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##image_source").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 			}
 			else
 			{
@@ -238,7 +239,7 @@
 <input type="hidden" name="option_attribute_id" id="option_attribute_id" value="" />
 <input type="hidden" name="option_attribute_set_id" id="option_attribute_set_id" value="" />
 <input type="hidden" name="option_attribute_name" id="option_attribute_name" value="" />
-<input type="hidden" name="src" id="src" value="" />
+<input type="hidden" name="image_source" id="image_source" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
