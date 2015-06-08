@@ -96,6 +96,7 @@
 			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
 				attribute = new Object();
 				attribute.display_name = '#attr.getAttribute().getDisplayName()#';
+				attribute.attribute_set_id = '#aset.getAttributeSetId()#';
 				attribute.attribute_id = '#attr.getAttribute().getAttributeId()#';
 				attribute.name = '#attr.getAttribute().getName()#';
 				attribute.required = '#attr.getRequired()#';
@@ -121,7 +122,7 @@
 						var required_info = ' (required)'; 
 					else
 						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -143,7 +144,7 @@
 					var required_info = ' (required)'; 
 				else
 					var required_info = '';
-				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributeid="+attributesets[current_key][i].attribute_id+" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 			}
 			</cfif>
 			
@@ -174,8 +175,9 @@
 		});
 				
 		$('##new_attributes').on("click","a.add-new-attribute-option", function() {
-			$("##attribute_id").val($(this).attr('attributeid'));
-			$("##attribute_name").val($(this).attr('attributename'));
+			$("##option_attribute_set_id").val($(this).attr('attributesetid'));
+			$("##option_attribute_id").val($(this).attr('attributeid'));
+			$("##option_attribute_name").val($(this).attr('attributename'));
 		});
 
 		$( "##add_new_attribute_option" ).click(function() {
@@ -194,13 +196,12 @@
 			}
 			else
 			{
-				if($("##attribute_name").val() == 'color')
+				if($("##option_attribute_name").val() == 'color')
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
 			}
-			console.log($("##tr-" + $("##attribute_id").val()));
-			$("##tr-" + $("##attribute_id").val()).append('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).append('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		});
 		
 	});
@@ -232,8 +233,9 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="attribute_id" id="attribute_id" value="" />
-<input type="hidden" name="attribute_name" id="attribute_name" value="" />
+<input type="hidden" name="option_attribute_id" id="option_attribute_id" value="" />
+<input type="hidden" name="option_attribute_set_id" id="option_attribute_set_id" value="" />
+<input type="hidden" name="option_attribute_name" id="option_attribute_name" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -526,13 +528,14 @@
 							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
 								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 									<cfset attribute = attributeSetAttributeRela.getAttribute() />
+									<cfset attributeSet = attributeSetAttributeRela.getAttributeSet() />
 									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 									<cfif NOT IsNull(productAttributeRela)>
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
-													<tr class="warning" id="tr-#attribute.getAttributeId()#">
+													<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
 														<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
 														<th><a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
