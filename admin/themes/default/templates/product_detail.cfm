@@ -121,7 +121,7 @@
 						var required_info = ' (required)'; 
 					else
 						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributeid="+attributesets[current_key][i].attribute_id+" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a attributename="+attributesets[current_key][i].name+" attributeid="+attributesets[current_key][i].attribute_id+" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -155,6 +155,7 @@
 		
 		$( ".add-new-attribute-option" ).click(function() {
 			$("##attribute_id").val($(this).attr('attributeid'));
+			$("##attribute_name").val($(this).attr('attributename'));
 		});
 		
 		$( ".edit-group-price" ).click(function() {
@@ -176,27 +177,30 @@
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
-		
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
 				
-				reader.onload = function (e) {
-					$('#blah').attr('src', e.target.result);
-				}
-				
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-		
-		$("#imgInp").change(function(){
-			readURL(this);
-		});
-		
 		$( ".add_new_attribute_option" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 			
-			var thumbnail_image_name = 
+			var thumbnail_content = '';
+			var thumbnail_image = $("##new_attribute_option_image").val();
+			
+			if(thumbnail_image != '')
+			{
+				var reader = new FileReader();
+				var e = reader.readAsDataURL($("##new_attribute_option_image").files[0]);
+				
+				thumbnail_content = '
+				<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+					<img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" />
+				</div>';
+			}
+			else
+			{
+				if($("##attribute_name").val() == 'color')
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>';
+				else
+					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
+			}
 			
 			
 			$("##tr-" + $("##attribute_id").val()).append('
@@ -204,15 +208,9 @@
 				<td>'+$("##new_attribute_option_name").val()+'</td>
 				<td>
 					<cfif attributeValue.getThumbnailImageName() NEQ "">
-						<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-							<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-						</div>
+						
 					<cfelse>
-						<cfif attribute.getDisplayName() EQ "color">
-							<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
-						<cfelse>
-							#attributeValue.getThumbnailLabel()#
-						</cfif>
+						
 					</cfif>
 				</td>
 				<td>
@@ -221,7 +219,7 @@
 					</div>
 				</td>
 				<td>
-					<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+					<a attributevalueid="#attributeValue.getAttributeValueId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 				</td>
 			</tr>
 			'); 
@@ -257,6 +255,7 @@
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
 <input type="hidden" name="attribute_id" id="attribute_id" value="" />
+<input type="hidden" name="attribute_name" id="attribute_name" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -557,7 +556,7 @@
 												<table class="table table-hover">
 													<tr class="warning" id="tr-#attribute.getAttributeId()#">
 														<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
-														<th><a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfif NOT IsNull(productAttributeRela.getAttributeValues())>
