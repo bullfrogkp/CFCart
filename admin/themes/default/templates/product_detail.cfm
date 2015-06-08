@@ -178,7 +178,7 @@
 			$("##attribute_name").val($(this).attr('attributename'));
 		});
 				
-		$( ".add_new_attribute_option" ).click(function() {
+		$( "##add_new_attribute_option" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 			
 			var thumbnail_content = '';
@@ -190,30 +190,17 @@
 				var e = reader.readAsDataURL($("##new_attribute_option_image").files[0]);
 				
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-				image_content = '
-				<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-					<img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" />
-				</div>';
+				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 			}
 			else
 			{
 				if($("##attribute_name").val() == 'color')
-					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val(+';margin-top:4px;"></div>';
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
 			}
 			
-			
-			$("##tr-" + $("##attribute_id").val()).append('
-			<tr>
-				<td>'+$("##new_attribute_option_name").val()+'</td>
-				<td>'+thumbnail_content+'</td>
-				<td>'+image_content+'</td>
-				<td>
-					<a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
-				</td>
-			</tr>
-			'); 
+			$("##tr-" + $("##attribute_id").val()).append('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		});
 		
 	});
@@ -965,7 +952,7 @@
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> Image
-						<input type="file" name="new_attribute_option_image"/>
+						<input type="file" name="new_attribute_option_image" id="new_attribute_option_image"/>
 					</div>
 					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
 					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
@@ -974,7 +961,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_attribute_option" type="button" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button id="add_new_attribute_option" name="add_new_attribute_option" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
