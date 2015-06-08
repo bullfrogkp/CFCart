@@ -66,19 +66,7 @@
 		$('##new_single_special_price_to_date').datepicker();
 		$('##edit_special_price_from_date').datepicker();
 		$('##edit_special_price_to_date').datepicker();
-				
-		$( ".add-new-attribute-option" ).click(function() {
-			$("##new_attribute_option_product_attribute_rela_id").val($(this).attr('productattributerelaid'));
-			
-			if($(this).attr('attributename') == 'color')
-			{
-				$('##new_attribute_option_thumbnail_label').colorpicker();
-			}
-			else
-			{
-				$('##new_attribute_option_thumbnail_label').unbind();
-			}
-		});		
+		$('##new_attribute_option_thumbnail_label').colorpicker();
 		
 		$( ".delete-attribute-option" ).click(function() {
 			$("##deleted_attribute_value_id").val($(this).attr('attributevalueid'));
@@ -107,7 +95,8 @@
 
 			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
 				attribute = new Object();
-				attribute.name = '#attr.getAttribute().getDisplayName()#';
+				attribute.display_name = '#attr.getAttribute().getDisplayName()#';
+				attribute.name = '#attr.getAttribute().getName()#';
 				attribute.required = '#attr.getRequired()#';
 				attributes.push(attribute);
 			</cfloop>
@@ -131,7 +120,7 @@
 						var required_info = ' (required)'; 
 					else
 						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th><th><a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 				}
 			}
 			else
@@ -153,7 +142,7 @@
 					var required_info = ' (required)'; 
 				else
 					var required_info = '';
-				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].name+required_info+'</th><th><a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
+				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th>'+attributesets[current_key][i].display_name+required_info+'</th><th><a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
 			}
 			</cfif>
 			
@@ -927,28 +916,19 @@
 					<input id="new_attribute_option_thumbnail_label" name="new_attribute_option_thumbnail_label" type="text" class="form-control" placeholder="Thumbnail Label">
 				</div>	
 				<div class="form-group">
-					<input id="new_attribute_option_value" name="new_attribute_option_value" type="text" class="form-control" placeholder="Value">
-				</div>
-				<div class="form-group">
-					<div class="btn btn-success btn-file" style="width:150px;">
-						<i class="fa fa-paperclip"></i> Thumbnail Image
-						<input type="file" name="new_attribute_option_thumbnail_image"/>
-					</div>
-				</div>
-				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
-						<i class="fa fa-paperclip"></i> Display Image
+						<i class="fa fa-paperclip"></i> Image
 						<input type="file" name="new_attribute_option_image"/>
 					</div>
-					
-					<input type="checkbox" class="form-control" name="generate_thumbnail"/> Generate Thumbnail
+					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only
+					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only
+					<input type="radio" class="form-control" name="generate_option" value="3"/> Thumbnail and Image
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
 				<button name="add_new_attribute_option" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
-		
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
