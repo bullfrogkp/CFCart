@@ -920,9 +920,9 @@
 						<i class="fa fa-paperclip"></i> Image
 						<input type="file" name="new_attribute_option_image"/>
 					</div>
-					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only
-					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only
-					<input type="radio" class="form-control" name="generate_option" value="3"/> Thumbnail and Image
+					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
+					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
+					<input type="radio" class="form-control" name="generate_option" value="3"/> Both
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
