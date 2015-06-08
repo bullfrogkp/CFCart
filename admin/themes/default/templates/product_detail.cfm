@@ -177,6 +177,22 @@
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
 		
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function (e) {
+					$('#blah').attr('src', e.target.result);
+				}
+				
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		
+		$("#imgInp").change(function(){
+			readURL(this);
+		});
+		
 		$( ".add_new_attribute_option" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 			
