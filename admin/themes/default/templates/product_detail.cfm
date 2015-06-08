@@ -153,11 +153,6 @@
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
 		
-		$( ".add-new-attribute-option" ).click(function() {
-			$("##attribute_id").val($(this).attr('attributeid'));
-			$("##attribute_name").val($(this).attr('attributename'));
-		});
-		
 		$( ".edit-group-price" ).click(function() {
 			$("##edit_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
 			$("##edit_price").val($(this).attr('price'));
@@ -177,11 +172,17 @@
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
+		
+		$( ".add-new-attribute-option" ).click(function() {
+			$("##attribute_id").val($(this).attr('attributeid'));
+			$("##attribute_name").val($(this).attr('attributename'));
+		});
 				
 		$( ".add_new_attribute_option" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 			
 			var thumbnail_content = '';
+			var image_content = '';
 			
 			if($("##new_attribute_option_image").val() != '')
 			{
@@ -189,6 +190,10 @@
 				var e = reader.readAsDataURL($("##new_attribute_option_image").files[0]);
 				
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+				image_content = '
+				<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+					<img src="'+e.target.result+'" style="width:100%;height:100%;vertical-align:top;" />
+				</div>';
 			}
 			else
 			{
@@ -203,13 +208,9 @@
 			<tr>
 				<td>'+$("##new_attribute_option_name").val()+'</td>
 				<td>'+thumbnail_content+'</td>
+				<td>'+image_content+'</td>
 				<td>
-					<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-						<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
-					</div>
-				</td>
-				<td>
-					<a attributevalueid="#attributeValue.getAttributeValueId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+					<a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 				</td>
 			</tr>
 			'); 
