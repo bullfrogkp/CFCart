@@ -193,7 +193,7 @@
 				reader.onloadend = function () {
 					$("##image_source").val(reader.result);
 				}
-					console.log($("##image_source").val());
+					
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##image_source").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##image_source").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 			}
