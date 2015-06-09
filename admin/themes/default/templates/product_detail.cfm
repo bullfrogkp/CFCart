@@ -188,14 +188,11 @@
 			
 			if($("##new_attribute_option_image").val() != '')
 			{
-				var reader = new FileReader();
-				reader.readAsDataURL($("##new_attribute_option_image")[0].files[0]);
-				reader.onloadend = function () {
-					$("##image_source").val(reader.result);
-				}
-					
-				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##image_source").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-				image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+$("##image_source").val()+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+				loadThumbnail($("##new_attribute_option_image")[0].files[0], function(image_src) { 
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+					$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				 });
 			}
 			else
 			{
@@ -203,10 +200,17 @@
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
+				$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
-			$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		});
 		
+		function loadThumbnail(file, callback) {
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onloadend = function () {
+				callback(reader.result);
+			}
+		}
 	});
 </script>
 
@@ -240,6 +244,8 @@
 <input type="hidden" name="option_attribute_set_id" id="option_attribute_set_id" value="" />
 <input type="hidden" name="option_attribute_name" id="option_attribute_name" value="" />
 <input type="hidden" name="image_source" id="image_source" value="" />
+<input type="hidden" name="thumbnail_content" id="thumbnail_content" value="" />
+<input type="hidden" name="image_content" id="image_content" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -958,7 +964,7 @@
 				</div>	
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
-						<i class="fa fa-paperclip"></i> Image
+						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
 						<input type="file" name="new_attribute_option_image" id="new_attribute_option_image"/>
 					</div>
 					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
