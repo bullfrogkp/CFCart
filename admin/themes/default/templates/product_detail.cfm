@@ -68,8 +68,17 @@
 		$('##edit_special_price_to_date').datepicker();
 		$('##new_attribute_option_thumbnail_label').colorpicker();
 		
+		delete_attribute_option
+		
+		$( "##delete_attribute_option_comfirm" ).click(function() {
+			console.log($(this).parent().parent());
+			$(this).parent().parent().remove();
+		});
+		
 		$( ".delete-attribute-option" ).click(function() {
 			$("##deleted_attribute_value_id").val($(this).attr('attributevalueid'));
+			console.log($(this).parent().parent());
+			$(this).parent().parent().remove();
 		});
 		
 		$( ".delete-attribute-option-value" ).click(function() {
@@ -175,9 +184,9 @@
 		});
 				
 		$('##new_attributes').on("click","a.add-new-attribute-option", function() {
-			$("##option_attribute_set_id").val($(this).attr('attributesetid'));
-			$("##option_attribute_id").val($(this).attr('attributeid'));
-			$("##option_attribute_name").val($(this).attr('attributename'));
+			$("##add_option_attribute_set_id").val($(this).attr('attributesetid'));
+			$("##add_option_attribute_id").val($(this).attr('attributeid'));
+			$("##add_option_attribute_name").val($(this).attr('attributename'));
 		});
 
 		$( "##add_new_attribute_option" ).click(function() {
@@ -191,16 +200,16 @@
 				loadThumbnail($("##new_attribute_option_image")[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				 });
 			}
 			else
 			{
-				if($("##option_attribute_name").val() == 'color')
+				if($("##add_option_attribute_name").val() == 'color')
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
-				$("##tr-" + $("##option_attribute_set_id").val() + '-' + $("##option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 		});
 		
@@ -240,12 +249,9 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="option_attribute_id" id="option_attribute_id" value="" />
-<input type="hidden" name="option_attribute_set_id" id="option_attribute_set_id" value="" />
-<input type="hidden" name="option_attribute_name" id="option_attribute_name" value="" />
-<input type="hidden" name="image_source" id="image_source" value="" />
-<input type="hidden" name="thumbnail_content" id="thumbnail_content" value="" />
-<input type="hidden" name="image_content" id="image_content" value="" />
+<input type="hidden" name="add_option_attribute_id" id="add_option_attribute_id" value="" />
+<input type="hidden" name="add_option_attribute_set_id" id="add_option_attribute_set_id" value="" />
+<input type="hidden" name="add_option_attribute_name" id="add_option_attribute_name" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -990,7 +996,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_attribute_option" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_option_comfirm" id="delete_attribute_option_comfirm" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
