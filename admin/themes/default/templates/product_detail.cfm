@@ -68,8 +68,7 @@
 		$('##edit_special_price_to_date').datepicker();
 		$('##new_attribute_option_thumbnail_label').colorpicker();
 		
-		delete_attribute_option
-		
+				
 		$( "##delete_attribute_option_comfirm" ).click(function() {
 			$(this).remove();
 		});
@@ -91,6 +90,68 @@
 		$( ".edit-default-price" ).click(function() {
 			$("##product_shipping_method_rela_id").val($(this).attr('productshippingmethodrelaid'));
 		});
+		
+		
+		
+		
+		
+		var attribute_sets = new Object();
+		var attribute_set, attribute, key;
+
+		<cfloop array="#REQUEST.pageData.attributeSets#" index="aset">
+			attribute_set_key = 'attribute_set_' + '#aset.getAttributeSetId()#';
+			attribute_set = new Object();
+
+			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
+				attribute_key = 'attribute_' + '#attr.getAttribute().getAttributeId()#';
+				attribute = new Object();
+				
+				<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attr.getAttribute()},true) />
+				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+					attribute_value_key = 'attribute_value_' + '#attributeValue.getAttributeValueId()#';
+					attribute_value = new Object();
+					
+					attribute_value.name = '#attributeValue.getName()#';
+					attribute_value.display_name = '#attributeValue.getDisplayName()#';
+					attribute_value.thumbnail_image_name = '#attributeValue.getThumbnailImageName()#';
+					attribute_value.thumbnail_label = '#attributeValue.getThumbnailLabel()#';
+					attribute_value.image_link = '#attributeValue.getImageLink()#';
+					
+					attribute[attribute_value_key] = attribute_value;
+				</cfloop>
+				
+				attribute.name = '#attr.getAttribute().getName()#';
+				attribute.display_name = '#attr.getAttribute().getDisplayName()#';
+				attribute.required = '#attr.getRequired()#';
+				
+				attribute_set[attribute_key] = attribute;
+			</cfloop>
+			
+			attribute_sets[attribute_set_key] = attribute_set;
+		</cfloop>	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		var attributesets = new Object();
 		var attributeset, attribute, key;
