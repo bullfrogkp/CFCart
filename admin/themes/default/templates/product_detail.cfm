@@ -71,8 +71,7 @@
 		delete_attribute_option
 		
 		$( "##delete_attribute_option_comfirm" ).click(function() {
-			console.log($(this).parent().parent());
-			$(this).parent().parent().remove();
+			$(this).remove();
 		});
 		
 		$( ".delete-attribute-option" ).click(function() {
@@ -996,7 +995,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_attribute_option_comfirm" id="delete_attribute_option_comfirm" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_option_comfirm" id="delete_attribute_option_comfirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
