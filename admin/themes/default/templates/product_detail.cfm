@@ -69,15 +69,9 @@
 		$('##new_attribute_option_thumbnail_label').colorpicker();
 		
 				
-		$( "##delete_attribute_option_confirm" ).click(function() {
-			$(this).remove();
-		});
 		
-		$( ".delete-attribute-option" ).click(function() {
-			$("##deleted_attribute_value_id").val($(this).attr('attributevalueid'));
-			console.log($(this).parent().parent());
-			$(this).parent().parent().remove();
-		});
+		
+		
 		
 		$( ".delete-attribute-option-value" ).click(function() {
 			$("##sub_product_id").val($(this).attr('subproductid'));
@@ -126,8 +120,20 @@
 			new_option_index++;
 		});
 		
+		$( ".delete-attribute-option" ).click(function() {
+			$("##deleted_attribute_option_id").val($(this).attr('attributevalueid'));
+		});
 		
-		
+		$( "##delete_attribute_option_confirm" ).click(function() {
+			if(!listfind($("##new_option_id_list").val(),$("##deleted_attribute_option_id").val()))
+			{
+				listremove($("##new_option_id_list").val(),$("##deleted_attribute_option_id").val());
+			}
+			else
+			{	
+				$("##remove_option_id_list").val() += ',' + $("##deleted_attribute_option_id").val();
+			}	
+		});
 		
 		
 		
@@ -269,6 +275,7 @@
 <input type="hidden" name="add_option_attribute_id" id="add_option_attribute_id" value="" />
 <input type="hidden" name="add_option_attribute_set_id" id="add_option_attribute_set_id" value="" />
 <input type="hidden" name="add_option_attribute_name" id="add_option_attribute_name" value="" />
+<input type="hidden" name="deleted_attribute_option_id" id="deleted_attribute_option_id" value="" />
 
 <input type="hidden" name="new_option_id_list" id="new_option_id_list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove_option_id_list" value="" />
