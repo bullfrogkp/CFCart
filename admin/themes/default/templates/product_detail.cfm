@@ -68,49 +68,6 @@
 		$('##edit_special_price_to_date').datepicker();
 		$('##new_attribute_option_thumbnail_label').colorpicker();
 		
-				
-		
-		var attribute_sets = new Object();
-		var attribute_set, attribute, key;
-
-		<cfloop array="#REQUEST.pageData.attributeSets#" index="aset">
-			attribute_set_key = 'attribute_set_' + '#aset.getAttributeSetId()#';
-			attribute_set = new Object();
-
-			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
-				attribute_key = 'attribute_' + '#attr.getAttribute().getAttributeId()#';
-				attribute = new Object();
-				
-				<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attr.getAttribute()},true) />
-				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-					attribute_value_key = 'attribute_value_' + '#attributeValue.getAttributeValueId()#';
-					attribute_value = new Object();
-					
-					attribute_value.name = '#attributeValue.getName()#';
-					attribute_value.display_name = '#attributeValue.getDisplayName()#';
-					attribute_value.thumbnail_image_name = '#attributeValue.getThumbnailImageName()#';
-					attribute_value.thumbnail_label = '#attributeValue.getThumbnailLabel()#';
-					attribute_value.image_link = '#attributeValue.getImageLink()#';
-					
-					attribute_value.related_sub_products = new Object();
-					attribute_value.related_sub_products = new Object();
-					
-					attribute[attribute_value_key] = attribute_value;
-				</cfloop>
-				
-				attribute.name = '#attr.getAttribute().getName()#';
-				attribute.display_name = '#attr.getAttribute().getDisplayName()#';
-				attribute.required = '#attr.getRequired()#';
-				
-				attribute_set[attribute_key] = attribute;
-			</cfloop>
-			
-			attribute_sets[attribute_set_key] = attribute_set;
-		</cfloop>	
-		
-		
-		
-		
 		
 		
 		$( ".delete-attribute-option-value" ).click(function() {
@@ -171,8 +128,6 @@
 			$("input[name=generate_option]").removeAttr('checked');
 			$("input[name=generate_option]").buttonset('refresh');
 			
-			updateMatrix();
-			
 			new_option_index++;
 		});
 		
@@ -194,74 +149,19 @@
 			}	
 		});
 		
-		
-		
-		
-		var attributesets = new Object();
-		var attributeset, attribute, key;
-		
-		<cfloop array="#REQUEST.pageData.attributeSets#" index="aset">
-			
-			key = 'attribute_set_' + '#aset.getAttributeSetId()#';
-			
-			attributes = new Array();
-
-			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
-				attribute = new Object();
-				attribute.display_name = '#attr.getAttribute().getDisplayName()#';
-				attribute.attribute_set_id = '#aset.getAttributeSetId()#';
-				attribute.attribute_id = '#attr.getAttribute().getAttributeId()#';
-				attribute.name = '#attr.getAttribute().getName()#';
-				attribute.required = '#attr.getRequired()#';
-				attributes.push(attribute);
-			</cfloop>
-			
-			attributesets[key] = attributes;
-		</cfloop>	
-		
 		$( "##attribute_set_id" ).change(function() {
-			<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>		
-			if($( "##attribute_set_id" ).val() != #REQUEST.pageData.product.getAttributeSet().getAttributeSetId()#)
-			{
-				$('##attributes').hide();
-				$('##new_attributes').empty();
-				$('##attribute_option_values').hide();
-				
-				var current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
-			
-				for(var i=0;i<attributesets[current_key].length;i++)
-				{
-					if(attributesets[current_key][i].required == 'YES')
-						var required_info = ' (required)'; 
-					else
-						var required_info = '';
-					$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributesets[current_key][i].attribute_set_id+'-'+attributesets[current_key][i].attribute_id+'"><th colspan="2">'+attributesets[current_key][i].display_name+required_info+'</th><th colspan="2"><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
-				}
-			}
-			else
-			{
-				$('##new_attributes').empty();
-				$('##attributes').show();
-				$('##attribute_option_values').show();
-			}
-			<cfelse>
-			$('##attributes').hide();
-			$('##new_attributes').empty();
-			$('##attribute_option_values').hide();
-			
-			var current_key = 'attribute_set_' + $( "##attribute_set_id" ).val();
-		
-			for(var i=0;i<attributesets[current_key].length;i++)
-			{
-				if(attributesets[current_key][i].required == 'YES')
-					var required_info = ' (required)'; 
-				else
-					var required_info = '';
-				$('##new_attributes').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributesets[current_key][i].attribute_set_id+'-'+attributesets[current_key][i].attribute_id+'"><th colspan="2">'+attributesets[current_key][i].display_name+required_info+'</th><th colspan="2"><a attributesetid="'+attributesets[current_key][i].attribute_set_id+'" attributename="'+attributesets[current_key][i].name+'" attributeid="'+attributesets[current_key][i].attribute_id+'" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr></table></div></div></div>'); 
-			}
-			</cfif>
-			
+			$(".attribute-set").hide();
+			$("##attribute-set-" + $(this).val()).show();
 		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		$( ".delete-image" ).click(function() {
 			$("##deleted_image_id").val($(this).attr('imageid'));
@@ -625,20 +525,17 @@
 						</div>
 						
 						<label>Attribute Option(s)</label>
-						<div id="attributes" class="row" style="margin-top:10px;">
-							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
+						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
+							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" class="row" style="margin-top:10px;<cfif attributeSet.getAttributeSetId() NEQ REQUEST.pageData.getAttributeSet().getAttributeSetId()>display:none;</cfif>">
 								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 									<cfset attribute = attributeSetAttributeRela.getAttribute() />
-									<cfset attributeSet = attributeSetAttributeRela.getAttributeSet() />
-									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
-									<cfif NOT IsNull(productAttributeRela)>
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
 														<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
-														<th><a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
 													<cfif NOT IsNull(productAttributeRela.getAttributeValues())>
@@ -673,75 +570,71 @@
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
 									</div>
-									</cfif>
 								</cfloop>
-							</cfif>
-					
-						</div>
-						<div id="new_attributes" class="row" style="margin-top:10px;">
-						</div>
-						
-						<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.isProductAttributeComplete() EQ true>
-							<div class="form-group" id="attribute_option_values">
-								<label>Attribute Value(s)</label>
-								<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
-								<button name="generate_attribute_option_values" type="submit" class="label label-primary" style="border:none;padding:.3em .6em .4em;">Generate Attribute Values</button>
-								
-								<cfif NOT IsNull(REQUEST.pageData.product.getSubProducts())>
-									<div id="attributes" class="row" style="margin-top:10px;">
-										<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-											<div class="col-xs-3">
-												<div class="box box-info">
-													<div class="box-body table-responsive no-padding">
-														<table class="table table-hover">
-															<tr class="success">
-																<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></th>
-																<th></th>
-																<th>
-																	<a subproductid="#p.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-danger">Delete</span></a>
-																</th>
-															</tr>
-															
-															<cfloop array="#p.getProductAttributeRelas()#" index="productAttributeRela">
-																<tr style="background-color:##f9f9f9;">
-																	<td>#LCase(productAttributeRela.getAttribute().getDisplayName())#</td>
-																	<td>#productAttributeRela.getAttributeValues()[1].getDisplayName()#</td>
-																	<td>
-																	<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
-																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																			<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																				<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																			</div>
-																		<cfelse>
-																			<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
-																		</cfif>
-																	</cfif>
-																	</td>
-																</tr>
-															</cfloop>
-															<tr>
-																<td>sku</td>
-																<td colspan="2">#p.getSku()#</td>
-															</tr>
-															<tr>
-																<td>stock</td>
-																<td colspan="2">#p.getStock()#</td>
-															</tr>
-															<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
-															<tr>
-																<td>price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
-																<td colspan="2">#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#</td>
-															</tr>
-															</cfloop>
-														</table>
-													</div><!-- /.box-body -->
-												</div><!-- /.box -->
-											</div>
-										</cfloop>
-									</div>
-								</cfif>
 							</div>
-						</cfif>
+						
+							<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.isProductAttributeComplete() EQ true>
+								<div class="form-group" id="attribute_option_values">
+									<label>Attribute Value(s)</label>
+									<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
+									<button name="generate_attribute_option_values" type="submit" class="label label-primary" style="border:none;padding:.3em .6em .4em;">Generate Attribute Values</button>
+									
+									<cfif NOT IsNull(REQUEST.pageData.product.getSubProducts())>
+										<div id="attributes" class="row" style="margin-top:10px;">
+											<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+												<div class="col-xs-3">
+													<div class="box box-info">
+														<div class="box-body table-responsive no-padding">
+															<table class="table table-hover">
+																<tr class="success">
+																	<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></th>
+																	<th></th>
+																	<th>
+																		<a subproductid="#p.getProductId()#" href="" class="delete-attribute-option-value pull-right" data-toggle="modal" data-target="##delete-attribute-option-value-modal"><span class="label label-danger">Delete</span></a>
+																	</th>
+																</tr>
+																
+																<cfloop array="#p.getProductAttributeRelas()#" index="productAttributeRela">
+																	<tr style="background-color:##f9f9f9;">
+																		<td>#LCase(productAttributeRela.getAttribute().getDisplayName())#</td>
+																		<td>#productAttributeRela.getAttributeValues()[1].getDisplayName()#</td>
+																		<td>
+																		<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
+																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																				<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																				</div>
+																			<cfelse>
+																				<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+																			</cfif>
+																		</cfif>
+																		</td>
+																	</tr>
+																</cfloop>
+																<tr>
+																	<td>sku</td>
+																	<td colspan="2">#p.getSku()#</td>
+																</tr>
+																<tr>
+																	<td>stock</td>
+																	<td colspan="2">#p.getStock()#</td>
+																</tr>
+																<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
+																<tr>
+																	<td>price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
+																	<td colspan="2">#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#</td>
+																</tr>
+																</cfloop>
+															</table>
+														</div><!-- /.box-body -->
+													</div><!-- /.box -->
+												</div>
+											</cfloop>
+										</div>
+									</cfif>
+								</div>
+							</cfif>
+						</cfloop>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" id="tab_6">
 					
