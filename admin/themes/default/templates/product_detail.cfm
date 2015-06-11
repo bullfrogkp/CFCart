@@ -66,7 +66,7 @@
 		$('##new_single_special_price_to_date').datepicker();
 		$('##edit_special_price_from_date').datepicker();
 		$('##edit_special_price_to_date').datepicker();
-		$('##new_attribute_option_thumbnail_label').colorpicker();
+		$('##new-attribute-option-label').colorpicker();
 		
 		
 		
@@ -91,39 +91,38 @@
 			$("##new-option-attribute-name").val($(this).attr('attributename'));
 		});
 		
-		$( "##add_new_attribute_option_confirm" ).click(function() {
+		$( "##add-new-attribute-option-confirm" ).click(function() {
 			var thumbnail_content = '';
 			var image_content = '';
 			
-			if($("##new_attribute_option_image").val() != '')
+			if($("##new-attribute-option-image").val() != '')
 			{
-				loadThumbnail($("##new_attribute_option_image")[0].files[0], function(image_src) { 
+				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+$("##new-attribute-option-name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				 });
 			}
 			else
 			{
 				if($("##add_option_attribute_name").val() == 'color')
-					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
 				else
-					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
-				$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					thumbnail_content = $("##new-attribute-option-label").val();
+				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+$("##new-attribute-option-name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			var new_option_name =  'new_option_' + new_option_index;
 			
 			$("##new_option_id_list").val($("##new_option_id_list").val() + ',' + new_option_name);
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new_attribute_option_name").val()+'" />');
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new_attribute_option_thumbnail_label").val()+'" />');
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new_attribute_option_image").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new-attribute-option-name").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new-attribute-option-label").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new-attribute-option-image").val()+'" />');
 			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("input[name=generate_option]:checked").val()+'" />');
 			
-			$("##new_attribute_option_name").val('');
-			$("##new_attribute_option_thumbnail_label").val('');
-			$("##new_attribute_option_image").val('');
-			$("##new_attribute_option_name").val('');
+			$("##new-attribute-option-name").val('');
+			$("##new-attribute-option-label").val('');
+			$("##new-attribute-option-image").val('');
 			
 			$("input[name=generate_option]").removeAttr('checked');
 			$("input[name=generate_option]").buttonset('refresh');
@@ -539,7 +538,7 @@
 													<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
 														<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
 														<th>
-															<a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+															<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 																<span class="label label-primary">Add Option</span>
 															</a>
 														</th>
@@ -949,15 +948,15 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_attribute_option_name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Name">
+					<input id="new-attribute-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Name">
 				</div>
 				<div class="form-group">
-					<input id="new_attribute_option_thumbnail_label" name="new_attribute_option_thumbnail_label" type="text" class="form-control" placeholder="Thumbnail Label">
+					<input id="new-attribute-option-label" name="new_attribute_option_label" type="text" class="form-control" placeholder="Thumbnail Label">
 				</div>	
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_image" id="new_attribute_option_image"/>
+						<input type="file" name="new_attribute_option_image" id="new-attribute-option-image"/>
 					</div>
 					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
 					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
@@ -966,7 +965,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button id="add_new_attribute_option_confirm" name="add_new_attribute_option_confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
+				<button id="add-new-attribute-option-confirm" name="add_new_attribute_option_confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
