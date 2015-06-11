@@ -535,10 +535,15 @@
 												<table class="table table-hover">
 													<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
 														<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
-														<th><a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#LCase(attribute.getDisplayName())#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th>
+															<a href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+																<span class="label label-primary">Add Option</span>
+															</a>
+														</th>
 													</tr>
 													
-													<cfif NOT IsNull(productAttributeRela.getAttributeValues())>
+													<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+													<cfif NOT IsNull(productAttributeRela)>
 														<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 															<tr id="tr-av-#attributeValue.getAttributeValueId()#">
 																<td>#attributeValue.getDisplayName()#</td>
@@ -561,7 +566,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																	<a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 																</td>
 															</tr>
 														</cfloop>
