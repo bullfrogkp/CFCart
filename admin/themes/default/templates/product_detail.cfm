@@ -535,34 +535,36 @@
 															</th>
 														</tr>
 														
-														<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
-														<cfif NOT IsNull(productAttributeRela)>
-															<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-																<tr id="tr-av-#attributeValue.getAttributeValueId()#">
-																	<td>#attributeValue.getDisplayName()#</td>
-																	<td>
-																		<cfif attributeValue.getThumbnailImageName() NEQ "">
-																			<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																				<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																			</div>
-																		<cfelse>
-																			<cfif attribute.getDisplayName() EQ "color">
-																				<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
+														<cfif attributeSet.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
+															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+															<cfif NOT IsNull(productAttributeRela)>
+																<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+																	<tr id="tr-av-#attributeValue.getAttributeValueId()#">
+																		<td>#attributeValue.getDisplayName()#</td>
+																		<td>
+																			<cfif attributeValue.getThumbnailImageName() NEQ "">
+																				<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+																					<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																				</div>
 																			<cfelse>
-																				#attributeValue.getThumbnailLabel()#
+																				<cfif attribute.getDisplayName() EQ "color">
+																					<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
+																				<cfelse>
+																					#attributeValue.getThumbnailLabel()#
+																				</cfif>
 																			</cfif>
-																		</cfif>
-																	</td>
-																	<td>
-																		<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																			<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
-																		</div>
-																	</td>
-																	<td>
-																		<a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
-																	</td>
-																</tr>
-															</cfloop>
+																		</td>
+																		<td>
+																			<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+																				<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																			</div>
+																		</td>
+																		<td>
+																			<a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																		</td>
+																	</tr>
+																</cfloop>
+															</cfif>
 														</cfif>
 													</table>
 												</div><!-- /.box-body -->
