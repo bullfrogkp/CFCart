@@ -88,6 +88,12 @@
 		
 		var new_option_index = 1;
 		
+		$('##new_attributes').on("click","a.add-new-attribute-option", function() {
+			$("##add_option_attribute_set_id").val($(this).attr('attributesetid'));
+			$("##add_option_attribute_id").val($(this).attr('attributeid'));
+			$("##add_option_attribute_name").val($(this).attr('attributename'));
+		});
+		
 		$( "##add_new_attribute_option_confirm" ).click(function() {
 			var thumbnail_content = '';
 			var image_content = '';
@@ -115,7 +121,15 @@
 			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new_attribute_option_name").val()+'" />');
 			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new_attribute_option_thumbnail_label").val()+'" />');
 			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new_attribute_option_image").val()+'" />');
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("##generate_option").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("input[name=generate_option]:checked").val()+'" />');
+			
+			$("##new_attribute_option_name").val('');
+			$("##new_attribute_option_thumbnail_label").val('');
+			$("##new_attribute_option_image").val('');
+			$("##new_attribute_option_name").val('');
+			
+			$("input[name=generate_option]").removeAttr('checked');
+			$("input[name=generate_option]").buttonset('refresh');
 			
 			new_option_index++;
 		});
@@ -228,11 +242,7 @@
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
 				
-		$('##new_attributes').on("click","a.add-new-attribute-option", function() {
-			$("##add_option_attribute_set_id").val($(this).attr('attributesetid'));
-			$("##add_option_attribute_id").val($(this).attr('attributeid'));
-			$("##add_option_attribute_name").val($(this).attr('attributename'));
-		});
+		
 
 		
 		
