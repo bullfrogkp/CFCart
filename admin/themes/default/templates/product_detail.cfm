@@ -138,17 +138,17 @@
 		
 			$("tr-av-" + $("##deleted-attribute-option-id").val()).remove();
 		
-			if(!listfind($("##new-option-id-list").val(),$("##deleted_attribute_option_id").val()))
+			if(!listfind($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val()))
 			{
-				listremove($("##new-option-id-list").val(),$("##deleted_attribute_option_id").val());
+				listremove($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val());
 			}
 			else
 			{	
-				$("##remove_option_id_list").val() += ',' + $("##deleted_attribute_option_id").val();
+				$("##remove-option_id-list").val() += ',' + $("##deleted-attribute-option-id").val();
 			}	
 		});
 		
-		$( "##attribute_set_id" ).change(function() {
+		$( "##attribute-set-id" ).change(function() {
 			$(".attribute-set").hide();
 			$("##attribute-set-" + $(this).val()).show();
 		});
@@ -185,12 +185,6 @@
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
-				
-		
-
-		function updateMatrix() {
-			
-		}
 		
 		
 		function loadThumbnail(file, callback) {
@@ -229,13 +223,12 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="add_option_attribute_id" id="add_option_attribute_id" value="" />
-<input type="hidden" name="add_option_attribute_set_id" id="add_option_attribute_set_id" value="" />
-<input type="hidden" name="add_option_attribute_name" id="add_option_attribute_name" value="" />
-<input type="hidden" name="deleted_attribute_option_id" id="deleted_attribute_option_id" value="" />
-
+<input type="hidden" name="new_option_attribute_id" id="new-option-attribute-id" value="" />
+<input type="hidden" name="new_option_attribute_set_id" id="new-option-attribute-set-id" value="" />
+<input type="hidden" name="new_option_attribute_name" id="new-option-attribute-name" value="" />
+<input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id" value="" />
 <input type="hidden" name="new_option_id_list" id="new-option-id-list" value="" />
-<input type="hidden" name="remove_option_id_list" id="remove_option_id_list" value="" />
+<input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
