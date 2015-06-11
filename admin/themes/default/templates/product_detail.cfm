@@ -95,13 +95,15 @@
 			var thumbnail_content = '';
 			var image_content = '';
 			var name_content = $("##new-attribute-option-name").val();
+			var new_option_name =  'new_option_' + new_option_index;
+			var new_option_id =  'tr-av-new-option-' + new_option_index;
 			
 			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr id="'+new_option_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_id+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
@@ -110,10 +112,8 @@
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = name_content;
-				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr id="'+new_option_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_id+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
-			
-			var new_option_name =  'new_option_' + new_option_index;
 			
 			$("##new-option-id-list").val($("##new-option-id-list").val() + ',' + new_option_name);
 			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new-attribute-option-name").val()+'" />');
@@ -130,14 +130,15 @@
 			new_option_index++;
 		});
 		
-		$( ".delete-attribute-option" ).click(function() {
+		$('.attribute-set').on("click","a.delete-attribute-option", function() {
 			$("##deleted-attribute-option-id").val($(this).attr('attributevalueid'));
 		});
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {
-		
-			$("tr-av-" + $("##deleted-attribute-option-id").val()).remove();
-		
+		console.log($("##" + $("##deleted-attribute-option-id").val()));
+			
+			$("##" + $("##deleted-attribute-option-id").val()).remove();
+			/*
 			if(!listfind($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val()))
 			{
 				listremove($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val());
@@ -146,6 +147,7 @@
 			{	
 				$("##remove-option_id-list").val() += ',' + $("##deleted-attribute-option-id").val();
 			}	
+			*/
 		});
 		
 		$( "##attribute-set-id" ).change(function() {
@@ -560,7 +562,7 @@
 																			</div>
 																		</td>
 																		<td>
-																			<a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																			<a attributevalueid="tr-av-#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 																		</td>
 																	</tr>
 																</cfloop>
@@ -974,7 +976,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_attribute_option_confirm" id="delete_attribute_option_confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_option_confirm" id="delete-attribute-option-confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
