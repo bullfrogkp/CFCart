@@ -134,9 +134,7 @@
 			$("##deleted-attribute-option-id").val($(this).attr('attributevalueid'));
 		});
 		
-		$( "##delete-attribute-option-confirm" ).click(function() {
-		console.log($("##" + $("##deleted-attribute-option-id").val()));
-			
+		$( "##delete-attribute-option-confirm" ).click(function() {			
 			$("##" + $("##deleted-attribute-option-id").val()).remove();
 			/*
 			if(!listfind($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val()))
