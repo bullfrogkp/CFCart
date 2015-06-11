@@ -139,6 +139,9 @@
 		});
 		
 		$( "##delete_attribute_option_confirm" ).click(function() {
+		
+			$("tr-av-" + $("##deleted_attribute_option_id").val()).remove();
+		
 			if(!listfind($("##new_option_id_list").val(),$("##deleted_attribute_option_id").val()))
 			{
 				listremove($("##new_option_id_list").val(),$("##deleted_attribute_option_id").val());
@@ -595,7 +598,7 @@
 													
 													<cfif NOT IsNull(productAttributeRela.getAttributeValues())>
 														<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-															<tr>
+															<tr id="tr-av-#attributeValue.getAttributeValueId()#">
 																<td>#attributeValue.getDisplayName()#</td>
 																<td>
 																	<cfif attributeValue.getThumbnailImageName() NEQ "">
