@@ -94,22 +94,23 @@
 		$( "##add-new-attribute-option-confirm" ).click(function() {
 			var thumbnail_content = '';
 			var image_content = '';
+			var name_content = $("##new-attribute-option-name").val();
 			
 			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+$("##new-attribute-option-name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
 			{
-				if($("##add_option_attribute_name").val() == 'color')
+				if($("##new-option-attribute-name").val() == 'color')
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
 				else
-					thumbnail_content = $("##new-attribute-option-label").val();
-				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+$("##new-attribute-option-name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					thumbnail_content = name_content;
+				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			var new_option_name =  'new_option_' + new_option_index;
@@ -125,7 +126,6 @@
 			$("##new-attribute-option-image").val('');
 			
 			$("input[name=generate_option]").removeAttr('checked');
-			$("input[name=generate_option]").buttonset('refresh');
 			
 			new_option_index++;
 		});
@@ -572,7 +572,7 @@
 										</div>
 									</cfloop>
 								</div>
-								<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.isProductAttributeComplete() EQ true>
+								<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.isProductAttributeComplete() EQ true AND attributeSet.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
 									<div class="form-group" id="attribute-option-values-#attributeSet.getAttributeSetId()#">
 										<label>Attribute Value(s)</label>
 										<a href="" data-toggle="modal" data-target="##add-attribute-option-value-modal" style="margin-left:10px;"><span class="label label-primary">Add Value</span></a>
