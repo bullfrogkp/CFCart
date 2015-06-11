@@ -85,10 +85,10 @@
 		
 		var new_option_index = 1;
 		
-		$('##new_attributes').on("click","a.add-new-attribute-option", function() {
-			$("##add_option_attribute_set_id").val($(this).attr('attributesetid'));
-			$("##add_option_attribute_id").val($(this).attr('attributeid'));
-			$("##add_option_attribute_name").val($(this).attr('attributename'));
+		$('.attribute-set').on("click","a.add-new-attribute-option", function() {
+			$("##new-option-attribute-set-id").val($(this).attr('attributesetid'));
+			$("##new-option-attribute-id").val($(this).attr('attributeid'));
+			$("##new-option-attribute-name").val($(this).attr('attributename'));
 		});
 		
 		$( "##add_new_attribute_option_confirm" ).click(function() {
@@ -526,7 +526,10 @@
 						
 						<label>Attribute Option(s)</label>
 						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" class="row" style="margin-top:10px;<cfif attributeSet.getAttributeSetId() NEQ REQUEST.pageData.getAttributeSet().getAttributeSetId()>display:none;</cfif>">
+							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" class="row" style="margin-top:10px;
+								<cfif attributeSet.getAttributeSetId() NEQ REQUEST.pageData.getAttributeSet().getAttributeSetId()>
+									display:none;
+								</cfif>">
 								<cfloop array="#REQUEST.pageData.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 									<cfset attribute = attributeSetAttributeRela.getAttribute() />
 									<div class="col-xs-3">
