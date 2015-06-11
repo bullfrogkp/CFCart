@@ -69,7 +69,7 @@
 		$('##new_attribute_option_thumbnail_label').colorpicker();
 		
 				
-		$( "##delete_attribute_option_comfirm" ).click(function() {
+		$( "##delete_attribute_option_confirm" ).click(function() {
 			$(this).remove();
 		});
 		
@@ -92,60 +92,39 @@
 		});
 		
 		
+		var new_option_index = 1;
 		
-		
-		
-		var attribute_sets = new Object();
-		var attribute_set, attribute, key;
-
-		<cfloop array="#REQUEST.pageData.attributeSets#" index="aset">
-			attribute_set_key = 'attribute_set_' + '#aset.getAttributeSetId()#';
-			attribute_set = new Object();
-
-			<cfloop array="#aset.getAttributeSetAttributeRelas()#" index="attr">
-				attribute_key = 'attribute_' + '#attr.getAttribute().getAttributeId()#';
-				attribute = new Object();
-				
-				<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attr.getAttribute()},true) />
-				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-					attribute_value_key = 'attribute_value_' + '#attributeValue.getAttributeValueId()#';
-					attribute_value = new Object();
-					
-					attribute_value.name = '#attributeValue.getName()#';
-					attribute_value.display_name = '#attributeValue.getDisplayName()#';
-					attribute_value.thumbnail_image_name = '#attributeValue.getThumbnailImageName()#';
-					attribute_value.thumbnail_label = '#attributeValue.getThumbnailLabel()#';
-					attribute_value.image_link = '#attributeValue.getImageLink()#';
-					
-					attribute[attribute_value_key] = attribute_value;
-				</cfloop>
-				
-				attribute.name = '#attr.getAttribute().getName()#';
-				attribute.display_name = '#attr.getAttribute().getDisplayName()#';
-				attribute.required = '#attr.getRequired()#';
-				
-				attribute_set[attribute_key] = attribute;
-			</cfloop>
+		$( "##add_new_attribute_option_confirm" ).click(function() {
+			var thumbnail_content = '';
+			var image_content = '';
 			
-			attribute_sets[attribute_set_key] = attribute_set;
-		</cfloop>	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			if($("##new_attribute_option_image").val() != '')
+			{
+				loadThumbnail($("##new_attribute_option_image")[0].files[0], function(image_src) { 
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+					$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				 });
+			}
+			else
+			{
+				if($("##add_option_attribute_name").val() == 'color')
+					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
+				else
+					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
+				$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			}
+			
+			var new_option_name =  'new_option_' + new_option_index;
+			
+			$("##new_option_id_list").val($("##new_option_id_list").val() + ',' + new_option_name);
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new_attribute_option_name").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new_attribute_option_thumbnail_label").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new_attribute_option_image").val()+'" />');
+			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("##generate_option").val()+'" />');
+			
+			new_option_index++;
+		});
 		
 		
 		
@@ -249,29 +228,7 @@
 			$("##add_option_attribute_name").val($(this).attr('attributename'));
 		});
 
-		$( "##add_new_attribute_option" ).click(function() {
-			$("##add_customer_group_id").val($(this).attr('customergroupid'));
-			
-			var thumbnail_content = '';
-			var image_content = '';
-			
-			if($("##new_attribute_option_image").val() != '')
-			{
-				loadThumbnail($("##new_attribute_option_image")[0].files[0], function(image_src) { 
-					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
-				 });
-			}
-			else
-			{
-				if($("##add_option_attribute_name").val() == 'color')
-					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new_attribute_option_thumbnail_label").val()+';margin-top:4px;"></div>';
-				else
-					thumbnail_content = $("##new_attribute_option_thumbnail_label").val();
-				$("##tr-" + $("##add_option_attribute_set_id").val() + '-' + $("##add_option_attribute_id").val()).after('<tr><td>'+$("##new_attribute_option_name").val()+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
-			}
-		});
+		
 		
 		function loadThumbnail(file, callback) {
 			var reader = new FileReader();
@@ -295,7 +252,7 @@
 </section>
 
 <!-- Main content -->
-<form method="post" enctype="multipart/form-data">
+<form id="product_detail" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_attribute_option_product_attribute_rela_id" id="new_attribute_option_product_attribute_rela_id" value="" />
@@ -312,6 +269,9 @@
 <input type="hidden" name="add_option_attribute_id" id="add_option_attribute_id" value="" />
 <input type="hidden" name="add_option_attribute_set_id" id="add_option_attribute_set_id" value="" />
 <input type="hidden" name="add_option_attribute_name" id="add_option_attribute_name" value="" />
+
+<input type="hidden" name="new_option_id_list" id="new_option_id_list" value="" />
+<input type="hidden" name="remove_option_id_list" id="remove_option_id_list" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -1040,7 +1000,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button id="add_new_attribute_option" name="add_new_attribute_option" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
+				<button id="add_new_attribute_option_confirm" name="add_new_attribute_option_confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -1056,7 +1016,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_attribute_option_comfirm" id="delete_attribute_option_comfirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_attribute_option_confirm" id="delete_attribute_option_confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
