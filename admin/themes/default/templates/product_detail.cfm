@@ -114,11 +114,11 @@
 			
 			var new_option_name =  'new_option_' + new_option_index;
 			
-			$("##new_option_id_list").val($("##new_option_id_list").val() + ',' + new_option_name);
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new-attribute-option-name").val()+'" />');
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new-attribute-option-label").val()+'" />');
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new-attribute-option-image").val()+'" />');
-			$("##product_detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("input[name=generate_option]:checked").val()+'" />');
+			$("##new-option-id-list").val($("##new-option-id-list").val() + ',' + new_option_name);
+			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new-attribute-option-name").val()+'" />');
+			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new-attribute-option-label").val()+'" />');
+			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new-attribute-option-image").val()+'" />');
+			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("input[name=generate_option]:checked").val()+'" />');
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
@@ -131,16 +131,16 @@
 		});
 		
 		$( ".delete-attribute-option" ).click(function() {
-			$("##deleted_attribute_option_id").val($(this).attr('attributevalueid'));
+			$("##deleted-attribute-option-id").val($(this).attr('attributevalueid'));
 		});
 		
-		$( "##delete_attribute_option_confirm" ).click(function() {
+		$( "##delete-attribute-option-confirm" ).click(function() {
 		
-			$("tr-av-" + $("##deleted_attribute_option_id").val()).remove();
+			$("tr-av-" + $("##deleted-attribute-option-id").val()).remove();
 		
-			if(!listfind($("##new_option_id_list").val(),$("##deleted_attribute_option_id").val()))
+			if(!listfind($("##new-option-id-list").val(),$("##deleted_attribute_option_id").val()))
 			{
-				listremove($("##new_option_id_list").val(),$("##deleted_attribute_option_id").val());
+				listremove($("##new-option-id-list").val(),$("##deleted_attribute_option_id").val());
 			}
 			else
 			{	
@@ -234,7 +234,7 @@
 <input type="hidden" name="add_option_attribute_name" id="add_option_attribute_name" value="" />
 <input type="hidden" name="deleted_attribute_option_id" id="deleted_attribute_option_id" value="" />
 
-<input type="hidden" name="new_option_id_list" id="new_option_id_list" value="" />
+<input type="hidden" name="new_option_id_list" id="new-option-id-list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove_option_id_list" value="" />
 <section class="content">
 	<div class="row">
