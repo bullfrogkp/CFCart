@@ -119,12 +119,15 @@
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_option',value: $("input[name=generate_option]:checked").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
 			$("##new-attribute-option-image").val('');
-			$("input[name=generate_option]:checked").prop('checked', false);
+			$('input[name="generate_option"]').prop('checked', false);
+			
+			$(".iradio_minimal").removeClass("checked");
+			$(".iradio_minimal").attr("aria-checked",false);
 			
 			new_option_index++;
 		});
