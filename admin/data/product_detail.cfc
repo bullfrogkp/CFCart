@@ -44,7 +44,7 @@
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
-<cfdump var="#FORM#" abort>		
+
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
@@ -218,6 +218,84 @@
 				<cfset LOCAL.newDefaultImage = EntityLoadByPK("product_image", FORM.default_image_id) />
 				<cfset LOCAL.newDefaultImage.setIsDefault(true) />
 				<cfset EntitySave(LOCAL.newDefaultImage) />
+			</cfif>
+			
+			
+			<cfif FORM.new_option_name_list NEQ "">
+				<cfloop list="#FORM.new_option_name_list#" index="LOCAL.i">
+					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_option_#LOCAL.i#_attribute_id"];
+					<cfset LOCAL.newAttributeOptionName = FORM["new_option_#LOCAL.i#_name"];
+					<cfset LOCAL.newAttributeOptionThumbnailLabel = FORM["new_option_#LOCAL.i#_thumbnail_label"];
+					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_option_#LOCAL.i#_generate_option"];
+					<cfset LOCAL.newAttributeOptionImage = FORM["new_option_#LOCAL.i#_image"];				
+				
+					<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_attribute_option_product_attribute_rela_id) />
+		
+					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
+					<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option_value)) />
+					<cfset LOCAL.newAttributeValue.setDisplayName(Trim(FORM.new_attribute_option_name)) />
+					<cfset LOCAL.newAttributeValue.setName(LCase(Trim(FORM.new_attribute_option_name))) />
+					<cfset LOCAL.newAttributeValue.setThumbnailLabel(Trim(FORM.new_attribute_option_thumbnail_label)) />
+					
+					<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
+					<cfif NOT DirectoryExists(LOCAL.imageDir)>
+						<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+					</cfif>	
+					
+					<cfif 	Trim(FORM.new_attribute_option_thumbnail_image) NEQ ""
+							AND
+							NOT(Trim(FORM.new_attribute_option_image) NEQ "" AND StructKeyExists(FORM, "generate_thumbnail"))>
+					
+						<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
+							
+						<cffile action = "upload"  
+								fileField = "new_attribute_option_thumbnail_image"
+								destination = "#LOCAL.imageDir#"
+								nameConflict = "MakeUnique"> 
+						
+						<cfset LOCAL.image = ImageRead("#cffile.serverDirectory#\#cffile.serverFile#")>
+						<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
+						<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
+						<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#cffile.serverFile#")> 
+						
+						<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
+					</cfif>
+					
+					<cfif Trim(FORM.new_attribute_option_image) NEQ "">
+						<cffile action = "upload"  
+								fileField = "new_attribute_option_image"
+								destination = "#LOCAL.imageDir#"
+								nameConflict = "MakeUnique"> 
+						
+						<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+						<cfset LOCAL.productImage = EntityNew("product_image") />
+						<cfset LOCAL.productImage.setName(cffile.serverFile) />
+						<cfset EntitySave(LOCAL.productImage) />
+						<cfset LOCAL.product.addImage(LOCAL.productImage) />
+						<cfset EntitySave(LOCAL.product) />
+						
+						<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
+												, {name = "small", width = "200", height = "200", position="center", crop = true}
+												, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
+												] />			
+						<cfset _createImages(	imagePath = LOCAL.imageDir,
+												imageNameWithExtension = LOCAL.newAttributeValue.getImageName(),
+												sizeArray = LOCAL.sizeArray) />
+						
+						<cfif StructKeyExists(FORM, "generate_thumbnail")>
+							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#LOCAL.newAttributeValue.getImageName()#") />
+						</cfif>
+					</cfif>
+					
+					<cfset EntitySave(LOCAL.newAttributeValue) />
+					<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
+					<cfset EntitySave(LOCAL.ProductAttributeRela) />
+				</cfloop>
+			</cfif>
+			
+			<cfif FORM.remove_option_id_list NEQ "">
+			
 			</cfif>
 									
 			<cfset EntitySave(LOCAL.product) />

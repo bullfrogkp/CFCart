@@ -119,13 +119,13 @@
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-option-attribute-id").val(}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
 			$("##new-attribute-option-image").val('');
 			$('input[name="generate_option"]').prop('checked', false);
-			
 			$(".iradio_minimal").removeClass("checked");
 			$(".iradio_minimal").attr("aria-checked",false);
 			
@@ -231,6 +231,7 @@
 <input type="hidden" name="new_option_attribute_id" id="new-option-attribute-id" value="" />
 <input type="hidden" name="new_option_attribute_set_id" id="new-option-attribute-set-id" value="" />
 <input type="hidden" name="new_option_attribute_name" id="new-option-attribute-name" value="" />
+<input type="hidden" name="new_option_attribute_product_attribute_rela_id" id="new-option-attribute-product-attribute-rela-id" value="" />
 <input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id" value="" />
 <input type="hidden" name="new_option_name_list" id="new-option-id-list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
