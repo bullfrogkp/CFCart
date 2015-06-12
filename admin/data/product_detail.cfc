@@ -44,7 +44,7 @@
 		<cfset SESSION.temp.message = {} />
 		<cfset SESSION.temp.message.messageArray = [] />
 		<cfset SESSION.temp.message.messageType = "alert-success" />
-		
+<cfdump var="#FORM#" abort>		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.product = EntityLoadByPK("product", FORM.id)> 
 			<cfset LOCAL.product.setUpdatedUser(SESSION.adminUser) />
