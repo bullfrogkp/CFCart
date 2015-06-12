@@ -290,7 +290,10 @@
 			</cfif>
 			
 			<cfif FORM.remove_option_id_list NEQ "">
-			
+				<cfloop list="#FORM.remove_option_id_list#" index="LOCAL.i">
+					<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",LOCAL.i) />
+					<cfset EntityDelete(LOCAL.attributeValue) />
+				</cfloop>
 			</cfif>
 									
 			<cfset EntitySave(LOCAL.product) />
@@ -323,74 +326,6 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Video has been added.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_9" />
 		
-		<cfelseif StructKeyExists(FORM,"add_new_attribute_option")>
-		
-			<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_attribute_option_product_attribute_rela_id) />
-		
-			<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-			<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
-			<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option_value)) />
-			<cfset LOCAL.newAttributeValue.setDisplayName(Trim(FORM.new_attribute_option_name)) />
-			<cfset LOCAL.newAttributeValue.setName(LCase(Trim(FORM.new_attribute_option_name))) />
-			<cfset LOCAL.newAttributeValue.setThumbnailLabel(Trim(FORM.new_attribute_option_thumbnail_label)) />
-			
-			<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
-			<cfif NOT DirectoryExists(LOCAL.imageDir)>
-				<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-			</cfif>	
-			
-			<cfif 	Trim(FORM.new_attribute_option_thumbnail_image) NEQ ""
-					AND
-					NOT(Trim(FORM.new_attribute_option_image) NEQ "" AND StructKeyExists(FORM, "generate_thumbnail"))>
-			
-				<cfset LOCAL.imageUtils = new "#APPLICATION.componentPathRoot#core.utils.imageUtils"() />
-					
-				<cffile action = "upload"  
-						fileField = "new_attribute_option_thumbnail_image"
-						destination = "#LOCAL.imageDir#"
-						nameConflict = "MakeUnique"> 
-				
-				<cfset LOCAL.image = ImageRead("#cffile.serverDirectory#\#cffile.serverFile#")>
-				<cfset LOCAL.newImage = ImageNew(LOCAL.image)>
-				<cfset LOCAL.newImage = LOCAL.imageUtils.aspectCrop(LOCAL.newImage, 30, 30, "center")>
-				<cfset ImageWrite(LOCAL.newImage,"#LOCAL.imageDir#thumbnail_#cffile.serverFile#")> 
-				
-				<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-			</cfif>
-			
-			<cfif Trim(FORM.new_attribute_option_image) NEQ "">
-				<cffile action = "upload"  
-						fileField = "new_attribute_option_image"
-						destination = "#LOCAL.imageDir#"
-						nameConflict = "MakeUnique"> 
-				
-				<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-				<cfset LOCAL.productImage = EntityNew("product_image") />
-				<cfset LOCAL.productImage.setName(cffile.serverFile) />
-				<cfset EntitySave(LOCAL.productImage) />
-				<cfset LOCAL.product.addImage(LOCAL.productImage) />
-				<cfset EntitySave(LOCAL.product) />
-				
-				<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
-										, {name = "small", width = "200", height = "200", position="center", crop = true}
-										, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
-										] />			
-				<cfset _createImages(	imagePath = LOCAL.imageDir,
-										imageNameWithExtension = LOCAL.newAttributeValue.getImageName(),
-										sizeArray = LOCAL.sizeArray) />
-				
-				<cfif StructKeyExists(FORM, "generate_thumbnail")>
-					<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#LOCAL.newAttributeValue.getImageName()#") />
-				</cfif>
-			</cfif>
-			
-			<cfset EntitySave(LOCAL.newAttributeValue) />
-			<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-			<cfset EntitySave(LOCAL.ProductAttributeRela) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New option has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
-			
 		<cfelseif StructKeyExists(FORM,"generate_attribute_option_values")>
 		
 			<cfset LOCAL.attributeValueIdArray = [] />
@@ -413,14 +348,7 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute values have been generated.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
-			
-		<cfelseif StructKeyExists(FORM,"delete_attribute_option")>
-		
-			<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",FORM.deleted_attribute_value_id) />
-			<cfset EntityDelete(LOCAL.attributeValue) />
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute option has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
-			
+					
 		<cfelseif StructKeyExists(FORM,"delete_video")>
 		
 			<cfset LOCAL.productVideo = EntityLoadByPK("product_video",FORM.deleted_product_video_id) />
