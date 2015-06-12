@@ -115,16 +115,15 @@
 				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_tr_id+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
-			$("##new-option-id-list").val($("##new-option-id-list").val() + new_option_index + ',');
-			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new-attribute-option-name").val()+'" />');
-			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new-attribute-option-label").val()+'" />');
-			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new-attribute-option-image").val()+'" />');
-			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_option" value="'+$("input[name=generate_option]:checked").val()+'" />');
+			$("##new-option-id-list").val($("##new-option-id-list").val() + new_option_index + ',');			
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_option',value: $("input[name=generate_option]:checked").val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
 			$("##new-attribute-option-image").val('');
-			
 			$("input[name=generate_option]").removeAttr('checked');
 			
 			new_option_index++;
@@ -211,7 +210,7 @@
 </section>
 
 <!-- Main content -->
-<form id="product_detail" method="post" enctype="multipart/form-data">
+<form id="product-detail" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_attribute_option_product_attribute_rela_id" id="new_attribute_option_product_attribute_rela_id" value="" />
