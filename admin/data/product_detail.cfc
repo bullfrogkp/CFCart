@@ -228,9 +228,19 @@
 					<cfset LOCAL.newAttributeOptionThumbnailLabel = FORM["new_option_#LOCAL.i#_thumbnail_label"];
 					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_option_#LOCAL.i#_generate_option"];
 					<cfset LOCAL.newAttributeOptionImage = FORM["new_option_#LOCAL.i#_image"];				
+					<cfset LOCAL.newAttributeOptionRquired = FORM["new_option_#LOCAL.i#_required"];				
 				
-					<cfset LOCAL.productAttributeRela = EntityLoadByPK("product_attribute_rela",FORM.new_attribute_option_product_attribute_rela_id) />
+					<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
+				
+					<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.newAttributeOptionAttribute},true) />
 		
+					<cfif IsNull(LOCAL.productAttributeRela)>
+						<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
+						<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+						<cfset LOCAL.productAttributeRela.setAttribute(LOCAL.newAttributeOptionAttribute) />
+						<cfset LOCAL.productAttributeRela.setRequired(LOCAL.newAttributeOptionRquired) />
+					</cfif>
+					
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 					<cfset LOCAL.newAttributeValue.setValue(Trim(FORM.new_attribute_option_value)) />

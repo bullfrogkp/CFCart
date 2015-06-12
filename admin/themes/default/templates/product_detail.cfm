@@ -86,9 +86,10 @@
 		var new_option_index = 1;
 		
 		$('.attribute-set').on("click","a.add-new-attribute-option", function() {
-			$("##new-option-attribute-set-id").val($(this).attr('attributesetid'));
-			$("##new-option-attribute-id").val($(this).attr('attributeid'));
-			$("##new-option-attribute-name").val($(this).attr('attributename'));
+			$("##new-attribute-option-set-id").val($(this).attr('attributesetid'));
+			$("##new-attribute-option-id").val($(this).attr('attributeid'));
+			$("##new-attribute-option-name").val($(this).attr('attributename'));
+			$("##new-attribute-option-required").val($(this).attr('required'));
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
@@ -103,24 +104,25 @@
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-attribute-option-set-id").val() + '-' + $("##new-attribute-option-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
 			{
-				if($("##new-option-attribute-name").val() == 'color')
+				if($("##new-attribute-option-name").val() == 'color')
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = name_content;
-				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##new-attribute-option-set-id").val() + '-' + $("##new-attribute-option-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			$("##new-option-id-list").val($("##new-option-id-list").val() + new_option_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_required',value: $("##new-attribute-option-required").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-option-attribute-id").val(}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-attribute-option-id").val(}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
@@ -228,10 +230,11 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="new_option_attribute_id" id="new-option-attribute-id" value="" />
-<input type="hidden" name="new_option_attribute_set_id" id="new-option-attribute-set-id" value="" />
-<input type="hidden" name="new_option_attribute_name" id="new-option-attribute-name" value="" />
-<input type="hidden" name="new_option_attribute_product_attribute_rela_id" id="new-option-attribute-product-attribute-rela-id" value="" />
+<input type="hidden" name="new_attribute_option_id" id="new-attribute-option-id" value="" />
+<input type="hidden" name="new_attribute_option_set_id" id="new-attribute-option-set-id" value="" />
+<input type="hidden" name="new_attribute_option_name" id="new-attribute-option-name" value="" />
+<input type="hidden" name="new_attribute_option_required" id="new-attribute-option-required" value="" />
+<input type="hidden" name="new_attribute_option_product_attribute_rela_id" id="new-attribute-option-product-attribute-rela-id" value="" />
 <input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id" value="" />
 <input type="hidden" name="new_option_name_list" id="new-option-id-list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
@@ -535,7 +538,7 @@
 														<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
 															<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
 															<th>
-																<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+																<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" required="#attributeSetAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 																	<span class="label label-primary">Add Option</span>
 																</a>
 															</th>
