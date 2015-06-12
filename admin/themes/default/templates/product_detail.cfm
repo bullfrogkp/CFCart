@@ -124,7 +124,7 @@
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
 			$("##new-attribute-option-image").val('');
-			$("input[name=generate_option]").removeAttr('checked');
+			$("input[name=generate_option]:checked").prop('checked', false);
 			
 			new_option_index++;
 		});
@@ -134,7 +134,7 @@
 		});
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {			
-			$("##" + $("##deleted-attribute-option-id").val()).remove();
+			$("##tr-av-" + $("##deleted-attribute-option-id").val()).remove();
 			
 			var str = $("##new-option-id-list").val();
 			var n = str.indexOf($("##deleted-attribute-option-id").val() + ',');
@@ -145,7 +145,7 @@
 			}
 			else
 			{	
-				$("##remove-option-id-list").val() += $("##deleted-attribute-option-id").val() + ',';
+				$("##remove-option-id-list").val($("##remove-option-id-list").val() + $("##deleted-attribute-option-id").val() + ',');
 			}	
 		});
 		
@@ -561,7 +561,7 @@
 																			</div>
 																		</td>
 																		<td>
-																			<a attributevalueid="tr-av-#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																			<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 																		</td>
 																	</tr>
 																</cfloop>
