@@ -115,7 +115,7 @@
 				$("##tr-" + $("##new-option-attribute-set-id").val() + '-' + $("##new-option-attribute-id").val()).after('<tr id="'+new_option_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_id+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
-			$("##new-option-id-list").val($("##new-option-id-list").val() + ',' + new_option_name);
+			$("##new-option-name-list").val($("##new-option-name-list").val() + new_option_name + ',');
 			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_name" value="'+$("##new-attribute-option-name").val()+'" />');
 			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_thumbnail_label" value="'+$("##new-attribute-option-label").val()+'" />');
 			$("##product-detail").after('<input type="hidden" name="'+new_option_name+'_image" value="'+$("##new-attribute-option-image").val()+'" />');
@@ -136,16 +136,18 @@
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {			
 			$("##" + $("##deleted-attribute-option-id").val()).remove();
-			/*
-			if(!listfind($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val()))
+			
+			var str = $("##new-option-name-list").val();
+			var n = str.indexOf($("##deleted-attribute-option-id").val() + ',');
+			
+			if(n != -1)
 			{
-				listremove($("##new-option-id-list").val(),$("##deleted-attribute-option-id").val());
+				$("##new-option-name-list").val($("##new-option-name-list").val().replace($("##deleted-attribute-option-id").val() + ',', '');
 			}
 			else
 			{	
-				$("##remove-option_id-list").val() += ',' + $("##deleted-attribute-option-id").val();
+				$("##remove-option_id-list").val() += $("##deleted-attribute-option-id").val() + ',';
 			}	
-			*/
 		});
 		
 		$( "##attribute-set-id" ).change(function() {
@@ -227,7 +229,7 @@
 <input type="hidden" name="new_option_attribute_set_id" id="new-option-attribute-set-id" value="" />
 <input type="hidden" name="new_option_attribute_name" id="new-option-attribute-name" value="" />
 <input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id" value="" />
-<input type="hidden" name="new_option_id_list" id="new-option-id-list" value="" />
+<input type="hidden" name="new_option_name_list" id="new-option-name-list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
 <section class="content">
 	<div class="row">
