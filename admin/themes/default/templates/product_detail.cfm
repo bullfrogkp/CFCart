@@ -86,10 +86,10 @@
 		var new_option_index = 1;
 		
 		$('.attribute-set').on("click","a.add-new-attribute-option", function() {
-			$("##new-attribute-option-set-id").val($(this).attr('attributesetid'));
-			$("##new-attribute-option-id").val($(this).attr('attributeid'));
-			$("##new-attribute-option-name").val($(this).attr('attributename'));
-			$("##new-attribute-option-required").val($(this).attr('required'));
+			$("##new-attribute-option-set-id-hidden").val($(this).attr('attributesetid'));
+			$("##new-attribute-option-id-hidden").val($(this).attr('attributeid'));
+			$("##new-attribute-option-name-hidden").val($(this).attr('attributename'));
+			$("##new-attribute-option-required-hidden").val($(this).attr('required'));
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
@@ -104,16 +104,16 @@
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-attribute-option-set-id").val() + '-' + $("##new-attribute-option-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
 			{
-				if($("##new-attribute-option-name").val() == 'color')
+				if($("##new-attribute-option-name-hidden").val() == 'color')
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
 				else
 					thumbnail_content = name_content;
-				$("##tr-" + $("##new-attribute-option-set-id").val() + '-' + $("##new-attribute-option-id").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			$("##new-option-id-list").val($("##new-option-id-list").val() + new_option_index + ',');			
@@ -122,7 +122,7 @@
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-attribute-option-id").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
@@ -135,23 +135,23 @@
 		});
 		
 		$('.attribute-set').on("click","a.delete-attribute-option", function() {
-			$("##deleted-attribute-option-id").val($(this).attr('attributevalueid'));
+			$("##deleted-attribute-option-id-hidden").val($(this).attr('attributevalueid'));
 		});
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {			
-			$("##tr-av-" + $("##deleted-attribute-option-id").val()).remove();
-			$("##tr-av-new-option-" + $("##deleted-attribute-option-id").val()).remove();
+			$("##tr-av-" + $("##deleted-attribute-option-id-hidden").val()).remove();
+			$("##tr-av-new-option-" + $("##deleted-attribute-option-id-hidden").val()).remove();
 			
 			var str = $("##new-option-id-list").val();
-			var n = str.indexOf($("##deleted-attribute-option-id").val() + ',');
+			var n = str.indexOf($("##deleted-attribute-option-id-hidden").val() + ',');
 			
 			if(n != -1)
 			{
-				$("##new-option-id-list").val($("##new-option-id-list").val().replace($("##deleted-attribute-option-id").val() + ',', ''));
+				$("##new-option-id-list").val($("##new-option-id-list").val().replace($("##deleted-attribute-option-id-hidden").val() + ',', ''));
 			}
 			else
 			{	
-				$("##remove-option-id-list").val($("##remove-option-id-list").val() + $("##deleted-attribute-option-id").val() + ',');
+				$("##remove-option-id-list").val($("##remove-option-id-list").val() + $("##deleted-attribute-option-id-hidden").val() + ',');
 			}	
 		});
 		
@@ -230,12 +230,11 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="new_attribute_option_id" id="new-attribute-option-id" value="" />
-<input type="hidden" name="new_attribute_option_set_id" id="new-attribute-option-set-id" value="" />
-<input type="hidden" name="new_attribute_option_name" id="new-attribute-option-name" value="" />
-<input type="hidden" name="new_attribute_option_required" id="new-attribute-option-required" value="" />
-<input type="hidden" name="new_attribute_option_product_attribute_rela_id" id="new-attribute-option-product-attribute-rela-id" value="" />
-<input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id" value="" />
+<input type="hidden" name="new_attribute_option_id" id="new-attribute-option-id-hidden" value="" />
+<input type="hidden" name="new_attribute_option_set_id" id="new-attribute-option-set-id-hidden" value="" />
+<input type="hidden" name="new_attribute_option_name" id="new-attribute-option-name-hidden" value="" />
+<input type="hidden" name="new_attribute_option_required" id="new-attribute-option-required-hidden" value="" />
+<input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id-hidden" value="" />
 <input type="hidden" name="new_option_name_list" id="new-option-id-list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
 <section class="content">

@@ -59,7 +59,7 @@
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-			
+	<cfdump var="#FORM#" abort>		
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
