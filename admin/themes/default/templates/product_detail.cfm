@@ -118,7 +118,7 @@
 			
 			$("##new-option-id-list").val($("##new-option-id-list").val() + new_option_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_required',value: $("##new-attribute-option-required").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_req',value: $("##new-attribute-option-required").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
@@ -231,10 +231,10 @@
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
 <input type="hidden" name="new_attribute_option_id" id="new-attribute-option-id-hidden" value="" />
-<input type="hidden" name="new_attribute_option_set_id" id="new-attribute-option-set-id-hidden" value="" />
-<input type="hidden" name="new_attribute_option_name" id="new-attribute-option-name-hidden" value="" />
-<input type="hidden" name="new_attribute_option_required" id="new-attribute-option-required-hidden" value="" />
-<input type="hidden" name="deleted_attribute_option_id" id="deleted-attribute-option-id-hidden" value="" />
+<input type="hidden" name="new_attribute_option_set_id_hidden" id="new-attribute-option-set-id-hidden" value="" />
+<input type="hidden" name="new_attribute_option_name_hidden" id="new-attribute-option-name-hidden" value="" />
+<input type="hidden" name="new_attribute_option_req_hidden" id="new-attribute-option-req-hidden" value="" />
+<input type="hidden" name="deleted_attribute_option_id_hidden" id="deleted-attribute-option-id-hidden" value="" />
 <input type="hidden" name="new_option_name_list" id="new-option-id-list" value="" />
 <input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
 <section class="content">

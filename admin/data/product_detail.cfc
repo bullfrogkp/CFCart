@@ -59,7 +59,7 @@
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-	<cfdump var="#FORM#" abort>		
+		
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
@@ -227,7 +227,8 @@
 					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_option_#LOCAL.i#_name"]) />
 					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_option_#LOCAL.i#_thumbnail_label"]) />
 					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_option_#LOCAL.i#_generate_option"] />
-					<cfset LOCAL.newAttributeOptionRquired = FORM["new_option_#LOCAL.i#_required"] />			
+					<cfset LOCAL.newAttributeOptionRquired = FORM["new_option_#LOCAL.i#_req"] />			
+					<cfset LOCAL.newAttributeOptionImage = FORM["new_option_#LOCAL.i#_image"] />			
 				
 					<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
 				
