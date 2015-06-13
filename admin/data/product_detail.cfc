@@ -223,11 +223,11 @@
 			
 			<cfif FORM.new_option_name_list NEQ "">
 				<cfloop list="#FORM.new_option_name_list#" index="LOCAL.i">
-					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_option_#LOCAL.i#_attribute_id"];
-					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_option_#LOCAL.i#_name"]);
-					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_option_#LOCAL.i#_thumbnail_label"]);
-					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_option_#LOCAL.i#_generate_option"];
-					<cfset LOCAL.newAttributeOptionRquired = FORM["new_option_#LOCAL.i#_required"];				
+					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_option_#LOCAL.i#_attribute_id"] />
+					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_option_#LOCAL.i#_name"]) />
+					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_option_#LOCAL.i#_thumbnail_label"]) />
+					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_option_#LOCAL.i#_generate_option"] />
+					<cfset LOCAL.newAttributeOptionRquired = FORM["new_option_#LOCAL.i#_required"] />			
 				
 					<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
 				
@@ -295,6 +295,25 @@
 					<cfset EntityDelete(LOCAL.attributeValue) />
 				</cfloop>
 			</cfif>
+			
+			<!--- create sub products --->			
+			<cfset LOCAL.attributeValueIdArray = [] />
+			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+			
+			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
+				<cfif LOCAL.productAttributeRela.getRequired() EQ true>
+					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
+				</cfif>
+			</cfloop>
+			
+			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
+		
+			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
+				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+				<cfif LOCAL.subProduct.productid EQ "">
+					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+				</cfif>
+			</cfloop>
 									
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
@@ -326,29 +345,7 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Video has been added.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_9" />
 		
-		<cfelseif StructKeyExists(FORM,"generate_attribute_option_values")>
 		
-			<cfset LOCAL.attributeValueIdArray = [] />
-			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-			
-			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
-				<cfif LOCAL.productAttributeRela.getRequired() EQ true>
-					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
-				</cfif>
-			</cfloop>
-			
-			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
-		
-			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
-				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
-				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
-				</cfif>
-			</cfloop>
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute values have been generated.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
-					
 		<cfelseif StructKeyExists(FORM,"delete_video")>
 		
 			<cfset LOCAL.productVideo = EntityLoadByPK("product_video",FORM.deleted_product_video_id) />
