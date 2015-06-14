@@ -120,7 +120,7 @@
 				$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
-			$("##new-option-id-list").val($("##new-option-id-list").val() + new_option_index + ',');			
+			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_req',value: $("##new-attribute-option-required").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
@@ -144,16 +144,16 @@
 			$("##tr-av-" + $("##deleted-attribute-option-id-hidden").val()).remove();
 			$("##tr-av-new-option-" + $("##deleted-attribute-option-id-hidden").val()).remove();
 			
-			var str = $("##new-option-id-list").val();
+			var str = $("##new-attribute-option-id-list").val();
 			var n = str.indexOf($("##deleted-attribute-option-id-hidden").val() + ',');
 			
 			if(n != -1)
 			{
-				$("##new-option-id-list").val($("##new-option-id-list").val().replace($("##deleted-attribute-option-id-hidden").val() + ',', ''));
+				$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val().replace($("##deleted-attribute-option-id-hidden").val() + ',', ''));
 			}
 			else
 			{	
-				$("##remove-option-id-list").val($("##remove-option-id-list").val() + $("##deleted-attribute-option-id-hidden").val() + ',');
+				$("##remove-attribute-option-id-list").val($("##remove-attribute-option-id-list").val() + $("##deleted-attribute-option-id-hidden").val() + ',');
 			}	
 		});
 		
@@ -237,8 +237,8 @@
 <input type="hidden" name="new_attribute_option_name_hidden" id="new-attribute-option-name-hidden" value="" />
 <input type="hidden" name="new_attribute_option_req_hidden" id="new-attribute-option-req-hidden" value="" />
 <input type="hidden" name="deleted_attribute_option_id_hidden" id="deleted-attribute-option-id-hidden" value="" />
-<input type="hidden" name="new_option_name_list" id="new-option-id-list" value="" />
-<input type="hidden" name="remove_option_id_list" id="remove-option-id-list" value="" />
+<input type="hidden" name="new_attribute_option_id_list" id="new-attribute-option-id-list" value="" />
+<input type="hidden" name="remove_attribute_option_id_list" id="remove-attribute-option-id-list" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">

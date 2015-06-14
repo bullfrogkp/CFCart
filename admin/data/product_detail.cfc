@@ -38,7 +38,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-<cfdump var="#FORM#" abort>	
+
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
 		<cfset SESSION.temp.message = {} />
@@ -221,8 +221,8 @@
 			</cfif>
 			
 			
-			<cfif FORM.new_attribute_option_name_list NEQ "">
-				<cfloop list="#FORM.new_attribute_option_name_list#" index="LOCAL.i">
+			<cfif FORM.new_attribute_option_id_list NEQ "">
+				<cfloop list="#FORM.new_attribute_option_id_list#" index="LOCAL.i">
 					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_attribute_id"] />
 					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_attribute_option_#LOCAL.i#_name"]) />
 					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_attribute_option_#LOCAL.i#_thumbnail_label"]) />
@@ -290,8 +290,8 @@
 				</cfloop>
 			</cfif>
 			
-			<cfif FORM.remove_option_id_list NEQ "">
-				<cfloop list="#FORM.remove_option_id_list#" index="LOCAL.i">
+			<cfif FORM.remove_attribute_option_id_list NEQ "">
+				<cfloop list="#FORM.remove_attribute_option_id_list#" index="LOCAL.i">
 					<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",LOCAL.i) />
 					<cfset EntityDelete(LOCAL.attributeValue) />
 				</cfloop>
