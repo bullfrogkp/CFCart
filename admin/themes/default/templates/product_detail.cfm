@@ -90,6 +90,9 @@
 			$("##new-attribute-option-id-hidden").val($(this).attr('attributeid'));
 			$("##new-attribute-option-name-hidden").val($(this).attr('attributename'));
 			$("##new-attribute-option-required-hidden").val($(this).attr('required'));
+			
+			$(".image-uploader").hide();
+			$("##new-attribute-option-" + new_option_index + "-image").show();
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
@@ -99,7 +102,7 @@
 			var new_option_name =  'new_attribute_option_' + new_option_index;
 			var new_option_tr_id =  'tr-av-new-option-' + new_option_index;
 			var image_upload_id =  'new-attribute-option-' + new_option_index + '-image';
-			
+		console.log($("##"+image_upload_id));	
 			if($("##"+image_upload_id).val() != '')
 			{
 				loadThumbnail($("##"+image_upload_id)[0].files[0], function(image_src) { 
@@ -121,7 +124,6 @@
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_req',value: $("##new-attribute-option-required").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
 			
@@ -957,16 +959,16 @@
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_1_image" id="new-attribute-option-1-image"/>
-						<input type="file" name="new_attribute_option_2_image" id="new-attribute-option-2-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_3_image" id="new-attribute-option-3-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_4_image" id="new-attribute-option-4-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_5_image" id="new-attribute-option-5-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_6_image" id="new-attribute-option-6-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_7_image" id="new-attribute-option-7-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_8_image" id="new-attribute-option-8-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_9_image" id="new-attribute-option-9-image" style="display:none;"/>
-						<input type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_1_image" id="new-attribute-option-1-image"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_2_image" id="new-attribute-option-2-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_3_image" id="new-attribute-option-3-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_4_image" id="new-attribute-option-4-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_5_image" id="new-attribute-option-5-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_6_image" id="new-attribute-option-6-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_7_image" id="new-attribute-option-7-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_8_image" id="new-attribute-option-8-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_9_image" id="new-attribute-option-9-image" style="display:none;"/>
+						<input class="image-uploader" type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image" style="display:none;"/>
 					</div>
 					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
 					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
