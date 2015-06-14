@@ -92,7 +92,7 @@
 			$("##new-attribute-option-required-hidden").val($(this).attr('required'));
 			
 			$(".image-uploader").hide();
-			$("##new-attribute-option-" + new_option_index + "-image").show();
+			$("##new-attribute-option-" + new_option_index + "-image-div").show();
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
@@ -957,18 +957,13 @@
 					<input id="new-attribute-option-label" name="new_attribute_option_label" type="text" class="form-control" placeholder="Thumbnail Label">
 				</div>	
 				<div class="form-group">
-					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
+					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;" id="new-attribute-option-1-image-div">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input class="image-uploader" type="file" name="new_attribute_option_1_image" id="new-attribute-option-1-image"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_2_image" id="new-attribute-option-2-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_3_image" id="new-attribute-option-3-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_4_image" id="new-attribute-option-4-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_5_image" id="new-attribute-option-5-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_6_image" id="new-attribute-option-6-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_7_image" id="new-attribute-option-7-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_8_image" id="new-attribute-option-8-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_9_image" id="new-attribute-option-9-image" style="display:none;"/>
-						<input class="image-uploader" type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_1_image" id="new-attribute-option-1-image"/>
+					</div>
+					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-2-image-div">
+						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
+						<input type="file" name="new_attribute_option_2_image" id="new-attribute-option-2-image"/>
 					</div>
 					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
 					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
