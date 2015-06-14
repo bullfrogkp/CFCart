@@ -89,7 +89,7 @@
 			$("##new-attribute-option-set-id-hidden").val($(this).attr('attributesetid'));
 			$("##new-attribute-option-id-hidden").val($(this).attr('attributeid'));
 			$("##new-attribute-option-name-hidden").val($(this).attr('attributename'));
-			$("##new-attribute-option-required-hidden").val($(this).attr('required'));
+			$("##new-attribute-option-req-hidden").val($(this).attr('req'));
 			
 			$(".image-uploader").hide();
 			$("##new-attribute-option-" + new_option_index + "-image-div").show();
@@ -122,7 +122,7 @@
 			
 			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_req',value: $("##new-attribute-option-required").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_req',value: $("##new-attribute-option-req-hidden").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
@@ -526,9 +526,10 @@
 							</select>
 						</div>
 						
-						<label>Attribute Option(s)</label>
 						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif attributeSet.getAttributeSetId() NEQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>display:none;</cfif>">
+							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() NEQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId())>display:none;</cfif>">
+								<label>Attribute Option(s)</label>
+						
 								<div class="row" style="margin-top:10px;">
 									<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
 										<cfset attribute = attributeSetAttributeRela.getAttribute() />
@@ -539,13 +540,13 @@
 														<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
 															<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
 															<th>
-																<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" required="#attributeSetAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+																<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" req="#attributeSetAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 																	<span class="label label-primary">Add Option</span>
 																</a>
 															</th>
 														</tr>
 														
-														<cfif attributeSet.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
+														<cfif NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
 															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 															<cfif NOT IsNull(productAttributeRela)>
 																<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
