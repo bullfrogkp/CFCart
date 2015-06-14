@@ -38,7 +38,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-		
+	
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
 		<cfset SESSION.temp.message = {} />
@@ -221,14 +221,14 @@
 			</cfif>
 			
 			
-			<cfif FORM.new_option_name_list NEQ "">
-				<cfloop list="#FORM.new_option_name_list#" index="LOCAL.i">
-					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_option_#LOCAL.i#_attribute_id"] />
-					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_option_#LOCAL.i#_name"]) />
-					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_option_#LOCAL.i#_thumbnail_label"]) />
-					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_option_#LOCAL.i#_generate_option"] />
-					<cfset LOCAL.newAttributeOptionRquired = FORM["new_option_#LOCAL.i#_req"] />			
-					<cfset LOCAL.newAttributeOptionImage = FORM["new_option_#LOCAL.i#_image"] />			
+			<cfif FORM.new_attribute_option_name_list NEQ "">
+				<cfloop list="#FORM.new_attribute_option_name_list#" index="LOCAL.i">
+					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_attribute_id"] />
+					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_attribute_option_#LOCAL.i#_name"]) />
+					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_attribute_option_#LOCAL.i#_thumbnail_label"]) />
+					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_attribute_option_#LOCAL.i#_generate_option"] />
+					<cfset LOCAL.newAttributeOptionRquired = FORM["new_attribute_option_#LOCAL.i#_req"] />			
+					<cfset LOCAL.newAttributeOptionImage = FORM["new_attribute_option_#LOCAL.i#_image"] />			
 				
 					<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
 				
@@ -256,7 +256,7 @@
 										
 					<cfif LOCAL.newAttributeOptionImage NEQ "">
 						<cffile action = "upload"  
-								fileField = "new_option_#LOCAL.i#_image"
+								fileField = "new_attribute_option_#LOCAL.i#_image"
 								destination = "#LOCAL.imageDir#"
 								nameConflict = "MakeUnique"> 
 						

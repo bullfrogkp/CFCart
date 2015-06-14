@@ -96,12 +96,13 @@
 			var thumbnail_content = '';
 			var image_content = '';
 			var name_content = $("##new-attribute-option-name").val();
-			var new_option_name =  'new_option_' + new_option_index;
+			var new_option_name =  'new_attribute_option_' + new_option_index;
 			var new_option_tr_id =  'tr-av-new-option-' + new_option_index;
+			var image_upload_id =  'new-attribute-option-' + new_option_index + '-image';
 			
-			if($("##new-attribute-option-image").val() != '')
+			if($("##"+image_upload_id).val() != '')
 			{
-				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
+				loadThumbnail($("##"+image_upload_id)[0].files[0], function(image_src) { 
 					thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
@@ -126,7 +127,6 @@
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
-			$("##new-attribute-option-image").val('');
 			$('input[name="generate_option"]').prop('checked', false);
 			$(".iradio_minimal").removeClass("checked");
 			$(".iradio_minimal").attr("aria-checked",false);
@@ -957,7 +957,16 @@
 				<div class="form-group">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_image" id="new-attribute-option-image"/>
+						<input type="file" name="new_attribute_option_1_image" id="new-attribute-option-1-image"/>
+						<input type="file" name="new_attribute_option_2_image" id="new-attribute-option-2-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_3_image" id="new-attribute-option-3-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_4_image" id="new-attribute-option-4-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_5_image" id="new-attribute-option-5-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_6_image" id="new-attribute-option-6-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_7_image" id="new-attribute-option-7-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_8_image" id="new-attribute-option-8-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_9_image" id="new-attribute-option-9-image" style="display:none;"/>
+						<input type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image" style="display:none;"/>
 					</div>
 					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
 					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
