@@ -5,16 +5,4 @@
 	
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
 	<cfproperty name="shippingMethod" fieldtype="many-to-one" cfc="shipping_method" fkcolumn="shipping_method_id">
-	
-	<!------------------------------------------------------------------------------->	
-	<cffunction name="getPrice" access="public" output="false" returnType="numeric">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.price = 0 />
-		
-		<cfif NOT IsNull(getPrice())>
-			<cfset LOCAL.price = getPrice() />
-		</cfif>
-		
-		<cfreturn LOCAL.price />
-	</cffunction>
 </cfcomponent>

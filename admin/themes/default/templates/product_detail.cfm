@@ -795,11 +795,11 @@
 															</cfif>
 															>
 														</td>
-														<td>Default</td>
+														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>style="color:red;"</cfif>>Default</td>
 														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;"></td>
 													</tr>
 													<tr>
-														<td>
+														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false>style="color:red;"</cfif>>
 															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="0"
 															<cfif NOT IsNumeric(s.productShippingMethodRelaId) OR (IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false)>
 															checked
