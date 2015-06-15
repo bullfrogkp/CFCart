@@ -223,7 +223,6 @@
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
-			
 			<cfif FORM.new_attribute_option_id_list NEQ "">
 				<cfloop list="#FORM.new_attribute_option_id_list#" index="LOCAL.i">
 					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_attribute_id"] />
@@ -292,7 +291,7 @@
 				</cfloop>
 			</cfif>
 			
-			<!--- create sub products 		
+			<!--- create sub products --->		
 			<cfset LOCAL.attributeValueIdArray = [] />
 			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 			
@@ -310,7 +309,7 @@
 					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				</cfif>
 			</cfloop>
-			--->							
+										
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
