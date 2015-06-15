@@ -59,7 +59,7 @@
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-		
+			<!--- general information --->
 			<cfset LOCAL.product.setName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
@@ -72,6 +72,7 @@
 			<cfset LOCAL.product.setDetail(Trim(FORM.detail)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
 			
+			<!--- shipping information --->
 			<cfif IsNumeric(Trim(FORM.length))>
 				<cfset LOCAL.product.setLength(Trim(FORM.length)) />
 			</cfif>
@@ -85,6 +86,7 @@
 				<cfset LOCAL.product.setWeight(Trim(FORM.weight)) />
 			</cfif>
 				
+			<!--- price information --->
 			<cfif NOT IsNumeric(FORM.id)>	
 				<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
 				<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
@@ -105,19 +107,13 @@
 				
 				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
 				<cfset EntitySave(LOCAL.product) />
-				
-				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{name="pickup"},true) />
-				<cfset LOCAL.productShippingMethodRela = EntityNew("product_shipping_method_rela") />
-				<cfset LOCAL.productShippingMethodRela.setProduct(LOCAL.product) />
-				<cfset LOCAL.productShippingMethodRela.setShippingMethod(LOCAL.shippingMethod) />
-				<cfset LOCAL.productShippingMethodRela.setPrice(0) />
-				<cfset EntitySave(LOCAL.productShippingMethodRela) />
 			</cfif>
 			
 			<cfif FORM.tax_category_id NEQ "">
 				<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
 			</cfif>
 			
+			<!--- attribute information --->
 			<cfif FORM.attribute_set_id NEQ "">
 				<cfif IsNull(LOCAL.product.getAttributeSet())
 					OR
@@ -138,9 +134,78 @@
 						<cfset LOCAL.product.addProductAttributeRela(LOCAL.newProductAttributeRela) />
 					</cfloop>
 				</cfif>
+				
+				<cfset EntitySave(LOCAL.product) />
+				<cfset ORMFlush() />
+				
+				<cfif FORM.new_attribute_option_id_list NEQ "">
+					<cfloop list="#FORM.new_attribute_option_id_list#" index="LOCAL.i">
+						<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_attribute_id"] />
+						<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_attribute_option_#LOCAL.i#_name"]) />
+						<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_attribute_option_#LOCAL.i#_thumbnail_label"]) />
+						<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_attribute_option_#LOCAL.i#_generate_option"] />
+						<cfset LOCAL.newAttributeOptionRquired = FORM["new_attribute_option_#LOCAL.i#_req"] />			
+						<cfset LOCAL.newAttributeOptionImage = FORM["new_attribute_option_#LOCAL.i#_image"] />			
+					
+						<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
+					
+						<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.newAttributeOptionAttribute},true) />
+								
+						<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
+						<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
+						<cfset LOCAL.newAttributeValue.setValue(LOCAL.newAttributeOptionName) />
+						<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.newAttributeOptionName) />
+						<cfset LOCAL.newAttributeValue.setName(LCase(LOCAL.newAttributeOptionName)) />
+						<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.newAttributeOptionThumbnailLabel) />
+						
+						<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
+						<cfif NOT DirectoryExists(LOCAL.imageDir)>
+							<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+						</cfif>	
+											
+						<cfif LOCAL.newAttributeOptionImage NEQ "">
+							<cffile action = "upload"  
+									fileField = "new_attribute_option_#LOCAL.i#_image"
+									destination = "#LOCAL.imageDir#"
+									nameConflict = "MakeUnique"> 
+							
+							<cfset LOCAL.productImage = EntityNew("product_image") />
+							<cfset LOCAL.productImage.setName(cffile.serverFile) />
+							<cfset EntitySave(LOCAL.productImage) />
+							<cfset LOCAL.product.addImage(LOCAL.productImage) />
+							<cfset EntitySave(LOCAL.product) />
+							
+							<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
+													, {name = "small", width = "200", height = "200", position="center", crop = true}
+													, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
+													] />			
+							<cfset _createImages(	imagePath = LOCAL.imageDir,
+													imageNameWithExtension = cffile.serverFile,
+													sizeArray = LOCAL.sizeArray) />
+							
+							<cfif LOCAL.newAttributeOptionGenerateOption EQ 1>
+								<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
+							<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 2>
+								<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+							<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 3>
+								<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+								<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
+							</cfif>
+						</cfif>
+						
+						<cfset EntitySave(LOCAL.newAttributeValue) />
+						<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
+						<cfset EntitySave(LOCAL.ProductAttributeRela) />
+					</cfloop>
+				</cfif>
+				
+				<cfif FORM.remove_attribute_option_id_list NEQ "">
+					<cfloop list="#FORM.remove_attribute_option_id_list#" index="LOCAL.i">
+						<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",LOCAL.i) />
+						<cfset EntityDelete(LOCAL.attributeValue) />
+					</cfloop>
+				</cfif>
 			</cfif>
-			
-			<cfset EntitySave(LOCAL.product) />
 			
 			<!--- update: not necessary for each time --->
 			<cfset LOCAL.product.removeAllCategories() />
@@ -171,10 +236,8 @@
 					<cfset LOCAL.product.addProductShippingMethodRela(LOCAL.newProductShippingMethodRela) />
 				</cfloop>
 			</cfif>
-		
-			<cfset EntitySave(LOCAL.product) />
-			<cfset ORMFlush() />
-			
+					
+			<!--- product images --->
 			<cfif NOT IsNull(LOCAL.product.getImages())>
 				<cfloop array="#LOCAL.product.getImages()#" index="LOCAL.img">
 					<cfif IsNumeric(FORM["rank_#LOCAL.img.getProductImageId()#"])>
@@ -227,74 +290,7 @@
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
-			<cfif FORM.new_attribute_option_id_list NEQ "">
-				<cfloop list="#FORM.new_attribute_option_id_list#" index="LOCAL.i">
-					<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_attribute_id"] />
-					<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_attribute_option_#LOCAL.i#_name"]) />
-					<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_attribute_option_#LOCAL.i#_thumbnail_label"]) />
-					<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_attribute_option_#LOCAL.i#_generate_option"] />
-					<cfset LOCAL.newAttributeOptionRquired = FORM["new_attribute_option_#LOCAL.i#_req"] />			
-					<cfset LOCAL.newAttributeOptionImage = FORM["new_attribute_option_#LOCAL.i#_image"] />			
-				
-					<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
-				
-					<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.newAttributeOptionAttribute},true) />
-							
-					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
-					<cfset LOCAL.newAttributeValue.setValue(LOCAL.newAttributeOptionName) />
-					<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.newAttributeOptionName) />
-					<cfset LOCAL.newAttributeValue.setName(LCase(LOCAL.newAttributeOptionName)) />
-					<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.newAttributeOptionThumbnailLabel) />
-					
-					<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
-					<cfif NOT DirectoryExists(LOCAL.imageDir)>
-						<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-					</cfif>	
-										
-					<cfif LOCAL.newAttributeOptionImage NEQ "">
-						<cffile action = "upload"  
-								fileField = "new_attribute_option_#LOCAL.i#_image"
-								destination = "#LOCAL.imageDir#"
-								nameConflict = "MakeUnique"> 
-						
-						<cfset LOCAL.productImage = EntityNew("product_image") />
-						<cfset LOCAL.productImage.setName(cffile.serverFile) />
-						<cfset EntitySave(LOCAL.productImage) />
-						<cfset LOCAL.product.addImage(LOCAL.productImage) />
-						<cfset EntitySave(LOCAL.product) />
-						
-						<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
-												, {name = "small", width = "200", height = "200", position="center", crop = true}
-												, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
-												] />			
-						<cfset _createImages(	imagePath = LOCAL.imageDir,
-												imageNameWithExtension = cffile.serverFile,
-												sizeArray = LOCAL.sizeArray) />
-						
-						<cfif LOCAL.newAttributeOptionGenerateOption EQ 1>
-							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-						<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 2>
-							<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-						<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 3>
-							<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-						</cfif>
-					</cfif>
-					
-					<cfset EntitySave(LOCAL.newAttributeValue) />
-					<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-					<cfset EntitySave(LOCAL.ProductAttributeRela) />
-				</cfloop>
-			</cfif>
-			
-			<cfif FORM.remove_attribute_option_id_list NEQ "">
-				<cfloop list="#FORM.remove_attribute_option_id_list#" index="LOCAL.i">
-					<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",LOCAL.i) />
-					<cfset EntityDelete(LOCAL.attributeValue) />
-				</cfloop>
-			</cfif>
-			
+			<cfset EntitySave(LOCAL.product) />
 			<cfset ORMFlush() />
 			
 			<!--- create sub products --->		
@@ -316,7 +312,6 @@
 				</cfif>
 			</cfloop>
 										
-			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
 		
