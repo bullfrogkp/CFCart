@@ -136,6 +136,8 @@
 				</cfif>
 			</cfif>
 			
+			<cfset EntitySave(LOCAL.product) />
+			
 			<!--- update: not necessary for each time --->
 			<cfset LOCAL.product.removeAllCategories() />
 			
@@ -167,6 +169,7 @@
 			</cfif>
 		
 			<cfset EntitySave(LOCAL.product) />
+			<cfset ORMFlush() />
 			
 			<cfif NOT IsNull(LOCAL.product.getImages())>
 				<cfloop array="#LOCAL.product.getImages()#" index="LOCAL.img">
@@ -233,15 +236,7 @@
 					<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
 				
 					<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.newAttributeOptionAttribute},true) />
-		
-					<cfif IsNull(LOCAL.productAttributeRela)>
-						<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
-						<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
-						<cfset LOCAL.productAttributeRela.setAttribute(LOCAL.newAttributeOptionAttribute) />
-						<cfset LOCAL.productAttributeRela.setRequired(LOCAL.newAttributeOptionRquired) />
-						<cfset EntitySave(LOCAL.productAttributeRela) />
-					</cfif>
-					
+							
 					<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 					<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 					<cfset LOCAL.newAttributeValue.setValue(LOCAL.newAttributeOptionName) />
@@ -297,7 +292,7 @@
 				</cfloop>
 			</cfif>
 			
-			<!--- create sub products --->			
+			<!--- create sub products 		
 			<cfset LOCAL.attributeValueIdArray = [] />
 			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 			
@@ -315,7 +310,7 @@
 					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				</cfif>
 			</cfloop>
-									
+			--->							
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
