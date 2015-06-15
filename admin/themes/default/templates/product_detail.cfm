@@ -765,7 +765,7 @@
 												<table class="table table-hover">
 													<tr class="warning">
 														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.imageName#" style="height:25px;vertical-align:top;" /></th>
-														<th colspan="2" style="text-align:right;padding-right:10px;">#s.shippingCarrier_name#</th>
+														<th style="text-align:right;padding-right:10px;">#s.shippingCarrierName#</th>
 													</tr>
 													<cfoutput>
 													<cfif IsNumeric(s.productShippingMethodRelaId)>
@@ -774,35 +774,27 @@
 													<cfelse>
 														<cfset defaultPrice = 0 />
 													</cfif>
-													<input type="hidden" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" />
+													
+													<tr class="default">
+														<td colspan="2">#s.shippingMethodName#</td>
+														<td style="text-align:right;">
+															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shippingMethodId#"
+
+															<cfif IsNumeric(s.productShippingMethodRelaId)>
+																checked
+															</cfif>
+
+															/>
+														</td>
+													</tr>
 													<tr>
-														<td>#s.shipping_method_name#</td>
-														<td>#DollarFormat(defaultPrice)#</td>
-														
-														<cfif IsNumeric(s.productShippingMethodRelaId)>
-															<td>
-																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shippingMethodId#"
-
-																<cfif IsNumeric(s.productShippingMethodRelaId)>
-																	checked
-																</cfif>
-
-																/>
-															</td>
-															<td>
-																<a productshippingmethodrelaid="#s.productShippingMethodRelaId#" class="edit-default-price pull-right" href="" data-toggle="modal" data-target="##edit-default-shipping-price-modal"><span class="label label-primary">Edit</span></a>
-															</td>
-														<cfelse>
-															<td colspan="2" style="text-align:right;">
-																<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shippingMethodId#"
-
-																<cfif IsNumeric(s.productShippingMethodRelaId)>
-																	checked
-																</cfif>
-
-																/>
-															</td>
-														</cfif>
+														<td><input type="radio" name="use_default_price_#s.shippingMethodId#" value="1"></td>
+														<td>Default</td>
+														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;"></td>
+													</tr>
+													<tr>
+														<td><input type="radio" name="use_default_price" value="0"></td>
+														<td colspan="2">Calculated</td>
 													</tr>
 													</cfoutput>
 												</table>

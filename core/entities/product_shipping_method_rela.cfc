@@ -12,7 +12,7 @@
 		<cfset LOCAL.price = 0 />
 		
 		<cfif NOT IsNull(getPrice())>
-			<cfset LOCAL.price = getPrice()
+			<cfset LOCAL.price = getPrice() />
 		</cfif>
 		
 		<cfreturn LOCAL.price />
