@@ -86,9 +86,10 @@
 			</cfif>
 				
 			<cfif NOT IsNumeric(FORM.id)>	
+				<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
 				<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 				<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
-				<cfset LOCAL.groupPrice.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
+				<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.defaultCustomerGroup) />
 				<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
 				<cfif IsNumeric(Trim(FORM.special_price))>
 					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
@@ -101,6 +102,9 @@
 				</cfif>
 				
 				<cfset EntitySave(LOCAL.groupPrice) />
+				
+				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+				<cfset EntitySave(LOCAL.product) />
 				
 				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{name="pickup"},true) />
 				<cfset LOCAL.productShippingMethodRela = EntityNew("product_shipping_method_rela") />
@@ -291,6 +295,8 @@
 				</cfloop>
 			</cfif>
 			
+			<cfset ORMFlush() />
+			
 			<!--- create sub products --->		
 			<cfset LOCAL.attributeValueIdArray = [] />
 			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
@@ -306,7 +312,7 @@
 			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
 				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+					<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				</cfif>
 			</cfloop>
 										
@@ -574,20 +580,21 @@
 	</cffunction>
 	
 	<cffunction name="_createSubProduct" access="private" output="false" returnType="any">
-		<cfargument name="parentProduct" type="any" required="true">
+		<cfargument name="parentProductId" type="any" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
 	
+		<cfset LOCAL.parentProduct = EntityLoadByPK("product",ARGUMENTS.parentProductId)>
 		<cfset LOCAL.newProduct = EntityNew("product")>
-		<cfset LOCAL.newProduct.setParentProduct(ARGUMENTS.parentProduct) />
+		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
 		
-		<cfset LOCAL.newProduct.setName(ARGUMENTS.parentProduct.getName()) />
-		<cfset LOCAL.newProduct.setDisplayName(ARGUMENTS.parentProduct.getDisplayName()) />
-		<cfset LOCAL.newProduct.setTaxCategory(ARGUMENTS.parentProduct.getTaxCategory()) />
-		<cfset LOCAL.newProduct.setAttributeSet(ARGUMENTS.parentProduct.getAttributeSet()) />
+		<cfset LOCAL.newProduct.setName(LOCAL.parentProduct.getName()) />
+		<cfset LOCAL.newProduct.setDisplayName(LOCAL.parentProduct.getDisplayName()) />
+		<cfset LOCAL.newProduct.setTaxCategory(LOCAL.parentProduct.getTaxCategory()) />
+		<cfset LOCAL.newProduct.setAttributeSet(LOCAL.parentProduct.getAttributeSet()) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 		
-		<cfloop array="#ARGUMENTS.parentProduct.getProductCustomerGroupRelas()#" index="LOCAL.productCustomerGroupRela">
+		<cfloop array="#LOCAL.parentProduct.getProductCustomerGroupRelas()#" index="LOCAL.productCustomerGroupRela">
 			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
 			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.productCustomerGroupRela.getCustomerGroup()) />
@@ -623,8 +630,8 @@
 		</cfloop>
 		
 		<cfset EntitySave(LOCAL.newProduct) />
-		<cfset ARGUMENTS.parentProduct.addSubProduct(LOCAL.newProduct) />
-		<cfset EntitySave(ARGUMENTS.parentProduct) />
+		<cfset LOCAL.parentProduct.addSubProduct(LOCAL.newProduct) />
+		<cfset EntitySave(LOCAL.parentProduct) />
 		
 		<cfreturn LOCAL.newProduct />
 	</cffunction>
