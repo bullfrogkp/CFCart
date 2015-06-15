@@ -358,20 +358,6 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute value has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />
 			
-		<cfelseif StructKeyExists(FORM,"add_new_attribute_option_value")>
-			<cfset LOCAL.attributeValueIdList = "" />
-			<cfloop array="#LOCAL.product.getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
-				<cfset LOCAL.attributeValueIdList &= FORM["new_attribute_value_#LOCAL.attributeSetAttributeRela.getAttribute().getAttributeId()#"] & "," />
-			</cfloop>
-			
-			<cfset LOCAL.newProduct = _createSubProduct(parentProduct = LOCAL.product, attributeValueIdList = LOCAL.attributeValueIdList) />
-			
-			<cfset LOCAL.newProduct.setSku(FORM.new_sku) />
-			<cfset LOCAL.newProduct.setStock(FORM.new_stock) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New attribute value has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=tab_5" />
-		
 		<cfelseif StructKeyExists(FORM,"add_single_group_price")>
 			<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group",FORM.add_customer_group_id) />
 			<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.customerGroup},true) />
