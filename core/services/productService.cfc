@@ -86,16 +86,16 @@
 		<cfset var LOCAL = {} />
 	   
 		<cfquery name="LOCAL.getProductShippingMethods">
-			SELECT		sc.display_name AS shipping_carrier_name
-			,			sc.image_name
-			,			sm.display_name AS shipping_method_name
-			,			sm.shipping_method_id
+			SELECT		sc.display_name AS shippingCarrierName
+			,			sc.image_name AS imageName
+			,			sm.display_name AS shippingMethodName
+			,			sm.shipping_method_id AS shippingMethodId
 			,			(
 							SELECT	product_shipping_method_rela_id 
 							FROM 	product_shipping_method_rela psmr
 							WHERE 	psmr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />	
 							AND		psmr.shipping_method_id = sm.shipping_method_id
-						) AS product_shipping_method_rela_id
+						) AS productShippingMethodRelaId
 			FROM		shipping_carrier sc
 			JOIN		shipping_method sm ON sc.shipping_carrier_id = sm.shipping_carrier_id
 			ORDER BY	sc.shipping_carrier_id
