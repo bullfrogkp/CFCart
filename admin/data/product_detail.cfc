@@ -229,8 +229,12 @@
 					
 					<cfif IsNumeric(FORM["default_price_#LOCAL.shippingMethodId#"])>
 						<cfset LOCAL.newProductShippingMethodRela.setPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
+					</cfif>
+					
+					<cfif FORM["use_default_price_#LOCAL.shippingMethodId#"] EQ 1>
+						<cfset LOCAL.newProductShippingMethodRela.setUseDefaultPrice(true) />
 					<cfelse>
-						<cfset LOCAL.newProductShippingMethodRela.setPrice(0) />
+						<cfset LOCAL.newProductShippingMethodRela.setUseDefaultPrice(false) />
 					</cfif>
 					
 					<cfset EntitySave(LOCAL.newProductShippingMethodRela) />

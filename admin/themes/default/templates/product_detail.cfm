@@ -788,12 +788,24 @@
 														</td>
 													</tr>
 													<tr>
-														<td><input type="radio" name="use_default_price_#s.shippingMethodId#" value="1"></td>
+														<td>
+															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="1"
+															<cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>
+															checked
+															</cfif>
+															>
+														</td>
 														<td>Default</td>
-														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;"></td>
+														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;"></td>
 													</tr>
 													<tr>
-														<td><input type="radio" name="use_default_price" value="0"></td>
+														<td>
+															<input type="radio" name="use_default_price" value="0"
+															<cfif NOT IsNumeric(s.productShippingMethodRelaId) OR (IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false)>
+															checked
+															</cfif>
+															>
+														</td>
 														<td colspan="2">Calculated</td>
 													</tr>
 													</cfoutput>
