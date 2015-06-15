@@ -800,7 +800,7 @@
 													</tr>
 													<tr>
 														<td>
-															<input type="radio" name="use_default_price" value="0"
+															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="0"
 															<cfif NOT IsNumeric(s.productShippingMethodRelaId) OR (IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false)>
 															checked
 															</cfif>
