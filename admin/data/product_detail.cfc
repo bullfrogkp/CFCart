@@ -500,6 +500,7 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
+			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
 			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
 			
 			
@@ -520,6 +521,12 @@
 				<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeight())?"":LOCAL.pageData.product.getHeight() />
 				<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidth())?"":LOCAL.pageData.product.getWidth() />
 				<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeight())?"":LOCAL.pageData.product.getWeight() />
+		
+				<cfset LOCAL.pageData.formData.default_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getPrice() />
+				<cfset LOCAL.pageData.formData.default_special_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice() />
+				<cfset LOCAL.pageData.formData.default_special_price_from_date = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate() />
+				<cfset LOCAL.pageData.formData.default_special_price_to_date = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate() />
+				
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>

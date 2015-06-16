@@ -70,6 +70,7 @@
 			   
 	    <cfquery name="LOCAL.getProductGroupPrices">
 			SELECT	cg.customer_group_id AS customerGroupId
+			,		cg.is_default AS isDefault
 			,		cg.display_name AS groupDisplayName
 			,		(	SELECT	pcgr.product_customer_group_rela_id
 						FROM	product_customer_group_rela pcgr
