@@ -236,9 +236,9 @@
 				for(var i=0;i<groupArray.length;i++)
 				{
 					if(groupArray[i].type == 'fixed')
-						$("##price-" + i).val(Math.max($(this).val() - groupArray[i].amount,0));
+						$("##price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0));
 					else if (groupArray[i].type == 'percentage')
-						$("##price-" + i).val($(this).val() * (1-groupArray[i].amount));
+						$("##price-" + groupArray[i].eid).val($(this).val() * (1-groupArray[i].amount));
 				}		
 			}
 		});
@@ -249,19 +249,20 @@
 				for(var i=0;i<groupArray.length;i++)
 				{
 					if(groupArray[i].type == 'fixed')
-						$("##special-price-" + i).val(Math.max($(this).val() - groupArray[i].amount,0));
+						$("##special-price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0));
 					else if (groupArray[i].type == 'percentage')
-						$("##special-price-" + i).val($(this).val() * (1-groupArray[i].amount));
+						$("##special-price-" + groupArray[i].eid).val($(this).val() * (1-groupArray[i].amount));
 				}		
 			}
 		});
 		
 		$( "##special-price-from-date" ).focusout(function() {
+			console.log(Date.parse($(this).val()));
 			if(Date.parse($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
 				{
-					$("##special-price-from-date-" + i).val($(this).val());
+					$("##special-price-from-date-" + groupArray[i].eid).val($(this).val());
 				}		
 			}
 		});
@@ -271,7 +272,7 @@
 			{
 				for(var i=0;i<groupArray.length;i++)
 				{
-					$("##special-price-to-date-" + i).val($(this).val());
+					$("##special-price-to-date-" + groupArray[i].eid).val($(this).val());
 				}		
 			}
 		});
