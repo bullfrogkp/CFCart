@@ -389,29 +389,15 @@
 													<table class="table table-hover">
 														<tr class="<cfif IsNumeric(group.productCustomerGroupRelaId)>warning<cfelse>default</cfif>">
 															<th>#group.groupDisplayName#</th>
-															<th>
-																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" href="" class="delete-group-price pull-right" data-toggle="modal" data-target="##delete-group-price-modal"><span class="label label-danger">Delete</span></a>
-																	<a productcustomergrouprelaid="#group.productCustomerGroupRelaId#" 
-				
-																	price="<cfif IsNumeric(group.productCustomerGroupRelaId)>#groupPrice.getPrice()#</cfif>"
-																	specialprice="<cfif IsNumeric(group.productCustomerGroupRelaId)>#groupPrice.getSpecialPrice()#</cfif>"
-																	fromdate="<cfif IsNumeric(group.productCustomerGroupRelaId)>#DateFormat(groupPrice.getSpecialPriceFromDate(),"yyyy/mm/dd")#</cfif>"
-																	todate="<cfif IsNumeric(group.productCustomerGroupRelaId)>#DateFormat(groupPrice.getSpecialPriceToDate(),"yyyy/mm/dd")#</cfif>"
-																	
-																	href="" class="edit-group-price pull-right" data-toggle="modal" data-target="##edit-group-price-modal" style="margin-right:5px;"><span class="label label-primary">Edit</span></a>
-																<cfelse>
-																	<a customergroupid="#group.customerGroupId#" href="" class="add-single-group-price pull-right" data-toggle="modal" data-target="##add-single-group-price-modal"><span class="label label-primary">Add</span></a>
-																</cfif>
-															</th>
+															<th></th>
 														</tr>
 														<tr>
 															<td>price:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	#groupPrice.getPrice()#
+																	<input type="text" name="default_price" value="#groupPrice.getPrice()#" />
 																<cfelse>
-																	-
+																	<input type="text" name="default_price" value="" />
 																</cfif>
 															</td>
 														</tr>
@@ -419,9 +405,9 @@
 															<td>special price:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	#groupPrice.getSpecialPrice()#
+																	<input type="text" name="default_special_price" value="#groupPrice.getSpecialPrice()#" />
 																<cfelse>
-																	-
+																	<input type="text" name="default_special_price" value="" />
 																</cfif>
 															</td>
 														</tr>
@@ -429,9 +415,9 @@
 															<td>from:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	#DateFormat(groupPrice.getSpecialPriceFromDate(),"mmm dd, yyyy")#
+																	<input type="text" name="default_special_price_from_date" value="#DateFormat(groupPrice.getSpecialPriceFromDate(),"mmm dd, yyyy")#" />
 																<cfelse>
-																	-
+																	<input type="text" name="default_special_price_from_date" value="" />
 																</cfif>
 															</td>
 														</tr>
@@ -439,9 +425,9 @@
 															<td>to:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	#DateFormat(groupPrice.getSpecialPriceToDate(),"mmm dd, yyyy")#
+																	<input type="text" name="default_special_price_to_date" value="#DateFormat(groupPrice.getSpecialPriceToDate(),"mmm dd, yyyy")#" />
 																<cfelse>
-																	-
+																	<input type="text" name="default_special_price_to_date" value="" />
 																</cfif>
 															</td>
 														</tr>
