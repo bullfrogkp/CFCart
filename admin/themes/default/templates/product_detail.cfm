@@ -60,14 +60,14 @@
 		
 		$('##new_special_price_from_date').datepicker();
 		$('##new_special_price_to_date').datepicker();
-		$('##special_price_from_date').datepicker();
-		$('##special_price_to_date').datepicker();
+		$('##special-price-from-date').datepicker();
+		$('##special-price-to-date').datepicker();
 		$('##new_single_special_price_from_date').datepicker();
 		$('##new_single_special_price_to_date').datepicker();
 		$('##edit_special_price_from_date').datepicker();
 		$('##edit_special_price_to_date').datepicker();
-		$('.default-special-price-from-date').datepicker();
-		$('.default-special-price-to-date').datepicker();
+		$('.special-price-from-date').datepicker();
+		$('.special-price-to-date').datepicker();
 		$('##new-attribute-option-label').colorpicker();
 		
 		
@@ -218,6 +218,64 @@
 				callback(reader.result);
 			}
 		}
+		
+		var groupArray = new Array();
+		<cfloop array="REQUEST.pageData.customerGroups" index="group">	
+			<cfif group.getIsDefault() EQ false>
+				var group = new Object();
+				group.eid = '#group.getCustomerGroupId()#';
+				group.type = '#group.getDiscountType().getCalculationType().getName()#';
+				group.amount = '#group.getDiscountType().getAmount()#';
+				groupArray.push(group);
+			</cfif>
+		</cfloop>
+		
+		$( "##price" ).focusout(function() {
+			if(!isNaN($(this).val()))
+			{
+				for(var i=0;i<groupArray.length;i++)
+				{
+					if(groupArray[i].type == 'fixed')
+						$("##price-" + i).val(Math.max($(this).val() - groupArray[i].amount,0));
+					elseif (groupArray[i].type == 'percentage')
+						$("##price-" + i).val($(this).val() * (1-groupArray[i].amount));
+				}		
+			}
+		});
+		
+		$( "##special-price" ).focusout(function() {
+			if(!isNaN($(this).val()))
+			{
+				for(var i=0;i<groupArray.length;i++)
+				{
+					if(groupArray[i].type == 'fixed')
+						$("##special-price-" + i).val(Math.max($(this).val() - groupArray[i].amount,0));
+					elseif (groupArray[i].type == 'percentage')
+						$("##special-price-" + i).val($(this).val() * (1-groupArray[i].amount));
+				}		
+			}
+		});
+		
+		$( "##special-price-from-date" ).focusout(function() {
+			if(isDate($(this).val()))
+			{
+				for(var i=0;i<groupArray.length;i++)
+				{
+					$("##special-price-from-date-" + i).val($(this).val());
+				}		
+			}
+		});
+		
+		$( "##special-price-to-date" ).focusout(function() {
+			if(isDate($(this).val()))
+			{
+				for(var i=0;i<groupArray.length;i++)
+				{
+					$("##special-price-to-date-" + i).val($(this).val());
+				}		
+			}
+		});
+		
 	});
 </script>
 
@@ -353,11 +411,11 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="form-group">
 							<label>Price</label>
-							<input type="text" name="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.default_price#" />
+							<input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#" />
 						</div>
 						<div class="form-group">
 							<label>Special Price</label>
-							<input name="special_price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.default_special_price#" />
+							<input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#" />
 						</div>
 						 <div class="form-group">
 							<label>Special Price From Date</label>
@@ -365,7 +423,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special_price_from_date" value="#REQUEST.pageData.formData.default_special_price_from_date#" />
+								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#REQUEST.pageData.formData.special_price_from_date#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -374,7 +432,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special_price_to_date" value="#REQUEST.pageData.formData.default_special_price_to_date#" />
+								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-to-date" value="#REQUEST.pageData.formData.special_price_to_date#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -397,9 +455,9 @@
 															<td>price:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	<input type="text" name="default_price_#group.customerGroupId#" id="default-price-#group.customerGroupId#" value="#groupPrice.getPrice()#" style="width:100%" />
+																	<input type="text" name="price_#group.customerGroupId#" id="price-#group.customerGroupId#" value="#groupPrice.getPrice()#" style="width:100%" />
 																<cfelse>
-																	<input type="text" name="default_price_#group.customerGroupId#" id="default-price-#group.customerGroupId#" value="" style="width:100%" />
+																	<input type="text" name="price_#group.customerGroupId#" id="price-#group.customerGroupId#" value="" style="width:100%" />
 																</cfif>
 															</td>
 														</tr>
@@ -407,9 +465,9 @@
 															<td>special price:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	<input type="text" name="default_special_price_#group.customerGroupId#" id="default-special-price-#group.customerGroupId#" value="#groupPrice.getSpecialPrice()#" style="width:100%" />
+																	<input type="text" name="special_price_#group.customerGroupId#" id="special-price-#group.customerGroupId#" value="#groupPrice.getSpecialPrice()#" style="width:100%" />
 																<cfelse>
-																	<input type="text" name="default_special_price_#group.customerGroupId#" id="default-special-price-#group.customerGroupId#" value="" style="width:100%" />
+																	<input type="text" name="special_price_#group.customerGroupId#" id="special-price-#group.customerGroupId#" value="" style="width:100%" />
 																</cfif>
 															</td>
 														</tr>
@@ -417,9 +475,9 @@
 															<td>from:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	<input type="text" class="default-special-price-from-date" name="default_special_price_from_date_#group.customerGroupId#" id="default-special-price-from-date-#group.customerGroupId#" value="#DateFormat(groupPrice.getSpecialPriceFromDate(),"mmm dd, yyyy")#" style="width:100%" />
+																	<input type="text" class="special-price-from-date" name="special_price_from_date_#group.customerGroupId#" id="special-price-from-date-#group.customerGroupId#" value="#DateFormat(groupPrice.getSpecialPriceFromDate(),"mmm dd, yyyy")#" style="width:100%" />
 																<cfelse>
-																	<input type="text" class="default-special-price-from-date" name="default_special_price_from_date_#group.customerGroupId#" id="default-special-price-from-date-#group.customerGroupId#" value="" style="width:100%" />
+																	<input type="text" class="special-price-from-date" name="special_price_from_date_#group.customerGroupId#" id="special-price-from-date-#group.customerGroupId#" value="" style="width:100%" />
 																</cfif>
 															</td>
 														</tr>
@@ -427,9 +485,9 @@
 															<td>to:</td>
 															<td>
 																<cfif IsNumeric(group.productCustomerGroupRelaId)>
-																	<input type="text" class="default-special-price-to-date" name="default_special_price_to_date_#group.customerGroupId#" id="default-special-price-to-date-#group.customerGroupId#" value="#DateFormat(groupPrice.getSpecialPriceToDate(),"mmm dd, yyyy")#" style="width:100%" />
+																	<input type="text" class="special-price-to-date" name="special_price_to_date_#group.customerGroupId#" id="special-price-to-date-#group.customerGroupId#" value="#DateFormat(groupPrice.getSpecialPriceToDate(),"mmm dd, yyyy")#" style="width:100%" />
 																<cfelse>
-																	<input type="text" class="default-special-price-to-date" name="default_special_price_to_date_#group.customerGroupId#" id="default-special-price-to-date-#group.customerGroupId#" value="" style="width:100%" />
+																	<input type="text" class="special-price-to-date" name="special_price_to_date_#group.customerGroupId#" id="special-price-to-date-#group.customerGroupId#" value="" style="width:100%" />
 																</cfif>
 															</td>
 														</tr>
