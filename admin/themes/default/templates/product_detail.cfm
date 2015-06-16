@@ -257,7 +257,7 @@
 		});
 		
 		$( "##special-price-from-date" ).focusout(function() {
-			if(isDate($(this).val()))
+			if(Date.parse($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
 				{
@@ -267,7 +267,7 @@
 		});
 		
 		$( "##special-price-to-date" ).focusout(function() {
-			if(isDate($(this).val()))
+			if(Date.parse($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
 				{
