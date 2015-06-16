@@ -775,7 +775,7 @@
 														<cfset defaultPrice = 0 />
 													</cfif>
 													
-													<tr class="default">
+													<tr class="default" style="font-size:12px;">
 														<td colspan="2">#s.shippingMethodName#</td>
 														<td style="text-align:right;">
 															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shippingMethodId#"
@@ -787,7 +787,7 @@
 															/>
 														</td>
 													</tr>
-													<tr>
+													<tr style="font-size:12px;">
 														<td>
 															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="1"
 															<cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>
@@ -796,9 +796,9 @@
 															>
 														</td>
 														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>style="color:red;"</cfif>>Default</td>
-														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;"></td>
+														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;padding-right:5px;"></td>
 													</tr>
-													<tr>
+													<tr style="font-size:12px;">
 														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false>style="color:red;"</cfif>>
 															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="0"
 															<cfif NOT IsNumeric(s.productShippingMethodRelaId) OR (IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false)>
