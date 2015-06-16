@@ -87,27 +87,48 @@
 			</cfif>
 				
 			<!--- price information --->
-			<cfif NOT IsNumeric(FORM.id)>	
-				<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
-				<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-				<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
-				<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.defaultCustomerGroup) />
-				<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
-				<cfif IsNumeric(Trim(FORM.special_price))>
-					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
-				</cfif>
-				<cfif IsDate(Trim(FORM.special_price_from_date))>
-					<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
-				</cfif>
-				<cfif IsDate(Trim(FORM.special_price_to_date))>
-					<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
-				</cfif>
-				
-				<cfset EntitySave(LOCAL.groupPrice) />
-				
-				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
-				<cfset EntitySave(LOCAL.product) />
+			<cfset LOCAL.customerGroups = EntityLoad("customer_group") />
+			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
+			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+			<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.defaultCustomerGroup) />
+			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
+			<cfif IsNumeric(Trim(FORM.special_price))>
+				<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
 			</cfif>
+			<cfif IsDate(Trim(FORM.special_price_from_date))>
+				<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+			</cfif>
+			<cfif IsDate(Trim(FORM.special_price_to_date))>
+				<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+			</cfif>
+			
+			<cfset EntitySave(LOCAL.groupPrice) />
+			
+			<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+			
+			<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
+				<cfif LOCAL.group.getIsDefault() EQ false>
+					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"]) />
+					<cfif IsNumeric(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"]))>
+						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"])) />
+					</cfif>
+					<cfif IsDate(Trim(FORM["special_price_from_date_#LOCAL.group.getCustomerGroupId()#"]))>
+						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM["special_price_from_date_#LOCAL.group.getCustomerGroupId()#"])) />
+					</cfif>
+					<cfif IsDate(Trim(FORM["special_price_to_date_#LOCAL.group.getCustomerGroupId()#"]))>
+						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM["special_price_to_date_#LOCAL.group.getCustomerGroupId()#"])) />
+					</cfif>
+					
+					<cfset EntitySave(LOCAL.groupPrice) />
+					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+				</cfif>
+			</cfloop>
+			
+			<cfset EntitySave(LOCAL.product) />
 			
 			<cfif FORM.tax_category_id NEQ "">
 				<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
