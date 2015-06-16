@@ -220,7 +220,7 @@
 		}
 		
 		var groupArray = new Array();
-		<cfloop array="REQUEST.pageData.customerGroups" index="group">	
+		<cfloop array="#REQUEST.pageData.customerGroups#" index="group">	
 			<cfif group.getIsDefault() EQ false>
 				var group = new Object();
 				group.eid = '#group.getCustomerGroupId()#';
@@ -237,7 +237,7 @@
 				{
 					if(groupArray[i].type == 'fixed')
 						$("##price-" + i).val(Math.max($(this).val() - groupArray[i].amount,0));
-					elseif (groupArray[i].type == 'percentage')
+					else if (groupArray[i].type == 'percentage')
 						$("##price-" + i).val($(this).val() * (1-groupArray[i].amount));
 				}		
 			}
@@ -250,7 +250,7 @@
 				{
 					if(groupArray[i].type == 'fixed')
 						$("##special-price-" + i).val(Math.max($(this).val() - groupArray[i].amount,0));
-					elseif (groupArray[i].type == 'percentage')
+					else if (groupArray[i].type == 'percentage')
 						$("##special-price-" + i).val($(this).val() * (1-groupArray[i].amount));
 				}		
 			}

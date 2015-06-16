@@ -112,7 +112,7 @@
 					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
 					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
-					<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"]) />
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"])) />
 					<cfif IsNumeric(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"]))>
 						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"])) />
 					</cfif>
