@@ -72,6 +72,7 @@
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageData.discountTypes = EntityLoad("discount_type") />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.customerGroup = EntityLoadByPK("customer_group", URL.id)> 

@@ -39,6 +39,21 @@
 								<option value="0" <cfif REQUEST.pageData.formData.is_default EQ FALSE>selected</cfif>>No</option>
 							</select>
 						</div>
+						<div class="form-group">
+							<label>Discount Type</label>
+							<select class="form-control" name="discount_type_id">
+								<option value="">Please Select...</option>
+								<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
+									<option value="#type.getDiscountTypeId()#"
+									
+									<cfif NOT IsNull(REQUEST.pageData.coupon) AND NOT IsNull(REQUEST.pageData.coupon.getDiscountType()) AND type.getDiscountTypeId() EQ REQUEST.pageData.coupon.getDiscountType().getDiscountTypeId()>
+									selected
+									</cfif>
+									
+									>#type.getDisplayName()#</option>
+								</cfloop>
+							</select>
+						</div>
 						<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
 					</div><!-- /.box-body -->
 			</div><!-- /.box -->

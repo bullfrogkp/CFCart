@@ -386,10 +386,10 @@
 											<cfset groupPrice = EntityLoadByPK("product_customer_group_rela",group.productCustomerGroupRelaId) />
 										</cfif>
 										<div class="col-xs-3">
-											<div class="box <cfif IsNumeric(group.productCustomerGroupRelaId)>box-warning<cfelse>box-default</cfif>">
+											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr class="<cfif IsNumeric(group.productCustomerGroupRelaId)>warning<cfelse>default</cfif>">
+														<tr class="warning">
 															<th>#group.groupDisplayName#</th>
 															<th></th>
 														</tr>
