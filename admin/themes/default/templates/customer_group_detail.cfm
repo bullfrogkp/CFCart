@@ -46,7 +46,7 @@
 								<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
 									<option value="#type.getDiscountTypeId()#"
 									
-									<cfif NOT IsNull(REQUEST.pageData.coupon) AND NOT IsNull(REQUEST.pageData.coupon.getDiscountType()) AND type.getDiscountTypeId() EQ REQUEST.pageData.coupon.getDiscountType().getDiscountTypeId()>
+									<cfif NOT IsNull(REQUEST.pageData.customerGroup) AND NOT IsNull(REQUEST.pageData.customerGroup.getDiscountType()) AND type.getDiscountTypeId() EQ REQUEST.pageData.customerGroup.getDiscountType().getDiscountTypeId()>
 									selected
 									</cfif>
 									

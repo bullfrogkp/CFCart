@@ -50,6 +50,8 @@
 				<cfset LOCAL.customerGroup.setIsDefault(false) />
 			</cfif>
 			
+			<cfset LOCAL.customerGroup.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
+			
 			<cfset EntitySave(LOCAL.customerGroup) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Customer group has been saved successfully.") />
