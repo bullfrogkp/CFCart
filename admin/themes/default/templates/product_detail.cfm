@@ -436,6 +436,7 @@
 								<input type="text" class="form-control pull-right" name="special_price_to_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-to-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData.special_price_to_date#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
+						<cfif NOT IsNull(REQUEST.pageData.product)>
 						<div class="form-group">
 							<div class="row" style="margin-top:10px;">
 								<cfloop query="REQUEST.pageData.customerGroupPrices">		
@@ -500,6 +501,7 @@
 								</cfloop>
 							</div>
 						</div>
+						</cfif>
 						
 						<div class="form-group">
 							<label>Tax Category</label>

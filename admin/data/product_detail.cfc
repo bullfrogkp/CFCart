@@ -492,6 +492,12 @@
 				<cfset LOCAL.pageData.formData.height = "" />
 				<cfset LOCAL.pageData.formData.width = "" />
 				<cfset LOCAL.pageData.formData.weight = "" />
+				
+				<cfset LOCAL.pageData.formData.price = "" />
+				<cfset LOCAL.pageData.formData.special_price = "" />
+				<cfset LOCAL.pageData.formData.special_price_from_date = "" />
+				<cfset LOCAL.pageData.formData.special_price_to_date = "" />
+				
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
