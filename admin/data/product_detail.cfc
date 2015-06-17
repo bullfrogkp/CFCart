@@ -87,29 +87,13 @@
 			</cfif>
 				
 			<!--- price information --->
-			<cfset LOCAL.customerGroups = EntityLoad("customer_group") />
-			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
-			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-			<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
-			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.defaultCustomerGroup) />
-			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
-			<cfif IsNumeric(Trim(FORM.special_price))>
-				<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
-			</cfif>
-			<cfif IsDate(Trim(FORM.special_price_from_date))>
-				<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
-			</cfif>
-			<cfif IsDate(Trim(FORM.special_price_to_date))>
-				<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
-			</cfif>
-			
-			<cfset EntitySave(LOCAL.groupPrice) />
-			
-			<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
-			
 			<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 				<cfif LOCAL.group.getIsDefault() EQ false>
-					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+					<cfif IsNumeric(FORM.id)>
+						<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+					<cfelse>
+						<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+					</cfif>
 					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
 					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
 					<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"])) />
@@ -252,7 +236,7 @@
 						<cfset LOCAL.newProductShippingMethodRela.setPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
 					</cfif>
 					
-					<cfif FORM["use_default_price_#LOCAL.shippingMethodId#"] EQ 1>
+					<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingMethodId#") AND FORM["use_default_price_#LOCAL.shippingMethodId#"] EQ 1>
 						<cfset LOCAL.newProductShippingMethodRela.setUseDefaultPrice(true) />
 					<cfelse>
 						<cfset LOCAL.newProductShippingMethodRela.setUseDefaultPrice(false) />
@@ -383,75 +367,10 @@
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute value has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />
 			
-		<cfelseif StructKeyExists(FORM,"add_single_group_price")>
-			<cfset LOCAL.customerGroup = EntityLoadByPK("customer_group",FORM.add_customer_group_id) />
-			<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.customerGroup},true) />
 		
-			<cfif IsNull(LOCAL.groupPrice)>
-				<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-				<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
-				<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
-				<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_single_price)) />
-				<cfif IsNumeric(Trim(FORM.new_single_special_price))>
-					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.new_single_special_price)) />
-					<cfif IsDate(Trim(FORM.new_single_special_price_from_date))>
-						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.new_single_special_price_from_date)) />
-					</cfif>
-					<cfif IsDate(Trim(FORM.new_single_special_price_to_date))>
-						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.new_single_special_price_to_date)) />
-					</cfif>
-				</cfif>
-				
-				<cfset EntitySave(LOCAL.groupPrice) />
-				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
-			<cfelse>
-				<cfset LOCAL.groupPrice.setPrice(Trim(FORM.new_single_price)) />
-				<cfif IsNumeric(Trim(FORM.new_single_special_price))>
-					<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.new_single_special_price)) />
-					<cfif IsDate(Trim(FORM.new_single_special_price_from_date))>
-						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.new_single_special_price_from_date)) />
-					</cfif>
-					<cfif IsDate(Trim(FORM.new_single_special_price_to_date))>
-						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.new_single_special_price_to_date)) />
-					</cfif>
-				</cfif>
-				
-				<cfset EntitySave(LOCAL.groupPrice) />
-			</cfif>
-			
-			<cfset EntitySave(LOCAL.product) />
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New group price has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
 		
-		<cfelseif StructKeyExists(FORM,"edit_group_price")>
 			
-			<cfset LOCAL.groupPrice = EntityLoadByPK("product_customer_group_rela",FORM.edit_product_customer_group_rela_id) />
-			<cfset LOCAL.groupPrice.setPrice(Trim(FORM.edit_price)) />
-			
-			<cfif IsNumeric(Trim(FORM.edit_special_price))>
-				<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.edit_special_price)) />
-			</cfif>
-			<cfif IsDate(Trim(FORM.edit_special_price_from_date))>
-				<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.edit_special_price_from_date)) />
-			</cfif>
-			<cfif IsDate(Trim(FORM.edit_special_price_to_date))>
-				<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.edit_special_price_to_date)) />
-			</cfif>
-						
-			<cfset EntitySave(LOCAL.groupPrice) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New group price has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
-			
-		<cfelseif StructKeyExists(FORM,"delete_group_price")>
-			
-			<cfset LOCAL.groupPrice = EntityLoadByPK("product_customer_group_rela",FORM.deleted_product_customer_group_rela_id) />
-			
-			<cfset LOCAL.product.removeProductCustomerGroupRela(LOCAL.groupPrice) />
-			
-			<cfset EntitySave(LOCAL.product) />
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Group price has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_3" />
+		
 		
 		<cfelseif StructKeyExists(FORM,"add_related_product")>
 			

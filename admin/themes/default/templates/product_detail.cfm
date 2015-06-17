@@ -230,33 +230,33 @@
 			</cfif>
 		</cfloop>
 		
-		$( "##price" ).focusout(function() {
+		$( "##price" ).change(function() {
 			if(!isNaN($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
 				{
 					if(groupArray[i].type == 'fixed')
-						$("##price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0));
+						$("##price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0).toFixed(2));
 					else if (groupArray[i].type == 'percentage')
-						$("##price-" + groupArray[i].eid).val($(this).val() * (1-groupArray[i].amount));
+						$("##price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount)).toFixed(2));
 				}		
 			}
 		});
 		
-		$( "##special-price" ).focusout(function() {
+		$( "##special-price" ).change(function() {
 			if(!isNaN($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
 				{
 					if(groupArray[i].type == 'fixed')
-						$("##special-price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0));
+						$("##special-price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0).toFixed(2));
 					else if (groupArray[i].type == 'percentage')
-						$("##special-price-" + groupArray[i].eid).val($(this).val() * (1-groupArray[i].amount));
+						$("##special-price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount)).toFixed(2));
 				}		
 			}
 		});
 		
-		$( "##special-price-from-date" ).focusout(function() {
+		$( "##special-price-from-date" ).change(function() {
 			console.log(Date.parse($(this).val()));
 			if(Date.parse($(this).val()))
 			{
@@ -267,7 +267,7 @@
 			}
 		});
 		
-		$( "##special-price-to-date" ).focusout(function() {
+		$( "##special-price-to-date" ).change(function() {
 			if(Date.parse($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -412,11 +412,11 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="form-group">
 							<label>Price</label>
-							<input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#" />
+							<input type="text" name="price_#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" id="price-#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#" />
 						</div>
 						<div class="form-group">
 							<label>Special Price</label>
-							<input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#" />
+							<input name="special_price_#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" id="special-price-#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#" />
 						</div>
 						 <div class="form-group">
 							<label>Special Price From Date</label>
@@ -424,7 +424,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#REQUEST.pageData.formData.special_price_from_date#" />
+								<input type="text" class="form-control pull-right" name="special_price_from_date_#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" id="special-price-from-date-#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" value="#REQUEST.pageData.formData.special_price_from_date#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -433,7 +433,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-to-date" value="#REQUEST.pageData.formData.special_price_to_date#" />
+								<input type="text" class="form-control pull-right" name="special_price_to_date_#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" id="special-price-to-date-#REQUEST.pageData.defaultCustomerGroupPrice.getCustomerGroup().getCustomerGroupId()#" value="#REQUEST.pageData.formData.special_price_to_date#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -450,7 +450,7 @@
 													<table class="table table-hover">
 														<tr class="warning">
 															<th>#group.groupDisplayName#</th>
-															<th></th>
+															<th style="text-align:right;">#group.discountTypeName#</th>
 														</tr>
 														<tr>
 															<td>price:</td>

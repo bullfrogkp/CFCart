@@ -72,11 +72,13 @@
 			SELECT	cg.customer_group_id AS customerGroupId
 			,		cg.is_default AS isDefault
 			,		cg.display_name AS groupDisplayName
+			,		dis.display_name AS discountTypeName
 			,		(	SELECT	pcgr.product_customer_group_rela_id
 						FROM	product_customer_group_rela pcgr
 						WHERE 	pcgr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 						AND 	cg.customer_group_id = pcgr.customer_group_id) AS productCustomerGroupRelaId
 			FROM	customer_group cg 
+			JOIN	discount_type dis ON cg.discount_type_id = dis.discount_type_id
 			ORDER BY cg.is_default DESC, cg.display_name
 		</cfquery>
  
