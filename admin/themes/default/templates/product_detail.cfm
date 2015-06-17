@@ -412,11 +412,11 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="form-group">
 							<label>Price</label>
-							<input type="text" name="price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#" />
+							<input type="text" name="price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
 						</div>
 						<div class="form-group">
 							<label>Special Price</label>
-							<input name="special_price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#" />
+							<input name="special_price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["special_price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
 						</div>
 						 <div class="form-group">
 							<label>Special Price From Date</label>
@@ -424,7 +424,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-from-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData.special_price_from_date#" />
+								<input type="text" class="form-control pull-right" name="special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-from-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData["special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -433,7 +433,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-to-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData.special_price_to_date#" />
+								<input type="text" class="form-control pull-right" name="special_price_to_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-to-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData["special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">

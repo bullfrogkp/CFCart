@@ -84,14 +84,14 @@
 				
 			<!--- price information --->
 			<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
+				<cfif IsNumeric(FORM.id)>
+					<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+				<cfelse>
+					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+				</cfif>
+				<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
+				<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
 				<cfif LOCAL.group.getIsDefault() EQ false>
-					<cfif IsNumeric(FORM.id)>
-						<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
-					<cfelse>
-						<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-					</cfif>
-					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
-					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
 					<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"])) />
 					<cfif IsNumeric(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"]))>
 						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"])) />
@@ -102,10 +102,21 @@
 					<cfif IsDate(Trim(FORM["special_price_to_date_#LOCAL.group.getCustomerGroupId()#"]))>
 						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM["special_price_to_date_#LOCAL.group.getCustomerGroupId()#"])) />
 					</cfif>
-					
-					<cfset EntitySave(LOCAL.groupPrice) />
-					<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
+				<cfelse>
+					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
+					<cfif IsNumeric(Trim(FORM.special_price))>
+						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+					</cfif>
+					<cfif IsDate(Trim(FORM.special_price_from_date))>
+						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+					</cfif>
+					<cfif IsDate(Trim(FORM.special_price_to_date))>
+						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+					</cfif>
 				</cfif>
+				
+				<cfset EntitySave(LOCAL.groupPrice) />
+				<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.product) />
@@ -454,10 +465,10 @@
 				<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidth())?"":LOCAL.pageData.product.getWidth() />
 				<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeight())?"":LOCAL.pageData.product.getWeight() />
 		
-				<cfset LOCAL.pageData.formData["price_#LOCAL.pageData.defaultCustomerGroup.getCustomerGroupId()#"] = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getPrice() />
-				<cfset LOCAL.pageData.formData["special_price_#LOCAL.pageData.defaultCustomerGroup.getCustomerGroupId()#"] = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice() />
-				<cfset LOCAL.pageData.formData["special_price_from_date_#LOCAL.pageData.defaultCustomerGroup.getCustomerGroupId()#"] = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate() />
-				<cfset LOCAL.pageData.formData["special_price_to_date_#LOCAL.pageData.defaultCustomerGroup.getCustomerGroupId()#"] = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate() />
+				<cfset LOCAL.pageData.formData.price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getPrice() />
+				<cfset LOCAL.pageData.formData.special_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice() />
+				<cfset LOCAL.pageData.formData.special_price_from_date = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate() />
+				<cfset LOCAL.pageData.formData.special_price_to_date = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate() />
 				
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
