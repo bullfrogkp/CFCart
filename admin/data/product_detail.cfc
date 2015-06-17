@@ -542,7 +542,7 @@
 			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
 			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
 			
-			<cfset LCOAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.parentProduct,customerGroup=LOCAL.customerGroup},true) />
+			<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.parentProduct,customerGroup=LOCAL.customerGroup},true) />
 			
 			<cfset LOCAL.groupPrice.setPrice(LOCAL.productCustomerGroupRela.getPrice()) />
 			<cfset LOCAL.groupPrice.setSpecialPrice(LOCAL.productCustomerGroupRela.getPrice()) />
