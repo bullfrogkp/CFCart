@@ -531,14 +531,9 @@
 		<cfset LOCAL.parentProduct = EntityLoadByPK("product",ARGUMENTS.parentProductId)>
 		<cfset LOCAL.newProduct = EntityNew("product")>
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
-		
-		<cfset LOCAL.newProduct.setName(LOCAL.parentProduct.getName()) />
-		<cfset LOCAL.newProduct.setDisplayName(LOCAL.parentProduct.getDisplayName()) />
-		<cfset LOCAL.newProduct.setTaxCategory(LOCAL.parentProduct.getTaxCategory()) />
-		<cfset LOCAL.newProduct.setAttributeSet(LOCAL.parentProduct.getAttributeSet()) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
-		
+		<cfdump var="#LOCAL.parentProduct.getProductCustomerGroupRelas()#" abort>
 		<cfloop array="#LOCAL.parentProduct.getProductCustomerGroupRelas()#" index="LOCAL.productCustomerGroupRela">
 			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
@@ -577,6 +572,7 @@
 		<cfset EntitySave(LOCAL.newProduct) />
 		<cfset LOCAL.parentProduct.addSubProduct(LOCAL.newProduct) />
 		<cfset EntitySave(LOCAL.parentProduct) />
+		<cfset ORMFlush() />
 		
 		<cfreturn LOCAL.newProduct />
 	</cffunction>
