@@ -533,7 +533,7 @@
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
-		<cfdump var="#LOCAL.parentProduct.getProductCustomerGroupRelas()#" abort>
+		
 		<cfloop array="#LOCAL.parentProduct.getProductCustomerGroupRelas()#" index="LOCAL.productCustomerGroupRela">
 			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
