@@ -31,6 +31,199 @@
 	
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTitle" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getTitle() />
+		<cfelse>
+			<cfset retValue = getTitle() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getKeywords" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getKeywords() />
+		<cfelse>
+			<cfset retValue = getKeywords() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getDetail" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getDetail() />
+		<cfelse>
+			<cfset retValue = getDetail() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getLength" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getLength() />
+		<cfelse>
+			<cfset retValue = getLength() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getWidth" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getWidth() />
+		<cfelse>
+			<cfset retValue = getWidth() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getHeight" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getHeight() />
+		<cfelse>
+			<cfset retValue = getHeight() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getWeight" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getWeight() />
+		<cfelse>
+			<cfset retValue = getWeight() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getAttributeSet" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getAttributeSet() />
+		<cfelse>
+			<cfset retValue = getAttributeSet() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTaxCategory" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getTaxCategory() />
+		<cfelse>
+			<cfset retValue = getTaxCategory() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getProductVideos" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getProductVideos() />
+		<cfelse>
+			<cfset retValue = getProductVideos() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getReviews" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getReviews() />
+		<cfelse>
+			<cfset retValue = getReviews() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getImages" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getImages() />
+		<cfelse>
+			<cfset retValue = getImages() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getProductShippingMethodRelas" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getProductShippingMethodRelas() />
+		<cfelse>
+			<cfset retValue = getProductShippingMethodRelas() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getCategories" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getCategories() />
+		<cfelse>
+			<cfset retValue = getCategories() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getRelatedProducts" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getRelatedProducts() />
+		<cfelse>
+			<cfset retValue = getRelatedProducts() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getRelatedParentProducts" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().getRelatedParentProducts() />
+		<cfelse>
+			<cfset retValue = getRelatedParentProducts() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeAllCategories" access="public" output="false" returnType="void">
 		<cfif NOT IsNull(getCategories())>
 			<cfset ArrayClear(getCategories()) />
@@ -178,15 +371,8 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTaxRate" access="public" output="false" returnType="string">
 		<cfargument name="provinceId" type="numeric" required="true" />
-		
-		<cfset var taxCategory = "" />
-		<cfif NOT IsNull(getParentProduct())>
-			<cfset taxCategory = getParentProduct().getTaxCategory() />
-		<cfelse>
-			<cfset taxCategory = getTaxCategory() />
-		</cfif>
-		
-		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=taxCategory},true) />
+				
+		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=getTaxCategory()},true) />
 		
 		<cfreturn tax.getRate() />
 	</cffunction>

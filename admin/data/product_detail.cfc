@@ -533,7 +533,6 @@
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
-	
 		
 		<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 	
