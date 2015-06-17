@@ -321,16 +321,20 @@
 		<cfset var LOCAL = {} />
 		<cfset var retValue = false />
 		
-		<cfquery name="LOCAL.checkFreeShipping">
-			SELECT	1
-			FROM	product_shipping_method_rela psmr
-			JOIN	shipping_method sm ON psmr.shipping_method_id = sm.shipping_method_id
-			WHERE	sm.name = 'free shipping'
-			AND		psmr.product_id = #getProductId()#
-		</cfquery>
-		
-		<cfif LOCAL.checkFreeShipping.recordCount GT 0>
-			<cfset retValue = true />
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset retValue = getParentProduct().isFreeShipping() />
+		<cfelse>
+			<cfquery name="LOCAL.checkFreeShipping">
+				SELECT	1
+				FROM	product_shipping_method_rela psmr
+				JOIN	shipping_method sm ON psmr.shipping_method_id = sm.shipping_method_id
+				WHERE	sm.name = 'chinapost'
+				AND		psmr.product_id = #getProductId()#
+			</cfquery>
+			
+			<cfif LOCAL.checkFreeShipping.recordCount GT 0>
+				<cfset retValue = true />
+			</cfif>
 		</cfif>
 		
 		<cfreturn retValue />
@@ -346,29 +350,6 @@
 		<cfreturn pageUrl />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
-		<cfset var LOCAL = {} />
-	   
-		<cfset LOCAL.retValue = true />
-		
-		<cfif IsNull(getAttributeSet())>
-			<cfset LOCAL.retValue = false />
-		<cfelse>
-			<cfloop array="#getAttributeSet().getAttributeSetAttributeRelas()#" index="LOCAL.attributeSetAttributeRela">
-				<cfif LOCAL.attributeSetAttributeRela.getRequired() EQ true>
-					<cfset LOCAL.attribute = LOCAL.attributeSetAttributeRela.getAttribute() />
-					<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela", {product=this,attribute=LOCAL.attribute, required=true},true) />
-					<cfif IsNull(LOCAL.productAttributeRela) OR ArrayIsEmpty(LOCAL.productAttributeRela.getAttributeValues())>
-						<cfset LOCAL.retValue = false />
-						<cfbreak />
-					</cfif>
-				</cfif>
-			</cfloop>
-		</cfif>
-		
-		<cfreturn LOCAL.retValue />
-    </cffunction>
-	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTaxRate" access="public" output="false" returnType="string">
 		<cfargument name="provinceId" type="numeric" required="true" />
 				
@@ -377,7 +358,7 @@
 		<cfreturn tax.getRate() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getShippingFee" access="public" output="false" returnType="string">
+	<cffunction name="getShippingFee" access="public" output="false" returnType="numeric">
 		<cfargument name="address" type="struct" required="true" />
 		<cfargument name="shippingMethodId" type="numeric" required="true" />
 		<cfargument name="customerGroupName" type="string" required="true" />
@@ -385,26 +366,22 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif NOT IsNull(getParentProduct())>
-			<cfset LOCAL.weight = getParentProduct().getWeight() />
-			<cfset LOCAL.productId = getParentProduct().getProductId() />
+			<cfset LOCAL.shippingFee = getParentProduct().getShippingFee(argumentCollection = ARGUMENTS) />
 		<cfelse>
-			<cfset LOCAL.weight = getWeight() />
-			<cfset LOCAL.productId = getProductId() />
-		</cfif>
-		
-		<cfif NOT IsNull(LOCAL.weight)>
-			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
-			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
-		
-			<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
-						
-			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
-			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
-			<cfset LOCAL.shippingComponent.setProductId(LOCAL.productId) />
+			<cfif NOT IsNull(getWeight())>
+				<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
+				<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
 			
-			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
-		<cfelse>
-			<cfset LOCAL.shippingFee = getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
+				<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
+							
+				<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
+				<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
+				<cfset LOCAL.shippingComponent.setProductId(LOCAL.productId) />
+				
+				<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
+			<cfelse>
+				<cfset LOCAL.shippingFee = getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
+			</cfif>
 		</cfif>
 		
 		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
