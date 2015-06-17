@@ -525,7 +525,7 @@
 	</cffunction>
 	
 	<cffunction name="_createSubProduct" access="private" output="false" returnType="any">
-		<cfargument name="parentProductId" type="any" required="true">
+		<cfargument name="parentProductId" type="numeric" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
 	
 		<cfset LOCAL.parentProduct = EntityLoadByPK("product",ARGUMENTS.parentProductId)>
@@ -533,18 +533,22 @@
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
+	
 		
-		<cfloop array="#LOCAL.parentProduct.getProductCustomerGroupRelas()#" index="LOCAL.productCustomerGroupRela">
+		<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
+	
+		<cfloop array="#LOCAL.customerGroups#" index="LOCAL.customerGroup">
 			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
-			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.productCustomerGroupRela.getCustomerGroup()) />
+			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
+			
+			<cfset LCOAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.parentProduct,customerGroup=LOCAL.customerGroup},true) />
+			
 			<cfset LOCAL.groupPrice.setPrice(LOCAL.productCustomerGroupRela.getPrice()) />
 			<cfset LOCAL.groupPrice.setSpecialPrice(LOCAL.productCustomerGroupRela.getPrice()) />
 			<cfset LOCAL.groupPrice.setSpecialPriceFromDate(LOCAL.productCustomerGroupRela.getSpecialPriceFromDate()) />
 			<cfset LOCAL.groupPrice.setSpecialPriceToDate(LOCAL.productCustomerGroupRela.getSpecialPriceToDate()) />
 			<cfset EntitySave(LOCAL.groupPrice) />
-		
-			<cfset LOCAL.newProduct.addProductCustomerGroupRela(LOCAL.groupPrice) />
 		</cfloop>
 	
 		<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
