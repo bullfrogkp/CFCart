@@ -440,13 +440,12 @@
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.productService.setId(URL.id) />
-			<cfset LOCAL.pageData.product = EntityLoadByPK("product", URL.id)> 
+			<cfset LOCAL.pageData.product = EntityLoadByPK("product", URL.id)> <cfdump var="#LOCAL.pageData.product#" abort>
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
 			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
 			<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getProductShippingMethods() />
-			
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
