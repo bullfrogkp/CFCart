@@ -99,22 +99,26 @@
 	<cffunction name="getDefaultImageLink" access="public" output="false" returnType="string">
 		<cfargument name="type" type="string" required="false" default="" />
 		
-		<cfset var imageType = "" />
-		<cfif Trim(ARGUMENTS.type) NEQ "">
-			<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
-		</cfif>
-		
-		<cfset var imageLink = "" />
-		<cfset var productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
-		
-		<cfif IsNull(productImg)>
-			<cfif NOT IsNull(getImages()) AND ArrayLen(getImages()) GT 0>
-				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##getImages()[1].getName()#" />
-			<cfelse>
-				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
-			</cfif>
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset imageLink = getParentProduct().getDefaultImageLink() />
 		<cfelse>
-			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##productImg.getName()#" />
+			<cfset var imageType = "" />
+			<cfif Trim(ARGUMENTS.type) NEQ "">
+				<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
+			</cfif>
+			
+			<cfset var imageLink = "" />
+			<cfset var productImg = EntityLoad("product_image",{product = this, isDefault = true},true) />
+			
+			<cfif IsNull(productImg)>
+				<cfif NOT IsNull(getImages()) AND ArrayLen(getImages()) GT 0>
+					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##getImages()[1].getName()#" />
+				<cfelse>
+					<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
+				</cfif>
+			<cfelse>
+				<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#getProductId()#/#imageType##productImg.getName()#" />
+			</cfif>
 		</cfif>
 		
 		<cfreturn imageLink />
@@ -140,7 +144,13 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
-		<cfreturn "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
+		<cfset var pageUrl = "" />
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset pageUrl = getParentProduct().getDetailPageURL() />
+		<cfelse>
+			<cfset pageUrl = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
+		</cfif>
+		<cfreturn pageUrl />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
@@ -169,7 +179,14 @@
 	<cffunction name="getTaxRate" access="public" output="false" returnType="string">
 		<cfargument name="provinceId" type="numeric" required="true" />
 		
-		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=getTaxCategory()},true) />
+		<cfset var taxCategory = "" />
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset taxCategory = getParentProduct().getTaxCategory() />
+		<cfelse>
+			<cfset taxCategory = getTaxCategory() />
+		</cfif>
+		
+		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=taxCategory},true) />
 		
 		<cfreturn tax.getRate() />
 	</cffunction>
@@ -181,7 +198,15 @@
 		
 		<cfset var LOCAL = {} />
 		
-		<cfif NOT IsNull(getWeight())>
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset LOCAL.weight = getParentProduct().getWeight() />
+			<cfset LOCAL.productId = getParentProduct().getProductId() />
+		<cfelse>
+			<cfset LOCAL.weight = getWeight() />
+			<cfset LOCAL.productId = getProductId() />
+		</cfif>
+		
+		<cfif NOT IsNull(LOCAL.weight)>
 			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
 		
@@ -189,7 +214,7 @@
 						
 			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
-			<cfset LOCAL.shippingComponent.setProductId(getProductId()) />
+			<cfset LOCAL.shippingComponent.setProductId(LOCAL.productId) />
 			
 			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
 		<cfelse>
