@@ -83,6 +83,7 @@
 			</cfif>
 				
 			<!--- price information --->
+			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 			<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 				<cfif IsNumeric(FORM.id)>
 					<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />

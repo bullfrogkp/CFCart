@@ -230,7 +230,7 @@
 			</cfif>
 		</cfloop>
 		
-		$( "##price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" ).change(function() {
+		$( "##price" ).change(function() {
 			if(!isNaN($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -243,7 +243,7 @@
 			}
 		});
 		
-		$( "##special-price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" ).change(function() {
+		$( "##special-price" ).change(function() {
 			if(!isNaN($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -256,7 +256,7 @@
 			}
 		});
 		
-		$( "##special-price-from-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" ).change(function() {
+		$( "##special-price-from-date" ).change(function() {
 			console.log(Date.parse($(this).val()));
 			if(Date.parse($(this).val()))
 			{
@@ -267,7 +267,7 @@
 			}
 		});
 		
-		$( "##special-price-to-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" ).change(function() {
+		$( "##special-price-to-date" ).change(function() {
 			if(Date.parse($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -412,11 +412,11 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="form-group">
 							<label>Price</label>
-							<input type="text" name="price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
+							<input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price"]#" />
 						</div>
 						<div class="form-group">
 							<label>Special Price</label>
-							<input name="special_price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["special_price_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
+							<input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["special_price"]#" />
 						</div>
 						 <div class="form-group">
 							<label>Special Price From Date</label>
@@ -424,7 +424,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-from-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData["special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
+								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(REQUEST.pageData.formData["special_price_from_date"],"mmm dd, yyyy")#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -433,7 +433,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" id="special-price-to-date-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#" value="#REQUEST.pageData.formData["special_price_from_date_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#"]#" />
+								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-to-date" value="#DateFormat(REQUEST.pageData.formData["special_price_to_date"],"mmm dd, yyyy")#" />
 							</div><!-- /.input group -->
 						</div><!-- /.form group -->
 						<div class="form-group">
@@ -441,7 +441,7 @@
 								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">		
 									<cfif group.getIsDefault() EQ false>
 										<cfif NOT IsNull(REQUEST.pageData.product)>
-											<cfset groupPrice = EntityLoad("product_customer_group_rela",{product=REQUEST.pageData.product,customerGroup=group},true) /> />
+											<cfset groupPrice = EntityLoad("product_customer_group_rela",{product=REQUEST.pageData.product,customerGroup=group},true) />
 										</cfif>
 									
 										<cfif NOT IsNull(groupPrice)>
