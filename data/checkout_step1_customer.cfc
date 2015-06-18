@@ -157,7 +157,12 @@
 		<cfset SESSION.order.totalTax = 0 />
 		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
 			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
-			<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
+			<cfif NOT IsNull(LOCAL.product.getParentProduct())>
+				<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getParentProduct().getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
+			<cfelse>
+				<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getTaxRate(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
+			</cfif>
+			
 			<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
 			<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
 		</cfloop>

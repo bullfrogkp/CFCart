@@ -3,13 +3,11 @@
 	$(document).ready(function() {
 		<cfloop array="#SESSION.order.productArray#" index="item">
 			<cfset product = EntityLoadByPK("product",item.productId) />
-			<cfif ArrayLen(product.getProductShippingMethodRelas()) GT 0>
-				$('##shipping-methods-#product.getProductId()#').ddslick({
-					onSelected: function (data) {
-						console.log(data);
-					}
-				});
-			</cfif>
+			$('##shipping-methods-#product.getProductId()#').ddslick({
+				onSelected: function (data) {
+					console.log(data);
+				}
+			});
 		</cfloop>
 	});
 </script>
@@ -63,12 +61,19 @@ margin-bottom:10px;
 			<ul id="products">
 				<cfloop array="#SESSION.order.productArray#" index="item">
 					<cfset product = EntityLoadByPK("product",item.productId) />
+					<cfif NOT IsNull(product.getParentProduct())>
+						<cfset imageLink = product.getParentProduct().getDefaultImageLink(type='small') />
+						<cfset shippingMethods = product.getParentProduct().getProductShippingMethodRelas() />
+					<cfelse>
+						<cfset imageLink = product.getDefaultImageLink(type='small') />
+						<cfset shippingMethods = product.getProductShippingMethodRelas() />
+					</cfif>
 					<li>
-						<img src="#product.getDefaultImageLink(type='small')#" style="width:53px;float:left;border:1px solid ##ccc;margin-right:5px;">
+						<img src="#imageLink#" style="width:53px;float:left;border:1px solid ##ccc;margin-right:5px;">
 						<div id="shipping_methods_div" style="text-align:center;float:left;">
 							<select id="shipping-methods-#product.getProductId()#">
-								<cfloop from="1" to="#ArrayLen(product.getProductShippingMethodRelas())#" index="i">
-									<cfset s = product.getProductShippingMethodRelas()[i] />
+								<cfloop from="1" to="#ArrayLen(shippingMethods)#" index="i">
+									<cfset s = shippingMethods[i] />
 									<option value="#s.getProductShippingMethodRelaId()#" data-imagesrc="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.getShippingMethod().getShippingCarrier().getImageName()#"
 										data-description="#DollarFormat(s.getPrice())#">Quantity: #item.count# &nbsp;&nbsp;#s.getShippingMethod().getShippingCarrier().getDisplayName()# - #s.getShippingMethod().getDisplayName()#</option>
 								</cfloop>

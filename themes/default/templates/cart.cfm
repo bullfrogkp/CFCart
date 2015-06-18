@@ -18,13 +18,14 @@
 		});
 		
 		$("##apply_coupon").click(function() {
+			var couponCode = $("##coupon_code").val();
 			$.ajax({
 						type: "get",
 						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
 						dataType: 'json',
 						data: {
 							method: 'applyCouponCode',
-							couponCode: $("##coupon_code").val(),
+							couponCode: couponCode,
 							customerId: '#SESSION.user.customerId#',
 							total: '#REQUEST.pageData.subTotal#'
 						},		
@@ -32,7 +33,7 @@
 							if(result.SUCCESS == true)
 							{
 								$("##coupon").html("Coupon has been applied successfully.");
-								$("##coupon_code_applied").val($("##coupon_code").val());
+								$("##coupon_code_applied").val(couponCode);
 								$("##subtotal-price-amount").html("$" + result.NEWTOTAL.toFixed(2));
 								$( "<li style='color:white;background-color:red;'>Discount <span>- $"+result.DISCOUNT.toFixed(2)+"</span></li>" ).insertBefore( "##subtotal-price" );
 							}
@@ -94,14 +95,23 @@
 				
 					<cfloop array="#REQUEST.pageData.trackingRecords#" index="cartItem">
 						<cfset product = cartItem.getProduct() />
+						<cfif NOT IsNull(product.getParentProduct())>
+							<cfset detailPageLink = product.getParentProduct().getDetailPageURL() />
+							<cfset imageLink = product.getParentProduct().getDefaultImageLink(type='small') />
+							<cfset displayName = product.getParentProduct().getDisplayName() />
+						<cfelse>
+							<cfset detailPageLink = product.getDetailPageURL() />
+							<cfset imageLink = product.getDefaultImageLink(type='small') />
+							<cfset displayName = product.getDisplayName() />
+						</cfif>
 						<tr>
 							<td class="cart_product" pid="#product.getProductId()#">
 								<a href="#product.getDetailPageURL()#">
-									<img style="width:70px" src="#product.getDefaultImageLink(type='small')#" alt="#product.getDisplayName()#">
+									<img style="width:70px" src="#imageLink#" alt="#displayName#">
 								</a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></h4>
+								<h4><a href="#detailPageLink#">#displayName#</a></h4>
 							</td>
 							<td class="cart_description">
 								<p>SKU: #product.getSku()#</p>
