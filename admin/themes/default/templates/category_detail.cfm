@@ -279,8 +279,8 @@
 						<div class="form-group">
 							<label>Display Category List</label>
 							 <select class="form-control" name="display_category_list">
-								<option value="1" <cfif REQUEST.pageData.formData.display_category_list EQ TRUE>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.formData.display_category_list EQ FALSE>selected</cfif>>No</option>
+								<option value="1" <cfif IsBoolean(REQUEST.pageData.formData.display_category_list) AND REQUEST.pageData.formData.display_category_list EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif NOT (IsBoolean(REQUEST.pageData.formData.display_category_list) AND REQUEST.pageData.formData.display_category_list EQ TRUE)>selected</cfif>>No</option>
 							</select>
 						</div>
 					</div><!-- /.tab-pane -->
