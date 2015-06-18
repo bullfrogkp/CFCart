@@ -72,10 +72,9 @@ margin-bottom:10px;
 						<img src="#imageLink#" style="width:53px;float:left;border:1px solid ##ccc;margin-right:5px;">
 						<div id="shipping_methods_div" style="text-align:center;float:left;">
 							<select id="shipping-methods-#product.getProductId()#">
-								<cfloop from="1" to="#ArrayLen(productShippingMethodRelas)#" index="i">
-									<cfset s = productShippingMethodRelas[i] />
-									<option value="#s.getProductShippingMethodRelaId()#" data-imagesrc="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.getShippingMethod().getShippingCarrier().getImageName()#"
-										data-description="#DollarFormat(s.getPrice())#">Quantity: #item.count# &nbsp;&nbsp;#s.getShippingMethod().getShippingCarrier().getDisplayName()# - #s.getShippingMethod().getDisplayName()#</option>
+								<cfloop array="#item.shippingMethodArray#" index="s">
+									<option value="#s.productShippingMethodRelaId#" data-imagesrc="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.logo#"
+										data-description="#DollarFormat(s.price)#">Quantity: #item.count# &nbsp;&nbsp;#s.label#</option>
 								</cfloop>
 							</select>
 						</div>
