@@ -153,20 +153,25 @@
 		<cfargument name="customerGroupName" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
-		
+		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
+			
 		<cfif NOT IsNull(getWeight())>
-			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
 		
 			<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
 						
 			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
-			<cfset LOCAL.shippingComponent.setProductId(LOCAL.productId) />
+			<cfset LOCAL.shippingComponent.setProductId(getProductId()) />
 			
 			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
 		<cfelse>
-			<cfset LOCAL.shippingFee = getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
+			<cfset LOCAL.productShippingMethodRela = EntityLoad("product_shipping_method_rela",{product=this,shippingMethod=LOCAL.shippingMethod},true)/>
+			<cfif NOT IsNull(LOCAL.productShippingMethodRela) AND NOT IsNull(LOCAL.productShippingMethodRela.getDefaultPrice())>
+				<cfset LOCAL.shippingFee = LOCAL.productShippingMethodRela.getDefaultPrice() />
+			<cfelse>
+				<cfset LOCAL.shippingFee = 0 />
+			</cfif>
 		</cfif>
 		
 		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
