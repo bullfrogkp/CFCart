@@ -168,6 +168,43 @@
 		</cfloop>
 		
 		<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
+		
+		
+		
+		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
+			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
+			<cfif NOT IsNull(LOCAL.product.getParentProduct())>
+				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getParentProduct().getProductShippingMethodRelas() />
+			<cfelse>
+				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelas() />
+			</cfif>
+			
+			<cfset LOCAL.item.shippingMethodArray = [] />
+		
+			<cfloop array="#LOCAL.productShippingMethodRelas#" index="LOCAL.productShippingMethodRela">
+				<cfset LOCAL.shippingMethod = LOCAL.productShippingMethodRela.getShippingMethod() />
+				<cfset LOCAL.shippingMethodStruct = {} />
+				<cfset LOCAL.shippingMethodStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
+				<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
+				<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
+				<cfif NOT IsNull(LOCAL.product.getParentProduct())>
+					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getParentProduct().getShippingFee(	address = SESSION.order.shippingAddress
+																											, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
+																											,	customerGroupName = SESSION.user.customerGroupName) * LOCAL.item.count />
+				<cfelse>
+					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFee(	address = SESSION.order.shippingAddress
+																						, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
+																						,	customerGroupName = SESSION.user.customerGroupName) * LOCAL.item.count />
+				</cfif>
+				
+				<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getShippingCarrier().getDisplayName()# - #LOCAL.shippingMethod.getDisplayName()#" />
+			
+				<cfset ArrayAppend(LOCAL.item.shippingMethodArray, LOCAL.shippingMethodStruct) />
+			</cfloop>
+		</cfloop>
+		
+		
+		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
 		
 		<cfreturn LOCAL />	
