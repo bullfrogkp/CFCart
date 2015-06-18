@@ -238,7 +238,7 @@
 					if(groupArray[i].type == 'fixed')
 						$("##price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0).toFixed(2));
 					else if (groupArray[i].type == 'percentage')
-						$("##price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount)).toFixed(2));
+						$("##price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount/100)).toFixed(2));
 				}		
 			}
 		});
@@ -251,7 +251,7 @@
 					if(groupArray[i].type == 'fixed')
 						$("##special-price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0).toFixed(2));
 					else if (groupArray[i].type == 'percentage')
-						$("##special-price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount)).toFixed(2));
+						$("##special-price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount/100)).toFixed(2));
 				}		
 			}
 		});
@@ -581,9 +581,9 @@
 						</div>
 						
 						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getParentProduct())>
+							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getParentProduct()) AND NOT IsNull(REQUEST.pageData.product.getParentProduct().getAttributeSet())>
 								<cfset currentAttributeSet = REQUEST.pageData.product.getParentProduct().getAttributeSet() />
-							<cfelse>
+							<cfelseif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
 								<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSet() />
 							</cfif>
 							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>display:none;</cfif>">
@@ -605,7 +605,7 @@
 															</th>
 														</tr>
 														
-														<cfif NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()>
+														<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()>
 															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 															<cfif NOT IsNull(productAttributeRela)>
 																<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
@@ -643,6 +643,8 @@
 									</cfloop>
 								</div>
 								<cfif 	NOT IsNull(REQUEST.pageData.product) 
+										AND 
+										NOT IsNull(currentAttributeSet)
 										AND 
 										attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()
 										AND

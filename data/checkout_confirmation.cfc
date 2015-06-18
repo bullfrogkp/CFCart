@@ -200,7 +200,13 @@
 		
 		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="LOCAL.i">
 			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[LOCAL.i].productId) />
-			<cfset l_name = LOCAL.product.getDisplayName()>
+			
+			<cfif NOT IsNull(LOCAL.product.getParentProduct())>
+				<cfset l_name = LOCAL.product.getParentProduct().getDisplayName()>
+			<cfelse>
+				<cfset l_name = LOCAL.product.getDisplayName()>
+			</cfif>
+			
 			<cfset l_amt = SESSION.order.productArray[LOCAL.i].singlePrice>
 			<cfset l_qty = SESSION.order.productArray[LOCAL.i].count>
 			<cfset l_number = SESSION.order.productArray[LOCAL.i].productId>
@@ -368,11 +374,21 @@
 		
 		<cfloop array="#SESSION.order.productArray#" index="item">
 			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
+			
+			<cfif NOT IsNull(LOCAL.product.getParentProduct())>
+				<cfset LOCAL.taxCategoryName = LOCAL.product.getParentProduct().getTaxCategory().getDisplayName() />
+				<cfset LOCAL.displayName = LOCAL.product.getParentProduct().getDisplayName() />
+				<cfset LOCAL.imageName = LOCAL.product.getParentProduct().getDefaultImageLink(type='small') />
+			<cfelse>
+				<cfset LOCAL.taxCategoryName = LOCAL.product.getTaxCategory().getDisplayName() />
+				<cfset LOCAL.imageName = LOCAL.product.getDefaultImageLink(type='small') />
+			</cfif>
+			
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
 						
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setPrice(item.singlePrice) />
-			<cfset LOCAL.orderProduct.setTaxCategoryName(LOCAL.product.getTaxCategory().getDisplayName()) />
+			<cfset LOCAL.orderProduct.setTaxCategoryName(LOCAL.taxCategoryName) />
 			<cfset LOCAL.orderProduct.setSubtotalAmount(item.totalPrice) />
 			<cfset LOCAL.orderProduct.setTaxAmount(item.totalTax) />
 			<cfset LOCAL.orderProduct.setShippingAmount(item.totalShippingFee) />
@@ -383,9 +399,9 @@
 			</cfif>
 			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.productShippingMethodRela.getShippingMethod().getDisplayName()) />
 			<cfset LOCAL.orderProduct.setProduct(LOCAL.product) />
-			<cfset LOCAL.orderProduct.setProductName(LOCAL.product.getDisplayName()) />
+			<cfset LOCAL.orderProduct.setProductName(LOCAL.displayName) />
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
-			<cfset LOCAL.orderProduct.setImageName(product.getDefaultImageLink(type='small')) />
+			<cfset LOCAL.orderProduct.setImageName(LOCAL.imageName) />
 			
 			<cfset LOCAL.orderProductStatusType = EntityLoad("order_product_status_type",{name = "placed"},true) />
 			<cfset LOCAL.orderProductStatus = EntityNew("order_product_status") />
