@@ -581,7 +581,12 @@
 						</div>
 						
 						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() NEQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId())>display:none;</cfif>">
+							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getParentProduct())>
+								<cfset currentAttributeSet = REQUEST.pageData.product.getParentProduct().getAttributeSet() />
+							<cfelse>
+								<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSet() />
+							</cfif>
+							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>display:none;</cfif>">
 								<label>Attribute Option(s)</label>
 						
 								<div class="row" style="margin-top:10px;">
@@ -600,7 +605,7 @@
 															</th>
 														</tr>
 														
-														<cfif NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()>
+														<cfif NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()>
 															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 															<cfif NOT IsNull(productAttributeRela)>
 																<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
@@ -639,7 +644,7 @@
 								</div>
 								<cfif 	NOT IsNull(REQUEST.pageData.product) 
 										AND 
-										attributeSet.getAttributeSetId() EQ REQUEST.pageData.product.getAttributeSet().getAttributeSetId()
+										attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()
 										AND
 										NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
 									<div class="form-group">
