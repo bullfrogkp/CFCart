@@ -663,7 +663,7 @@
 																</tr>
 																
 																<cfloop array="#p.getProductAttributeRelas()#" index="productAttributeRela">
-																	<tr style="background-color:##f9f9f9;">
+																	<tr style="background-color:##f9f9f9;color:##3c8dbc;">
 																		<td>#LCase(productAttributeRela.getAttribute().getDisplayName())#</td>
 																		<td>#productAttributeRela.getAttributeValues()[1].getDisplayName()#</td>
 																		<td>
@@ -681,16 +681,25 @@
 																</cfloop>
 																<tr>
 																	<td>sku</td>
-																	<td colspan="2">#p.getSku()#</td>
+																	<td colspan="2">
+																		<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																	</td>
 																</tr>
 																<tr>
 																	<td>stock</td>
-																	<td colspan="2">#p.getStock()#</td>
+																	<td colspan="2">
+																		<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																	</td>
+																</tr>
+																<tr style="background-color:##f9f9f9;color:##3c8dbc;">
+																	<td colspan="3">price</td>
 																</tr>
 																<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
 																<tr>
-																	<td>price (#productCustomerGroupRela.getCustomerGroup().getDisplayName()#)</td>
-																	<td colspan="2">#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#</td>
+																	<td>#productCustomerGroupRela.getCustomerGroup().getDisplayName()#</td>
+																	<td colspan="2">
+																		<input name="price_#p.getProductId()#_#productCustomerGroupRela.getCustomerGroup().getCustomerGroupId()#" value="#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#" style="width:100%;" />
+																	</td>
 																</tr>
 																</cfloop>
 															</table>
