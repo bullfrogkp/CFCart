@@ -345,7 +345,7 @@
 					<cfif Trim(FORM["sku_#LOCAL.subProduct.getProductId()#"]) NEQ "">
 						<cfset LOCAL.subProduct.setSku(FORM["sku_#LOCAL.subProduct.getProductId()#"]) />
 					</cfif>
-					<cfloop array="#LOCAL.customerGroups()#" index="LOCAL.customerGroup">
+					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.customerGroup">
 						<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.subProduct,customerGroup=LOCAL.customerGroup},true) />
 						<cfif IsNumeric(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
 							<cfset LOCAL.productCustomerGroupRela.setPrice(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
