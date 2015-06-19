@@ -691,14 +691,33 @@
 																		<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 																	</td>
 																</tr>
-																<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
+																<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
+																	<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=p,customerGroup=customerGroup},true) />
 																	<tr style="background-color:##f9f9f9;color:##3c8dbc;">
-																		<td colspan="3">#productCustomerGroupRela.getCustomerGroup().getDisplayName()#</td>
+																		<td colspan="3">#customerGroup.getDisplayName()#</td>
 																	</tr>
 																	<tr>
 																		<td>price</td>
 																		<td colspan="2">
-																			<input name="price_#p.getProductId()#_#productCustomerGroupRela.getCustomerGroup().getCustomerGroupId()#" value="#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#" style="width:100%;" />
+																			<input name="price_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>special price</td>
+																		<td colspan="2">
+																			<input name="special_price_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>from</td>
+																		<td colspan="2">
+																			<input name="special_price_from_date_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" style="width:100%;" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>to</td>
+																		<td colspan="2">
+																			<input name="special_price_to_date_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" style="width:100%;" />
 																		</td>
 																	</tr>
 																</cfloop>

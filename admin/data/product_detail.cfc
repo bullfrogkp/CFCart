@@ -343,7 +343,7 @@
 					<cfset LOCAL.subProduct.setSku(FORM["sku_#LOCAL.subProduct.getProductId()#"]) />
 					<cfloop array="#LOCAL.customerGroups()#" index="LOCAL.customerGroup">
 						<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.subProduct,customerGroup=LOCAL.customerGroup},true) />
-						<cfset LOCAL.productCustomerGroupRela.set
+						<cfset LOCAL.productCustomerGroupRela.setPrice
 					</cfloop>
 				</cfloop>
 			</cfif>
