@@ -334,6 +334,19 @@
 					<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				</cfif>
 			</cfloop>
+			
+			
+			<!--- update sub product properties --->
+			<cfif IsNumeric(FORM.id)>
+				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
+					<cfset LOCAL.subProduct.setStock(FORM["stock_#LOCAL.subProduct.getProductId()#"]) />
+					<cfset LOCAL.subProduct.setSku(FORM["sku_#LOCAL.subProduct.getProductId()#"]) />
+					<cfloop array="#LOCAL.customerGroups()#" index="LOCAL.customerGroup">
+						<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.subProduct,customerGroup=LOCAL.customerGroup},true) />
+						<cfset LOCAL.productCustomerGroupRela.set
+					</cfloop>
+				</cfloop>
+			</cfif>
 										
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />

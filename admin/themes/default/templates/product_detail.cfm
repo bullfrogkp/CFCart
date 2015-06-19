@@ -691,16 +691,16 @@
 																		<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 																	</td>
 																</tr>
-																<tr style="background-color:##f9f9f9;color:##3c8dbc;">
-																	<td colspan="3">price</td>
-																</tr>
 																<cfloop array="#p.getProductCustomerGroupRelas()#" index="productCustomerGroupRela">
-																<tr>
-																	<td>#productCustomerGroupRela.getCustomerGroup().getDisplayName()#</td>
-																	<td colspan="2">
-																		<input name="price_#p.getProductId()#_#productCustomerGroupRela.getCustomerGroup().getCustomerGroupId()#" value="#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#" style="width:100%;" />
-																	</td>
-																</tr>
+																	<tr style="background-color:##f9f9f9;color:##3c8dbc;">
+																		<td colspan="3">#productCustomerGroupRela.getCustomerGroup().getDisplayName()#</td>
+																	</tr>
+																	<tr>
+																		<td>price</td>
+																		<td colspan="2">
+																			<input name="price_#p.getProductId()#_#productCustomerGroupRela.getCustomerGroup().getCustomerGroupId()#" value="#p.getPrice(customerGroupName = productCustomerGroupRela.getCustomerGroup().getName())#" style="width:100%;" />
+																		</td>
+																	</tr>
 																</cfloop>
 															</table>
 														</div><!-- /.box-body -->
