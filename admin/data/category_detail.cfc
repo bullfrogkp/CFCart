@@ -105,6 +105,10 @@
 						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
 					</cfif>
+					<cfif Trim(FORM["advertisement_link_#LOCAL.ad.getPageSectionAdvertisementId()#"]) NEQ "">
+						<cfset LOCAL.ad.setLink(FORM["advertisement_link_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.ad) />
+					</cfif>
 				</cfloop>
 			</cfif>
 		
@@ -299,6 +303,7 @@
 			<cfset LOCAL.pageData.bestSellerSection.setCategory(LOCAL.pageData.category)> 
 			
 			<cfset LOCAL.categoryService.setId(URL.id) />
+			<cfset LOCAL.categoryService.setRecordsPerPage(APPLICATION.recordsPerPage) />
 			<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
 				<cfset LOCAL.categoryService.setPageNumber(Trim(URL.page)) />
 			</cfif>

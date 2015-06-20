@@ -52,6 +52,7 @@
 			FROM product p
 			JOIN p.categories cat
 			WHERE cat.categoryId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			AND	p.isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="false" />
 		</cfquery>
 	
 		<cfreturn LOCAL.query />
