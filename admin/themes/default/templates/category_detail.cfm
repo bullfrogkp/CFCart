@@ -465,6 +465,9 @@
 										</table>
 									</div><!-- /.box-body -->
 									<div class="box-footer clearfix">
+										<cfset extraURLParams = {} />
+										<cfset extraURLParams.key = "active_tab_id" />
+										<cfset extraURLParams.value = "tab_6" />
 										<cfinclude template="pagination.cfm" />
 									</div>
 								</div><!-- /.box -->
