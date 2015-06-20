@@ -116,7 +116,7 @@
 		
 		<cfset LOCAL.currentQueryString = "" />
 		<cfloop collection="#URL#" item="LOCAL.key">
-			<cfif LOCAL.key NEQ "page">
+			<cfif LOCAL.key NEQ "page" AND LOCAL.key NEQ "active_tab_id">
 				<cfset LOCAL.currentQueryString &= LOCAL.key & "=" & URL["#LOCAL.key#"] & "&" />
 			</cfif>
 		</cfloop>
