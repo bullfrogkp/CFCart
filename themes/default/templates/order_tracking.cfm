@@ -4,7 +4,14 @@
 	<div class="breadcrumb-arrow-icon"></div>
 	<span style="vertical-align:middle">Order Tracking</span> 
 </div>
-<div id="login-wrapper">
+<div id="login-wrapper" style="width:400px;float:left;">
+	<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+		<span style="font-size:12px;color:red;">
+		<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+			#msg#<br/>
+		</cfloop>
+		</span>
+	</cfif>
 	<div id="login-form">
 		<form method="post">
 			<h2>Track your order</h2>
@@ -29,4 +36,5 @@
 	</div>
 	<div style="clear:both;"></div>
 </div>
+<cfinclude template="info_sidebar.cfm" />
 </cfoutput>

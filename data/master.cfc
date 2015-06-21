@@ -46,6 +46,18 @@
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
+	<cffunction name="_setTempMessage" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.message = {} />
+	
+		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
+			<cfset LOCAL.message.messageArray = SESSION.temp.message.messageArray />
+			<cfset LOCAL.message.messageType = SESSION.temp.message.messageType />
+		</cfif>
+		
+		<cfreturn LOCAL.message /> 
+	</cffunction>
+	
 	<cffunction name="_getPaginationInfo" access="private" output="false" returnType="struct">
 		<cfargument name="recordStruct" type="struct" required="true"> 
 		<cfargument name="currentPage" type="numeric" required="true"> 

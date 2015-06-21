@@ -7,6 +7,8 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
+		<cfset LOCAL.pageData.message = _setTempMessage() />
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
