@@ -10,14 +10,12 @@
 	<div style="margin-top:20px;">
 		<p><strong>Tracking Number:</strong> #REQUEST.pageData.order.getOrderTrackingNumber()#</p>
 		<p><strong>Phone:</strong> #REQUEST.pageData.order.getPhone()#</p>
-		<p><strong>Billing Address:</strong></p>
-		<p><strong>#REQUEST.pageData.order.getBillingFirstName()# #REQUEST.pageData.order.getBillingMiddleName()# #REQUEST.pageData.order.getBillingLastName()#</strong></p>
+		<p><strong>Billing Address:</strong> <strong>#REQUEST.pageData.order.getBillingFirstName()# #REQUEST.pageData.order.getBillingMiddleName()# #REQUEST.pageData.order.getBillingLastName()#</strong></p>
 		<p>
 			#REQUEST.pageData.order.getBillingUnit()# #REQUEST.pageData.order.getBillingStreet()#, #REQUEST.pageData.order.getBillingCity()#, #REQUEST.pageData.order.getBillingProvince().getDisplayName()#<br/> 
 			#REQUEST.pageData.order.getBillingPostalCode()#, #REQUEST.pageData.order.getBillingCountry().getDisplayName()#
 		</p>
-		<p><strong>Shipping Address:</strong></p>
-		<p><strong> #REQUEST.pageData.order.getShippingFirstName()# #REQUEST.pageData.order.getShippingMiddleName()# #REQUEST.pageData.order.getShippingLastName()#</strong></p>
+		<p><strong>Shipping Address:</strong> <strong> #REQUEST.pageData.order.getShippingFirstName()# #REQUEST.pageData.order.getShippingMiddleName()# #REQUEST.pageData.order.getShippingLastName()#</strong></p>
 		<p>
 			#REQUEST.pageData.order.getShippingUnit()# #REQUEST.pageData.order.getShippingStreet()#, #REQUEST.pageData.order.getShippingCity()#, #REQUEST.pageData.order.getShippingProvince().getDisplayName()#<br/> 
 			#REQUEST.pageData.order.getShippingPostalCode()#, #REQUEST.pageData.order.getShippingCountry().getDisplayName()#
