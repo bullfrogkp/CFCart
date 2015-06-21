@@ -1,4 +1,15 @@
 ﻿<cfcomponent extends="master">	
+	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfif IsNull(SESSION.temp.orderId)>
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#order_tracking.cfm" />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
@@ -7,7 +18,7 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.order = EntityLoad("order",{orderTrackingNumber = Trim(FORM.order_number), email = Trim(FORM.email)},true) />
+		<cfset LOCAL.pageData.order = EntityLoadByPK("order",SESSION.temp.orderId) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
