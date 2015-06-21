@@ -26,6 +26,18 @@
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="getIsEnabledMV" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getIsEnabled() />
+		<cfelse>
+			<cfset retValue = getIsEnabled() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTitleMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
