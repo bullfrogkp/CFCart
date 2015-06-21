@@ -3,7 +3,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.title = "Order Tracking | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.title = "Order Tracking Detail | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
