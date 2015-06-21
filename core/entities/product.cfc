@@ -285,9 +285,9 @@
 		<cfargument name="type" type="string" required="false" default="" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset var imageLink = getParentProduct().getDefaultImageLink() />
+			<cfset var imageLink = getParentProduct().getDefaultImageLink(argumentCollection = ARGUMENTS) />
 		<cfelse>
-			<cfset var imageLink = getDefaultImageLink() />
+			<cfset var imageLink = getDefaultImageLink(argumentCollection = ARGUMENTS) />
 		</cfif>
 		
 		<cfreturn imageLink />
