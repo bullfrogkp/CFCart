@@ -26,6 +26,30 @@
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="getNameMV" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getName() />
+		<cfelse>
+			<cfset retValue = getName() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getDisplayNameMV" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getDisplayName() />
+		<cfelse>
+			<cfset retValue = getDisplayName() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="getIsEnabledMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		

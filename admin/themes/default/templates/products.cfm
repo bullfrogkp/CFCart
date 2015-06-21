@@ -100,10 +100,10 @@
 							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
 							<tr>
 								<td>#product.getProductId()#</td>
-								<td>#product.getDisplayName()#</td>
+								<td>#product.getDisplayNameMV()#</td>
 								<td>#product.getSku()#</td>
 								<td>
-									<cfswitch expression="#product.getIsEnabled()#">
+									<cfswitch expression="#product.getIsEnabledMV()#">
 										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
 										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
 									</cfswitch>
