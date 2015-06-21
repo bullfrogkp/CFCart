@@ -201,11 +201,7 @@
 		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="LOCAL.i">
 			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[LOCAL.i].productId) />
 			
-			<cfif NOT IsNull(LOCAL.product.getParentProduct())>
-				<cfset l_name = LOCAL.product.getParentProduct().getDisplayName()>
-			<cfelse>
-				<cfset l_name = LOCAL.product.getDisplayName()>
-			</cfif>
+			<cfset l_name = LOCAL.product.getDisplayNameMV()>
 			
 			<cfset l_amt = SESSION.order.productArray[LOCAL.i].singlePrice>
 			<cfset l_qty = SESSION.order.productArray[LOCAL.i].count>
@@ -375,14 +371,9 @@
 		<cfloop array="#SESSION.order.productArray#" index="item">
 			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
 			
-			<cfif NOT IsNull(LOCAL.product.getParentProduct())>
-				<cfset LOCAL.taxCategoryName = LOCAL.product.getParentProduct().getTaxCategory().getDisplayName() />
-				<cfset LOCAL.displayName = LOCAL.product.getParentProduct().getDisplayName() />
-				<cfset LOCAL.imageName = LOCAL.product.getParentProduct().getDefaultImageLink(type='small') />
-			<cfelse>
-				<cfset LOCAL.taxCategoryName = LOCAL.product.getTaxCategory().getDisplayName() />
-				<cfset LOCAL.imageName = LOCAL.product.getDefaultImageLink(type='small') />
-			</cfif>
+			<cfset LOCAL.taxCategoryName = LOCAL.product.getTaxCategoryMV().getDisplayName() />
+			<cfset LOCAL.displayName = LOCAL.product.getDisplayNameMV() />
+			<cfset LOCAL.imageName = LOCAL.product.getDefaultImageLinkMV(type='small') />
 			
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
 						
