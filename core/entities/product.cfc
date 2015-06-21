@@ -27,231 +27,193 @@
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDescriptionMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getDescription() />
+			<cfreturn getParentProduct().getDescription() />
 		<cfelse>
-			<cfset retValue = getDescription() />
+			<cfreturn getDescription() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getNameMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getName() />
+			<cfreturn getParentProduct().getName() />
 		<cfelse>
-			<cfset retValue = getName() />
+			<cfreturn getName() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDisplayNameMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getDisplayName() />
+			<cfreturn getParentProduct().getDisplayName() />
 		<cfelse>
-			<cfset retValue = getDisplayName() />
+			<cfreturn getDisplayName() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getIsEnabledMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getIsEnabled() />
+			<cfreturn getParentProduct().getIsEnabled() />
 		<cfelse>
-			<cfset retValue = getIsEnabled() />
+			<cfreturn getIsEnabled() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTitleMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getTitle() />
+			<cfreturn getParentProduct().getTitle() />
 		<cfelse>
-			<cfset retValue = getTitle() />
+			<cfreturn getTitle() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getKeywordsMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getKeywords() />
+			<cfreturn getParentProduct().getKeywords() />
 		<cfelse>
-			<cfset retValue = getKeywords() />
+			<cfreturn getKeywords() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getDetail() />
+			<cfreturn getParentProduct().getDetail() />
 		<cfelse>
-			<cfset retValue = getDetail() />
+			<cfreturn getDetail() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getLengthMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getLength() />
+			<cfreturn getParentProduct().getLength() />
 		<cfelse>
-			<cfset retValue = getLength() />
+			<cfreturn getLength() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getWidthMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getWidth() />
+			<cfreturn getParentProduct().getWidth() />
 		<cfelse>
-			<cfset retValue = getWidth() />
+			<cfreturn getWidth() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getHeightMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getHeight() />
+			<cfreturn getParentProduct().getHeight() />
 		<cfelse>
-			<cfset retValue = getHeight() />
+			<cfreturn getHeight() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getWeightMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getWeight() />
+			<cfreturn getParentProduct().getWeight() />
 		<cfelse>
-			<cfset retValue = getWeight() />
+			<cfreturn getWeight() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getAttributeSetMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getAttributeSet() />
+			<cfreturn getParentProduct().getAttributeSet() />
 		<cfelse>
-			<cfset retValue = getAttributeSet() />
+			<cfreturn getAttributeSet() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTaxCategoryMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getTaxCategory() />
+			<cfreturn getParentProduct().getTaxCategory() />
 		<cfelse>
-			<cfset retValue = getTaxCategory() />
+			<cfreturn getTaxCategory() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getProductVideosMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getProductVideos() />
+			<cfreturn getParentProduct().getProductVideos() />
 		<cfelse>
-			<cfset retValue = getProductVideos() />
+			<cfreturn getProductVideos() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getReviewsMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getReviews() />
+			<cfreturn getParentProduct().getReviews() />
 		<cfelse>
-			<cfset retValue = getReviews() />
+			<cfreturn getReviews() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getImagesMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getImages() />
+			<cfreturn getParentProduct().getImages() />
 		<cfelse>
-			<cfset retValue = getImages() />
+			<cfreturn getImages() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getProductShippingMethodRelasMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getProductShippingMethodRelas() />
+			<cfreturn getParentProduct().getProductShippingMethodRelas() />
 		<cfelse>
-			<cfset retValue = getProductShippingMethodRelas() />
+			<cfreturn getProductShippingMethodRelas() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getCategoriesMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getCategories() />
+			<cfreturn getParentProduct().getCategories() />
 		<cfelse>
-			<cfset retValue = getCategories() />
+			<cfreturn getCategories() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getRelatedProductsMV" access="public" output="false" returnType="any">
-		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset retValue = getParentProduct().getRelatedProducts() />
+			<cfreturn getParentProduct().getRelatedProducts() />
 		<cfelse>
-			<cfset retValue = getRelatedProducts() />
+			<cfreturn getRelatedProducts() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeAllCategories" access="public" output="false" returnType="void">
@@ -363,7 +325,6 @@
 			<cfset var retValue = isFreeShipping() />
 		</cfif>
 		
-		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="isFreeShipping" access="public" output="false" returnType="boolean">
