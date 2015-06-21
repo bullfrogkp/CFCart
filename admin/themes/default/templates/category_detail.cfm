@@ -283,6 +283,13 @@
 								<option value="0" <cfif NOT (IsBoolean(REQUEST.pageData.formData.display_category_list) AND REQUEST.pageData.formData.display_category_list EQ TRUE)>selected</cfif>>No</option>
 							</select>
 						</div>
+						<div class="form-group">
+							<label>Special Category</label>
+							 <select class="form-control" name="is_special">
+								<option value="1" <cfif IsBoolean(REQUEST.pageData.formData.is_special) AND REQUEST.pageData.formData.is_special EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif NOT (IsBoolean(REQUEST.pageData.formData.is_special) AND REQUEST.pageData.formData.is_special EQ TRUE)>selected</cfif>>No</option>
+							</select>
+						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">

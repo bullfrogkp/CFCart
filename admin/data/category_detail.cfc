@@ -61,6 +61,7 @@
 			<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
 			<cfset LOCAL.category.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.category.setDisplayCategoryList(FORM.display_category_list) />
+			<cfset LOCAL.category.setIsSpecial(FORM.is_special) />
 			<cfset LOCAL.category.setDisplayCustomDesign(FORM.display_custom_design) />
 			<cfset LOCAL.category.setDisplayFilter(FORM.display_filter) />
 			<cfset LOCAL.category.setShowCategoryOnNavigation(FORM.show_category_on_navigation) />
@@ -318,6 +319,7 @@
 				<cfset LOCAL.pageData.formData.rank = isNull(LOCAL.pageData.category.getRank())?"":LOCAL.pageData.category.getRank() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.category.getIsEnabled())?"":LOCAL.pageData.category.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.display_category_list = isNull(LOCAL.pageData.category.getDisplayCategoryList())?"":LOCAL.pageData.category.getDisplayCategoryList() />
+				<cfset LOCAL.pageData.formData.is_special = isNull(LOCAL.pageData.category.getIsSpecial())?"":LOCAL.pageData.category.getIsSpecial() />
 				<cfset LOCAL.pageData.formData.display_custom_design = isNull(LOCAL.pageData.category.getDisplayCustomDesign())?"":LOCAL.pageData.category.getDisplayCustomDesign() />
 				<cfset LOCAL.pageData.formData.display_filter = isNull(LOCAL.pageData.category.getDisplayFilter())?"":LOCAL.pageData.category.getDisplayFilter() />
 				<cfset LOCAL.pageData.formData.show_category_on_navigation = isNull(LOCAL.pageData.category.getShowCategoryOnNavigation())?"":LOCAL.pageData.category.getShowCategoryOnNavigation() />
@@ -340,6 +342,7 @@
 				<cfset LOCAL.pageData.formData.rank = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.display_category_list = "" />
+				<cfset LOCAL.pageData.formData.is_special = "" />
 				<cfset LOCAL.pageData.formData.display_custom_design = "" />
 				<cfset LOCAL.pageData.formData.display_filter = "" />
 				<cfset LOCAL.pageData.formData.show_category_on_navigation = "" />
