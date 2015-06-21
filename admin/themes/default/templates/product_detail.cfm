@@ -374,6 +374,11 @@
 							</select>
 						</div>
 						<div class="form-group">
+							<cfloop array="#REQUEST.pageData.specialCategories#" index="spCategory">
+							<input type="checkbox" class="form-control" />&nbsp;&nbsp;Top Selling#RepeatString("&nbsp;",11)#
+							</cfloop>
+						</div>
+						<div class="form-group">
 							<label>SKU</label>
 							<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
 						</div>

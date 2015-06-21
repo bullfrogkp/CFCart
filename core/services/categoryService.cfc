@@ -60,6 +60,7 @@
 	
 	<cffunction name="getCategoryTree" access="public" returntype="array">
 		<cfargument name="isEnabled" type="boolean" required="false" default="true" />
+		<cfargument name="isSpecial" type="boolean" required="false" />
 		<cfargument name="showCategoryOnNavigation" type="boolean" required="false" default="true" />
 		<cfargument name="orderBy" type="string" required="false" default="displayName ASC" />
 		<cfargument name="parentCategoryId" type="numeric" required="false" />
@@ -68,9 +69,17 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif IsNull(ARGUMENTS.parentCategoryId)>
-			<cfset LOCAL.categories = EntityLoad("category", {parentCategory=JavaCast("NULL",""), isEnabled = ARGUMENTS.isEnabled, isDeleted = false, showCategoryOnNavigation = ARGUMENTS.showCategoryOnNavigation, isSpecial = false}, ARGUMENTS.orderBy) />
+			<cfif IsNull(ARGUMENTS.isSpecial)>
+				<cfset LOCAL.categories = EntityLoad("category", {parentCategory=JavaCast("NULL",""), isEnabled = ARGUMENTS.isEnabled, isDeleted = false, showCategoryOnNavigation = ARGUMENTS.showCategoryOnNavigation}, ARGUMENTS.orderBy) />
+			<cfelse>
+				<cfset LOCAL.categories = EntityLoad("category", {parentCategory=JavaCast("NULL",""), isEnabled = ARGUMENTS.isEnabled, isDeleted = false, showCategoryOnNavigation = ARGUMENTS.showCategoryOnNavigation, isSpecial = ARGUMENTS.isSpecial}, ARGUMENTS.orderBy) />
+			</cfif>
 		<cfelse>
-			<cfset LOCAL.categories = EntityLoad("category", {parentCategory=EntityLoadByPK("category",ARGUMENTS.parentCategoryId), isEnabled = ARGUMENTS.isEnabled, isDeleted = false, showCategoryOnNavigation = ARGUMENTS.showCategoryOnNavigation, isSpecial = false}, ARGUMENTS.orderBy) />
+			<cfif IsNull(ARGUMENTS.isSpecial)>
+				<cfset LOCAL.categories = EntityLoad("category", {parentCategory=EntityLoadByPK("category",ARGUMENTS.parentCategoryId), isEnabled = ARGUMENTS.isEnabled, isDeleted = false, showCategoryOnNavigation = ARGUMENTS.showCategoryOnNavigation}, ARGUMENTS.orderBy) />
+			<cfelse>
+				<cfset LOCAL.categories = EntityLoad("category", {parentCategory=EntityLoadByPK("category",ARGUMENTS.parentCategoryId), isEnabled = ARGUMENTS.isEnabled, isDeleted = false, showCategoryOnNavigation = ARGUMENTS.showCategoryOnNavigation, isSpecial = ARGUMENTS.isSpecial}, ARGUMENTS.orderBy) />
+			</cfif>	
 		</cfif>
 		
 		<cfloop array="#LOCAL.categories#" index="LOCAL.c">

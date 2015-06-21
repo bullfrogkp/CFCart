@@ -39,7 +39,7 @@
 		</cfloop>
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
-		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(isSpecial=false) />
 				
 		<cfreturn LOCAL.pageData />
 	</cffunction>
