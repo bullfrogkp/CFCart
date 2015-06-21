@@ -48,6 +48,7 @@
 			<cfset LOCAL.tab_id = FORM.tab_id />
 		<cfelse>
 			<cfset LOCAL.product = EntityNew("product") />
+			<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="simple"},true)) />
 			<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.product.setCreatedDatetime(Now()) />
 			<cfset LOCAL.product.setIsDeleted(false) />
@@ -562,6 +563,7 @@
 		<cfset LOCAL.parentProduct = EntityLoadByPK("product",ARGUMENTS.parentProductId)>
 		<cfset LOCAL.newProduct = EntityNew("product")>
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
+		<cfset LOCAL.newProduct.setProductType(EntityLoad("product_type",{name="configured_product"},true)) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 		
