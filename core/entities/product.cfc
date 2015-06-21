@@ -26,7 +26,7 @@
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getTitleMV" access="public" output="false" returnType="string">
+	<cffunction name="getTitleMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -38,7 +38,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getKeywordsMV" access="public" output="false" returnType="string">
+	<cffunction name="getKeywordsMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -50,7 +50,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDetailMV" access="public" output="false" returnType="string">
+	<cffunction name="getDetailMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -62,7 +62,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getLengthMV" access="public" output="false" returnType="string">
+	<cffunction name="getLengthMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -74,7 +74,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getWidthMV" access="public" output="false" returnType="string">
+	<cffunction name="getWidthMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -86,7 +86,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getHeightMV" access="public" output="false" returnType="string">
+	<cffunction name="getHeightMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -98,7 +98,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getWeightMV" access="public" output="false" returnType="string">
+	<cffunction name="getWeightMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -134,7 +134,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getProductVideosMV" access="public" output="false" returnType="array">
+	<cffunction name="getProductVideosMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -146,7 +146,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getReviewsMV" access="public" output="false" returnType="array">
+	<cffunction name="getReviewsMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -158,7 +158,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getImagesMV" access="public" output="false" returnType="array">
+	<cffunction name="getImagesMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -170,7 +170,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getProductShippingMethodRelasMV" access="public" output="false" returnType="array">
+	<cffunction name="getProductShippingMethodRelasMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -182,7 +182,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getCategoriesMV" access="public" output="false" returnType="array">
+	<cffunction name="getCategoriesMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -194,7 +194,7 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getRelatedProductsMV" access="public" output="false" returnType="array">
+	<cffunction name="getRelatedProductsMV" access="public" output="false" returnType="any">
 		<cfset var retValue = "" />
 		
 		<cfif getProductType().getName() EQ "configured_product">
@@ -230,7 +230,7 @@
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getPrice" access="public" output="false" returnType="string">
+	<cffunction name="getPrice" access="public" output="false" returnType="numeric">
 		<cfargument name="customerGroupName" type="string" required="true">
 		
 		<cfset var customerGroup = EntityLoad("customer_group",{name = ARGUMENTS.customerGroupName},true) />
@@ -375,37 +375,48 @@
 		<cfreturn LOCAL.retValue />
     </cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getTaxRateMV" access="public" output="false" returnType="string">
+	<cffunction name="getTaxRateMV" access="public" output="false" returnType="numeric">
 		<cfargument name="provinceId" type="numeric" required="true" />
 		
-		<cfset var taxCategory = "" />
-		<cfif NOT IsNull(getParentProduct())>
-			<cfset taxCategory = getParentProduct().getTaxCategory() />
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset var taxRate = getParentProduct().getTaxRate(argumentCollection = ARGUMENTS) />
 		<cfelse>
-			<cfset taxCategory = getTaxCategory() />
+			<cfset var taxRate = getTaxRate(argumentCollection = ARGUMENTS) />
 		</cfif>
 		
-		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=taxCategory},true) />
+		<cfreturn taxRate />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTaxRate" access="public" output="false" returnType="numeric">
+		<cfargument name="provinceId" type="numeric" required="true" />
+		
+		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=getTaxCategory()},true) />
 		
 		<cfreturn tax.getRate() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getShippingFeeMV" access="public" output="false" returnType="string">
+	<cffunction name="getShippingFeeMV" access="public" output="false" returnType="numeric">
+		<cfargument name="address" type="struct" required="true" />
+		<cfargument name="shippingMethodId" type="numeric" required="true" />
+		<cfargument name="customerGroupName" type="string" required="true" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset var shippingFee = getParentProduct().getShippingFee(argumentCollection = ARGUMENTS) />
+		<cfelse>
+			<cfset var shippingFee = getShippingFee(argumentCollection = ARGUMENTS) />
+		</cfif>
+		
+		<cfreturn shippingFee />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getShippingFee" access="public" output="false" returnType="numeric">
 		<cfargument name="address" type="struct" required="true" />
 		<cfargument name="shippingMethodId" type="numeric" required="true" />
 		<cfargument name="customerGroupName" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
 		
-		<cfif NOT IsNull(getParentProduct())>
-			<cfset LOCAL.weight = getParentProduct().getWeight() />
-			<cfset LOCAL.productId = getParentProduct().getProductId() />
-		<cfelse>
-			<cfset LOCAL.weight = getWeight() />
-			<cfset LOCAL.productId = getProductId() />
-		</cfif>
-		
-		<cfif NOT IsNull(LOCAL.weight)>
+		<cfif NOT IsNull(getWeight())>
 			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
 		
@@ -413,7 +424,7 @@
 						
 			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
 			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
-			<cfset LOCAL.shippingComponent.setProductId(LOCAL.productId) />
+			<cfset LOCAL.shippingComponent.setProductId(getProductId()) />
 			
 			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
 		<cfelse>
@@ -422,4 +433,5 @@
 		
 		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
 	</cffunction>
+	<!------------------------------------------------------------------------------->
 </cfcomponent>
