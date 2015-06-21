@@ -23,35 +23,22 @@
 				#REQUEST.pageData.order.getShippingCountry().getDisplayName()#
 			</p>
 			<div class="myaccount-table" >
-			<table class="wp-list-table widefat fixed bookmarks" cellspacing="0">
+				<table class="wp-list-table widefat fixed bookmarks" cellspacing="0">
 					<tr>
 						<td scope="col" id="categories" class="manage-column column-categories">Status</th>
 						<td scope="col" id="categories" class="manage-column column-categories">Create Datetime</th>
 						<td scope="col" id="categories" class="manage-column column-categories">End Datetime</th>
 						<td scope="col" id="categories" class="manage-column column-categories">Comment</th>
 					</tr>
-					<tr id="link-1" valign="middle" class="alternate">
-						<td class="column-categories">Order Placed</td>
-						<td class="column-categories">2014 Dec 27 02:15:27</td>
-						<td class="column-categories">2014 Dec 27 02:15:27</td>
-						<td class="column-categories"></td>
-					</tr>
-				
-					<tr id="link-1" valign="middle" class="alternate">
-						<td class="column-categories">Pending Shipment</td>
-						<td class="column-categories">2014 Dec 27 02:15:27</td>
-						<td class="column-categories">2015 Jan 02 08:25:02</td>
-						<td class="column-categories"></td>
-					</tr>
-				
-					<tr id="link-1" valign="middle" class="alternate">
-						<td class="column-categories">Shipped</td>
-						<td class="column-categories">2015 Jan 02 08:25:02</td>
-						<td class="column-categories"> </td>
-						<td class="column-categories"></td>
-					</tr>
-				
-			</table>
+					<cfloop array="#REQUEST.pageData.order.getOrderStatus()#" index="status">
+						<tr id="link-1" valign="middle" class="alternate">
+							<td class="column-categories">#status.getOrderStatusType().getDisplayName()#</td>
+							<td class="column-categories">#DateFormat(status.getStartDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getStartDatetime(),"hh:mm:ss")#</td>
+							<td class="column-categories">#DateFormat(status.getEndDatetime(),"mmm dd, yyyy")# #TimeFormat(status.getEndDatetime(),"hh:mm:ss")#</td>
+							<td class="column-categories">#status.getComments()#</td>
+						</tr>
+					</cfloop>
+				</table>
 			</div>
 			
 			<div style="clear:both;"></div>
