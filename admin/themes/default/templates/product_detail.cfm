@@ -917,10 +917,12 @@
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
-			<div class="form-group">
-				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
-				<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>
-			</div>
+			<cfif REQUEST.pageData.product.getProductType().getName() EQ "simple">
+				<div class="form-group">
+					<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
+					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>
+				</div>
+			</cfif>
 		</div><!-- /.col -->
 		
 	</div>   <!-- /.row -->
