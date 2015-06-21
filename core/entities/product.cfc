@@ -24,7 +24,187 @@
 	<cfproperty name="relatedProducts" fieldtype="many-to-many" cfc="product" linktable="related_product_rela" fkcolumn="product_id" inversejoincolumn="related_parent_product_id" singularname="relatedProduct">
 	<cfproperty name="relatedParentProducts" fieldtype="many-to-many" cfc="product" linktable="related_product_rela" fkcolumn="related_parent_product_id" inversejoincolumn="product_id" singularname="relatedParentProduct">
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
+	
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTitleMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
 		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getTitle() />
+		<cfelse>
+			<cfset retValue = getTitle() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getKeywordsMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getKeywords() />
+		<cfelse>
+			<cfset retValue = getKeywords() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getDetailMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getDetail() />
+		<cfelse>
+			<cfset retValue = getDetail() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getLengthMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getLength() />
+		<cfelse>
+			<cfset retValue = getLength() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getWidthMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getWidth() />
+		<cfelse>
+			<cfset retValue = getWidth() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getHeightMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getHeight() />
+		<cfelse>
+			<cfset retValue = getHeight() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getWeightMV" access="public" output="false" returnType="string">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getWeight() />
+		<cfelse>
+			<cfset retValue = getWeight() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getAttributeSetMV" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getAttributeSet() />
+		<cfelse>
+			<cfset retValue = getAttributeSet() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTaxCategoryMV" access="public" output="false" returnType="any">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getTaxCategory() />
+		<cfelse>
+			<cfset retValue = getTaxCategory() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getProductVideosMV" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getProductVideos() />
+		<cfelse>
+			<cfset retValue = getProductVideos() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getReviewsMV" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getReviews() />
+		<cfelse>
+			<cfset retValue = getReviews() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getImagesMV" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getImages() />
+		<cfelse>
+			<cfset retValue = getImages() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getProductShippingMethodRelasMV" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getProductShippingMethodRelas() />
+		<cfelse>
+			<cfset retValue = getProductShippingMethodRelas() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getCategoriesMV" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getCategories() />
+		<cfelse>
+			<cfset retValue = getCategories() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getRelatedProductsMV" access="public" output="false" returnType="array">
+		<cfset var retValue = "" />
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset retValue = getParentProduct().getRelatedProducts() />
+		<cfelse>
+			<cfset retValue = getRelatedProducts() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeAllCategories" access="public" output="false" returnType="void">
 		<cfif NOT IsNull(getCategories())>
@@ -91,9 +271,21 @@
 		<cfreturn NumberFormat(price,"0.00") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDefaultImageLink" access="public" output="false" returnType="string">
+	<cffunction name="getDefaultImageLinkMV" access="public" output="false" returnType="string">
 		<cfargument name="type" type="string" required="false" default="" />
 		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset var imageLink = getParentProduct().getDefaultImageLink() />
+		<cfelse>
+			<cfset var imageLink = getDefaultImageLink() />
+		</cfif>
+		
+		<cfreturn imageLink />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getDefaultImageLink" access="public" output="false" returnType="string">
+		<cfargument name="type" type="string" required="false" default="" />
+	
 		<cfset var imageType = "" />
 		<cfif Trim(ARGUMENTS.type) NEQ "">
 			<cfset imageType = "#Trim(ARGUMENTS.type)#_" />
@@ -115,6 +307,17 @@
 		<cfreturn imageLink />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="isFreeShippingMV" access="public" output="false" returnType="boolean">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset var retValue = getParentProduct().isFreeShipping() />
+		<cfelse>
+			<cfset var retValue = isFreeShipping() />
+		</cfif>
+		
+		<cfreturn retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="isFreeShipping" access="public" output="false" returnType="boolean">
 		<cfset var LOCAL = {} />
 		<cfset var retValue = false />
@@ -123,7 +326,7 @@
 			SELECT	1
 			FROM	product_shipping_method_rela psmr
 			JOIN	shipping_method sm ON psmr.shipping_method_id = sm.shipping_method_id
-			WHERE	sm.name = 'chinapost'
+			WHERE	sm.name = 'free shipping'
 			AND		psmr.product_id = #getProductId()#
 		</cfquery>
 		
@@ -134,48 +337,19 @@
 		<cfreturn retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
-		<cfset var pageUrl = "" />
-		<cfset pageUrl = "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
+	<cffunction name="getDetailPageURLMV" access="public" output="false" returnType="string">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset var pageUrl = getParentProduct().getDetailPageURL() />
+		<cfelse>
+			<cfset var pageUrl = getDetailPageURL() />
+		</cfif>
+		
 		<cfreturn pageUrl />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getTaxRate" access="public" output="false" returnType="string">
-		<cfargument name="provinceId" type="numeric" required="true" />
-				
-		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=getTaxCategory()},true) />
-		
-		<cfreturn tax.getRate() />
-	</cffunction>
-	<!------------------------------------------------------------------------------->	
-	<cffunction name="getShippingFee" access="public" output="false" returnType="numeric">
-		<cfargument name="address" type="struct" required="true" />
-		<cfargument name="shippingMethodId" type="numeric" required="true" />
-		<cfargument name="customerGroupName" type="string" required="true" />
-		
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
-			
-		<cfif NOT IsNull(getWeight())>
-			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
-		
-			<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
-						
-			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
-			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
-			<cfset LOCAL.shippingComponent.setProductId(getProductId()) />
-			
-			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
-		<cfelse>
-			<cfset LOCAL.productShippingMethodRela = EntityLoad("product_shipping_method_rela",{product=this,shippingMethod=LOCAL.shippingMethod},true)/>
-			<cfif NOT IsNull(LOCAL.productShippingMethodRela) AND NOT IsNull(LOCAL.productShippingMethodRela.getDefaultPrice())>
-				<cfset LOCAL.shippingFee = LOCAL.productShippingMethodRela.getDefaultPrice() />
-			<cfelse>
-				<cfset LOCAL.shippingFee = 0 />
-			</cfif>
-		</cfif>
-		
-		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
+	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
+		<cfreturn "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">
@@ -199,6 +373,53 @@
 		</cfif>
 		
 		<cfreturn LOCAL.retValue />
-		<!------------------------------------------------------------------------------->	
     </cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTaxRateMV" access="public" output="false" returnType="string">
+		<cfargument name="provinceId" type="numeric" required="true" />
+		
+		<cfset var taxCategory = "" />
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset taxCategory = getParentProduct().getTaxCategory() />
+		<cfelse>
+			<cfset taxCategory = getTaxCategory() />
+		</cfif>
+		
+		<cfset var tax = EntityLoad("tax",{province=EntityLoadByPK("province",ARGUMENTS.provinceId), taxCategory=taxCategory},true) />
+		
+		<cfreturn tax.getRate() />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getShippingFeeMV" access="public" output="false" returnType="string">
+		<cfargument name="address" type="struct" required="true" />
+		<cfargument name="shippingMethodId" type="numeric" required="true" />
+		<cfargument name="customerGroupName" type="string" required="true" />
+		
+		<cfset var LOCAL = {} />
+		
+		<cfif NOT IsNull(getParentProduct())>
+			<cfset LOCAL.weight = getParentProduct().getWeight() />
+			<cfset LOCAL.productId = getParentProduct().getProductId() />
+		<cfelse>
+			<cfset LOCAL.weight = getWeight() />
+			<cfset LOCAL.productId = getProductId() />
+		</cfif>
+		
+		<cfif NOT IsNull(LOCAL.weight)>
+			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
+			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
+		
+			<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.componentName#"() />
+						
+			<cfset LOCAL.shippingComponent.setShippingMethodId(ARGUMENTS.shippingMethodId) />
+			<cfset LOCAL.shippingComponent.setAddress(ARGUMENTS.address) />
+			<cfset LOCAL.shippingComponent.setProductId(LOCAL.productId) />
+			
+			<cfset LOCAL.shippingFee = LOCAL.shippingComponent.getShippingFee() />
+		<cfelse>
+			<cfset LOCAL.shippingFee = getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
+		</cfif>
+		
+		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
+	</cffunction>
 </cfcomponent>
