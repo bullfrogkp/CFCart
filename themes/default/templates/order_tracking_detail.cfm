@@ -8,12 +8,20 @@
 		<div class="info-detail">
 		<h2>Order Detail</h2>
 		<div style="margin-top:20px;">
-			<p><strong>Tracking Number: OR20141227227</strong></p>
-			<p><strong>Address</strong></p>
-			<p>Billing Address: 403-327-2809</p>
-			<p>Michelle samek, 9 York Place W Lethbridge, Alberta, T1k 3W4, Canada </p>
-			<p>Shipping Address: 403-327-2809</p>
-			<p>Michelle Samek, ##13 495 W.T. Hill Blvd. S. Lethbridge, Alberta, T1j 1Y6, Canada</p>
+			<p><strong>Tracking Number:</strong> #REQUEST.pageData.order.getOrderTrackingNumber()#</p>
+			<p><strong>Phone:</strong> #REQUEST.pageData.order.getPhone()#</p>
+			<p><strong>Billing Address:</strong> #REQUEST.pageData.order.getBillingFirstName()# #REQUEST.pageData.order.getBillingMiddleName()# #REQUEST.pageData.order.getBillingLastName()#</p>
+			<p>
+				#REQUEST.pageData.order.getBillingUnit()# #REQUEST.pageData.order.getBillingStreet()# #REQUEST.pageData.order.getBillingCity()#, 
+				#REQUEST.pageData.order.getBillingProvince().getDisplayName()#, #REQUEST.pageData.order.getBillingPostalCode()#, 
+				#REQUEST.pageData.order.getBillingCountry().getDisplayName()#
+			</p>
+			<p><strong>Shipping Address:</strong> #REQUEST.pageData.order.getShippingFirstName()# #REQUEST.pageData.order.getShippingMiddleName()# #REQUEST.pageData.order.getShippingLastName()#</p>
+			<p>
+				#REQUEST.pageData.order.getShippingUnit()# #REQUEST.pageData.order.getShippingStreet()# #REQUEST.pageData.order.getShippingCity()#, 
+				#REQUEST.pageData.order.getShippingProvince().getDisplayName()#, #REQUEST.pageData.order.getShippingPostalCode()#, 
+				#REQUEST.pageData.order.getShippingCountry().getDisplayName()#
+			</p>
 			<div class="myaccount-table" >
 			<table class="wp-list-table widefat fixed bookmarks" cellspacing="0">
 					<tr>
