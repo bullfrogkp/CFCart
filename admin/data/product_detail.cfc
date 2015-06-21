@@ -473,7 +473,7 @@
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.productService.setId(URL.id) />
 			<cfset LOCAL.pageData.product = EntityLoadByPK("product", URL.id)>
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayNameMV()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
 			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
@@ -482,20 +482,20 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.product.getDisplayName())?"":LOCAL.pageData.product.getDisplayName() />
-				<cfset LOCAL.pageData.formData.detail = isNull(LOCAL.pageData.product.getDetail())?"":LOCAL.pageData.product.getDetail() />
-				<cfset LOCAL.pageData.formData.sku = isNull(LOCAL.pageData.product.getSku())?"":LOCAL.pageData.product.getSku() />
-				<cfset LOCAL.pageData.formData.stock = isNull(LOCAL.pageData.product.getStock())?"":LOCAL.pageData.product.getStock() />
-				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.product.getIsEnabled())?"":LOCAL.pageData.product.getIsEnabled() />
-				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitle())?"":LOCAL.pageData.product.getTitle() />
-				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywords())?"":LOCAL.pageData.product.getKeywords() />
-				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescription())?"":LOCAL.pageData.product.getDescription() />
-				<cfset LOCAL.pageData.formData.attribute_set_id = isNull(LOCAL.pageData.product.getAttributeSet())?"":LOCAL.pageData.product.getAttributeSet().getAttributeSetId() />
-				<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.product.getTaxCategory())?"":LOCAL.pageData.product.getTaxCategory().getTaxCategoryId() />
-				<cfset LOCAL.pageData.formData.length = isNull(LOCAL.pageData.product.getLength())?"":LOCAL.pageData.product.getLength() />
-				<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeight())?"":LOCAL.pageData.product.getHeight() />
-				<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidth())?"":LOCAL.pageData.product.getWidth() />
-				<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeight())?"":LOCAL.pageData.product.getWeight() />
+				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.product.getDisplayNameMV())?"":LOCAL.pageData.product.getDisplayNameMV() />
+				<cfset LOCAL.pageData.formData.detail = isNull(LOCAL.pageData.product.getDetailMV())?"":LOCAL.pageData.product.getDetailMV() />
+				<cfset LOCAL.pageData.formData.sku = isNull(LOCAL.pageData.product.getSkuMV())?"":LOCAL.pageData.product.getSkuMV() />
+				<cfset LOCAL.pageData.formData.stock = isNull(LOCAL.pageData.product.getStockMV())?"":LOCAL.pageData.product.getStockMV() />
+				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.product.getIsEnabledMV())?"":LOCAL.pageData.product.getIsEnabledMV() />
+				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitleMV())?"":LOCAL.pageData.product.getTitleMV() />
+				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywordsMV())?"":LOCAL.pageData.product.getKeywordsMV() />
+				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.product.getDescriptionMV())?"":LOCAL.pageData.product.getDescriptionMV() />
+				<cfset LOCAL.pageData.formData.attribute_set_id = isNull(LOCAL.pageData.product.getAttributeSetMV())?"":LOCAL.pageData.product.getAttributeSetMV().getAttributeSetId() />
+				<cfset LOCAL.pageData.formData.tax_category_id = isNull(LOCAL.pageData.product.getTaxCategoryMV())?"":LOCAL.pageData.product.getTaxCategoryMV().getTaxCategoryId() />
+				<cfset LOCAL.pageData.formData.length = isNull(LOCAL.pageData.product.getLengthMV())?"":LOCAL.pageData.product.getLengthMV() />
+				<cfset LOCAL.pageData.formData.height = isNull(LOCAL.pageData.product.getHeightMV())?"":LOCAL.pageData.product.getHeightMV() />
+				<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidthMV())?"":LOCAL.pageData.product.getWidthMV() />
+				<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeightMV())?"":LOCAL.pageData.product.getWeightMV() />
 		
 				<cfset LOCAL.pageData.formData.price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getPrice() />
 				<cfset LOCAL.pageData.formData.special_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice() />
