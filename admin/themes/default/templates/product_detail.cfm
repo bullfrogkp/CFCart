@@ -375,7 +375,12 @@
 						</div>
 						<div class="form-group">
 							<cfloop array="#REQUEST.pageData.specialCategories#" index="spCategory">
-							<input type="checkbox" class="form-control" />&nbsp;&nbsp;Top Selling#RepeatString("&nbsp;",11)#
+							<input name="category_id" value="#spCategory.getCategoryId()#" type="checkbox" class="form-control"
+							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),spCategory)>
+							checked
+							</cfif>
+							/>
+							&nbsp;&nbsp;Top Selling#RepeatString("&nbsp;",11)#
 							</cfloop>
 						</div>
 						<div class="form-group">
