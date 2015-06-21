@@ -350,19 +350,19 @@
 							<select class="form-control" multiple name="category_id">
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 									<option value="#cat.getCategoryId()#"
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),cat)>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
 									selected
 									</cfif>
 									>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
 									<cfloop array="#cat.getSubCategories()#" index="subCat">
 										<option value="#subCat.getCategoryId()#"
-										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),subCat)>
+										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
 										selected
 										</cfif>
 										>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
 										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
 											<option value="#thirdCat.getCategoryId()#"
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategories()) AND ArrayContains(REQUEST.pageData.product.getCategories(),thirdCat)>
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
 											selected
 											</cfif>
 											>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
@@ -504,7 +504,7 @@
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
 									<option value="#tc.getTaxCategoryId()#"
 									
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategory()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
 									selected
 									</cfif>
 									
@@ -516,9 +516,9 @@
 					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 					
-						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getImages())>
+						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getImagesMV())>
 							<div class="row">
-								<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">						
+								<cfloop array="#REQUEST.pageData.product.getImagesMV()#" index="img">						
 									<div class="col-xs-2">
 										<div class="box <cfif img.getIsDefault() EQ true>box-danger</cfif>">
 											<div class="box-body table-responsive no-padding">
@@ -581,11 +581,7 @@
 						</div>
 						
 						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getParentProduct()) AND NOT IsNull(REQUEST.pageData.product.getParentProduct().getAttributeSet())>
-								<cfset currentAttributeSet = REQUEST.pageData.product.getParentProduct().getAttributeSet() />
-							<cfelseif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getAttributeSet())>
-								<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSet() />
-							</cfif>
+							<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
 							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>display:none;</cfif>">
 								<label>Attribute Option(s)</label>
 						
@@ -738,8 +734,8 @@
 							<label>Related Products</label>
 							<a data-toggle="modal" data-target="##add-product-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Product</span></a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProducts())>
-									<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">	
+								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProductsMV())>
+									<cfloop array="#REQUEST.pageData.product.getRelatedProductsMV()#" index="product">	
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
@@ -781,8 +777,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviews()) AND ArrayLen(REQUEST.pageData.product.getReviews()) GT 0>
-													<cfloop array="#REQUEST.pageData.product.getReviews()#" index="review">
+												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviewsMV()) AND ArrayLen(REQUEST.pageData.product.getReviewsMV()) GT 0>
+													<cfloop array="#REQUEST.pageData.product.getReviewsMV()#" index="review">
 													<tr>
 														<td>#review.getSubject()#</td>
 														<td>#review.getMessage()#</td>
@@ -895,8 +891,8 @@
 							<label>Videos</label>
 							<a data-toggle="modal" data-target="##add-video-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Video</span></a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideos())>
-									<cfloop array="#REQUEST.pageData.product.getProductVideos()#" index="video">	
+								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideosMV())>
+									<cfloop array="#REQUEST.pageData.product.getProductVideosMV()#" index="video">	
 										<div class="col-xs-3">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">

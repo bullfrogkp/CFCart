@@ -88,6 +88,8 @@
 	<cffunction name="getProductShippingMethods" output="false" access="public" returntype="query">
 		<cfset var LOCAL = {} />
 	   
+		<cfset LOCAL.product = EntityLoadByPK("product",getId()) />
+	   
 		<cfquery name="LOCAL.getProductShippingMethods">
 			SELECT		sc.display_name AS shippingCarrierName
 			,			sc.image_name AS imageName
@@ -96,7 +98,12 @@
 			,			(
 							SELECT	product_shipping_method_rela_id 
 							FROM 	product_shipping_method_rela psmr
-							WHERE 	psmr.product_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />	
+							WHERE 	psmr.product_id = 
+							<cfif LOCAL.product.getProductType().getName() EQ "configured_product">
+								<cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.product.getParentProduct().getProductId()#" />	
+							<cfelse>
+								<cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+							</cfif>
 							AND		psmr.shipping_method_id = sm.shipping_method_id
 						) AS productShippingMethodRelaId
 			FROM		shipping_carrier sc
