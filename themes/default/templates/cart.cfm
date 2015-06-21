@@ -95,15 +95,9 @@
 				
 					<cfloop array="#REQUEST.pageData.trackingRecords#" index="cartItem">
 						<cfset product = cartItem.getProduct() />
-						<cfif NOT IsNull(product.getParentProduct())>
-							<cfset detailPageLink = product.getParentProduct().getDetailPageURL() />
-							<cfset imageLink = product.getParentProduct().getDefaultImageLink(type='small') />
-							<cfset displayName = product.getParentProduct().getDisplayName() />
-						<cfelse>
-							<cfset detailPageLink = product.getDetailPageURL() />
-							<cfset imageLink = product.getDefaultImageLink(type='small') />
-							<cfset displayName = product.getDisplayName() />
-						</cfif>
+						<cfset detailPageLink = product.getDetailPageURLMV() />
+						<cfset imageLink = product.getDefaultImageLinkMV(type='small') />
+						<cfset displayName = product.getDisplayNameMV() />
 						<tr>
 							<td class="cart_product" pid="#product.getProductId()#">
 								<a href="#product.getDetailPageURL()#">
