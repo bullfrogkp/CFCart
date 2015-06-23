@@ -264,7 +264,7 @@
 		$("##add-current-to-cart").click(function() {
 			$.ajax({
 						type: "get",
-						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/trackingService.cfc",
 						dataType: 'json',
 						data: {
 							method: 'addTrackingRecord',
@@ -289,13 +289,12 @@
 		$("##add-current-to-wishlist").click(function() {
 			$.ajax({
 						type: "get",
-						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/trackingService.cfc",
 						dataType: 'json',
 						data: {
 							method: 'addTrackingRecord',
 							productId: $("##selected_product_id").val(),
-							trackingRecordType: 'wishlist',
-							count: $("##product-count").val()
+							trackingRecordType: 'wishlist'
 						},		
 						success: function(result) {
 							if(result.TRACKINGRECORDID)

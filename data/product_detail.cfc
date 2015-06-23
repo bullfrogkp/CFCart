@@ -25,6 +25,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+		<cfset LOCAL.trackingService = new "#APPLICATION.componentPathRoot#core.services.trackingService"() />
 		<cfset LOCAL.productId = ListGetAt(CGI.PATH_INFO,2,"/")> 
 		<cfset LOCAL.productService.setId(LOCAL.productId) />
 		
@@ -44,6 +45,8 @@
 		<cfif LOCAL.pageData.product.isProductAttributeComplete()>
 			<cfset LOCAL.pageData.requiredAttributeCount = ArrayLen(EntityLoad("attribute_set_attribute_rela", {attributeSet = LOCAL.pageData.product.getAttributeSet(), required = true})) />
 		</cfif>	
+		
+		<cfset addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
 														
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
