@@ -30,14 +30,14 @@
 	<style>
 		.current-addresses {
 			list-style-type:none;
-			margin-left:-60px;
+			margin-left:-50px;
 			margin-bottom:20px;
 		}
 		
 		.current-addresses li {
 			float:left;
 			line-height:20px;
-			margin-left:60px;
+			margin-left:50px;
 			margin-bottom:20px;
 		}
 	</style>	
@@ -64,9 +64,9 @@
 			<div style="padding-top:20px;border-top:1px solid ##ccc;" class="single_field">
 				<table>	
 					<tr>
-						<td style="font-weight:bold;width:93px;">Email:</td>
+						<td style="font-weight:bold;width:93px;">Company:</td>
 						<td>
-							<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
+							<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
 						</td>
 						<td style="width:10px;"></td>
 						<td style="font-weight:bold;width:93px;">Unit: </td>
@@ -75,9 +75,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td style="font-weight:bold;width:93px;">Company:</td>
+						<td style="font-weight:bold;">Phone:</td>
 						<td>
-							<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
+							<input name="shipto_phone" id="shipto_phone" type="text" maxlength="32" size="30" style="width:180px;">
 						</td>
 						<td style="width:10px;"></td>
 						<td style="font-weight:bold;width:93px;">Street: </td>
@@ -126,10 +126,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td style="font-weight:bold;">Phone:</td>
-						<td>
-							<input name="shipto_phone" id="shipto_phone" type="text" maxlength="32" size="30" style="width:180px;">
-						</td>
+						<td style="font-weight:bold;"></td>
+						<td></td>
 						<td style="width:10px;"></td>
 						<td style="font-weight:bold;width:93px;">Country: </td>
 						<td>
