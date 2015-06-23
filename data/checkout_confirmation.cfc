@@ -251,6 +251,8 @@
 		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setIsDeleted(false) />
 		<cfset LOCAL.order.setIsComplete(false) />
+		<cfset LOCAL.order.setEmail(SESSION.order.customer.email) />
+		<cfset LOCAL.order.setPhone(SESSION.order.customer.phone) />
 		
 		<cfif SESSION.order.isExistingCustomer EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
