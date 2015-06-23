@@ -7,10 +7,6 @@
 		<cfset LOCAL.messageArray = [] />
 		
 		<cfif StructKeyExists(FORM,"update_cutomer_info")>
-			<cfif NOT IsValid("email",Trim(FORM.new_email))>
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email address.") />
-			</cfif>
-			
 			<cfif Trim(FORM.shipto_first_name) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping first name.") />
 			</cfif>
@@ -141,6 +137,8 @@
 			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 			<cfset SESSION.order.billingAddress.countryId = FORM.shipto_country_id />
 			<cfset SESSION.order.billingAddress.countryCode = LOCAL.country.getCode() />
+			
+			<cfset SESSION.order.customer.company = Trim(FORM.shipto_company) />
 		</cfif>
 				
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
