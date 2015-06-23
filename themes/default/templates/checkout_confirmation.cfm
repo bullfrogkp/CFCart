@@ -65,8 +65,20 @@
 				</tr>
 				<tbody>
 					<tr>
+						<td class="first-col">Company:</td>
+						<td>#SESSION.order.customer.company#</td>
+					</tr>
+					<tr>
+						<td class="first-col">Email:</td>
+						<td>#SESSION.order.customer.email#</td>
+					</tr>
+					<tr>
 						<td class="first-col">First Name:</td>
 						<td>#SESSION.order.shippingAddress.firstName#</td>
+					</tr>
+					<tr>
+						<td class="first-col">Middle Name:</td>
+						<td>#SESSION.order.shippingAddress.middleName#</td>
 					</tr>
 					
 					<tr>
