@@ -298,7 +298,12 @@
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.category = EntityLoadByPK("category", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
-			<cfset LOCAL.pageData.deleteButtonClass = "" />
+			
+			<cfif LOCAL.pageData.category.getIsSpecial() EQ true>
+				<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			<cfelse>
+				<cfset LOCAL.pageData.deleteButtonClass = "" />
+			</cfif>
 			
 			<cfset LOCAL.pageData.advertisementSection.setCategory(LOCAL.pageData.category)> 
 			<cfset LOCAL.pageData.bestSellerSection.setCategory(LOCAL.pageData.category)> 
