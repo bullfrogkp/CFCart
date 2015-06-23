@@ -132,6 +132,10 @@
 						<td class="first-col">First Name:</td>
 						<td>#SESSION.order.billingAddress.firstName#</td>
 					</tr>
+					<tr>
+						<td class="first-col">Middle Name:</td>
+						<td>#SESSION.order.billingAddress.middleName#</td>
+					</tr>
 					
 					<tr>
 						<td class="first-col">Last Name:</td>
