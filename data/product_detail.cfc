@@ -36,9 +36,9 @@
 		<cfset LOCAL.reviewStatusType = EntityLoad("review_status_type", {name = "approved"}, true)> 
 		<cfset LOCAL.pageData.reviews = EntityLoad("review", {product = LOCAL.pageData.product, reviewStatusType = LOCAL.reviewStatusType})> 
 		
-		<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayName()# | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescription() />
-		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywords() />
+		<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayNameMV()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescriptionMV() />
+		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywordsMV() />
 		<!---
 		<cfset LOCAL.pageData.shippingMethods = LOCAL.productService.getFrontendProductShippingMethods() />
 		--->
