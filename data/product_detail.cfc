@@ -46,7 +46,7 @@
 			<cfset LOCAL.pageData.requiredAttributeCount = ArrayLen(EntityLoad("attribute_set_attribute_rela", {attributeSet = LOCAL.pageData.product.getAttributeSet(), required = true})) />
 		</cfif>	
 		
-		<cfset addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
+		<cfset LOCAL.trackingService.addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
 														
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
