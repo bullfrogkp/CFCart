@@ -15,28 +15,32 @@
 	</div>
 	<div style="background-color:##F2F2F2;padding:20px;">
 		<ul style="margin-left:-0.5%;list-style-type:none;">
-			<li style="width:29%;float:left;margin-left:0.5%;padding-right:20px;height:171px;">
-				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
+			<li style="width:29%;float:left;margin-left:0.5%;padding-right:20px;height:128px;line-height:20px;">
+				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;">
 					Contact Information
 					<button style="float:right;font-size:12px;">Edit</button>
 				</div>
 				
-				<p>Name: #REQUEST.pageData.customer.getFullName()#</p>
-				<p>Email: #REQUEST.pageData.customer.getEmail()#</p>
-				<p>Phone: #REQUEST.pageData.customer.getPhone()#</p>
-				<p>Company: #REQUEST.pageData.customer.getCompany()#</p>
+				<p style="line-height:23px;">Name: #REQUEST.pageData.customer.getFullName()#<br/>
+				Email: #REQUEST.pageData.customer.getEmail()#<br/>
+				Phone: #REQUEST.pageData.customer.getPhone()#<br/>
+				Company: #REQUEST.pageData.customer.getCompany()#</p>
 			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid ##CCC;height:171px;">
-				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
+			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid ##CCC;height:128px;line-height:20px;">
+				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;">
 					Subscription
 					<button style="float:right;font-size:12px;">Edit</button>
 				</div>
-				<p>You are currently subscribed to our newsletter.</p>
+				<cfif REQUEST.pageData.customer.getSubscribed() EQ true>
+					<p>You are currently subscribed to our newsletter.</p>
+				<cfelse>
+					<p>You haven't subscribe any newsletter yet.</p>
+				</cfif>
 			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:171px;border-left:1px solid ##CCC;">
+			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:128px;border-left:1px solid ##CCC;">
 				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
-					Primary Shipping Address
-					<button style="float:right;font-size:12px;">Edit</button>
+					Latest Order
+					<button style="float:right;font-size:12px;">View</button>
 				</div>
 				<p>366 Adelaide Street West, Suite 701</p>
 				<p>Toronto, ON M5V 1R9</p>
