@@ -21,10 +21,29 @@
 					<button style="float:right;font-size:12px;">Edit</button>
 				</div>
 				
-				<p style="line-height:23px;">Name: #REQUEST.pageData.customer.getFullName()#<br/>
-				Email: #REQUEST.pageData.customer.getEmail()#<br/>
-				Phone: #REQUEST.pageData.customer.getPhone()#<br/>
-				Company: #REQUEST.pageData.customer.getCompany()#</p>
+				<p style="line-height:23px;">
+				<strong>Name:</strong> #REQUEST.pageData.customer.getFullName()#<br/>
+				<strong>Email:</strong> #REQUEST.pageData.customer.getEmail()#<br/>
+				<strong>Phone:</strong> #REQUEST.pageData.customer.getPhone()#<br/>
+				<strong>Company:</strong> #REQUEST.pageData.customer.getCompany()#
+				</p>
+			</li>
+			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:128px;border-left:1px solid ##CCC;">
+				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
+					Latest Order
+					<button style="float:right;font-size:12px;">View</button>
+				</div>
+				<p>
+				<cfif NOT ArrayIsEmpty(REQUEST.pageData.latestOrderArray)>
+					<p style="line-height:23px;">
+					<strong>Tracking No.:</strong> #REQUEST.pageData.latestOrderArray[1].getOrderTrackingNumber()#<br/>
+					<strong>Created:</strong> #REQUEST.pageData.latestOrderArray[1].getCreatedDatetime()#<br/>
+					<strong>Status:</strong> #REQUEST.pageData.latestOrderStatusArray[1].getOrderStatusType().getDisplayName()#<br/>
+					<strong>Total:</strong> #REQUEST.pageData.latestOrderArray[1].getTotalPrice()#<br/>
+				<cfelse>
+					No order found.
+				</cfif>
+				</p>
 			</li>
 			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid ##CCC;height:128px;line-height:20px;">
 				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;">
@@ -36,14 +55,6 @@
 				<cfelse>
 					<p>You haven't subscribe any newsletter yet.</p>
 				</cfif>
-			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:128px;border-left:1px solid ##CCC;">
-				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
-					Latest Order
-					<button style="float:right;font-size:12px;">View</button>
-				</div>
-				<p>366 Adelaide Street West, Suite 701</p>
-				<p>Toronto, ON M5V 1R9</p>
 			</li>
 		</ul>
 		<div style="clear:both;"></div>
