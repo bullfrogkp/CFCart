@@ -30,14 +30,14 @@
 	<style>
 		.current-addresses {
 			list-style-type:none;
-			margin-left:-60px;
+			margin-left:-50px;
 			margin-bottom:20px;
 		}
 		
 		.current-addresses li {
 			float:left;
 			line-height:20px;
-			margin-left:60px;
+			margin-left:50px;
 			margin-bottom:20px;
 		}
 	</style>	
@@ -152,35 +152,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="info-sidebar" style="margin-top:3px;">
-			<strong>Order Summary</strong>
-			<table style="width:100%;margin-top:13px;">	
-				<tr>
-					<td style="font-weight:bold;width:173px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
-					<td>
-						#DollarFormat(SESSION.order.subTotalPrice)#
-					</td>
-				</tr>
-				<tr>
-					<td style="font-weight:bold;width:173px;">Tax:</td>
-					<td>
-						-
-					</td>
-				</tr>
-				<tr>
-					<td style="font-weight:bold;width:173px;">Shipping & Handling:</td>
-					<td>
-						-
-					</td>
-				</tr>
-				<tr>
-					<td style="font-weight:bold;width:173px;">Total:</td>
-					<td>
-						#DollarFormat(SESSION.order.subTotalPrice)#
-					</td>
-				</tr>
-			</table>			
-		</div>
+		<cfinclude template = "checkout_order_summary.cfm" />
 	</div>		
 	<div style="clear:both;"></div>
 	</form>
