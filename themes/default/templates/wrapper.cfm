@@ -106,27 +106,19 @@
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absoluteUrlWeb#products_new.cfm">New Arrivals</a>
+						<a href="#REQUEST.pageData.newArrivalsCategory.getDetailPageUrl()#">#REQUEST.pageData.newArrivalsCategory.getDisplayName()#</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absoluteUrlWeb#products_top.cfm">Top Sellers</a>
+						<a href="#REQUEST.pageData.topSellersCategory.getDetailPageUrl()#">#REQUEST.pageData.topSellersCategory.getDisplayName()#</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absoluteUrlWeb#products_specials.cfm">Specials</a>
+						<a href="#REQUEST.pageData.weeklyDealsCategory.getDetailPageUrl()#">#REQUEST.pageData.weeklyDealsCategory.getDisplayName()#</a>
 					</li>
 					<li>|</li>
 					<li>
-						<a href="#APPLICATION.absoluteUrlWeb#products_deals.cfm">Weekly Deals</a>
-					</li>
-					<li>|</li>
-					<li>
-						<a href="#APPLICATION.absoluteUrlWeb#products_clearance.cfm">Clearance</a>
-					</li>
-					<li>|</li>
-					<li>
-						<a href="#APPLICATION.absoluteUrlWeb#products_clearance.cfm">Group Buying</a>
+						<a href="#REQUEST.pageData.groupBuyingCategory.getDetailPageUrl()#">#REQUEST.pageData.groupBuyingCategory.getDisplayName()#</a>
 					</li>
 					<li>|</li>
 					<li>

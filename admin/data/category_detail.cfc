@@ -56,7 +56,7 @@
 			<cfif FORM.parent_category_id NEQ "">
 				<cfset LOCAL.category.setParentCategory(EntityLoadByPK("category",FORM.parent_category_id)) />
 			</cfif>
-			<cfset LOCAL.category.setName(Trim(FORM.display_name)) />
+			<cfset LOCAL.category.setName(LCase(Trim(FORM.display_name))) />
 			<cfset LOCAL.category.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
 			<cfset LOCAL.category.setIsEnabled(FORM.is_enabled) />
