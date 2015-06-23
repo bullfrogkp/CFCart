@@ -114,7 +114,6 @@
 	</div>
 </div>
 <div id="top-sidebar">
-	<cfinclude template="all_categories.cfm" />
 	<div class="recommendation">
 		Browse By Category
 	</div>
