@@ -101,6 +101,40 @@
 		},
 
 		});
+		
+		wishlistdialog = $( "##wishlist-form" ).dialog({
+		autoOpen: false,
+		height: 370,
+		width: 350,
+		modal: true,
+		show: 'fade',
+		hide: 'fade',
+		dialogClass: 'main-dialog-class',
+		buttons: [
+
+		{
+			text: "My Wishlist",
+			"class": 'checkoutButtonClass',
+			click: function() {
+			window.location.href='#APPLICATION.absoluteUrlWeb#wishlist.cfm';
+			}
+		},
+		{
+			text: "Continute Shopping",
+			"class": 'continuteButtonClass',
+			click: function() {
+			dialog.dialog('close');
+			}
+		}
+		],
+		open: function(event) {
+		$('.ui-dialog-buttonpane').find('button:contains("Continute Shopping")').css("margin-right","-9px");
+		},
+		close: function() {
+
+		},
+
+		});
 
 		form = dialog.find( "form" ).on( "submit", function( event ) {
 		event.preventDefault();
@@ -235,6 +269,7 @@
 						data: {
 							method: 'addTrackingRecord',
 							productId: $("##selected_product_id").val(),
+							trackingRecordType: 'shopping_cart',
 							count: $("##product-count").val()
 						},		
 						success: function(result) {
@@ -243,6 +278,29 @@
 								dialog.dialog( "open" );
 								$("##cart-info").html( parseInt($("##cart-info").html(), 10) + parseInt($("##product-count").val(), 10));
 			
+							}
+							else
+							{
+								console.log('Fail to add record');
+							}
+						}
+			});
+		});
+		$("##add-current-to-wishlist").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'addTrackingRecord',
+							productId: $("##selected_product_id").val(),
+							trackingRecordType: 'wishlist',
+							count: $("##product-count").val()
+						},		
+						success: function(result) {
+							if(result.TRACKINGRECORDID)
+							{
+								wishlistdialog.dialog( "open" );			
 							}
 							else
 							{
@@ -525,6 +583,13 @@
 	</cfif>
 </div>
 <div id="dialog-form" title="Product has been added to the cart">
+	<div style="margin-top:10px;text-align:center;">
+		<img class="thumbnail-img" src="#REQUEST.pageData.product.getDefaultImageLink(type='small')#" />
+	
+		<p>#REQUEST.pageData.product.getDisplayName()#</p>
+	</div>
+</div>
+<div id="wishlist-form" title="Product has been added to your wishlist">
 	<div style="margin-top:10px;text-align:center;">
 		<img class="thumbnail-img" src="#REQUEST.pageData.product.getDefaultImageLink(type='small')#" />
 	
