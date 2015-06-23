@@ -591,7 +591,9 @@
 						</div>
 						
 						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
+							<cfif NOT IsNull(REQUEST.pageData.product)>
+								<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
+							</cfif>
 							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>display:none;</cfif>">
 								<label>Attribute Option(s)</label>
 						
@@ -927,7 +929,9 @@
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
-			<cfif REQUEST.pageData.product.getProductType().getName() EQ "simple">
+			<cfif 	IsNull(REQUEST.pageData.product)
+					OR
+					NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "simple">
 				<div class="form-group">
 					<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>

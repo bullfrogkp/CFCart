@@ -88,7 +88,9 @@
 	<cffunction name="getProductShippingMethods" output="false" access="public" returntype="query">
 		<cfset var LOCAL = {} />
 	   
-		<cfset LOCAL.product = EntityLoadByPK("product",getId()) />
+		<cfif NOT IsNull(getId())>
+			<cfset LOCAL.product = EntityLoadByPK("product",getId()) />
+		</cfif>
 	   
 		<cfquery name="LOCAL.getProductShippingMethods">
 			SELECT		sc.display_name AS shippingCarrierName
@@ -99,7 +101,7 @@
 							SELECT	product_shipping_method_rela_id 
 							FROM 	product_shipping_method_rela psmr
 							WHERE 	psmr.product_id = 
-							<cfif LOCAL.product.getProductType().getName() EQ "configured_product">
+							<cfif NOT IsNull(LOCAL.product) AND LOCAL.product.getProductType().getName() EQ "configured_product">
 								<cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.product.getParentProduct().getProductId()#" />	
 							<cfelse>
 								<cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
