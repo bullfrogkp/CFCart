@@ -58,6 +58,7 @@
 				</cfloop>
 			</table>
 		</div>
+		<p>#SESSION.order.customer.email#</p>
 		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;line-height:18px;">
 			<table>
 				<tr>
@@ -66,11 +67,7 @@
 				<tbody>
 					<tr>
 						<td class="first-col">Company:</td>
-						<td>#SESSION.order.customer.company#</td>
-					</tr>
-					<tr>
-						<td class="first-col">Email:</td>
-						<td>#SESSION.order.customer.email#</td>
+						<td>#SESSION.order.shippingAddress.company#</td>
 					</tr>
 					<tr>
 						<td class="first-col">First Name:</td>
@@ -127,6 +124,10 @@
 						<td>Billing address is same as shipping address. If you would like to change it, please click <a href="#APPLICATION.absoluteUrlWeb#checkout/checkout_change_address.cfm">here</a>.</td>
 					</tr>
 					<cfelse>
+					<tr>
+						<td class="first-col">Company:</td>
+						<td>#SESSION.order.billingAddress.company#</td>
+					</tr>
 					<tr>
 						<td class="first-col">First Name:</td>
 						<td>#SESSION.order.billingAddress.firstName#</td>

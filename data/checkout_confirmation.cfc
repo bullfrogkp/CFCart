@@ -259,6 +259,7 @@
 			<cfset LOCAL.customer.setFirstName(SESSION.order.customer.firstName) />
 			<cfset LOCAL.customer.setMiddleName(SESSION.order.customer.firstName) />
 			<cfset LOCAL.customer.setLastName(SESSION.order.customer.lastName) />
+			<cfset LOCAL.customer.setCompany(SESSION.order.customer.company) />
 			<cfset LOCAL.customer.setEmail(SESSION.order.customer.email) />
 			<cfset LOCAL.customer.setPhone(SESSION.order.customer.phone) />
 			<cfset LOCAL.customer.setIsEnabled(false) />
