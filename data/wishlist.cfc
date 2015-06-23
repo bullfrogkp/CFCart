@@ -7,8 +7,6 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
-		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>

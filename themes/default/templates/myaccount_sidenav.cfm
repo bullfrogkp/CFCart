@@ -18,9 +18,6 @@
 				<a href="#APPLICATION.absoluteUrlWeb#myaccount/reviews.cfm">My Product Reviews</a>
 			</li>
 			<li>
-				<a href="#APPLICATION.absoluteUrlWeb#myaccount/wishlist.cfm">My Wishlist</a>
-			</li>
-			<li>
 				<a href="#APPLICATION.absoluteUrlWeb#myaccount/coupons.cfm">My Coupons</a>
 			</li>
 			<li>
