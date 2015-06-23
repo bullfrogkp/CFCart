@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="password" name="userpass" placeholder="Password">
+					<input type="password" name="password" placeholder="Password">
 				</td>
 			</tr>
 			<tr>

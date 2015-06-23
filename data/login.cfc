@@ -75,9 +75,9 @@
 			
 			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
 			<cfset LOCAL.customer.setCustomerGroup(LOCAL.defaultCustomerGroup) />
-			
-			<cfset EntitySave(LOCAL.customer) />
 		</cfif>
+		
+		<cfset EntitySave(LOCAL.customer) />
 		
 		<cfset SESSION.user.userName = LOCAL.customer.getEmail() />
 		<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
