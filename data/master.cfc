@@ -73,9 +73,10 @@
 	</cffunction>
 	
 	<cffunction name="_getTrackingRecords" access="private" output="false" returnType="array">
+		<cfargument name="trackingRecordType" type="string" required="true">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping_cart"},true) />
+		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = ARGUMENTS.trackingRecordType},true) />
 		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity}) />
 		
