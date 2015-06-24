@@ -1,5 +1,5 @@
 ﻿<cfcomponent extends="master">
-	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
@@ -21,8 +21,51 @@
 			<cfset LOCAL.redirectUrl = _setRedirectURL() />
 		</cfif>
 		
+		<cfreturn LOCAL />
+	</cffunction>
+	
+	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset SESSION.temp.message = {} />
+		<cfset SESSION.temp.message.messageArray = [] />
+		<cfset SESSION.temp.message.messageType = "alert-success" />
+		
+		<cfif IsNumeric(FORM.id)>
+			<cfset LOCAL.content = EntityLoadByPK("content", FORM.id)> 
+			<cfset LOCAL.content.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.content.setUpdatedDatetime(Now()) />
+		<cfelse>
+			<cfset LOCAL.content = EntityNew("content") />
+			<cfset LOCAL.content.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.content.setCreatedDatetime(Now()) />
+			<cfset LOCAL.content.setIsDeleted(false) />
+		</cfif>
+		
+		<cfif StructKeyExists(FORM,"save_item")>
+			
+			<cfset LOCAL.content.setName(Trim(FORM.name)) />
+			<cfset LOCAL.content.setContent(Trim(FORM.content)) />
+			<cfset LOCAL.content.setIsEnabled(FORM.is_enabled) />
+			
+			<cfset EntitySave(LOCAL.content) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.content.getContentId()#" />
+			
+		<cfelseif StructKeyExists(FORM,"delete_item")>
+			
+			<cfset LOCAL.content.setIsDeleted(true) />
+			<cfset EntitySave(LOCAL.content) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content '#LOCAL.content.getName()#' has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/contents.cfm" />
+			
+		</cfif>
+		
 		<cfreturn LOCAL />	
-	</cffunction>	
+	</cffunction>		
 	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
