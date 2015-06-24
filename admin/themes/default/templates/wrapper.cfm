@@ -433,7 +433,8 @@
                                 <li class="attribute_sets attribute_set_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/attribute_sets.cfm"><i class="fa fa-angle-double-right"></i> Attribute Sets</a></li>		
 								<li class="filters filter_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/filters.cfm"><i class="fa fa-angle-double-right"></i> Filters</a></li>		
                                 <li class="filter_groups filter_group_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/filter_groups.cfm"><i class="fa fa-angle-double-right"></i> Filter Groups</a></li>	
-                                <li class="tax_information"><a href="#APPLICATION.absoluteUrlWeb#admin/tax_information.cfm"><i class="fa fa-angle-double-right"></i> Tax</a></li>
+                                <li class="currencies"><a href="#APPLICATION.absoluteUrlWeb#admin/currencies.cfm"><i class="fa fa-angle-double-right"></i> Currencies</a></li>
+                                <li class="tax_information"><a href="#APPLICATION.absoluteUrlWeb#admin/tax_information.cfm"><i class="fa fa-angle-double-right"></i> Taxes</a></li>
                                 <li class="site_info"><a href="#APPLICATION.absoluteUrlWeb#admin/site_info.cfm"><i class="fa fa-angle-double-right"></i> Site Info</a></li>
 								<!---
 								<li class="order_status_types"><a href="#APPLICATION.absoluteUrlWeb#admin/order_status_types.cfm"><i class="fa fa-angle-double-right"></i> Order Status Types</a></li>								
