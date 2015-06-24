@@ -42,7 +42,6 @@
 						<tr class="default">
 							<th>Title</th>
 							<th>URL</th>
-							<th>Content</th>
 							<th>Create Datetime</th>
 							<th>Status</th>
 							<th>Action</th>
@@ -52,8 +51,11 @@
 							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="content">
 								<tr>
 									<td>#content.getTitle()#</td>
-									<td>#content.getURL()#</td>
-									<td>#content.getSiteContent()#</td>
+									<td>
+										<a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/#content.getName()#" target="_blank">
+											#APPLICATION.absoluteUrlWeb#site_content.cfm/#content.getName()#
+										</a>
+									</td>
 									<td>#DateFormat(content.getCreatedDatetime(),"mmm dd,yyyy")#</td>
 									<td>
 										<cfif content.getIsEnabled() EQ true>
@@ -62,7 +64,7 @@
 											<span class="label label-danger">Disabled</span>
 										</cfif>
 									</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/site_content_detail.cfm?id=#content.getContentId()#">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/site_content_detail.cfm?id=#content.getSiteContentId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
 						<cfelse>
@@ -74,7 +76,6 @@
 						<tr class="default">
 							<th>Title</th>
 							<th>URL</th>
-							<th>Content</th>
 							<th>Create Datetime</th>
 							<th>Status</th>
 							<th>Action</th>
