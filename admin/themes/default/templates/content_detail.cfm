@@ -46,6 +46,18 @@
 						<label>Content</label>
 						<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
 					</div>
+					 <div class="form-group">
+						<label>Title</label>
+						<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
+					</div>
+					<div class="form-group">
+						<label>Keywords</label>
+						<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
+					</div>
 					<div class="form-group">
 						<label>Status</label>
 						 <select class="form-control" name="is_enabled">

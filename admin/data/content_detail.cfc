@@ -10,7 +10,10 @@
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid name.") />
 			</cfif>
 			<cfif FORM.detail EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your content.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the content.") />
+			</cfif>
+			<cfif FORM.title EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the page title.") />
 			</cfif>
 		</cfif>
 		
@@ -47,6 +50,9 @@
 			
 			<cfset LOCAL.content.setName(Trim(FORM.name)) />
 			<cfset LOCAL.content.setContent(Trim(FORM.content)) />
+			<cfset LOCAL.content.setTitle(Trim(FORM.title)) />
+			<cfset LOCAL.content.setDescription(Trim(FORM.description)) />
+			<cfset LOCAL.content.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.content.setIsEnabled(FORM.is_enabled) />
 			
 			<cfset EntitySave(LOCAL.content) />
@@ -80,6 +86,9 @@
 		<cfelse>
 			<cfset LOCAL.pageData.formData.name = isNull(LOCAL.pageData.content.getName())?"":LOCAL.pageData.content.getName() />
 			<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.content.getContent())?"":LOCAL.pageData.content.getContent() />
+			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.content.getTitle())?"":LOCAL.pageData.content.getTitle() />
+			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.content.getKeywords())?"":LOCAL.pageData.content.getKeywords() />
+			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.content.getDescription())?"":LOCAL.pageData.content.getDescription() />
 			<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.content.getIsEnabled())?"":LOCAL.pageData.content.getIsEnabled() />
 		</cfif>
 		
