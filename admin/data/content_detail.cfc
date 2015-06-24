@@ -48,7 +48,8 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.content.setName(Trim(FORM.name)) />
+			<cfset LOCAL.content.setName(LCase(Trim(FORM.name))) />
+			<cfset LOCAL.content.setDisplayName(Trim(FORM.name)) />
 			<cfset LOCAL.content.setContent(Trim(FORM.content)) />
 			<cfset LOCAL.content.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.content.setDescription(Trim(FORM.description)) />
