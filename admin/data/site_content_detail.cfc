@@ -78,19 +78,35 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.content = EntityLoadByPK("site_content", URL.id)> 
-		<cfset LOCAL.pageData.title = "#LOCAL.pageData.content.getName()# | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.deleteButtonClass = "" />	
-		
-		<cfif IsDefined("SESSION.temp.formData")>
-			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.pageData.siteContent = EntityLoadByPK("site_content", URL.id)> 
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.siteContent.getName()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.deleteButtonClass = "" />	
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.name = isNull(LOCAL.pageData.siteContent.getName())?"":LOCAL.pageData.siteContent.getName() />
+				<cfset LOCAL.pageData.formData.site_content = isNull(LOCAL.pageData.siteContent.getSiteContent())?"":LOCAL.pageData.siteContent.getSiteContent() />
+				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.siteContent.getTitle())?"":LOCAL.pageData.siteContent.getTitle() />
+				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.siteContent.getKeywords())?"":LOCAL.pageData.siteContent.getKeywords() />
+				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.siteContent.getDescription())?"":LOCAL.pageData.siteContent.getDescription() />
+				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.siteContent.getIsEnabled())?"":LOCAL.pageData.siteContent.getIsEnabled() />
+			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.formData.name = isNull(LOCAL.pageData.content.getName())?"":LOCAL.pageData.content.getName() />
-			<cfset LOCAL.pageData.formData.site_content = isNull(LOCAL.pageData.content.getSiteContent())?"":LOCAL.pageData.content.getSiteContent() />
-			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.content.getTitle())?"":LOCAL.pageData.content.getTitle() />
-			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.content.getKeywords())?"":LOCAL.pageData.content.getKeywords() />
-			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.content.getDescription())?"":LOCAL.pageData.content.getDescription() />
-			<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.content.getIsEnabled())?"":LOCAL.pageData.content.getIsEnabled() />
+			<cfset LOCAL.pageData.title = "New Content | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			
+			<cfif IsDefined("SESSION.temp.formData")>
+				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+			<cfelse>
+				<cfset LOCAL.pageData.formData.name = "" />
+				<cfset LOCAL.pageData.formData.site_content = "" />
+				<cfset LOCAL.pageData.formData.title = "" />
+				<cfset LOCAL.pageData.formData.keywords = "" />
+				<cfset LOCAL.pageData.formData.description = "" />
+				<cfset LOCAL.pageData.formData.is_enabled = "" />
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.pageData.message = _setTempMessage() />
