@@ -419,7 +419,7 @@
                             <ul class="treeview-menu">
                                 <li class="homepage"><a href="#APPLICATION.absoluteUrlWeb#admin/homepage.cfm"><i class="fa fa-angle-double-right"></i> Home</a></li>
                                 <li class="site_contents"><a href="#APPLICATION.absoluteUrlWeb#admin/site_contents.cfm"><i class="fa fa-angle-double-right"></i> Contents</a></li>
-                                <li class="add_content"><a href="#APPLICATION.absoluteUrlWeb#admin/site_content_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Content</a></li>
+                                <li class="site_content_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/site_content_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Content</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

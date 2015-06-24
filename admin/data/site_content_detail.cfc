@@ -48,7 +48,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.content.setName(LCase(Trim(FORM.name))) />
+			<cfset LOCAL.content.setName(Replace(LCase(Trim(FORM.name))," ","-","all")) />
 			<cfset LOCAL.content.setDisplayName(Trim(FORM.name)) />
 			<cfset LOCAL.content.setSiteContent(Trim(FORM.site_content)) />
 			<cfset LOCAL.content.setTitle(Trim(FORM.title)) />
@@ -59,7 +59,7 @@
 			<cfset EntitySave(LOCAL.content) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.content.getContentId()#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.content.getSiteContentId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
@@ -92,6 +92,7 @@
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.siteContent.getKeywords())?"":LOCAL.pageData.siteContent.getKeywords() />
 				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.siteContent.getDescription())?"":LOCAL.pageData.siteContent.getDescription() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.siteContent.getIsEnabled())?"":LOCAL.pageData.siteContent.getIsEnabled() />
+				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.title = "New Content | #APPLICATION.applicationName#" />
@@ -106,6 +107,7 @@
 				<cfset LOCAL.pageData.formData.keywords = "" />
 				<cfset LOCAL.pageData.formData.description = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
+				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
 		

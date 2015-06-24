@@ -42,10 +42,6 @@
 						<label>Name</label>
 						<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
-					<div class="form-group">
-						<label>Content</label>
-						<textarea name="site_content" id="site_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.site_content#</textarea>
-					</div>
 					 <div class="form-group">
 						<label>Title</label>
 						<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
@@ -64,6 +60,10 @@
 							<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
 							<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
 						</select>
+					</div>
+					<div class="form-group">
+						<label>Content</label>
+						<textarea name="site_content" id="site_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.site_content#</textarea>
 					</div>
 					<div class="form-group">
 						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Content</button>
