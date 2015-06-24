@@ -36,11 +36,11 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.content = EntityLoadByPK("content", FORM.id)> 
+			<cfset LOCAL.content = EntityLoadByPK("site_content", FORM.id)> 
 			<cfset LOCAL.content.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.content.setUpdatedDatetime(Now()) />
 		<cfelse>
-			<cfset LOCAL.content = EntityNew("content") />
+			<cfset LOCAL.content = EntityNew("site_content") />
 			<cfset LOCAL.content.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.content.setCreatedDatetime(Now()) />
 			<cfset LOCAL.content.setIsDeleted(false) />
@@ -78,7 +78,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.content = EntityLoadByPK("content", URL.id)> 
+		<cfset LOCAL.pageData.content = EntityLoadByPK("site_content", URL.id)> 
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.content.getName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		
