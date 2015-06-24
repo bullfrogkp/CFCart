@@ -86,7 +86,7 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.name = isNull(LOCAL.pageData.siteContent.getName())?"":LOCAL.pageData.siteContent.getName() />
+				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.siteContent.getDisplayName())?"":LOCAL.pageData.siteContent.getDisplayName() />
 				<cfset LOCAL.pageData.formData.site_content = isNull(LOCAL.pageData.siteContent.getSiteContent())?"":LOCAL.pageData.siteContent.getSiteContent() />
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.siteContent.getTitle())?"":LOCAL.pageData.siteContent.getTitle() />
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.siteContent.getKeywords())?"":LOCAL.pageData.siteContent.getKeywords() />
@@ -100,7 +100,7 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.name = "" />
+				<cfset LOCAL.pageData.formData.display_name = "" />
 				<cfset LOCAL.pageData.formData.site_content = "" />
 				<cfset LOCAL.pageData.formData.title = "" />
 				<cfset LOCAL.pageData.formData.keywords = "" />
