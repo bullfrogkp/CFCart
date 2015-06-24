@@ -90,7 +90,7 @@
 				
 				<cfset StructDelete(SESSION,"order") />
 				
-				<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping_cart") />
+				<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
 				<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 					<cfset EntityDelete(LOCAL.record) />
 				</cfloop>

@@ -269,7 +269,7 @@
 						data: {
 							method: 'addTrackingRecord',
 							productId: $("##selected_product_id").val(),
-							trackingRecordType: 'shopping_cart',
+							trackingRecordType: 'shopping cart',
 							count: $("##product-count").val()
 						},		
 						success: function(result) {

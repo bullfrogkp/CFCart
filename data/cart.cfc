@@ -31,7 +31,7 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping_cart") />
+		<cfset LOCAL.pageData.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
 		
 		<cfset LOCAL.pageData.subTotal = 0 />
 		
@@ -63,7 +63,7 @@
 			<cfset SESSION.order.couponCode = "" />
 			<cfset SESSION.order.couponId = "" />
 			
-			<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping_cart") />
+			<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
 		
 			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 				<cfset LOCAL.productStruct = {} />
