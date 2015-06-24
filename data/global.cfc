@@ -45,6 +45,8 @@
 		<cfset LOCAL.pageData.topSellersCategory = EntityLoad("category", {name="top sellers"}, true) />
 		<cfset LOCAL.pageData.weeklyDealsCategory =  EntityLoad("category", {name="weekly deals"}, true) />
 		<cfset LOCAL.pageData.groupBuyingCategory =  EntityLoad("category", {name="group buying"}, true) />
+		
+		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 				
 		<cfreturn LOCAL.pageData />
 	</cffunction>
@@ -71,6 +73,12 @@
 	
 		<cfif StructKeyExists(FORM,"search_category_id")>
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm" />
+		</cfif>
+		
+		<cfif StructKeyExists(FORM,"currency")>
+			<cfset LOCAL.newCurrency = EntityLoadByPK("currency",FORM.currency_id) />
+			<cfset SESSION.currency.id = LOCAL.newCurrency.getCurrencyId() />
+			<cfset SESSION.currency.code = LOCAL.newCurrency.getCode() />
 		</cfif>
 		
 		<cfreturn LOCAL />	

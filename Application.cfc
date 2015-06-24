@@ -141,8 +141,12 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCurrency"  access="private" returnType="void" output="false">
+	
+		<cfset var defaultCurrency = EntityLoad("currency",{isDefault=true},true) />
+	
 		<cfset SESSION.currency = {} />
-		<cfset SESSION.currency.code = "CAD" />
+		<cfset SESSION.currency.id = defaultCurrency.getCurrencyId() />
+		<cfset SESSION.currency.code = defaultCurrency.getCode() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">

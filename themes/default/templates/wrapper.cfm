@@ -40,9 +40,10 @@
 							</cfif>
 							">
 								<form method="post">
-									<select name="currency" style="font-size:10px;margin-top:-5px;" onchange="this.form.submit()">
-										<option value="cad">CAD</option>
-										<option value="usd">USD</option>
+									<select name="currency_id" style="font-size:10px;margin-top:-5px;" onchange="this.form.submit()">
+										<cfloop array="#REQUEST.pageData.currencies#" index="currency">
+											<option value="#currency.getCurrencyId()#">#currency.getCurrencyCode()#</option>
+										</cfloop>
 									</select>
 								</form>
 							</div>
