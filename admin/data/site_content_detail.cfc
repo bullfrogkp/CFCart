@@ -9,7 +9,7 @@
 			<cfif FORM.name EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid name.") />
 			</cfif>
-			<cfif FORM.detail EQ "">
+			<cfif FORM.site_content EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the content.") />
 			</cfif>
 			<cfif FORM.title EQ "">
@@ -50,7 +50,7 @@
 			
 			<cfset LOCAL.content.setName(LCase(Trim(FORM.name))) />
 			<cfset LOCAL.content.setDisplayName(Trim(FORM.name)) />
-			<cfset LOCAL.content.setContent(Trim(FORM.content)) />
+			<cfset LOCAL.content.setSiteContent(Trim(FORM.site_content)) />
 			<cfset LOCAL.content.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.content.setDescription(Trim(FORM.description)) />
 			<cfset LOCAL.content.setKeywords(Trim(FORM.keywords)) />
@@ -86,7 +86,7 @@
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>
 			<cfset LOCAL.pageData.formData.name = isNull(LOCAL.pageData.content.getName())?"":LOCAL.pageData.content.getName() />
-			<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.content.getContent())?"":LOCAL.pageData.content.getContent() />
+			<cfset LOCAL.pageData.formData.site_content = isNull(LOCAL.pageData.content.getSiteContent())?"":LOCAL.pageData.content.getSiteContent() />
 			<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.content.getTitle())?"":LOCAL.pageData.content.getTitle() />
 			<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.content.getKeywords())?"":LOCAL.pageData.content.getKeywords() />
 			<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.content.getDescription())?"":LOCAL.pageData.content.getDescription() />

@@ -1,7 +1,7 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {
-		CKEDITOR.replace( 'detail',
+		CKEDITOR.replace( 'site_content',
 		{
 			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
 			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
@@ -44,7 +44,7 @@
 					</div>
 					<div class="form-group">
 						<label>Content</label>
-						<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
+						<textarea name="site_content" id="site_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.site_content#</textarea>
 					</div>
 					 <div class="form-group">
 						<label>Title</label>

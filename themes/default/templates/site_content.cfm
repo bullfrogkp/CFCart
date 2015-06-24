@@ -5,7 +5,7 @@
 			<div class="breadcrumb-arrow-icon"></div>
 			<span style="vertical-align:middle">#REQUEST.pageData.content.getDisplayName()#</span>
 		</div>
-		<div class="info-detail">#REQUEST.pageData.content.getContent()#</div>
+		<div class="info-detail">#REQUEST.pageData.content.getSiteContent()#</div>
 	</div>		
 	<cfinclude template="info_sidebar.cfm" />
 </cfoutput>

@@ -53,7 +53,7 @@
 								<tr>
 									<td>#content.getTitle()#</td>
 									<td>#content.getURL()#</td>
-									<td>#content.getContent()#</td>
+									<td>#content.getSiteContent()#</td>
 									<td>#DateFormat(content.getCreatedDatetime(),"mmm dd,yyyy")#</td>
 									<td>
 										<cfif content.getIsEnabled() EQ true>
