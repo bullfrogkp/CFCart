@@ -51,7 +51,13 @@
 						<td>
 							<div id="top-myaccount-icon"></div>
 						</td>
-						<td><a href="#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;</td>
+						<td>
+							<cfif IsNumeric(SESSION.user.customerId)>
+								<a href="#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm">My Account</a>&nbsp;&nbsp;&nbsp;
+							<cfelse>
+								<a href="#APPLICATION.absoluteUrlWeb#login.cfm">My Account</a>&nbsp;&nbsp;&nbsp;
+							</cfif>
+						</td>
 						<td>
 							<div id="top-faq-icon"></div>
 						</td>
