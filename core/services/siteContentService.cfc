@@ -11,15 +11,15 @@
 	   
 		<cfquery name="LOCAL.query" ormoptions="#LOCAL.ormOptions#" dbtype="hql">	
 			<cfif ARGUMENTS.getCount EQ true>
-			SELECT COUNT(contentId) 
+			SELECT COUNT(siteContentId) 
 			</cfif>
-			FROM content 
+			FROM site_content 
 			WHERE 1=1
 			<cfif getSearchKeywords() NEQ "">	
-			AND	(name like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR content like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
+			AND	(name like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR siteContent like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
 			</cfif>
 			<cfif NOT IsNull(getId())>
-			AND contentId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
+			AND siteContentId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 			</cfif>
 			<cfif NOT IsNull(getIsEnabled())>
 			AND isEnabled = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsEnabled()#" />
