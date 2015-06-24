@@ -40,7 +40,7 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Name</label>
-						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					<div class="form-group">
 						<label>Content</label>
