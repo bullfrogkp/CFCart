@@ -195,7 +195,9 @@
 		<div id="sidebar-wrapper">
 			<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getAdvertisements())>
 				<cfloop array="#REQUEST.pageData.advertisementSection.getAdvertisements()#" index="ad">	
-					<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:100%;border:1px solid ##CCC">
+					<a href="#ad.getLink()#">
+						<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:100%;border:1px solid ##CCC">
+					</a>
 				</cfloop>
 			</cfif>
 			<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">

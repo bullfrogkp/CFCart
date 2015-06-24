@@ -133,6 +133,11 @@
 																<img class="img-responsive" src="#ad.getImageLink(type = "small")#" />
 															</td>
 														</tr>
+														<tr>
+															<td colspan="2">
+																<input type="text" placeholder="Link" name="advertisement_link_#ad.getPageSectionAdvertisementId()#" value="#ad.getLink()#" style="width:100%;padding-left:5px;"/>
+															</td>
+														</tr>
 													</table>
 												</div><!-- /.box-body -->
 											</div><!-- /.box -->

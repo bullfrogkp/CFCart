@@ -23,6 +23,10 @@
 						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
 						<cfset EntitySave(LOCAL.ad) />
 					</cfif>
+					<cfif Trim(FORM["advertisement_link_#LOCAL.ad.getPageSectionAdvertisementId()#"]) NEQ "">
+						<cfset LOCAL.ad.setLink(FORM["advertisement_link_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
+						<cfset EntitySave(LOCAL.ad) />
+					</cfif>
 				</cfloop>
 			</cfif>
 			<cfif FORM["uploader_count"] NEQ 0>
