@@ -3,11 +3,12 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.pageData.title = "Reviews | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.description = "" />
-		<cfset LOCAL.pageData.keywords = "" />
-		
-		<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
+		<cfif Trim(ListGetAt(CGI.PATH_INFO,1,"/")) NEQ "">
+			<cfset LOCAL.pageData.content = EntityLoad("content",{name=Trim(ListGetAt(CGI.PATH_INFO,1,"/"))},true) />
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.content.getTitle()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.description = LOCAL.pageData.content.getDescription() />
+			<cfset LOCAL.pageData.keywords = LOCAL.pageData.content.getKeywords() />
+		</cfif>
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
