@@ -32,7 +32,20 @@
 				<table>
 					<tr>
 						<td>
-							<div id="top-currency-icon">USD</div>
+							<div id="top-currency-icon" style="
+							<cfif SESSION.currency.code EQ "cad">
+								  background-position: -64px -167px;
+							<cfelseif SESSION.currency.code EQ "usd">
+								  background-position: -64px -187px;
+							</cfif>
+							">
+								<form method="post">
+									<select name="currency" style="font-size:10px;margin-top:-5px;" onchange="this.form.submit()">
+										<option value="cad">CAD</option>
+										<option value="usd">USD</option>
+									</select>
+								</form>
+							</div>
 						</td>
 						<td style="padding-left:10px;">
 							<div id="top-signin-icon"></div>
