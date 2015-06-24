@@ -62,7 +62,7 @@
 											<span class="label label-danger">Disabled</span>
 										</cfif>
 									</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/content_detail.cfm?id=#content.getContentId()#">View Detail</a></td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/site_content_detail.cfm?id=#content.getContentId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
 						<cfelse>

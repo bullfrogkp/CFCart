@@ -418,7 +418,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li class="homepage"><a href="#APPLICATION.absoluteUrlWeb#admin/homepage.cfm"><i class="fa fa-angle-double-right"></i> Home</a></li>
-                                <li class="about_us"><a href="#APPLICATION.absoluteUrlWeb#admin/contents.cfm"><i class="fa fa-angle-double-right"></i> Contents</a></li>
+                                <li class="about_us"><a href="#APPLICATION.absoluteUrlWeb#admin/site_contents.cfm"><i class="fa fa-angle-double-right"></i> Contents</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
