@@ -12,6 +12,9 @@
 			<cfif FORM.multiplier EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the multiplier.") />
 			</cfif>
+			<cfif FORM.locale EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the locale.") />
+			</cfif>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -47,6 +50,7 @@
 			
 			<cfset LOCAL.currency.setCode(Trim(FORM.code)) />
 			<cfset LOCAL.currency.setMultiplier(Trim(FORM.multiplier)) />
+			<cfset LOCAL.currency.setLocale(Trim(FORM.locale)) />
 			<cfset LOCAL.currency.setIsEnabled(FORM.is_enabled) />
 			
 			<cfif FORM.is_default EQ 1>

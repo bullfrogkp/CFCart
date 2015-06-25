@@ -36,6 +36,11 @@
 						<label>Multiplier</label>
 						<input name="multiplier" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.multiplier#"/>
 					</div>
+					 <div class="form-group">
+						<label>Locale</label>
+						<input name="locale" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.locale#"/>
+					</div>
+					
 					<div class="form-group">
 						<label>Default</label>
 						 <select class="form-control" name="is_default">

@@ -79,6 +79,7 @@
 			<cfset LOCAL.newCurrency = EntityLoadByPK("currency",FORM.currency_id) />
 			<cfset SESSION.currency.id = LOCAL.newCurrency.getCurrencyId() />
 			<cfset SESSION.currency.code = LOCAL.newCurrency.getCode() />
+			<cfset SESSION.currency.locale = LOCAL.newCurrency.getLocale() />
 		</cfif>
 		
 		<cfreturn LOCAL />	

@@ -21,6 +21,7 @@
 						<tr class="default">
 							<th>Code</th>
 							<th>Multiplier</th>
+							<th>Locale</th>
 							<th>Default</th>
 							<th>Status</th>
 							<th>Action</th>
@@ -31,6 +32,7 @@
 								<tr>
 									<td>#currency.getCode()#</td>
 									<td>#currency.getMultiplier()#</td>
+									<td>#currency.getLocale()#</td>
 									<td>#currency.getIsDefault()#</td>
 									<td>
 										<cfif currency.getIsEnabled() EQ true>
@@ -51,6 +53,7 @@
 						<tr class="default">
 							<th>Code</th>
 							<th>Multiplier</th>
+							<th>Locale</th>
 							<th>Default</th>
 							<th>Status</th>
 							<th>Action</th>
