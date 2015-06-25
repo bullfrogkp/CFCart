@@ -55,22 +55,33 @@
 		
 			<cfset SESSION.order = {} />
 			<cfset SESSION.order.productArray = [] />
-			<cfset SESSION.order.subTotalPrice = 0 />
-			<cfset SESSION.order.totalPrice = 0 />
-			<cfset SESSION.order.totalTax = 0 />
-			<cfset SESSION.order.totalShippingFee = 0 />
-			<cfset SESSION.order.discount = 0 />
 			<cfset SESSION.order.couponCode = "" />
 			<cfset SESSION.order.couponId = "" />
 			
+			<cfset SESSION.order.price = {} />
+			
+			<cfloop array="#LOCAL.currencies#" index="LOCAL.currency">
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"] = {} />
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].subTotalPrice = 0 />
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].totalPrice = 0 />
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].totalTax = 0 />
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].totalShippingFee = 0 />
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].discount = 0 />
+			</cfloop>
+			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
+			<cfset LOCAL.currencies = EntityLoad("currency",{isDeleted = false, isEnabled = true}) />
 		
 			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 				<cfset LOCAL.productStruct = {} />
 				<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
 				<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
-				<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
+				<cfset LOCAL.productStruct.price = {} />
+				<cfloop array="#LOCAL.currencies#" index="LOCAL.currency">
+					<cfset LOCAL.productStruct.price["#LOCAL.currency.getCode()#"] = {} />
+					<cfset LOCAL.productStruct.price["#LOCAL.currency.getCode()#"].singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = LOCAL.currency.getCurrencyId()) />
+					<cfset LOCAL.productStruct.price["#LOCAL.currency.getCode()#"].totalPrice = LOCAL.productStruct.price["#LOCAL.currency.getCode()#"].singlePrice * LOCAL.productStruct.count />
+				</cfloop>
 			
 				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />
 			
