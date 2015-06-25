@@ -55,55 +55,38 @@
 		
 			<cfset SESSION.order = {} />
 			<cfset SESSION.order.productArray = [] />
+			<cfset SESSION.order.subTotalPrice = 0 />
+			<cfset SESSION.order.totalPrice = 0 />
+			<cfset SESSION.order.totalTax = 0 />
+			<cfset SESSION.order.totalShippingFee = 0 />
+			<cfset SESSION.order.discount = 0 />
 			<cfset SESSION.order.couponCode = "" />
 			<cfset SESSION.order.couponId = "" />
 			
-			<cfset SESSION.order.price = {} />
-			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
-			<cfset LOCAL.currencies = EntityLoad("currency",{isDeleted = false, isEnabled = true}) />
-			<cfset LOCAL.defaultCurrency = EntityLoad("currency",{isDefault = true},true) />
-			
-			<cfset SESSION.order.defaultCurrencyCode = LOCAL.defaultCurrency.getCode() />
-			
-			<cfloop array="#LOCAL.currencies#" index="LOCAL.currency">
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"] = {} />
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].subTotalPrice = 0 />
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].totalPrice = 0 />
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].totalTax = 0 />
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].totalShippingFee = 0 />
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].discount = 0 />
-			</cfloop>
+			<cfset LOCAL.defaultCurrency = EntityLoad("currency",{isDefault=true},true) />
 		
 			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 				<cfset LOCAL.productStruct = {} />
 				<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
 				<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-				<cfset LOCAL.productStruct.price = {} />
-				
-				<cfloop array="#LOCAL.currencies#" index="LOCAL.currency">
-					<cfset LOCAL.productStruct.price["#LOCAL.currency.getCode()#"] = {} />
-					<cfset LOCAL.productStruct.price["#LOCAL.currency.getCode()#"].singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = LOCAL.currency.getCurrencyId()) />
-					<cfset LOCAL.productStruct.price["#LOCAL.currency.getCode()#"].totalPrice = LOCAL.productStruct.price["#LOCAL.currency.getCode()#"].singlePrice * LOCAL.productStruct.count />
-				</cfloop>
+				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = LOCAL.defaultCurrency.getCurrencyId()) />
+				<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
 			
 				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />
 			
-				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].subTotalPrice += LOCAL.productStruct.totalPrice />
+				<cfset SESSION.order.subTotalPrice += LOCAL.productStruct.totalPrice />
 			</cfloop>
 			
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
 				<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-				<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.price["#SESSION.order.defaultCurrencyCode#"].subTotalPrice) />
+				<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.subTotalPrice) />
 				
 				<cfif LOCAL.applyCoupon.success EQ true>
 					<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
 					<cfset SESSION.order.couponId = LOCAL.applyCoupon.couponId />
-					
-					<cfloop array="#LOCAL.currencies#" index="LOCAL.currency">
-						<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].subTotalPrice = LOCAL.applyCoupon.newTotal * LOCAL.currency.getMultiplier() />
-						<cfset SESSION.order.price["#LOCAL.currency.getCode()#"].discount = LOCAL.applyCoupon.discount * LOCAL.currency.getMultiplier() />
-					</cfloop>
+					<cfset SESSION.order.discount = LOCAL.applyCoupon.discount />
+					<cfset SESSION.order.subTotalPrice = LOCAL.applyCoupon.newTotal />
 				</cfif>
 			</cfif>
 		
