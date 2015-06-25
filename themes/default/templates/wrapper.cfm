@@ -32,13 +32,7 @@
 				<table>
 					<tr>
 						<td>
-							<div id="top-currency-icon" style="
-							<cfif SESSION.currency.code EQ "cad">
-								  background-position: -64px -167px;
-							<cfelseif SESSION.currency.code EQ "usd">
-								  background-position: -64px -187px;
-							</cfif>
-							">
+							<div id="top-currency-icon" style="background-position: #SESSION.currency.positionX# #SESSION.currency.positionY#;">
 								<form method="post">
 									<select name="currency_id" style="font-size:10px;margin-top:-5px;" onchange="this.form.submit()">
 										<cfloop array="#REQUEST.pageData.currencies#" index="currency">
