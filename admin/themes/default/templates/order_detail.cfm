@@ -254,19 +254,19 @@
 												<table class="table">
 													<tr>
 														<th style="width:50%">Subtotal:</th>
-														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderSubtotalAmount#</td>
+														<td>#LSCurrencyFormat(REQUEST.pageData.orderSubtotalAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 													</tr>
 													<tr>
 														<th>Shipping & Handling</th>
-														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderShippingAmount#</td>
+														<td>#LSCurrencyFormat(REQUEST.pageData.orderShippingAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 													</tr>
 													<tr>
 														<th>Tax</th>
-														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderTaxAmount#</td>
+														<td>#LSCurrencyFormat(REQUEST.pageData.orderTaxAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 													</tr>
 													<tr>
 														<th>Total:</th>
-														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderTotalAmount#</td>
+														<td>#LSCurrencyFormat(REQUEST.pageData.orderTotalAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 													</tr>
 												</table>
 											</div>
@@ -398,7 +398,7 @@
 												<td>#product.getQuantity()#</td>
 												<td>#product.getSku()#</td>
 												<td>#product.getProductName()#</td>
-												<td>#REQUEST.pageData.order.getCurrency().getCode()# #product.getPrice() * product.getQuantity()#</td>
+												<td>#LSCurrencyFormat(product.getPrice() * product.getQuantity(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											</cfloop>
 										</tbody>
@@ -426,19 +426,19 @@
 										<table class="table">
 											<tr>
 												<th style="width:50%">Subtotal:</th>
-												<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderSubtotalAmount#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.orderSubtotalAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											<tr>
 												<th>Tax</th>
-												<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderTaxAmount#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.orderTaxAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											<tr>
 												<th>Shipping:</th>
-												<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderShippingAmount#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.orderShippingAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											<tr>
 												<th>Total:</th>
-												<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderTotalAmount#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.orderTotalAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 										</table>
 									</div>
