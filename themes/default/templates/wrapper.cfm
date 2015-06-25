@@ -36,7 +36,7 @@
 								<form method="post">
 									<select name="currency_id" style="font-size:10px;margin-top:-5px;" onchange="this.form.submit()">
 										<cfloop array="#REQUEST.pageData.currencies#" index="currency">
-											<option value="#currency.getCurrencyId()#">#currency.getCurrencyCode()#</option>
+											<option value="#currency.getCurrencyId()#">#currency.getCode()#</option>
 										</cfloop>
 									</select>
 								</form>

@@ -54,8 +54,8 @@
 			<cfset LOCAL.currency.setCode(Trim(FORM.code)) />
 			<cfset LOCAL.currency.setMultiplier(Trim(FORM.multiplier)) />
 			<cfset LOCAL.currency.setIsEnabled(FORM.is_enabled) />
-			<cfset LOCAL.currency.setPostionX(Trim(FORM.position_x)) />
-			<cfset LOCAL.currency.setPostionY(Trim(FORM.position_y)) />
+			<cfset LOCAL.currency.setPositionX(Trim(FORM.position_x)) />
+			<cfset LOCAL.currency.setPositionY(Trim(FORM.position_y)) />
 			
 			<cfif FORM.is_default EQ 1>
 				<cfset LOCAL.allCurrencies = EntityLoad("currency") />

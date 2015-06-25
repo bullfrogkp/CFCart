@@ -38,17 +38,17 @@
 					</div>
 					<div class="form-group">
 						<label>Position X</label>
-						<textarea name="position_x" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_x#</textarea>
+						<input name="position_x" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.position_x#"/>
 					</div>
 					<div class="form-group">
 						<label>Position Y</label>
-						<textarea name="position_y" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_y#</textarea>
+						<input name="position_y" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.position_y#"/>
 					</div>
 					<div class="form-group">
 						<label>Default</label>
 						 <select class="form-control" name="is_default">
-							<option value="1" <cfif REQUEST.pageData.formData.is_default EQ TRUE>selected</cfif>>Enabled</option>
-							<option value="0" <cfif REQUEST.pageData.formData.is_default EQ FALSE>selected</cfif>>Disabled</option>
+							<option value="1" <cfif REQUEST.pageData.formData.is_default EQ TRUE>selected</cfif>>Yes</option>
+							<option value="0" <cfif REQUEST.pageData.formData.is_default EQ FALSE>selected</cfif>>No</option>
 						</select>
 					</div>
 					<div class="form-group">
