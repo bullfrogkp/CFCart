@@ -22,8 +22,8 @@
 							<th>Action</th>
 						</tr>
 					
-						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
-							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="currency">
+						<cfif ArrayLen(REQUEST.pageData.currencies) NEQ 0>
+							<cfloop array="#REQUEST.pageData.currencies#" index="currency">
 								<tr>
 									<td>#currency.getCode()#</td>
 									<td>#currency.getMultiplier()#</td>
