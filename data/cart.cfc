@@ -85,7 +85,7 @@
 			
 				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />
 			
-				<cfset SESSION.order.subTotalPrice += LOCAL.productStruct.totalPrice />
+				<cfset SESSION.order.price["#LOCAL.currency.getCode()#"]subTotalPrice += LOCAL.productStruct.totalPrice />
 			</cfloop>
 			
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
