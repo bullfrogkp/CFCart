@@ -95,6 +95,7 @@
 			<cfelse>
 				<cfset LOCAL.pageData.formData.code = isNull(LOCAL.pageData.currency.getCode())?"":LOCAL.pageData.currency.getCode() />
 				<cfset LOCAL.pageData.formData.multiplier = isNull(LOCAL.pageData.currency.getMultiplier())?"":LOCAL.pageData.currency.getMultiplier() />
+				<cfset LOCAL.pageData.formData.locale = isNull(LOCAL.pageData.currency.getLocale())?"":LOCAL.pageData.currency.getLocale() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.currency.getIsEnabled())?"":LOCAL.pageData.currency.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.is_default = isNull(LOCAL.pageData.currency.getIsDefault())?"":LOCAL.pageData.currency.getIsDefault() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
@@ -108,6 +109,7 @@
 			<cfelse>
 				<cfset LOCAL.pageData.formData.code = "" />
 				<cfset LOCAL.pageData.formData.multiplier = "" />
+				<cfset LOCAL.pageData.formData.locale = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.is_default = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
