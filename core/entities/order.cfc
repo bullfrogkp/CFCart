@@ -34,7 +34,9 @@
     <cfproperty name="billingCity" column="billing_city" ormtype="string"> 
     <cfproperty name="billingPostalCode" column="billing_postal_code" ormtype="string"> 
 	<cfproperty name="billingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="billing_country_id">
-	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="billing_province_id">	
+	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="billing_province_id">
+	
+	<cfproperty name="currency" fieldtype="many-to-one" cfc="currency" fkcolumn="currency_id">	
 	 
 	<cfproperty name="coupons" type="array" fieldtype="one-to-many" cfc="coupon" fkcolumn="order_id" singularname="coupon">
 	<cfproperty name="paymentMethod" fieldtype="many-to-one" cfc="payment_method" fkcolumn="payment_method_id">	

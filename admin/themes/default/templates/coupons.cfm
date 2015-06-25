@@ -57,7 +57,7 @@
 									<td>#coupon.getCouponCode()#</td>
 									<td>#DateFormat(coupon.getStartDate(),"mmm dd,yyyy")#</td>
 									<td>#DateFormat(coupon.getEndDate(),"mmm dd,yyyy")#</td>
-									<td>#DollarFormat(coupon.getThresholdAmount())#</td>
+									<td>#coupon.getThresholdAmount()#</td>
 									<td>
 										<cfswitch expression="#coupon.getCouponStatusType().getDisplayName()#">
 											<cfcase value="active"><span class="label label-success">Active</span></cfcase>

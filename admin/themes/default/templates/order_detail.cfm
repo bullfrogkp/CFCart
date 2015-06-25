@@ -254,19 +254,19 @@
 												<table class="table">
 													<tr>
 														<th style="width:50%">Subtotal:</th>
-														<td>#DollarFormat(REQUEST.pageData.orderSubtotalAmount)#</td>
+														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderSubtotalAmount#</td>
 													</tr>
 													<tr>
 														<th>Shipping & Handling</th>
-														<td>#DollarFormat(REQUEST.pageData.orderShippingAmount)#</td>
+														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderShippingAmount#</td>
 													</tr>
 													<tr>
 														<th>Tax</th>
-														<td>#DollarFormat(REQUEST.pageData.orderTaxAmount)#</td>
+														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderTaxAmount#</td>
 													</tr>
 													<tr>
 														<th>Total:</th>
-														<td>#DollarFormat(REQUEST.pageData.orderTotalAmount)#</td>
+														<td>#REQUEST.pageData.order.getCurrency().getCode()# #REQUEST.pageData.orderTotalAmount#</td>
 													</tr>
 												</table>
 											</div>
@@ -398,7 +398,7 @@
 												<td>#product.getQuantity()#</td>
 												<td>#product.getSku()#</td>
 												<td>#product.getProductName()#</td>
-												<td>#DollarFormat(product.getPrice() * product.getQuantity())#</td>
+												<td>#product.getCurrency().getCode()# #DollarFormat(product.getPrice() * product.getQuantity())#</td>
 											</tr>
 											</cfloop>
 										</tbody>

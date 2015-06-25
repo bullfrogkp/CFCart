@@ -16,6 +16,7 @@
 	<cfproperty name="sku" column="sku" ormtype="string">
 	
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
+	<cfproperty name="currency" fieldtype="many-to-one" cfc="currency" fkcolumn="currency_id">	
 	
 	<cfproperty name="orderProductStatus" type="array" fieldtype="one-to-many" cfc="order_product_status" fkcolumn="order_product_id">
 </cfcomponent>
