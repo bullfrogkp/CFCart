@@ -250,32 +250,34 @@
 		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		<cfset var price = 0 />
 		
-		<cfif IsNumeric(productCustomeGroupRela.getSpecialPrice())>
-			<cfif IsDate(productCustomeGroupRela.getSpecialPriceFromDate()) AND IsDate(productCustomeGroupRela.getSpecialPriceToDate())>
-				<cfif 	DateCompare(productCustomeGroupRela.getSpecialPriceFromDate(), DateFormat(Now())) LTE 0
-						AND
-						DateCompare(DateFormat(Now()), productCustomeGroupRela.getSpecialPriceToDate()) LTE 0>
-					<cfset price = productCustomeGroupRela.getSpecialPrice() />
-				<cfelse>
-					<cfset price = productCustomeGroupRela.getPrice() />
-				</cfif>
-			<cfelseif IsDate(productCustomeGroupRela.getSpecialPriceFromDate())>
-				<cfif DateCompare(productCustomeGroupRela.getSpecialPriceFromDate(), DateFormat(Now())) LTE 0>
-					<cfset price = productCustomeGroupRela.getSpecialPrice() />
-				<cfelse>
-					<cfset price = productCustomeGroupRela.getPrice() />
-				</cfif>
-			<cfelseif IsDate(productCustomeGroupRela.getSpecialPriceToDate())>
-				<cfif 	DateCompare(DateFormat(Now()), productCustomeGroupRela.getSpecialPriceToDate()) LTE 0>
-					<cfset price = productCustomeGroupRela.getSpecialPrice() />
+		<cfif NOT IsNull(productCustomeGroupRela)>
+			<cfif IsNumeric(productCustomeGroupRela.getSpecialPrice())>
+				<cfif IsDate(productCustomeGroupRela.getSpecialPriceFromDate()) AND IsDate(productCustomeGroupRela.getSpecialPriceToDate())>
+					<cfif 	DateCompare(productCustomeGroupRela.getSpecialPriceFromDate(), DateFormat(Now())) LTE 0
+							AND
+							DateCompare(DateFormat(Now()), productCustomeGroupRela.getSpecialPriceToDate()) LTE 0>
+						<cfset price = productCustomeGroupRela.getSpecialPrice() />
+					<cfelse>
+						<cfset price = productCustomeGroupRela.getPrice() />
+					</cfif>
+				<cfelseif IsDate(productCustomeGroupRela.getSpecialPriceFromDate())>
+					<cfif DateCompare(productCustomeGroupRela.getSpecialPriceFromDate(), DateFormat(Now())) LTE 0>
+						<cfset price = productCustomeGroupRela.getSpecialPrice() />
+					<cfelse>
+						<cfset price = productCustomeGroupRela.getPrice() />
+					</cfif>
+				<cfelseif IsDate(productCustomeGroupRela.getSpecialPriceToDate())>
+					<cfif 	DateCompare(DateFormat(Now()), productCustomeGroupRela.getSpecialPriceToDate()) LTE 0>
+						<cfset price = productCustomeGroupRela.getSpecialPrice() />
+					<cfelse>
+						<cfset price = productCustomeGroupRela.getPrice() />
+					</cfif>
 				<cfelse>
 					<cfset price = productCustomeGroupRela.getPrice() />
 				</cfif>
 			<cfelse>
 				<cfset price = productCustomeGroupRela.getPrice() />
 			</cfif>
-		<cfelse>
-			<cfset price = productCustomeGroupRela.getPrice() />
 		</cfif>
 		
 		<cfset price = price * currency.getMultiplier() />
