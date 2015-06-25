@@ -39,20 +39,20 @@
 							<p>#item.count#</p>
 						</td>
 						<td>
-							<p>#DollarFormat(item.singlePrice)#</p>
+							<p>#LSCurrencyFormat(item.singlePrice,"local",SESSION.currency.locale)#</p>
 						</td>
 						<td>
-							<p>#DollarFormat(item.totalPrice)#</p>
+							<p>#LSCurrencyFormat(item.totalPrice,"local",SESSION.currency.locale)#</p>
 						</td>
 						<td>
-							<p>#DollarFormat(item.totalTax)#</p>
+							<p>#LSCurrencyFormat(item.totalTax,"local",SESSION.currency.locale)#</p>
 						</td>
 						<td>
 							<p>
 							<cfif NOT IsNull(productShippingMethodRela.getShippingMethod().getShippingCarrier())>
 							#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - 
 							</cfif>
-							#productShippingMethodRela.getShippingMethod().getDisplayName()#: #DollarFormat(item.totalShippingFee)#</p>
+							#productShippingMethodRela.getShippingMethod().getDisplayName()#: #LSCurrencyFormat(item.totalShippingFee,"local",SESSION.currency.locale)#</p>
 						</td>
 					</tr>
 				</cfloop>
@@ -175,13 +175,13 @@
 		</div>
 		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
-				<li>Sub Total <span>#DollarFormat(SESSION.order.subTotalPrice)#</span></li>
-				<li>Tax <span>#DollarFormat(SESSION.order.totalTax)#</span></li>
-				<li>Shipping Cost <span>#DollarFormat(SESSION.order.totalShippingFee)#</span></li>
+				<li>Sub Total <span>#LSCurrencyFormat(SESSION.order.subTotalPrice,"local",SESSION.currency.locale)#</span></li>
+				<li>Tax <span>#LSCurrencyFormat(SESSION.order.totalTax,"local",SESSION.currency.locale)#</span></li>
+				<li>Shipping Cost <span>#LSCurrencyFormat(SESSION.order.totalShippingFee,"local",SESSION.currency.locale)#</span></li>
 				<cfif SESSION.order.discount GT 0>
-				<li>Discount <span>- #DollarFormat(SESSION.order.discount)#</span></li>
+				<li>Discount <span>- #LSCurrencyFormat(SESSION.order.discount,"local",SESSION.currency.locale)#</span></li>
 				</cfif>
-				<li>Total <span>#DollarFormat(SESSION.order.totalPrice)#</span></li>
+				<li>Total <span>#LSCurrencyFormat(SESSION.order.totalPrice,"local",SESSION.currency.locale)#</span></li>
 			</ul>
 		</div>
 	</div>

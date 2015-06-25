@@ -69,7 +69,7 @@ margin-bottom:10px;
 							<select id="shipping-methods-#product.getProductId()#">
 								<cfloop array="#item.shippingMethodArray#" index="s">
 									<option value="#s.productShippingMethodRelaId#" data-imagesrc="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.logo#"
-										data-description="#DollarFormat(s.price)#">Quantity: #item.count# &nbsp;&nbsp;#s.label#</option>
+										data-description="#LSCurrencyFormat(s.price,"local",SESSION.currency.locale)#">Quantity: #item.count# &nbsp;&nbsp;#s.label#</option>
 								</cfloop>
 							</select>
 						</div>

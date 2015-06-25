@@ -367,7 +367,7 @@
 			<cfset s = REQUEST.pageData.shippingMethods />
 			<cfloop query="s">
 				{
-					text: "#s.shipping_carrier_name# - #s.shipping_method_name#: #DollarFormat(s.shipping_price)#",
+					text: "#s.shipping_carrier_name# - #s.shipping_method_name#: #LSCurrencyFormat(s.shipping_price,"local",SESSION.currency.locale)#",
 					value: #s.product_shipping_method_rela_id#,
 					selected: false,
 					imageSrc: "#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.image_name#"
@@ -488,7 +488,7 @@
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
 			<cfelse>
-				#DollarFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#
+				#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#
 				<div style="color:##8F8F8F;margin-top:10px;font-size:14px;">
 					#REQUEST.pageData.product.getStock()# in stock
 				</div>
@@ -563,7 +563,7 @@
 								<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 							</a>
 							<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-							<div class="thumbnail-price">#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</div>
+							<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 							<cfif product.isFreeShipping()>
 							<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 							</cfif>

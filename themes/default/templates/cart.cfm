@@ -111,7 +111,7 @@
 								<p>SKU: #product.getSku()#</p>
 							</td>
 							<td class="cart_price">
-								<p>#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</p>
+								<p>#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -122,7 +122,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">#DollarFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</p>
+								<p class="cart_total_price">#LSCurrencyFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</p>
 							</td>
 							<td class="cart_delete">
 								<input type="image" name="remove_product" value="#cartItem.getTrackingRecordId()#" src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
@@ -184,7 +184,7 @@
 			</div>
 			<div id="checkout">
 				<ul>
-					<li id="subtotal-price">Sub Total <span id="subtotal-price-amount">#DollarFormat(REQUEST.pageData.subTotal)#</span></li>
+					<li id="subtotal-price">Sub Total <span id="subtotal-price-amount">#LSCurrencyFormat(REQUEST.pageData.subTotal,"local",SESSION.currency.locale)#</span></li>
 				</ul>
 				<p style="float:right;font-weight:bold;">PayPal securely processes payments for PinMyDeals</p>
 				<input type="image" name="submit_cart" src="#SESSION.absoluteUrlTheme#images/checkout_paypal.gif" alt="Submit Form" style="float:right;" />

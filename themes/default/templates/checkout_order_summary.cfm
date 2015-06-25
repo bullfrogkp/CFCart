@@ -5,14 +5,14 @@
 		<tr>
 			<td style="font-weight:bold;width:173px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
 			<td>
-				#DollarFormat(SESSION.order.subTotalPrice)#
+				#LSCurrencyFormat(SESSION.order.subTotalPrice,"local",SESSION.currency.locale)#
 			</td>
 		</tr>
 		<tr>
 			<td style="font-weight:bold;width:173px;">Tax:</td>
 			<td>
 				<cfif NOT IsNull(SESSION.order.totalTax) AND SESSION.order.totalTax NEQ 0>
-					#DollarFormat(SESSION.order.totalTax)#
+					#LSCurrencyFormat(SESSION.order.totalTax,"local",SESSION.currency.locale)#
 				<cfelse>
 					-
 				</cfif>
@@ -27,7 +27,7 @@
 		<tr>
 			<td style="font-weight:bold;width:173px;">Total:</td>
 			<td>
-				#DollarFormat(SESSION.order.subTotalPrice)#
+				#LSCurrencyFormat(SESSION.order.subTotalPrice,"local",SESSION.currency.locale)#
 			</td>
 		</tr>
 	</table>			

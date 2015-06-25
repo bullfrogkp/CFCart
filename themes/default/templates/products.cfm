@@ -185,7 +185,7 @@ padding: 0 8px 8px;">
 									#product.getDisplayName()#
 								</a>
 							</div>
-							<div class="recommendation-list-price">#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</div>
+							<div class="recommendation-list-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 							<div class="recommendation-list-review"></div>
 							<div><a href="">(#ArrayLen(product.getReviews())# Reviews)</a></div>
 						</div>
