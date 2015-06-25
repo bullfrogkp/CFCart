@@ -37,7 +37,7 @@
 		
 		<cfloop array="#LOCAL.pageData.trackingRecords#" index="LOCAL.record">
 			<cfset LOCAL.product = LOCAL.record.getProduct() />
-			<cfset LOCAL.pageData.subTotal += LOCAL.product.getPrice(customerGroupName = SESSION.user.customerGroupName) * LOCAL.record.getCount() />
+			<cfset LOCAL.pageData.subTotal += LOCAL.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) * LOCAL.record.getCount() />
 		</cfloop>
 		
 		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
@@ -69,7 +69,7 @@
 				<cfset LOCAL.productStruct = {} />
 				<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
 				<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName) />
+				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
 				<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
 			
 				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />

@@ -187,10 +187,10 @@
 				<cfset retStruct.stock = 0 />
 			</cfif>
 			<cfif StructKeyExists(ARGUMENTS, "customerGroupName")>
-				<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = ARGUMENTS.customerGroupName) />
+				<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = ARGUMENTS.customerGroupName, currencyId = SESSION.currency.id) />
 			<cfelse>
 				<cfset LOCAL.defaultCutomerGroup = EntityLoad("customer_group", {isDefault = true}, true) />
-				<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = LOCAL.defaultCutomerGroup.getName()) />
+				<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = LOCAL.defaultCutomerGroup.getName(), currencyId = SESSION.currency.id) />
 			</cfif>
 		<cfelse>
 			<cfset retStruct.productid = "" />

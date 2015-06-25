@@ -111,7 +111,7 @@
 								<p>SKU: #product.getSku()#</p>
 							</td>
 							<td class="cart_price">
-								<p>#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</p>
+								<p>#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -122,7 +122,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">#DollarFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</p>
+								<p class="cart_total_price">#DollarFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</p>
 							</td>
 							<td class="cart_delete">
 								<input type="image" name="remove_product" value="#cartItem.getTrackingRecordId()#" src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />

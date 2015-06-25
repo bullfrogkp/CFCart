@@ -488,7 +488,7 @@
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
 			<cfelse>
-				#DollarFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName))#
+				#DollarFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#
 				<div style="color:##8F8F8F;margin-top:10px;font-size:14px;">
 					#REQUEST.pageData.product.getStock()# in stock
 				</div>
@@ -563,7 +563,7 @@
 								<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 							</a>
 							<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-							<div class="thumbnail-price">#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName))#</div>
+							<div class="thumbnail-price">#DollarFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id))#</div>
 							<cfif product.isFreeShipping()>
 							<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 							</cfif>
