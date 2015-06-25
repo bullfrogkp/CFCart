@@ -75,12 +75,10 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm" />
 		</cfif>
 		
-		<cfif StructKeyExists(FORM,"currency")>
+		<cfif StructKeyExists(FORM,"currency_id")>
 			<cfset LOCAL.newCurrency = EntityLoadByPK("currency",FORM.currency_id) />
 			<cfset SESSION.currency.id = LOCAL.newCurrency.getCurrencyId() />
 			<cfset SESSION.currency.code = LOCAL.newCurrency.getCode() />
-			<cfset SESSION.currency.positionX = LOCAL.newCurrency.getPositionX() />
-			<cfset SESSION.currency.positionY = LOCAL.newCurrency.getPositionY() />
 		</cfif>
 		
 		<cfreturn LOCAL />	

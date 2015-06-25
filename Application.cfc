@@ -147,8 +147,6 @@
 		<cfset SESSION.currency = {} />
 		<cfset SESSION.currency.id = defaultCurrency.getCurrencyId() />
 		<cfset SESSION.currency.code = defaultCurrency.getCode() />
-		<cfset SESSION.currency.positionX = defaultCurrency.getPositionX() />
-		<cfset SESSION.currency.positionY = defaultCurrency.getPositionY() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTheme"  access="private" returnType="void" output="false">

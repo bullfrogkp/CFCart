@@ -37,14 +37,6 @@
 						<input name="multiplier" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.multiplier#"/>
 					</div>
 					<div class="form-group">
-						<label>Position X</label>
-						<input name="position_x" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.position_x#"/>
-					</div>
-					<div class="form-group">
-						<label>Position Y</label>
-						<input name="position_y" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.position_y#"/>
-					</div>
-					<div class="form-group">
 						<label>Default</label>
 						 <select class="form-control" name="is_default">
 							<option value="1" <cfif REQUEST.pageData.formData.is_default EQ TRUE>selected</cfif>>Yes</option>
@@ -59,8 +51,8 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Content</button>
-						<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Content</button>
+						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Currency</button>
+						<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Currency</button>
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->

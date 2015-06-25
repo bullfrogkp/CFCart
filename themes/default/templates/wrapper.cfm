@@ -32,11 +32,17 @@
 				<table>
 					<tr>
 						<td>
-							<div id="top-currency-icon" style="background-position: #SESSION.currency.positionX# #SESSION.currency.positionY#;">
+							<div id="top-currency-icon" style="background: url(#APPLICATION.absoluteUrlWeb#images/#SESSION.currency.code#.png) no-repeat;">
 								<form method="post">
 									<select name="currency_id" style="font-size:10px;margin-top:-5px;" onchange="this.form.submit()">
 										<cfloop array="#REQUEST.pageData.currencies#" index="currency">
-											<option value="#currency.getCurrencyId()#">#currency.getCode()#</option>
+											<option value="#currency.getCurrencyId()#"
+											
+											<cfif currency.getCurrencyId() EQ SESSION.currency.id>
+											selected
+											</cfif>
+											
+											>#currency.getCode()#</option>
 										</cfloop>
 									</select>
 								</form>

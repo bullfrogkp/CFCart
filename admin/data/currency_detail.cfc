@@ -12,12 +12,6 @@
 			<cfif FORM.multiplier EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the multiplier.") />
 			</cfif>
-			<cfif FORM.position_x EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the position x.") />
-			</cfif>
-			<cfif FORM.position_y EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the position y.") />
-			</cfif>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -54,8 +48,6 @@
 			<cfset LOCAL.currency.setCode(Trim(FORM.code)) />
 			<cfset LOCAL.currency.setMultiplier(Trim(FORM.multiplier)) />
 			<cfset LOCAL.currency.setIsEnabled(FORM.is_enabled) />
-			<cfset LOCAL.currency.setPositionX(Trim(FORM.position_x)) />
-			<cfset LOCAL.currency.setPositionY(Trim(FORM.position_y)) />
 			
 			<cfif FORM.is_default EQ 1>
 				<cfset LOCAL.allCurrencies = EntityLoad("currency") />
@@ -99,8 +91,6 @@
 			<cfelse>
 				<cfset LOCAL.pageData.formData.code = isNull(LOCAL.pageData.currency.getCode())?"":LOCAL.pageData.currency.getCode() />
 				<cfset LOCAL.pageData.formData.multiplier = isNull(LOCAL.pageData.currency.getMultiplier())?"":LOCAL.pageData.currency.getMultiplier() />
-				<cfset LOCAL.pageData.formData.position_x = isNull(LOCAL.pageData.currency.getPositionX())?"":LOCAL.pageData.currency.getPositionX() />
-				<cfset LOCAL.pageData.formData.position_y = isNull(LOCAL.pageData.currency.getPositionY())?"":LOCAL.pageData.currency.getPositionY() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.currency.getIsEnabled())?"":LOCAL.pageData.currency.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.is_default = isNull(LOCAL.pageData.currency.getIsDefault())?"":LOCAL.pageData.currency.getIsDefault() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
@@ -114,8 +104,6 @@
 			<cfelse>
 				<cfset LOCAL.pageData.formData.code = "" />
 				<cfset LOCAL.pageData.formData.multiplier = "" />
-				<cfset LOCAL.pageData.formData.position_x = "" />
-				<cfset LOCAL.pageData.formData.position_y = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.is_default = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
