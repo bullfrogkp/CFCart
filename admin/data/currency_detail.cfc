@@ -6,14 +6,17 @@
 		<cfset LOCAL.messageArray = [] />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif FORM.name EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid name.") />
+			<cfif FORM.code EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid code.") />
 			</cfif>
-			<cfif FORM.site_content EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the content.") />
+			<cfif FORM.multiplier EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the multiplier.") />
 			</cfif>
-			<cfif FORM.title EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the page title.") />
+			<cfif FORM.position_x EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the position x.") />
+			</cfif>
+			<cfif FORM.position_y EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the position y.") />
 			</cfif>
 		</cfif>
 		
@@ -36,38 +39,46 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.content = EntityLoadByPK("site_content", FORM.id)> 
-			<cfset LOCAL.content.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.content.setUpdatedDatetime(Now()) />
+			<cfset LOCAL.currency = EntityLoadByPK("currency", FORM.id)> 
+			<cfset LOCAL.currency.setUpdatedUser(SESSION.adminUser) />
+			<cfset LOCAL.currency.setUpdatedDatetime(Now()) />
 		<cfelse>
-			<cfset LOCAL.content = EntityNew("site_content") />
-			<cfset LOCAL.content.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.content.setCreatedDatetime(Now()) />
-			<cfset LOCAL.content.setIsDeleted(false) />
+			<cfset LOCAL.currency = EntityNew("currency") />
+			<cfset LOCAL.currency.setCreatedUser(SESSION.adminUser) />
+			<cfset LOCAL.currency.setCreatedDatetime(Now()) />
+			<cfset LOCAL.currency.setIsDeleted(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.content.setName(Replace(LCase(Trim(FORM.name))," ","-","all")) />
-			<cfset LOCAL.content.setDisplayName(Trim(FORM.name)) />
-			<cfset LOCAL.content.setSiteContent(Trim(FORM.site_content)) />
-			<cfset LOCAL.content.setTitle(Trim(FORM.title)) />
-			<cfset LOCAL.content.setDescription(Trim(FORM.description)) />
-			<cfset LOCAL.content.setKeywords(Trim(FORM.keywords)) />
-			<cfset LOCAL.content.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.currency.setCode(Trim(FORM.code)) />
+			<cfset LOCAL.currency.setMultiplier(Trim(FORM.multiplier)) />
+			<cfset LOCAL.currency.setIsEnabled(FORM.is_enabled) />
+			<cfset LOCAL.currency.setPostionX(Trim(FORM.position_x)) />
+			<cfset LOCAL.currency.setPostionY(Trim(FORM.position_y)) />
 			
-			<cfset EntitySave(LOCAL.content) />
+			<cfif FORM.is_default EQ 1>
+				<cfset LOCAL.allCurrencies = EntityLoad("currency") />
+				<cfloop array="#LOCAL.allCurrencies#" index="LOCAL.currentCurrency">
+					<cfset LOCAL.currentCurrency.setIsDefault(false) />
+				</cfloop>
+				<cfset LOCAL.currency.setIsDefault(true) />
+			<cfelse>
+				<cfset LOCAL.currency.setIsDefault(false) />
+			</cfif>
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.content.getSiteContentId()#" />
+			<cfset EntitySave(LOCAL.currency) />
+			
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Currency has been saved successfully.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.currency.getCurrencyId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
-			<cfset LOCAL.content.setIsDeleted(true) />
-			<cfset EntitySave(LOCAL.content) />
+			<cfset LOCAL.currency.setIsDeleted(true) />
+			<cfset EntitySave(LOCAL.currency) />
 			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content '#LOCAL.content.getName()#' has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/contents.cfm" />
+			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Currency '#LOCAL.currency.getCode()#' has been deleted.") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/currencies.cfm" />
 			
 		</cfif>
 		
@@ -79,34 +90,34 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.siteContent = EntityLoadByPK("site_content", URL.id)> 
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.siteContent.getName()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.currency = EntityLoadByPK("currency", URL.id)> 
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.currency.getCode()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.siteContent.getDisplayName())?"":LOCAL.pageData.siteContent.getDisplayName() />
-				<cfset LOCAL.pageData.formData.site_content = isNull(LOCAL.pageData.siteContent.getSiteContent())?"":LOCAL.pageData.siteContent.getSiteContent() />
-				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.siteContent.getTitle())?"":LOCAL.pageData.siteContent.getTitle() />
-				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.siteContent.getKeywords())?"":LOCAL.pageData.siteContent.getKeywords() />
-				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.siteContent.getDescription())?"":LOCAL.pageData.siteContent.getDescription() />
-				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.siteContent.getIsEnabled())?"":LOCAL.pageData.siteContent.getIsEnabled() />
+				<cfset LOCAL.pageData.formData.code = isNull(LOCAL.pageData.currency.getCode())?"":LOCAL.pageData.currency.getCode() />
+				<cfset LOCAL.pageData.formData.multiplier = isNull(LOCAL.pageData.currency.getMultiplier())?"":LOCAL.pageData.currency.getMultiplier() />
+				<cfset LOCAL.pageData.formData.position_x = isNull(LOCAL.pageData.currency.getPositionX())?"":LOCAL.pageData.currency.getPositionX() />
+				<cfset LOCAL.pageData.formData.position_y = isNull(LOCAL.pageData.currency.getPositionY())?"":LOCAL.pageData.currency.getPositionY() />
+				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.currency.getIsEnabled())?"":LOCAL.pageData.currency.getIsEnabled() />
+				<cfset LOCAL.pageData.formData.is_default = isNull(LOCAL.pageData.currency.getIsDefault())?"":LOCAL.pageData.currency.getIsDefault() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
-			<cfset LOCAL.pageData.title = "New Content | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.title = "New Currency | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.display_name = "" />
-				<cfset LOCAL.pageData.formData.site_content = "" />
-				<cfset LOCAL.pageData.formData.title = "" />
-				<cfset LOCAL.pageData.formData.keywords = "" />
-				<cfset LOCAL.pageData.formData.description = "" />
+				<cfset LOCAL.pageData.formData.code = "" />
+				<cfset LOCAL.pageData.formData.multiplier = "" />
+				<cfset LOCAL.pageData.formData.position_x = "" />
+				<cfset LOCAL.pageData.formData.position_y = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
+				<cfset LOCAL.pageData.formData.is_default = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>

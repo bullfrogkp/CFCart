@@ -38,11 +38,11 @@
 					</div>
 					<div class="form-group">
 						<label>Position X</label>
-						<textarea name="positionX" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_x#</textarea>
+						<textarea name="position_x" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_x#</textarea>
 					</div>
 					<div class="form-group">
 						<label>Position Y</label>
-						<textarea name="positionY" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_y#</textarea>
+						<textarea name="position_y" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_y#</textarea>
 					</div>
 					<div class="form-group">
 						<label>Default</label>
