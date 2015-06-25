@@ -1,21 +1,11 @@
 ﻿<cfoutput>
-<script>
-	$(document).ready(function() {
-		CKEDITOR.replace( 'site_content',
-		{
-			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
-			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
-			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html'}
-		 );
-	});
-</script>
 <section class="content-header">
 	<h1>
-		Content Detail
+		Currency Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Content Detail</li>
+		<li class="active">Currency Detail</li>
 	</ol>
 </section>
 
@@ -39,20 +29,27 @@
 			<div class="box box-primary">
 				<div class="box-body">
 					<div class="form-group">
-						<label>Name</label>
-						<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<label>Code</label>
+						<input type="text" name="code" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.code#"/>
 					</div>
 					 <div class="form-group">
-						<label>Title</label>
-						<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+						<label>Multiplier</label>
+						<input name="multiplier" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.multiplier#"/>
 					</div>
 					<div class="form-group">
-						<label>Description</label>
-						<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
+						<label>Position X</label>
+						<textarea name="positionX" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_x#</textarea>
 					</div>
 					<div class="form-group">
-						<label>Keywords</label>
-						<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
+						<label>Position Y</label>
+						<textarea name="positionY" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.position_y#</textarea>
+					</div>
+					<div class="form-group">
+						<label>Default</label>
+						 <select class="form-control" name="is_default">
+							<option value="1" <cfif REQUEST.pageData.formData.is_default EQ TRUE>selected</cfif>>Enabled</option>
+							<option value="0" <cfif REQUEST.pageData.formData.is_default EQ FALSE>selected</cfif>>Disabled</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label>Status</label>
@@ -60,10 +57,6 @@
 							<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
 							<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
 						</select>
-					</div>
-					<div class="form-group">
-						<label>Content</label>
-						<textarea name="site_content" id="site_content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.site_content#</textarea>
 					</div>
 					<div class="form-group">
 						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Content</button>
