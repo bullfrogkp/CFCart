@@ -20,6 +20,8 @@
     <cfproperty name="shippingAddress" type="struct"> 
     <cfproperty name="billingAddress" type="struct"> 
 	
+    <cfproperty name="productShippingMethodRelaIdList" type="string"> 
+	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="init" access="public" returntype="any" output="false">
         
@@ -83,7 +85,6 @@
 					<cfset ArrayAppend(LOCAL.record.shippingMethodArray, LOCAL.shippingMethodStruct) />
 				</cfloop>
 				
-				
 				<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getTaxRateMV(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
 				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
 				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
@@ -101,6 +102,29 @@
 				<cfset setDiscount(LOCAL.applyCoupon.discount) />
 				<cfset setSubTotalPrice(LOCAL.applyCoupon.newTotal) />
 			</cfif>
+		</cfif>
+		
+		<cfif NOT IsNull(getProductShippingMethodRelaIdList())>
+			<cfset LOCAL.totalShippingFee = 0 />
+		
+			<!--- product_shipping_method_rela_id_list is from ddslick.min.js --->
+			<cfloop list="#getProductShippingMethodRelaIdList()#" index="LOCAL.productShippingMethodRelaId">
+				<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
+				<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
+				<cfloop array="#getProductArray()#" index="LOCAL.product">
+					<cfset LOCAL.productEntity = EntityLoadByPK("product",LOCAL.product.productId) />
+					<cfif 	NOT IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.productEntity.getParentProduct().getProductId() EQ LOCAL.productId
+							OR
+							IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.product.productId EQ LOCAL.productId>
+						<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRelaId />
+						<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = SESSION.order.shippingAddress, shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = SESSION.user.customerGroupName) * LOCAL.product.count />
+						<cfset SESSION.order.totalShippingFee += LOCAL.product.totalShippingFee />
+						<cfbreak />
+					</cfif>
+				</cfloop>
+			</cfloop>
+		
+			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax + SESSION.order.totalShippingFee />
 		</cfif>
 		
 	</cffunction>
