@@ -136,11 +136,9 @@
 		<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 		<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
 		<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
-		
 		<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
 		
 		<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
-		
 		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
 		
 		<!--- calculate tax --->
@@ -154,6 +152,7 @@
 		<cfset SESSION.cart.setTotalTax(LOCAL.totalTax) />
 		
 		<cfset SESSION.cart.setTotalPrice(SESSION.cart.getSubTotalPrice() + LOCAL.totalTax) />
+		<cfset SESSION.cart.calculate() />
 		
 		<!--- calculate shipping --->
 		<cfloop array="#SESSION.cart.getProductArray()#" index="LOCAL.item">
