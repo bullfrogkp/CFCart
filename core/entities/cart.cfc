@@ -14,6 +14,12 @@
     <cfproperty name="couponId" type="integer"> 
     <cfproperty name="productArray" type="array"> 
 	
+    <cfproperty name="isExistingCustomer" type="boolean"> 
+    <cfproperty name="sameAddress" type="boolean"> 
+    <cfproperty name="customer" type="struct"> 
+    <cfproperty name="shippingAddress" type="struct"> 
+    <cfproperty name="billingAddress" type="struct"> 
+	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="init" access="public" returntype="any" output="false">
         

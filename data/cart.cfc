@@ -60,7 +60,7 @@
 			<cfset SESSION.cart.setCustomerId(SESSION.user.customerId) />
 			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
-				<cfset LOCAL.cart.setCouponCode(Trim(FORM.coupon_code_applied)) />
+				<cfset SESSION.cart.setCouponCode(Trim(FORM.coupon_code_applied)) />
 			</cfif>
 			<cfset SESSION.cart.calculate() />
 		
