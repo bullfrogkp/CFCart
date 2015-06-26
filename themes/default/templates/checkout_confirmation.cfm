@@ -25,7 +25,7 @@
 					<td>Shipping</td>
 				</tr>
 				
-				<cfloop array="#SESSION.order.productArray#" index="item">
+				<cfloop array="#SESSION.cart.getProductArray()#" index="item">
 					<cfset product = EntityLoadByPK("product",item.productId) />
 					<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
 					<tr>
