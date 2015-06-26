@@ -36,7 +36,7 @@
 		
 		<cfif StructKeyExists(URL,"token") AND StructKeyExists(URL,"payerId")>
 		
-			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.cart.orderId) />
+			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.cart.getOrderId()) />
 			<cfset LOCAL.order.setToken(URL.token) />
 			<cfset LOCAL.order.setPayerId(URL.payerId) />
 			<cfset EntitySave(LOCAL.order) />
@@ -88,7 +88,7 @@
 				<cfset LOCAL.order.setIsComplete(true) />
 				<cfset EntitySave(LOCAL.order) />
 				
-				<cfset StructDelete(SESSION,"order") />
+				<cfset StructDelete(SESSION,"cart") />
 				
 				<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
 				<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
