@@ -49,12 +49,9 @@
 			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
 			<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
 		
-			<cfset ArrayAppend(LOCAL.productArray, LOCAL.productStruct) />
-			<cfset LOCAL.subTotalPrice += LOCAL.productStruct.totalPrice />
-			
 			<cfif NOT IsNull(getShippingAddress())>
 				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
-				<cfset LOCAL.record.shippingMethodArray = [] />
+				<cfset LOCAL.productStruct.shippingMethodArray = [] />
 			
 				<cfloop array="#LOCAL.productShippingMethodRelas#" index="LOCAL.productShippingMethodRela">
 					<cfset LOCAL.shippingMethod = LOCAL.productShippingMethodRela.getShippingMethod() />
@@ -68,26 +65,29 @@
 					
 					<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getShippingCarrier().getDisplayName()# - #LOCAL.shippingMethod.getDisplayName()#" />
 				
-					<cfset ArrayAppend(LOCAL.record.shippingMethodArray, LOCAL.shippingMethodStruct) />
+					<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
 				</cfloop>
 				
-				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
+				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = getShippingAddress().provinceId),"0.00") />
 				<cfset LOCAL.productStruct.totalTax = LOCAL.productStruct.singleTax * LOCAL.productStruct.count />
 				
 				<cfset LOCAL.totalTax += LOCAL.productStruct.totalTax />
-				
-				<cfset LOCAL.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
 			</cfif>
+			
+			<cfset LOCAL.subTotalPrice += LOCAL.productStruct.totalPrice />
+			<cfset LOCAL.totalPrice = LOCAL.subTotalPrice + LOCAL.totalTax />
+			
+			<cfset ArrayAppend(LOCAL.productArray, LOCAL.productStruct) />
 		</cfloop>
 		
 		<cfif getCouponCode() NEQ "">
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId, total = getSubTotalPrice) />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId, total = LOCAL.subTotalPrice) />
 			
 			<cfif LOCAL.applyCoupon.success EQ true>
 				<cfset setCouponId(LOCAL.applyCoupon.couponId) />
 				<cfset setDiscount(LOCAL.applyCoupon.discount) />
-				<cfset setSubTotalPrice(LOCAL.applyCoupon.newTotal) />
+				<cfset LOCAL.subTotalPrice = LOCAL.applyCoupon.newTotal />
 			</cfif>
 		</cfif>
 		
