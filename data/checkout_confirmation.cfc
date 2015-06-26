@@ -90,7 +90,7 @@
 				
 				<cfset StructDelete(SESSION,"cart") />
 				
-				<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
+				<cfset LOCAL.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "shopping cart") />
 				<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 					<cfset EntityDelete(LOCAL.record) />
 				</cfloop>

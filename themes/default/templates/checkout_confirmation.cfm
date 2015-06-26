@@ -30,7 +30,7 @@
 					<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
 					<tr>
 						<td>
-							<h4>#product.getDisplayName()#</h4>
+							<h4>#product.getDisplayNameMV()#</h4>
 						</td>
 						<td>
 							<p>SKU: #product.getSku()#</p>
@@ -58,7 +58,7 @@
 				</cfloop>
 			</table>
 		</div>
-		<p>#SESSION.cart.getCustomer().email#</p>
+		<p style="margin-top:20px;font-weight:bold;">Email:#SESSION.cart.getCustomer().email#</p>
 		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;line-height:18px;">
 			<table>
 				<tr>

@@ -35,16 +35,6 @@
     <cfproperty name="discountWCInter" type="string"> 
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="_getTrackingRecords" access="private" output="false" returnType="array">
-		<cfset var LOCAL = {} />
-		
-		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
-		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = getCfId(), cftoken = getCfToken()},true) />
-		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity}) />
-		
-		<cfreturn LOCAL.trackingRecords />	
-	</cffunction>
-	<!------------------------------------------------------------------------------->	
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
