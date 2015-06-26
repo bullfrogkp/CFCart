@@ -4,11 +4,7 @@
     <cfproperty name="currencyId" type="integer"> 
     <cfproperty name="customerId" type="integer"> 
     <cfproperty name="customerGroupName" type="string"> 
-    <cfproperty name="subTotalPrice" type="float"> 
-    <cfproperty name="totalPrice" type="float"> 
-    <cfproperty name="totalTax" type="float"> 
-    <cfproperty name="totalShippingFee" type="float"> 
-    <cfproperty name="discount" type="float"> 
+	
     <cfproperty name="couponCode" type="string"> 
     <cfproperty name="couponId" type="integer"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
@@ -18,6 +14,24 @@
     <cfproperty name="shippingAddress" type="struct"> 
     <cfproperty name="billingAddress" type="struct"> 
     <cfproperty name="productArray" type="array"> 
+	
+    <cfproperty name="subTotalPrice" type="float"> 
+    <cfproperty name="totalPrice" type="float"> 
+    <cfproperty name="totalTax" type="float"> 
+    <cfproperty name="totalShippingFee" type="float"> 
+    <cfproperty name="discount" type="float"> 
+	
+	<cfproperty name="subTotalPriceWCLocal" type="string"> 
+    <cfproperty name="totalPriceWCLocal" type="string"> 
+    <cfproperty name="totalTaxWCLocal" type="string"> 
+    <cfproperty name="totalShippingFeeWCLocal" type="string"> 
+    <cfproperty name="discountWCLocal" type="string"> 
+	
+	<cfproperty name="subTotalPriceWCInter" type="string"> 
+    <cfproperty name="totalPriceWCInter" type="string"> 
+    <cfproperty name="totalTaxWCInter" type="string"> 
+    <cfproperty name="totalShippingFeeWCInter" type="string"> 
+    <cfproperty name="discountWCInter" type="string"> 
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_getTrackingRecords" access="private" output="false" returnType="array">
@@ -34,12 +48,15 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
+		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		
 		<cfset LOCAL.productArray = [] />
 		<cfset LOCAL.subTotalPrice = 0 />
 		<cfset LOCAL.totalTax = 0 />
 		<cfset LOCAL.totalPrice = 0 />
 		<cfset LOCAL.totalShippingFee = 0 />
+		<cfset LOCAL.discount = 0 />
+		<cfset LOCAL.couponId = "" />
 		
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 			<cfset LOCAL.productStruct = {} />
@@ -85,25 +102,24 @@
 			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId, total = LOCAL.subTotalPrice) />
 			
 			<cfif LOCAL.applyCoupon.success EQ true>
-				<cfset setCouponId(LOCAL.applyCoupon.couponId) />
-				<cfset setDiscount(LOCAL.applyCoupon.discount) />
+				<cfset LOCAL.couponId = LOCAL.applyCoupon.couponId />
+				<cfset LOCAL.discount = LOCAL.applyCoupon.discount />
 				<cfset LOCAL.subTotalPrice = LOCAL.applyCoupon.newTotal />
 			</cfif>
 		</cfif>
 		
 		<cfif NOT IsNull(getProductShippingMethodRelaIdList())>
-		
 			<!--- product_shipping_method_rela_id_list is from ddslick.min.js --->
 			<cfloop list="#getProductShippingMethodRelaIdList()#" index="LOCAL.productShippingMethodRelaId">
 				<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
 				<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
-				<cfloop array="#getProductArray()#" index="LOCAL.product">
+				<cfloop array="#LOCAL.productArray#" index="LOCAL.product">
 					<cfset LOCAL.productEntity = EntityLoadByPK("product",LOCAL.product.productId) />
 					<cfif 	NOT IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.productEntity.getParentProduct().getProductId() EQ LOCAL.productId
 							OR
 							IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.product.productId EQ LOCAL.productId>
 						<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRelaId />
-						<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = SESSION.order.shippingAddress, shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = SESSION.user.customerGroupName) * LOCAL.product.count />
+						<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = getShippingAddress(), shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = getCustomerGroupName()) * LOCAL.product.count />
 						<cfset LOCAL.totalShippingFee += LOCAL.product.totalShippingFee />
 						<cfbreak />
 					</cfif>
@@ -115,8 +131,23 @@
 		
 		<cfset setProductArray(LOCAL.productArray) />
 		<cfset setSubTotalPrice(LOCAL.subTotalPrice) />
+		<cfset setTotalShippingFee(LOCAL.totalShippingFee) />
 		<cfset setTotalTax(LOCAL.totalTax) />
 		<cfset setTotalPrice(LOCAL.totalPrice) />
+		<cfset setDiscount(LOCAL.discount) />
+		<cfset setCouponId(LOCAL.couponId) />
+		
+		<cfset setSubTotalPriceWCLocal(LSCurrencyFormat(LOCAL.subTotalPrice,"local",LOCAL.currency.getLocale())) />
+		<cfset setTotalShippingFeeWCLocal(LSCurrencyFormat(LOCAL.totalShippingFee,"local",LOCAL.currency.getLocale())) />
+		<cfset setTotalTaxWCLocal(LSCurrencyFormat(LOCAL.totalTax,"local",LOCAL.currency.getLocale())) />
+		<cfset setTotalPriceWCLocal(LSCurrencyFormat(LOCAL.totalPrice,"local",LOCAL.currency.getLocale())) />
+		<cfset setDiscountWCLocal(LSCurrencyFormat(LOCAL.discount,"local",LOCAL.currency.getLocale())) />
+		
+		<cfset setSubTotalPriceWCInter(LSCurrencyFormat(LOCAL.subTotalPrice,"international",LOCAL.currency.getLocale())) />
+		<cfset setTotalShippingFeeWCInter(LSCurrencyFormat(LOCAL.totalShippingFee,"international",LOCAL.currency.getLocale())) />
+		<cfset setTotalTaxWCInter(LSCurrencyFormat(LOCAL.totalTax,"international",LOCAL.currency.getLocale())) />
+		<cfset setTotalPriceWCInter(LSCurrencyFormat(LOCAL.totalPrice,"international",LOCAL.currency.getLocale())) />
+		<cfset setDiscountWCInter(LSCurrencyFormat(LOCAL.discount,"international",LOCAL.currency.getLocale())) />
 		
 	</cffunction>
 	<!------------------------------------------------------------------------------->
