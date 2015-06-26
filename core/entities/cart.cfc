@@ -64,7 +64,11 @@
 			<cfset LOCAL.productStruct.productId = LOCAL.product.getProductId() />
 			<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
 			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
+			<cfset LOCAL.productStruct.singlePriceWCLocal = LSCurrencyFormat(LOCAL.productStruct.singlePrice,"local",LOCAL.currency.getLocale()) />
+			<cfset LOCAL.productStruct.singlePriceWCInter = LSCurrencyFormat(LOCAL.productStruct.singlePrice,"international",LOCAL.currency.getLocale()) />
 			<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
+			<cfset LOCAL.productStruct.totalPriceWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalPrice,"local",LOCAL.currency.getLocale()) />
+			<cfset LOCAL.productStruct.totalPriceWCInter = LSCurrencyFormat(LOCAL.productStruct.totalPrice,"international",LOCAL.currency.getLocale()) />
 		
 			<cfif NOT IsNull(getShippingAddress())>
 				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
@@ -80,13 +84,21 @@
 																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
 																							,	customerGroupName = getCustomerGroupName()) * LOCAL.record.count />
 					
+					<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />
+					<cfset LOCAL.shippingMethodStruct.priceWCInter = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"international",LOCAL.currency.getLocale()) />
+					
 					<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getShippingCarrier().getDisplayName()# - #LOCAL.shippingMethod.getDisplayName()#" />
 				
 					<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
 				</cfloop>
 				
 				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = getShippingAddress().provinceId),"0.00") />
+				<cfset LOCAL.productStruct.singleTaxWCLocal = LSCurrencyFormat(LOCAL.productStruct.singleTax,"local",LOCAL.currency.getLocale()) />
+				<cfset LOCAL.productStruct.singleTaxWCInter = LSCurrencyFormat(LOCAL.productStruct.singleTax,"international",LOCAL.currency.getLocale()) />
+				
 				<cfset LOCAL.productStruct.totalTax = LOCAL.productStruct.singleTax * LOCAL.productStruct.count />
+				<cfset LOCAL.productStruct.totalTaxWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalTax,"local",LOCAL.currency.getLocale()) />
+				<cfset LOCAL.productStruct.totalTaxWCInter = LSCurrencyFormat(LOCAL.productStruct.totalTax,"international",LOCAL.currency.getLocale()) />
 				
 				<cfset LOCAL.totalTax += LOCAL.productStruct.totalTax />
 			</cfif>
