@@ -12,11 +12,14 @@
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfset SESSION.cart.setProductShippingMethodRelaIdList(FORM.product_shipping_method_rela_id_list) />
-		<cfset SESSION.cart.calculate() />
-		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
+		<cfif StructKeyExists(FORM,"product_shipping_method_rela_id_list")>
+			<cfset SESSION.cart.setProductShippingMethodRelaIdList(FORM.product_shipping_method_rela_id_list) />
+			<cfset SESSION.cart.calculate() />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
+		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	

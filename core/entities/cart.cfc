@@ -83,7 +83,7 @@
 					<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
 					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = getShippingAddress()
 																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
-																							,	customerGroupName = getCustomerGroupName()) * LOCAL.record.count />
+																							,	customerGroupName = getCustomerGroupName()) * LOCAL.productStruct.count />
 					
 					<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />
 					<cfset LOCAL.shippingMethodStruct.priceWCInter = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"international",LOCAL.currency.getLocale()) />
