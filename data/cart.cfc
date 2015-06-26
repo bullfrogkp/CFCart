@@ -64,13 +64,12 @@
 			<cfset SESSION.order.couponId = "" />
 			
 			<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
-			<cfset LOCAL.defaultCurrency = EntityLoad("currency",{isDefault=true},true) />
 		
 			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 				<cfset LOCAL.productStruct = {} />
 				<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
 				<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = LOCAL.defaultCurrency.getCurrencyId()) />
+				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
 				<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
 			
 				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />
