@@ -53,7 +53,7 @@
 		
 		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
 		
-			<cfset LOCAL.cart = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
+			<cfset LOCAL.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
 			<cfset LOCAL.cart.setCfId(COOKIE.cfid) />
 			<cfset LOCAL.cart.setCfToken(COOKIE.cftoken) />
 			<cfset LOCAL.cart.setCurrencyId(SESSION.currency.id) />
