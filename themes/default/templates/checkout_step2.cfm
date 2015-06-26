@@ -1,7 +1,7 @@
 ﻿<cfoutput>
 <script>
 	$(document).ready(function() {
-		<cfloop array="#SESSION.order.productArray#" index="item">
+		<cfloop array="#SESSION.cart.getProductArray()#" index="item">
 			<cfset product = EntityLoadByPK("product",item.productId) />
 			$('##shipping-methods-#product.getProductId()#').ddslick({
 				onSelected: function (data) {
@@ -59,7 +59,7 @@ margin-bottom:10px;
 	<div style="margin-top:20px;">
 		<div style="width:607px;float:left;">
 			<ul id="products">
-				<cfloop array="#SESSION.order.productArray#" index="item">
+				<cfloop array="#SESSION.cart.getProductArray()#" index="item">
 					<cfset product = EntityLoadByPK("product",item.productId) />
 					<cfset imageLink = product.getDefaultImageLinkMV(type='small') />
 					<cfset productShippingMethodRelas = product.getProductShippingMethodRelasMV() />

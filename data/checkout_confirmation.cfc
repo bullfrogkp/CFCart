@@ -7,9 +7,9 @@
 		
 		<cfif StructKeyExists(FORM,"place_order")>
 		<!---
-		<cfif SESSION.order.couponCode NEQ "">
+		<cfif SESSION.cart.getCouponCode() NEQ "">
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = SESSION.order.couponCode, customerId = SESSION.user.customerId, total = SESSION.order.subTotalPrice) />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = SESSION.cart.getCouponCode(), customerId = SESSION.user.customerId, total = SESSION.cart.getSubTotalPrice()) />
 			<cfif LOCAL.applyCoupon.success EQ false>
 				<cfset ArrayAppend(LOCAL.messageArray,"The coupon is not valid.") />
 			</cfif>
@@ -36,7 +36,7 @@
 		
 		<cfif StructKeyExists(URL,"token") AND StructKeyExists(URL,"payerId")>
 		
-			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.order.orderId) />
+			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.cart.orderId) />
 			<cfset LOCAL.order.setToken(URL.token) />
 			<cfset LOCAL.order.setPayerId(URL.payerId) />
 			<cfset EntitySave(LOCAL.order) />
@@ -50,7 +50,7 @@
 			<cfset LOCAL.requestData.TOKEN = URL.token>
 			<cfset LOCAL.requestData.PAYERID = URL.payerId>
 			<cfset LOCAL.requestData.PAYMENTACTION = "sale">
-			<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
+			<cfset LOCAL.requestData.AMT = SESSION.cart.getTotalPrice()>
 			<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
 					
 			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
@@ -171,7 +171,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"place_order")>
-			<cfset SESSION.order.orderId = _processOrder() />
+			<cfset SESSION.cart.orderId = _processOrder() />
 			<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
 		</cfif>
 		
@@ -188,33 +188,33 @@
 		<cfset LOCAL.requestData.SIGNATURE = APPLICATION.paypal.APISignature>
 		<cfset LOCAL.requestData.VERSION = APPLICATION.paypal.version>
 		<cfset LOCAL.requestData.ADDRESSOVERRIDE = "1">
-		<cfset LOCAL.requestData.Email = SESSION.order.customer.email>
-		<cfset LOCAL.requestData.SHIPTONAME = SESSION.order.customer.fullName>
-		<cfset LOCAL.requestData.SHIPTOSTREET = SESSION.order.shippingAddress.street>
-		<cfset LOCAL.requestData.SHIPTOCITY = SESSION.order.shippingAddress.city>
-		<cfset LOCAL.requestData.SHIPTOSTATE = SESSION.order.billingAddress.provinceCode>
-		<cfset LOCAL.requestData.SHIPTOCOUNTRYCODE = SESSION.order.billingAddress.countryCode>
+		<cfset LOCAL.requestData.Email = SESSION.cart.getCustomer().email>
+		<cfset LOCAL.requestData.SHIPTONAME = SESSION.cart.getCustomer().fullName>
+		<cfset LOCAL.requestData.SHIPTOSTREET = SESSION.cart.getShippingAddress().street>
+		<cfset LOCAL.requestData.SHIPTOCITY = SESSION.cart.getShippingAddress().city>
+		<cfset LOCAL.requestData.SHIPTOSTATE = SESSION.cart.getBillingAddress().provinceCode>
+		<cfset LOCAL.requestData.SHIPTOCOUNTRYCODE = SESSION.cart.getBillingAddress().countryCode>
 		<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
-		<cfset LOCAL.requestData.SHIPTOZIP = SESSION.order.shippingAddress.postalCode>
-		<cfset LOCAL.requestData.SHIPTOPHONENUM = SESSION.order.shippingAddress.phone>
+		<cfset LOCAL.requestData.SHIPTOZIP = SESSION.cart.getShippingAddress().postalCode>
+		<cfset LOCAL.requestData.SHIPTOPHONENUM = SESSION.cart.getShippingAddress().phone>
 		
-		<cfloop from="1" to="#ArrayLen(SESSION.order.productArray)#" index="LOCAL.i">
-			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.order.productArray[LOCAL.i].productId) />
+		<cfloop from="1" to="#ArrayLen(SESSION.cart.getProductArray())#" index="LOCAL.i">
+			<cfset LOCAL.product = EntityLoadByPK("product",SESSION.cart.getProductArray()[LOCAL.i].productId) />
 			
 			<cfset l_name = LOCAL.product.getDisplayNameMV()>
 			
-			<cfset l_amt = SESSION.order.productArray[LOCAL.i].singlePrice>
-			<cfset l_qty = SESSION.order.productArray[LOCAL.i].count>
-			<cfset l_number = SESSION.order.productArray[LOCAL.i].productId>
+			<cfset l_amt = SESSION.cart.getProductArray()[LOCAL.i].singlePrice>
+			<cfset l_qty = SESSION.cart.getProductArray()[LOCAL.i].count>
+			<cfset l_number = SESSION.cart.getProductArray()[LOCAL.i].productId>
 			<cfset StructInsert(LOCAL.requestData,"L_NAME#LOCAL.i-1#",l_name)>
 			<cfset StructInsert(LOCAL.requestData,"L_AMT#LOCAL.i-1#",l_amt)>
 			<cfset StructInsert(LOCAL.requestData,"L_QTY#LOCAL.i-1#",l_qty)>
 			<cfset StructInsert(LOCAL.requestData,"L_NUMBER#LOCAL.i-1#",l_number)>
 		</cfloop>
-		<cfset LOCAL.requestData.ITEMAMT = SESSION.order.subTotalPrice>
-		<cfset LOCAL.requestData.SHIPPINGAMT = SESSION.order.totalShippingFee>
-		<cfset LOCAL.requestData.TAXAMT = SESSION.order.totalTax>
-		<cfset LOCAL.requestData.AMT = SESSION.order.totalPrice>
+		<cfset LOCAL.requestData.ITEMAMT = SESSION.cart.getSubTotalPrice()>
+		<cfset LOCAL.requestData.SHIPPINGAMT = SESSION.cart.getTotalShippingFee()>
+		<cfset LOCAL.requestData.TAXAMT = SESSION.cart.getTotalTax()>
+		<cfset LOCAL.requestData.AMT = SESSION.cart.getTotalPrice()>
 		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm" >
 		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm">
 
@@ -251,46 +251,46 @@
 		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setIsDeleted(false) />
 		<cfset LOCAL.order.setIsComplete(false) />
-		<cfset LOCAL.order.setEmail(SESSION.order.customer.email) />
-		<cfset LOCAL.order.setPhone(SESSION.order.customer.phone) />
+		<cfset LOCAL.order.setEmail(SESSION.cart.getCustomer().email) />
+		<cfset LOCAL.order.setPhone(SESSION.cart.getCustomer().phone) />
 		
 		<cfif SESSION.order.isExistingCustomer EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
-			<cfset LOCAL.customer.setFirstName(SESSION.order.customer.firstName) />
-			<cfset LOCAL.customer.setMiddleName(SESSION.order.customer.firstName) />
-			<cfset LOCAL.customer.setLastName(SESSION.order.customer.lastName) />
-			<cfset LOCAL.customer.setCompany(SESSION.order.customer.company) />
-			<cfset LOCAL.customer.setEmail(SESSION.order.customer.email) />
-			<cfset LOCAL.customer.setPhone(SESSION.order.customer.phone) />
+			<cfset LOCAL.customer.setFirstName(SESSION.cart.getCustomer().firstName) />
+			<cfset LOCAL.customer.setMiddleName(SESSION.cart.getCustomer().firstName) />
+			<cfset LOCAL.customer.setLastName(SESSION.cart.getCustomer().lastName) />
+			<cfset LOCAL.customer.setCompany(SESSION.cart.getCustomer().company) />
+			<cfset LOCAL.customer.setEmail(SESSION.cart.getCustomer().email) />
+			<cfset LOCAL.customer.setPhone(SESSION.cart.getCustomer().phone) />
 			<cfset LOCAL.customer.setIsEnabled(false) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
 		<cfelse>
-			<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.order.customer.customerId) />
+			<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.cart.getCustomer().customerId) />
 		</cfif>
 			
-		<cfif SESSION.order.shippingAddress.useExistingAddress EQ false>
+		<cfif SESSION.cart.getShippingAddress().useExistingAddress EQ false>
 			<cfset LOCAL.shippingAddress = EntityNew("address") />
-			<cfset LOCAL.shippingAddress.setCompany(SESSION.order.shippingAddress.company) />
-			<cfset LOCAL.shippingAddress.setFirstName(SESSION.order.shippingAddress.firstName) />
-			<cfset LOCAL.shippingAddress.setMiddleName(SESSION.order.shippingAddress.firstName) />
-			<cfset LOCAL.shippingAddress.setLastName(SESSION.order.shippingAddress.lastName) />
-			<cfset LOCAL.shippingAddress.setPhone(SESSION.order.shippingAddress.phone) />
-			<cfset LOCAL.shippingAddress.setUnit(SESSION.order.shippingAddress.unit) />
-			<cfset LOCAL.shippingAddress.setStreet(SESSION.order.shippingAddress.street) />
-			<cfset LOCAL.shippingAddress.setCity(SESSION.order.shippingAddress.city) />
-			<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",SESSION.order.shippingAddress.provinceId)) />
-			<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",SESSION.order.shippingAddress.countryId)) />
-			<cfset LOCAL.shippingAddress.setPostalCode(SESSION.order.shippingAddress.postalCode) />
+			<cfset LOCAL.shippingAddress.setCompany(SESSION.cart.getShippingAddress().company) />
+			<cfset LOCAL.shippingAddress.setFirstName(SESSION.cart.getShippingAddress().firstName) />
+			<cfset LOCAL.shippingAddress.setMiddleName(SESSION.cart.getShippingAddress().firstName) />
+			<cfset LOCAL.shippingAddress.setLastName(SESSION.cart.getShippingAddress().lastName) />
+			<cfset LOCAL.shippingAddress.setPhone(SESSION.cart.getShippingAddress().phone) />
+			<cfset LOCAL.shippingAddress.setUnit(SESSION.cart.getShippingAddress().unit) />
+			<cfset LOCAL.shippingAddress.setStreet(SESSION.cart.getShippingAddress().street) />
+			<cfset LOCAL.shippingAddress.setCity(SESSION.cart.getShippingAddress().city) />
+			<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",SESSION.cart.getShippingAddress().provinceId)) />
+			<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",SESSION.cart.getShippingAddress().countryId)) />
+			<cfset LOCAL.shippingAddress.setPostalCode(SESSION.cart.getShippingAddress().postalCode) />
 			<cfset LOCAL.shippingAddress.setCreatedDatetime(Now()) />
 			<cfset LOCAL.shippingAddress.setCreatedUser(SESSION.user.userName) />
 			
 			<cfset EntitySave(LOCAL.shippingAddress) />
 			<cfset LOCAL.customer.addAddress(LOCAL.shippingAddress) />
 		<cfelse>
-			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",SESSION.order.shippingAddress.addressId) />
+			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",SESSION.cart.getShippingAddress().addressId) />
 		</cfif>	
 			
 		<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
@@ -316,26 +316,26 @@
 			<cfset LOCAL.order.setBillingCountry(LOCAL.shippingAddress.getCountry()) />
 			<cfset LOCAL.order.setBillingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
 		<cfelse>
-			<cfif SESSION.order.billingAddress.useExistingAddress EQ false>
+			<cfif SESSION.cart.getBillingAddress().useExistingAddress EQ false>
 				<cfset LOCAL.billingAddress = EntityNew("address") />
-				<cfset LOCAL.billingAddress.setCompany(SESSION.order.billingAddress.company) />
-				<cfset LOCAL.billingAddress.setFirstName(SESSION.order.billingAddress.firstName) />
-				<cfset LOCAL.billingAddress.setMiddleName(SESSION.order.billingAddress.firstName) />
-				<cfset LOCAL.billingAddress.setLastName(SESSION.order.billingAddress.lastName) />
-				<cfset LOCAL.billingAddress.setPhone(SESSION.order.billingAddress.phone) />
-				<cfset LOCAL.billingAddress.setUnit(SESSION.order.billingAddress.unit) />
-				<cfset LOCAL.billingAddress.setStreet(SESSION.order.billingAddress.street) />
-				<cfset LOCAL.billingAddress.setCity(SESSION.order.billingAddress.city) />
-				<cfset LOCAL.billingAddress.setProvince(EntityLoadByPK("province",SESSION.order.billingAddress.provinceId)) />
-				<cfset LOCAL.billingAddress.setCountry(EntityLoadByPK("country",SESSION.order.billingAddress.countryId)) />
-				<cfset LOCAL.billingAddress.setPostalCode(SESSION.order.billingAddress.postalCode) />
+				<cfset LOCAL.billingAddress.setCompany(SESSION.cart.getBillingAddress().company) />
+				<cfset LOCAL.billingAddress.setFirstName(SESSION.cart.getBillingAddress().firstName) />
+				<cfset LOCAL.billingAddress.setMiddleName(SESSION.cart.getBillingAddress().firstName) />
+				<cfset LOCAL.billingAddress.setLastName(SESSION.cart.getBillingAddress().lastName) />
+				<cfset LOCAL.billingAddress.setPhone(SESSION.cart.getBillingAddress().phone) />
+				<cfset LOCAL.billingAddress.setUnit(SESSION.cart.getBillingAddress().unit) />
+				<cfset LOCAL.billingAddress.setStreet(SESSION.cart.getBillingAddress().street) />
+				<cfset LOCAL.billingAddress.setCity(SESSION.cart.getBillingAddress().city) />
+				<cfset LOCAL.billingAddress.setProvince(EntityLoadByPK("province",SESSION.cart.getBillingAddress().provinceId)) />
+				<cfset LOCAL.billingAddress.setCountry(EntityLoadByPK("country",SESSION.cart.getBillingAddress().countryId)) />
+				<cfset LOCAL.billingAddress.setPostalCode(SESSION.cart.getBillingAddress().postalCode) />
 				<cfset LOCAL.billingAddress.setCreatedDatetime(Now()) />
 				<cfset LOCAL.billingAddress.setCreatedUser(SESSION.user.userName) />
 				
 				<cfset EntitySave(LOCAL.billingAddress) />
 				<cfset LOCAL.customer.addAddress(LOCAL.billingAddress) />
 			<cfelse>
-				<cfset LOCAL.billingAddress = EntityLoadByPK("address",SESSION.order.billingAddress.addressId) />
+				<cfset LOCAL.billingAddress = EntityLoadByPK("address",SESSION.cart.getBillingAddress().addressId) />
 			</cfif>	
 		
 			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
@@ -371,7 +371,7 @@
 		<cfset LOCAL.customer.addOrder(LOCAL.order) />
 		<cfset EntitySave(LOCAL.customer) />
 		
-		<cfloop array="#SESSION.order.productArray#" index="item">
+		<cfloop array="#SESSION.cart.getProductArray()#" index="item">
 			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
 			
 			<cfset LOCAL.taxCategoryName = LOCAL.product.getTaxCategoryMV().getDisplayName() />
