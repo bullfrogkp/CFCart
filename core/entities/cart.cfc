@@ -11,6 +11,19 @@
     <cfproperty name="couponCode" type="string"> 
     <cfproperty name="couponId" type="integer"> 
 	
+	<!------------------------------------------------------------------------------->
+	<cffunction name="init" access="public" returntype="any" output="false">
+        
+		<cfset setSubTotalPrice(0) />
+		<cfset setTotalPrice(0) />
+		<cfset setTotalTax(0) />
+		<cfset setTotalShippingFee(0) />
+		<cfset setDiscount(0) />
+		<cfset setCouponCode("") />
+		<cfset setCouponId("") />
+		
+        <cfreturn this />
+    </cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_getTrackingRecords" access="private" output="false" returnType="array">
 		<cfset var LOCAL = {} />
