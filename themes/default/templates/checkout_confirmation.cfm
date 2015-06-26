@@ -39,20 +39,20 @@
 							<p>#item.count#</p>
 						</td>
 						<td>
-							<p>#LSCurrencyFormat(item.singlePrice,"local",SESSION.currency.locale)#</p>
+							<p>#item.singlePriceWCLocal#</p>
 						</td>
 						<td>
-							<p>#LSCurrencyFormat(item.totalPrice,"local",SESSION.currency.locale)#</p>
+							<p>#item.totalPriceWCLocal#</p>
 						</td>
 						<td>
-							<p>#LSCurrencyFormat(item.totalTax,"local",SESSION.currency.locale)#</p>
+							<p>#item.totalTaxWCLocal#</p>
 						</td>
 						<td>
 							<p>
 							<cfif NOT IsNull(productShippingMethodRela.getShippingMethod().getShippingCarrier())>
 							#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - 
 							</cfif>
-							#productShippingMethodRela.getShippingMethod().getDisplayName()#: #LSCurrencyFormat(item.totalShippingFee,"local",SESSION.currency.locale)#</p>
+							#productShippingMethodRela.getShippingMethod().getDisplayName()#: #item.totalShippingFeeWCLocal#</p>
 						</td>
 					</tr>
 				</cfloop>
@@ -175,13 +175,13 @@
 		</div>
 		<div id="checkout" style="height:auto;margin-top:20px;">
 			<ul>
-				<li>Sub Total <span>#LSCurrencyFormat(SESSION.order.subTotalPrice,"local",SESSION.currency.locale)#</span></li>
-				<li>Tax <span>#LSCurrencyFormat(SESSION.order.totalTax,"local",SESSION.currency.locale)#</span></li>
-				<li>Shipping Cost <span>#LSCurrencyFormat(SESSION.order.totalShippingFee,"local",SESSION.currency.locale)#</span></li>
-				<cfif SESSION.order.discount GT 0>
-				<li>Discount <span>- #LSCurrencyFormat(SESSION.order.discount,"local",SESSION.currency.locale)#</span></li>
+				<li>Sub Total <span>#SESSION.cart.getSubTotalPriceWCLocal()#</span></li>
+				<li>Tax <span>#SESSION.cart.getTotalTaxWCLocal()#</span></li>
+				<li>Shipping Cost <span>#SESSION.cart.getTotalShippingFeeWCLocal()#</span></li>
+				<cfif SESSION.cart.getDiscount() GT 0>
+				<li>Discount <span>- #SESSION.cart.getDiscountWCLocal()#</span></li>
 				</cfif>
-				<li>Total <span>#LSCurrencyFormat(SESSION.order.totalPrice,"local",SESSION.currency.locale)#</span></li>
+				<li>Total <span>#SESSION.cart.getTotalPriceWCLocal()#</span></li>
 			</ul>
 		</div>
 	</div>
