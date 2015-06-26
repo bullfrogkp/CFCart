@@ -178,24 +178,7 @@
 		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
 		<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
 		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
-		<cfset SESSION.cart.calculate() />
-		
-		
-		
-		
-		<cfset SESSION.order.totalTax = 0 />
-		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
-			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
-			<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getTaxRateMV(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
-			
-			<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
-			<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
-		</cfloop>
-		
-		<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
-		
-		
-		
+		<cfset SESSION.cart.calculate() />		
 		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
 		
