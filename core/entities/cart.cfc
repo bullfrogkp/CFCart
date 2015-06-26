@@ -4,7 +4,6 @@
     <cfproperty name="currencyId" type="integer"> 
     <cfproperty name="customerId" type="integer"> 
     <cfproperty name="customerGroupName" type="string"> 
-	
     <cfproperty name="subTotalPrice" type="float"> 
     <cfproperty name="totalPrice" type="float"> 
     <cfproperty name="totalTax" type="float"> 
@@ -12,30 +11,14 @@
     <cfproperty name="discount" type="float"> 
     <cfproperty name="couponCode" type="string"> 
     <cfproperty name="couponId" type="integer"> 
-    <cfproperty name="productArray" type="array"> 
-	
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
+    <cfproperty name="productShippingMethodRelaIdList" type="string"> 
     <cfproperty name="customer" type="struct"> 
     <cfproperty name="shippingAddress" type="struct"> 
     <cfproperty name="billingAddress" type="struct"> 
+    <cfproperty name="productArray" type="array"> 
 	
-    <cfproperty name="productShippingMethodRelaIdList" type="string"> 
-	
-	<!------------------------------------------------------------------------------->
-	<cffunction name="init" access="public" returntype="any" output="false">
-        
-		<cfset setSubTotalPrice(0) />
-		<cfset setTotalPrice(0) />
-		<cfset setTotalTax(0) />
-		<cfset setTotalShippingFee(0) />
-		<cfset setDiscount(0) />
-		<cfset setCouponCode("") />
-		<cfset setCouponId("") />
-		<cfset setProductArray([]) />
-		
-        <cfreturn this />
-    </cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_getTrackingRecords" access="private" output="false" returnType="array">
 		<cfset var LOCAL = {} />
@@ -52,6 +35,12 @@
 		
 		<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
 		
+		<cfset LOCAL.productArray = [] />
+		<cfset LOCAL.subTotalPrice = 0 />
+		<cfset LOCAL.totalTax = 0 />
+		<cfset LOCAL.totalPrice = 0 />
+		<cfset LOCAL.totalShippingFee = 0 />
+		
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 			<cfset LOCAL.productStruct = {} />
 			<cfset LOCAL.product = LOCAL.record.getProduct() />
@@ -60,14 +49,11 @@
 			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
 			<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
 		
-			<cfset ArrayAppend(getProductArray(), LOCAL.productStruct) />
-		
-			<cfset setSubTotalPrice(getSubTotalPrice() + LOCAL.productStruct.totalPrice) />
-			
+			<cfset ArrayAppend(LOCAL.productArray, LOCAL.productStruct) />
+			<cfset LOCAL.subTotalPrice += LOCAL.productStruct.totalPrice />
 			
 			<cfif NOT IsNull(getShippingAddress())>
 				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
-			
 				<cfset LOCAL.record.shippingMethodArray = [] />
 			
 				<cfloop array="#LOCAL.productShippingMethodRelas#" index="LOCAL.productShippingMethodRela">
@@ -76,20 +62,21 @@
 					<cfset LOCAL.shippingMethodStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
 					<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
 					<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
-					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = SESSION.order.shippingAddress
+					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = getShippingAddress()
 																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
-																							,	customerGroupName = SESSION.user.customerGroupName) * LOCAL.record.count />
+																							,	customerGroupName = getCustomerGroupName()) * LOCAL.record.count />
 					
 					<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getShippingCarrier().getDisplayName()# - #LOCAL.shippingMethod.getDisplayName()#" />
 				
 					<cfset ArrayAppend(LOCAL.record.shippingMethodArray, LOCAL.shippingMethodStruct) />
 				</cfloop>
 				
-				<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getTaxRateMV(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
-				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
-				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
+				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
+				<cfset LOCAL.productStruct.totalTax = LOCAL.productStruct.singleTax * LOCAL.productStruct.count />
 				
-				<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
+				<cfset LOCAL.totalTax += LOCAL.productStruct.totalTax />
+				
+				<cfset LOCAL.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
 			</cfif>
 		</cfloop>
 		
@@ -105,7 +92,6 @@
 		</cfif>
 		
 		<cfif NOT IsNull(getProductShippingMethodRelaIdList())>
-			<cfset LOCAL.totalShippingFee = 0 />
 		
 			<!--- product_shipping_method_rela_id_list is from ddslick.min.js --->
 			<cfloop list="#getProductShippingMethodRelaIdList()#" index="LOCAL.productShippingMethodRelaId">
@@ -118,14 +104,19 @@
 							IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.product.productId EQ LOCAL.productId>
 						<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRelaId />
 						<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = SESSION.order.shippingAddress, shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = SESSION.user.customerGroupName) * LOCAL.product.count />
-						<cfset SESSION.order.totalShippingFee += LOCAL.product.totalShippingFee />
+						<cfset LOCAL.totalShippingFee += LOCAL.product.totalShippingFee />
 						<cfbreak />
 					</cfif>
 				</cfloop>
 			</cfloop>
 		
-			<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax + SESSION.order.totalShippingFee />
+			<cfset LOCAL.totalPrice = LOCAL.subTotalPrice + LOCAL.totalTax + LOCAL.totalShippingFee />
 		</cfif>
+		
+		<cfset setProductArray(LOCAL.productArray) />
+		<cfset setSubTotalPrice(LOCAL.subTotalPrice) />
+		<cfset setTotalTax(LOCAL.totalTax) />
+		<cfset setTotalPrice(LOCAL.totalPrice) />
 		
 	</cffunction>
 	<!------------------------------------------------------------------------------->
