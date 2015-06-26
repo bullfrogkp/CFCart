@@ -169,6 +169,7 @@
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"place_order")>
 			<cfset SESSION.cart.save() />
