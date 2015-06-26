@@ -95,9 +95,11 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
+		<!--- set flags --->
 		<cfset SESSION.cart.setIsExistingCustomer(false) />
 		<cfset SESSION.cart.setSameAddress(true) />
 		
+		<!--- set customer --->
 		<cfset LOCAL.customer = {} />
 		<cfset LOCAL.customer.customerId = "" />
 		<cfset LOCAL.customer.email = Trim(FORM.new_email) />
@@ -113,6 +115,7 @@
 		<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
 		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
 			
+		<!--- set addresses --->
 		<cfset LOCAL.shippingAddress = {} />
 		<cfset LOCAL.shippingAddress.useExistingAddress = false />
 		<cfset LOCAL.shippingAddress.addressId = "" />
@@ -140,6 +143,7 @@
 		
 		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
 		
+		<!--- calculate tax --->
 		<cfset LOCAL.totalTax = 0 />
 		<cfloop array="#SESSION.cart.getProductArray()#" index="LOCAL.item">
 			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
@@ -151,7 +155,8 @@
 		
 		<cfset SESSION.cart.setTotalPrice(SESSION.cart.getSubTotalPrice() + LOCAL.totalTax) />
 		
-		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
+		<!--- calculate shipping --->
+		<cfloop array="#SESSION.cart.getProductArray()#" index="LOCAL.item">
 			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
 			<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
 			
