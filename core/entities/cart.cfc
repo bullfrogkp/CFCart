@@ -1,13 +1,13 @@
 ﻿<cfcomponent output="false" accessors="true">
     <cfproperty name="cfid" type="string"> 
     <cfproperty name="cftoken" type="string"> 
-    <cfproperty name="currencyId" type="integer"> 
-    <cfproperty name="customerId" type="integer"> 
+    <cfproperty name="currencyId" type="numeric"> 
+    <cfproperty name="customerId" type="numeric"> 
     <cfproperty name="customerGroupName" type="string"> 
-	<cfproperty name="orderId" type="integer"> 
+	<cfproperty name="orderId" type="numeric"> 
 	
     <cfproperty name="couponCode" type="string"> 
-    <cfproperty name="couponId" type="integer"> 
+    <cfproperty name="couponId" type="numeric"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
     <cfproperty name="productShippingMethodRelaIdList" type="string"> 
@@ -16,11 +16,11 @@
     <cfproperty name="billingAddress" type="struct"> 
     <cfproperty name="productArray" type="array"> 
 	
-    <cfproperty name="subTotalPrice" type="float"> 
-    <cfproperty name="totalPrice" type="float"> 
-    <cfproperty name="totalTax" type="float"> 
-    <cfproperty name="totalShippingFee" type="float"> 
-    <cfproperty name="discount" type="float"> 
+    <cfproperty name="subTotalPrice" type="numeric"> 
+    <cfproperty name="totalPrice" type="numeric"> 
+    <cfproperty name="totalTax" type="numeric"> 
+    <cfproperty name="totalShippingFee" type="numeric"> 
+    <cfproperty name="discount" type="numeric"> 
 	
 	<cfproperty name="subTotalPriceWCLocal" type="string"> 
     <cfproperty name="totalPriceWCLocal" type="string"> 

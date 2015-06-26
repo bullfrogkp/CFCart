@@ -52,7 +52,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
-		
+
 			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
 			<cfset SESSION.cart.setCfId(COOKIE.cfid) />
 			<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />
