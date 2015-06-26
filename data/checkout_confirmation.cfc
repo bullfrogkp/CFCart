@@ -238,7 +238,7 @@
 			<cfset APPLICATION.utilsSupport.createAnonymousConv(subject = "http post error",
 																content = "error: #LOCAL.responseStruct.L_LONGMESSAGE0#") />
 
-			<cfset SESSION.order.transaction_failed_reason = LOCAL.responseStruct.L_LONGMESSAGE0 />	
+			<cfset SESSION.cart.transactionFailedReason = LOCAL.responseStruct.L_LONGMESSAGE0 />	
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 			--->
 		</cfif>
@@ -254,7 +254,7 @@
 		<cfset LOCAL.order.setEmail(SESSION.cart.getCustomer().email) />
 		<cfset LOCAL.order.setPhone(SESSION.cart.getCustomer().phone) />
 		
-		<cfif SESSION.order.isExistingCustomer EQ false>
+		<cfif SESSION.cart.getIsExistingCustomer() EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
 			<cfset LOCAL.customer.setFirstName(SESSION.cart.getCustomer().firstName) />
 			<cfset LOCAL.customer.setMiddleName(SESSION.cart.getCustomer().firstName) />
@@ -304,7 +304,7 @@
 		<cfset LOCAL.order.setShippingCountry(LOCAL.shippingAddress.getCountry()) />
 		<cfset LOCAL.order.setShippingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
 		
-		<cfif SESSION.order.sameAddress EQ true>
+		<cfif SESSION.cart.getSameAddress() EQ true>
 			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
 			<cfset LOCAL.order.setBillingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
 			<cfset LOCAL.order.setBillingLastName(LOCAL.shippingAddress.getLastName()) />
@@ -355,8 +355,8 @@
 		
 		<cfset LOCAL.order.setPaymentMethod(EntityLoad("payment_method",{name="paypal"},true)) />
 		
-		<cfif IsNumeric(SESSION.order.couponId)>
-			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.order.couponId)) />
+		<cfif IsNumeric(SESSION.cart.getCouponId())>
+			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",SESSION.cart.getCouponId())) />
 		</cfif>
 					
 		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "placed"},true) />
