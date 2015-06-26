@@ -2,6 +2,7 @@
     <cfproperty name="cfid" type="string"> 
     <cfproperty name="cftoken" type="string"> 
     <cfproperty name="currencyId" type="integer"> 
+    <cfproperty name="customerId" type="integer"> 
     <cfproperty name="customerGroupName" type="string"> 
     <cfproperty name="subTotalPrice" type="float"> 
     <cfproperty name="totalPrice" type="float"> 
@@ -55,7 +56,7 @@
 		
 		<cfif getCouponCode() NEQ "">
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.subTotalPrice) />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId, total = getSubTotalPrice) />
 			
 			<cfif LOCAL.applyCoupon.success EQ true>
 				<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
