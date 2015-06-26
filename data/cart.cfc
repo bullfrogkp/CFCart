@@ -53,40 +53,15 @@
 		
 		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
 		
-			<cfset SESSION.order = {} />
-			<cfset SESSION.order.productArray = [] />
-			<cfset SESSION.order.subTotalPrice = 0 />
-			<cfset SESSION.order.totalPrice = 0 />
-			<cfset SESSION.order.totalTax = 0 />
-			<cfset SESSION.order.totalShippingFee = 0 />
-			<cfset SESSION.order.discount = 0 />
-			<cfset SESSION.order.couponCode = "" />
-			<cfset SESSION.order.couponId = "" />
-			
-			<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
+			<cfset LOCAL.cart = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
+			<cfset LOCAL.cart.setCfId(COOKIE.cfid) />
+			<cfset LOCAL.cart.setCfToken(COOKIE.cftoken) />
+			<cfset LOCAL.cart.setCurrencyId(SESSION.currency.id) />
+			<cfset LOCAL.cart.setCustomerId(SESSION.user.customerId) />
+			<cfset LOCAL.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
 		
-			<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
-				<cfset LOCAL.productStruct = {} />
-				<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
-				<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-				<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
-				<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
-			
-				<cfset ArrayAppend(SESSION.order.productArray, LOCAL.productStruct) />
-			
-				<cfset SESSION.order.subTotalPrice += LOCAL.productStruct.totalPrice />
-			</cfloop>
-			
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
-				<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-				<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = Trim(FORM.coupon_code_applied), customerId = SESSION.user.customerId, total = SESSION.order.subTotalPrice) />
-				
-				<cfif LOCAL.applyCoupon.success EQ true>
-					<cfset SESSION.order.couponCode = Trim(FORM.coupon_code_applied) />
-					<cfset SESSION.order.couponId = LOCAL.applyCoupon.couponId />
-					<cfset SESSION.order.discount = LOCAL.applyCoupon.discount />
-					<cfset SESSION.order.subTotalPrice = LOCAL.applyCoupon.newTotal />
-				</cfif>
+				<cfset LOCAL.cart.setCouponCode(Trim(FORM.coupon_code_applied)) />
 			</cfif>
 		
 			<cfif IsNumeric(SESSION.user.customerId)>
