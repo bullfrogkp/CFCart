@@ -83,6 +83,11 @@
 		<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
 		<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
 		
+		<cfif StructKeyExists(SESSION,"cart")>
+			<cfset SESSION.cart.setCustomerGroup(LOCAL.customer.getCustomerGroup()) />
+			<cfset SESSION.cart.calculate() />
+		</cfif>
+		
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm" />
 		
 		<cfreturn LOCAL />	
