@@ -53,16 +53,16 @@
 		
 		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
 		
-			<cfset LOCAL.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
-			<cfset LOCAL.cart.setCfId(COOKIE.cfid) />
-			<cfset LOCAL.cart.setCfToken(COOKIE.cftoken) />
-			<cfset LOCAL.cart.setCurrencyId(SESSION.currency.id) />
-			<cfset LOCAL.cart.setCustomerId(SESSION.user.customerId) />
-			<cfset LOCAL.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
-		
+			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
+			<cfset SESSION.cart.setCfId(COOKIE.cfid) />
+			<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />
+			<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
+			<cfset SESSION.cart.setCustomerId(SESSION.user.customerId) />
+			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
 				<cfset LOCAL.cart.setCouponCode(Trim(FORM.coupon_code_applied)) />
 			</cfif>
+			<cfset SESSION.cart.calculate() />
 		
 			<cfif IsNumeric(SESSION.user.customerId)>
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1_customer.cfm" />
