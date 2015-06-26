@@ -114,10 +114,6 @@
 			<cfset LOCAL.customer.fullName = LOCAL.customer.firstName & " " & LOCAL.customer.middleName & " " & LOCAL.customer.lastName />
 		</cfif>
 		<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
-		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
-		
-			
-		
 		
 		<cfif StructKeyExists(FORM,"shipto_this_address")>		
 			<cfset LOCAL.customer.email = LOCAL.currentCustomer.getEmail() />
@@ -179,6 +175,14 @@
 		
 		<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 		
+		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
+		<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
+		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
+		<cfset SESSION.cart.calculate() />
+		
+		
+		
+		
 		<cfset SESSION.order.totalTax = 0 />
 		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
 			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
@@ -190,29 +194,6 @@
 		
 		<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
 		
-		
-		
-		<cfloop array="#SESSION.order.productArray#" index="LOCAL.item">
-			<cfset LOCAL.product = EntityLoadByPK("product",LOCAL.item.productId) />
-			<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
-			
-			<cfset LOCAL.item.shippingMethodArray = [] />
-		
-			<cfloop array="#LOCAL.productShippingMethodRelas#" index="LOCAL.productShippingMethodRela">
-				<cfset LOCAL.shippingMethod = LOCAL.productShippingMethodRela.getShippingMethod() />
-				<cfset LOCAL.shippingMethodStruct = {} />
-				<cfset LOCAL.shippingMethodStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
-				<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
-				<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
-				<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = SESSION.order.shippingAddress
-																						, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
-																						,	customerGroupName = SESSION.user.customerGroupName) * LOCAL.item.count />
-				
-				<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getShippingCarrier().getDisplayName()# - #LOCAL.shippingMethod.getDisplayName()#" />
-			
-				<cfset ArrayAppend(LOCAL.item.shippingMethodArray, LOCAL.shippingMethodStruct) />
-			</cfloop>
-		</cfloop>
 		
 		
 		

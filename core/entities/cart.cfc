@@ -52,14 +52,44 @@
 		
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 			<cfset LOCAL.productStruct = {} />
-			<cfset LOCAL.productStruct.productId = LOCAL.record.getProduct().getProductId() />
+			<cfset LOCAL.product = LOCAL.record.getProduct() />
+			<cfset LOCAL.productStruct.productId = LOCAL.product.getProductId() />
 			<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
-			<cfset LOCAL.productStruct.singlePrice = LOCAL.record.getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
+			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
 			<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
 		
 			<cfset ArrayAppend(getProductArray(), LOCAL.productStruct) />
 		
 			<cfset setSubTotalPrice(getSubTotalPrice() + LOCAL.productStruct.totalPrice) />
+			
+			
+			<cfif NOT IsNull(getShippingAddress())>
+				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
+			
+				<cfset LOCAL.record.shippingMethodArray = [] />
+			
+				<cfloop array="#LOCAL.productShippingMethodRelas#" index="LOCAL.productShippingMethodRela">
+					<cfset LOCAL.shippingMethod = LOCAL.productShippingMethodRela.getShippingMethod() />
+					<cfset LOCAL.shippingMethodStruct = {} />
+					<cfset LOCAL.shippingMethodStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
+					<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
+					<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
+					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = SESSION.order.shippingAddress
+																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
+																							,	customerGroupName = SESSION.user.customerGroupName) * LOCAL.record.count />
+					
+					<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getShippingCarrier().getDisplayName()# - #LOCAL.shippingMethod.getDisplayName()#" />
+				
+					<cfset ArrayAppend(LOCAL.record.shippingMethodArray, LOCAL.shippingMethodStruct) />
+				</cfloop>
+				
+				
+				<cfset LOCAL.item.singleTax = NumberFormat(LOCAL.item.singlePrice * LOCAL.product.getTaxRateMV(provinceId = SESSION.order.shippingAddress.provinceId),"0.00") />
+				<cfset LOCAL.item.totalTax = LOCAL.item.singleTax * LOCAL.item.count />
+				<cfset SESSION.order.totalTax += LOCAL.item.totalTax />
+				
+				<cfset SESSION.order.totalPrice = SESSION.order.subTotalPrice + SESSION.order.totalTax />
+			</cfif>
 		</cfloop>
 		
 		<cfif getCouponCode() NEQ "">

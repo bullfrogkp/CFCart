@@ -113,7 +113,6 @@
 			<cfset LOCAL.customer.fullName = LOCAL.customer.firstName & " " & LOCAL.customer.middleName & " " & LOCAL.customer.lastName />
 		</cfif>
 		<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
-		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
 			
 		<!--- set addresses --->
 		<cfset LOCAL.shippingAddress = {} />
@@ -136,9 +135,10 @@
 		<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 		<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
 		<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
-		<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
-		
 		<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
+		
+		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
+		<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
 		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
 		
 		<!--- calculate tax --->
