@@ -80,6 +80,11 @@
 			<cfset SESSION.currency.id = LOCAL.newCurrency.getCurrencyId() />
 			<cfset SESSION.currency.code = LOCAL.newCurrency.getCode() />
 			<cfset SESSION.currency.locale = LOCAL.newCurrency.getLocale() />
+			
+			<cfif StructKeyExists(SESSION,"cart")>
+				<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
+				<cfset SESSION.cart.calculate() />
+			</cfif>
 		</cfif>
 		
 		<cfreturn LOCAL />	
