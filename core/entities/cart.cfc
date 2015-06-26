@@ -2,12 +2,12 @@
     <cfproperty name="cfid" type="string"> 
     <cfproperty name="cftoken" type="string"> 
     <cfproperty name="currencyId" type="numeric"> 
-    <cfproperty name="customerId" type="numeric"> 
+    <cfproperty name="customerId" type="string"> 
     <cfproperty name="customerGroupName" type="string"> 
 	<cfproperty name="orderId" type="numeric"> 
 	
     <cfproperty name="couponCode" type="string"> 
-    <cfproperty name="couponId" type="numeric"> 
+    <cfproperty name="couponId" type="string"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
     <cfproperty name="productShippingMethodRelaIdList" type="string"> 
@@ -48,7 +48,7 @@
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
+		<cfset LOCAL.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "shopping cart") />
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		
 		<cfset LOCAL.productArray = [] />

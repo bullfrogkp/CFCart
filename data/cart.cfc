@@ -31,7 +31,7 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.trackingRecords = _getTrackingRecords(trackingRecordType = "shopping cart") />
+		<cfset LOCAL.pageData.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "shopping cart") />
 		
 		<cfset LOCAL.pageData.subTotal = 0 />
 		
@@ -52,7 +52,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
-
+	
 			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
 			<cfset SESSION.cart.setCfId(COOKIE.cfid) />
 			<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />

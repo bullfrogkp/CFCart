@@ -55,5 +55,4 @@
 		
 		<cfreturn retStruct />
 	</cffunction>
-	
 </cfcomponent>

@@ -5,14 +5,14 @@
 		<tr>
 			<td style="font-weight:bold;width:173px;">Items(#REQUEST.pageData.shoppingCartItemTotalCount#):</td>
 			<td>
-				#SESSION.cart.getSubTotalPriceLocal()#
+				#SESSION.cart.getSubTotalPriceWCLocal()#
 			</td>
 		</tr>
 		<tr>
 			<td style="font-weight:bold;width:173px;">Tax:</td>
 			<td>
 				<cfif SESSION.cart.getTotalTax() NEQ 0>
-					#SESSION.cart.getTotalTaxLocal()#
+					#SESSION.cart.getTotalTaxWCLocal()#
 				<cfelse>
 					-
 				</cfif>
@@ -27,7 +27,7 @@
 		<tr>
 			<td style="font-weight:bold;width:173px;">Total:</td>
 			<td>
-				#SESSION.cart.getSubTotalPriceLocal()#
+				#SESSION.cart.getSubTotalPriceWCLocal()#
 			</td>
 		</tr>
 	</table>			
