@@ -125,14 +125,17 @@
 			<cfloop list="#getProductShippingMethodRelaIdList()#" index="LOCAL.productShippingMethodRelaId">
 				<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
 				<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
-				<cfloop array="#LOCAL.productArray#" index="LOCAL.product">
-					<cfset LOCAL.productEntity = EntityLoadByPK("product",LOCAL.product.productId) />
+				<cfloop array="#LOCAL.productArray#" index="LOCAL.productStruct">
+					<cfset LOCAL.productEntity = EntityLoadByPK("productStruct",LOCAL.productStruct.productId) />
 					<cfif 	NOT IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.productEntity.getParentProduct().getProductId() EQ LOCAL.productId
 							OR
-							IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.product.productId EQ LOCAL.productId>
-						<cfset LOCAL.product.productShippingMethodRelaId = LOCAL.productShippingMethodRelaId />
-						<cfset LOCAL.product.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = getShippingAddress(), shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = getCustomerGroupName()) * LOCAL.product.count />
-						<cfset LOCAL.totalShippingFee += LOCAL.product.totalShippingFee />
+							IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.productStruct.productId EQ LOCAL.productId>
+						<cfset LOCAL.productStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRelaId />
+						<cfset LOCAL.productStruct.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFee(address = getShippingAddress(), shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = getCustomerGroupName()) * LOCAL.product.count />
+						<cfset LOCAL.productStruct.totalShippingFeeWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"local",LOCAL.currency.getLocale()) />
+						<cfset LOCAL.productStruct.totalShippingFeeWCInter = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"international",LOCAL.currency.getLocale()) />
+						
+						<cfset LOCAL.totalShippingFee += LOCAL.productStruct.totalShippingFee />
 						<cfbreak />
 					</cfif>
 				</cfloop>
