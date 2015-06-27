@@ -44,15 +44,8 @@
 		<cfif StructKeyExists(FORM,"place_order")>
 			<cfset SESSION.cart.save() />
 			<cfset SESSION.cart.pay() />
-			<cfset LOCAL.redirectUrl = _sendPayPalRequest().redirectUrl />
 		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
-	
-	<cffunction name="_sendPayPalRequest" access="private" output="false" returnType="struct">
-		
-		
-		<cfreturn LOCAL />	
-	</cffunction>
 </cfcomponent>
