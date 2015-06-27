@@ -5,6 +5,7 @@
     <cfproperty name="customerId" type="string"> 
     <cfproperty name="customerGroupName" type="string"> 
 	<cfproperty name="orderId" type="numeric"> 
+	<cfproperty name="paymentMethodId" type="numeric"> 
 	
     <cfproperty name="couponCode" type="string"> 
     <cfproperty name="couponId" type="string"> 
@@ -326,4 +327,39 @@
 		<cfset setOrderId(LOCAL.order.getOrderId()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="pay" access="public" output="false" returnType="void">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.paymentMethod = EntityLoadByPK("payment_method",getPaymentMethodId()) />
+		<cfset LOCAL.paymentService = new "#APPLICATION.componentPathRoot#core.services.#LOCAL.paymentMethod.getName()#Service"() />
+		<cfset LOCAL.paymentService.setCart(this) />
+		<cfset LOCAL.paymentService.process() />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="setPaid" access="public" output="false" returnType="void">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.order = EntityLoadByPK("order",getOrderId()) />
+		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
+		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
+		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
+		<cfset EntitySave(LOCAL.currentOrderStatus) /> 
+		
+		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "paid"},true) />
+		<cfset LOCAL.orderStatus = EntityNew("order_status") />
+		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
+		<cfset LOCAL.orderStatus.setCurrent(true) />
+		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
+		<cfset EntitySave(LOCAL.orderStatus) /> 
+		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+		
+		<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
+		<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
+		<cfset LOCAL.orderTransaction.setOrderTransactionType(LOCAL.orderTransactionType) />
+		<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionId) />
+		<cfset EntitySave(LOCAL.orderTransaction) />
+		<cfset LOCAL.order.addOrderTransaction(LOCAL.orderTransaction) />
+		<cfset LOCAL.order.setIsComplete(true) />
+		<cfset EntitySave(LOCAL.order) />
+	</cffunction>
 </cfcomponent>
