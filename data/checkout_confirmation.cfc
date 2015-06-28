@@ -43,7 +43,7 @@
 		
 		<cfif StructKeyExists(FORM,"place_order")>
 			<cfset SESSION.cart.save() />
-			<cfset SESSION.cart.pay() />
+			<cfset SESSION.cart.submit() />
 		</cfif>
 		
 		<cfreturn LOCAL />	

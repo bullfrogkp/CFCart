@@ -267,7 +267,7 @@
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		
-		<cfset LOCAL.order.setPaymentMethod(EntityLoad("payment_method",{name="paypal"},true)) />
+		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
 		
 		<cfif IsNumeric(getCouponId())>
 			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",getCouponId())) />
@@ -327,7 +327,7 @@
 		<cfset setOrderId(LOCAL.order.getOrderId()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="pay" access="public" output="false" returnType="void">
+	<cffunction name="submit" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.paymentMethod = EntityLoadByPK("payment_method",getPaymentMethodId()) />
