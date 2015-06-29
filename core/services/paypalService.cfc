@@ -1,7 +1,7 @@
 ﻿<cfcomponent output="false" accessors="true">
 	<cfproperty name="cart" type="any"> 
 	
-	<cffunction name="process" output="false" access="private" returntype="array">
+	<cffunction name="process" output="false" access="public" returntype="void">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.requestData = {}>
 		<cfset LOCAL.requestData.METHOD = "SetExpressCheckout">
