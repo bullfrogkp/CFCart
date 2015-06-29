@@ -61,7 +61,7 @@
 			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
 			
 			<cfset LOCAL.payment = EntityLoad("payment_method",{name="paypal"},true) />
-			<cfset SESSION.cart.setPaymentMethodId(LOCAL.payment.getPaymetMethodId()) />
+			<cfset SESSION.cart.setPaymentMethodId(LOCAL.payment.getPaymentMethodId()) />
 			
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
 				<cfset SESSION.cart.setCouponCode(Trim(FORM.coupon_code_applied)) />
