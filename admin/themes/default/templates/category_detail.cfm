@@ -329,11 +329,14 @@
 							</select>
 						</div>
 					
-						<label>Filter(s)</label>
-						<div id="filters" class="row" style="margin-top:10px;">
-							<cfif NOT IsNULL(REQUEST.pageData.category) AND NOT IsNULL(REQUEST.pageData.category.getCategoryFilterRelas())>
-								<cfloop array="#REQUEST.pageData.category.getCategoryFilterRelas()#" index="categoryFilterRela">		
-									<cfset filter = categoryFilterRela.getFilter() />
+					
+						<cfloop array="#REQUEST.pageData.filterGroups#" index="filterGroup">
+							<label>Filter(s)</label>
+							<div class="filter" id="filter-#filterGroup.getFilterGroupId()#" style="
+							<cfif IsNull(REQUEST.pageData.category) OR IsNull(REQUEST.pageData.category.getFilterGroup()) OR
+								(	NOT IsNull(REQUEST.pageData.category) 
+									AND (filterGroup.getFilterGroupId() NEQ REQUEST.pageData.category.getFilterGroupId()))>display:none;</cfif>">
+								<cfloop array="#filterGroup.getFilters()#" index="filter">	
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
@@ -341,35 +344,36 @@
 													<tr class="warning">
 														<th>#filter.getDisplayName()#</th>
 														<th></th>
-														<th><a categoryfilterrelaid="#categoryFilterRela.getCategoryFilterRelaId()#" filtername="#LCase(filter.getDisplayName())#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+														<th><a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 													</tr>
 													
-													<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
-														<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
-															<tr>
-																<td>#filterValue.getDisplayName()#</td>
-																<td>
-																<cfif filter.getDisplayName() EQ "color">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
-																<cfelse>
-																	#filterValue.getValue()#
-																</cfif>
-																</td>
-																<td>
-																	<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
-																</td>
-															</tr>
-														</cfloop>
+													<cfif NOT IsNull(REQUEST.pageData.category) AND NOT IsNull(REQUEST.pageData.category.getFilterGroup()) AND filterGroup.getFilterGroupId() EQ REQUEST.pageData.category.getFilterGroup().getFilterGroupId()>
+														<cfset categoryFilterRela = EntityLoad("category_filter_rela",{category=REQUEST.pageData.category,filter=filter},true) />
+														<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
+															<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
+																<tr>
+																	<td>#filterValue.getDisplayName()#</td>
+																	<td>
+																	<cfif filter.getDisplayName() EQ "color">
+																		<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
+																	<cfelse>
+																		#filterValue.getValue()#
+																	</cfif>
+																	</td>
+																	<td>
+																		<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
+																	</td>
+																</tr>
+															</cfloop>
+														</cfif>
 													</cfif>
 												</table>
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
 									</div>
 								</cfloop>
-							</cfif>
-						</div>
-						<div id="new-filters" class="row" style="margin-top:10px;">
-						</div>
+							</div>
+						</cfloop>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
