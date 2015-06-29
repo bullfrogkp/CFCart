@@ -132,6 +132,8 @@
 			$("##filter-group-" + $(this).val()).show();
 		});
 		
+		var new_option_index = 1;
+		
 		$( "##add-new-filter-value-confirm" ).click(function() {
 			var thumbnail_content = '';
 			var name_content = $("##new-attribute-option-name").val();
@@ -332,7 +334,7 @@
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr class="warning">
+														<tr class="warning" id="tr-#filterGroup.getFilterGroupId()#-#filter.getFilterId()#">
 															<th>#filter.getDisplayName()#</th>
 															<th></th>
 															<th><a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
