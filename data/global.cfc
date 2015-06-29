@@ -31,12 +31,7 @@
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(isSpecial=false) />
-		
-		<cfset LOCAL.pageData.newArrivalsCategory = EntityLoad("category", {name="new arrivals"}, true) />
-		<cfset LOCAL.pageData.topSellersCategory = EntityLoad("category", {name="top sellers"}, true) />
-		<cfset LOCAL.pageData.weeklyDealsCategory =  EntityLoad("category", {name="weekly deals"}, true) />
-		<cfset LOCAL.pageData.groupBuyingCategory =  EntityLoad("category", {name="group buying"}, true) />
-		
+		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 				
 		<cfreturn LOCAL.pageData />

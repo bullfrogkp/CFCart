@@ -125,22 +125,12 @@
 						<a href="#APPLICATION.absoluteUrlWeb#index.cfm">Home</a>
 					</li>
 					<li>|</li>
+					<cfloop array="#REQUEST.pageData.specialCategories#" index="sc">
 					<li>
-						<a href="#REQUEST.pageData.newArrivalsCategory.getDetailPageUrl()#">#REQUEST.pageData.newArrivalsCategory.getDisplayName()#</a>
+						<a href="#sc.getDetailPageUrl()#">#sc.getDisplayName()#</a>
 					</li>
 					<li>|</li>
-					<li>
-						<a href="#REQUEST.pageData.topSellersCategory.getDetailPageUrl()#">#REQUEST.pageData.topSellersCategory.getDisplayName()#</a>
-					</li>
-					<li>|</li>
-					<li>
-						<a href="#REQUEST.pageData.weeklyDealsCategory.getDetailPageUrl()#">#REQUEST.pageData.weeklyDealsCategory.getDisplayName()#</a>
-					</li>
-					<li>|</li>
-					<li>
-						<a href="#REQUEST.pageData.groupBuyingCategory.getDetailPageUrl()#">#REQUEST.pageData.groupBuyingCategory.getDisplayName()#</a>
-					</li>
-					<li>|</li>
+					</cfloop>
 					<li>
 						<a href="#APPLICATION.absoluteUrlWeb#view_history.cfm">View History</a>
 					</li>
