@@ -380,7 +380,7 @@
 							checked
 							</cfif>
 							/>
-							&nbsp;&nbsp;Top Selling#RepeatString("&nbsp;",11)#
+							&nbsp;&nbsp;#spCategory.getDisplayName()##RepeatString("&nbsp;",11)#
 							</cfloop>
 						</div>
 						<div class="form-group">
