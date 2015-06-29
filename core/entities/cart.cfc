@@ -353,12 +353,6 @@
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
 		
-		<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
-		<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
-		<cfset LOCAL.orderTransaction.setOrderTransactionType(LOCAL.orderTransactionType) />
-		<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionId) />
-		<cfset EntitySave(LOCAL.orderTransaction) />
-		<cfset LOCAL.order.addOrderTransaction(LOCAL.orderTransaction) />
 		<cfset LOCAL.order.setIsComplete(true) />
 		<cfset EntitySave(LOCAL.order) />
 	</cffunction>

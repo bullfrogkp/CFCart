@@ -34,7 +34,15 @@
 			</cfinvoke>
 			
 			<cfif LOCAL.responseStruct.Ack is "Success">
+				<cfset LOCAL.orderTransactionType = EntityLoad("order_transaction_type",{name="purchase"},true) />
+				<cfset LOCAL.orderTransaction = EntityNew("order_transaction") />
+				<cfset LOCAL.orderTransaction.setOrder(LOCAL.order) />
+				<cfset LOCAL.orderTransaction.setOrderTransactionType(LOCAL.orderTransactionType) />
+				<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionId) />
+				<cfset EntitySave(LOCAL.orderTransaction) />
+				
 				<cfset SESSION.cart.setPaid() />
+				
 				<cfset StructDelete(SESSION,"cart") />
 				<cfset LOCAL.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "shopping cart") />
 				<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
