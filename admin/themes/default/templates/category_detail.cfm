@@ -134,6 +134,20 @@
 		
 		var new_option_index = 1;
 		
+		$('.filter-group').on("click","a.add-new-filter-value", function() {
+			$("##new-filter-group-id-hidden").val($(this).attr('filtergroupid'));
+			$("##new-filter-id-hidden").val($(this).attr('filterid'));
+			
+			if($(this).attr('filtername') == 'color')
+			{
+				$("##new-filter-value-label").show();
+			}
+			else
+			{
+				$("##new-filter-value-label").hide();
+			}
+		});
+		
 		$( "##add-new-filter-value-confirm" ).click(function() {
 			var thumbnail_content = '';
 			var name_content = $("##new-attribute-option-name").val();
