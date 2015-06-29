@@ -84,7 +84,7 @@
 		<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
 		
 		<cfif StructKeyExists(SESSION,"cart")>
-			<cfset SESSION.cart.setCustomerGroup(LOCAL.customer.getCustomerGroup()) />
+			<cfset SESSION.cart.setCustomerGroupName(LOCAL.customer.getCustomerGroup().getName()) />
 			<cfset SESSION.cart.calculate() />
 		</cfif>
 		
