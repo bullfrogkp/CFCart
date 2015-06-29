@@ -98,56 +98,6 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		var filtergroups = new Object();
-		var filtergroup, filter, key;
-		
-		<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
-			
-			key = 'filter_group_' + '#fg.getFilterGroupId()#';
-			
-			filters = new Array();
-
-			<cfloop array="#fg.getFilters()#" index="f">
-				filter = new Object();
-				filter.name = '#f.getDisplayName()#';
-				filters.push(filter);
-			</cfloop>
-			
-			filtergroups[key] = filters;
-		</cfloop>
-		
-		$( "##filter_group_id" ).change(function() {
-			<cfif REQUEST.pageData.formData.filter_group_id NEQ "">	
-			if($( "##filter_group_id" ).val() != #REQUEST.pageData.formData.filter_group_id#)
-			{
-				$('##filters').hide();
-				$('##new-filters').empty();
-			
-				current_key = 'filter_group_' + $( "##filter_group_id" ).val();
-			
-				for(var i=0;i<filtergroups[current_key].length;i++)
-				{
-					$('##new-filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
-				}
-			}
-			else
-			{
-				$('##filters').show();
-				$('##new-filters').empty();
-			}
-			<cfelse>
-			$('##filters').hide();
-			$('##new-filters').empty();
-		
-			current_key = 'filter_group_' + $( "##filter_group_id" ).val();
-		
-			for(var i=0;i<filtergroups[current_key].length;i++)
-			{
-				$('##new-filters').append('<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr><th>'+filtergroups[current_key][i].name+'</th></tr></table></div></div></div>'); 
-			}	
-			</cfif>
-		});
-		
 		$( ".add-filter-value" ).click(function() {
 			$("##new_filter_value_category_filter_rela_id").val($(this).attr('categoryfilterrelaid'));
 			
@@ -180,6 +130,45 @@
 		$( "##filter-group-id" ).change(function() {
 			$(".filter-group").hide();
 			$("##filter-group-" + $(this).val()).show();
+		});
+		
+		$( "##add-new-filter-value-confirm" ).click(function() {
+			var thumbnail_content = '';
+			var name_content = $("##new-attribute-option-name").val();
+			var new_option_name =  'new_attribute_option_' + new_option_index;
+			var new_option_tr_id =  'tr-av-new-option-' + new_option_index;
+		
+			if($("##new-attribute-option-name-hidden").val() == 'color')
+				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
+			else
+				thumbnail_content = name_content;
+			$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+		
+			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_option_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
+			
+			$("##new-attribute-option-name").val('');
+			$("##new-attribute-option-label").val('');
+			
+			new_option_index++;
+		});
+		
+		$( "##delete-filter-value-confirm" ).click(function() {			
+			$("##tr-av-" + $("##deleted-attribute-option-id-hidden").val()).remove();
+			$("##tr-av-new-option-" + $("##deleted-attribute-option-id-hidden").val()).remove();
+			
+			var str = $("##new-attribute-option-id-list").val();
+			var n = str.indexOf($("##deleted-attribute-option-id-hidden").val() + ',');
+			
+			if(n != -1)
+			{
+				$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val().replace($("##deleted-attribute-option-id-hidden").val() + ',', ''));
+			}
+			else
+			{	
+				$("##remove-attribute-option-id-list").val($("##remove-attribute-option-id-list").val() + $("##deleted-attribute-option-id-hidden").val() + ',');
+			}	
 		});
 	});
 </script>
@@ -589,7 +578,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_filter_value" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="add_new_filter_value_confirm" name="add-new-filter-value-confirm" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
@@ -606,7 +595,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_filter_value" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_filter_value_confirm" id="delete-filter-value-confirm" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
