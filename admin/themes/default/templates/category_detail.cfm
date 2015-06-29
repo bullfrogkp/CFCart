@@ -177,6 +177,10 @@
 			$("##deleted_best_seller_product_id").val($(this).attr('productid'));
 		});
 		
+		$( "##filter-group-id" ).change(function() {
+			$(".filter-group").hide();
+			$("##filter-group-" + $(this).val()).show();
+		});
 	});
 </script>
 <section class="content-header">
@@ -309,7 +313,7 @@
 					
 						<div class="form-group">
 							<label>Filter Group</label>
-							 <select class="form-control" name="filter_group_id" id="filter_group_id">
+							 <select class="form-control" name="filter_group_id" id="filter-group-id">
 								<option value="">Please Select...</option>
 								<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
 									<option value="#fg.getFilterGroupId()#"
@@ -329,13 +333,13 @@
 							</select>
 						</div>
 					
-					
 						<cfloop array="#REQUEST.pageData.filterGroups#" index="filterGroup">
-							<label>Filter(s)</label>
-							<div class="filter" id="filter-#filterGroup.getFilterGroupId()#" style="
-							<cfif IsNull(REQUEST.pageData.category) OR IsNull(REQUEST.pageData.category.getFilterGroup()) OR
+							<div class="filter-group" id="filter-group-#filterGroup.getFilterGroupId()#" style="
+								<cfif IsNull(REQUEST.pageData.category) OR IsNull(REQUEST.pageData.category.getFilterGroup()) OR
 								(	NOT IsNull(REQUEST.pageData.category) 
 									AND (filterGroup.getFilterGroupId() NEQ REQUEST.pageData.category.getFilterGroupId()))>display:none;</cfif>">
+									
+								<label>Filter(s)</label>
 								<cfloop array="#filterGroup.getFilters()#" index="filter">	
 									<div class="col-xs-3">
 										<div class="box box-warning">
