@@ -9,7 +9,7 @@
 		</span> 
 	</div>
 	
-	<h1>Wishlist</h1> 
+	<h1>View History</h1> 
 	
 	<div class="cat-thumbnails" style="margin-top:10px;">
 		<div class="cat-thumbnail-section" style="border-top:none;">
