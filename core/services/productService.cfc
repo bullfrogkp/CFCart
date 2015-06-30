@@ -55,11 +55,26 @@
 												AND		fv.filterValueId = <cfqueryparam cfsqltype="cf_sql_integer" value="#StructFind(getFilters(),LOCAL.filterId)#" />))
 				</cfloop>
 			</cfif>
-			<!---
 			<cfif ARGUMENTS.getCount EQ false>
-			ORDER BY #getSortTypeId()#
+				ORDER BY 
+				<cfswitch expression="#getSortTypeId()#">
+					<cfcase value="1">
+					1
+					</cfcase>
+					<cfcase value="2">
+					2
+					</cfcase>
+					<cfcase value="3">
+					3
+					</cfcase>
+					<cfcase value="4">
+					4
+					</cfcase>
+					<cfdefaultcase>
+					5
+					</cfdefaultcase>
+				</cfswitch>
 			</cfif>
-			--->
 		</cfquery>
 
 		<cfreturn LOCAL.query />
