@@ -95,74 +95,28 @@
 				<cfif FORM.new_filter_id_list NEQ "">
 					<cfloop list="#FORM.new_filter_id_list#" index="LOCAL.i">
 						<cfif StructKeyExists(FORM,"new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id")>
-							<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_aset#FORM.attribute_set_id#_attribute_id"] />
-							<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_attribute_option_#LOCAL.i#_name"]) />
-							<cfif LOCAL.newAttributeOptionName EQ "color">
-								<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_attribute_option_#LOCAL.i#_thumbnail_label"]) />
-							<cfelse>
-								<cfset LOCAL.newAttributeOptionThumbnailLabel = LOCAL.newAttributeOptionName />
-							</cfif>
-							<cfset LOCAL.newAttributeOptionGenerateOption = FORM["new_attribute_option_#LOCAL.i#_generate_option"] />
-							<cfset LOCAL.newAttributeOptionRquired = FORM["new_attribute_option_#LOCAL.i#_req"] />			
-							<cfset LOCAL.newAttributeOptionImage = FORM["new_attribute_option_#LOCAL.i#_image"] />			
 						
-							<cfset LOCAL.newAttributeOptionAttribute = EntityLoadByPK("attribute",LOCAL.newAttributeOptionAttributeId) />
-						
-							<cfset LOCAL.productAttributeRela = EntityLoad("product_attribute_rela",{product=LOCAL.product,attribute=LOCAL.newAttributeOptionAttribute},true) />
-									
-							<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-							<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
-							<cfset LOCAL.newAttributeValue.setValue(LOCAL.newAttributeOptionName) />
-							<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.newAttributeOptionName) />
-							<cfset LOCAL.newAttributeValue.setName(LCase(LOCAL.newAttributeOptionName)) />
-							<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.newAttributeOptionThumbnailLabel) />
+							<cfset LOCAL.categoryFilterRela = EntityLoadByPK("category_filter_rela", FORM.new_filter_value_category_filter_rela_id)>
 							
-							<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
-							<cfif NOT DirectoryExists(LOCAL.imageDir)>
-								<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-							</cfif>	
-												
-							<cfif LOCAL.newAttributeOptionImage NEQ "">
-								<cffile action = "upload"  
-										fileField = "new_attribute_option_#LOCAL.i#_image"
-										destination = "#LOCAL.imageDir#"
-										nameConflict = "MakeUnique"> 
-								
-								<cfset LOCAL.productImage = EntityNew("product_image") />
-								<cfset LOCAL.productImage.setName(cffile.serverFile) />
-								<cfset EntitySave(LOCAL.productImage) />
-								<cfset LOCAL.product.addImage(LOCAL.productImage) />
-								<cfset EntitySave(LOCAL.product) />
-								
-								<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
-														, {name = "small", width = "200", height = "200", position="center", crop = true}
-														, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
-														] />			
-								<cfset _createImages(	imagePath = LOCAL.imageDir,
-														imageNameWithExtension = cffile.serverFile,
-														sizeArray = LOCAL.sizeArray) />
-								
-								<cfif LOCAL.newAttributeOptionGenerateOption EQ 1>
-									<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-								<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 2>
-									<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-								<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 3>
-									<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-									<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-								</cfif>
-							</cfif>
+							<cfset LOCAL.filter = EntityLoad("filter",FORM["new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id"]) />
+							<cfset LOCAL.filterValue = EntityNew("filter_value") />
+							<cfset LOCAL.filterValue.setCategory(LOCAL.category) />
+							<cfset LOCAL.filterValue.setFilter(LOCAL.filter) />
+							<cfset LOCAL.filterValue.setValue(Trim(FORM["new_filter_#LOCAL.i#_value"]) />
+							<cfset LOCAL.filterValue.setName(LCase(Trim(FORM["new_filter_#LOCAL.i#_name"]))) />
+							<cfset LOCAL.filterValue.setDisplayName(Trim(FORM["new_filter_#LOCAL.i#_name"])) />
+							<cfset EntitySave(LOCAL.filterValue) />
 							
-							<cfset EntitySave(LOCAL.newAttributeValue) />
-							<cfset LOCAL.ProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-							<cfset EntitySave(LOCAL.ProductAttributeRela) />
+							<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />
+							<cfset EntitySave(LOCAL.categoryFilterRela) />
 						</cfif>
 					</cfloop>
 				</cfif>
 				
-				<cfif FORM.remove_attribute_option_id_list NEQ "">
+				<cfif FORM.remove_filter_id_list NEQ "">
 					<cfloop list="#FORM.remove_attribute_option_id_list#" index="LOCAL.i">
-						<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value",LOCAL.i) />
-						<cfset EntityDelete(LOCAL.attributeValue) />
+						<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",LOCAL.i) />		
+						<cfset EntityDelete(LOCAL.filterValue) />
 					</cfloop>
 				</cfif>
 			</cfif>
@@ -281,31 +235,6 @@
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Image has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_5" />
-		
-		<cfelseif StructKeyExists(FORM,"add_new_filter_value")>
-		
-			<cfset LOCAL.categoryFilterRela = EntityLoadByPK("category_filter_rela", FORM.new_filter_value_category_filter_rela_id)>
-							
-			<cfset LOCAL.filterValue = EntityNew("filter_value") />
-			<cfset LOCAL.filterValue.setValue(FORM.new_filter_value) />
-			<cfset LOCAL.filterValue.setDisplayName(FORM.new_filter_display_name) />
-			<cfset EntitySave(LOCAL.filterValue) />
-			
-			<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />
-			<cfset EntitySave(LOCAL.categoryFilterRela) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"New filter value: #FORM.new_filter_value# has been added.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
-			
-		<cfelseif StructKeyExists(FORM,"delete_filter_value")>
-			
-			<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",FORM.deleted_filter_value_id) />		
-			<cfset LOCAL.categoryFilterRela = LOCAL.filterValue.getCategoryFilterRela() />
-			<cfset LOCAL.categoryFilterRela.removeFilterValue(LOCAL.filterValue) />
-			<cfset EntitySave(LOCAL.categoryFilterRela) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Filter value: #LOCAL.filterValue.getValue()# has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=tab_3" />
 		
 		<cfelseif StructKeyExists(FORM,"add_best_seller_product")>
 		
