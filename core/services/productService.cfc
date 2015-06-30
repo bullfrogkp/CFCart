@@ -59,16 +59,16 @@
 				ORDER BY 
 				<cfswitch expression="#getSortTypeId()#">
 					<cfcase value="1">
-					p.createdDatetime
+					p.createdDatetime DESC
 					</cfcase>
 					<cfcase value="2">
-					p.soldCount
+					p.soldCount DESC
 					</cfcase>
 					<cfcase value="3">
-					p.price
+					p.price 
 					</cfcase>
 					<cfcase value="4">
-					p.reviewCount
+					p.reviewCount DESC
 					</cfcase>
 					<cfdefaultcase>
 					p.createdDatetime
