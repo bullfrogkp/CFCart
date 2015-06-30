@@ -146,14 +146,15 @@
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value").val()+';margin-top:4px;"></div>';
 			else
 				thumbnail_content = name_content;
+				
 			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td></td><td></td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		
 			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##category-detail"));
 			$('<input>').attr({type: 'hidden',name: new_filter_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##category-detail"));
 			
-			$("##new-attribute-option-name").val('');
-			$("##new-attribute-option-label").val('');
+			$("##new-filter-display-name").val('');
+			$("##new-filter-value").val('');
 			
 			new_filter_index++;
 		});
@@ -337,9 +338,12 @@
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
 														<tr class="warning" id="tr-#filterGroup.getFilterGroupId()#-#filter.getFilterId()#">
-															<th>#filter.getDisplayName()#</th>
-															<th></th>
-															<th><a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" filtername="#filter.getName()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+															<th colspan="2">#filter.getDisplayName()#</th>
+															<th>
+																<a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" filtername="#filter.getName()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal">
+																	<span class="label label-primary">Add Option</span>
+																</a>
+															</th>
 														</tr>
 														
 														<cfif NOT IsNull(REQUEST.pageData.category) AND NOT IsNull(REQUEST.pageData.category.getFilterGroup()) AND filterGroup.getFilterGroupId() EQ REQUEST.pageData.category.getFilterGroup().getFilterGroupId()>
