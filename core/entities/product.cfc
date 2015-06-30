@@ -24,6 +24,10 @@
 	<cfproperty name="relatedProducts" fieldtype="many-to-many" cfc="product" linktable="related_product_rela" fkcolumn="product_id" inversejoincolumn="related_parent_product_id" singularname="relatedProduct">
 	<cfproperty name="relatedParentProducts" fieldtype="many-to-many" cfc="product" linktable="related_product_rela" fkcolumn="related_parent_product_id" inversejoincolumn="product_id" singularname="relatedParentProduct">
 	<cfproperty name="searchKeyword" type="string" persistent="false"> 
+	<!--- for sorting only --->
+	<cfproperty name="price" column="price" ormtype="float"> 
+	<cfproperty name="soldCount" column="sold_count" ormtype="integer"> 
+	<cfproperty name="reviewCount" column="review_count" ormtype="integer"> 
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDescriptionMV" access="public" output="false" returnType="any">
