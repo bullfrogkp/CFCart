@@ -97,11 +97,7 @@
 			// Silverlight settings
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
-				
-		$( ".delete-filter-value" ).click(function() {
-			$("##deleted_filter_value_id").val($(this).attr('filtervalueid'));
-		});
-		
+					
 		$( ".delete-image" ).click(function() {
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
@@ -198,6 +194,7 @@
 
 <input type="hidden" name="new_filter_value_id_hidden" id="new-filter-value-id-hidden" value="" />
 <input type="hidden" name="new_filter_group_id_hidden" id="new-filter-group-id-hidden" value="" />
+<input type="hidden" name="new_filter_id_hidden" id="new-filter-id-hidden" value="" />
 <input type="hidden" name="new_filter_name_hidden" id="new-filter-name-hidden" value="" />
 <input type="hidden" name="deleted_filter_value_id_hidden" id="deleted-filter-value-id-hidden" value="" />
 <input type="hidden" name="new_filter_id_list" id="new-filter-id-list" value="" />
