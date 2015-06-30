@@ -295,8 +295,6 @@
 <form id="product-detail" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
-<input type="hidden" name="new_attribute_option_product_attribute_rela_id" id="new_attribute_option_product_attribute_rela_id" value="" />
-<input type="hidden" name="deleted_attribute_value_id" id="deleted_attribute_value_id" value="" />
 <input type="hidden" name="sub_product_id" id="sub_product_id" value="" />
 <input type="hidden" name="delete_related_product_id" id="delete_related_product_id" value="" />
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
@@ -306,7 +304,7 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="new_attribute_option_id" id="new-attribute-option-id-hidden" value="" />
+<input type="hidden" name="new_attribute_option_id_hidden" id="new-attribute-option-id-hidden" value="" />
 <input type="hidden" name="new_attribute_option_set_id_hidden" id="new-attribute-option-set-id-hidden" value="" />
 <input type="hidden" name="new_attribute_option_name_hidden" id="new-attribute-option-name-hidden" value="" />
 <input type="hidden" name="new_attribute_option_req_hidden" id="new-attribute-option-req-hidden" value="" />

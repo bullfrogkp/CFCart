@@ -192,11 +192,16 @@
 <form id="category-detail" method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
-<input type="hidden" name="new_filter_value_category_filter_rela_id" id="new_filter_value_category_filter_rela_id" value="" />
-<input type="hidden" name="deleted_filter_value_id" id="deleted_filter_value_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
 <input type="hidden" name="deleted_best_seller_product_id" id="deleted_best_seller_product_id" value="" />
+
+<input type="hidden" name="new_filter_value_id_hidden" id="new-filter-value-id-hidden" value="" />
+<input type="hidden" name="new_filter_group_id_hidden" id="new-filter-group-id-hidden" value="" />
+<input type="hidden" name="new_filter_name_hidden" id="new-filter-name-hidden" value="" />
+<input type="hidden" name="deleted_filter_value_id_hidden" id="deleted-filter-value-id-hidden" value="" />
+<input type="hidden" name="new_filter_id_list" id="new-filter-id-list" value="" />
+<input type="hidden" name="remove_filter_id_list" id="remove-filter-id-list" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
