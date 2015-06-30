@@ -111,7 +111,7 @@
 				</cfif>
 				
 				<cfif FORM.remove_filter_id_list NEQ "">
-					<cfloop list="#FORM.remove_attribute_option_id_list#" index="LOCAL.i">
+					<cfloop list="#FORM.remove_filter_id_list#" index="LOCAL.i">
 						<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",LOCAL.i) />		
 						<cfset EntityDelete(LOCAL.filterValue) />
 					</cfloop>
