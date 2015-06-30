@@ -143,7 +143,7 @@
 			else
 				thumbnail_content = name_content;
 				
-			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td></td><td></td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		
 			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-filter-display-name").val()}).appendTo($("##category-detail"));
