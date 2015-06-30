@@ -59,19 +59,19 @@
 				ORDER BY 
 				<cfswitch expression="#getSortTypeId()#">
 					<cfcase value="1">
-					1
+					p.createdDatetime
 					</cfcase>
 					<cfcase value="2">
-					2
+					p.createdDatetime
 					</cfcase>
 					<cfcase value="3">
-					3
+					p.createdDatetime
 					</cfcase>
 					<cfcase value="4">
-					4
+					p.createdDatetime
 					</cfcase>
 					<cfdefaultcase>
-					5
+					p.createdDatetime
 					</cfdefaultcase>
 				</cfswitch>
 			</cfif>
