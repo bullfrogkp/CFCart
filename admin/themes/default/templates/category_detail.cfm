@@ -142,7 +142,7 @@
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value").val()+';margin-top:4px;"></div>';
 			else
 				thumbnail_content = name_content;
-				
+			console.log(thumbnail_content);	
 			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		
 			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
@@ -154,6 +154,10 @@
 			$("##new-filter-value").val('');
 			
 			new_filter_index++;
+		});
+		
+		$('.filter-group').on("click","a.delete-filter-value", function() {
+			$("##deleted-filter-value-id-hidden").val($(this).attr('filtervalueid'));
 		});
 		
 		$( "##delete-filter-value-confirm" ).click(function() {			
@@ -589,7 +593,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_filter_value_confirm" name="add-new-filter-value-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
+				<button name="add_new_filter_value_confirm" id="add-new-filter-value-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
