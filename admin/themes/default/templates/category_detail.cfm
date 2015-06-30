@@ -146,11 +146,11 @@
 				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value").val()+';margin-top:4px;"></div>';
 			else
 				thumbnail_content = name_content;
-			$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_filter_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td></td><td></td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		
-			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_filter_index + ',');			
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
+			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##category-detail"));
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##category-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
@@ -187,7 +187,7 @@
 </section>
 
 <!-- Main content -->
-<form method="post">
+<form id="category-detail" method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="new_filter_value_category_filter_rela_id" id="new_filter_value_category_filter_rela_id" value="" />
