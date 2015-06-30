@@ -67,7 +67,7 @@
 					<table style="margin-left:-3px;">
 						<tbody><tr>
 							<td>
-								<input type="checkbox" name="subscribed" id="subscribed" value="1" <cfif REQUEST.pageData.formData.subscribed EQ true>checked</cfif>">
+								<input type="checkbox" name="subscribed" id="subscribed" value="1" <cfif REQUEST.pageData.formData.subscribed EQ true>checked</cfif>>
 							</td>
 							<td>&nbsp;Check here if you want to subscribe our new product information</td>
 						</tr>
