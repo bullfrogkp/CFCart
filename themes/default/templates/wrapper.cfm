@@ -91,26 +91,31 @@
 		</div>
 		<div id="search">
 			<form method="post">
-			<div id="search-label">Search: </div>
-			
 			<select id="search-category" name="search_category_id">
 				<option value="0">All Categories</option>
-				<option value="0">Computers / Networking</option>
-				<option value="0">Tablet PCs &amp; Cell Phone</option>
-				<option value="0">Home, Garden &amp; Tools</option>
-				<option value="0">Sports &amp; Outdoor</option>
-				<option value="0">Lighting / Flashlights / LEDs</option>
-				<option value="0">Health / Beauty</option>
-				<option value="0">Clothing / Accessories</option>
-				<option value="0">Video &amp; Audio</option>
-				<option value="0">Car Accessories</option>
-				<option value="0">Cameras &amp; Photo Accessories</option>
-				<option value="0">RC Models and Accessories</option>
-				<option value="0">Toys / Hobbies</option>
-				<option value="0">Jewelry</option>
-				<option value="0">Video Games</option>
-				<option value="0">Musical Instruments</option>
-				<option value="0">Test Equipment &amp; Tools</option>
+				<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+					<option value="#cat.getCategoryId()#"
+					<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
+					selected
+					</cfif>
+					>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+					<cfloop array="#cat.getSubCategories()#" index="subCat">
+						<option value="#subCat.getCategoryId()#"
+						<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
+						selected
+						</cfif>
+						>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+						<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+							<option value="#thirdCat.getCategoryId()#"
+							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
+							selected
+							</cfif>
+							>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+						</cfloop>
+						</li>
+					</cfloop>
+					</li>
+				</cfloop>
 			</select>
 			<input id="search-text" type="text" placeholder="Search..." />
 			<input type="image" id="search-img" name="search_product" src="#SESSION.absoluteUrlTheme#images/search-img-up.png" />

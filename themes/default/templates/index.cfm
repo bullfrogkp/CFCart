@@ -11,7 +11,9 @@
 	#REQUEST.pageData.slideSection.getSectionData()#
 </div>
 <div id="top-sidebar">
-	<img src="#SESSION.absoluteUrlTheme#images/week_deal.gif" style="width:230px;" />
+	<a href="http://pinmydeals.bullfrogdesign.ca/products.cfm/Weekly%20Deals/71/1/1">
+		<img src="#SESSION.absoluteUrlTheme#images/week_deal.gif" style="width:230px;" />
+	</a>
 	<div id="sidenav" style="display:block;position:relative;top:0;">
 		<ul>
 			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
