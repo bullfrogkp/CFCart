@@ -335,7 +335,7 @@
 						</div>
 					
 						<cfloop array="#REQUEST.pageData.filterGroups#" index="filterGroup">
-							<div class="filter-group" id="filter-group-#filterGroup.getFilterGroupId()#" style="<cfif IsNull(REQUEST.pageData.category) OR IsNull(REQUEST.pageData.category.getFilterGroup()) OR (	NOT IsNull(REQUEST.pageData.category) AND (filterGroup.getFilterGroupId() NEQ REQUEST.pageData.category.getFilterGroupId()))>display:none;</cfif>">
+							<div class="filter-group" id="filter-group-#filterGroup.getFilterGroupId()#" style="<cfif IsNull(REQUEST.pageData.category) OR IsNull(REQUEST.pageData.category.getFilterGroup()) OR (NOT IsNull(REQUEST.pageData.category) AND (filterGroup.getFilterGroupId() NEQ REQUEST.pageData.category.getFilterGroup().getFilterGroupId()))>display:none;</cfif>">
 								<label>Filter(s)</label>
 								
 								<div class="row" style="margin-top:10px;">

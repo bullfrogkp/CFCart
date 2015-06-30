@@ -102,7 +102,7 @@
 							<cfset LOCAL.filterValue = EntityNew("filter_value") />
 							<cfset LOCAL.filterValue.setCategory(LOCAL.category) />
 							<cfset LOCAL.filterValue.setFilter(LOCAL.filter) />
-							<cfset LOCAL.filterValue.setValue(Trim(FORM["new_filter_#LOCAL.i#_value"]) />
+							<cfset LOCAL.filterValue.setValue(Trim(FORM["new_filter_#LOCAL.i#_value"])) />
 							<cfset LOCAL.filterValue.setName(LCase(Trim(FORM["new_filter_#LOCAL.i#_name"]))) />
 							<cfset LOCAL.filterValue.setDisplayName(Trim(FORM["new_filter_#LOCAL.i#_name"])) />
 							<cfset EntitySave(LOCAL.filterValue) />
