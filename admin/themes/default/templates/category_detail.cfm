@@ -161,19 +161,19 @@
 		});
 		
 		$( "##delete-filter-value-confirm" ).click(function() {			
-			$("##tr-av-" + $("##deleted-attribute-option-id-hidden").val()).remove();
-			$("##tr-av-new-option-" + $("##deleted-attribute-option-id-hidden").val()).remove();
+			$("##tr-fg-" + $("##deleted-filter-value-id-hidden").val()).remove();
+			$("##tr-fg-new-filter-" + $("##deleted-filter-value-id-hidden").val()).remove();
 			
-			var str = $("##new-attribute-option-id-list").val();
-			var n = str.indexOf($("##deleted-attribute-option-id-hidden").val() + ',');
+			var str = $("##new-filter-id-list").val();
+			var n = str.indexOf($("##deleted-filter-value-id-hidden").val() + ',');
 			
 			if(n != -1)
 			{
-				$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val().replace($("##deleted-attribute-option-id-hidden").val() + ',', ''));
+				$("##new-filter-id-list").val($("##new-filter-id-list").val().replace($("##deleted-filter-value-id-hidden").val() + ',', ''));
 			}
 			else
 			{	
-				$("##remove-attribute-option-id-list").val($("##remove-attribute-option-id-list").val() + $("##deleted-attribute-option-id-hidden").val() + ',');
+				$("##remove-filter-id-list").val($("##remove-filter-id-list").val() + $("##deleted-filter-value-id-hidden").val() + ',');
 			}	
 		});
 	});
