@@ -150,8 +150,9 @@
 			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td></td><td></td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		
 			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##category-detail"));
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##category-detail"));
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-filter-display-name").val()}).appendTo($("##category-detail"));
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_value',value: $("##new-filter-value").val()}).appendTo($("##category-detail"));
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_fgroup'+$("##filter-group-id").val()+'_filter_id',value: $("##new-filter-id-hidden").val()}).appendTo($("##category-detail"));
 			
 			$("##new-filter-display-name").val('');
 			$("##new-filter-value").val('');
