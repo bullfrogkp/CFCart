@@ -357,7 +357,7 @@
 															<cfset categoryFilterRela = EntityLoad("category_filter_rela",{category=REQUEST.pageData.category,filter=filter},true) />
 															<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
 																<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
-																	<tr>
+																	<tr id="tr-fg-new-filter-">
 																		<td>#filterValue.getDisplayName()#</td>
 																		<td>
 																		<cfif filter.getDisplayName() EQ "color">
@@ -367,7 +367,7 @@
 																		</cfif>
 																		</td>
 																		<td>
-																			<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-modal"><span class="label label-danger">Delete</span></a>
+																			<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a>
 																		</td>
 																	</tr>
 																</cfloop>
