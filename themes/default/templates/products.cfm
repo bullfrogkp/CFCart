@@ -68,14 +68,17 @@
 		</cfif>
 	</cfif>
 	
-	<div id="sort-by">
-		<ul>
-			<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
-			<cfloop array="#REQUEST.pageData.sortTypeArray#" index="sortType">
-				<li <cfif sortType.selected>class="active"</cfif>><a href="#sortType.link#" style="color:##000;text-decoration:none;padding:3px 4px;">#sortType.name#</a></li>
-			</cfloop>
-		</ul>
-	</div>
+	<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) GT 0>
+		<div id="sort-by">
+			<ul>
+				<li style="border:none;margin-left:0;padding:left:0;">Sort By:</li>
+				<cfloop array="#REQUEST.pageData.sortTypeArray#" index="sortType">
+					<li <cfif sortType.selected>class="active"</cfif>><a href="#sortType.link#" style="color:##000;text-decoration:none;padding:3px 4px;">#sortType.name#</a></li>
+				</cfloop>
+			</ul>
+		</div>
+	</cfif>
+	
 	<div id="pages">
 		<ul class="pagination pagination-sm no-margin pull-right">
 		<cfif ArrayLen(REQUEST.pageData.pageArray) GT 1>
