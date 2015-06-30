@@ -95,15 +95,12 @@
 				<cfif FORM.new_filter_id_list NEQ "">
 					<cfloop list="#FORM.new_filter_id_list#" index="LOCAL.i">
 						<cfif StructKeyExists(FORM,"new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id")>
-						
-							<cfset LOCAL.categoryFilterRela = EntityLoadByPK("category_filter_rela", FORM.new_filter_value_category_filter_rela_id)>
+							<cfset LOCAL.filter = EntityLoadByPK("filter",FORM["new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id"]) />
+							<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category=LOCAL.category, filter=LOCAL.filter},true) />
 							
-							<cfset LOCAL.filter = EntityLoad("filter",FORM["new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id"]) />
 							<cfset LOCAL.filterValue = EntityNew("filter_value") />
-							<cfset LOCAL.filterValue.setCategory(LOCAL.category) />
-							<cfset LOCAL.filterValue.setFilter(LOCAL.filter) />
+							<cfset LOCAL.filterValue.setCategoryFilterRela(LOCAL.categoryFilterRela) />
 							<cfset LOCAL.filterValue.setValue(Trim(FORM["new_filter_#LOCAL.i#_value"])) />
-							<cfset LOCAL.filterValue.setName(LCase(Trim(FORM["new_filter_#LOCAL.i#_name"]))) />
 							<cfset LOCAL.filterValue.setDisplayName(Trim(FORM["new_filter_#LOCAL.i#_name"])) />
 							<cfset EntitySave(LOCAL.filterValue) />
 							
