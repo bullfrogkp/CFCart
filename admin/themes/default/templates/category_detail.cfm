@@ -97,20 +97,7 @@
 			// Silverlight settings
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
-		
-		$( ".add-filter-value" ).click(function() {
-			$("##new_filter_value_category_filter_rela_id").val($(this).attr('categoryfilterrelaid'));
-			
-			if($(this).attr('filtername') == 'color')
-			{
-				$('##new_filter_value').colorpicker();
-			}
-			else
-			{
-				$('##new_filter_value').unbind();
-			}
-		});
-		
+				
 		$( ".delete-filter-value" ).click(function() {
 			$("##deleted_filter_value_id").val($(this).attr('filtervalueid'));
 		});
@@ -132,42 +119,43 @@
 			$("##filter-group-" + $(this).val()).show();
 		});
 		
-		var new_option_index = 1;
+		var new_filter_index = 1;
 		
-		$('.filter-group').on("click","a.add-new-filter-value", function() {
+		$('.filter-group').on("click","a.add-filter-value", function() {
 			$("##new-filter-group-id-hidden").val($(this).attr('filtergroupid'));
 			$("##new-filter-id-hidden").val($(this).attr('filterid'));
+			$("##new-filter-name-hidden").val($(this).attr('filtername'));
 			
 			if($(this).attr('filtername') == 'color')
 			{
-				$("##new-filter-value-label").show();
+				$('##new-filter-value').colorpicker();
 			}
 			else
 			{
-				$("##new-filter-value-label").hide();
+				$('##new-filter-value').unbind();
 			}
 		});
 		
 		$( "##add-new-filter-value-confirm" ).click(function() {
 			var thumbnail_content = '';
-			var name_content = $("##new-attribute-option-name").val();
-			var new_option_name =  'new_attribute_option_' + new_option_index;
-			var new_option_tr_id =  'tr-av-new-option-' + new_option_index;
+			var name_content = $("##new-filter-display-name").val();
+			var new_filter_name =  'new_filter_' + new_filter_index;
+			var new_filter_tr_id =  'tr-fg-new-filter-' + new_filter_index;
 		
-			if($("##new-attribute-option-name-hidden").val() == 'color')
-				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
+			if($("##new-filter-name-hidden").val() == 'color')
+				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value").val()+';margin-top:4px;"></div>';
 			else
 				thumbnail_content = name_content;
-			$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			$("##tr-" + $("##new-attribute-option-set-id-hidden").val() + '-' + $("##new-attribute-option-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_filter_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 		
-			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
+			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_filter_index + ',');			
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: new_filter_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-label").val('');
 			
-			new_option_index++;
+			new_filter_index++;
 		});
 		
 		$( "##delete-filter-value-confirm" ).click(function() {			
@@ -351,7 +339,7 @@
 														<tr class="warning" id="tr-#filterGroup.getFilterGroupId()#-#filter.getFilterId()#">
 															<th>#filter.getDisplayName()#</th>
 															<th></th>
-															<th><a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
+															<th><a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" filtername="#filter.getName()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##compose-modal"><span class="label label-primary">Add Option</span></a></th>
 														</tr>
 														
 														<cfif NOT IsNull(REQUEST.pageData.category) AND NOT IsNull(REQUEST.pageData.category.getFilterGroup()) AND filterGroup.getFilterGroupId() EQ REQUEST.pageData.category.getFilterGroup().getFilterGroupId()>
@@ -586,10 +574,10 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new_filter_display_name" name="new_filter_display_name" type="text" class="form-control" placeholder="Name">
+					<input id="new-filter-display-name" name="new_filter_display_name" type="text" class="form-control" placeholder="Name">
 				</div>
 				<div class="form-group">
-					<input id="new_filter_value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
+					<input id="new-filter-value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
