@@ -117,6 +117,8 @@
 		
 		var new_filter_index = 1;
 		
+		$('##new-filter-value-color').colorpicker();
+		
 		$('.filter-group').on("click","a.add-filter-value", function() {
 			$("##new-filter-group-id-hidden").val($(this).attr('filtergroupid'));
 			$("##new-filter-id-hidden").val($(this).attr('filterid'));
@@ -124,11 +126,13 @@
 			
 			if($(this).attr('filtername') == 'color')
 			{
-				$('##new-filter-value').colorpicker();
+				$('##new-filter-value').hide();
+				$('##new-filter-value-color').show();
 			}
 			else
 			{
-				$('##new-filter-value').unbind();
+				$('##new-filter-value-color').hide();
+				$('##new-filter-value').show();
 			}
 		});
 		
@@ -139,7 +143,7 @@
 			var new_filter_tr_id =  'tr-fg-new-filter-' + new_filter_index;
 		
 			if($("##new-filter-name-hidden").val() == 'color')
-				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value").val()+';margin-top:4px;"></div>';
+				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value-color").val()+';margin-top:4px;"></div>';
 			else
 				thumbnail_content = name_content;
 				
@@ -147,11 +151,15 @@
 		
 			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-filter-display-name").val()}).appendTo($("##category-detail"));
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_value',value: $("##new-filter-value").val()}).appendTo($("##category-detail"));
 			$('<input>').attr({type: 'hidden',name: new_filter_name+'_fgroup'+$("##filter-group-id").val()+'_filter_id',value: $("##new-filter-id-hidden").val()}).appendTo($("##category-detail"));
+			if($("##new-filter-name-hidden").val() == 'color')
+				$('<input>').attr({type: 'hidden',name: new_filter_name+'_value',value: $("##new-filter-value-color").val()}).appendTo($("##category-detail"));
+			else
+				$('<input>').attr({type: 'hidden',name: new_filter_name+'_value',value: $("##new-filter-value").val()}).appendTo($("##category-detail"));
 			
 			$("##new-filter-display-name").val('');
 			$("##new-filter-value").val('');
+			$("##new-filter-value-color").val('');
 			
 			new_filter_index++;
 		});
@@ -589,6 +597,7 @@
 				</div>
 				<div class="form-group">
 					<input id="new-filter-value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
+					<input id="new-filter-value-color" name="new_filter_value_color" type="text" class="form-control" placeholder="Option value" style="display:none;">
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
