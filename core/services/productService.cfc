@@ -62,13 +62,13 @@
 					p.createdDatetime
 					</cfcase>
 					<cfcase value="2">
-					p.createdDatetime
+					p.soldCount
 					</cfcase>
 					<cfcase value="3">
-					p.createdDatetime
+					p.price
 					</cfcase>
 					<cfcase value="4">
-					p.createdDatetime
+					p.reviewCount
 					</cfcase>
 					<cfdefaultcase>
 					p.createdDatetime
