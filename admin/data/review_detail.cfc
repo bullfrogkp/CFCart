@@ -10,7 +10,18 @@
 		<cfif StructKeyExists(FORM,"save_item")>
 			
 			<cfset LOCAL.review = EntityLoadByPK("review", FORM.id)>
-			<cfset LOCAL.review.setReviewStatusType(EntityLoadByPK('review_status_type',FORM.review_status_type_id)) />
+			<cfset LOCAL.reviewStatusType = EntityLoadByPK('review_status_type',FORM.review_status_type_id) />
+			<cfset LOCAL.review.setReviewStatusType(LOCAL.reviewStatusType) />
+			
+			<cfif LOCAL.reviewStatusType.getName() EQ "approved">
+				<cfset LOCAL.product = LOCAL.review.getProduct() />
+				<cfif IsNull(LOCAL.product.getReviewCount())>
+					<cfset LOCAL.product.setReviewCount(1) />
+				<cfelse>
+					<cfset LOCAL.product.setReviewCount(LOCAL.product.getReviewCount() + 1) />
+				</cfif>
+				<cfset EntitySave(LOCAL.product) />
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.review) />
 			
