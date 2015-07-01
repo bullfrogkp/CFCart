@@ -115,6 +115,10 @@
 					<cfif IsDate(Trim(FORM.special_price_to_date))>
 						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
 					</cfif>
+					
+					<!--- for product sorting --->
+					<!--- may need consider special price later --->
+					<cfset LOCAL.product.setPriceMV(Trim(FORM.price)) />
 				</cfif>
 				
 				<cfset EntitySave(LOCAL.groupPrice) />

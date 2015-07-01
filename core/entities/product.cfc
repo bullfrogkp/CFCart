@@ -30,13 +30,23 @@
 	<cfproperty name="reviewCount" column="review_count" ormtype="integer"> 
 	
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="setPriceMV" access="public" output="false" returnType="void">
+		<cfargument name="price" type="numeric" required="true">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset getParentProduct().setPrice(ARGUMENTS.price) />
+		<cfelse>
+			<cfset setPrice(ARGUMENTS.price) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="setSoldCountMV" access="public" output="false" returnType="void">
 		<cfargument name="soldCount" type="numeric" required="true">
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset getParentProduct().setSoldCount(soldCount = ARGUMENTS.soldCount) />
+			<cfset getParentProduct().setSoldCountARGUMENTS.soldCount) />
 		<cfelse>
-			<cfset setSoldCount(soldCount = ARGUMENTS.soldCount) />
+			<cfset setSoldCount(ARGUMENTS.soldCount) />
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
@@ -44,9 +54,9 @@
 		<cfargument name="reviewCount" type="numeric" required="true">
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset getParentProduct().setReviewCount(reviewCount = ARGUMENTS.reviewCount) />
+			<cfset getParentProduct().setReviewCount(ARGUMENTS.reviewCount) />
 		<cfelse>
-			<cfset setReviewCount(reviewCount = ARGUMENTS.reviewCount) />
+			<cfset setReviewCount(ARGUMENTS.reviewCount) />
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
