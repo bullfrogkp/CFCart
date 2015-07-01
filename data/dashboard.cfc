@@ -1,4 +1,15 @@
 ﻿<cfcomponent extends="master">	
+	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfif NOT IsNumeric(SESSION.user.customerId)>
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#index.cfm" />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
