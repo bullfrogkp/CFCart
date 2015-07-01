@@ -44,7 +44,7 @@
 		<cfargument name="soldCount" type="numeric" required="true">
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfset getParentProduct().setSoldCountARGUMENTS.soldCount) />
+			<cfset getParentProduct().setSoldCount(ARGUMENTS.soldCount) />
 		<cfelse>
 			<cfset setSoldCount(ARGUMENTS.soldCount) />
 		</cfif>

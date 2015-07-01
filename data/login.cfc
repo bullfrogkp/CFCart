@@ -67,6 +67,9 @@
 			<cfset LOCAL.customer = EntityNew("customer") />
 			<cfset LOCAL.customer.setEmail(Trim(FORM.new_username)) />
 			<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
+			<cfif StructKeyExists(FORM,"subscribe")>
+				<cfset LOCAL.customer.setSubscribed(true) />
+			</cfif>
 			<cfset LOCAL.customer.setIsEnabled(true) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
 			<cfset LOCAL.customer.setLastLoginDatetime(Now()) />

@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td style="width:20px;">
-						<input type="checkbox" class="checkbox">
+						<input type="checkbox" class="checkbox" name="subscribe">
 					</td>
 					<td style="font-size: 12px;">
 						<div style="margin-left:-40px;float:left;">Keep me signed in</div>
