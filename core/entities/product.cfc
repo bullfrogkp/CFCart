@@ -30,6 +30,44 @@
 	<cfproperty name="reviewCount" column="review_count" ormtype="integer"> 
 	
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="setSoldCountMV" access="public" output="false" returnType="void">
+		<cfargument name="soldCount" type="numeric" required="true">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset getParentProduct().setSoldCount(soldCount = ARGUMENTS.soldCount) />
+		<cfelse>
+			<cfset setSoldCount(soldCount = ARGUMENTS.soldCount) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setReviewCountMV" access="public" output="false" returnType="void">
+		<cfargument name="reviewCount" type="numeric" required="true">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfset getParentProduct().setReviewCount(reviewCount = ARGUMENTS.reviewCount) />
+		<cfelse>
+			<cfset setReviewCount(reviewCount = ARGUMENTS.reviewCount) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getSoldCountMV" access="public" output="false" returnType="numeric">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfreturn getParentProduct().getSoldCount() />
+		<cfelse>
+			<cfreturn getSoldCount() />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getReviewCountMV" access="public" output="false" returnType="numeric">
+		
+		<cfif getProductType().getName() EQ "configured_product">
+			<cfreturn getParentProduct().getReviewCount() />
+		<cfelse>
+			<cfreturn getReviewCount() />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDescriptionMV" access="public" output="false" returnType="any">
 		
 		<cfif getProductType().getName() EQ "configured_product">
