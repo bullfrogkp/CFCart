@@ -12,7 +12,7 @@
 			<cfset LOCAL.review = EntityLoadByPK("review", FORM.id)>
 			<cfset LOCAL.reviewStatusType = EntityLoadByPK('review_status_type',FORM.review_status_type_id) />
 			<cfset LOCAL.review.setReviewStatusType(LOCAL.reviewStatusType) />
-			
+			<!--- add code when review is deleted too later --->
 			<cfif LOCAL.reviewStatusType.getName() EQ "approved">
 				<cfset LOCAL.product = LOCAL.review.getProduct() />
 				<cfif IsNull(LOCAL.product.getReviewCount())>
