@@ -265,6 +265,16 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
+				<cfset returnStruct = globalPageObj.processGlobalURLDataAfterValidation() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+				</cfif>		
+						
+				<cfset returnStruct = pageObj.processURLDataAfterValidation() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+				</cfif>
+				
 				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
 				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
 			
