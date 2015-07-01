@@ -254,7 +254,17 @@
 					
 					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
 				</cfif>
+				
+				<cfset returnStruct = globalPageObj.processGlobalURLDataBeforeValidation() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+				</cfif>		
 						
+				<cfset returnStruct = pageObj.processURLDataBeforeValidation() />
+				<cfif returnStruct.redirectUrl NEQ "">
+					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
+				</cfif>
+				
 				<cfset returnStruct = globalPageObj.validateGlobalAccessData() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />

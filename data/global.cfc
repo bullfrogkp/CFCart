@@ -76,13 +76,20 @@
 		<cfreturn LOCAL />	
 	</cffunction>	
 	
-	<cffunction name="processGlobalURLDataAfterValidation" access="public" output="false" returnType="struct">
+	<cffunction name="processGlobalURLDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-			
+		
 		<cfif StructKeyExists(URL,"logout")>
 			<cfset SESSION.user.customerId = "" />
 		</cfif>
+		
+		<cfreturn LOCAL />	
+	</cffunction>	
+	
+	<cffunction name="processGlobalURLDataAfterValidation" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>
