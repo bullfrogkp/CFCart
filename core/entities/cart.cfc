@@ -321,6 +321,14 @@
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.orderProductStatus) />
 			<cfset EntitySave(LOCAL.orderProduct) /> 
 			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
+			
+			<!--- for product sorting --->
+			<cfif IsNull(LOCAL.product.getSoldCountMV())>
+				<cfset LOCAL.product.setSoldCountMV(1) />
+			<cfelse>
+				<cfset LOCAL.product.setSoldCountMV(LOCAL.product.getSoldCountMV() + 1) />
+			</cfif>
+			<cfset EntitySave(LOCAL.product) /> 
 		</cfloop>
 		
 		<cfset EntitySave(LOCAL.order) />

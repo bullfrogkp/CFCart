@@ -15,10 +15,10 @@
 			<!--- add code when review is deleted too later --->
 			<cfif LOCAL.reviewStatusType.getName() EQ "approved">
 				<cfset LOCAL.product = LOCAL.review.getProduct() />
-				<cfif IsNull(LOCAL.product.getReviewCount())>
-					<cfset LOCAL.product.setReviewCount(1) />
+				<cfif IsNull(LOCAL.product.getReviewCountMV())>
+					<cfset LOCAL.product.setReviewCountMV(1) />
 				<cfelse>
-					<cfset LOCAL.product.setReviewCount(LOCAL.product.getReviewCount() + 1) />
+					<cfset LOCAL.product.setReviewCountMV(LOCAL.product.getReviewCountMV() + 1) />
 				</cfif>
 				<cfset EntitySave(LOCAL.product) />
 			</cfif>
