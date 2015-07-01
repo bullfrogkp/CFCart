@@ -37,7 +37,14 @@
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
-	</cffunction>	
+	</cffunction>
+
+	<cffunction name="processGlobalURLDataAfterValidation" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfreturn LOCAL />	
+	</cffunction>		
 	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />

@@ -51,7 +51,13 @@
 						<td style="padding-left:10px;">
 							<div id="top-signin-icon"></div>
 						</td>
-						<td><a href="#APPLICATION.absoluteUrlWeb#login.cfm">Sign In</a> / <a href="#APPLICATION.absoluteUrlWeb#login.cfm">Create Account</a></td>
+						<td>
+							<cfif IsNumeric(SESSION.user.customerId)>
+								<a href="#CGI.SCRIPT_NAME#?logout">Log Out</a>
+							<cfelse>
+								<a href="#APPLICATION.absoluteUrlWeb#login.cfm">Sign In</a> / <a href="#APPLICATION.absoluteUrlWeb#login.cfm">Create Account</a>
+							</cfif>
+						</td>
 					</tr>
 				</table>
 			</div>

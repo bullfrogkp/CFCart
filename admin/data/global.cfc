@@ -49,4 +49,15 @@
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
+	
+	<cffunction name="processGlobalURLDataAfterValidation" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+			
+		<cfif StructKeyExists(URL,"logout")>
+			<cfset StructDelete(SESSION,"adminUser") />
+		</cfif>
+		
+		<cfreturn LOCAL />	
+	</cffunction>
 </cfcomponent>
