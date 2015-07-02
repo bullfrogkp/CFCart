@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td style="width:20px;">
-						<input type="checkbox" class="checkbox" name="subscribe">
+						<input type="checkbox" class="checkbox" name="keep_login">
 					</td>
 					<td style="font-size: 12px;">
 						<div style="margin-left:-40px;float:left;">Keep me signed in</div>
@@ -79,7 +79,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);">
 				</tr>
 				<tr>
 					<td style="width:20px;">
-						<input type="checkbox" class="checkbox" checked>
+						<input type="checkbox" class="checkbox" checked name="subscribe">
 					</td>
 					<td style="font-size: 12px;">
 						<div>Sign Up for Product Newsletter</div>
