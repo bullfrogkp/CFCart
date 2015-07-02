@@ -53,7 +53,7 @@
 						</td>
 						<td>
 							<cfif IsNumeric(SESSION.user.customerId)>
-								<a href="#CGI.SCRIPT_NAME#?logout">Log Out</a>
+								<a href="#CGI.SCRIPT_NAME#?logout">Logout</a>
 							<cfelse>
 								<a href="#APPLICATION.absoluteUrlWeb#login.cfm">Sign In</a> / <a href="#APPLICATION.absoluteUrlWeb#login.cfm">Create Account</a>
 							</cfif>

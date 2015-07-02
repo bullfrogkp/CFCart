@@ -23,8 +23,11 @@
 			<li>
 				<a href="#APPLICATION.absoluteUrlWeb#myaccount/profile.cfm">My Profile</a>
 			</li>
-			<li style="border-bottom:none;">
+			<li>
 				<a href="#APPLICATION.absoluteUrlWeb#myaccount/change_password.cfm">Change Password</a>
+			</li>
+			<li style="border-bottom:none;">
+				<a href="#CGI.SCRIPT_NAME#?logout">Logout</a>
 			</li>
 		</ul>
 	</div>
