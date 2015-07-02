@@ -56,6 +56,7 @@
 			
 		<cfif StructKeyExists(URL,"logout")>
 			<cfset StructDelete(SESSION,"adminUser") />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/index.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
