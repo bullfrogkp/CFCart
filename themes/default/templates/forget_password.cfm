@@ -9,7 +9,7 @@
 
 	<form method="post">
 		<h2>Password Assistance</h2>
-		<p style="font-size:12px;">Enter the e-mail associated with your pinmydeals.com account, then click Continue. We'll send you a link to a page where you can easily create a new password.</p>
+		<p style="font-size:12px;width:550px;line-height:18px;">Enter the e-mail associated with your pinmydeals.com account, then click Continue. We'll send you a link to a page where you can easily create a new password.</p>
 		<table>
 			<tr>
 				<td colspan="2">
