@@ -15,7 +15,7 @@
 	</div>
 	<div style="background-color:##F2F2F2;padding:20px;">
 		<ul style="margin-left:-0.5%;list-style-type:none;">
-			<li style="width:29%;float:left;margin-left:0.5%;padding-right:20px;height:128px;line-height:20px;">
+			<li style="width:29%;float:left;margin-left:0.5%;padding-right:20px;height:160px;line-height:20px;">
 				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;">
 					Contact Information
 					<a style="float:right;font-size:12px;" href="#APPLICATION.absoluteUrlWeb#myaccount/profile.cfm">Edit</a>
@@ -28,7 +28,7 @@
 				<strong>Company:</strong> #REQUEST.pageData.customer.getCompany()#
 				</p>
 			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid ##CCC;height:128px;">
+			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;padding-right:20px;border-left:1px solid ##CCC;height:160px;">
 			
 				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;line-height:20px;">
 					Latest Order
@@ -46,7 +46,7 @@
 				</cfif>
 				</p>
 			</li>
-			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:128px;border-left:1px solid ##CCC;line-height:20px;">
+			<li style="width:29%;float:left;margin-left:0.5%;padding-left:20px;height:160px;border-left:1px solid ##CCC;line-height:20px;">
 				<div style="font-weight:bold;padding-bottom:10px;margin-bottom:5px;border-bottom:1px solid ##CCC;">
 					Subscription
 					<a style="float:right;font-size:12px;" href="#APPLICATION.absoluteUrlWeb#myaccount/profile.cfm">Edit</a>
