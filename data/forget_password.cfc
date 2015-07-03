@@ -36,10 +36,11 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"send_email")>
-			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.username),password=Hash(Trim(FORM.password)),isDeleted=false,isEnabled=true},true) />
-			<cfset LOCAL.customer.setLastLoginDatetime(Now()) />
+			<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.email"() />
+			<cfset LOCAL.emailService.setContent() />
+			<cfset LOCAL.emailService.send() />
 		
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#email_sent.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
