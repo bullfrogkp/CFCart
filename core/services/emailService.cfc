@@ -7,69 +7,48 @@
 	<cffunction name="sendEmail" access="public" returntype="void">		
 	    <cfset var LOCAL = StructNew() />
 		
-		<cfset LOCAL.emailContent = EntityLoad("email_content",{name=getContentName()},true) />
+		<cfset LOCAL.emailContent = EntityLoad("emailContent",{name=getContentName()},true) />
 
-		<cfset LOCAL.emailContentSent = replaceEmailVariables(replace_content = LOCAL.email_content.email_content,
-																	replace_struct = ARGUMENTS.replace_struct) />
+		<cfset LOCAL.emailContentSent = replaceEmailVariables(	content = LOCAL.emailContent.getContent(),
+																replaceStruct = ARGUMENTS.replaceStruct) />
 			
-		<cfset sendDirectEmail(	from_email = "#ARGUMENTS.from_email#", 
-								to_email = "#ARGUMENTS.to_email#", 
-								email_type = "#LOCAL.email_content.email_content_type#",
-								email_subject = "#LOCAL.email_content.email_content_subject#",
-								email_content = "#LOCAL.email_content_replaced#") />
+		<cfset sendDirectEmail(	fromEmail = getFromEmail(), 
+								toEmail = getToEmail(), 
+								emailType = LOCAL.emailContent.getContentType(),
+								emailSubject = LOCAL.emailContent.getSubject(),
+								emailContent = LOCAL.emailContentSent) />
 		
 	</cffunction>
 	
 	<cffunction name="sendDirectEmail" access="public" returntype="void">
-	    <cfargument name="from_email" type="string" required="true" />
-	    <cfargument name="to_email" type="string" required="true" />
-		<cfargument name="email_subject" type="string" required="true" />
-		<cfargument name="email_content" type="string" required="true" />
-		<cfargument name="email_type" type="string" required="true" />
+	    <cfargument name="fromEmail" type="string" required="true" />
+	    <cfargument name="toEmail" type="string" required="true" />
+		<cfargument name="emailSubject" type="string" required="true" />
+		<cfargument name="emailContent" type="string" required="true" />
+		<cfargument name="emailType" type="string" required="true" />
 		
 	    <cfset var LOCAL = StructNew() />
 		
-		<cfset LOCAL.logFile = "emails_sent_" & DateFormat(now(), 'yyyymmdd') & ".log" />
-		
-		<cfinvoke component="#APPLICATION.db_cfc_path#cfc.logger" method="init" returnvariable="LOCAL.logger">
-			<cfinvokeargument name="logFile" value="#APPLICATION.log_path & LOCAL.logFile#">
-		</cfinvoke>
-		
-		<cfset LOCAL.function = "send email" />
-		
-		<cfset LOCAL.logger.addlog(LOCAL.function, "from:#ARGUMENTS.from_email#") />
-		<cfset LOCAL.logger.addlog(LOCAL.function, "to:#ARGUMENTS.to_email#") />
-		<cfset LOCAL.logger.addlog(LOCAL.function, "type:#ARGUMENTS.email_type#") />
-		<cfset LOCAL.logger.addlog(LOCAL.function, "subject:#ARGUMENTS.email_subject#") />
-		<cfset LOCAL.logger.addlog(LOCAL.function, "content:#ARGUMENTS.email_content#") />
-		<cfset LOCAL.logger.addlog(LOCAL.function, "user:#SESSION.user#") />
-		
-		<cfmail from="#Trim(ARGUMENTS.from_email)#" 
-				to="#Trim(ARGUMENTS.to_email)#" 
-				type="#ARGUMENTS.email_type#"
-				subject="#Trim(ARGUMENTS.email_subject)#">#Trim(ARGUMENTS.email_content)#</cfmail>
-		
+		<cfmail from="#Trim(ARGUMENTS.fromEmail)#" 
+				to="#Trim(ARGUMENTS.toEmail)#" 
+				type="#ARGUMENTS.emailType#"
+				subject="#Trim(ARGUMENTS.emailSubject)#">#Trim(ARGUMENTS.emailContent)#</cfmail>
 		
 	</cffunction>
 	
 	<cffunction name="replaceEmailVariables" access="public" output="false" returnType="string">
-		<cfargument name="replace_struct" type="struct" required="true">
-		<cfargument name="replace_content" type="string" required="true">
+		<cfargument name="replaceStruct" type="struct" required="true">
+		<cfargument name="replaceContent" type="string" required="true">
 		
 		<cfset var LOCAL = StructNew() />
 	
-		<cfset LOCAL.ret_content = ARGUMENTS.replace_content />
+		<cfset LOCAL.retContent = ARGUMENTS.replaceContent />
 		
-		<cfloop collection="#ARGUMENTS.replace_struct#" item="i">
-		
-			<cfif NOT FindNoCase("${#i#}",LOCAL.ret_content)>
-				<cfthrow message="cannot find match variable '#i#' in the email content" />
-			</cfif>
-		
-			<cfset LOCAL.ret_content = ReplaceNoCase(LOCAL.ret_content,"${#i#}",StructFind(replace_struct,i),"all") />
+		<cfloop collection="#ARGUMENTS.replaceStruct#" item="LOCAL.i">		
+			<cfset LOCAL.retContent = ReplaceNoCase(LOCAL.retContent,"${#LOCAL.i#}",StructFind(replaceStruct,i),"all") />
 		</cfloop>
 		
-		<cfreturn LOCAL.ret_content />
+		<cfreturn LOCAL.retContent />
 	</cffunction>
 	
 </cfcomponent>
