@@ -1,17 +1,15 @@
-﻿<cfcomponent output="false">
-	<cffunction name="sendEmail" access="public" returntype="void">
-	    <cfargument name="from_email" type="string" required="true" />
-	    <cfargument name="to_email" type="string" required="true" />
-		<cfargument name="email_content_name" type="string" required="true" />
-		<cfargument name="replace_struct" type="struct" required="true" />
-		
+﻿<cfcomponent output="false" accessors="true">
+	cfproperty name="fromEmail" type="string"> 
+	cfproperty name="toEmail" type="string"> 
+	cfproperty name="contentName" type="string"> 
+	cfproperty name="replaceStruct" type="struct"> 
+	
+	<cffunction name="sendEmail" access="public" returntype="void">		
 	    <cfset var LOCAL = StructNew() />
 		
-		<cfinvoke component="#APPLICATION.db_cfc_path#db.email_contents" method="getEmailContents" returnvariable="LOCAL.email_content">
-			<cfinvokeargument name="email_content_name" value="#ARGUMENTS.email_content_name#">
-		</cfinvoke>
+		<cfset LOCAL.emailContent = EntityLoad("email_content",{name=getContentName()},true) />
 
-		<cfset LOCAL.email_content_replaced = replaceEmailVariables(replace_content = LOCAL.email_content.email_content,
+		<cfset LOCAL.emailContentSent = replaceEmailVariables(replace_content = LOCAL.email_content.email_content,
 																	replace_struct = ARGUMENTS.replace_struct) />
 			
 		<cfset sendDirectEmail(	from_email = "#ARGUMENTS.from_email#", 
