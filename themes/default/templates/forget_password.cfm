@@ -13,7 +13,7 @@
 		<table>
 			<tr>
 				<td colspan="2">
-					<input type="text" name="associated_email" placeholder="Email" style="width:300px;">
+					<input type="text" name="email" placeholder="Email" style="width:300px;">
 				</td>
 			</tr>
 			<tr>

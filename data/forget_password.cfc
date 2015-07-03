@@ -37,8 +37,13 @@
 		
 		<cfif StructKeyExists(FORM,"send_email")>
 			<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.email"() />
-			<cfset LOCAL.emailService.setContent() />
-			<cfset LOCAL.emailService.send() />
+			<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
+			<cfset LOCAL.emailService.setToEmail(Trim(FORM.email)) />
+			<cfset LOCAL.emailService.setContentName("reset password") />
+			<cfset LOCAL.replaceStruct = {} />
+			<cfset LOCAL.replaceStruct.customerName =  />
+			<cfset LOCAL.emailService.setReplaceStruct() />
+			<cfset LOCAL.emailService.sendEmail() />
 		
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#email_sent.cfm" />
 		</cfif>
