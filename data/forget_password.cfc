@@ -6,8 +6,13 @@
 		<cfset LOCAL.messageArray = [] />
 		
 		<cfif StructKeyExists(FORM,"send_email")>
-			<cfif NOT IsValid("email",FORM.associated_email)>
+			<cfif NOT IsValid("email",Trim(FORM.email))>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
+			<cfelse>
+				<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email)},true) />
+				<cfif IsNull(LOCAL.customer)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Sorry we cannot find the customer with the email: #Trim(FORM.email)#.") />
+				</cfif>
 			</cfif>
 		</cfif>
 		
@@ -36,13 +41,15 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"send_email")>
+			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email)},true) />
+			
 			<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.email"() />
 			<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
 			<cfset LOCAL.emailService.setToEmail(Trim(FORM.email)) />
 			<cfset LOCAL.emailService.setContentName("reset password") />
 			<cfset LOCAL.replaceStruct = {} />
-			<cfset LOCAL.replaceStruct.customerName =  />
-			<cfset LOCAL.emailService.setReplaceStruct() />
+			<cfset LOCAL.replaceStruct.customerName = LOCAL.customer.getFirstname() />
+			<cfset LOCAL.emailService.setReplaceStruct(LOCAL.replaceStruct) />
 			<cfset LOCAL.emailService.sendEmail() />
 		
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#email_sent.cfm" />
