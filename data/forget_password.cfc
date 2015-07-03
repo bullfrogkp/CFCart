@@ -47,8 +47,10 @@
 			<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
 			<cfset LOCAL.emailService.setToEmail(Trim(FORM.email)) />
 			<cfset LOCAL.emailService.setContentName("reset password") />
+			
 			<cfset LOCAL.replaceStruct = {} />
 			<cfset LOCAL.replaceStruct.customerName = LOCAL.customer.getFirstname() />
+			
 			<cfset LOCAL.emailService.setReplaceStruct(LOCAL.replaceStruct) />
 			<cfset LOCAL.emailService.sendEmail() />
 		
