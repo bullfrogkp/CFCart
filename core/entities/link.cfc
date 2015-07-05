@@ -3,4 +3,9 @@
     <cfproperty name="uuid" column="rank" ormtype="string"> 
 	<cfproperty name="linkType" fieldtype="many-to-one" cfc="link_type" fkcolumn="link_type_id">
 	<cfproperty name="linkStatusType" fieldtype="many-to-one" cfc="link_status_type" fkcolumn="link_status_type_id">
+	<cfproperty name="redirectURL" persistent="true" type="string" />
+	
+	<cffunction name="process" access="public" output="false" returnType="void">
+		<cfset LOCAL.processor = new "#APPLICATION.componentPathRoot#core.services.link"() />
+	</cffunction>
 </cfcomponent>
