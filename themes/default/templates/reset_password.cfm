@@ -7,6 +7,7 @@
 			
 <div id="login-wrapper">
 	<form method="post">
+		<input type="hidden" name="customer_id" value="#REQUEST.pageData.customerId#" />
 		<h2>Reset Password</h2>
 		<table>
 			<tr>
