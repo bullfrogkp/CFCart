@@ -58,6 +58,7 @@
 			<cfset LOCAL.link.setLinkType(LOCAL.linkType) />
 			<cfset LOCAL.link.setLinkStatusType(LOCAL.linkStatusType) />
 			<cfset LOCAL.link.setUUID(LOCAL.linkUUID) />
+			<cfset LOCAL.link.setCustomer(LOCAL.customer) />
 			<cfset EntitySave(LOCAL.link) />
 			
 			<cfset LOCAL.replaceStruct.uuid = LOCAL.linkUUID />
