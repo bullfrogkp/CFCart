@@ -32,7 +32,7 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.uuid = SESSION.temp.uuid />
+		<cfset LOCAL.pageData.linkId = SESSION.temp.linkId />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
@@ -45,7 +45,7 @@
 		<cfif StructKeyExists(FORM,"reset_password")>
 			<cfset LOCAL.linkActiveStateType = EntityLoad("link_state_type",{name="active"},true) />
 			<cfset LOCAL.linkProcessedStateType = EntityLoad("link_state_type",{name="processed"},true) />
-			<cfset LOCAL.link = EntityLoad("link",{uuid = Trim(FORM.u), linkStateType = LOCAL.linkActiveStateType}, true) />
+			<cfset LOCAL.link = EntityLoadByPK("link",FORM.u) />
 			
 			<cfset LOCAL.customer = LOCAL.link.getCustomer() />
 			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />

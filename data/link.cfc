@@ -5,7 +5,7 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif NOT(StructKeyExists(URL.u) AND Trim(URL.u) NEQ "")>
+		<cfif NOT(StructKeyExists(URL,"u") AND Trim(URL.u) NEQ "")>
 			<cfset ArrayAppend(LOCAL.messageArray,"The link is not valid.") />
 		</cfif>
 		
@@ -23,12 +23,12 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfset LOCAL.linkStateType = EntityLoad("link_state_type",{name="active"},true) />
-		<cfset LOCAL.link = EntityLoad("link",{uuid = Trim(URL.u), linkStateType = LOCAL.linkStateType}, true) />
+		<cfset LOCAL.linkStatusType = EntityLoad("link_status_type",{name="active"},true) />
+		<cfset LOCAL.link = EntityLoad("link",{uuid = Trim(URL.u), linkStatusType = LOCAL.linkStatusType}, true) />
 		<cfif IsNull(LOCAL.link)>
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#invalid_link.cfm" />
 		<cfelse>
-			<cfset SESSION.temp.uuid = Trim(URL.u) />
+			<cfset SESSION.temp.linkId = LOCAL.link.getLinkId() />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#links/#LOCAL.link.getRedirectURL()#.cfm" />
 		</cfif>
 		
