@@ -7,10 +7,9 @@
 			
 <div id="login-wrapper">
 	<form method="post">
-		<input type="hidden" name="customer_id" value="#REQUEST.pageData.customerId#" />
 		<h2>Password has been reset</h2>
-		<p>
-			Your password has been reset, please <a href="login.cfm">login</a> again.
+		<p style="font-size:12px;">
+			Your password has been reset, please <a href="login.cfm" style="text-decoration:underline;">login</a> again.
 		</p>
 	</form>
 </div>
