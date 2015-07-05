@@ -7,7 +7,7 @@
 			
 <div id="login-wrapper">
 	<form method="post">
-		<input type="hidden" name="uuid" value="#REQUEST.pageData.uuid#" />
+		<input type="hidden" name="u" value="#REQUEST.pageData.uuid#" />
 		<h2>Reset Password</h2>
 		<table>
 			<tr>

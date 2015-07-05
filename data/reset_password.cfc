@@ -45,11 +45,12 @@
 		<cfif StructKeyExists(FORM,"reset_password")>
 			<cfset LOCAL.linkActiveStateType = EntityLoad("link_state_type",{name="active"},true) />
 			<cfset LOCAL.linkProcessedStateType = EntityLoad("link_state_type",{name="processed"},true) />
-			<cfset LOCAL.link = EntityLoad("link",{uuid = Trim(URL.u), linkStateType = LOCAL.linkActiveStateType}, true) />
+			<cfset LOCAL.link = EntityLoad("link",{uuid = Trim(FORM.u), linkStateType = LOCAL.linkActiveStateType}, true) />
 			
 			<cfset LOCAL.customer = LOCAL.link.getCustomer() />
 			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
 			<cfset LOCAL.link.setLinkStateType(LOCAL.linkProcessedStateType) />
+			
 			<cfset EntitySave(LOCAL.customer) />
 			<cfset EntitySave(LOCAL.link) />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#reset_password_done.cfm" />
