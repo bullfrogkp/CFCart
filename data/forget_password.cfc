@@ -51,7 +51,7 @@
 			<cfset LOCAL.replaceStruct = {} />
 			<cfset LOCAL.replaceStruct.customerName = LOCAL.customer.getFirstname() />
 			
-			<cfset LOCAL.linkType = EntityLoad("link_type",{name="forget password"},true) />
+			<cfset LOCAL.linkType = EntityLoad("link_type",{name="reset password"},true) />
 			<cfset LOCAL.linkStatusType = EntityLoad("link_status_type",{name="active"},true) />
 			<cfset LOCAL.linkUUID = CreateUUID() />
 			<cfset LOCAL.link = EntityNew("link") />
