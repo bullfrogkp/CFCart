@@ -7,7 +7,7 @@
 	<cffunction name="sendEmail" access="public" returntype="void">		
 	    <cfset var LOCAL = StructNew() />
 		
-		<cfset LOCAL.emailContent = EntityLoad("emailContent",{name=getContentName()},true) />
+		<cfset LOCAL.emailContent = EntityLoad("email_content",{name=getContentName()},true) />
 
 		<cfset LOCAL.emailContentSent = replaceEmailVariables(	content = LOCAL.emailContent.getContent(),
 																replaceStruct = ARGUMENTS.replaceStruct) />
