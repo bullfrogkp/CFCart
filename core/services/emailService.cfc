@@ -1,20 +1,20 @@
 ﻿<cfcomponent output="false" accessors="true">
-	cfproperty name="fromEmail" type="string"> 
-	cfproperty name="toEmail" type="string"> 
-	cfproperty name="contentName" type="string"> 
-	cfproperty name="replaceStruct" type="struct"> 
+	<cfproperty name="fromEmail" type="string"> 
+	<cfproperty name="toEmail" type="string"> 
+	<cfproperty name="contentName" type="string"> 
+	<cfproperty name="replaceStruct" type="struct"> 
 	
 	<cffunction name="sendEmail" access="public" returntype="void">		
 	    <cfset var LOCAL = StructNew() />
 		
 		<cfset LOCAL.emailContent = EntityLoad("email_content",{name=getContentName()},true) />
 
-		<cfset LOCAL.emailContentSent = replaceEmailVariables(	content = LOCAL.emailContent.getContent(),
-																replaceStruct = ARGUMENTS.replaceStruct) />
+		<cfset LOCAL.emailContentSent = replaceEmailVariables(	replaceContent = LOCAL.emailContent.getContent(),
+																replaceStruct = getReplaceStruct()) />
 			
 		<cfset sendDirectEmail(	fromEmail = getFromEmail(), 
 								toEmail = getToEmail(), 
-								emailType = LOCAL.emailContent.getContentType(),
+								emailType = LOCAL.emailContent.getEmailContentType().getName(),
 								emailSubject = LOCAL.emailContent.getSubject(),
 								emailContent = LOCAL.emailContentSent) />
 		
@@ -36,7 +36,7 @@
 		--->
 	</cffunction>
 	
-	<cffunction name="replaceEmailVariables" access="public" output="false" returnType="string">
+	<cffunction name="replaceEmailVariables" access="private" output="false" returnType="string">
 		<cfargument name="replaceStruct" type="struct" required="true">
 		<cfargument name="replaceContent" type="string" required="true">
 		

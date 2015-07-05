@@ -43,7 +43,7 @@
 		<cfif StructKeyExists(FORM,"send_email")>
 			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email)},true) />
 			
-			<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.email"() />
+			<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.emailService"() />
 			<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
 			<cfset LOCAL.emailService.setToEmail(Trim(FORM.email)) />
 			<cfset LOCAL.emailService.setContentName("reset password") />
