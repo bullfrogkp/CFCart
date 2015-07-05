@@ -22,7 +22,7 @@
 			<cfif ArrayLen(LOCAL.messageArray) EQ 0>
 				<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
 				<cfset LOCAL.customerService.setUsername(SESSION.user.userName) />
-				<cfset LOCAL.customerService.setPassword(Trim(FORM.current_password)) />
+				<cfset LOCAL.customerService.setPassword(Hash(Trim(FORM.current_password))) />
 				<cfif LOCAL.customerService.isUserValid() EQ false>
 					<cfset ArrayAppend(LOCAL.messageArray,"Password is not correct.") />
 				</cfif>
@@ -58,7 +58,7 @@
 		<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
 		
 		<cfif StructKeyExists(FORM,"update_password")>
-			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
+			<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
 			<cfset EntitySave(LOCAL.customer) />
 		</cfif>
 		

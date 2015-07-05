@@ -50,7 +50,7 @@
 			<cfset LOCAL.link = EntityLoadByPK("link",FORM.u) />
 			
 			<cfset LOCAL.customer = LOCAL.link.getCustomer() />
-			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
+			<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
 			<cfset LOCAL.link.setLinkStatusType(LOCAL.linkProcessedStatusType) />
 			
 			<cfset EntitySave(LOCAL.customer) />
