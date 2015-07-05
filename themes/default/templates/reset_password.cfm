@@ -12,17 +12,17 @@
 		<table>
 			<tr>
 				<td colspan="2">
-					<input type="text" name="new_password" placeholder="New Password" style="width:300px;">
+					<input type="password" name="new_password" placeholder="New Password" style="width:300px;">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="text" name="confirm_new_password" placeholder="Confirm New Password" style="width:300px;">
+					<input type="password" name="confirm_new_password" placeholder="Confirm New Password" style="width:300px;">
 				</td>
 			</tr>
 			<tr>
 				<td style="padding-top:10px;">
-					<input name="reset_password" type="submit" class="btn-signup" value="Update Password">
+					<input name="reset_password" type="submit" class="btn-signup" value="Reset Password">
 				</td>
 			</tr>
 		</table>

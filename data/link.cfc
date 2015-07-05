@@ -29,7 +29,7 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#invalid_link.cfm" />
 		<cfelse>
 			<cfset SESSION.temp.linkId = LOCAL.link.getLinkId() />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#links/#LOCAL.link.getRedirectURL()#.cfm" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#links/#LOCAL.link.getLinkType().getRedirectURL()#.cfm" />
 		</cfif>
 		
 		<cfreturn LOCAL />	

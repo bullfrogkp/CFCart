@@ -12,6 +12,9 @@
 			<cfif Trim(FORM.confirm_new_password) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please confirm your new password.") />
 			</cfif>
+			<cfif Trim(FORM.new_password) NEQ "" AND Trim(FORM.confirm_new_password) NEQ "" AND Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match.") />
+			</cfif>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
