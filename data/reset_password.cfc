@@ -40,14 +40,14 @@
 	<!----------------------------------------------------------------------------------------------------------------------------------------------------->
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
+		<cfset LOCAL.customer = EntityLoadByPK("customer",FORM.customer_id) />
 		
-		<cfif StructKeyExists(FORM,"update_password")>
+		<cfif StructKeyExists(FORM,"reset_password")>
 			<cfset LOCAL.customer.setPassword(Trim(FORM.new_password)) />
 			<cfset EntitySave(LOCAL.customer) />
 		</cfif>
 		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/change_password.cfm" />
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#reset_password_done.cfm" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
