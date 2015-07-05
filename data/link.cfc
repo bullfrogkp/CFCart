@@ -28,7 +28,7 @@
 		<cfif IsNull(LOCAL.link)>
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#invalid_link.cfm" />
 		<cfelse>
-			<cfset SESSION.temp.customerId = LOCAL.link.getCustomer().getCustomerId() />
+			<cfset SESSION.temp.uuid = Trim(URL.u) />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#links/#LOCAL.link.getRedirectURL()#.cfm" />
 		</cfif>
 		
