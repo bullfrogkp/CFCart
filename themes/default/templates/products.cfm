@@ -106,7 +106,7 @@
 						<div class="product-overlay">
 							<div class="overlay-content">
 								<div class="thumbnail-rating"></div>
-								<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+								<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#product.getReviewCountMV()# Reviews)</a></div>
 								<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
 							</div>
 						</div>
@@ -190,7 +190,7 @@ padding: 0 8px 8px;">
 							</div>
 							<div class="recommendation-list-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 							<div class="recommendation-list-review"></div>
-							<div><a href="">(#ArrayLen(product.getReviews())# Reviews)</a></div>
+							<div><a href="">(#product.getReviewCountMV()# Reviews)</a></div>
 						</div>
 						<div style="clear:both;"></div>
 					</li>
