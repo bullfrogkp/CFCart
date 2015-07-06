@@ -167,6 +167,7 @@
 		<cfset LOCAL.order.setIsComplete(false) />
 		<cfset LOCAL.order.setEmail(getCustomer().email) />
 		<cfset LOCAL.order.setPhone(getCustomer().phone) />
+		<cfset LOCAL.order.setCurrency(EntityLoadByPK("currency",getCurrencyId())) />
 		
 		<cfif getIsExistingCustomer() EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
