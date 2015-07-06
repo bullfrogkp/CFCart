@@ -54,7 +54,7 @@
 								#address.getUnit()# #address.getStreet()#<br/>
 								#address.getCity()#, #address.getProvince().getDisplayName()# #address.getPostalCode()#<br/>
 								#address.getCountry().getDisplayName()#<br/><br/>
-								<button class="btn-signup use-this-address" addressid="#address.getAddressId()#" type="submit" name="shipto_this_address" id="shipto_this_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
+								<button class="btn-signup use-this-address" addressid="#address.getAddressId()#" type="submit" name="shipto_this_address" id="shipto_this_address" value="Use this address" style="font-size:12px;"><span>Use this address</span></button>
 							</li>
 						</cfloop>
 					</ul>
@@ -142,7 +142,7 @@
 					<tr>
 						<td colspan="5">
 							<div style="padding-top:12px;border-top:1px solid ##ccc;margin-top:10px;">
-							<button class="btn-signup" type="submit" name="shipping_to_new_address" id="shipping_to_new_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
+							<button class="btn-signup" type="submit" name="shipping_to_new_address" id="shipping_to_new_address" value="Use this address" style="font-size:12px;"><span>Use this address</span></button>
 							</div>
 						</td>
 					</tr>
