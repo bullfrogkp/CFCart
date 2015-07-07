@@ -98,34 +98,11 @@
 		<!--- set flags --->
 		<cfset SESSION.cart.setIsExistingCustomer(true) />
 		<cfset SESSION.cart.setSameAddress(true) />
-		
-		<!--- set customer --->
-		<cfset LOCAL.currentCustomer = EntityLoadByPK("customer", SESSION.user.customerId) />
-		<cfset LOCAL.customer = {} />
-		<cfset LOCAL.customer.customerId = SESSION.user.customerId />
-		<cfset LOCAL.customer.email = Trim(FORM.new_email) />
-		<cfset LOCAL.customer.phone = Trim(FORM.shipto_phone) />
-		<cfset LOCAL.customer.firstName = Trim(FORM.shipto_first_name) />
-		<cfset LOCAL.customer.middleName = Trim(FORM.shipto_middle_name) />
-		<cfset LOCAL.customer.lastName = Trim(FORM.shipto_last_name) />
-		<cfif LOCAL.customer.middleName EQ "">
-			<cfset LOCAL.customer.fullName = LOCAL.customer.firstName & " " & LOCAL.customer.lastName />
-		<cfelse>
-			<cfset LOCAL.customer.fullName = LOCAL.customer.firstName & " " & LOCAL.customer.middleName & " " & LOCAL.customer.lastName />
-		</cfif>
-		<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
-		
-		<cfif StructKeyExists(FORM,"shipto_this_address")>		
-			<cfset LOCAL.customer.email = LOCAL.currentCustomer.getEmail() />
-			<cfset LOCAL.customer.phone = LOCAL.currentCustomer.getPhone() />
-			<cfset LOCAL.customer.firstName = LOCAL.currentCustomer.getFirstName() />
-			<cfset LOCAL.customer.middleName = LOCAL.currentCustomer.getMiddleName() />
-			<cfset LOCAL.customer.lastName = LOCAL.currentCustomer.getLastName() />
-			<cfset LOCAL.customer.fullName = LOCAL.currentCustomer.getFullName() />
-			<cfset LOCAL.customer.company = LOCAL.currentCustomer.getCompany() />
-
-			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
+		<cfset SESSION.cart.setCustomer(EntityLoadByPK("customer", SESSION.user.customerId)) />
 			
+		<!--- set customer --->
+		<cfif StructKeyExists(FORM,"shipto_this_address")>		
+			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
 			<cfset LOCAL.shippingAddress = {} />
 			<cfset LOCAL.shippingAddress.useExistingAddress = true />
 			<cfset LOCAL.shippingAddress.addressId = LOCAL.address.getAddressId() />
@@ -143,14 +120,6 @@
 			<cfset LOCAL.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
-			<cfset LOCAL.customer.email = Trim(FORM.new_email) />
-			<cfset LOCAL.customer.phone = Trim(FORM.shipto_phone) />
-			<cfset LOCAL.customer.firstName = Trim(FORM.shipto_first_name) />
-			<cfset LOCAL.customer.middleName = Trim(FORM.shipto_middle_name) />
-			<cfset LOCAL.customer.lastName = Trim(FORM.shipto_last_name) />
-			<cfset LOCAL.customer.fullName = LOCAL.currentCustomer.getFullName() />
-			<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
-			
 			<cfset LOCAL.shippingAddress = {} />
 			<cfset LOCAL.shippingAddress.useExistingAddress = false />
 			<cfset LOCAL.shippingAddress.addressId = "" />
@@ -175,7 +144,6 @@
 		
 		<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 		
-		<cfset SESSION.cart.setCustomer(LOCAL.customer) />
 		<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
 		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
 		<cfset SESSION.cart.calculate() />		
