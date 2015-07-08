@@ -3,6 +3,7 @@
 		<cfargument name="couponCode" type="string" required="true">
 		<cfargument name="customerId" type="string" required="true">
 		<cfargument name="total" type="numeric" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
 		
 		<cfset var LOCAL = {} />
 		<cfset var retStruct = {} />

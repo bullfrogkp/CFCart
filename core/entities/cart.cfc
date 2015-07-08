@@ -104,7 +104,7 @@
 		
 		<cfif getCouponCode() NEQ "">
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId, total = LOCAL.subTotalPrice) />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId, total = LOCAL.subTotalPrice, currencyId = getCurrencyId()) />
 			
 			<cfif LOCAL.applyCoupon.success EQ true>
 				<cfset LOCAL.couponId = LOCAL.applyCoupon.couponId />
