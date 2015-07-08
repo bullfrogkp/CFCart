@@ -169,10 +169,13 @@
 		<cfset LOCAL.order.setPhone(getCustomer().phone) />
 		<cfset LOCAL.order.setCurrency(EntityLoadByPK("currency",getCurrencyId())) />
 		
-		<cfset setCurrentCustomer() />
-		<cfset setCurrentShippingAddress() />
-		<cfset setCurrentBillingAddress() />
-		<cfset setCurrentCoupon() />
+		<cfset setSaveCustomer() />
+		<cfset setSaveOrder() />
+		<cfset setSaveOrderProduct() />
+		<cfset setSaveShippingAddress() />
+		<cfset setSaveBillingAddress() />
+		<cfset setSavePayment() />
+		<cfset setSaveCoupon() />
 		
 		<cfset LOCAL.order.setShippingFirstName(getShippingAddress().getFirstName()) />
 		<cfset LOCAL.order.setShippingMiddleName(getShippingAddress().getMiddleName()) />
