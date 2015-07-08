@@ -101,21 +101,6 @@
 			<cfset SESSION.cart.setIsExistingCustomer(false) />
 			<cfset SESSION.cart.setSameAddress(true) />
 			
-			<!--- set customer --->
-			<cfset LOCAL.customer = {} />
-			<cfset LOCAL.customer.customerId = "" />
-			<cfset LOCAL.customer.email = Trim(FORM.new_email) />
-			<cfset LOCAL.customer.phone = Trim(FORM.shipto_phone) />
-			<cfset LOCAL.customer.firstName = Trim(FORM.shipto_first_name) />
-			<cfset LOCAL.customer.middleName = Trim(FORM.shipto_middle_name) />
-			<cfset LOCAL.customer.lastName = Trim(FORM.shipto_last_name) />
-			<cfif LOCAL.customer.middleName EQ "">
-				<cfset LOCAL.customer.fullName = LOCAL.customer.firstName & " " & LOCAL.customer.lastName />
-			<cfelse>
-				<cfset LOCAL.customer.fullName = LOCAL.customer.firstName & " " & LOCAL.customer.middleName & " " & LOCAL.customer.lastName />
-			</cfif>
-			<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
-				
 			<!--- set addresses --->
 			<cfset LOCAL.shippingAddress = {} />
 			<cfset LOCAL.shippingAddress.useExistingAddress = false />
@@ -139,7 +124,6 @@
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
 			<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 			
-			<cfset SESSION.cart.setCustomer(LOCAL.customer) />
 			<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
 			<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
 			<cfset SESSION.cart.calculate() />

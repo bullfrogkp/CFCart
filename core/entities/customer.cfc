@@ -64,7 +64,7 @@
 	</cffunction>
 	
 	<cffunction name="shouldUpdate" access="public" output="false" returnType="boolean">
-		<cfif IsNull(getFirstName())>
+		<cfif IsNull(getFirstName()) OR Trim(getFirstName()) EQ "">
 			<cfreturn true />
 		<cfelse>
 			<cfreturn false />

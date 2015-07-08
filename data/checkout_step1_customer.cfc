@@ -98,9 +98,7 @@
 		<!--- set flags --->
 		<cfset SESSION.cart.setIsExistingCustomer(true) />
 		<cfset SESSION.cart.setSameAddress(true) />
-		<cfset SESSION.cart.setCustomer(EntityLoadByPK("customer", SESSION.user.customerId)) />
-			
-		<!--- set customer --->
+
 		<cfif StructKeyExists(FORM,"shipto_this_address")>		
 			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
 			<cfset LOCAL.shippingAddress = {} />
