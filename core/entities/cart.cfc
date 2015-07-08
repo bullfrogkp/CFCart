@@ -12,7 +12,6 @@
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
     <cfproperty name="productShippingMethodRelaIdList" type="string"> 
-    <cfproperty name="customer" type="struct"> 
     <cfproperty name="shippingAddress" type="struct"> 
     <cfproperty name="billingAddress" type="struct"> 
     <cfproperty name="productArray" type="array"> 
@@ -170,6 +169,84 @@
 		<cfset LOCAL.order.setPhone(getCustomer().phone) />
 		<cfset LOCAL.order.setCurrency(EntityLoadByPK("currency",getCurrencyId())) />
 		
+		<cfset LOCAL.customer = setCurrentCustomer() />
+		<cfset LOCAL.shippingAddress = setCurrentShippingAddress() />
+		<cfset LOCAL.billingAddress = setCurrentBillingAddress() />
+			
+		<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
+		<cfset LOCAL.order.setShippingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
+		<cfset LOCAL.order.setShippingLastName(LOCAL.shippingAddress.getLastName()) />
+		<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany()) />
+		<cfset LOCAL.order.setShippingUnit(LOCAL.shippingAddress.getUnit()) />
+		<cfset LOCAL.order.setShippingStreet(LOCAL.shippingAddress.getStreet()) />
+		<cfset LOCAL.order.setShippingCity(LOCAL.shippingAddress.getCity()) />
+		<cfset LOCAL.order.setShippingProvince(LOCAL.shippingAddress.getProvince()) />
+		<cfset LOCAL.order.setShippingCountry(LOCAL.shippingAddress.getCountry()) />
+		<cfset LOCAL.order.setShippingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
+		
+		<cfset LOCAL.order.setBillingFirstName(LOCAL.billingAddress.getFirstName()) />
+		<cfset LOCAL.order.setBillingMiddleName(LOCAL.billingAddress.getMiddleName()) />
+		<cfset LOCAL.order.setBillingLastName(LOCAL.billingAddress.getLastName()) />
+		<cfset LOCAL.order.setBillingCompany(LOCAL.billingAddress.getCompany()) />
+		<cfset LOCAL.order.setBillingUnit(LOCAL.billingAddress.getUnit()) />
+		<cfset LOCAL.order.setBillingStreet(LOCAL.billingAddress.getStreet()) />
+		<cfset LOCAL.order.setBillingCity(LOCAL.billingAddress.getCity()) />
+		<cfset LOCAL.order.setBillingProvince(LOCAL.billingAddress.getProvince()) />
+		<cfset LOCAL.order.setBillingCountry(LOCAL.billingAddress.getCountry()) />
+		<cfset LOCAL.order.setBillingPostalCode(LOCAL.billingAddress.getPostalCode()) />
+		
+		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
+		<cfset LOCAL.order.setCouponCode(getCouponCode()) />
+		
+		<cfset LOCAL.order.setCreatedDatetime(Now()) />
+		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
+					
+		<cfset EntitySave(LOCAL.order) />
+		
+		<cfset LOCAL.customer.addOrder(LOCAL.order) />
+		<cfset EntitySave(LOCAL.customer) />
+		
+		<cfset addOrderProducts() />
+		
+		
+		
+		
+		<cfset setOrderId(LOCAL.order.getOrderId()) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="submit" access="public" output="false" returnType="void">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.paymentMethod = EntityLoadByPK("payment_method",getPaymentMethodId()) />
+		<cfset LOCAL.paymentService = new "#APPLICATION.componentPathRoot#core.services.#LOCAL.paymentMethod.getName()#Service"() />
+		<cfset LOCAL.paymentService.setCart(this) />
+		<cfset LOCAL.paymentService.process() />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="setPaid" access="public" output="false" returnType="void">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.order = EntityLoadByPK("order",getOrderId()) />
+		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
+		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
+		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
+		<cfset EntitySave(LOCAL.currentOrderStatus) /> 
+		
+		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "paid"},true) />
+		<cfset LOCAL.orderStatus = EntityNew("order_status") />
+		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
+		<cfset LOCAL.orderStatus.setCurrent(true) />
+		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
+		<cfset EntitySave(LOCAL.orderStatus) /> 
+		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+		
+		<cfset LOCAL.order.setIsComplete(true) />
+		<cfset EntitySave(LOCAL.order) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setCurrentCustomer" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
+		
 		<cfif getIsExistingCustomer() EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
 			<cfset LOCAL.customer.setFirstName(getCustomer().firstName) />
@@ -186,7 +263,15 @@
 		<cfelse>
 			<cfset LOCAL.customer = EntityLoadByPK("customer",getCustomer().customerId) />
 		</cfif>
-			
+		
+		<cfset EntitySave(LOCAL.customer) />
+		
+		<cfreturn LOCAL.customer />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setCurrentShippingAddress" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
+		
 		<cfif getShippingAddress().useExistingAddress EQ false>
 			<cfset LOCAL.shippingAddress = EntityNew("address") />
 			<cfset LOCAL.shippingAddress.setCompany(getShippingAddress().company) />
@@ -208,17 +293,11 @@
 		<cfelse>
 			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",getShippingAddress().addressId) />
 		</cfif>	
-			
-		<cfset LOCAL.order.setShippingFirstName(LOCAL.shippingAddress.getFirstName()) />
-		<cfset LOCAL.order.setShippingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
-		<cfset LOCAL.order.setShippingLastName(LOCAL.shippingAddress.getLastName()) />
-		<cfset LOCAL.order.setShippingCompany(LOCAL.shippingAddress.getCompany()) />
-		<cfset LOCAL.order.setShippingUnit(LOCAL.shippingAddress.getUnit()) />
-		<cfset LOCAL.order.setShippingStreet(LOCAL.shippingAddress.getStreet()) />
-		<cfset LOCAL.order.setShippingCity(LOCAL.shippingAddress.getCity()) />
-		<cfset LOCAL.order.setShippingProvince(LOCAL.shippingAddress.getProvince()) />
-		<cfset LOCAL.order.setShippingCountry(LOCAL.shippingAddress.getCountry()) />
-		<cfset LOCAL.order.setShippingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
+		<cfreturn LOCAL.shippingAddress />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setCurrentBillingAddress" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
 		
 		<cfif getSameAddress() EQ true>
 			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
@@ -265,16 +344,12 @@
 			<cfset LOCAL.order.setBillingCountry(LOCAL.shippingAddress.getCountry()) />
 			<cfset LOCAL.order.setBillingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
 		</cfif>
+		<cfreturn LOCAL.billingAddress />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setOrderStatus" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.order.setCreatedDatetime(Now()) />
-		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
-		
-		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
-		
-		<cfif IsNumeric(getCouponId())>
-			<cfset LOCAL.order.addCoupon(EntityLoadByPK("coupon",getCouponId())) />
-		</cfif>
-					
 		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "placed"},true) />
 		<cfset LOCAL.orderStatus = EntityNew("order_status") />
 		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
@@ -283,9 +358,10 @@
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		
 		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
-		
-		<cfset LOCAL.customer.addOrder(LOCAL.order) />
-		<cfset EntitySave(LOCAL.customer) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="addOrderProducts" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
 		
 		<cfloop array="#getProductArray()#" index="item">
 			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
@@ -332,38 +408,5 @@
 			</cfif>
 			<cfset EntitySave(LOCAL.product) /> 
 		</cfloop>
-		
-		<cfset EntitySave(LOCAL.order) />
-		<cfset setOrderId(LOCAL.order.getOrderId()) />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
-	<cffunction name="submit" access="public" output="false" returnType="void">
-		<cfset var LOCAL = {} />
-		
-		<cfset LOCAL.paymentMethod = EntityLoadByPK("payment_method",getPaymentMethodId()) />
-		<cfset LOCAL.paymentService = new "#APPLICATION.componentPathRoot#core.services.#LOCAL.paymentMethod.getName()#Service"() />
-		<cfset LOCAL.paymentService.setCart(this) />
-		<cfset LOCAL.paymentService.process() />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
-	<cffunction name="setPaid" access="public" output="false" returnType="void">
-		<cfset var LOCAL = {} />
-		
-		<cfset LOCAL.order = EntityLoadByPK("order",getOrderId()) />
-		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
-		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
-		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
-		<cfset EntitySave(LOCAL.currentOrderStatus) /> 
-		
-		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "paid"},true) />
-		<cfset LOCAL.orderStatus = EntityNew("order_status") />
-		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
-		<cfset LOCAL.orderStatus.setCurrent(true) />
-		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
-		<cfset EntitySave(LOCAL.orderStatus) /> 
-		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
-		
-		<cfset LOCAL.order.setIsComplete(true) />
-		<cfset EntitySave(LOCAL.order) />
 	</cffunction>
 </cfcomponent>
