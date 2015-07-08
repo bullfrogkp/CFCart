@@ -440,6 +440,9 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTaxRateMV" access="public" output="false" returnType="numeric">
 		<cfargument name="provinceId" type="numeric" required="true" />
+		<cfargument name="currencyId" type="numeric" required="true">
+		
+		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
 		<cfif getProductType().getName() EQ "configured_product">
 			<cfset var taxRate = getParentProduct().getTaxRate(argumentCollection = ARGUMENTS) />
@@ -447,7 +450,7 @@
 			<cfset var taxRate = getTaxRate(argumentCollection = ARGUMENTS) />
 		</cfif>
 		
-		<cfreturn taxRate />
+		<cfreturn NumberFormat(taxRate * currency.getMultiplier(),"0.00") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTaxRate" access="public" output="false" returnType="numeric">
@@ -472,7 +475,7 @@
 			<cfset var shippingFee = getShippingFee(argumentCollection = ARGUMENTS) />
 		</cfif>
 		
-		<cfreturn shippingFee * currency.getMultiplier() />
+		<cfreturn NumberFormat(shippingFee * currency.getMultiplier(),"0.00") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getShippingFee" access="public" output="false" returnType="numeric">
@@ -497,7 +500,7 @@
 			<cfset LOCAL.shippingFee = LOCAL.productShippingMethodRela.getPrice() />
 		</cfif>
 		
-		<cfreturn NumberFormat(LOCAL.shippingFee,"0.00") />
+		<cfreturn LOCAL.shippingFee />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 </cfcomponent>
