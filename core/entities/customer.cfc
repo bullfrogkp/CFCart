@@ -62,4 +62,12 @@
 		
 		<cfreturn EntityLoad("coupon",{customer = this, isDeleted = false, couponStatusType = LOCAL.activeStatusType}) />
 	</cffunction>
+	
+	<cffunction name="shouldUpdate" access="public" output="false" returnType="boolean">
+		<cfif IsNull(getFirstName())>
+			<cfreturn true />
+		<cfelse>
+			<cfreturn false />
+		</cfif>
+	</cffunction>
 </cfcomponent>
