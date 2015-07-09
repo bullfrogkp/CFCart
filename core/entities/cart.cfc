@@ -1,39 +1,35 @@
 ﻿<cfcomponent output="false" accessors="true">
     <cfproperty name="cfid" type="string"> 
     <cfproperty name="cftoken" type="string"> 
-    <cfproperty name="currencyId" type="numeric"> 
-    <cfproperty name="customerId" type="string"> 
     <cfproperty name="customerGroupName" type="string"> 
-	<cfproperty name="orderId" type="numeric"> 
-	<cfproperty name="paymentMethodId" type="numeric"> 
-	
-    <cfproperty name="couponCode" type="string"> 
-    <cfproperty name="couponId" type="string"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
     <cfproperty name="productShippingMethodRelaIdList" type="string"> 
-    <cfproperty name="shippingAddress" type="struct"> 
-    <cfproperty name="billingAddress" type="struct"> 
-    <cfproperty name="productArray" type="array"> 
 	
     <cfproperty name="subTotalPrice" type="numeric"> 
     <cfproperty name="totalPrice" type="numeric"> 
     <cfproperty name="totalTax" type="numeric"> 
     <cfproperty name="totalShippingFee" type="numeric"> 
     <cfproperty name="discount" type="numeric"> 
-	
 	<cfproperty name="subTotalPriceWCLocal" type="string"> 
     <cfproperty name="totalPriceWCLocal" type="string"> 
     <cfproperty name="totalTaxWCLocal" type="string"> 
     <cfproperty name="totalShippingFeeWCLocal" type="string"> 
     <cfproperty name="discountWCLocal" type="string"> 
-	
 	<cfproperty name="subTotalPriceWCInter" type="string"> 
     <cfproperty name="totalPriceWCInter" type="string"> 
     <cfproperty name="totalTaxWCInter" type="string"> 
     <cfproperty name="totalShippingFeeWCInter" type="string"> 
     <cfproperty name="discountWCInter" type="string"> 
 	
+    <cfproperty name="currency" type="any"> 
+    <cfproperty name="customer" type="any"> 
+	<cfproperty name="order" type="any"> 
+	<cfproperty name="paymentMethod" type="any"> 
+    <cfproperty name="coupon" type="any"> 
+    <cfproperty name="shippingAddress" type="any"> 
+    <cfproperty name="billingAddress" type="any"> 
+    <cfproperty name="productArray" type="array"> 
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
