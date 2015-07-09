@@ -1,9 +1,18 @@
 ﻿<cfcomponent output="false" accessors="true">
-    <cfproperty name="cfid" type="string"> 
-    <cfproperty name="cftoken" type="string"> 
-    <cfproperty name="customerGroupName" type="string"> 
+	<cfproperty name="cfid" type="string"> 
+	<cfproperty name="cftoken" type="string"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
+	
+	<cfproperty name="currencyId" type="numeric"> 
+	<cfproperty name="paymentMethodId" type="numeric"> 
+    <cfproperty name="couponId" type="numeric"> 
+    <cfproperty name="customerGroupName" type="string"> 
+	
+    <cfproperty name="customerStruct" type="struct">  
+    <cfproperty name="shippingAddressStruct" type="struct"> 
+    <cfproperty name="billingAddressStruct" type="struct">
+    <cfproperty name="productArray" type="array"> 
     <cfproperty name="productShippingMethodRelaIdList" type="string"> 
 	
     <cfproperty name="subTotalPrice" type="numeric"> 
@@ -21,20 +30,14 @@
     <cfproperty name="totalTaxWCInter" type="string"> 
     <cfproperty name="totalShippingFeeWCInter" type="string"> 
     <cfproperty name="discountWCInter" type="string"> 
-	
-    <cfproperty name="currency" type="any"> 
-    <cfproperty name="customer" type="any"> 
-	<cfproperty name="order" type="any"> 
-	<cfproperty name="paymentMethod" type="any"> 
-    <cfproperty name="coupon" type="any"> 
-    <cfproperty name="shippingAddress" type="any"> 
-    <cfproperty name="billingAddress" type="any"> 
-    <cfproperty name="productArray" type="array"> 
+    
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "shopping cart") />
+		<cfset LOCAL.trackingService = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = getCfid(), cftoken = getCftoken()() />
+		<cfset LOCAL.trackingRecords = LOCAL.trackingService.getTrackingRecords(trackingRecordType = "shopping cart") />
+		
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		
 		<cfset LOCAL.productArray = [] />

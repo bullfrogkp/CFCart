@@ -1,4 +1,11 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">
+	<!--------------------------------------------------------------------------------------------------------------->	
+	<cffunction name="init" access="public" returntype="any" output="false">
+		<cfargument name="cfid" type="string" required="true">
+		<cfargument name="cftoken" type="string" required="true">
+	    <cfreturn this />
+	</cffunction>
+	<!--------------------------------------------------------------------------------------------------------------->
 	<cffunction name="addTrackingRecord" access="remote" returntype="struct" returnformat="json" output="false">
 		<cfargument name="productId" type="numeric" required="true">
 		<cfargument name="trackingRecordType" type="string" required="true">
@@ -9,7 +16,7 @@
 		
 		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = ARGUMENTS.trackingRecordType},true) />
-		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
+		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = getCfid(), cftoken = getCftoken()},true) />
 		
 		<cfset LOCAL.trackingRecord = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity, product = LOCAL.product}, true) />
 		
@@ -34,7 +41,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = ARGUMENTS.trackingRecordType},true) />
-		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
+		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = getCfid(), cftoken = getCftoken()},true) />
 		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity}) />
 		
 		<cfreturn LOCAL.trackingRecords />	
