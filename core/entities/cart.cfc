@@ -60,7 +60,7 @@
 			<cfset LOCAL.productStruct.totalPriceWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalPrice,"local",LOCAL.currency.getLocale()) />
 			<cfset LOCAL.productStruct.totalPriceWCInter = LSCurrencyFormat(LOCAL.productStruct.totalPrice,"international",LOCAL.currency.getLocale()) />
 		
-			<cfif NOT IsNull(getShippingAddress())>
+			<cfif NOT IsNull(getShippingAddressStruct())>
 				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
 				<cfset LOCAL.productStruct.shippingMethodArray = [] />
 			
@@ -70,7 +70,7 @@
 					<cfset LOCAL.shippingMethodStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
 					<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
 					<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
-					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = getShippingAddress()
+					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = getShippingAddressStruct()
 																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
 																							,	customerGroupName = getCustomerGroupName()) * LOCAL.productStruct.count
 																							, 	currencyId = getCurrencyId()	/>
@@ -100,9 +100,10 @@
 			<cfset ArrayAppend(LOCAL.productArray, LOCAL.productStruct) />
 		</cfloop>
 		
-		<cfif getCouponCode() NEQ "">
+		<cfif getCouponId() NEQ "">
+			<cfset LOCAL.coupon = EntityLoadByPK("coupon", getCouponId()) />
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = getCouponCode(), customerId = getCustomerId(), total = LOCAL.subTotalPrice, currencyId = getCurrencyId()) />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = LOCAL.coupon.getCouponCode(), customerId = getCustomerId(), total = LOCAL.subTotalPrice, currencyId = getCurrencyId()) />
 			
 			<cfif LOCAL.applyCoupon.success EQ true>
 				<cfset LOCAL.couponId = LOCAL.applyCoupon.couponId />
