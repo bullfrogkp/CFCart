@@ -8,8 +8,8 @@
 	<cfproperty name="paymentMethodId" type="numeric"> 
     <cfproperty name="couponId" type="numeric"> 
     <cfproperty name="customerGroupName" type="string"> 
+    <cfproperty name="customerId" type="numeric">  
 	
-    <cfproperty name="customerStruct" type="struct">  
     <cfproperty name="shippingAddressStruct" type="struct"> 
     <cfproperty name="billingAddressStruct" type="struct">
     <cfproperty name="productArray" type="array"> 
