@@ -6,6 +6,7 @@
 		<cfargument name="cfid" type="string" required="true">
 		<cfargument name="cftoken" type="string" required="true">
 		
+		<!--- need to use property values later, instead using cookie values here, current reason is the ajax calls from product detail page --->
 		<cfset setCfid(ARGUMENTS.cfid) />
 		<cfset setCftoken(ARGUMENTS.cftoken) />
 		
@@ -22,7 +23,7 @@
 		
 		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = ARGUMENTS.trackingRecordType},true) />
-		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = getCfid(), cftoken = getCftoken()},true) />
+		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		
 		<cfset LOCAL.trackingRecord = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity, product = LOCAL.product}, true) />
 		
@@ -47,7 +48,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = ARGUMENTS.trackingRecordType},true) />
-		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = getCfid(), cftoken = getCftoken()},true) />
+		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken},true) />
 		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record", {trackingRecordType = LOCAL.trackingRecordType, trackingEntity = LOCAL.trackingEntity}) />
 		
 		<cfreturn LOCAL.trackingRecords />	
