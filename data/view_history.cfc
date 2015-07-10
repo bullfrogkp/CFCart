@@ -8,7 +8,7 @@
 		<cfset LOCAL.pageData.keywords = "" />
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
-		<cfset LOCAL.pageData.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "history") />
+		<cfset LOCAL.pageData.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken).getTrackingRecords(trackingRecordType = "history") />
 		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(isSpecial = false) />
 		
 		<cfreturn LOCAL.pageData />	
