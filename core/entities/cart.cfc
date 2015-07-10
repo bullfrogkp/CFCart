@@ -301,6 +301,46 @@
 		<cfset setBillingAddress(LOCAL.billingAddress) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="saveOrder" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.order.setShippingFirstName(getShippingAddress().getFirstName()) />
+		<cfset LOCAL.order.setShippingMiddleName(getShippingAddress().getMiddleName()) />
+		<cfset LOCAL.order.setShippingLastName(getShippingAddress().getLastName()) />
+		<cfset LOCAL.order.setShippingCompany(getShippingAddress().getCompany()) />
+		<cfset LOCAL.order.setShippingUnit(getShippingAddress().getUnit()) />
+		<cfset LOCAL.order.setShippingStreet(getShippingAddress().getStreet()) />
+		<cfset LOCAL.order.setShippingCity(getShippingAddress().getCity()) />
+		<cfset LOCAL.order.setShippingProvince(getShippingAddress().getProvince()) />
+		<cfset LOCAL.order.setShippingCountry(getShippingAddress().getCountry()) />
+		<cfset LOCAL.order.setShippingPostalCode(getShippingAddress().getPostalCode()) />
+		
+		<cfset LOCAL.order.setBillingFirstName(getBillingAddress().getFirstName()) />
+		<cfset LOCAL.order.setBillingMiddleName(getBillingAddress().getMiddleName()) />
+		<cfset LOCAL.order.setBillingLastName(getBillingAddress().getLastName()) />
+		<cfset LOCAL.order.setBillingCompany(getBillingAddress().getCompany()) />
+		<cfset LOCAL.order.setBillingUnit(getBillingAddress().getUnit()) />
+		<cfset LOCAL.order.setBillingStreet(getBillingAddress().getStreet()) />
+		<cfset LOCAL.order.setBillingCity(getBillingAddress().getCity()) />
+		<cfset LOCAL.order.setBillingProvince(getBillingAddress().getProvince()) />
+		<cfset LOCAL.order.setBillingCountry(getBillingAddress().getCountry()) />
+		<cfset LOCAL.order.setBillingPostalCode(getBillingAddress().getPostalCode()) />
+		
+		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
+		<cfset LOCAL.order.setCouponCode(EntityLoadByPK("coupon",getCouponId()).getCouponCode()) />
+		<cfset LOCAL.order.setDiscount(getCoupon().) />
+		
+		<cfset LOCAL.order.setCreatedDatetime(Now()) />
+		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
+					
+		<cfset EntitySave(LOCAL.order) />
+		<cfset LOCAL.customer.addOrder(LOCAL.order) />
+		<cfset EntitySave(LOCAL.customer) />
+		
+		<cfset addOrderProducts() />
+		
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="setOrderStatus" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
 		
@@ -363,44 +403,5 @@
 			<cfset EntitySave(LOCAL.product) /> 
 		</cfloop>
 	</cffunction>
-	<!------------------------------------------------------------------------------->	
-	<cffunction name="saveOrder" access="public" output="false" returnType="any">
-		<cfset var LOCAL = {} />
-		
-		<cfset LOCAL.order.setShippingFirstName(getShippingAddress().getFirstName()) />
-		<cfset LOCAL.order.setShippingMiddleName(getShippingAddress().getMiddleName()) />
-		<cfset LOCAL.order.setShippingLastName(getShippingAddress().getLastName()) />
-		<cfset LOCAL.order.setShippingCompany(getShippingAddress().getCompany()) />
-		<cfset LOCAL.order.setShippingUnit(getShippingAddress().getUnit()) />
-		<cfset LOCAL.order.setShippingStreet(getShippingAddress().getStreet()) />
-		<cfset LOCAL.order.setShippingCity(getShippingAddress().getCity()) />
-		<cfset LOCAL.order.setShippingProvince(getShippingAddress().getProvince()) />
-		<cfset LOCAL.order.setShippingCountry(getShippingAddress().getCountry()) />
-		<cfset LOCAL.order.setShippingPostalCode(getShippingAddress().getPostalCode()) />
-		
-		<cfset LOCAL.order.setBillingFirstName(getBillingAddress().getFirstName()) />
-		<cfset LOCAL.order.setBillingMiddleName(getBillingAddress().getMiddleName()) />
-		<cfset LOCAL.order.setBillingLastName(getBillingAddress().getLastName()) />
-		<cfset LOCAL.order.setBillingCompany(getBillingAddress().getCompany()) />
-		<cfset LOCAL.order.setBillingUnit(getBillingAddress().getUnit()) />
-		<cfset LOCAL.order.setBillingStreet(getBillingAddress().getStreet()) />
-		<cfset LOCAL.order.setBillingCity(getBillingAddress().getCity()) />
-		<cfset LOCAL.order.setBillingProvince(getBillingAddress().getProvince()) />
-		<cfset LOCAL.order.setBillingCountry(getBillingAddress().getCountry()) />
-		<cfset LOCAL.order.setBillingPostalCode(getBillingAddress().getPostalCode()) />
-		
-		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
-		<cfset LOCAL.order.setCouponCode(getCoupon().getCouponCode) />
-		<cfset LOCAL.order.setDiscount(getCoupon().) />
-		
-		<cfset LOCAL.order.setCreatedDatetime(Now()) />
-		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
-					
-		<cfset EntitySave(LOCAL.order) />
-		<cfset LOCAL.customer.addOrder(LOCAL.order) />
-		<cfset EntitySave(LOCAL.customer) />
-		
-		<cfset addOrderProducts() />
-		
-	</cffunction>
+	
 </cfcomponent>
