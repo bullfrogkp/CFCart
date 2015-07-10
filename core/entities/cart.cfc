@@ -273,55 +273,32 @@
 		<cfset setShippingAddress(LOCAL.shippingAddress) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="setCurrentBillingAddress" access="public" output="false" returnType="any">
+	<cffunction name="saveBillingAddress" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
 		
-		<cfif getSameAddress() EQ true>
-			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
-			<cfset LOCAL.order.setBillingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
-			<cfset LOCAL.order.setBillingLastName(LOCAL.shippingAddress.getLastName()) />
-			<cfset LOCAL.order.setBillingCompany(LOCAL.shippingAddress.getCompany()) />
-			<cfset LOCAL.order.setBillingUnit(LOCAL.shippingAddress.getUnit()) />
-			<cfset LOCAL.order.setBillingStreet(LOCAL.shippingAddress.getStreet()) />
-			<cfset LOCAL.order.setBillingCity(LOCAL.shippingAddress.getCity()) />
-			<cfset LOCAL.order.setBillingProvince(LOCAL.shippingAddress.getProvince()) />
-			<cfset LOCAL.order.setBillingCountry(LOCAL.shippingAddress.getCountry()) />
-			<cfset LOCAL.order.setBillingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
+		<cfif getBillingAddressStruct().useExistingAddress EQ false>
+			<cfset LOCAL.billingAddress = EntityNew("address") />
+			<cfset LOCAL.billingAddress.setCompany(getBillingAddressStruct().company) />
+			<cfset LOCAL.billingAddress.setFirstName(getBillingAddressStruct().firstName) />
+			<cfset LOCAL.billingAddress.setMiddleName(getBillingAddressStruct().firstName) />
+			<cfset LOCAL.billingAddress.setLastName(getBillingAddressStruct().lastName) />
+			<cfset LOCAL.billingAddress.setPhone(getBillingAddressStruct().phone) />
+			<cfset LOCAL.billingAddress.setUnit(getBillingAddressStruct().unit) />
+			<cfset LOCAL.billingAddress.setStreet(getBillingAddressStruct().street) />
+			<cfset LOCAL.billingAddress.setCity(getBillingAddressStruct().city) />
+			<cfset LOCAL.billingAddress.setProvince(EntityLoadByPK("province",getBillingAddressStruct().provinceId)) />
+			<cfset LOCAL.billingAddress.setCountry(EntityLoadByPK("country",getBillingAddressStruct().countryId)) />
+			<cfset LOCAL.billingAddress.setPostalCode(getBillingAddressStruct().postalCode) />
+			<cfset LOCAL.billingAddress.setCreatedDatetime(Now()) />
+			<cfset LOCAL.billingAddress.setCreatedUser(SESSION.user.userName) />
+			
+			<cfset EntitySave(LOCAL.billingAddress) />
+			<cfset getCustomer().addAddress(LOCAL.billingAddress) />
 		<cfelse>
-			<cfif getBillingAddress().useExistingAddress EQ false>
-				<cfset LOCAL.billingAddress = EntityNew("address") />
-				<cfset LOCAL.billingAddress.setCompany(getBillingAddress().company) />
-				<cfset LOCAL.billingAddress.setFirstName(getBillingAddress().firstName) />
-				<cfset LOCAL.billingAddress.setMiddleName(getBillingAddress().firstName) />
-				<cfset LOCAL.billingAddress.setLastName(getBillingAddress().lastName) />
-				<cfset LOCAL.billingAddress.setPhone(getBillingAddress().phone) />
-				<cfset LOCAL.billingAddress.setUnit(getBillingAddress().unit) />
-				<cfset LOCAL.billingAddress.setStreet(getBillingAddress().street) />
-				<cfset LOCAL.billingAddress.setCity(getBillingAddress().city) />
-				<cfset LOCAL.billingAddress.setProvince(EntityLoadByPK("province",getBillingAddress().provinceId)) />
-				<cfset LOCAL.billingAddress.setCountry(EntityLoadByPK("country",getBillingAddress().countryId)) />
-				<cfset LOCAL.billingAddress.setPostalCode(getBillingAddress().postalCode) />
-				<cfset LOCAL.billingAddress.setCreatedDatetime(Now()) />
-				<cfset LOCAL.billingAddress.setCreatedUser(SESSION.user.userName) />
-				
-				<cfset EntitySave(LOCAL.billingAddress) />
-				<cfset LOCAL.customer.addAddress(LOCAL.billingAddress) />
-			<cfelse>
-				<cfset LOCAL.billingAddress = EntityLoadByPK("address",getBillingAddress().addressId) />
-			</cfif>	
+			<cfset LOCAL.billingAddress = EntityLoadByPK("address",getBillingAddressStruct().addressId) />
+		</cfif>	
 		
-			<cfset LOCAL.order.setBillingFirstName(LOCAL.shippingAddress.getFirstName()) />
-			<cfset LOCAL.order.setBillingMiddleName(LOCAL.shippingAddress.getMiddleName()) />
-			<cfset LOCAL.order.setBillingLastName(LOCAL.shippingAddress.getLastName()) />
-			<cfset LOCAL.order.setBillingCompany(LOCAL.shippingAddress.getCompany()) />
-			<cfset LOCAL.order.setBillingUnit(LOCAL.shippingAddress.getUnit()) />
-			<cfset LOCAL.order.setBillingStreet(LOCAL.shippingAddress.getStreet()) />
-			<cfset LOCAL.order.setBillingCity(LOCAL.shippingAddress.getCity()) />
-			<cfset LOCAL.order.setBillingProvince(LOCAL.shippingAddress.getProvince()) />
-			<cfset LOCAL.order.setBillingCountry(LOCAL.shippingAddress.getCountry()) />
-			<cfset LOCAL.order.setBillingPostalCode(LOCAL.shippingAddress.getPostalCode()) />
-		</cfif>
-		<cfreturn LOCAL.billingAddress />
+		<cfset setBillingAddress(LOCAL.billingAddress) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setOrderStatus" access="public" output="false" returnType="any">
