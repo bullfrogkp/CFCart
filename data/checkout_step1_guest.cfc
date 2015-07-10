@@ -101,6 +101,12 @@
 			<cfset SESSION.cart.setIsExistingCustomer(false) />
 			<cfset SESSION.cart.setSameAddress(true) />
 			
+			<cfif StructKeyExists(FORM,"register_user")>
+				<cfset SESSION.cart.setRegisterUser(true) />
+			<cfelse>
+				<cfset SESSION.cart.setRegisterUser(false) />
+			</cfif>
+			
 			<!--- set addresses --->
 			<cfset LOCAL.shippingAddress = {} />
 			<cfset LOCAL.shippingAddress.useExistingAddress = false />
@@ -124,8 +130,16 @@
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
 			<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 			
-			<cfset SESSION.cart.setShippingAddress(LOCAL.shippingAddress) />
-			<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
+			<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+			<cfset LOCAL.customerStruct.firstName = Trim(FORM.shipto_first_name) />
+			<cfset LOCAL.customerStruct.middleName = Trim(FORM.shipto_middle_name) />
+			<cfset LOCAL.customerStruct.lastName = Trim(FORM.shipto_last_name) />
+			<cfset LOCAL.customerStruct.company = Trim(FORM.shipto_company) />
+			<cfset LOCAL.customerStruct.phone = Trim(FORM.shipto_phone) />
+			
+			<cfset SESSION.cart.setCustomerStruct(LOCAL.customerStruct) />
+			<cfset SESSION.cart.setShippingAddressStruct(LOCAL.shippingAddress) />
+			<cfset SESSION.cart.setBillingAddressStruct(LOCAL.billingAddress) />
 			<cfset SESSION.cart.calculate() />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
