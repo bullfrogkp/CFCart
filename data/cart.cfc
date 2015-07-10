@@ -31,7 +31,7 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"().getTrackingRecords(trackingRecordType = "shopping cart") />
+		<cfset LOCAL.pageData.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken).getTrackingRecords(trackingRecordType = "shopping cart") />
 		
 		<cfset LOCAL.pageData.subTotal = 0 />
 		
@@ -67,7 +67,7 @@
 			<cfset LOCAL.payment = EntityLoad("payment_method",{name="paypal"},true) />
 			<cfset SESSION.cart.setPaymentMethodId(LOCAL.payment.getPaymentMethodId()) />
 			<cfif Trim(FORM.coupon_code_applied) NEQ "">
-				<cfset LOCAL.coupon = EntityLoad("coupon", {couponCode = Trim(FORM.coupon_code_applied}, true) />
+				<cfset LOCAL.coupon = EntityLoad("coupon", {couponCode = Trim(FORM.coupon_code_applied)}, true) />
 				<cfset SESSION.cart.setCouponId(LOCAL.coupon.getCouponId()) />
 			</cfif>
 			<cfset SESSION.cart.calculate() />
