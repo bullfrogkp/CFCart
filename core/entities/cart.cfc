@@ -207,7 +207,7 @@
 		<cfset EntitySave(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="saveCustomer" access="public" output="false" returnType="void">
+	<cffunction name="saveCustomer" access="public">
 		<cfset var LOCAL = {} />
 		
 		<cfif getIsExistingCustomer() EQ false>
@@ -245,31 +245,32 @@
 		<cfset setCustomer(LOCAL.customer) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="setCurrentShippingAddress" access="public" output="false" returnType="any">
+	<cffunction name="saveShippingAddress" access="public">
 		<cfset var LOCAL = {} />
 		
-		<cfif getShippingAddress().useExistingAddress EQ false>
+		<cfif getShippingAddressStruct().useExistingAddress EQ false>
 			<cfset LOCAL.shippingAddress = EntityNew("address") />
-			<cfset LOCAL.shippingAddress.setCompany(getShippingAddress().company) />
-			<cfset LOCAL.shippingAddress.setFirstName(getShippingAddress().firstName) />
-			<cfset LOCAL.shippingAddress.setMiddleName(getShippingAddress().firstName) />
-			<cfset LOCAL.shippingAddress.setLastName(getShippingAddress().lastName) />
-			<cfset LOCAL.shippingAddress.setPhone(getShippingAddress().phone) />
-			<cfset LOCAL.shippingAddress.setUnit(getShippingAddress().unit) />
-			<cfset LOCAL.shippingAddress.setStreet(getShippingAddress().street) />
-			<cfset LOCAL.shippingAddress.setCity(getShippingAddress().city) />
-			<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",getShippingAddress().provinceId)) />
-			<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",getShippingAddress().countryId)) />
-			<cfset LOCAL.shippingAddress.setPostalCode(getShippingAddress().postalCode) />
+			<cfset LOCAL.shippingAddress.setCompany(getShippingAddressStruct().company) />
+			<cfset LOCAL.shippingAddress.setFirstName(getShippingAddressStruct().firstName) />
+			<cfset LOCAL.shippingAddress.setMiddleName(getShippingAddressStruct().firstName) />
+			<cfset LOCAL.shippingAddress.setLastName(getShippingAddressStruct().lastName) />
+			<cfset LOCAL.shippingAddress.setPhone(getShippingAddressStruct().phone) />
+			<cfset LOCAL.shippingAddress.setUnit(getShippingAddressStruct().unit) />
+			<cfset LOCAL.shippingAddress.setStreet(getShippingAddressStruct().street) />
+			<cfset LOCAL.shippingAddress.setCity(getShippingAddressStruct().city) />
+			<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",getShippingAddressStruct().provinceId)) />
+			<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",getShippingAddressStruct().countryId)) />
+			<cfset LOCAL.shippingAddress.setPostalCode(getShippingAddressStruct().postalCode) />
 			<cfset LOCAL.shippingAddress.setCreatedDatetime(Now()) />
 			<cfset LOCAL.shippingAddress.setCreatedUser(SESSION.user.userName) />
 			
 			<cfset EntitySave(LOCAL.shippingAddress) />
-			<cfset LOCAL.customer.addAddress(LOCAL.shippingAddress) />
+			<cfset getCustomer().addAddress(LOCAL.shippingAddress) />
 		<cfelse>
-			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",getShippingAddress().addressId) />
+			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",getShippingAddressStruct().addressId) />
 		</cfif>	
-		<cfreturn LOCAL.shippingAddress />
+		
+		<cfset setShippingAddress(LOCAL.shippingAddress) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setCurrentBillingAddress" access="public" output="false" returnType="any">
