@@ -7,6 +7,7 @@
 	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
 	<cfproperty name="phone" column="phone" ormtype="string"> 
 	<cfproperty name="email" column="email" ormtype="string"> 
+	<cfproperty name="paymentMethodName" column="payment_method_name" ormtype="string"> 
 	<cfproperty name="isComplete" column="is_complete" ormtype="boolean"> 
 	
 	<cfproperty name="token" column="token" ormtype="string"> 
@@ -39,7 +40,6 @@
 	<cfproperty name="currency" fieldtype="many-to-one" cfc="currency" fkcolumn="currency_id">	
 	 
 	<cfproperty name="coupons" type="array" fieldtype="one-to-many" cfc="coupon" fkcolumn="order_id" singularname="coupon">
-	<cfproperty name="paymentMethod" fieldtype="many-to-one" cfc="payment_method" fkcolumn="payment_method_id">	
 	
 	<cfproperty name="orderStatus" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_id" singularname="orderStatus">
 	<cfproperty name="orderTransactions" type="array" fieldtype="one-to-many" cfc="order_transaction" fkcolumn="order_id" singularname="orderTransaction">

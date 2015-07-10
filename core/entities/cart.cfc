@@ -305,6 +305,10 @@
 		<cfset setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="saveCoupon" access="public">
+		<cfset setCoupon(EntityLoadByPK("coupon",getCouponId())) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveOrder" access="public">
 		<cfset var LOCAL = {} />
 		
@@ -331,18 +335,21 @@
 		<cfset LOCAL.order.setBillingPostalCode(getBillingAddress().getPostalCode()) />
 		
 		<cfset LOCAL.order.setPaymentMethodName(getPaymentMethod().getDisplayName()) />
-		<cfset LOCAL.order.setCouponCode(EntityLoadByPK("coupon",getCouponId()).getCouponCode()) />
-		<cfset LOCAL.order.setDiscount(getCoupon().) />
+		<cfset LOCAL.order.setCouponCode(getCoupon().getCouponCode()) />
 		
+		<cfset LOCAL.order.setSubTotalPrice(getSubTotalPrice()) />
+		<cfset LOCAL.order.setTotalShippingFee(getTotalShippingFee()) />
+		<cfset LOCAL.order.setTotalTax(getTotalTax()) />
+		<cfset LOCAL.order.setTotalPrice(getTotalPrice()) />
+		<cfset LOCAL.order.setDiscount(getDiscount()) />
+		
+		<cfset LOCAL.order.setCustomer(getCustomer()) />
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 					
 		<cfset EntitySave(LOCAL.order) />
-		<cfset LOCAL.customer.addOrder(LOCAL.order) />
-		<cfset EntitySave(LOCAL.customer) />
 		
-		<cfset addOrderProducts() />
-		
+		<cfset setOrder(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setOrderStatus" access="public" output="false" returnType="any">
