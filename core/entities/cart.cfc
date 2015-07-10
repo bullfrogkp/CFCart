@@ -180,7 +180,7 @@
 	<cffunction name="submit" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.paymentMethod = EntityLoadByPK("payment_method",getPaymentMethodId()) />
+		<cfset LOCAL.paymentMethod = getPaymentMethod() />
 		<cfset LOCAL.paymentService = new "#APPLICATION.componentPathRoot#core.services.#LOCAL.paymentMethod.getName()#Service"() />
 		<cfset LOCAL.paymentService.setCart(this) />
 		<cfset LOCAL.paymentService.process() />
@@ -201,8 +201,8 @@
 		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		<cfset getOrder().addOrderStatus(LOCAL.orderStatus) />
-		
 		<cfset getOrder().setIsComplete(true) />
+		
 		<cfset EntitySave(getOrder()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
