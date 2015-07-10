@@ -102,9 +102,9 @@
 			<cfset SESSION.cart.setSameAddress(true) />
 			
 			<cfif StructKeyExists(FORM,"register_user")>
-				<cfset SESSION.cart.setRegisterUser(true) />
+				<cfset SESSION.cart.setRegisterCustomer(true) />
 			<cfelse>
-				<cfset SESSION.cart.setRegisterUser(false) />
+				<cfset SESSION.cart.setRegisterCustomer(false) />
 			</cfif>
 			
 			<!--- set addresses --->

@@ -98,7 +98,7 @@
 		<!--- set flags --->
 		<cfset SESSION.cart.setIsExistingCustomer(true) />
 		<cfset SESSION.cart.setSameAddress(true) />
-		<cfset SESSION.cart.setRegisterUser(false) />
+		<cfset SESSION.cart.setRegisterCustomer(false) />
 
 		<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
 		

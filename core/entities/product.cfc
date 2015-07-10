@@ -485,7 +485,7 @@
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
-		<cfset LOCAL.productShippingMethodRela = EntityLoad("product_shipping_method_rela",{product = getProduct(),shippingMethod = LOCAL.shippingMethod},true) />
+		<cfset LOCAL.productShippingMethodRela = EntityLoad("product_shipping_method_rela",{product = this,shippingMethod = LOCAL.shippingMethod},true) />
 			
 		<cfif LOCAL.productShippingMethodRela.getUseDefaultPrice() EQ false AND NOT IsNull(getWeight())>
 			<cfset LOCAL.componentName = LOCAL.shippingMethod.getShippingCarrier().getComponent() />
