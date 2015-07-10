@@ -7,7 +7,7 @@
 	
 	<cfproperty name="currencyId" type="numeric"> 
 	<cfproperty name="paymentMethodId" type="numeric"> 
-    <cfproperty name="couponId" type="numeric"> 
+    <cfproperty name="couponId" type="string"> 
     <cfproperty name="customerGroupName" type="string"> 
 	
     <cfproperty name="customerStruct" type="struct"> 
