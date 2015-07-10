@@ -171,7 +171,7 @@
 		<cfset saveCustomer() />
 		<cfset saveShippingAddress() />
 		<cfset saveBillingAddress() />
-		<cfset savePayment() />
+		<cfset savePaymentMethod() />
 		<cfset saveCoupon() />
 		<cfset saveOrder() />
 		<cfset saveOrderProduct() />
@@ -273,7 +273,7 @@
 		<cfset setShippingAddress(LOCAL.shippingAddress) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="saveBillingAddress" access="public" output="false" returnType="any">
+	<cffunction name="saveBillingAddress" access="public">
 		<cfset var LOCAL = {} />
 		
 		<cfif getBillingAddressStruct().useExistingAddress EQ false>
@@ -301,7 +301,11 @@
 		<cfset setBillingAddress(LOCAL.billingAddress) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="saveOrder" access="public" output="false" returnType="any">
+	<cffunction name="savePaymentMethod" access="public">
+		<cfset setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="saveOrder" access="public">
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.order.setShippingFirstName(getShippingAddress().getFirstName()) />
@@ -326,7 +330,7 @@
 		<cfset LOCAL.order.setBillingCountry(getBillingAddress().getCountry()) />
 		<cfset LOCAL.order.setBillingPostalCode(getBillingAddress().getPostalCode()) />
 		
-		<cfset LOCAL.order.setPaymentMethod(EntityLoadByPK("payment_method",getPaymentMethodId())) />
+		<cfset LOCAL.order.setPaymentMethodName(getPaymentMethod().getDisplayName()) />
 		<cfset LOCAL.order.setCouponCode(EntityLoadByPK("coupon",getCouponId()).getCouponCode()) />
 		<cfset LOCAL.order.setDiscount(getCoupon().) />
 		
