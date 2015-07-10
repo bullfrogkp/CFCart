@@ -8,8 +8,8 @@
 	<cfproperty name="paymentMethodId" type="numeric"> 
     <cfproperty name="couponId" type="numeric"> 
     <cfproperty name="customerGroupName" type="string"> 
-    <cfproperty name="customerId" type="numeric">  
 	
+    <cfproperty name="customerStruct" type="struct"> 
     <cfproperty name="shippingAddressStruct" type="struct"> 
     <cfproperty name="billingAddressStruct" type="struct">
     <cfproperty name="productArray" type="array"> 
@@ -30,6 +30,14 @@
     <cfproperty name="totalTaxWCInter" type="string"> 
     <cfproperty name="totalShippingFeeWCInter" type="string"> 
     <cfproperty name="discountWCInter" type="string"> 
+	
+	 <cfproperty name="customer" type="any">
+	 <cfproperty name="shippingAddress" type="any">
+	 <cfproperty name="billingAddress" type="any">
+	 <cfproperty name="payment" type="any">
+	 <cfproperty name="coupon" type="any">
+	 <cfproperty name="order" type="any">
+	 <cfproperty name="orderProduct" type="any">
     
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="calculate" access="public" output="false" returnType="void">
@@ -103,7 +111,7 @@
 		<cfif getCouponId() NEQ "">
 			<cfset LOCAL.coupon = EntityLoadByPK("coupon", getCouponId()) />
 			<cfset LOCAL.cartService = new "#APPLICATION.componentPathRoot#core.services.cartService"() />
-			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = LOCAL.coupon.getCouponCode(), customerId = getCustomerId(), total = LOCAL.subTotalPrice, currencyId = getCurrencyId()) />
+			<cfset LOCAL.applyCoupon = LOCAL.cartService.applyCouponCode(couponCode = LOCAL.coupon.getCouponCode(), customerId = getCustomerStruct().customerId, total = LOCAL.subTotalPrice, currencyId = getCurrencyId()) />
 			
 			<cfif LOCAL.applyCoupon.success EQ true>
 				<cfset LOCAL.couponId = LOCAL.applyCoupon.couponId />
@@ -198,29 +206,28 @@
 		<cfset EntitySave(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="saveCustomer" access="public" output="false" returnType="any">
+	<cffunction name="saveCustomer" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
 		<cfif getIsExistingCustomer() EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
-			<cfset LOCAL.customer.setFirstName(getCustomer().firstName) />
-			<cfset LOCAL.customer.setMiddleName(getCustomer().firstName) />
-			<cfset LOCAL.customer.setLastName(getCustomer().lastName) />
-			<cfset LOCAL.customer.setCompany(getCustomer().company) />
-			<cfset LOCAL.customer.setEmail(getCustomer().email) />
-			<cfset LOCAL.customer.setPhone(getCustomer().phone) />
+			<cfset LOCAL.customer.setFirstName(getCustomerStruct().firstName) />
+			<cfset LOCAL.customer.setMiddleName(getCustomerStruct().firstName) />
+			<cfset LOCAL.customer.setLastName(getCustomerStruct().lastName) />
+			<cfset LOCAL.customer.setCompany(getCustomerStruct().company) />
+			<cfset LOCAL.customer.setEmail(getCustomerStruct().email) />
+			<cfset LOCAL.customer.setPhone(getCustomerStruct().phone) />
 			<cfset LOCAL.customer.setIsEnabled(false) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
+			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
-			<cfset LOCAL.customer = EntityLoadByPK("customer",getCustomer().customerId) />
+			<cfset LOCAL.customer = EntityLoadByPK("customer",getCustomerStruct().customerId) />
 		</cfif>
 		
-		<cfset EntitySave(LOCAL.customer) />
-		
-		<cfreturn LOCAL.customer />
+		<cfset setCustomer(LOCAL.customer) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setCurrentShippingAddress" access="public" output="false" returnType="any">
