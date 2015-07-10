@@ -44,7 +44,7 @@
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.trackingService = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = getCfid(), cftoken = getCftoken()() />
+		<cfset LOCAL.trackingService = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = getCfid(), cftoken = getCftoken()) />
 		<cfset LOCAL.trackingRecords = LOCAL.trackingService.getTrackingRecords(trackingRecordType = "shopping cart") />
 		
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
@@ -81,8 +81,8 @@
 					<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
 					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = getShippingAddressStruct()
 																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
-																							,	customerGroupName = getCustomerGroupName()) * LOCAL.productStruct.count
-																							, 	currencyId = getCurrencyId()	/>
+																							,	customerGroupName = getCustomerGroupName()
+																							, 	currencyId = getCurrencyId()) * LOCAL.productStruct.count />
 					
 					<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />
 					<cfset LOCAL.shippingMethodStruct.priceWCInter = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"international",LOCAL.currency.getLocale()) />

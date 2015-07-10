@@ -1,8 +1,14 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">
+	<cfproperty name="cfid" type="string"> 
+	<cfproperty name="cftoken" type="string"> 
 	<!--------------------------------------------------------------------------------------------------------------->	
 	<cffunction name="init" access="public" returntype="any" output="false">
 		<cfargument name="cfid" type="string" required="true">
 		<cfargument name="cftoken" type="string" required="true">
+		
+		<cfset setCfid(ARGUMENTS.cfid) />
+		<cfset setCftoken(ARGUMENTS.cftoken) />
+		
 	    <cfreturn this />
 	</cffunction>
 	<!--------------------------------------------------------------------------------------------------------------->
