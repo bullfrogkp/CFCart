@@ -189,7 +189,7 @@
 	<cffunction name="setPaid" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.order = EntityLoadByPK("order",getOrderId()) />
+		<cfset LOCAL.order = getOrderId() />
 		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
 		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
 		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
@@ -247,6 +247,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveShippingAddress" access="public">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.customer = getCustomer() />
 		
 		<cfif getShippingAddressStruct().useExistingAddress EQ false>
 			<cfset LOCAL.shippingAddress = EntityNew("address") />
@@ -265,7 +266,8 @@
 			<cfset LOCAL.shippingAddress.setCreatedUser(SESSION.user.userName) />
 			
 			<cfset EntitySave(LOCAL.shippingAddress) />
-			<cfset getCustomer().addAddress(LOCAL.shippingAddress) />
+			<cfset LOCAL.customer.addAddress(LOCAL.shippingAddress) />
+			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
 			<cfset LOCAL.shippingAddress = EntityLoadByPK("address",getShippingAddressStruct().addressId) />
 		</cfif>	
@@ -275,6 +277,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveBillingAddress" access="public">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.customer = getCustomer() />
 		
 		<cfif getBillingAddressStruct().useExistingAddress EQ false>
 			<cfset LOCAL.billingAddress = EntityNew("address") />
@@ -293,7 +296,8 @@
 			<cfset LOCAL.billingAddress.setCreatedUser(SESSION.user.userName) />
 			
 			<cfset EntitySave(LOCAL.billingAddress) />
-			<cfset getCustomer().addAddress(LOCAL.billingAddress) />
+			<cfset LOCAL.customer.addAddress(LOCAL.billingAddress) />
+			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
 			<cfset LOCAL.billingAddress = EntityLoadByPK("address",getBillingAddressStruct().addressId) />
 		</cfif>	
@@ -311,6 +315,8 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveOrder" access="public">
 		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.order = EntityNew("order") />
 		
 		<cfset LOCAL.order.setShippingFirstName(getShippingAddress().getFirstName()) />
 		<cfset LOCAL.order.setShippingMiddleName(getShippingAddress().getMiddleName()) />
@@ -346,6 +352,7 @@
 		<cfset LOCAL.order.setCustomer(getCustomer()) />
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
+		<cfset LOCAL.order.setIsComplete(false) />
 					
 		<cfset EntitySave(LOCAL.order) />
 		
@@ -367,7 +374,7 @@
 		<cfset EntitySave(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="addOrderProducts" access="public" output="false" returnType="any">
+	<cffunction name="saveOrderProducts" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.order = getOrder() />
 		
