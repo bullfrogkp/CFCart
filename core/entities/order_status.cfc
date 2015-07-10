@@ -6,4 +6,19 @@
     <cfproperty name="comments" column="comments" ormtype="string"> 
 	<cfproperty name="order" fieldtype="many-to-one" cfc="order" fkcolumn="order_id">
 	<cfproperty name="orderStatusType" fieldtype="many-to-one" cfc="order_status_type" fkcolumn="order_status_type_id">
+	
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setCurrent" access="public">
+		<cfargument name="flag" type="boolean" required="true" />
+		<cfset var LOCAL = {} />
+		
+		<cfif ARGUMENTS.flag EQ true>
+			<cfset LOCAL.orderStatus = EntityLoad("order_status",{order = getOrder()}) />
+			<cfloop array="#LOCAL.orderStatus#" index="LOCAL.os">
+				<cfset LOCAL.os.setCurrent(false) />
+			</cfloop>
+		</cfif>
+		
+		<cfset setCurrent(ARGUMENTS.flag) />
+	</cffunction>
 </cfcomponent>
