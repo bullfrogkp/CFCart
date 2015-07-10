@@ -51,25 +51,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>
-	
-			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
-			<cfset SESSION.cart.setCfId(COOKIE.cfid) />
-			<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />
-			<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
-			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
-			<cfset SESSION.cart.customerStruct = {} />
-			<cfset SESSION.cart.customerStruct.customerId = SESSION.user.customerId />
-			
-			<!--- may add google checkout later --->
-			<cfset LOCAL.payment = EntityLoad("payment_method",{name="paypal"},true) />
-			<cfset SESSION.cart.setPaymentMethodId(LOCAL.payment.getPaymentMethodId()) />
-			<cfif Trim(FORM.coupon_code_applied) NEQ "">
-				<cfset LOCAL.coupon = EntityLoad("coupon", {couponCode = Trim(FORM.coupon_code_applied}, true) />
-				<cfset SESSION.cart.setCouponId(LOCAL.coupon.getCouponId()) />
-			</cfif>
-			<cfset SESSION.cart.calculate() />
-		
+		<cfif StructKeyExists(FORM,"submit_cart") OR StructKeyExists(FORM,"submit_cart.x")>		
 			<cfif IsNumeric(SESSION.user.customerId)>
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1_customer.cfm" />
 			<cfelse>
@@ -83,6 +65,23 @@
 			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.remove_product) />
 			<cfset EntityDelete(LOCAL.trackingRecord) />
 		</cfif>
+		
+		<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
+		<cfset SESSION.cart.setCfId(COOKIE.cfid) />
+		<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />
+		<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
+		<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
+		<cfset SESSION.cart.customerStruct = {} />
+		<cfset SESSION.cart.customerStruct.customerId = SESSION.user.customerId />
+		
+		<!--- may add google checkout later --->
+		<cfset LOCAL.payment = EntityLoad("payment_method",{name="paypal"},true) />
+		<cfset SESSION.cart.setPaymentMethodId(LOCAL.payment.getPaymentMethodId()) />
+		<cfif Trim(FORM.coupon_code_applied) NEQ "">
+			<cfset LOCAL.coupon = EntityLoad("coupon", {couponCode = Trim(FORM.coupon_code_applied}, true) />
+			<cfset SESSION.cart.setCouponId(LOCAL.coupon.getCouponId()) />
+		</cfif>
+		<cfset SESSION.cart.calculate() />
 		
 		<cfreturn LOCAL />	
 	</cffunction>
