@@ -2,6 +2,7 @@
 	<cfproperty name="cfid" type="string"> 
 	<cfproperty name="cftoken" type="string"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
+    <cfproperty name="registerCustomer" type="boolean"> 
     <cfproperty name="sameAddress" type="boolean"> 
 	
 	<cfproperty name="currencyId" type="numeric"> 
@@ -217,14 +218,28 @@
 			<cfset LOCAL.customer.setCompany(getCustomerStruct().company) />
 			<cfset LOCAL.customer.setEmail(getCustomerStruct().email) />
 			<cfset LOCAL.customer.setPhone(getCustomerStruct().phone) />
-			<cfset LOCAL.customer.setIsEnabled(false) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
+			
+			<cfif getRegisterCustomer() EQ true>
+				<cfset LOCAL.customer.setIsEnabled(true) />
+			<cfelse>
+				<cfset LOCAL.customer.setIsEnabled(false) />
+			</cfif>
+			
 			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
 			<cfset LOCAL.customer = EntityLoadByPK("customer",getCustomerStruct().customerId) />
+			<cfif LOCAL.customer.getShouldUpdate() EQ true>
+				<cfset LOCAL.customer.setFirstName(getCustomerStruct().firstName) />
+				<cfset LOCAL.customer.setMiddleName(getCustomerStruct().firstName) />
+				<cfset LOCAL.customer.setLastName(getCustomerStruct().lastName) />
+				<cfset LOCAL.customer.setCompany(getCustomerStruct().company) />
+				<cfset LOCAL.customer.setPhone(getCustomerStruct().phone) />
+				<cfset EntitySave(LOCAL.customer) />
+			</cfif>
 		</cfif>
 		
 		<cfset setCustomer(LOCAL.customer) />
