@@ -352,7 +352,7 @@
 		<cfset setOrder(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="setOrderStatus" access="public" output="false" returnType="any">
+	<cffunction name="saveOrderStatus" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "placed"},true) />
@@ -362,11 +362,14 @@
 		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		
+		<cfset LOCAL.order = getOrder() />
 		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+		<cfset EntitySave(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="addOrderProducts" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.order = getOrder() />
 		
 		<cfloop array="#getProductArray()#" index="item">
 			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
@@ -414,5 +417,4 @@
 			<cfset EntitySave(LOCAL.product) /> 
 		</cfloop>
 	</cffunction>
-	
 </cfcomponent>
