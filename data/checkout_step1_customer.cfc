@@ -98,7 +98,11 @@
 		<!--- set flags --->
 		<cfset SESSION.cart.setIsExistingCustomer(true) />
 		<cfset SESSION.cart.setSameAddress(true) />
+		<cfset SESSION.cart.setRegisterUser(false) />
 
+		<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+		
+		
 		<cfif StructKeyExists(FORM,"shipto_this_address")>		
 			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
 			<cfset LOCAL.shippingAddress = {} />
@@ -117,6 +121,12 @@
 			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
 			<cfset LOCAL.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
+			
+			<cfset LOCAL.customer.firstName = LOCAL.address..getFirstName() />
+			<cfset LOCAL.customer.middleName = LOCAL.address.getMiddleName() />
+			<cfset LOCAL.customer.lastName = LOCAL.address.getLastName() />
+			<cfset LOCAL.customer.company = LOCAL.address.getCompany() />
+			<cfset LOCAL.customer.phone = LOCAL.address.getPhone() />
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfset LOCAL.shippingAddress = {} />
 			<cfset LOCAL.shippingAddress.useExistingAddress = false />
@@ -138,6 +148,12 @@
 			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 			<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
+			
+			<cfset LOCAL.customer.firstName = Trim(FORM.shipto_first_name) />
+			<cfset LOCAL.customer.middleName = Trim(FORM.shipto_middle_name) />
+			<cfset LOCAL.customer.lastName = Trim(FORM.shipto_last_name) />
+			<cfset LOCAL.customer.company = Trim(FORM.shipto_company) />
+			<cfset LOCAL.customer.phone = Trim(FORM.shipto_phone) />
 		</cfif>
 		
 		<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />

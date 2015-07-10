@@ -58,8 +58,10 @@
 			<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />
 			<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
 			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
-			<cfset SESSION.cart.customerStruct = {} />
-			<cfset SESSION.cart.customerStruct.customerId = SESSION.user.customerId />
+			
+			<cfset LOCAL.customerStruct = {} />
+			<cfset LOCAL.customerStruct.customerId = SESSION.user.customerId />
+			<cfset SESSION.cart.setCustomerStruct(LOCAL.customerStruct) />
 			
 			<!--- may add google checkout later --->
 			<cfset LOCAL.payment = EntityLoad("payment_method",{name="paypal"},true) />
