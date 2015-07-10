@@ -189,7 +189,6 @@
 	<cffunction name="setPaid" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.order = getOrderId() />
 		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
 		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
 		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
@@ -201,10 +200,10 @@
 		<cfset LOCAL.orderStatus.setCurrent(true) />
 		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 		<cfset EntitySave(LOCAL.orderStatus) /> 
-		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+		<cfset getOrder().addOrderStatus(LOCAL.orderStatus) />
 		
-		<cfset LOCAL.order.setIsComplete(true) />
-		<cfset EntitySave(LOCAL.order) />
+		<cfset getOrder().setIsComplete(true) />
+		<cfset EntitySave(getOrder()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveCustomer" access="public">
@@ -369,14 +368,12 @@
 		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		
-		<cfset LOCAL.order = getOrder() />
-		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
-		<cfset EntitySave(LOCAL.order) />
+		<cfset getOrder().addOrderStatus(LOCAL.orderStatus) />
+		<cfset EntitySave(getOrder()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveOrderProducts" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.order = getOrder() />
 		
 		<cfloop array="#getProductArray()#" index="item">
 			<cfset LOCAL.product = EntityLoadByPK("product",item.productId) />
@@ -413,7 +410,7 @@
 			
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.orderProductStatus) />
 			<cfset EntitySave(LOCAL.orderProduct) /> 
-			<cfset LOCAL.order.addProduct(LOCAL.orderProduct) />
+			<cfset getOrder().addProduct(LOCAL.orderProduct) />
 			
 			<!--- for product sorting --->
 			<cfif IsNull(LOCAL.product.getSoldCountMV())>
