@@ -174,7 +174,7 @@
 		<cfset savePaymentMethod() />
 		<cfset saveCoupon() />
 		<cfset saveOrder() />
-		<cfset saveOrderProduct() />
+		<cfset saveOrderProducts() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="submit" access="public" output="false" returnType="void">
@@ -211,6 +211,7 @@
 		
 		<cfif getIsExistingCustomer() EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
+			<cfset LOCAL.customer.setEmail(getCustomerStruct().email) />
 			<cfset LOCAL.customer.setFirstName(getCustomerStruct().firstName) />
 			<cfset LOCAL.customer.setMiddleName(getCustomerStruct().firstName) />
 			<cfset LOCAL.customer.setLastName(getCustomerStruct().lastName) />
