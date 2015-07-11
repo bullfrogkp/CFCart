@@ -4,7 +4,7 @@
 		
 		<cfif StructKeyExists(URL,"token") AND StructKeyExists(URL,"payerId")>
 		
-			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.cart.getOrderId()) />
+			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.cart.getOrder().getOrderId()) />
 			<cfset LOCAL.order.setToken(URL.token) />
 			<cfset LOCAL.order.setPayerId(URL.payerId) />
 			<cfset EntitySave(LOCAL.order) />
