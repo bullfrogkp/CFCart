@@ -35,7 +35,7 @@
 	 <cfproperty name="customer" type="any">
 	 <cfproperty name="shippingAddress" type="any">
 	 <cfproperty name="billingAddress" type="any">
-	 <cfproperty name="payment" type="any">
+	 <cfproperty name="paymentMethod" type="any">
 	 <cfproperty name="coupon" type="any">
 	 <cfproperty name="order" type="any">
 	 <cfproperty name="orderProduct" type="any">
@@ -309,7 +309,9 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveCoupon" access="public">
-		<cfset setCoupon(EntityLoadByPK("coupon",getCouponId())) />
+		<cfif IsNumeric(getCouponId())>
+			<cfset setCoupon(EntityLoadByPK("coupon",getCouponId())) />
+		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveOrder" access="public">
@@ -340,7 +342,9 @@
 		<cfset LOCAL.order.setBillingPostalCode(getBillingAddress().getPostalCode()) />
 		
 		<cfset LOCAL.order.setPaymentMethodName(getPaymentMethod().getDisplayName()) />
-		<cfset LOCAL.order.setCouponCode(getCoupon().getCouponCode()) />
+		<cfif NOT IsNull(getCoupon())>
+			<cfset LOCAL.order.setCouponCode(getCoupon().getCouponCode()) />
+		</cfif>
 		
 		<cfset LOCAL.order.setSubTotalPrice(getSubTotalPrice()) />
 		<cfset LOCAL.order.setTotalShippingFee(getTotalShippingFee()) />

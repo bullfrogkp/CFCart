@@ -137,11 +137,17 @@
 			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 			<cfset LOCAL.billingAddress.countryId = FORM.shipto_country_id />
 			<cfset LOCAL.billingAddress.countryCode = LOCAL.country.getCode() />
-			
-			<cfset SESSION.cart.getCustomer().company = Trim(FORM.shipto_company) />
 		</cfif>
 		
-		<cfset SESSION.cart.setBillingAddress(LOCAL.billingAddress) />
+		<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+		<cfset LOCAL.customerStruct.firstName = LOCAL.billingAddress.firstName />
+		<cfset LOCAL.customerStruct.middleName = LOCAL.billingAddress.middleName />
+		<cfset LOCAL.customerStruct.lastName = LOCAL.billingAddress.lastName />
+		<cfset LOCAL.customerStruct.company = LOCAL.billingAddress.company />
+		<cfset LOCAL.customerStruct.phone = LOCAL.billingAddress.phone />
+		
+		<cfset SESSION.cart.setCustomerStruct(LOCAL.customerStruct) />
+		<cfset SESSION.cart.setBillingAddressStruct(LOCAL.billingAddress) />
 				
 		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_confirmation.cfm" />
 		
