@@ -8,7 +8,7 @@
 	<cfproperty name="orderStatusType" fieldtype="many-to-one" cfc="order_status_type" fkcolumn="order_status_type_id">
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="setCurrent" access="public">
+	<cffunction name="setCurrent1" access="public">
 		<cfargument name="flag" type="boolean" required="true" />
 		<cfset var LOCAL = {} />
 		
