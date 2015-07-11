@@ -58,7 +58,7 @@
 				</cfloop>
 			</table>
 		</div>
-		<p style="margin-top:20px;font-weight:bold;">Email:#SESSION.cart.getCustomer().email#</p>
+		<p style="margin-top:20px;font-weight:bold;">Email:#SESSION.cart.getCustomerStruct().email#</p>
 		<div id="shipping-addresses" style="width:27%;float:left;margin-top:17px;line-height:18px;">
 			<table>
 				<tr>
@@ -67,48 +67,48 @@
 				<tbody>
 					<tr>
 						<td class="first-col">Company:</td>
-						<td>#SESSION.cart.getShippingAddress().company#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().company#</td>
 					</tr>
 					<tr>
 						<td class="first-col">First Name:</td>
-						<td>#SESSION.cart.getShippingAddress().firstName#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().firstName#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Middle Name:</td>
-						<td>#SESSION.cart.getShippingAddress().middleName#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().middleName#</td>
 					</tr>
 					
 					<tr>
 						<td class="first-col">Last Name:</td>
-						<td>#SESSION.cart.getShippingAddress().lastName#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().lastName#</td>
 					</tr>
 					
 					<tr>
 						<td class="first-col">Phone:</td>
-						<td>#SESSION.cart.getShippingAddress().phone#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().phone#</td>
 					</tr>
 					
 					<tr>
 						<td style="padding-top:3px;padding-bottom:3px;" class="first-col">Street:</td>
-						<td style="padding-top:3px;padding-bottom:3px;">#SESSION.cart.getShippingAddress().street#</td>
+						<td style="padding-top:3px;padding-bottom:3px;">#SESSION.cart.getShippingAddressStruct().street#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">City:</td>
-						<td>#SESSION.cart.getShippingAddress().city#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().city#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">Province:</td>
-						<td>#EntityLoadByPK("province",SESSION.cart.getShippingAddress().provinceId).getDisplayName()#</td>
+						<td>#EntityLoadByPK("province",SESSION.cart.getShippingAddressStruct().provinceId).getDisplayName()#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Postal Code:</td>
-						<td>#SESSION.cart.getShippingAddress().postalCode#</td>
+						<td>#SESSION.cart.getShippingAddressStruct().postalCode#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Country:</td>
-						<td>#EntityLoadByPK("country",SESSION.cart.getShippingAddress().countryId).getDisplayName()#</td>
+						<td>#EntityLoadByPK("country",SESSION.cart.getShippingAddressStruct().countryId).getDisplayName()#</td>
 					</tr>
 				</tbody>
 			</table>
@@ -126,48 +126,48 @@
 					<cfelse>
 					<tr>
 						<td class="first-col">Company:</td>
-						<td>#SESSION.cart.getBillingAddress().company#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().company#</td>
 					</tr>
 					<tr>
 						<td class="first-col">First Name:</td>
-						<td>#SESSION.cart.getBillingAddress().firstName#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().firstName#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Middle Name:</td>
-						<td>#SESSION.cart.getBillingAddress().middleName#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().middleName#</td>
 					</tr>
 					
 					<tr>
 						<td class="first-col">Last Name:</td>
-						<td>#SESSION.cart.getBillingAddress().lastName#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().lastName#</td>
 					</tr>
 					
 					<tr>
 						<td class="first-col">Phone:</td>
-						<td>#SESSION.cart.getBillingAddress().phone#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().phone#</td>
 					</tr>
 					
 					<tr>
 						<td style="padding-top:3px;padding-bottom:3px;" class="first-col">Street:</td>
-						<td style="padding-top:3px;padding-bottom:3px;">#SESSION.cart.getBillingAddress().street#</td>
+						<td style="padding-top:3px;padding-bottom:3px;">#SESSION.cart.getBillingAddressStruct().street#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">City:</td>
-						<td>#SESSION.cart.getBillingAddress().city#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().city#</td>
 					</tr>
 
 					<tr>
 						<td class="first-col">Province:</td>
-						<td>#EntityLoadByPK("province",SESSION.cart.getBillingAddress().provinceId).getDisplayName()#</td>
+						<td>#EntityLoadByPK("province",SESSION.cart.getBillingAddressStruct().provinceId).getDisplayName()#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Postal Code:</td>
-						<td>#SESSION.cart.getBillingAddress().postalCode#</td>
+						<td>#SESSION.cart.getBillingAddressStruct().postalCode#</td>
 					</tr>
 					<tr>
 						<td class="first-col">Country:</td>
-						<td>#EntityLoadByPK("country",SESSION.cart.getBillingAddress().countryId).getDisplayName()#</td>
+						<td>#EntityLoadByPK("country",SESSION.cart.getBillingAddressStruct().countryId).getDisplayName()#</td>
 					</tr>
 					</cfif>
 				</tbody>
