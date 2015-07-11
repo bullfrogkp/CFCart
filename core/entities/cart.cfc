@@ -174,6 +174,7 @@
 		<cfset savePaymentMethod() />
 		<cfset saveCoupon() />
 		<cfset saveOrder() />
+		<cfset saveOrderStatus() />
 		<cfset saveOrderProducts() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
@@ -416,6 +417,7 @@
 			<cfset LOCAL.orderProduct.addOrderProductStatus(LOCAL.orderProductStatus) />
 			<cfset EntitySave(LOCAL.orderProduct) /> 
 			<cfset getOrder().addProduct(LOCAL.orderProduct) />
+			<cfset EntitySave(getOrder()) />
 			
 			<!--- for product sorting --->
 			<cfif IsNull(LOCAL.product.getSoldCountMV())>
