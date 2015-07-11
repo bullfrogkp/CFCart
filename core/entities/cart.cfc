@@ -190,7 +190,8 @@
 	<cffunction name="setPaid" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = getOrder(), current = true},true) />
+		<cfset LOCAL.order = getOrder() />
+		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
 		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
 		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
 		<cfset EntitySave(LOCAL.currentOrderStatus) /> 
@@ -201,10 +202,10 @@
 		<cfset LOCAL.orderStatus.setCurrent(true) />
 		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 		<cfset EntitySave(LOCAL.orderStatus) /> 
-		<cfset getOrder().addOrderStatus(LOCAL.orderStatus) />
-		<cfset getOrder().setIsComplete(true) />
+		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+		<cfset LOCAL.order.setIsComplete(true) />
 		
-		<cfset EntitySave(getOrder()) />
+		<cfset EntitySave(LOCAL.order) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveCustomer" access="public">
