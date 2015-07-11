@@ -101,6 +101,8 @@
 		<cfset SESSION.cart.setRegisterCustomer(false) />
 
 		<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+		<cfset LOCAL.customerEntity = EntityLoadByPK("customer",LOCAL.customerStruct.customerId) />
+		<cfset LOCAL.customerStruct.email = LOCAL.customerEntity.getEmail() />
 		
 		<cfif StructKeyExists(FORM,"shipto_this_address")>		
 			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />

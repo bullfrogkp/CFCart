@@ -131,6 +131,7 @@
 			<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 			
 			<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+			<cfset LOCAL.customerStruct.email = Trim(FORM.new_email) />
 			<cfset LOCAL.customerStruct.firstName = Trim(FORM.shipto_first_name) />
 			<cfset LOCAL.customerStruct.middleName = Trim(FORM.shipto_middle_name) />
 			<cfset LOCAL.customerStruct.lastName = Trim(FORM.shipto_last_name) />

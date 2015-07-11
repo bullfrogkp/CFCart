@@ -92,7 +92,7 @@
 					<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
 				</cfloop>
 				
-				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = getShippingAddress().provinceId, currencyId = getCurrencyId()),"0.00") />
+				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = getShippingAddressStruct().provinceId, currencyId = getCurrencyId()),"0.00") />
 				<cfset LOCAL.productStruct.singleTaxWCLocal = LSCurrencyFormat(LOCAL.productStruct.singleTax,"local",LOCAL.currency.getLocale()) />
 				<cfset LOCAL.productStruct.singleTaxWCInter = LSCurrencyFormat(LOCAL.productStruct.singleTax,"international",LOCAL.currency.getLocale()) />
 				
@@ -132,7 +132,7 @@
 							OR
 							IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.productStruct.productId EQ LOCAL.productId>
 						<cfset LOCAL.productStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRelaId />
-						<cfset LOCAL.productStruct.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFeeMV(address = getShippingAddress(), shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * LOCAL.productStruct.count />
+						<cfset LOCAL.productStruct.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFeeMV(address = getShippingAddressStruct(), shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * LOCAL.productStruct.count />
 						<cfset LOCAL.productStruct.totalShippingFeeWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"local",LOCAL.currency.getLocale()) />
 						<cfset LOCAL.productStruct.totalShippingFeeWCInter = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"international",LOCAL.currency.getLocale()) />
 						
