@@ -38,8 +38,13 @@
 	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="billing_province_id">
 	
 	<cfproperty name="currency" fieldtype="many-to-one" cfc="currency" fkcolumn="currency_id">	
-	 
-	<cfproperty name="coupons" type="array" fieldtype="one-to-many" cfc="coupon" fkcolumn="order_id" singularname="coupon">
+	
+	<cfproperty name="subTotalPrice" column="sub_total_price" ormtype="float"> 
+	<cfproperty name="totalShippingFee" column="total_shipping_fee" ormtype="float"> 
+	<cfproperty name="totalTax" column="total_tax" ormtype="float"> 
+	<cfproperty name="totalPrice" column="total_price" ormtype="float"> 
+	<cfproperty name="discount" column="discount" ormtype="float"> 	
+	<cfproperty name="couponCode" column="coupon_code" ormtype="string"> 
 	
 	<cfproperty name="orderStatus" type="array" fieldtype="one-to-many" cfc="order_status" fkcolumn="order_id" singularname="orderStatus">
 	<cfproperty name="orderTransactions" type="array" fieldtype="one-to-many" cfc="order_transaction" fkcolumn="order_id" singularname="orderTransaction">
