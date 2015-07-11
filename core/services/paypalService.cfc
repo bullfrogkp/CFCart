@@ -11,15 +11,15 @@
 		<cfset LOCAL.requestData.SIGNATURE = APPLICATION.paypal.APISignature>
 		<cfset LOCAL.requestData.VERSION = APPLICATION.paypal.version>
 		<cfset LOCAL.requestData.ADDRESSOVERRIDE = "1">
-		<cfset LOCAL.requestData.Email = getCart().getCustomer().email>
-		<cfset LOCAL.requestData.SHIPTONAME = getCart().getCustomer().fullName>
-		<cfset LOCAL.requestData.SHIPTOSTREET = getCart().getShippingAddress().street>
-		<cfset LOCAL.requestData.SHIPTOCITY = getCart().getShippingAddress().city>
-		<cfset LOCAL.requestData.SHIPTOSTATE = getCart().getBillingAddress().provinceCode>
-		<cfset LOCAL.requestData.SHIPTOCOUNTRYCODE = getCart().getBillingAddress().countryCode>
+		<cfset LOCAL.requestData.Email = getCart().getCustomer().getEmail()>
+		<cfset LOCAL.requestData.SHIPTONAME = getCart().getCustomer().getFullName()>
+		<cfset LOCAL.requestData.SHIPTOSTREET = getCart().getShippingAddress().getStreet()>
+		<cfset LOCAL.requestData.SHIPTOCITY = getCart().getShippingAddress().getCity()>
+		<cfset LOCAL.requestData.SHIPTOSTATE = getCart().getBillingAddress().getProvince().getCode()>
+		<cfset LOCAL.requestData.SHIPTOCOUNTRYCODE = getCart().getBillingAddress().getCountry().getCode()>
 		<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
-		<cfset LOCAL.requestData.SHIPTOZIP = getCart().getShippingAddress().postalCode>
-		<cfset LOCAL.requestData.SHIPTOPHONENUM = getCart().getShippingAddress().phone>
+		<cfset LOCAL.requestData.SHIPTOZIP = getCart().getShippingAddress().getPostalCode()>
+		<cfset LOCAL.requestData.SHIPTOPHONENUM = getCart().getShippingAddress().getPhone()>
 		
 		<cfloop from="1" to="#ArrayLen(getCart().getProductArray())#" index="LOCAL.i">
 			<cfset LOCAL.product = EntityLoadByPK("product",getCart().getProductArray()[LOCAL.i].productId) />
