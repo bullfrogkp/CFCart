@@ -214,9 +214,8 @@
 		
 		<cfif getIsExistingCustomer() EQ false>
 			<cfset LOCAL.customer = EntityNew("customer") />
-			<cfset LOCAL.customer.setEmail(getCustomerStruct().email) />
 			<cfset LOCAL.customer.setFirstName(getCustomerStruct().firstName) />
-			<cfset LOCAL.customer.setMiddleName(getCustomerStruct().firstName) />
+			<cfset LOCAL.customer.setMiddleName(getCustomerStruct().middleName) />
 			<cfset LOCAL.customer.setLastName(getCustomerStruct().lastName) />
 			<cfset LOCAL.customer.setCompany(getCustomerStruct().company) />
 			<cfset LOCAL.customer.setEmail(getCustomerStruct().email) />
@@ -237,7 +236,7 @@
 			<cfset LOCAL.customer = EntityLoadByPK("customer",getCustomerStruct().customerId) />
 			<cfif LOCAL.customer.getShouldUpdate() EQ true>
 				<cfset LOCAL.customer.setFirstName(getCustomerStruct().firstName) />
-				<cfset LOCAL.customer.setMiddleName(getCustomerStruct().firstName) />
+				<cfset LOCAL.customer.setMiddleName(getCustomerStruct().middleName) />
 				<cfset LOCAL.customer.setLastName(getCustomerStruct().lastName) />
 				<cfset LOCAL.customer.setCompany(getCustomerStruct().company) />
 				<cfset LOCAL.customer.setPhone(getCustomerStruct().phone) />
@@ -323,6 +322,7 @@
 		
 		<cfset LOCAL.order = EntityNew("order") />
 		
+		<cfset LOCAL.order.setOrderTrackingNumber("OR#DateFormat(Now(),"yyyymmdd")##TimeFormat(Now(),"hhmmss")##LOCAL.order.getOrderId()#") />
 		<cfset LOCAL.order.setShippingFirstName(getShippingAddress().getFirstName()) />
 		<cfset LOCAL.order.setShippingMiddleName(getShippingAddress().getMiddleName()) />
 		<cfset LOCAL.order.setShippingLastName(getShippingAddress().getLastName()) />
@@ -361,6 +361,7 @@
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		<cfset LOCAL.order.setIsComplete(false) />
+		<cfset LOCAL.order.setIsDeleted(false) />
 					
 		<cfset EntitySave(LOCAL.order) />
 		

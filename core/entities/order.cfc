@@ -5,16 +5,20 @@
 	<cfproperty name="comments" column="comments" ormtype="string">
 	<cfproperty name="orderTrackingNumber" column="order_tracking_number" ormtype="string">
 	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
-	<cfproperty name="phone" column="phone" ormtype="string"> 
-	<cfproperty name="email" column="email" ormtype="string"> 
+	
+	<cfproperty name="customerFirstName" column="customer_first_name" ormtype="string"> 
+	<cfproperty name="customerMiddleName" column="customer_middle_name" ormtype="string"> 
+	<cfproperty name="customerLastName" column="customer_last_name" ormtype="string"> 
+	<cfproperty name="customerCompany" column="customer_company" ormtype="string"> 
+	<cfproperty name="customerPhone" column="customer_phone" ormtype="string"> 
+	<cfproperty name="customerEmail" column="customer_email" ormtype="string">
+	
 	<cfproperty name="paymentMethodName" column="payment_method_name" ormtype="string"> 
 	<cfproperty name="isComplete" column="is_complete" ormtype="boolean"> 
 	
 	<cfproperty name="token" column="token" ormtype="string"> 
 	<cfproperty name="payerId" column="payerId" ormtype="string"> 
-	
-	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">	
-	
+		
 	<cfproperty name="shippingFirstName" column="shipping_first_name" ormtype="string"> 
 	<cfproperty name="shippingMiddleName" column="shipping_middle_name" ormtype="string"> 
 	<cfproperty name="shippingLastName" column="shipping_last_name" ormtype="string">
