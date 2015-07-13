@@ -345,6 +345,7 @@
 		<cfset LOCAL.order.setBillingCountry(getBillingAddress().getCountry()) />
 		<cfset LOCAL.order.setBillingPostalCode(getBillingAddress().getPostalCode()) />
 		
+		<cfset LOCAL.order.setCurrency(EntityLoadByPK("currency",getCurrencyId())) />
 		<cfset LOCAL.order.setPaymentMethodName(getPaymentMethod().getDisplayName()) />
 		<cfif NOT IsNull(getCoupon())>
 			<cfset LOCAL.order.setCouponCode(getCoupon().getCouponCode()) />
