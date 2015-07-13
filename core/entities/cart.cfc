@@ -351,13 +351,19 @@
 			<cfset LOCAL.order.setCouponCode(getCoupon().getCouponCode()) />
 		</cfif>
 		
+		<cfset LOCAL.order.setCustomerFirstName(getCustomer().getFirstName()) />
+		<cfset LOCAL.order.setCustomerMiddleName(getCustomer().getMiddleName()) />
+		<cfset LOCAL.order.setCustomerLastName(getCustomer().getLastName()) />
+		<cfset LOCAL.order.setCustomerCompany(getCustomer().getCompany()) />
+		<cfset LOCAL.order.setCustomerPhone(getCustomer().getPhone()) />
+		<cfset LOCAL.order.setCustomerEmail(getCustomer().getEmail()) />
+		
 		<cfset LOCAL.order.setSubTotalPrice(getSubTotalPrice()) />
 		<cfset LOCAL.order.setTotalShippingFee(getTotalShippingFee()) />
 		<cfset LOCAL.order.setTotalTax(getTotalTax()) />
 		<cfset LOCAL.order.setTotalPrice(getTotalPrice()) />
 		<cfset LOCAL.order.setDiscount(getDiscount()) />
 		
-		<cfset LOCAL.order.setCustomer(getCustomer()) />
 		<cfset LOCAL.order.setCreatedDatetime(Now()) />
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		<cfset LOCAL.order.setIsComplete(false) />
