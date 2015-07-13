@@ -190,7 +190,8 @@
 	<cffunction name="setPaid" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.order = getOrder() />
+		<cfset LOCAL.orderId = getOrder().getOrderId() />
+		<cfset LOCAL.order = EntityLoadByPK("order",LOCAL.orderId) />
 		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
 		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
 		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />

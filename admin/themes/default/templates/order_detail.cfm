@@ -137,7 +137,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl>
-												<dd>#REQUEST.pageData.order.getPaymentMethod().getDisplayName()#</dd>
+												<dd>#REQUEST.pageData.order.getPaymentMethodName()#</dd>
 											</dl>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
@@ -149,7 +149,7 @@
 										</div><!-- /.box-header -->
 										<div class="box-body">
 											<dl>
-												<dd>#REQUEST.pageData.order.getPaymentMethod().getDisplayName()#</dd>
+												<dd>#REQUEST.pageData.order.getCouponCode()#</dd>
 											</dl>
 										</div>
 									</div>
