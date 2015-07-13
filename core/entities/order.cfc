@@ -1,7 +1,5 @@
 ﻿<cfcomponent extends="entity" persistent="true"> 
     <cfproperty name="orderId" column="order_id" fieldtype="id" generator="native">
-	<cfproperty name="prefix" column="prefix" ormtype="string"> 
-	<cfproperty name="suffix" column="suffix" ormtype="string"> 
 	<cfproperty name="comments" column="comments" ormtype="string">
 	<cfproperty name="orderTrackingNumber" column="order_tracking_number" ormtype="string">
 	
@@ -11,10 +9,6 @@
 	<cfproperty name="customerCompany" column="customer_company" ormtype="string"> 
 	<cfproperty name="customerPhone" column="customer_phone" ormtype="string"> 
 	<cfproperty name="customerEmail" column="customer_email" ormtype="string">
-	
-	<cfproperty name="shippingCarrierName" column="shipping_carrier_name" ormtype="string"> 
-	<cfproperty name="shippingMethodName" column="shipping_method_name" ormtype="string"> 
-	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
 	
 	<cfproperty name="paymentMethodName" column="payment_method_name" ormtype="string"> 
 	<cfproperty name="isComplete" column="is_complete" ormtype="boolean"> 
