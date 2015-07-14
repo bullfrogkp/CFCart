@@ -43,6 +43,11 @@
 		
 		<cfif StructKeyExists(FORM,"place_order")>
 			<cfset SESSION.cart.save() />
+			<cfif SESSION.cart.getRegisterCustomer() EQ true>
+				<cfset SESSION.user.userName = SESSION.cart.getCustomer().getEmail() />
+				<cfset SESSION.user.customerId = SESSION.cart.getCustomer().getCustomerId() />
+				<cfset SESSION.user.customerGroupName = SESSION.cart.getCustomer().getCustomerGroup().getName() />
+			</cfif>
 			<cfset SESSION.cart.submit() />
 		</cfif>
 		
