@@ -119,7 +119,7 @@
 			<cfset LOCAL.newStatusType = EntityLoad("order_status_type",{displayName = "placed"},true) />
 			<cfset LOCAL.newStatus = EntityNew("order_status") />
 			<cfset LOCAL.newStatus.setStartDatetime(Now()) />
-			<cfset LOCAL.newStatus.setCurrentMV(true) />
+			<cfset LOCAL.newStatus.setCurrent(true) />
 			<cfset LOCAL.newStatus.setComments(Trim(FORM.comments)) />
 			<cfset LOCAL.newStatus.setOrderStatusType(LOCAL.newStatusType) />
 			<cfset EntitySave(LOCAL.newStatus) /> 
@@ -164,7 +164,7 @@
 			<cfset LOCAL.newProductStatusType = EntityLoad("order_product_status_type",{displayName = "added"},true) />
 			<cfset LOCAL.newProductStatus = EntityNew("order_product_status") />
 			<cfset LOCAL.newProductStatus.setStartDatetime(Now()) />
-			<cfset LOCAL.newProductStatus.setCurrentMV(true) />
+			<cfset LOCAL.newProductStatus.setCurrent(true) />
 			<cfset LOCAL.newProductStatus.setComments(Trim(FORM.new_order_product_comments)) />
 			<cfset LOCAL.newProductStatus.setOrderProductStatusType(LOCAL.newProductStatusType) />
 			<cfset EntitySave(LOCAL.newProductStatus) /> 
