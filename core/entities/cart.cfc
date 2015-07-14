@@ -327,6 +327,7 @@
 		<cfset LOCAL.order.setShippingMiddleName(getShippingAddress().getMiddleName()) />
 		<cfset LOCAL.order.setShippingLastName(getShippingAddress().getLastName()) />
 		<cfset LOCAL.order.setShippingCompany(getShippingAddress().getCompany()) />
+		<cfset LOCAL.order.setShippingPhone(getShippingAddress().getPhone()) />
 		<cfset LOCAL.order.setShippingUnit(getShippingAddress().getUnit()) />
 		<cfset LOCAL.order.setShippingStreet(getShippingAddress().getStreet()) />
 		<cfset LOCAL.order.setShippingCity(getShippingAddress().getCity()) />
@@ -338,6 +339,7 @@
 		<cfset LOCAL.order.setBillingMiddleName(getBillingAddress().getMiddleName()) />
 		<cfset LOCAL.order.setBillingLastName(getBillingAddress().getLastName()) />
 		<cfset LOCAL.order.setBillingCompany(getBillingAddress().getCompany()) />
+		<cfset LOCAL.order.setBillingPhone(getBillingAddress().getPhone()) />
 		<cfset LOCAL.order.setBillingUnit(getBillingAddress().getUnit()) />
 		<cfset LOCAL.order.setBillingStreet(getBillingAddress().getStreet()) />
 		<cfset LOCAL.order.setBillingCity(getBillingAddress().getCity()) />
