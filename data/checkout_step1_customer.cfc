@@ -6,11 +6,7 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif StructKeyExists(FORM,"update_cutomer_info")>
-			<cfif NOT IsValid("email",Trim(FORM.new_email))>
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email address.") />
-			</cfif>
-			
+		<cfif StructKeyExists(FORM,"update_cutomer_info")>			
 			<cfif Trim(FORM.shipto_first_name) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping first name.") />
 			</cfif>
