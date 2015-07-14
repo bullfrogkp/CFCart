@@ -361,6 +361,8 @@
 		<cfset LOCAL.order.setCustomerEmail(getCustomer().getEmail()) />
 		<cfset LOCAL.order.setCustomerGroupName(getCustomerGroupName()) />
 		
+		<cfset LOCAL.order.setCustomer(getCustomer()) />
+		
 		<cfset LOCAL.order.setSubTotalPrice(getSubTotalPrice()) />
 		<cfset LOCAL.order.setTotalShippingFee(getTotalShippingFee()) />
 		<cfset LOCAL.order.setTotalTax(getTotalTax()) />

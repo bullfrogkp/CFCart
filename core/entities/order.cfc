@@ -41,6 +41,7 @@
 	<cfproperty name="billingCountry" fieldtype="many-to-one" cfc="country" fkcolumn="billing_country_id">
 	<cfproperty name="billingProvince" fieldtype="many-to-one" cfc="province" fkcolumn="billing_province_id">
 	
+	<cfproperty name="customer" fieldtype="many-to-one" cfc="customer" fkcolumn="customer_id">	
 	<cfproperty name="currency" fieldtype="many-to-one" cfc="currency" fkcolumn="currency_id">	
 	
 	<cfproperty name="subTotalPrice" column="sub_total_price" ormtype="float"> 
