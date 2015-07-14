@@ -4,6 +4,10 @@
 		$( ".save-product-status" ).click(function() {
 			$("##order_product_id").val($(this).attr('productid'));
 		});
+		
+		$( ".save-product-tracking-number" ).click(function() {
+			$("##order_product_id").val($(this).attr('productid'));
+		});
 	});
 </script>
 <section class="content-header">
@@ -38,7 +42,7 @@
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs">
 					<li class="tab-title #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">Information</a></li>
-					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Tracking</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Tracking Number</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Product Status</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Invoice</a></li>
 				</ul>
@@ -274,13 +278,12 @@
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
-						<div class="form-group">
-							<label>Shipping Tracking Number</label>
-							<input name="shipping_tracking_number" type="text" class="form-control" placeholder="Enter ..." value="#product.getShippingTrackingNumber()#"/>
-						</div>
+							<div class="form-group">
+								<label>#product.getProductName()#</label>
+								<input name="tracking_number_#product.getOrderProductId()#" type="text" class="form-control" placeholder="Enter Tracking Number ..." value="#product.getShippingTrackingNumber()#"/>
+							</div>
+							<button productid="#product.getOrderProductId()#" name="save_product_tracking_number" type="submit" class="btn btn-primary save-product-tracking-number">Submit</button>
 						</cfloop>
-						<button name="save_shipping_tracking_number" type="submit" class="btn btn-primary">Submit</button>
-						
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="row">
@@ -288,7 +291,7 @@
 							<div class="col-lg-6"> 
 								<div class="box box-primary">
 									<div class="box-header">
-										<h3 class="box-title">#product.getDisplayName()#</h3>
+										<h3 class="box-title">#product.getProductName()#</h3>
 									</div><!-- /.box-header -->
 									
 									<div class="box-body">
@@ -352,7 +355,6 @@
 										#REQUEST.pageData.siteInfo.getStreet()#, #REQUEST.pageData.siteInfo.getUnit()#<br>
 										#REQUEST.pageData.siteInfo.getCity()#, #REQUEST.pageData.siteInfo.getProvince().getDisplayName()# #REQUEST.pageData.siteInfo.getPostalCode()#<br>
 										Phone: #REQUEST.pageData.siteInfo.getPhone()#<br/>
-										Email: #REQUEST.pageData.siteInfo.getEmail()#
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">
@@ -361,8 +363,7 @@
 										<strong>#REQUEST.pageData.order.getCustomerFullName()#</strong><br>
 										#REQUEST.pageData.order.getShippingStreet()#, #REQUEST.pageData.order.getShippingUnit()#<br>
 										#REQUEST.pageData.order.getShippingCity()#, <cfif NOT IsNull(REQUEST.pageData.order.getShippingProvince())>#REQUEST.pageData.order.getShippingProvince().getDisplayName()#</cfif> #REQUEST.pageData.order.getShippingPostalCode()#<br>
-										Phone: #REQUEST.pageData.order.getCustomerPhone()#<br/>
-										Email: #REQUEST.pageData.order.getCustomerEmail()#
+										Phone: #REQUEST.pageData.order.getShippingPhone()#<br/>
 									</address>
 								</div><!-- /.col -->
 								<div class="col-sm-4 invoice-col">
