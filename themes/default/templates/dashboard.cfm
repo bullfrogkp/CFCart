@@ -40,7 +40,7 @@
 					<strong>Tracking No.:</strong> #REQUEST.pageData.latestOrderArray[1].getOrderTrackingNumber()#<br/>
 					<strong>Created:</strong> #REQUEST.pageData.latestOrderArray[1].getCreatedDatetime()#<br/>
 					<strong>Status:</strong> #REQUEST.pageData.latestOrderStatusArray[1].getOrderStatusType().getDisplayName()#<br/>
-					<strong>Total:</strong> #REQUEST.pageData.latestOrderArray[1].getTotalPrice()#<br/>
+					<strong>Total:</strong> #LSCurrencyFormat(REQUEST.pageData.latestOrderArray[1].getTotalPrice(),"international",REQUEST.pageData.latestOrderArray[1].getCurrency().getLocale())#<br/>
 				<cfelse>
 					No order found.
 				</cfif>

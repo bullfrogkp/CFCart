@@ -234,7 +234,7 @@
 			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>
 			<cfset LOCAL.customer = EntityLoadByPK("customer",getCustomerStruct().customerId) />
-			<cfif LOCAL.customer.getShouldUpdate() EQ true>
+			<cfif LOCAL.customer.shouldUpdate() EQ true>
 				<cfset LOCAL.customer.setFirstName(getCustomerStruct().firstName) />
 				<cfset LOCAL.customer.setMiddleName(getCustomerStruct().middleName) />
 				<cfset LOCAL.customer.setLastName(getCustomerStruct().lastName) />

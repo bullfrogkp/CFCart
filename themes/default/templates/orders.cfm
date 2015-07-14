@@ -14,7 +14,6 @@
 			<table >
 				<tr>
 					<td>Order No.</td>
-					<td>Email</td>
 					<td>Name</td>
 					<td>Total</td>
 					<td>Create Datetime	</td>
@@ -25,11 +24,10 @@
 					<cfloop array="#REQUEST.pageData.customer.getActiveOrders()#" index="order">
 						<tr>
 							<td>#order.getOrderTrackingNumber()#</td>
-							<td>#order.getEmail()#</td>
 							<td>#order.getCustomerFullName()#</td>
 							<td>#order.getTotalPrice()#</td>
 							<td>#order.getCreatedDatetime()#</td>
-							<td>#order.getCurrentOrderStatus()#</td>
+							<td>#order.getCurrentOrderStatus().getOrderStatusType().getDisplayName()#</td>
 							<td><a href="order_detail.cfm">Detail</a></td>
 						</tr>
 					</cfloop>

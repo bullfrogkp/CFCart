@@ -69,17 +69,8 @@
 		
 		<cfreturn fullName />
 	</cffunction>
-	
-	<cffunction name="getTotalPrice" access="public" output="false" returnType="numeric">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.totalPrice = 0 />
-		<cfloop array="#getOrderProducts()#" index="LOCAL.orderProduct">
-			<cfset LOCAL.totalPrice += LOCAL.orderProduct.getTotalAmount() />
-		</cfloop>
-		<cfreturn LOCAL.totalPrice />
-	</cffunction>
-	
+		
 	<cffunction name="getCurrentOrderStatus" access="public" output="false" returnType="any">
-		<cfreturn EntityLoad("order_status",{isCurrent=true},true) />
+		<cfreturn EntityLoad("order_status",{order=this, current=true},true) />
 	</cffunction>
 </cfcomponent>
