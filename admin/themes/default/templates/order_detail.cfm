@@ -72,21 +72,15 @@
 											<dl class="dl-horizontal">
 												<dt>Customer</dt>
 												<dd>
-													<cfif NOT IsNull(REQUEST.pageData.order.getCustomer())>
-														#REQUEST.pageData.order.getCustomer().getFirstName()# #REQUEST.pageData.order.getCustomer().getMiddleName()# #REQUEST.pageData.order.getCustomer().getLastName()#
-													</cfif>
+													#REQUEST.pageData.order.getCustomerFirstName()# #REQUEST.pageData.order.getCustomerMiddleName()# #REQUEST.pageData.order.getCustomerLastName()#
 												</dd>
 												<dt>Email</dt>
 												<dd>
-													<cfif NOT IsNull(REQUEST.pageData.order.getCustomer())>
-														#REQUEST.pageData.order.getCustomer().getEmail()#
-													</cfif>
+													#REQUEST.pageData.order.getCustomerEmail()#
 												</dd>
 												<dt>Customer Group</dt>
 												<dd>
-													<cfif NOT IsNull(REQUEST.pageData.order.getCustomer())>
-														#REQUEST.pageData.order.getCustomer().getCustomerGroup().getDisplayName()#
-													</cfif>
+													#REQUEST.pageData.order.getCustomerGroupName()#
 												</dd>
 											</dl>
 										</div><!-- /.box-body -->
