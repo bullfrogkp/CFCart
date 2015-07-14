@@ -123,6 +123,22 @@
 						</select>
 					</td>
 				</tr>
+				
+				<tr>
+					<td style="font-weight:bold;padding-top:15px;" colspan="5">
+						<table>
+							<tr>
+								<td>
+									<input type="checkbox" name="register_user" />
+								</td>
+								<td>
+									Register for member
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
 				<tr>
 					<td colspan="5">
 						<div style="padding-top:12px;border-top:1px solid ##ccc;margin-top:10px;">
