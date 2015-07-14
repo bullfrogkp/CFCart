@@ -381,7 +381,7 @@
 		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "placed"},true) />
 		<cfset LOCAL.orderStatus = EntityNew("order_status") />
 		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
-		<cfset LOCAL.orderStatus.setCurrent(true) />
+		<cfset LOCAL.orderStatus.setCurrentMV(true) />
 		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
 		<cfset EntitySave(LOCAL.orderStatus) /> 
 		
