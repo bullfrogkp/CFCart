@@ -61,14 +61,10 @@
 									<td>#order.getOrderId()#</td>
 									<td>#order.getOrderTrackingNumber()#</td>
 									<td>
-										<cfif NOT IsNull(order.getCustomer())>
-											#order.getCustomer().getEmail()#
-										</cfif>
+										#order.getCustomerEmail()#
 									</td>
 									<td>
-										<cfif NOT IsNull(order.getCustomer())>
-											#order.getCustomer().getFirstName()# #order.getCustomer().getMiddleName()# #order.getCustomer().getLastName()#
-										</cfif>
+										#order.getCustomerFirstName()# #order.getCustomerMiddleName()# #order.getCustomerLastName()#
 									</td>
 									<td>#DateFormat(order.getCreatedDatetime(),"mmm dd,yyyy")#</td>
 									<td>#isNull(EntityLoad("order_status",{order = order, current = true}, true))?"":EntityLoad("order_status",{order = order, current = true}, true).getOrderStatusType().getDisplayName()#</td>

@@ -9,6 +9,7 @@
 	<cfproperty name="imageName" column="image_name" ormtype="string">
 	<cfproperty name="shippingCarrierName" column="shipping_carrier" ormtype="string">
 	<cfproperty name="shippingMethodName" column="shipping_method" ormtype="string">
+	<cfproperty name="shippingTrackingNumber" column="shipping_tracking_number" ormtype="string">
 	<cfproperty name="comments" column="comments" ormtype="string">
 	
 	<cfproperty name="taxAmount" column="tax_amount" ormtype="float"> 

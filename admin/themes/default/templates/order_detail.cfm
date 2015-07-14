@@ -273,11 +273,12 @@
 						
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
-					
+						<cfloop array="#REQUEST.pageData.order.getProducts()#" index="product">
 						<div class="form-group">
 							<label>Shipping Tracking Number</label>
-							<input name="shipping_tracking_number" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.order.getShippingTrackingNumber()#"/>
+							<input name="shipping_tracking_number" type="text" class="form-control" placeholder="Enter ..." value="#product.getShippingTrackingNumber()#"/>
 						</div>
+						</cfloop>
 						<button name="save_shipping_tracking_number" type="submit" class="btn btn-primary">Submit</button>
 						
 					</div>
