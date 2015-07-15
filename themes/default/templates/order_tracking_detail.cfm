@@ -38,12 +38,12 @@
 						<td><img style="width:70px" src="#orderProduct.getProduct().getDefaultImageLinkMV(type='small')#" alt="#orderProduct.getProductName()#"></td>
 						<td>#orderProduct.getProductName()#</td>
 						<td>#orderProduct.getSku()#</td>
-						<td>#orderProduct.getPrice()#</td>
+						<td>#LSCurrencyFormat(orderProduct.getPrice(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 						<td>#orderProduct.getQuantity()#</td>
-						<td>#orderProduct.getSubtotalAmount()#</td>
-						<td>#orderProduct.getTaxAmount()#</td>
-						<td>#orderProduct.getShippingAmount()#</td>
-						<td>#orderProduct.getTotalAmount()#</td>
+						<td>#LSCurrencyFormat(orderProduct.getSubtotalAmount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+						<td>#LSCurrencyFormat(orderProduct.getTaxAmount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+						<td>#LSCurrencyFormat(orderProduct.getShippingAmount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+						<td>#LSCurrencyFormat(orderProduct.getTotalAmount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 					</tr>
 				</cfloop>
 				<tr>
@@ -51,7 +51,7 @@
 						Sub Total
 					</td>
 					<td>
-						#REQUEST.pageData.order.getSubTotalPrice()#
+						#LSCurrencyFormat(REQUEST.pageData.order.getSubTotalPrice(),"international",REQUEST.pageData.order.getCurrency().getLocale())#
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +59,7 @@
 						Tax
 					</td>
 					<td>
-						#REQUEST.pageData.order.getTotalTax()#
+						#LSCurrencyFormat(REQUEST.pageData.order.getTotalTax(),"international",REQUEST.pageData.order.getCurrency().getLocale())#
 					</td>
 				</tr>
 				<tr>
@@ -67,7 +67,7 @@
 						Shipping
 					</td>
 					<td>
-						#REQUEST.pageData.order.getTotalShippingFee()#
+						#LSCurrencyFormat(REQUEST.pageData.order.getTotalShippingFee(),"international",REQUEST.pageData.order.getCurrency().getLocale())#
 					</td>
 				</tr>
 				<tr>
@@ -75,7 +75,7 @@
 						Discount
 					</td>
 					<td>
-						#REQUEST.pageData.order.getDiscount()#
+						#LSCurrencyFormat(REQUEST.pageData.order.getDiscount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#
 					</td>
 				</tr>
 				<tr>
@@ -83,7 +83,7 @@
 						Grand Total
 					</td>
 					<td>
-						#REQUEST.pageData.order.getTotalPrice()#
+						#LSCurrencyFormat(REQUEST.pageData.order.getTotalPrice(),"international",REQUEST.pageData.order.getCurrency().getLocale())#
 					</td>
 				</tr>
 			</table>
