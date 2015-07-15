@@ -35,7 +35,7 @@
 				</tr>
 				<cfloop array="#REQUEST.pageData.order.getProducts()#" index="orderProduct">
 					<tr>
-						<td>#orderProduct.getProduct().getDefaultImageLinkMV(type='small')#</td>
+						<td><img style="width:70px" src="#orderProduct.getProduct().getDefaultImageLinkMV(type='small')#" alt="#orderProduct.getProductName()#"></td>
 						<td>#orderProduct.getProductName()#</td>
 						<td>#orderProduct.getSku()#</td>
 						<td>#orderProduct.getPrice()#</td>
