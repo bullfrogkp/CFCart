@@ -16,8 +16,14 @@
 			<cfset LOCAL.productService.setCategoryId(LOCAL.categoryId) />
 		</cfif>
 		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() />
-		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(recordStruct = LOCAL.recordStruct, currentPage = LOCAL.pageData.pageNumber) />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(recordStruct = LOCAL.recordStruct, currentPage = URL.page) />
 		
+		<cfset LOCAL.pageData.pageArray = _getPageArray(	currentPage = URL.page
+														, 	totalPages = LOCAL.pageData.paginationInfo.totalPages
+														,	categoryName = ""
+														,	categoryId = LOCAL.pageData.category.getCategoryId()
+														, 	sortTypeId = 1
+														, 	filterStruct = {}) />
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
