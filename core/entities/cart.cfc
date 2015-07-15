@@ -264,6 +264,7 @@
 			<cfset LOCAL.shippingAddress.setProvince(EntityLoadByPK("province",getShippingAddressStruct().provinceId)) />
 			<cfset LOCAL.shippingAddress.setCountry(EntityLoadByPK("country",getShippingAddressStruct().countryId)) />
 			<cfset LOCAL.shippingAddress.setPostalCode(getShippingAddressStruct().postalCode) />
+			<cfset LOCAL.shippingAddress.setIsDeleted(false) />
 			<cfset LOCAL.shippingAddress.setCreatedDatetime(Now()) />
 			<cfset LOCAL.shippingAddress.setCreatedUser(SESSION.user.userName) />
 			
@@ -295,6 +296,7 @@
 				<cfset LOCAL.billingAddress.setProvince(EntityLoadByPK("province",getBillingAddressStruct().provinceId)) />
 				<cfset LOCAL.billingAddress.setCountry(EntityLoadByPK("country",getBillingAddressStruct().countryId)) />
 				<cfset LOCAL.billingAddress.setPostalCode(getBillingAddressStruct().postalCode) />
+				<cfset LOCAL.billingAddress.setIsDeleted(false) />
 				<cfset LOCAL.billingAddress.setCreatedDatetime(Now()) />
 				<cfset LOCAL.billingAddress.setCreatedUser(SESSION.user.userName) />
 				

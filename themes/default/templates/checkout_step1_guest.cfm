@@ -6,6 +6,9 @@
 			$("##existing-address-id").val($(this).attr("addressid"));
 		});
 		
+		$("##register-user").click(function() {
+			$("##new-passwords").toggle();
+		});
 	});
 </script>
 
@@ -128,11 +131,29 @@
 					<td style="font-weight:bold;padding-top:15px;" colspan="5">
 						<table>
 							<tr>
-								<td>
-									<input type="checkbox" name="register_user" />
+								<td style="width:20px;">
+									<input type="checkbox" name="register_user" id="register-user" />
 								</td>
 								<td>
 									Register for member
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="display:none;" id="new-passwords">
+									<table>
+										<tr>
+											<td style="font-weight:bold;width:120px;">Password:</td>
+											<td>
+												<input name="new_password" id="new-password" type="password" maxlength="32" size="30" style="width:180px;">
+											</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold;">Confirm Password:</td>
+											<td>
+												<input name="confirm_new_password" id="confirm-new-password" type="password" maxlength="32" size="30" style="width:180px;">
+											</td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 						</table>
