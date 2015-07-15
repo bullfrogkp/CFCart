@@ -38,7 +38,7 @@
 										<cfif address.getProvince().getProvinceId() EQ province.getProvinceId()>
 										selected
 										</cfif>
-										>#province.getProvinceName()#</option>
+										>#province.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</td>
@@ -59,7 +59,7 @@
 										<cfif address.getCountry().getCountryId() EQ country.getCountryId()>
 										selected
 										</cfif>
-										>#country.getCountryname()#</option>
+										>#country.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</td>
