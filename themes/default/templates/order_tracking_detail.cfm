@@ -21,6 +21,74 @@
 			#REQUEST.pageData.order.getShippingPostalCode()#, #REQUEST.pageData.order.getShippingCountry().getDisplayName()#
 		</p>
 		<div class="myaccount-table" >
+			<table >
+				<tr>
+					<td>Product</td>
+					<td>Name</td>
+					<td>Sku</td>
+					<td>Price</td>
+					<td>Quantity</td>
+					<td>Sub Total</td>
+					<td>Tax</td>
+					<td>Shipping</td>
+					<td>Total</td>
+				</tr>
+				<cfloop array="#REQUEST.pageData.order.getProducts()#" index="orderProduct">
+					<tr>
+						<td>#orderProduct.getProduct().getDefaultImageLinkMV(type='small')#</td>
+						<td>#orderProduct.getProductName()#</td>
+						<td>#orderProduct.getSku()#</td>
+						<td>#orderProduct.getPrice()#</td>
+						<td>#orderProduct.getQuantity()#</td>
+						<td>#orderProduct.getSubtotalAmount()#</td>
+						<td>#orderProduct.getTaxAmount()#</td>
+						<td>#orderProduct.getShippingAmount()#</td>
+						<td>#orderProduct.getTotalAmount()#</td>
+					</tr>
+				</cfloop>
+				<tr>
+					<td colspan="8" style="text-align:right;font-weight:bold;">
+						Sub Total
+					</td>
+					<td>
+						#REQUEST.pageData.order.getSubTotalPrice()#
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" style="text-align:right;font-weight:bold;">
+						Tax
+					</td>
+					<td>
+						#REQUEST.pageData.order.getTotalTax()#
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" style="text-align:right;font-weight:bold;">
+						Shipping
+					</td>
+					<td>
+						#REQUEST.pageData.order.getTotalShippingFee()#
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" style="text-align:right;font-weight:bold;">
+						Discount
+					</td>
+					<td>
+						#REQUEST.pageData.order.getDiscount()#
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" style="text-align:right;font-weight:bold;">
+						Grand Total
+					</td>
+					<td>
+						#REQUEST.pageData.order.getTotalPrice()#
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="myaccount-table" >
 			<table class="wp-list-table widefat fixed bookmarks" cellspacing="0">
 				<tr>
 					<td scope="col" id="categories" class="manage-column column-categories">Status</th>
