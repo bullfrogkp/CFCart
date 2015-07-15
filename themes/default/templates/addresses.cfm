@@ -84,6 +84,12 @@
 							</td>
 						</tr>
 						<tr>
+							<td style="font-weight:bold;">Postal Code: </td>
+							<td>
+								<input name="postal_code_#address.getAddressId()#" id="postal-code-#address.getAddressId()#" type="text" maxlength="10" size="10" style="width:180px;" value="#address.getPostalCode()#">
+							</td>
+						</tr>
+						<tr>
 							<td style="font-weight:bold;">Province: </td>
 							<td>
 								<select name="province_id_#address.getAddressId()#" id="province-id-#address.getAddressId()#" style="width:186px;">
@@ -99,15 +105,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="font-weight:bold;">Postal Code: </td>
-							<td>
-								<input name="postal_code_#address.getAddressId()#" id="postal-code-#address.getAddressId()#" type="text" maxlength="10" size="10" style="width:180px;" value="#address.getPostalCode()#">
-							</td>
-						</tr>
-						<tr>
 							<td style="font-weight:bold;">Country: </td>
 							<td>
-								<select name="shipto_country_id_#address.getAddressId()#" id="shipto-country-id-#address.getAddressId()#" style="width:186px;">
+								<select name="country_id_#address.getAddressId()#" id="country-id-#address.getAddressId()#" style="width:186px;">
 									<option value="">Please select...</option>
 									<cfloop array="#REQUEST.pageData.countries#" index="country">
 										<option value="#country.getCountryId()#"
