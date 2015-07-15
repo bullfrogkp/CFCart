@@ -33,6 +33,13 @@
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(isSpecial=false) />
 		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
+		
+		<cfif StructKeyExists(URL,"search_keywords")>
+			<cfset LOCAL.pageData.searchText = Trim(URL.search_keywords) />
+			<cfif URL.search_category_id NEQ 0>
+				<cfset LOCAL.pageData.categoryId = URL.search_category_id />
+			</cfif>
+		</cfif>
 				
 		<cfreturn LOCAL.pageData />
 	</cffunction>
@@ -57,8 +64,12 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 	
-		<cfif StructKeyExists(FORM,"search_category_id")>
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm" />
+		<cfif StructKeyExists(FORM,"search_text") AND Trim(FORM.search_text) NEQ "">
+			<cfif FORM.search_category_id NEQ 0>
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm?search_keywords=#URLEncodedFormat(Trim(FORM.search_text))#&search_category_id=#FORM.search_category_id#" />
+			<cfelse>
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm?search_keywords=#URLEncodedFormat(Trim(FORM.search_text))#" />
+			</cfif>
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"currency_id")>

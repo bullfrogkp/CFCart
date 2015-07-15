@@ -123,7 +123,7 @@
 					</li>
 				</cfloop>
 			</select>
-			<input id="search-text" type="text" placeholder="Search..." />
+			<input name="search_text" id="search-text" type="text" placeholder="Search..." value="#REQUEST.pageData.searchText#" />
 			<input type="image" id="search-img" name="search_product" src="#SESSION.absoluteUrlTheme#images/search-img-up.png" />
 			</form>
 		</div>
