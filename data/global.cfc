@@ -34,7 +34,7 @@
 		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		
-		<cfif StructKeyExists(URL,"search_text")>
+		<cfif CGI.SCRIPT_NAME EQ "products.cfm" AND ListGetAt(CGI.PATH_INFO,6,"/") NEQ "">
 			<cfset LOCAL.pageData.searchText = Trim(URL.search_text) />
 			<cfset LOCAL.pageData.categoryId = URL.search_category_id />
 		<cfelse>
@@ -66,7 +66,13 @@
 		<cfset LOCAL.redirectUrl = "" />
 	
 		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND Trim(FORM.search_text) NEQ "">
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#products.cfm?search_text=#URLEncodedFormat(Trim(FORM.search_text))#&search_category_id=#FORM.search_category_id#&page=1" />
+			<cfif FORM.search_category_id NEQ 0>
+				<cfset LOCAL.pathInfo = "/-/#FORM.search_category_id#/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+			<cfelse>
+				<cfset LOCAL.pathInfo = "/-/-/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+			</cfif>
+				
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#products.cfm#LOCAL.pathInfo#" />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"currency_id")>
