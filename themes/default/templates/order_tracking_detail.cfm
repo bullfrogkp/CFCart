@@ -9,7 +9,7 @@
 	<h2>Order Detail</h2>
 	<div style="margin-top:20px;">
 		<p><strong>Tracking Number:</strong> #REQUEST.pageData.order.getOrderTrackingNumber()#</p>
-		<p><strong>Phone:</strong> #REQUEST.pageData.order.getPhone()#</p>
+		<p><strong>Phone:</strong> #REQUEST.pageData.order.getCustomerPhone()#</p>
 		<p><strong>Billing Address:</strong> <strong>#REQUEST.pageData.order.getBillingFirstName()# #REQUEST.pageData.order.getBillingMiddleName()# #REQUEST.pageData.order.getBillingLastName()#</strong></p>
 		<p>
 			#REQUEST.pageData.order.getBillingUnit()# #REQUEST.pageData.order.getBillingStreet()#, #REQUEST.pageData.order.getBillingCity()#, #REQUEST.pageData.order.getBillingProvince().getDisplayName()#<br/> 

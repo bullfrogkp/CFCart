@@ -41,7 +41,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"check_order")>
-			<cfset LOCAL.order = EntityLoad("order",{orderTrackingNumber = Trim(FORM.order_number), email = Trim(FORM.email)},true) />
+			<cfset LOCAL.order = EntityLoad("order",{orderTrackingNumber = Trim(FORM.order_number), customerEmail = Trim(FORM.email)},true) />
 			<cfif NOT IsNull(LOCAL.order)>
 				<cfset SESSION.temp.orderId = LOCAL.order.getOrderId() />
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#order_tracking_detail.cfm" />
