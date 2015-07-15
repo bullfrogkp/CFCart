@@ -28,7 +28,7 @@
 							<td>#order.getTotalPrice()#</td>
 							<td>#order.getCreatedDatetime()#</td>
 							<td>#order.getCurrentOrderStatus().getOrderStatusType().getDisplayName()#</td>
-							<td><a href="order_detail.cfm">Detail</a></td>
+							<td><a href="order_detail.cfm?id=#order.getOrderId()#">Detail</a></td>
 						</tr>
 					</cfloop>
 				<cfelse>
