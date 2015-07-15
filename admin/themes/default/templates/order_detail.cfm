@@ -424,22 +424,26 @@
 								<div class="col-xs-6">
 									<p class="lead">Amount Due 2/22/2014</p>
 									<div class="table-responsive">
-										<table class="table">
+										<table class="table">											
 											<tr>
 												<th style="width:50%">Subtotal:</th>
-												<td>#LSCurrencyFormat(REQUEST.pageData.orderSubtotalAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.order.getSubTotalPrice(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+											</tr>
+											<tr>
+												<th>Shipping & Handling</th>
+												<td>#LSCurrencyFormat(REQUEST.pageData.order.getTotalShippingFee(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											<tr>
 												<th>Tax</th>
-												<td>#LSCurrencyFormat(REQUEST.pageData.orderTaxAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.order.getTotalTax(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											<tr>
-												<th>Shipping:</th>
-												<td>#LSCurrencyFormat(REQUEST.pageData.orderShippingAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+												<th>Discount</th>
+												<td>#LSCurrencyFormat(REQUEST.pageData.order.getDiscount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 											<tr>
 												<th>Total:</th>
-												<td>#LSCurrencyFormat(REQUEST.pageData.orderTotalAmount,"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
+												<td>#LSCurrencyFormat(REQUEST.pageData.order.getTotalPrice(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 											</tr>
 										</table>
 									</div>
