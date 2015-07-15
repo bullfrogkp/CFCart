@@ -3,6 +3,7 @@
 	<cfproperty name="cftoken" type="string"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="registerCustomer" type="boolean"> 
+    <cfproperty name="registerCustomerPassword" type="string"> 
     <cfproperty name="sameAddress" type="boolean"> 
 	
 	<cfproperty name="currencyId" type="numeric"> 
@@ -230,6 +231,7 @@
 			<cfelse>
 				<cfset LOCAL.customer.setIsEnabled(false) />
 			</cfif>
+			<cfset LOCAL.customer.setPassword(getRegisterCustomerPassword()) />
 			
 			<cfset EntitySave(LOCAL.customer) />
 		<cfelse>

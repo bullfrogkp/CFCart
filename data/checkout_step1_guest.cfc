@@ -103,8 +103,10 @@
 			
 			<cfif StructKeyExists(FORM,"register_user")>
 				<cfset SESSION.cart.setRegisterCustomer(true) />
+				<cfset SESSION.cart.setRegisterCustomerPassword(Hash(Trim(FORM.new_password))) />
 			<cfelse>
 				<cfset SESSION.cart.setRegisterCustomer(false) />
+				<cfset SESSION.cart.setRegisterCustomerPassword("") />
 			</cfif>
 			
 			<!--- set addresses --->
