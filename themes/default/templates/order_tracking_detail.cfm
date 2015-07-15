@@ -20,12 +20,11 @@
 			#REQUEST.pageData.order.getShippingUnit()# #REQUEST.pageData.order.getShippingStreet()#, #REQUEST.pageData.order.getShippingCity()#, #REQUEST.pageData.order.getShippingProvince().getDisplayName()#<br/> 
 			#REQUEST.pageData.order.getShippingPostalCode()#, #REQUEST.pageData.order.getShippingCountry().getDisplayName()#
 		</p>
-		<div class="myaccount-table" >
+		<div class="myaccount-table" style="margin-bottom:20px;">
 			<table >
 				<tr>
 					<td>Product</td>
 					<td>Name</td>
-					<td>Sku</td>
 					<td>Price</td>
 					<td>Quantity</td>
 					<td>Sub Total</td>
@@ -37,7 +36,6 @@
 					<tr>
 						<td><img style="width:70px" src="#orderProduct.getProduct().getDefaultImageLinkMV(type='small')#" alt="#orderProduct.getProductName()#"></td>
 						<td>#orderProduct.getProductName()#</td>
-						<td>#orderProduct.getSku()#</td>
 						<td>#LSCurrencyFormat(orderProduct.getPrice(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
 						<td>#orderProduct.getQuantity()#</td>
 						<td>#LSCurrencyFormat(orderProduct.getSubtotalAmount(),"international",REQUEST.pageData.order.getCurrency().getLocale())#</td>
@@ -47,7 +45,7 @@
 					</tr>
 				</cfloop>
 				<tr>
-					<td colspan="8" style="text-align:right;font-weight:bold;">
+					<td colspan="7" style="text-align:right;font-weight:bold;">
 						Sub Total
 					</td>
 					<td>
@@ -55,7 +53,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="8" style="text-align:right;font-weight:bold;">
+					<td colspan="7" style="text-align:right;font-weight:bold;">
 						Tax
 					</td>
 					<td>
@@ -63,7 +61,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="8" style="text-align:right;font-weight:bold;">
+					<td colspan="7" style="text-align:right;font-weight:bold;">
 						Shipping
 					</td>
 					<td>
@@ -71,7 +69,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="8" style="text-align:right;font-weight:bold;">
+					<td colspan="7" style="text-align:right;font-weight:bold;">
 						Discount
 					</td>
 					<td>
@@ -79,7 +77,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="8" style="text-align:right;font-weight:bold;">
+					<td colspan="7" style="text-align:right;font-weight:bold;">
 						Grand Total
 					</td>
 					<td>
