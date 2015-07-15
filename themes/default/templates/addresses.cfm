@@ -25,7 +25,6 @@
 			<cfloop array="#REQUEST.pageData.customer.getActiveAddresses()#" index="address">
 				<div style="width:49%;float:left;">
 					<table id="current-address-table" class="shipping-address-selected" style="width:100%;">	
-						
 						<tr>
 							<td style="font-weight:bold;">First Name: </td>
 							<td>
@@ -48,6 +47,12 @@
 							<td style="font-weight:bold;">Phone: </td>
 							<td>
 								<input name="phone_#address.getAddressId()#" id="phone-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getPhone()#">
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">Company: </td>
+							<td>
+								<input name="company_#address.getAddressId()#" id="company-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getCompany()#">
 							</td>
 						</tr>
 						<tr>
@@ -108,7 +113,7 @@
 						<tr>
 							<td></td>
 							<td style="padding-top:10px;">
-								<input type="submit" name="update_address_#address.getAddressId()#" addressid="#address.getAddressId()#" class="update-address" value="Update">
+								<input type="submit" name="update_address" addressid="#address.getAddressId()#" class="update-address" value="Update">
 							</td>
 						</tr>
 					</table>
