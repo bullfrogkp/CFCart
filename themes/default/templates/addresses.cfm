@@ -1,4 +1,12 @@
 ﻿<cfoutput>
+<script>
+	$(document).ready(function() {
+		$(".update-address").click(function() {
+			$("##submitted-address-id").val($(this).attr("addressid"));
+		});
+	});
+</script>
+
 <div id="breadcrumb">
 	<div class="breadcrumb-home-icon"></div>
 	<div class="breadcrumb-arrow-icon"></div>
@@ -12,26 +20,59 @@
 	<h1>My Addresses</h1>
 	<div style="margin-top:25px;" class="single_field">
 		<cfif ArrayLen(REQUEST.pageData.customer.getAddresses()) GT 0>
+			<form method="post">
+			<input type="hidden" name="submitted_address_id" id="submitted-address-id" value="" />
 			<cfloop array="#REQUEST.pageData.customer.getActiveAddresses()#" index="address">
 				<div style="width:49%;float:left;">
 					<table id="current-address-table" class="shipping-address-selected" style="width:100%;">	
+						
+						<tr>
+							<td style="font-weight:bold;">First Name: </td>
+							<td>
+								<input name="first_name_#address.getAddressId()#" id="first-name-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getFirstName()#">
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">Middle Name: </td>
+							<td>
+								<input name="middle_name_#address.getAddressId()#" id="middle-name-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getMiddleName()#">
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">Last Name: </td>
+							<td>
+								<input name="last_name_#address.getAddressId()#" id="last-name-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getLastName()#">
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">Phone: </td>
+							<td>
+								<input name="phone_#address.getAddressId()#" id="phone-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getPhone()#">
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">Unit: </td>
+							<td>
+								<input name="unit_#address.getAddressId()#" id="unit-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getUnit()#">
+							</td>
+						</tr>
 						<tr>
 							<td style="font-weight:bold;">Street: </td>
 							<td>
-								<input name="street" id="street" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getStreet()#">
+								<input name="street_#address.getAddressId()#" id="street-#address.getAddressId()#" type="text" maxlength="100" size="25" style="width:180px;" value="#address.getStreet()#">
 							</td>
 						</tr>
 						  
 						<tr>
 							<td style="font-weight:bold;">City: </td>
 							<td>
-								<input name="city" id="city" type="text" maxlength="40" size="25" style="width:180px;" value="#address.getCity()#">
+								<input name="city_#address.getAddressId()#" id="city-#address.getAddressId()#" type="text" maxlength="40" size="25" style="width:180px;" value="#address.getCity()#">
 							</td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">Province: </td>
 							<td>
-								<select name="province_id" id="province_id" style="width:186px;">
+								<select name="province_id_#address.getAddressId()#" id="province-id-#address.getAddressId()#" style="width:186px;">
 									<option value="">Please select...</option>
 									<cfloop array="#REQUEST.pageData.provinces#" index="province">
 										<option value="#province.getProvinceId()#"
@@ -46,13 +87,13 @@
 						<tr>
 							<td style="font-weight:bold;">Postal Code: </td>
 							<td>
-								<input name="postal_code" id="postal_code" type="text" maxlength="10" size="10" style="width:180px;" value="#address.getPostalCode()#">
+								<input name="postal_code_#address.getAddressId()#" id="postal-code-#address.getAddressId()#" type="text" maxlength="10" size="10" style="width:180px;" value="#address.getPostalCode()#">
 							</td>
 						</tr>
 						<tr>
 							<td style="font-weight:bold;">Country: </td>
 							<td>
-								<select name="shipto_country_id" id="shipto_country_id" style="width:186px;">
+								<select name="shipto_country_id_#address.getAddressId()#" id="shipto-country-id-#address.getAddressId()#" style="width:186px;">
 									<option value="">Please select...</option>
 									<cfloop array="#REQUEST.pageData.countries#" index="country">
 										<option value="#country.getCountryId()#"
@@ -66,11 +107,14 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td style="padding-top:10px;"><button>Update</button></td>
+							<td style="padding-top:10px;">
+								<input type="submit" name="update_address_#address.getAddressId()#" addressid="#address.getAddressId()#" class="update-address" value="Update">
+							</td>
 						</tr>
 					</table>
 				</div>
 			</cfloop>
+			</form>
 		<cfelse>
 			No address found.
 		</cfif>
