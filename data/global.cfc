@@ -65,8 +65,8 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 	
-		<cfif StructKeyExists(FORM,"search_text") AND Trim(FORM.search_text) NEQ "">
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm?search_text=#URLEncodedFormat(Trim(FORM.search_text))#&search_category_id=#FORM.search_category_id#" />
+		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND Trim(FORM.search_text) NEQ "">
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#search_results.cfm?search_text=#URLEncodedFormat(Trim(FORM.search_text))#&search_category_id=#FORM.search_category_id#&page=1" />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"currency_id")>
