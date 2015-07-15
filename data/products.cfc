@@ -6,19 +6,18 @@
 		<cfset LOCAL.categoryId = ListGetAt(CGI.PATH_INFO,2,"/")> 
 		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
 		<cfset LOCAL.pageData.sortTypeId = ListGetAt(CGI.PATH_INFO,4,"/") />
-		<cfif ListLen(CGI.PATH_INFO,"/") EQ 5>
-			<cfset LOCAL.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
-		<cfelse>
-			<cfset LOCAL.filterList = "" />
-		</cfif>
+		<cfset LOCAL.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
+		<cfset LOCAL.searchText = ListGetAt(CGI.PATH_INFO,6,"/") />
 		
 		<cfset LOCAL.currentFilterStruct = {} />
 		
-		<cfloop list="#LOCAL.filterList#" index="LOCAL.filterAndValue">
-			<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
-			<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
-			<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
-		</cfloop>
+		<cfif LOCAL.filterList NEQ "-">
+			<cfloop list="#LOCAL.filterList#" index="LOCAL.filterAndValue">
+				<cfset LOCAL.filterId = ListGetAt(LOCAL.filterAndValue,1,"=") />
+				<cfset LOCAL.filterValueId = ListGetAt(LOCAL.filterAndValue,2,"=") />
+				<cfset LOCAL.currentFilterStruct["#LOCAL.filterId#"] = LOCAL.filterValueId />
+			</cfloop>
+		</cfif>
 		
 		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 		
@@ -28,7 +27,12 @@
 		<cfset LOCAL.productService.setIsEnabled(true) />
 		<cfset LOCAL.productService.setPageNumber(LOCAL.pageData.pageNumber) />
 		<cfset LOCAL.productService.setRecordsPerPage(APPLICATION.recordsPerPageFrontend) />
-		<cfset LOCAL.productService.setCategoryId(LOCAL.categoryId) />
+		<cfif LOCAL.categoryId NEQ "-">
+			<cfset LOCAL.productService.setCategoryId(LOCAL.categoryId) />
+		</cfif>
+		<cfif LOCAL.searchText NEQ "-">
+			<cfset LOCAL.productService.setSearchKeywords(LOCAL.searchText) />
+		</cfif>
 		
 		<cfset LOCAL.productService.setFilters(currentFilterStruct) />
 		<cfset LOCAL.productService.setSortTypeId(LOCAL.pageData.sortTypeId) />
@@ -238,12 +242,17 @@
 		<cfargument name="filterStruct" type="struct" required="true" />
 		
 		<cfset var pathInfo = "/#URLEncodedFormat(ARGUMENTS.categoryName)#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/" />
-		
+		<cfset var filterPathInfo = "" />
 		<cfloop collection="#ARGUMENTS.filterStruct#" item="LOCAL.filterId">
 			<cfif ARGUMENTS.filterStruct["#LOCAL.filterId#"] NEQ "">
-				<cfset pathInfo &= LOCAL.filterId & "=" & ARGUMENTS.filterStruct["#LOCAL.filterId#"] & "," />
+				<cfset filterPathInfo &= LOCAL.filterId & "=" & ARGUMENTS.filterStruct["#LOCAL.filterId#"] & "," />
 			</cfif>
 		</cfloop>
+		
+		<cfif filterPathInfo EQ "">
+			<cfset filterPathInfo = "-" />
+		</cfif>
+		<cfif pathInfo &= "#filterPathInfo#/" />
 		
 		<cfreturn pathInfo />	
 	</cffunction>
