@@ -19,6 +19,15 @@
 <div id="myaccount-content">
 	<h1>My Addresses</h1>
 	<div style="margin-top:25px;" class="single_field">
+		<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+			<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
+				<ul>
+					<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+						<li>#msg#</li>
+					</cfloop>
+				</ul>
+			</div>
+		</cfif>
 		<cfif ArrayLen(REQUEST.pageData.customer.getAddresses()) GT 0>
 			<form method="post">
 			<input type="hidden" name="submitted_address_id" id="submitted-address-id" value="" />
