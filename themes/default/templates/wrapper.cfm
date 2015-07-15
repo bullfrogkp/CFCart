@@ -101,19 +101,19 @@
 				<option value="0">All Categories</option>
 				<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 					<option value="#cat.getCategoryId()#"
-					<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
+					<cfif REQUEST.pageData.categoryId EQ cat.getCategoryId()>
 					selected
 					</cfif>
 					>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
 					<cfloop array="#cat.getSubCategories()#" index="subCat">
 						<option value="#subCat.getCategoryId()#"
-						<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
+						<cfif REQUEST.pageData.categoryId EQ subCat.getCategoryId()>
 						selected
 						</cfif>
 						>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
 						<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
 							<option value="#thirdCat.getCategoryId()#"
-							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
+							<cfif REQUEST.pageData.categoryId EQ thirdCat.getCategoryId()>
 							selected
 							</cfif>
 							>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
