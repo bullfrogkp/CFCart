@@ -18,15 +18,6 @@
 			<cfif Trim(FORM.new_password) NEQ "" AND Trim(FORM.confirm_new_password) NEQ "" AND Trim(FORM.new_password) NEQ Trim(FORM.confirm_new_password)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Passwords don't match.") />
 			</cfif>
-			
-			<cfif ArrayLen(LOCAL.messageArray) EQ 0>
-				<cfset LOCAL.customerService = new "#APPLICATION.componentPathRoot#core.services.customerService"() />
-				<cfset LOCAL.customerService.setUsername(SESSION.user.userName) />
-				<cfset LOCAL.customerService.setPassword(Hash(Trim(FORM.current_password))) />
-				<cfif LOCAL.customerService.isUserValid() EQ false>
-					<cfset ArrayAppend(LOCAL.messageArray,"Password is not correct.") />
-				</cfif>
-			</cfif>
 		</cfif>
 	
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
@@ -60,13 +51,19 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"update_password")>
-			<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
-			<cfset EntitySave(LOCAL.customer) />
-			
 			<cfset LOCAL.messageArray = [] />
-			<cfset ArrayAppend(LOCAL.messageArray,"Your password has been updated") />
+			<cfset LOCAL.customer = EntityLoad("customer",{customerId = SESSION.user.customerId, password = Hash(Trim(FORM.current_password)), isEnabled = true, isDeleted = false}, true) /> />
+			<cfif IsNull(LOCAL.customer)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Password is not correct.") />
+			<cfelse>
+				<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
+				<cfset EntitySave(LOCAL.customer) />
+				
+				<cfset ArrayAppend(LOCAL.messageArray,"Your password has been updated") />
+			</cfif>
 			<cfif ArrayLen(LOCAL.messageArray) GT 0>
 				<cfset SESSION.temp.message = {} />
 				<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
