@@ -70,13 +70,24 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 	
-		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND Trim(FORM.search_text) NEQ "">
-			<cfif FORM.search_category_id NEQ 0>
-				<cfset LOCAL.category = EntityLoadByPK("category",FORM.search_category_id) />
-				<cfset LOCAL.pathInfo = "/#URLEncodedFormat(LOCAL.category.getName())#/#FORM.search_category_id#/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND (Trim(FORM.search_text) NEQ "" OR FORM.search_category_id NEQ 0)>
+		
+			<cfif Trim(FORM.search_text) EQ "">
+				<cfset LOCAL.searchText = "-" />
 			<cfelse>
-				<cfset LOCAL.pathInfo = "/-/-/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+				<cfset LOCAL.searchText = URLEncodedFormat(Trim(FORM.search_text)) />
 			</cfif>
+			
+			<cfif FORM.search_category_id EQ 0>
+				<cfset LOCAL.searchCategoryId = "-" />
+				<cfset LOCAL.searchCategoryName = "-" />
+			<cfelse>
+				<cfset LOCAL.category = EntityLoadByPK("category",FORM.search_category_id) />
+				<cfset LOCAL.searchCategoryId = FORM.search_category_id />
+				<cfset LOCAL.searchCategoryName = URLEncodedFormat(LOCAL.category.getName()) />
+			</cfif>
+		
+			<cfset LOCAL.pathInfo = "/#LOCAL.searchCategoryName#/#LOCAL.searchCategoryId#/1/1/-/#LOCAL.searchText#/" />
 				
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#products.cfm#LOCAL.pathInfo#" />
 		</cfif>
