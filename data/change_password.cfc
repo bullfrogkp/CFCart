@@ -28,7 +28,7 @@
 				</cfif>
 			</cfif>
 		</cfif>
-		
+	
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
@@ -49,6 +49,10 @@
 		
 		<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
 		
+		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
+			<cfset LOCAL.pageData.message.messageArray = SESSION.temp.message.messageArray />
+		</cfif>
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	
@@ -60,13 +64,13 @@
 		<cfif StructKeyExists(FORM,"update_password")>
 			<cfset LOCAL.customer.setPassword(Hash(Trim(FORM.new_password))) />
 			<cfset EntitySave(LOCAL.customer) />
-		</cfif>
-		
-		<cfset LOCAL.messageArray = [] />
-		<cfset ArrayAppend(LOCAL.messageArray,"Your password has been updated") />
-		<cfif ArrayLen(LOCAL.messageArray) GT 0>
-			<cfset SESSION.temp.message = {} />
-			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			
+			<cfset LOCAL.messageArray = [] />
+			<cfset ArrayAppend(LOCAL.messageArray,"Your password has been updated") />
+			<cfif ArrayLen(LOCAL.messageArray) GT 0>
+				<cfset SESSION.temp.message = {} />
+				<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			</cfif>
 		</cfif>
 		
 		<cfreturn LOCAL />	
