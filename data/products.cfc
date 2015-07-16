@@ -19,6 +19,8 @@
 			</cfloop>
 		</cfif>
 		
+		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
+		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		<cfset LOCAL.productService.setIsDeleted(false) />
@@ -26,7 +28,6 @@
 		<cfset LOCAL.productService.setPageNumber(LOCAL.pageData.pageNumber) />
 		<cfset LOCAL.productService.setRecordsPerPage(APPLICATION.recordsPerPageFrontend) />
 		<cfif LOCAL.categoryId NEQ "-">
-			<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
 			<cfset LOCAL.productService.setCategoryId(LOCAL.categoryId) />
 		</cfif>
 		<cfif LOCAL.searchText NEQ "-">
