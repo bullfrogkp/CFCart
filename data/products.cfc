@@ -58,14 +58,16 @@
 	
 		<cfset LOCAL.pageData.filterArray = _getFilterArray(	category = LOCAL.pageData.category
 															, 	sortTypeId = LOCAL.pageData.sortTypeId
-															, 	currentFilterStruct = LOCAL.currentFilterStruct) />
+															, 	currentFilterStruct = LOCAL.currentFilterStruct
+															,	searchText = LOCAL.searchText) />
 															
 		<cfset LOCAL.pageData.pageArray = _getPageArray(	currentPage = LOCAL.pageData.pageNumber
 														, 	totalPages = LOCAL.pageData.paginationInfo.totalPages
 														,	categoryName = LOCAL.pageData.category.getDisplayName()
 														,	categoryId = LOCAL.pageData.category.getCategoryId()
 														, 	sortTypeId = LOCAL.pageData.sortTypeId
-														, 	filterStruct = LOCAL.currentFilterStruct) />
+														, 	filterStruct = LOCAL.currentFilterStruct
+														,	searchText = LOCAL.searchText) />
 														
 		<cfset LOCAL.pageData.sortTypeArray = _getSortTypeArray(	categoryName = LOCAL.pageData.category.getDisplayName()
 																,	categoryId = LOCAL.pageData.category.getCategoryId()
@@ -95,6 +97,7 @@
 		<cfargument name="category" type="any" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
 		<cfargument name="currentFilterStruct" type="struct" required="true" />
+		<cfargument name="searchText" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
 				
@@ -145,6 +148,7 @@
 																						, pageNumber = 1
 																						, sortTypeId = ARGUMENTS.sortTypeId
 																						, filterStruct = LOCAL.currentFilterStruct
+																						, searchText = ARGUMENTS.searchText
 																						) />
 					<cfset ArrayPrepend(LOCAL.filterStruct.filterValueArray, LOCAL.newFilterValue) />
 				</cfloop>
@@ -161,6 +165,7 @@
 		<cfargument name="categoryId" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
 		<cfargument name="filterStruct" type="struct" required="true" />
+		<cfargument name="searchText" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
 				
@@ -178,7 +183,8 @@
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 1
-																	, filterStruct = ARGUMENTS.filterStruct) />
+																	, filterStruct = ARGUMENTS.filterStruct
+																	, searchText = ARGUMENTS.searchText) />
 																	
 		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
 		
@@ -240,6 +246,7 @@
 		<cfargument name="pageNumber" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
 		<cfargument name="filterStruct" type="struct" required="true" />
+		<cfargument name="searchText" type="string" required="true" />
 		
 		<cfset var pathInfo = "/#URLEncodedFormat(ARGUMENTS.categoryName)#/#ARGUMENTS.categoryId#/#ARGUMENTS.pageNumber#/#ARGUMENTS.sortTypeId#/" />
 		<cfset var filterPathInfo = "" />
@@ -252,7 +259,7 @@
 		<cfif filterPathInfo EQ "">
 			<cfset filterPathInfo = "-" />
 		</cfif>
-		<cfset pathInfo &= "#filterPathInfo#/-/" />
+		<cfset pathInfo &= "#filterPathInfo#/#ARGUMENTS.searchText#/" />
 		
 		<cfreturn pathInfo />	
 	</cffunction>
@@ -264,6 +271,7 @@
 		<cfargument name="categoryId" type="numeric" required="true" />
 		<cfargument name="sortTypeId" type="numeric" required="true" />
 		<cfargument name="filterStruct" type="struct" required="true" />
+		<cfargument name="searchText" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
 				
@@ -277,7 +285,8 @@
 														, categoryId = ARGUMENTS.categoryId
 														, pageNumber = 1
 														, sortTypeId = ARGUMENTS.sortTypeId
-														, filterStruct = ARGUMENTS.filterStruct) />
+														, filterStruct = ARGUMENTS.filterStruct
+														, searchText = ARGUMENTS.searchText) />
 			<cfset ArrayAppend(LOCAL.pageArray, LOCAL.pageStruct) />
 		</cfif>
 		
@@ -309,7 +318,8 @@
 														, categoryId = ARGUMENTS.categoryId
 														, pageNumber = LOCAL.i
 														, sortTypeId = ARGUMENTS.sortTypeId
-														, filterStruct = ARGUMENTS.filterStruct) />
+														, filterStruct = ARGUMENTS.filterStruct
+														, searchText = ARGUMENTS.searchText) />
 			<cfset ArrayAppend(LOCAL.pageArray, LOCAL.pageStruct) />
 		</cfloop>
 		
@@ -321,7 +331,8 @@
 														, categoryId = ARGUMENTS.categoryId
 														, pageNumber = ARGUMENTS.totalPages
 														, sortTypeId = ARGUMENTS.sortTypeId
-														, filterStruct = ARGUMENTS.filterStruct) />
+														, filterStruct = ARGUMENTS.filterStruct
+														, searchText = ARGUMENTS.searchText) />
 			<cfset ArrayAppend(LOCAL.pageArray, LOCAL.pageStruct) />
 		</cfif>
 				
