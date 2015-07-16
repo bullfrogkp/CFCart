@@ -44,7 +44,6 @@
 			<cfif ArrayLen(LOCAL.messageArray) GT 0>
 				<cfset SESSION.temp.message = {} />
 				<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
-				<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
 			</cfif>
 		</cfif>
 		

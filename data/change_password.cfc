@@ -62,7 +62,12 @@
 			<cfset EntitySave(LOCAL.customer) />
 		</cfif>
 		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#myaccount/change_password.cfm" />
+		<cfset LOCAL.messageArray = [] />
+		<cfset ArrayAppend(LOCAL.messageArray,"Your password has been updated") />
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+		</cfif>
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
