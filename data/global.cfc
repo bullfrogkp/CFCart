@@ -34,9 +34,14 @@
 		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		
-		<cfif CGI.SCRIPT_NAME EQ "products.cfm" AND ListGetAt(CGI.PATH_INFO,6,"/") NEQ "">
-			<cfset LOCAL.pageData.searchText = Trim(URL.search_text) />
-			<cfset LOCAL.pageData.categoryId = URL.search_category_id />
+		<cfif 	ListLen(CGI.PATH_INFO,"/") EQ 6 
+				AND 
+				Trim(ListGetAt(CGI.PATH_INFO,6,"/"))  NEQ "" 
+				AND 
+				Trim(ListGetAt(CGI.PATH_INFO,6,"/")) NEQ "-">
+			<cfset LOCAL.pageData.searchText = Trim(ListGetAt(CGI.PATH_INFO,6,"/")) />
+			<cfset LOCAL.pageData.categoryId = ListGetAt(CGI.PATH_INFO,2,"/") />
+			
 		<cfelse>
 			<cfset LOCAL.pageData.searchText = "" />
 			<cfset LOCAL.pageData.categoryId = 0 />

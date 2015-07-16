@@ -252,7 +252,7 @@
 		<cfif filterPathInfo EQ "">
 			<cfset filterPathInfo = "-" />
 		</cfif>
-		<cfif pathInfo &= "#filterPathInfo#/-/" />
+		<cfset pathInfo &= "#filterPathInfo#/-/" />
 		
 		<cfreturn pathInfo />	
 	</cffunction>
