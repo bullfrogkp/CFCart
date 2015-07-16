@@ -35,13 +35,24 @@
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		
 		<cfif 	ListLen(CGI.PATH_INFO,"/") EQ 6 
-				AND 
-				Trim(ListGetAt(CGI.PATH_INFO,6,"/"))  NEQ "" 
-				AND 
-				Trim(ListGetAt(CGI.PATH_INFO,6,"/")) NEQ "-">
-			<cfset LOCAL.pageData.searchText = Trim(ListGetAt(CGI.PATH_INFO,6,"/")) />
-			<cfset LOCAL.pageData.categoryId = ListGetAt(CGI.PATH_INFO,2,"/") />
+				AND
+				(
+					Trim(ListGetAt(CGI.PATH_INFO,6,"/")) NEQ "-"
+					OR
+					Trim(ListGetAt(CGI.PATH_INFO,2,"/")) NEQ "-"
+				)>
+				
+			<cfif Trim(ListGetAt(CGI.PATH_INFO,6,"/")) EQ "-">
+				<cfset LOCAL.pageData.searchText = "" />
+			<cfelse>
+				<cfset LOCAL.pageData.searchText = Trim(ListGetAt(CGI.PATH_INFO,6,"/")) />
+			</cfif>
 			
+			<cfif Trim(ListGetAt(CGI.PATH_INFO,2,"/")) EQ "-">
+				<cfset LOCAL.pageData.categoryId = 0 />
+			<cfelse>
+				<cfset LOCAL.pageData.categoryId = ListGetAt(CGI.PATH_INFO,2,"/") />
+			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.searchText = "" />
 			<cfset LOCAL.pageData.categoryId = 0 />
