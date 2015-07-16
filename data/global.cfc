@@ -72,9 +72,10 @@
 	
 		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND Trim(FORM.search_text) NEQ "">
 			<cfif FORM.search_category_id NEQ 0>
-				<cfset LOCAL.pathInfo = "/-/#FORM.search_category_id#/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+				<cfset LOCAL.category = EntityLoadByPK("category",FORM.search_category_id) />
+				<cfset LOCAL.pathInfo = "/#URLEncodedFormat(LOCAL.category.getName())#/#FORM.search_category_id#/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
 			<cfelse>
-				<cfset LOCAL.pathInfo = "/-/-/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+				<cfset LOCAL.pathInfo = "/#URLEncodedFormat(LOCAL.category.getName())#/-/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
 			</cfif>
 				
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#products.cfm#LOCAL.pathInfo#" />

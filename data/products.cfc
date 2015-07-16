@@ -72,7 +72,8 @@
 		<cfset LOCAL.pageData.sortTypeArray = _getSortTypeArray(	categoryName = LOCAL.pageData.category.getDisplayName()
 																,	categoryId = LOCAL.pageData.category.getCategoryId()
 																, 	sortTypeId = LOCAL.pageData.sortTypeId
-																, 	filterStruct = LOCAL.currentFilterStruct) />												
+																, 	filterStruct = LOCAL.currentFilterStruct
+																,	searchText = LOCAL.searchText) />												
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!---------------------------------------------------------------------------------------------------------------------->
@@ -200,7 +201,8 @@
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 2
-																	, filterStruct = ARGUMENTS.filterStruct) />
+																	, filterStruct = ARGUMENTS.filterStruct
+																	, searchText = ARGUMENTS.searchText) />
 		
 		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
 		
@@ -217,7 +219,8 @@
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 3
-																	, filterStruct = ARGUMENTS.filterStruct) />
+																	, filterStruct = ARGUMENTS.filterStruct
+																	, searchText = ARGUMENTS.searchText) />
 		
 		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
 		
@@ -233,7 +236,8 @@
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 4
-																	, filterStruct = ARGUMENTS.filterStruct) />
+																	, filterStruct = ARGUMENTS.filterStruct
+																	, searchText = ARGUMENTS.searchText) />
 																	
 		<cfset ArrayAppend(LOCAL.sortTypeArray, LOCAL.sortType) />
 				
