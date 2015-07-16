@@ -75,7 +75,7 @@
 				<cfset LOCAL.category = EntityLoadByPK("category",FORM.search_category_id) />
 				<cfset LOCAL.pathInfo = "/#URLEncodedFormat(LOCAL.category.getName())#/#FORM.search_category_id#/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
 			<cfelse>
-				<cfset LOCAL.pathInfo = "/#URLEncodedFormat(LOCAL.category.getName())#/-/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
+				<cfset LOCAL.pathInfo = "/-/-/1/1/-/#URLEncodedFormat(Trim(FORM.search_text))#/" />
 			</cfif>
 				
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#products.cfm#LOCAL.pathInfo#" />
