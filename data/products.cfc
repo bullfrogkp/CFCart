@@ -19,7 +19,11 @@
 			</cfloop>
 		</cfif>
 		
-		<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
+		<cfif LOCAL.searchText EQ "-">
+			<cfset LOCAL.pageData.category = EntityLoadByPK("category",LOCAL.categoryId) />
+		<cfelse>
+			<cfset LOCAL.pageData.category = EntityLoad("category",{name="search result"},true) />
+		</cfif>
 		
 		<cfset LOCAL.categoryService = new "#APPLICATION.componentPathRoot#core.services.categoryService"() />
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
