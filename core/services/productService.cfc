@@ -216,4 +216,18 @@
 		<cfreturn retStruct>
 	</cffunction>
 	
+	<cffunction name="searchProducts" access="remote" returntype="array" returnformat="json" output="false">
+		<cfargument name="relatedProductGroupId" type="numeric" required="true">
+		<cfargument name="categoryId" type="numeric" required="true">
+		<cfargument name="keywords" type="string" required="false">
+		
+		<cfset var LOCAL = {} />
+		
+		<cfquery name="LOCAL.getProducts">
+			SELECT	p.name
+			FROM	product p 
+		</cfquery>
+		
+		<cfreturn LOCAL.getProducts>
+	</cffunction>
 </cfcomponent>

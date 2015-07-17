@@ -184,6 +184,26 @@
 				$("##remove-filter-id-list").val($("##remove-filter-id-list").val() + $("##deleted-filter-value-id-hidden").val() + ',');
 			}	
 		});
+		
+		$("##search-product").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'searchProducts',
+							relatedProductGroupId: 1,
+							categoryId: 1,
+							keywords: ''
+						},		
+						success: function(result) {
+							if(result.SUCCESS == true)
+							{
+								
+							}
+						}
+			});
+		});
 	});
 </script>
 <section class="content-header">
@@ -541,14 +561,14 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<div class="row">
 							<div class="col-xs-3" style="padding-right:0;">
-								<select name="best_seller_product_group_id" class="form-control">
+								<select name="product_group_id" id="product-group-id" class="form-control">
 									<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
 										<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
 									</cfloop>
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;">
-								<select class="form-control" name="category_id">
+								<select class="form-control" name="category_id" id="category-id">
 									<option value="">All Categories</option>
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 										<option value="#cat.getCategoryId()#"
@@ -576,10 +596,10 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
-								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords">
+								<input type="text" name="keywords" id="keywords" class="form-control" placeholder="Keywords">
 							</div>
 							<div class="col-xs-1" style="padding-left:10px;">
-								<button name="search_category" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
+								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
 							</div>
 						</div>
 						<div class="row" style="margin-top:18px;">
