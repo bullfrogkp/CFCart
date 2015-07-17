@@ -579,12 +579,12 @@
 								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords">
 							</div>
 							<div class="col-xs-1" style="padding-left:10px;">
-								<button name="search_category" type="button" class="btn btn-sm btn-primary search-button">Search</button>
+								<button name="search_category" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
 							</div>
 						</div>
 						<div class="row" style="margin-top:18px;">
-							<div class="col-xs-4">	
-								<select name="product_searched" id="product-searched" multiple class="form-control" style="height:200px;">
+							<div class="col-xs-5">	
+								<select name="product_searched" id="product-searched" multiple class="form-control" style="height:340px;">
 									<option>product</option>
 									<option>product</option>
 									<option>product</option>
@@ -595,26 +595,27 @@
 							</div>
 							<div class="col-xs-2" style="text-align:center;">
 								<a class="btn btn-app">
-									<i class="fa fa-angle-double-right"></i> All right
+									<i class="fa fa-angle-double-right"></i> Add All
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-right"></i>
+									<i class="fa fa-angle-right"></i> Add
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-trash-o"></i>
+									<i class="fa fa-angle-left"></i> Remove
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-left"></i>
+									<i class="fa fa-angle-double-left"></i> Remove All
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-double-left"></i>
+									<i class="fa fa-trash-o"></i> Delete
 								</a>
 							</div>
-							<div class="col-xs-4">	
-								<select name="product_selected" id="product-selected" multiple class="form-control" style="height:200px;">
+							<div class="col-xs-5">	
+								<select name="product_selected" id="product-selected" multiple class="form-control" style="height:340px;">
 								
 								</select>
 							</div>
+						</div>
 						<!---
 						<div class="form-group">
 							<a data-toggle="modal" data-target="##add-best-seller-product-modal" href="">
