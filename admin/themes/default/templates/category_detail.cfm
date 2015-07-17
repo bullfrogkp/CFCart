@@ -539,9 +539,15 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
-						<!---
 						<div class="row">
-							<div class="col-xs-5" style="padding-right:0;">
+							<div class="col-xs-3" style="padding-right:0;">
+								<select name="best_seller_product_group_id" class="form-control">
+									<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
+										<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+									</cfloop>
+								</select>
+							</div>
+							<div class="col-xs-4" style="padding-right:0;">
 								<select class="form-control" name="category_id">
 									<option value="">All Categories</option>
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
@@ -569,14 +575,47 @@
 									</cfloop>
 								</select>
 							</div>
-							<div class="col-xs-6" style="padding-right:0;padding-left:10px;">
+							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
 								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords">
 							</div>
 							<div class="col-xs-1" style="padding-left:10px;">
 								<button name="search_category" type="button" class="btn btn-sm btn-primary search-button">Search</button>
 							</div>
 						</div>
-						--->
+						<div class="row" style="margin-top:18px;">
+							<div class="col-xs-4">	
+								<select name="product_searched" id="product-searched" multiple class="form-control" style="height:200px;">
+									<option>product</option>
+									<option>product</option>
+									<option>product</option>
+									<option>product</option>
+									<option>product</option>
+									<option>product</option>
+								</select>
+							</div>
+							<div class="col-xs-2" style="text-align:center;">	
+								<a class="btn btn-app">
+									<i class="fa fa-angle-right"></i> Edit
+								</a>
+								<a class="btn btn-app">
+									<i class="fa fa-angle-double-right"></i> Edit
+								</a>
+								<a class="btn btn-app">
+									<i class="fa fa-angle-left"></i> Edit
+								</a>
+								<a class="btn btn-app">
+									<i class="fa fa-angle-double-left"></i> Edit
+								</a>
+								<a class="btn btn-app">
+									<i class="fa fa-angle-left"></i> Edit
+								</a>
+							</div>
+							<div class="col-xs-4">	
+								<select name="product_selected" id="product-selected" multiple class="form-control" style="height:200px;">
+								
+								</select>
+							</div>
+						<!---
 						<div class="form-group">
 							<a data-toggle="modal" data-target="##add-best-seller-product-modal" href="">
 								<span class="label label-primary">Add New Product</span>
@@ -610,6 +649,7 @@
 								</cfif>
 							</div>
 						</div>
+						--->
 					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
