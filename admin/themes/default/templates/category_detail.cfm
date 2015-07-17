@@ -593,21 +593,21 @@
 									<option>product</option>
 								</select>
 							</div>
-							<div class="col-xs-2" style="text-align:center;">	
+							<div class="col-xs-2" style="text-align:center;">
 								<a class="btn btn-app">
-									<i class="fa fa-angle-right"></i> Edit
+									<i class="fa fa-angle-double-right"></i> All right
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-double-right"></i> Edit
+									<i class="fa fa-angle-right"></i>
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-left"></i> Edit
+									<i class="fa fa-trash-o"></i>
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-double-left"></i> Edit
+									<i class="fa fa-angle-left"></i>
 								</a>
 								<a class="btn btn-app">
-									<i class="fa fa-angle-left"></i> Edit
+									<i class="fa fa-angle-double-left"></i>
 								</a>
 							</div>
 							<div class="col-xs-4">	
