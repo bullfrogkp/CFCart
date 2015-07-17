@@ -219,7 +219,7 @@
 	<cffunction name="searchProducts" access="remote" returntype="query" returnformat="json" output="false">
 		<cfargument name="relatedProductGroupId" type="numeric" required="true">
 		<cfargument name="categoryId" type="numeric" required="true">
-		<cfargument name="keywords" type="string" required="false">
+		<cfargument name="keywords" type="string" required="true">
 		
 		<cfset var LOCAL = {} />
 		
@@ -228,11 +228,12 @@
 			FROM	product p 
 			JOIN	product_type pt ON p.product_type_id = pt.product_type_id
 			JOIN	category_product_rela cpr ON cpr.product_id = p.product_id
+			JOIN	
 			WHERE	pt.name = 'simple'
 			<cfif ARGUMENTS.relatedProductGroupId NEQ 0>
-			
+			AND		
 			</cfif>
-			<cfif ARGUMENTS.relatedProductGroupId NEQ 0>
+			<cfif ARGUMENTS.categoryId NEQ 0>
 			
 			</cfif>
 		</cfquery>
