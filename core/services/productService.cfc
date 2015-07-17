@@ -216,7 +216,7 @@
 		<cfreturn retStruct>
 	</cffunction>
 	
-	<cffunction name="searchProducts" access="remote" returntype="array" returnformat="json" output="false">
+	<cffunction name="searchProducts" access="remote" returntype="query" returnformat="json" output="false">
 		<cfargument name="relatedProductGroupId" type="numeric" required="true">
 		<cfargument name="categoryId" type="numeric" required="true">
 		<cfargument name="keywords" type="string" required="false">
@@ -226,6 +226,15 @@
 		<cfquery name="LOCAL.getProducts">
 			SELECT	p.name
 			FROM	product p 
+			JOIN	product_type pt ON p.product_type_id = pt.product_type_id
+			JOIN	category_product_rela cpr ON cpr.product_id = p.product_id
+			WHERE	pt.name = 'simple'
+			<cfif ARGUMENTS.relatedProductGroupId NEQ 0>
+			
+			</cfif>
+			<cfif ARGUMENTS.relatedProductGroupId NEQ 0>
+			
+			</cfif>
 		</cfquery>
 		
 		<cfreturn LOCAL.getProducts>

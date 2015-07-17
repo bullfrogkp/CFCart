@@ -561,6 +561,7 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<div class="row">
 							<div class="col-xs-3" style="padding-right:0;">
+								<option value="0">Product Group</option>
 								<select name="product_group_id" id="product-group-id" class="form-control">
 									<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
 										<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
@@ -569,7 +570,7 @@
 							</div>
 							<div class="col-xs-4" style="padding-right:0;">
 								<select class="form-control" name="category_id" id="category-id">
-									<option value="">All Categories</option>
+									<option value="0">Category</option>
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 										<option value="#cat.getCategoryId()#"
 										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
