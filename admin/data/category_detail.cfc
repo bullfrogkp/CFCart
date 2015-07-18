@@ -293,7 +293,7 @@
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
-		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
+		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
 		
 		<cfset LOCAL.currentPageName = "products" />
 		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
