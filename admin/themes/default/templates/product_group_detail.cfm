@@ -21,9 +21,13 @@
 							var productArray = response.DATA;
 							var productName = '';
 							var productId = '';
+							
+							$("##products-searched").empty();
 							for (var i = 0, len = productArray.length; i < len; i++) {
 								productName = productArray[i][0];
 								productId = productArray[i][1];
+								
+								$("##products-searched").append('<option value="' + productId + '">' + productName + '</option>');
 							}
 						}
 			});
@@ -106,7 +110,7 @@
 					</div>
 					<div class="row" style="margin-top:18px;">
 						<div class="col-xs-5">	
-							<select name="product_searched" id="product-searched" multiple class="form-control" style="height:340px;">
+							<select name="products_searched" id="products-searched" multiple class="form-control" style="height:340px;">
 								<option>product</option>
 								<option>product</option>
 								<option>product</option>
@@ -133,7 +137,7 @@
 							</a>
 						</div>
 						<div class="col-xs-5">	
-							<select name="product_selected" id="product-selected" multiple class="form-control" style="height:340px;">
+							<select name="products_selected" id="products-selected" multiple class="form-control" style="height:340px;">
 							
 							</select>
 						</div>
