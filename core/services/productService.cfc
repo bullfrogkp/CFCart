@@ -230,6 +230,7 @@
 			JOIN	category_product_rela cpr ON cpr.product_id = p.product_id
 			JOIN	
 			WHERE	pt.name = 'simple'
+			AND		p.name IS NOT NULL
 			<cfif ARGUMENTS.relatedProductGroupId NEQ 0>
 			AND		
 			</cfif>
