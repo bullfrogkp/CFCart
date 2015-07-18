@@ -17,10 +17,13 @@
 							categoryId: 0,
 							keywords: ''
 						},		
-						success: function(result) {
-							if(result.SUCCESS == true)
-							{
-								
+						success: function(response) {
+							var productArray = response.DATA;
+							var productName = '';
+							var productId = '';
+							for (var i = 0, len = productArray.length; i < len; i++) {
+								productName = productArray[i][0];
+								productId = productArray[i][1];
 							}
 						}
 			});
