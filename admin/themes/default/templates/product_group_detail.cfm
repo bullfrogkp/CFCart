@@ -40,7 +40,7 @@
 					<div class="row">
 						<div class="col-xs-3" style="padding-right:0;">
 							<select name="product_group_id" id="product-group-id" class="form-control">
-								<option value="0">Product Group</option>
+								<option value="0">Choose Product Group ...</option>
 								<cfloop array="#REQUEST.pageData.productGroups#" index="group">
 									<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
 								</cfloop>
@@ -48,7 +48,7 @@
 						</div>
 						<div class="col-xs-4" style="padding-right:0;">
 							<select class="form-control" name="category_id" id="category-id">
-								<option value="0">Category</option>
+								<option value="0">Choose Category ...</option>
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 									<option value="#cat.getCategoryId()#"
 									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>

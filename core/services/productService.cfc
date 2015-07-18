@@ -217,7 +217,7 @@
 	</cffunction>
 	
 	<cffunction name="searchProducts" access="remote" returntype="query" returnformat="json" output="false">
-		<cfargument name="relatedProductGroupId" type="numeric" required="true">
+		<cfargument name="productGroupId" type="numeric" required="true">
 		<cfargument name="categoryId" type="numeric" required="true">
 		<cfargument name="keywords" type="string" required="true">
 		
@@ -225,18 +225,17 @@
 		
 		<cfquery name="LOCAL.getProducts">
 			SELECT	p.name
+			,		p.product_id
 			FROM	product p 
 			JOIN	product_type pt ON p.product_type_id = pt.product_type_id
-			JOIN	category_product_rela cpr ON cpr.product_id = p.product_id
-			JOIN	
+			<cfif ARGUMENTS.categoryId NEQ 0>
+			JOIN	category_product_rela cpr ON cpr.product_id = p.product_id AND cpr.category_id = <cfqueryparam value="#ARGUMENTS.productGroupId#" cfsqltype="cf_sql_integer" />
+			</cfif>
+			<cfif ARGUMENTS.productGroupId NEQ 0>
+			JOIN	product_group_product_rela pgpr ON p.product_id = pgpr.product_id AND pgpr.product_group_id = <cfqueryparam value="#ARGUMENTS.productGroupId#" cfsqltype="cf_sql_integer" />
+			</cfif>
 			WHERE	pt.name = 'simple'
 			AND		p.name IS NOT NULL
-			<cfif ARGUMENTS.relatedProductGroupId NEQ 0>
-			AND		
-			</cfif>
-			<cfif ARGUMENTS.categoryId NEQ 0>
-			
-			</cfif>
 		</cfquery>
 		
 		<cfreturn LOCAL.getProducts>
