@@ -339,8 +339,8 @@
                             <ul class="treeview-menu">
                                 <li class="products"><a href="#APPLICATION.absoluteUrlWeb#admin/products.cfm"><i class="fa fa-angle-double-right"></i> Products</a></li>
                                 <li class="product_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product</a></li>
-								<li class="related_product_groups"><a href="#APPLICATION.absoluteUrlWeb#admin/related_product_groups.cfm"><i class="fa fa-angle-double-right"></i> Product Groups</a></li>
-                                <li class="related_product_group_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/related_product_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product Group</a></li>
+								<li class="product_groups"><a href="#APPLICATION.absoluteUrlWeb#admin/product_groups.cfm"><i class="fa fa-angle-double-right"></i> Product Groups</a></li>
+                                <li class="product_group_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/product_group_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Product Group</a></li>
                             </ul>
                         </li>
 						

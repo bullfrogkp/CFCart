@@ -39,10 +39,10 @@
 				<div class="box-body">
 					<div class="row">
 						<div class="col-xs-3" style="padding-right:0;">
-							<option value="0">Product Group</option>
 							<select name="product_group_id" id="product-group-id" class="form-control">
-								<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
-									<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+								<option value="0">Product Group</option>
+								<cfloop array="#REQUEST.pageData.productGroups#" index="group">
+									<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
 								</cfloop>
 							</select>
 						</div>
