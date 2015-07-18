@@ -111,12 +111,6 @@
 					<div class="row" style="margin-top:18px;">
 						<div class="col-xs-5">	
 							<select name="products_searched" id="products-searched" multiple class="form-control" style="height:340px;">
-								<option>product</option>
-								<option>product</option>
-								<option>product</option>
-								<option>product</option>
-								<option>product</option>
-								<option>product</option>
 							</select>
 						</div>
 						<div class="col-xs-2" style="text-align:center;">
@@ -138,7 +132,6 @@
 						</div>
 						<div class="col-xs-5">	
 							<select name="products_selected" id="products-selected" multiple class="form-control" style="height:340px;">
-							
 							</select>
 						</div>
 					</div>
