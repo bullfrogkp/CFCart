@@ -34,19 +34,23 @@
 		});
 		
 		$('##add-all').click(function() {  
-			return !$('##products-searched option:selected').remove().appendTo('##products-selected');  
+			$("##products-searched").each(function() {
+				$('##products-searched option').remove().appendTo('##products-selected'); 
+			});
 		});  
 		
 		$('##remove-all').click(function() {  
-			return !$('#products-selected option:selected').remove().appendTo('#products-searched');  
+			$("##products-selected").each(function() {
+				$('##products-selected option').remove().appendTo('##products-searched'); 
+			});  
 		}); 
 
 		$('##add').click(function() {  
-			return !$('#products-searched option:selected').remove().appendTo('#products-selected');  
+			return !$('##products-searched option:selected').remove().appendTo('##products-selected').removeAttr("selected"); 
 		});  
 		
 		$('##remove').click(function() {  
-			return !$('#products-selected option:selected').remove().appendTo('#products-searched');  
+			return !$('##products-selected option:selected').remove().appendTo('##products-searched').removeAttr("selected"); 
 		});		
 	});
 </script>
@@ -126,28 +130,25 @@
 					</div>
 					<div class="row" style="margin-top:18px;">
 						<div class="col-xs-5">	
-							<select name="products_searched" id="products-searched" multiple class="form-control" style="height:340px;">
+							<select name="products_searched" id="products-searched" multiple class="form-control" style="height:270px;">
 							</select>
 						</div>
 						<div class="col-xs-2" style="text-align:center;">
-							<a class="btn btn-app">
+							<a class="btn btn-app" id="add-all">
 								<i class="fa fa-angle-double-right"></i> Add All
 							</a>
-							<a class="btn btn-app">
+							<a class="btn btn-app" id="add">
 								<i class="fa fa-angle-right"></i> Add
 							</a>
-							<a class="btn btn-app">
+							<a class="btn btn-app" id="remove">
 								<i class="fa fa-angle-left"></i> Remove
 							</a>
-							<a class="btn btn-app">
+							<a class="btn btn-app" id="remove-all">
 								<i class="fa fa-angle-double-left"></i> Remove All
-							</a>
-							<a class="btn btn-app">
-								<i class="fa fa-trash-o"></i> Delete
 							</a>
 						</div>
 						<div class="col-xs-5">	
-							<select name="products_selected" id="products-selected" multiple class="form-control" style="height:340px;">
+							<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
 							</select>
 						</div>
 					</div>
