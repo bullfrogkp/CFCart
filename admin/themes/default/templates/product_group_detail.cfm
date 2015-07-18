@@ -32,6 +32,22 @@
 						}
 			});
 		});
+		
+		$('##add-all').click(function() {  
+			return !$('##products-searched option:selected').remove().appendTo('##products-selected');  
+		});  
+		
+		$('##remove-all').click(function() {  
+			return !$('#products-selected option:selected').remove().appendTo('#products-searched');  
+		}); 
+
+		$('##add').click(function() {  
+			return !$('#products-searched option:selected').remove().appendTo('#products-selected');  
+		});  
+		
+		$('##remove').click(function() {  
+			return !$('#products-selected option:selected').remove().appendTo('#products-searched');  
+		});		
 	});
 </script>
 <section class="content-header">
