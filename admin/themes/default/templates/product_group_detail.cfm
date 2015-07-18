@@ -5,6 +5,26 @@
 		$( ".delete-product" ).click(function() {
 			$("##product_id").val($(this).attr('productid'));
 		});
+		
+		$("##search-product").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'searchProducts',
+							productGroupId: 0,
+							categoryId: 0,
+							keywords: ''
+						},		
+						success: function(result) {
+							if(result.SUCCESS == true)
+							{
+								
+							}
+						}
+			});
+		});
 	});
 </script>
 <section class="content-header">

@@ -192,7 +192,7 @@
 						dataType: 'json',
 						data: {
 							method: 'searchProducts',
-							relatedProductGroupId: 1,
+							productGroupId: 1,
 							categoryId: 1,
 							keywords: ''
 						},		
