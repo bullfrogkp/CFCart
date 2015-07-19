@@ -323,26 +323,6 @@
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ORMFlush() />
 			
-			<!--- create sub products --->		
-			<cfset LOCAL.attributeValueIdArray = [] />
-			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-			
-			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
-				<cfif LOCAL.productAttributeRela.getRequired() EQ true>
-					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
-				</cfif>
-			</cfloop>
-			
-			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
-		
-			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
-				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
-				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
-				</cfif>
-			</cfloop>
-			
-			
 			<!--- update sub product properties --->
 			<cfif IsNumeric(FORM.id)>
 				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
@@ -369,6 +349,25 @@
 					</cfloop>
 				</cfloop>
 			</cfif>
+			
+			<!--- create sub products --->		
+			<cfset LOCAL.attributeValueIdArray = [] />
+			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+			
+			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
+				<cfif LOCAL.productAttributeRela.getRequired() EQ true>
+					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
+				</cfif>
+			</cfloop>
+			
+			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
+		
+			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
+				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+				<cfif LOCAL.subProduct.productid EQ "">
+					<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+				</cfif>
+			</cfloop>
 										
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
@@ -571,6 +570,7 @@
 		<cfset LOCAL.newProduct = EntityNew("product")>
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
 		<cfset LOCAL.newProduct.setProductType(EntityLoad("product_type",{name="configured_product"},true)) />
+		<cfset LOCAL.newProduct.setStock(LOCAL.parentProduct.getStock()) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 		
@@ -612,6 +612,8 @@
 			<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 		</cfloop>
 		
+		<cfset EntitySave(LOCAL.newProduct) />
+		<cfset LOCAL.newProduct.setSKU(LOCAL.parentProduct.getSKU() & "-" & LOCAL.newProduct.getProductId()) />
 		<cfset EntitySave(LOCAL.newProduct) />
 		<cfset LOCAL.parentProduct.addSubProduct(LOCAL.newProduct) />
 		<cfset EntitySave(LOCAL.parentProduct) />
