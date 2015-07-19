@@ -807,10 +807,6 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
-							<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
-							<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product Group</button>
-						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
 						<div class="row">
