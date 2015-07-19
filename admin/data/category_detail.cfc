@@ -237,11 +237,11 @@
 		
 			<cfif StructKeyExists(FORM,"best_seller_product_group_id")>			
 				<cfloop list="#FORM.best_seller_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.bestSellerSection) />
-						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.product) />
 						<cfset LOCAL.newSectionProduct.setCategory(LOCAL.category) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>

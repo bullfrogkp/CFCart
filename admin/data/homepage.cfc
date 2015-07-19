@@ -84,11 +84,11 @@
 		
 			<cfif StructKeyExists(FORM,"top_selling_product_group_id")>			
 				<cfloop list="#FORM.top_selling_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.product) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -109,11 +109,11 @@
 		
 			<cfif StructKeyExists(FORM,"group_buying_product_group_id")>			
 				<cfloop list="#FORM.group_buying_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
+					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.relatedProduct) />
+						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.product) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -180,7 +180,7 @@
 		<cfset LOCAL.pageData.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
 		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
 		
-		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
+		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
 		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />

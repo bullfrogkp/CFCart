@@ -418,9 +418,9 @@
 			
 			<cfif StructKeyExists(FORM,"related_product_group_id")>			
 				<cfloop list="#FORM.related_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.relatedProductGroup = EntityLoadByPK("related_product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.relatedProductGroup.getRelatedProducts()#" index="LOCAL.relatedProduct">
-						<cfset LOCAL.product.addRelatedProduct(LOCAL.relatedProduct) />
+					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
+					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
+						<cfset LOCAL.product.addRelatedProduct(LOCAL.product) />
 					</cfloop>
 				</cfloop>
 			</cfif>
@@ -473,7 +473,7 @@
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(isSpecial=false) />
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
-		<cfset LOCAL.pageData.relatedProductGroups = EntityLoad("related_product_group") />
+		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
 		<cfset LOCAL.pageData.attributeSets = EntityLoad("attribute_set",{isDeleted = false}) />
 		<cfset LOCAL.pageData.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
 		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isDeleted = false, isSpecial = true, isEnabled = true},"rank Asc") />
