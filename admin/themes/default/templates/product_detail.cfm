@@ -296,7 +296,6 @@
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="sub_product_id" id="sub_product_id" value="" />
-<input type="hidden" name="delete_related_product_id" id="delete_related_product_id" value="" />
 <input type="hidden" name="new_attribute_imagename" id="new_attribute_imagename" value="" />
 <input type="hidden" name="product_shipping_method_rela_id" id="product_shipping_method_rela_id" value="" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
@@ -740,32 +739,77 @@
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" id="tab_6">
 					
-						<div class="form-group">
-							<label>Related Products</label>
-							<a data-toggle="modal" data-target="##add-product-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Product</span></a>
-							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getRelatedProductsMV())>
-									<cfloop array="#REQUEST.pageData.product.getRelatedProductsMV()#" index="product">	
-										<div class="col-xs-2">
-											<div class="box">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="default">
-															<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">ID: #product.getProductId()#</a></th>
-															<th><a relatedproductid="#product.getProductId()#" href="" class="delete-related-product pull-right" data-toggle="modal" data-target="##delete-product-modal"><span class="label label-danger">Delete</span></a></th>
-														</tr>
-														<tr>
-															<td colspan="2">
-																<img class="img-responsive" src="#product.getDefaultImageLink(type='small')#" />
-															</td>
-														</tr>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
+						<div class="row">
+							<div class="col-xs-3" style="padding-right:0;">
+								<select name="product_group_id" id="product-group-id" class="form-control">
+									<option value="0">Choose Product Group ...</option>
+									<cfloop array="#REQUEST.pageData.productGroups#" index="group">
+										<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
 									</cfloop>
-								</cfif>
+								</select>
 							</div>
+							<div class="col-xs-4" style="padding-right:0;">
+								<select class="form-control" name="category_id" id="category-id">
+									<option value="0">Choose Category ...</option>
+									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+										<option value="#cat.getCategoryId()#"
+										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
+										selected
+										</cfif>
+										>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+										<cfloop array="#cat.getSubCategories()#" index="subCat">
+											<option value="#subCat.getCategoryId()#"
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
+											selected
+											</cfif>
+											>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+												<option value="#thirdCat.getCategoryId()#"
+												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
+												selected
+												</cfif>
+												>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+											</cfloop>
+											</li>
+										</cfloop>
+										</li>
+									</cfloop>
+								</select>
+							</div>
+							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
+								<input type="text" name="keywords" id="keywords" class="form-control" placeholder="Keywords">
+							</div>
+							<div class="col-xs-1" style="padding-left:10px;">
+								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
+							</div>
+						</div>
+						<div class="row" style="margin-top:18px;">
+							<div class="col-xs-5">	
+								<select name="products_searched" id="products-searched" multiple class="form-control" style="height:270px;">
+								</select>
+							</div>
+							<div class="col-xs-2" style="text-align:center;">
+								<a class="btn btn-app" id="add-all">
+									<i class="fa fa-angle-double-right"></i> Add All
+								</a>
+								<a class="btn btn-app" id="add">
+									<i class="fa fa-angle-right"></i> Add
+								</a>
+								<a class="btn btn-app" id="remove">
+									<i class="fa fa-angle-left"></i> Remove
+								</a>
+								<a class="btn btn-app" id="remove-all">
+									<i class="fa fa-angle-double-left"></i> Remove All
+								</a>
+							</div>
+							<div class="col-xs-5">	
+								<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
+							<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product Group</button>
 						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
