@@ -768,8 +768,8 @@
 				<div class="form-group">
 					<label>Product Group</label>
 					<select name="best_seller_product_group_id" multiple class="form-control">
-						<cfloop array="#REQUEST.pageData.relatedProductGroups#" index="group">
-							<option value="#group.getRelatedProductGroupId()#">#group.getDisplayName()#</option>
+						<cfloop array="#REQUEST.pageData.productGroups#" index="group">
+							<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
 						</cfloop>
 					</select>
 				</div>
