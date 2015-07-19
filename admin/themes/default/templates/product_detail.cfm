@@ -787,7 +787,7 @@
 					
 						<div class="row">
 							<div class="col-xs-3" style="padding-right:0;">
-								<select name="product_group_id" id="product-group-id" class="form-control">
+								<select name="serach_product_group_id" id="serach-product-group-id" class="form-control">
 									<option value="0">Choose Product Group ...</option>
 									<cfloop array="#REQUEST.pageData.productGroups#" index="group">
 										<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
@@ -795,7 +795,7 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;">
-								<select class="form-control" name="category_id" id="category-id">
+								<select class="form-control" name="serach_category_id" id="serach-category-id">
 									<option value="0">Choose Category ...</option>
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 										<option value="#cat.getCategoryId()#"
@@ -823,7 +823,7 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
-								<input type="text" name="keywords" id="keywords" class="form-control" placeholder="Keywords">
+								<input type="text" name="serach_keywords" id="serach-keywords" class="form-control" placeholder="Keywords">
 							</div>
 							<div class="col-xs-1" style="padding-left:10px;">
 								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
