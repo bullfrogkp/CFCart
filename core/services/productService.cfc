@@ -245,6 +245,16 @@
 			</cfif>
 			WHERE	pt.name = 'simple'
 			AND		p.name IS NOT NULL
+			<cfif ARGUMENTS.keywords NEQ "">
+			AND
+			(
+				p.display_name like <cfqueryparam value="%#Trim(ARGUMENTS.keywords)#%" cfsqltype="cf_sql_string" />
+				OR
+				p.keywords like <cfqueryparam value="%#Trim(ARGUMENTS.keywords)#%" cfsqltype="cf_sql_string" />
+				OR
+				p.description like <cfqueryparam value="%#Trim(ARGUMENTS.keywords)#%" cfsqltype="cf_sql_string" />
+			)
+			</cfif>
 		</cfquery>
 		
 		<cfreturn LOCAL.getProducts>
