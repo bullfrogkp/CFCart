@@ -655,6 +655,12 @@
 							</div>
 							<div class="col-xs-5">	
 								<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
+									<cfif NOT IsNull(REQUEST.pageData.bestSellerSection.getSectionData())>
+										<cfloop array="#REQUEST.pageData.bestSellerSection.getSectionData()#" index="bs">	
+											<cfset product = bs.getSectionProduct() />
+											<option value="#product.getProductId()#">#product.getDisplayName()#</option>
+										</cfloop>
+									</cfif>
 								</select>
 							</div>
 						</div>

@@ -30,10 +30,4 @@
 		
 		<cfreturn sectionData />
 	</cffunction>
-	
-	<cffunction name="removeAllProducts" access="public" output="false" returnType="void">
-		<cfif NOT IsNull(getProducts())>
-			<cfset ArrayClear(getProducts()) />
-		</cfif>
-	</cffunction>
 </cfcomponent>
