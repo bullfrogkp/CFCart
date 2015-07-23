@@ -13,9 +13,9 @@
 						dataType: 'json',
 						data: {
 							method: 'searchProducts',
-							productGroupId: 0,
-							categoryId: 0,
-							keywords: ''
+							productGroupId: $("##search-product-group-id").val(),
+							categoryId: $("##search-category-id").val(),
+							keywords: $("##search-keywords").val()
 						},		
 						success: function(response) {
 							var productArray = response.DATA;
@@ -86,7 +86,7 @@
 				<div class="box-body">
 					<div class="row">
 						<div class="col-xs-3" style="padding-right:0;">
-							<select name="product_group_id" id="product-group-id" class="form-control">
+							<select name="search_product_group_id" id="search-product-group-id" class="form-control">
 								<option value="0">Choose Product Group ...</option>
 								<cfloop array="#REQUEST.pageData.productGroups#" index="group">
 									<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
@@ -94,7 +94,7 @@
 							</select>
 						</div>
 						<div class="col-xs-4" style="padding-right:0;">
-							<select class="form-control" name="category_id" id="category-id">
+							<select class="form-control" name="search_category_id" id="search-category-id">
 								<option value="0">Choose Category ...</option>
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 									<option value="#cat.getCategoryId()#"
@@ -122,7 +122,7 @@
 							</select>
 						</div>
 						<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
-							<input type="text" name="keywords" id="keywords" class="form-control" placeholder="Keywords">
+							<input type="text" name="search_keywords" id="search-keywords" class="form-control" placeholder="Keywords">
 						</div>
 						<div class="col-xs-1" style="padding-left:10px;">
 							<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
@@ -149,6 +149,12 @@
 						</div>
 						<div class="col-xs-5">	
 							<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
+								<cfif NOT IsNull(REQUEST.pageData.productGroup)>
+									<cfloop array="#REQUEST.pageData.productGroup.getProducts()#" index="p">	
+										<cfset product = p.getProduct() />
+										<option value="#product.getProductId()#">#product.getDisplayName()#</option>
+									</cfloop>
+								</cfif>
 							</select>
 						</div>
 					</div>

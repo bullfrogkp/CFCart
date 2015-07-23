@@ -88,7 +88,7 @@
 					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.product) />
+						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.product) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -98,7 +98,7 @@
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_top_selling_product_id) />
 				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 				<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-				<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
 				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
@@ -113,7 +113,7 @@
 					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
 						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 						<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-						<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.product) />
+						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.product) />
 						<cfset EntitySave(LOCAL.newSectionProduct) />
 					</cfloop>
 				</cfloop>
@@ -123,7 +123,7 @@
 				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_group_buying_product_id) />
 				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 				<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-				<cfset LOCAL.newSectionProduct.setSectionProduct(LOCAL.newProduct) />
+				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
 				<cfset EntitySave(LOCAL.newSectionProduct) />
 			</cfif>
 			
