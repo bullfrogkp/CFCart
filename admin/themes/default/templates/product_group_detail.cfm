@@ -33,6 +33,15 @@
 			});
 		});
 		
+		$('##save-item').click(function() {  
+			selectBox = document.getElementById("products-selected");
+
+			for (var i = 0; i < selectBox.options.length; i++) 
+			{ 
+				 selectBox.options[i].selected = true; 
+			} 
+		}); 
+		
 		$('##add-all').click(function() {  
 			$("##products-searched").each(function() {
 				$('##products-searched option').remove().appendTo('##products-selected'); 
@@ -154,8 +163,7 @@
 						<div class="col-xs-5">	
 							<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
 								<cfif NOT IsNull(REQUEST.pageData.productGroup)>
-									<cfloop array="#REQUEST.pageData.productGroup.getProducts()#" index="p">	
-										<cfset product = p.getProduct() />
+									<cfloop array="#REQUEST.pageData.productGroup.getProducts()#" index="product">
 										<option value="#product.getProductId()#">#product.getDisplayName()#</option>
 									</cfloop>
 								</cfif>
@@ -165,7 +173,7 @@
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
 			<div class="form-group">
-				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
+				<button name="save_item" id="save-item" type="submit" class="btn btn-primary top-nav-button">Save Product Group</button>
 				<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product Group</button>
 			</div>
 		</div><!--/.col (left) -->

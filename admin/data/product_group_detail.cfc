@@ -9,8 +9,6 @@
 		
 		<cfif IsNumeric(FORM.id)>
 			<cfset LOCAL.productGroup = EntityLoadByPK("product_group", FORM.id)> 
-			<cfset LOCAL.productGroup.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.productGroup.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.productGroup = EntityNew("product_group") />
 			<cfset LOCAL.productGroup.setIsDeleted(false) />
@@ -20,7 +18,7 @@
 		
 			<cfset LOCAL.productGroup.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.productGroup.removeAllProducts() />
-			
+		
 			<cfif StructKeyExists(FORM,"products_selected") AND FORM.products_selected NEQ "">
 				<cfloop list="#FORM.products_selected#" index="LOCAL.productId">
 					<cfset LOCAL.productGroup.addProduct(EntityLoadByPK("product",LOCAL.productId)) />
