@@ -284,9 +284,9 @@
 						dataType: 'json',
 						data: {
 							method: 'searchProducts',
-							productGroupId: 0,
-							categoryId: 0,
-							keywords: ''
+							productGroupId: $("##search-product-group-id").val(),
+							categoryId: $("##search-category-id").val(),
+							keywords: $("##search-keywords").val()
 						},		
 						success: function(response) {
 							var productArray = response.DATA;
@@ -303,6 +303,15 @@
 						}
 			});
 		});
+		
+		$('##save-item').click(function() {  
+			selectBox = document.getElementById("products-selected");
+
+			for (var i = 0; i < selectBox.options.length; i++) 
+			{ 
+				 selectBox.options[i].selected = true; 
+			} 
+		}); 
 		
 		$('##add-all').click(function() {  
 			$("##products-searched").each(function() {
@@ -1022,7 +1031,7 @@
 					OR
 					NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "simple">
 				<div class="form-group">
-					<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
+					<button name="save_item" id="save-item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>
 				</div>
 			</cfif>
