@@ -377,7 +377,7 @@
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Price</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Attributes</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#  tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_9']#" tabid="tab_9"><a href="##tab_9" data-toggle="tab">Video</a></li>
@@ -783,11 +783,11 @@
 							</div>
 						</cfloop>
 					</div>
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']# #REQUEST.pageData.deleteButtonClass#" id="tab_6">
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 					
 						<div class="row">
 							<div class="col-xs-3" style="padding-right:0;">
-								<select name="serach_product_group_id" id="serach-product-group-id" class="form-control">
+								<select name="search_product_group_id" id="search-product-group-id" class="form-control">
 									<option value="0">Choose Product Group ...</option>
 									<cfloop array="#REQUEST.pageData.productGroups#" index="group">
 										<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
@@ -795,7 +795,7 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;">
-								<select class="form-control" name="serach_category_id" id="serach-category-id">
+								<select class="form-control" name="search_category_id" id="search-category-id">
 									<option value="0">Choose Category ...</option>
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 										<option value="#cat.getCategoryId()#"
@@ -823,7 +823,7 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
-								<input type="text" name="serach_keywords" id="serach-keywords" class="form-control" placeholder="Keywords">
+								<input type="text" name="search_keywords" id="search-keywords" class="form-control" placeholder="Keywords">
 							</div>
 							<div class="col-xs-1" style="padding-left:10px;">
 								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
@@ -850,6 +850,11 @@
 							</div>
 							<div class="col-xs-5">	
 								<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
+									<cfif NOT IsNull(REQUEST.pageData.product)>
+										<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+											<option value="#product.getProductId()#">#product.getDisplayName()#</option>
+										</cfloop>
+									</cfif>
 								</select>
 							</div>
 						</div>
