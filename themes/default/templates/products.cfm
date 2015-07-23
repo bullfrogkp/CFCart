@@ -179,7 +179,7 @@ padding: 0 8px 8px;">
 		<div class="recommendation-list" style="margin-bottom:8px;">
 			<ul>
 				<cfloop array="#REQUEST.pageData.bestSellerSection.getSectionData()#" index="bs">	
-					<cfset product = bs.getSectionProduct() />
+					<cfset product = bs.getProduct() />
 					<li>
 						<img src="#product.getDefaultImageLink(type='small')#" />
 						<div class="recommendation-list-detail">
