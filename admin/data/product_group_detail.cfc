@@ -13,8 +13,6 @@
 			<cfset LOCAL.productGroup.setUpdatedDatetime(Now()) />
 		<cfelse>
 			<cfset LOCAL.productGroup = EntityNew("product_group") />
-			<cfset LOCAL.productGroup.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.productGroup.setCreatedDatetime(Now()) />
 			<cfset LOCAL.productGroup.setIsDeleted(false) />
 		</cfif>
 		

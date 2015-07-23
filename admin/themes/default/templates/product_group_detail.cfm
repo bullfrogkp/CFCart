@@ -84,6 +84,10 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
+					<div class="form-group">
+						<label>Product Group Name</label>
+						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+					</div>
 					<div class="row">
 						<div class="col-xs-3" style="padding-right:0;">
 							<select name="search_product_group_id" id="search-product-group-id" class="form-control">
