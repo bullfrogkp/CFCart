@@ -202,15 +202,15 @@
 				<cfset EntitySave(LOCAL.newDefaultImage) />
 			</cfif>
 			
-			<cfif FORM.products_selected NEQ "">
-				<cfset LOCAL.sectionProducts = EntityLoad("page_section_product", {section = LOCAL.bestSellerSection, category = LOCAL.category})> 
-				<cfloop array="#LOCAL.sectionProducts#" index="LOCAL.sectionProduct">
-					<cfset EntityDelete(LOCAL.sectionProduct) />
-				</cfloop>
+			<cfset LOCAL.sectionProducts = EntityLoad("page_section_product", {section = LOCAL.bestSellerSection, category = LOCAL.category})> 
+			<cfloop array="#LOCAL.sectionProducts#" index="LOCAL.sectionProduct">
+				<cfset EntityDelete(LOCAL.sectionProduct) />
+			</cfloop>
+			<cfif StructKeyExists(FORM,"products_selected") AND FORM.products_selected NEQ "">
 				<cfloop list="#FORM.products_selected#" index="LOCAL.productId">
 					<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
 					<cfset LOCAL.newSectionProduct.setSection(LOCAL.bestSellerSection) />
-					<cfset LOCAL.newSectionProduct.setSectionProduct(EntityLoadByPK("product",LOCAL.productId)) />
+					<cfset LOCAL.newSectionProduct.setProduct(EntityLoadByPK("product",LOCAL.productId)) />
 					<cfset LOCAL.newSectionProduct.setCategory(LOCAL.category) />
 					<cfset EntitySave(LOCAL.newSectionProduct) />
 				</cfloop>
