@@ -188,9 +188,9 @@
 						dataType: 'json',
 						data: {
 							method: 'searchProducts',
-							productGroupId: 0,
-							categoryId: 0,
-							keywords: ''
+							productGroupId: $("##search-product-group-id").val(),
+							categoryId: $("##search-category-id").val(),
+							keywords: $("##search-keywords").val()
 						},		
 						success: function(response) {
 							var productArray = response.DATA;
@@ -207,6 +207,15 @@
 						}
 			});
 		});
+		
+		$('##save-item').click(function() {  
+			selectBox = document.getElementById("products-selected");
+
+			for (var i = 0; i < selectBox.options.length; i++) 
+			{ 
+				 selectBox.options[i].selected = true; 
+			} 
+		}); 
 		
 		$('##add-all').click(function() {  
 			$("##products-searched").each(function() {
@@ -583,7 +592,7 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<div class="row">
 							<div class="col-xs-3" style="padding-right:0;">
-								<select name="product_group_id" id="product-group-id" class="form-control">
+								<select name="search_product_group_id" id="search-product-group-id" class="form-control">
 									<option value="0">Choose Product Group ...</option>
 									<cfloop array="#REQUEST.pageData.productGroups#" index="group">
 										<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
@@ -591,7 +600,7 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;">
-								<select class="form-control" name="category_id" id="category-id">
+								<select class="form-control" name="search_category_id" id="search-category-id">
 									<option value="0">Choose Category ...</option>
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 										<option value="#cat.getCategoryId()#"
@@ -619,7 +628,7 @@
 								</select>
 							</div>
 							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
-								<input type="text" name="keywords" id="keywords" class="form-control" placeholder="Keywords">
+								<input type="text" name="search_keywords" id="search-keywords" class="form-control" placeholder="Keywords">
 							</div>
 							<div class="col-xs-1" style="padding-left:10px;">
 								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
@@ -654,7 +663,7 @@
 			</div><!-- nav-tabs-custom -->
 		
 			<div class="form-group">
-				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Category</button>
+				<button name="save_item" id="save-item" type="submit" class="btn btn-primary top-nav-button">Save Category</button>
 				<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Category</button>
 			</div>
 		</div><!-- /.col -->
