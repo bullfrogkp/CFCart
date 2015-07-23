@@ -368,6 +368,15 @@
 					<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 				</cfif>
 			</cfloop>
+			
+			<!--- related product --->
+			<cfset LOCAL.product.removeAllRelatedProducts() />
+		
+			<cfif StructKeyExists(FORM,"products_selected") AND FORM.products_selected NEQ "">
+				<cfloop list="#FORM.products_selected#" index="LOCAL.productId">
+					<cfset LOCAL.product.addRelatedProduct(EntityLoadByPK("product",LOCAL.productId)) />
+				</cfloop>
+			</cfif>
 										
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
@@ -412,41 +421,6 @@
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute value has been deleted.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />		
-		
-		<cfelseif StructKeyExists(FORM,"add_related_product")>
-			
-			<cfif StructKeyExists(FORM,"related_product_group_id")>			
-				<cfloop list="#FORM.related_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
-						<cfset LOCAL.product.addRelatedProduct(LOCAL.product) />
-					</cfloop>
-				</cfloop>
-			</cfif>
-			
-			<cfif IsNumeric(FORM.new_related_product_id)>
-				<cfset LOCAL.newRelatedProduct = EntityLoadByPK("product",FORM.new_related_product_id) />
-				<cfset LOCAL.product.addRelatedProduct(LOCAL.newRelatedProduct) />
-			</cfif>
-			
-			<cfset EntitySave(LOCAL.product) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
-		
-		<cfelseif StructKeyExists(FORM,"delete_related_product")>
-		
-			<cfset LOCAL.relatedProduct = EntityLoadByPK("product",FORM.delete_related_product_id) />
-			
-			<cfset LOCAL.product.removeRelatedProduct(LOCAL.relatedProduct) />
-			<cfset LOCAL.relatedProduct.removeRelatedParentProduct(LOCAL.product) />
-			
-			<cfset EntitySave(LOCAL.product) />
-			<cfset EntitySave(LOCAL.relatedProduct) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
-			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_6" />
 		
 		<cfelseif StructKeyExists(FORM,"edit_default_price")>
 			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", FORM.product_shipping_method_rela_id) />

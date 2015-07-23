@@ -503,4 +503,9 @@
 		<cfreturn LOCAL.shippingFee />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="removeAllRelatedProducts" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getRelatedProducts())>
+			<cfset ArrayClear(getRelatedProducts()) />
+		</cfif>
+	</cffunction>
 </cfcomponent>
