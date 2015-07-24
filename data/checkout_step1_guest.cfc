@@ -62,6 +62,15 @@
 					<cfset ArrayAppend(LOCAL.messageArray,"Please choose your billing country.") />
 				</cfif>
 			</cfif>
+			
+			<cfif IsValid("email",Trim(FORM.new_email)) EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
+			<cfelse>
+				<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.new_email),isDeleted=false,isEnabled=true},true) />
+				<cfif NOT IsNull(LOCAL.existingCustomer)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.new_email)#.") />
+				</cfif>
+			</cfif>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>

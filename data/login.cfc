@@ -22,8 +22,13 @@
 				</cfif>
 			</cfif>
 		<cfelseif StructKeyExists(FORM,"user_signup")>
-			<cfif Trim(FORM.new_username) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email address.") />
+			<cfif IsValid("email",Trim(FORM.new_username)) EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
+			<cfelse>
+				<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.new_username),isDeleted=false,isEnabled=true},true) />
+				<cfif NOT IsNull(LOCAL.existingCustomer)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.new_username)#.") />
+				</cfif>
 			</cfif>
 			<cfif Trim(FORM.new_password) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your password.") />
