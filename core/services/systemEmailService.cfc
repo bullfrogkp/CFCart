@@ -27,6 +27,9 @@
 			<cfif NOT IsNull(getIsDeleted())>
 			AND isDeleted = <cfqueryparam cfsqltype="cf_sql_bit" value="#getIsDeleted()#" />
 			</cfif>
+			<cfif ARGUMENTS.getCount EQ false>
+			ORDER BY createdDatetime DESC
+			</cfif>
 		</cfquery>
 	
 		<cfreturn LOCAL.query />

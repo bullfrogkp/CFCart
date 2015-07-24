@@ -71,7 +71,7 @@
 					p.reviewCount DESC
 					</cfcase>
 					<cfdefaultcase>
-					p.createdDatetime
+					p.createdDatetime DESC
 					</cfdefaultcase>
 				</cfswitch>
 			</cfif>
