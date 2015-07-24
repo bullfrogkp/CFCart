@@ -944,7 +944,7 @@
 												<table class="table table-hover">
 													<tr class="warning">
 														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.imageName#" style="height:25px;vertical-align:top;" /></th>
-														<th style="text-align:right;padding-right:10px;">#s.shippingCarrierName#</th>
+														<th colspan="2" style="text-align:right;padding-right:10px;">#s.shippingCarrierName#</th>
 													</tr>
 													<cfoutput>
 													<cfif IsNumeric(s.productShippingMethodRelaId)>
@@ -955,7 +955,7 @@
 													</cfif>
 													
 													<tr class="default" style="font-size:12px;">
-														<td colspan="2">#s.shippingMethodName#</td>
+														<td colspan="3">#s.shippingMethodName#</td>
 														<td style="text-align:right;">
 															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shippingMethodId#"
 
