@@ -647,7 +647,10 @@
 							<cfif NOT IsNull(REQUEST.pageData.product)>
 								<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
 							</cfif>
-							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>display:none;</cfif>">
+							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="
+							<cfif IsNull(REQUEST.pageData.product) OR IsNull(currentAttributeSet) OR (NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>
+							display:none;
+							</cfif>">
 								<label>Attribute Option(s)</label>
 						
 								<div class="row" style="margin-top:10px;">

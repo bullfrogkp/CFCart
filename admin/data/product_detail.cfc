@@ -324,50 +324,52 @@
 			<cfset ORMFlush() />
 			
 			<!--- update sub product properties --->
-			<cfif IsNumeric(FORM.id)>
-				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
-					<cfif IsNumeric(FORM["stock_#LOCAL.subProduct.getProductId()#"])>
-						<cfset LOCAL.subProduct.setStock(FORM["stock_#LOCAL.subProduct.getProductId()#"]) />
-					</cfif>
-					<cfif Trim(FORM["sku_#LOCAL.subProduct.getProductId()#"]) NEQ "">
-						<cfset LOCAL.subProduct.setSku(FORM["sku_#LOCAL.subProduct.getProductId()#"]) />
-					</cfif>
-					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.customerGroup">
-						<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.subProduct,customerGroup=LOCAL.customerGroup},true) />
-						<cfif IsNumeric(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-							<cfset LOCAL.productCustomerGroupRela.setPrice(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
+			<cfif FORM.attribute_set_id NEQ "">
+				<cfif IsNumeric(FORM.id)>
+					<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
+						<cfif IsNumeric(FORM["stock_#LOCAL.subProduct.getProductId()#"])>
+							<cfset LOCAL.subProduct.setStock(FORM["stock_#LOCAL.subProduct.getProductId()#"]) />
 						</cfif>
-						<cfif IsNumeric(FORM["special_price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-							<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(FORM["special_price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
+						<cfif Trim(FORM["sku_#LOCAL.subProduct.getProductId()#"]) NEQ "">
+							<cfset LOCAL.subProduct.setSku(FORM["sku_#LOCAL.subProduct.getProductId()#"]) />
 						</cfif>
-						<cfif IsDate(FORM["special_price_from_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-							<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(FORM["special_price_from_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
-						</cfif>
-						<cfif IsDate(FORM["special_price_to_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-							<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(FORM["special_price_to_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
-						</cfif>
+						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.customerGroup">
+							<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.subProduct,customerGroup=LOCAL.customerGroup},true) />
+							<cfif IsNumeric(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
+								<cfset LOCAL.productCustomerGroupRela.setPrice(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
+							</cfif>
+							<cfif IsNumeric(FORM["special_price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
+								<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(FORM["special_price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
+							</cfif>
+							<cfif IsDate(FORM["special_price_from_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
+								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(FORM["special_price_from_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
+							</cfif>
+							<cfif IsDate(FORM["special_price_to_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
+								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(FORM["special_price_to_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
+							</cfif>
+						</cfloop>
 					</cfloop>
+				</cfif>
+				
+				<!--- create sub products --->		
+				<cfset LOCAL.attributeValueIdArray = [] />
+				<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
+				
+				<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
+					<cfif LOCAL.productAttributeRela.getRequired() EQ true>
+						<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
+					</cfif>
+				</cfloop>
+				
+				<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
+			
+				<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
+					<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+					<cfif LOCAL.subProduct.productid EQ "">
+						<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
+					</cfif>
 				</cfloop>
 			</cfif>
-			
-			<!--- create sub products --->		
-			<cfset LOCAL.attributeValueIdArray = [] />
-			<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-			
-			<cfloop array="#LOCAL.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
-				<cfif LOCAL.productAttributeRela.getRequired() EQ true>
-					<cfset ArrayAppend(LOCAL.attributeValueIdArray, _getAttributeValueIdArray(productAttributeRelaId = LOCAL.productAttributeRela.getProductAttributeRelaId())) />
-				</cfif>
-			</cfloop>
-			
-			<cfset LOCAL.attributeValueIdPermutaionArray = _createPermutaionArray(LOCAL.attributeValueIdArray)  />
-		
-			<cfloop array="#LOCAL.attributeValueIdPermutaionArray#" index="LOCAL.attributeValueIdArray">
-				<cfset LOCAL.subProduct = LOCAL.productService.getProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
-				<cfif LOCAL.subProduct.productid EQ "">
-					<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
-				</cfif>
-			</cfloop>
 			
 			<!--- related product --->
 			<cfset LOCAL.product.removeAllRelatedProducts() />
