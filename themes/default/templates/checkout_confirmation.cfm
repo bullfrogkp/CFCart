@@ -48,11 +48,7 @@
 							<p>#item.totalTaxWCLocal#</p>
 						</td>
 						<td>
-							<p>
-							<cfif NOT IsNull(productShippingMethodRela.getShippingMethod().getShippingCarrier())>
-							#productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()# - 
-							</cfif>
-							#productShippingMethodRela.getShippingMethod().getDisplayName()#: #item.totalShippingFeeWCLocal#</p>
+							<p>#productShippingMethodRela.getShippingMethod().getDisplayName()#: #item.totalShippingFeeWCLocal#</p>
 						</td>
 					</tr>
 				</cfloop>

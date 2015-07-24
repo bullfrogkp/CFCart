@@ -125,6 +125,8 @@
 						) AS productShippingMethodRelaId
 			FROM		shipping_carrier sc
 			JOIN		shipping_method sm ON sc.shipping_carrier_id = sm.shipping_carrier_id
+			WHERE		sc.is_enabled = <cfqueryparam cfsqltype="cf_sql_bit" value="1" />
+			AND			sm.is_enabled = <cfqueryparam cfsqltype="cf_sql_bit" value="1" />
 			ORDER BY	sc.shipping_carrier_id
 		</cfquery>
 		 
