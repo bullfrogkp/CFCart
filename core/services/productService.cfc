@@ -248,6 +248,8 @@
 			</cfif>
 			WHERE	pt.name = 'simple'
 			AND		p.name IS NOT NULL
+			AND		p.is_deleted = <cfqueryparam value="0" cfsqltype="cf_sql_bit" />
+			AND		p.is_enabled = <cfqueryparam value="1" cfsqltype="cf_sql_bit" />
 			<cfif ARGUMENTS.keywords NEQ "">
 			AND
 			(
