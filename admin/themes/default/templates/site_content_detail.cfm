@@ -40,11 +40,17 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Name</label>
-						<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						</div>
 					</div>
 					 <div class="form-group">
 						<label>Title</label>
-						<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+						</div>
 					</div>
 					<div class="form-group">
 						<label>Description</label>
