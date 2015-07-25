@@ -487,8 +487,29 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 						<div class="form-group">
+							<label>Tax Category</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<select name="tax_category_id" class="form-control">
+									<option value="">Please Select...</option>
+									<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
+										<option value="#tc.getTaxCategoryId()#"
+										
+										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
+										selected
+										</cfif>
+										
+										>#tc.getDisplayName()#</option>
+									</cfloop>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<label>Price</label>
-							<input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price"]#" />
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price"]#" />
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Special Price</label>
@@ -571,22 +592,6 @@
 									</cfif>
 								</cfloop>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label>Tax Category</label>
-							<select name="tax_category_id" class="form-control">
-								<option value="">Please Select...</option>
-								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
-									<option value="#tc.getTaxCategoryId()#"
-									
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
-									selected
-									</cfif>
-									
-									>#tc.getDisplayName()#</option>
-								</cfloop>
-							</select>
 						</div>
 					</div><!-- /.tab-pane -->
 					
