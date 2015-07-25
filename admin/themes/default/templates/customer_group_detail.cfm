@@ -30,7 +30,10 @@
 					<div class="box-body">
 						<div class="form-group">
 							<label>Group Name</label>
-							<input type="text" name="group_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.group_name#"/>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<input type="text" name="group_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.group_name#"/>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Default</label>

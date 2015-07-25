@@ -164,8 +164,28 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">
-							<label>Company</label>
-							<input type="text" name="company" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.company#"/>
+							<label>Email</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Customer Group</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<select class="form-control" name="customer_group_id">
+									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+									<option value="#group.getCustomerGroupId()#"
+									
+									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
+									selected
+									</cfif>
+									
+									>#group.getDisplayName()#</option>
+									</cfloop>
+								</select>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Prefix</label>
@@ -187,6 +207,10 @@
 							<label>Suffix</label>
 							<input type="text" name="suffix" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.suffix#"/>
 						</div>
+						<div class="form-group">
+							<label>Company</label>
+							<input type="text" name="company" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.company#"/>
+						</div>
 						 <div class="form-group">
 							<label>Date of Birth</label>
 							<div class="input-group">
@@ -204,29 +228,11 @@
 								<option value="Female" <cfif REQUEST.pageData.formData.gender EQ "Female">selected</cfif>>Female</option>
 							</select>
 						</div>
-						 <div class="form-group">
-							<label>Email</label>
-							<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
-						</div>
 						<div class="form-group">
 							<label>Website</label>
 							<input type="text" name="website" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.website#"/>
 						</div>
-						 <div class="form-group">
-							<label>Customer Group</label>
-							<select class="form-control" name="customer_group_id">
-								<option value="">Please Select...</option>
-								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-								<option value="#group.getCustomerGroupId()#"
-								
-								<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
-								selected
-								</cfif>
-								
-								>#group.getDisplayName()#</option>
-								</cfloop>
-							</select>
-						</div>
+						 
 						 <div class="form-group">
 							<label>Subscribed</label>
 							<select class="form-control" name="subscribed">

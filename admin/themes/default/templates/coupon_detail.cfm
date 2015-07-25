@@ -37,12 +37,14 @@
 				<div class="box-body">
 					 <div class="form-group">
 						<label>Code</label>
-						<input type="text" name="coupon_code" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.coupon_code#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input type="text" name="coupon_code" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.coupon_code#"/>
+						</div>
 					</div>
 					<div class="form-group">
 						<label>Discount Type</label>
 						<select class="form-control" name="discount_type_id">
-							<option value="">Please Select...</option>
 							<cfloop array="#REQUEST.pageData.discountTypes#" index="type">
 								<option value="#type.getDiscountTypeId()#"
 								
@@ -57,7 +59,6 @@
 					<div class="form-group">
 						<label>Status</label>
 						<select class="form-control" name="coupon_status_type_id">
-							<option value="">Please Select...</option>
 							<cfloop array="#REQUEST.pageData.couponStatusTypes#" index="type">
 								<option value="#type.getCouponStatusTypeId()#"
 								
