@@ -31,12 +31,21 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Name</label>
-						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Amount</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input name="amount" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.amount#"/>
+						</div>
 					</div>
 					<div class="form-group">
 						<label>Calculation Type</label>
 						<select name="Calculation_type_id" class="form-control">
-							<option value="">Please Select...</option>
 							<cfloop array="#REQUEST.pageData.CalculationTypes#" index="type">
 								<option value="#type.getCalculationTypeId()#"
 								
@@ -47,10 +56,6 @@
 								>#type.getDisplayName()#</option>
 							</cfloop>
 						</select>
-					</div>
-					<div class="form-group">
-						<label>Amount</label>
-						<input name="amount" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.amount#"/>
 					</div>
 					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Discount Type</button>
