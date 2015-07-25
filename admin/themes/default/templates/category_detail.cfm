@@ -392,7 +392,7 @@
 							<label>Display Filter</label>
 							 <select class="form-control" name="display_filter">
 								<option value="1" <cfif REQUEST.pageData.formData.display_filter EQ TRUE>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.formData.display_filter EQ FALSE>selected</cfif>>No</option>
+								<option value="0" <cfif REQUEST.pageData.formData.display_filter EQ FALSE OR REQUEST.pageData.formData.display_filter EQ "">selected</cfif>>No</option>
 							</select>
 						</div>
 					
@@ -449,7 +449,7 @@
 							<label>Display Custom Design Section</label>
 							 <select class="form-control" name="display_custom_design">
 								<option value="1" <cfif REQUEST.pageData.formData.display_custom_design EQ TRUE>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.formData.display_custom_design EQ FALSE>selected</cfif>>No</option>
+								<option value="0" <cfif REQUEST.pageData.formData.display_custom_design EQ FALSE OR REQUEST.pageData.formData.display_custom_design EQ "">selected</cfif>>No</option>
 							</select>
 						</div>
 						<div class="form-group">

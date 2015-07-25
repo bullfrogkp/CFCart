@@ -396,35 +396,42 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						 <div class="form-group">
 							<label>Product Name</label>
-							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Category</label>
-							<select class="form-control" multiple name="category_id">
-								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-									<option value="#cat.getCategoryId()#"
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
-									selected
-									</cfif>
-									>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
-									<cfloop array="#cat.getSubCategories()#" index="subCat">
-										<option value="#subCat.getCategoryId()#"
-										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<select class="form-control" multiple name="category_id">
+									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+										<option value="#cat.getCategoryId()#"
+										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
 										selected
 										</cfif>
-										>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
-										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-											<option value="#thirdCat.getCategoryId()#"
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
+										>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+										<cfloop array="#cat.getSubCategories()#" index="subCat">
+											<option value="#subCat.getCategoryId()#"
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
 											selected
 											</cfif>
-											>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+											>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+												<option value="#thirdCat.getCategoryId()#"
+												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
+												selected
+												</cfif>
+												>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+											</cfloop>
+											</li>
 										</cfloop>
 										</li>
 									</cfloop>
-									</li>
-								</cfloop>
-							</select>
+								</select>
+							</div>
+							
 						</div>
 						<div class="form-group">
 							<cfloop array="#REQUEST.pageData.specialCategories#" index="spCategory">
@@ -438,11 +445,17 @@
 						</div>
 						<div class="form-group">
 							<label>SKU</label>
-							<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Stock</label>
-							<input name="stock" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+								<input name="stock" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Status</label>

@@ -9,10 +9,6 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid category name.") />
 		</cfif>
 		
-		<cfif NOT IsNumeric(Trim(FORM.rank))>
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid rank number.") />
-		</cfif>
-		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
@@ -58,7 +54,7 @@
 			</cfif>
 			<cfset LOCAL.category.setName(LCase(Trim(FORM.display_name))) />
 			<cfset LOCAL.category.setDisplayName(Trim(FORM.display_name)) />
-			<cfset LOCAL.category.setRank(Trim(FORM.rank)) />
+			<cfset LOCAL.category.setRank(Val(Trim(FORM.rank))) />
 			<cfset LOCAL.category.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.category.setDisplayCategoryList(FORM.display_category_list) />
 			<cfset LOCAL.category.setIsSpecial(FORM.is_special) />
