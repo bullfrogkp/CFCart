@@ -42,16 +42,21 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Subject</label>
-						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
+						</div>
 					</div>
 					 <div class="form-group">
 						<label>Name</label>
-						<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						</div>
 					</div>
 					<div class="form-group">
 						<label>Type</label>
 						<select class="form-control" name="type">
-							<option value="">Please Select...</option>
 							<option value="html" <cfif REQUEST.pageData.formData.type EQ "html">selected</cfif>>HTML</option>
 							<option value="plaintext" <cfif REQUEST.pageData.formData.type EQ "plaintext">selected</cfif>>Plaintext</option>
 						</select>
