@@ -172,20 +172,17 @@
 						</div>
 						<div class="form-group">
 							<label>Customer Group</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<select class="form-control" name="customer_group_id">
-									<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-									<option value="#group.getCustomerGroupId()#"
-									
-									<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
-									selected
-									</cfif>
-									
-									>#group.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
+							<select class="form-control" name="customer_group_id">
+								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+								<option value="#group.getCustomerGroupId()#"
+								
+								<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getCustomerGroup()) AND group.getCustomerGroupId() EQ REQUEST.pageData.customer.getCustomerGroup().getCustomerGroupId()>
+								selected
+								</cfif>
+								
+								>#group.getDisplayName()#</option>
+								</cfloop>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Prefix</label>
