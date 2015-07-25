@@ -95,7 +95,10 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label>Product Group Name</label>
-						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-3" style="padding-right:0;">
