@@ -5,10 +5,6 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif FORM.discount_type_id EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please choose a valid discount type.") />
-		</cfif>
-		
 		<cfif Trim(FORM.coupon_code) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid coupon code.") />
 		</cfif>

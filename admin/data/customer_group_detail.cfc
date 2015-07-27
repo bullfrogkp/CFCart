@@ -50,7 +50,9 @@
 				<cfset LOCAL.customerGroup.setIsDefault(false) />
 			</cfif>
 			
-			<cfset LOCAL.customerGroup.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
+			<cfif IsNumeric(FORM.discount_type_id)>
+				<cfset LOCAL.customerGroup.setDiscountType(EntityLoadByPK("discount_type",FORM.discount_type_id)) />
+			</cfif>
 			
 			<cfset EntitySave(LOCAL.customerGroup) />
 			

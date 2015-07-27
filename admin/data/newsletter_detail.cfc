@@ -1,4 +1,28 @@
 ﻿<cfcomponent extends="master">
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset LOCAL.messageArray = [] />
+		
+		<cfif Trim(FORM.subject) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter the subject.") />
+		</cfif>
+		
+		<cfif Trim(FORM.display_name) EQ "">
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter the name.") />
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset SESSION.temp.message.messageType = "alert-danger" />
+			<cfset LOCAL.redirectUrl = _setRedirectURL() />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
