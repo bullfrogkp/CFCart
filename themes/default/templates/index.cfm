@@ -62,7 +62,7 @@
 					<ul class="rig columns-4">
 						<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getSectionData())>
 							<cfloop array="#REQUEST.pageData.topSellingSection.getSectionData()#" index="tp">	
-								<cfset product = tp.getSectionProduct() />
+								<cfset product = tp.getProduct() />
 								<li class="single-products">
 									<a href="#product.getDetailPageURL()#">
 										<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
@@ -90,7 +90,7 @@
 					<ul class="rig columns-4">
 						<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getSectionData())>
 							<cfloop array="#REQUEST.pageData.groupBuyingSection.getSectionData()#" index="gb">	
-								<cfset product = gb.getSectionProduct() />
+								<cfset product = gb.getProduct() />
 								<li class="single-products">
 									<a href="#product.getDetailPageURL()#">
 										<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />

@@ -161,7 +161,7 @@
 							<div class="row" style="margin-top:10px;">
 								<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getSectionData())>
 									<cfloop array="#REQUEST.pageData.topSellingSection.getSectionData()#" index="tp">	
-										<cfset product = tp.getSectionProduct() />
+										<cfset product = tp.getProduct() />
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
@@ -196,7 +196,7 @@
 							<div class="row" style="margin-top:10px;">
 								<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getSectionData())>
 									<cfloop array="#REQUEST.pageData.groupBuyingSection.getSectionData()#" index="gb">	
-										<cfset product = gb.getSectionProduct() />
+										<cfset product = gb.getProduct() />
 										<div class="col-xs-2">
 											<div class="box">
 												<div class="box-body table-responsive no-padding">
