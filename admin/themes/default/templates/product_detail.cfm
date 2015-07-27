@@ -1014,32 +1014,55 @@
 						</div>
 						<cfoutput>
 					</div>
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_9']# #REQUEST.pageData.deleteButtonClass#" id="tab_9">
-						<div class="form-group">
-							<label>Videos</label>
-							<a data-toggle="modal" data-target="##add-video-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Video</span></a>
-							<div class="row" style="margin-top:10px;">
-								<cfloop array="#REQUEST.pageData.product.getProductVideosMV()#" index="video">	
-									<div class="col-xs-3">
-										<div class="box">
-											<div class="box-body table-responsive no-padding">
-												<table class="table table-hover">
-													<tr class="default">
-														<th><a href="#video.getUrl()#">Link</a></th>
-														<th><a productvideoid="#video.getProductVideoId()#" href="" class="delete-video pull-right" data-toggle="modal" data-target="##delete-video-modal"><span class="label label-danger">Delete</span></a></th>
-													</tr>
-													<tr>
-														<td colspan="2">
-															<iframe width="100%" height="100%" src="#video.getUrl()#" frameborder="0" allowfullscreen></iframe>
-														</td>
-													</tr>
-												</table>
-											</div><!-- /.box-body -->
-										</div><!-- /.box -->
-									</div>
-								</cfloop>
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_9']#" id="tab_9">
+						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideosMV())>
+							<div class="form-group">
+								<label>Videos</label>
+								<a data-toggle="modal" data-target="##add-video-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Video</span></a>
+								<div class="row" style="margin-top:10px;">
+									<cfloop array="#REQUEST.pageData.product.getProductVideosMV()#" index="video">	
+										<div class="col-xs-3">
+											<div class="box">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="default">
+															<th><a href="#video.getUrl()#">Link</a></th>
+															<th><a productvideoid="#video.getProductVideoId()#" href="" class="delete-video pull-right" data-toggle="modal" data-target="##delete-video-modal"><span class="label label-danger">Delete</span></a></th>
+														</tr>
+														<tr>
+															<td colspan="2">
+																<iframe width="100%" height="100%" src="#video.getUrl()#" frameborder="0" allowfullscreen></iframe>
+															</td>
+														</tr>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfloop>
+								</div>
 							</div>
-						</div>
+						<cfelse>
+							<div class="form-group">
+								<label>Video 1</label>
+								<input name="video1" type="text" class="form-control" placeholder="Enter ..." />
+							</div>
+							<div class="form-group">
+								<label>Video 2</label>
+								<input name="video2" type="text" class="form-control" placeholder="Enter ..." />
+							</div>
+							<div class="form-group">
+								<label>Video 3</label>
+								<input name="video3" type="text" class="form-control" placeholder="Enter ..." />
+							</div>
+							<div class="form-group">
+								<label>Video 4</label>
+								<input name="video4" type="text" class="form-control" placeholder="Enter ..." />
+							</div>
+							<div class="form-group">
+								<label>Video 5</label>
+								<input name="video5" type="text" class="form-control" placeholder="Enter ..." />
+							</div>
+						</cfif>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
@@ -1169,6 +1192,43 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_image" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ADD VIDEO MODAL -->
+<div class="modal fade" id="add-video-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Video</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>URL</label>
+					<input id="new_video_url" name="new_video_url" type="text" class="form-control" placeholder="Video URL">
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_video" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE VIDEO MODAL -->
+<div class="modal fade" id="delete-video-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this video?</h4>
+			</div>
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_video" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
