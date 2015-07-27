@@ -38,11 +38,17 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
+					<cfif IsNumeric(REQUEST.pageData.formData.id)>
+						<div class="form-group">
+							<label>Link:</label>
+							<a href="#APPLICATION.urlWeb#site_content.cfm/#REQUEST.pageData.formData.name#" target="_blank">#APPLICATION.urlWeb#site_content.cfm/#REQUEST.pageData.formData.name#</a>
+						</div>
+					</cfif>
 					<div class="form-group">
 						<label>Name</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+							<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 					</div>
 					 <div class="form-group">

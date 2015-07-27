@@ -6,11 +6,8 @@
 		<cfset LOCAL.messageArray = [] />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-			<cfif FORM.name EQ "">
+			<cfif FORM.display_name EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid name.") />
-			</cfif>
-			<cfif FORM.site_content EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the content.") />
 			</cfif>
 			<cfif FORM.title EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the page title.") />
@@ -48,8 +45,8 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.content.setName(Replace(LCase(Trim(FORM.name))," ","-","all")) />
-			<cfset LOCAL.content.setDisplayName(Trim(FORM.name)) />
+			<cfset LOCAL.content.setName(Replace(LCase(Trim(FORM.display_name))," ","-","all")) />
+			<cfset LOCAL.content.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.content.setSiteContent(Trim(FORM.site_content)) />
 			<cfset LOCAL.content.setTitle(Trim(FORM.title)) />
 			<cfset LOCAL.content.setDescription(Trim(FORM.description)) />
@@ -86,6 +83,7 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
+				<cfset LOCAL.pageData.formData.name = isNull(LOCAL.pageData.siteContent.getName())?"":LOCAL.pageData.siteContent.getName() />
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.siteContent.getDisplayName())?"":LOCAL.pageData.siteContent.getDisplayName() />
 				<cfset LOCAL.pageData.formData.site_content = isNull(LOCAL.pageData.siteContent.getSiteContent())?"":LOCAL.pageData.siteContent.getSiteContent() />
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.siteContent.getTitle())?"":LOCAL.pageData.siteContent.getTitle() />
@@ -101,6 +99,7 @@
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
+				<cfset LOCAL.pageData.formData.name = "" />
 				<cfset LOCAL.pageData.formData.display_name = "" />
 				<cfset LOCAL.pageData.formData.site_content = "" />
 				<cfset LOCAL.pageData.formData.title = "" />
