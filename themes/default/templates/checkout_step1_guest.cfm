@@ -45,49 +45,58 @@
 			margin-left:20px;
 		}
 	</style>	
+	<div style="font-size:12px;margin:30px 0 10px 0;font-weight:bold;">* is required field</div>
 	<div id="checkout-info" class="single_field">
 		<div id="checkout-addresses" style="float:left;">
 			<table>	
 				<tr>
 					<td style="font-weight:bold;width:93px;">Email:</td>
+					<td style="width:10px;">*</td>
 					<td>
 						<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Unit: </td>
+					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_unit" id="shipto_unit" type="text" maxlength="100" size="25" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;width:93px;">Company:</td>
+					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Street: </td>
+					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_street" id="shipto_street" type="text" maxlength="100" size="25" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;width:93px;">First Name:</td>
+					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">City: </td>
+					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_city" id="shipto_city" type="text" maxlength="40" size="25" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;width:93px;">Middle Name:</td>
+					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_middle_name" id="shipto_middle_name" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Province: </td>
+					<td style="width:10px;">*</td>
 					<td>
 						<select name="shipto_province_id" id="shipto_province_id" style="width:190px;">
 							<option value="">Please select...</option>
@@ -99,6 +108,7 @@
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Last Name:</td>
+					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_last_name" id="shipto_last_name" type="text" maxlength="32" size="30" style="width:180px;">
 						
@@ -106,17 +116,20 @@
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Postal Code: </td>
+					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_postal_code" id="shipto_postal_code" type="text" maxlength="10" size="10" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Phone:</td>
+					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_phone" id="shipto_phone" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Country: </td>
+					<td style="width:10px;">*</td>
 					<td>
 						<select name="shipto_country_id" id="shipto_country_id" style="width:190px;">
 							<option value="">Please select...</option>
@@ -161,7 +174,7 @@
 				</tr>
 				
 				<tr>
-					<td colspan="5">
+					<td colspan="7">
 						<div style="padding-top:12px;border-top:1px solid ##ccc;margin-top:10px;">
 						<button class="btn-signup" type="submit" name="shipping_to_new_address" id="shipping_to_new_address" value="Ship to this address" style="font-size:12px;"><span>Ship to this address</span></button>
 						</div>
