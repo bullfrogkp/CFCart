@@ -379,6 +379,20 @@
 					<cfset LOCAL.product.addRelatedProduct(EntityLoadByPK("product",LOCAL.productId)) />
 				</cfloop>
 			</cfif>
+			
+			<!--- videos --->
+			<cfif NOT IsNumeric(FORM.id)>
+				<cfloop from="1" to="5" index="LOCAL.i">
+					<cfif Trim(FORM["video#LOCAL.i#"]) NEQ "">
+						<cfset LOCAL.newProductVideo = EntityNew("product_video") />
+						<cfset LOCAL.newProductVideo.setURL(Trim(FORM["video#LOCAL.i#"])) />
+						<cfset LOCAL.newProductVideo.setProduct(LOCAL.product) />
+						<cfset EntitySave(LOCAL.newProductVideo) />
+					</cfif>
+				</cfloop>
+			</cfif>
+			
+			<cfset EntitySave(LOCAL.product) />
 										
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.product.getProductId()#&active_tab_id=#LOCAL.tab_id#" />
