@@ -1019,27 +1019,25 @@
 							<label>Videos</label>
 							<a data-toggle="modal" data-target="##add-video-modal" href="" style="margin-left:10px;"><span class="label label-primary">Add New Video</span></a>
 							<div class="row" style="margin-top:10px;">
-								<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideosMV())>
-									<cfloop array="#REQUEST.pageData.product.getProductVideosMV()#" index="video">	
-										<div class="col-xs-3">
-											<div class="box">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="default">
-															<th><a href="#video.getUrl()#">Link</a></th>
-															<th><a productvideoid="#video.getProductVideoId()#" href="" class="delete-video pull-right" data-toggle="modal" data-target="##delete-video-modal"><span class="label label-danger">Delete</span></a></th>
-														</tr>
-														<tr>
-															<td colspan="2">
-																<iframe width="100%" height="100%" src="#video.getUrl()#" frameborder="0" allowfullscreen></iframe>
-															</td>
-														</tr>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</cfif>
+								<cfloop array="#REQUEST.pageData.product.getProductVideosMV()#" index="video">	
+									<div class="col-xs-3">
+										<div class="box">
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-hover">
+													<tr class="default">
+														<th><a href="#video.getUrl()#">Link</a></th>
+														<th><a productvideoid="#video.getProductVideoId()#" href="" class="delete-video pull-right" data-toggle="modal" data-target="##delete-video-modal"><span class="label label-danger">Delete</span></a></th>
+													</tr>
+													<tr>
+														<td colspan="2">
+															<iframe width="100%" height="100%" src="#video.getUrl()#" frameborder="0" allowfullscreen></iframe>
+														</td>
+													</tr>
+												</table>
+											</div><!-- /.box-body -->
+										</div><!-- /.box -->
+									</div>
+								</cfloop>
 							</div>
 						</div>
 					</div>
@@ -1144,53 +1142,6 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- ADD PRODUCT MODAL -->
-<div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add Related Product</h4>
-			</div>
-		
-			<div class="modal-body">
-				<div class="form-group">
-					<label>Product Group</label>
-					<select name="related_product_group_id" multiple class="form-control">
-						<cfloop array="#REQUEST.pageData.productGroups#" index="group">
-							<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
-						</cfloop>
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Product ID</label>
-					<input id="new_related_product_id" name="new_related_product_id" type="text" class="form-control" placeholder="Product ID">
-				</div>
-			</div>
-			<div class="modal-footer clearfix">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_related_product" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
-			</div>
-		
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- DELETE PRODUCT MODAL -->
-<div class="modal fade" id="delete-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this product?</h4>
-			</div>
-			<div class="modal-body clearfix">
-				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_related_product" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <!-- DELETE ENTITY MODAL -->
 <div class="modal fade" id="delete-current-entity-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
@@ -1207,29 +1158,6 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- EDIT DEFAULT PRICE MODAL -->
-<div class="modal fade" id="edit-default-shipping-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Edit Default Price</h4>
-			</div>
-		
-			<div class="modal-body">
-				<div class="form-group">
-					<input id="new_default_price" name="new_default_price" type="text" class="form-control" placeholder="Default Price">
-				</div>
-			</div>
-			<div class="modal-footer clearfix">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="edit_default_price" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Update</button>
-			</div>
-		
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <!-- DELETE IMAGE MODAL -->
 <div class="modal fade" id="delete-image-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
@@ -1241,43 +1169,6 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_image" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- ADD VIDEO MODAL -->
-<div class="modal fade" id="add-video-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add New Video</h4>
-			</div>
-		
-			<div class="modal-body">
-				<div class="form-group">
-					<label>URL</label>
-					<input id="new_video_url" name="new_video_url" type="text" class="form-control" placeholder="Video URL">
-				</div>
-			</div>
-			<div class="modal-footer clearfix">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_video" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- DELETE VIDEO MODAL -->
-<div class="modal fade" id="delete-video-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this video?</h4>
-			</div>
-			<div class="modal-body clearfix">
-				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_video" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
