@@ -22,7 +22,7 @@
 	<form method="post">
 	<input type="hidden" name="existing_address_id" id="existing-address-id" value="" />
 	<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
-		<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
+		<div style="font-size:12px;color:red;margin:20px 0 0 20px;line-height:20px;">
 			<ul>
 				<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
 					<li>#msg#</li>
@@ -46,54 +46,44 @@
 		}
 	</style>	
 	
-	<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
-		<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
-			<ul>
-				<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
-					<li>#msg#</li>
-				</cfloop>
-			</ul>
-		</div>
-	</cfif>
-	
 	<div style="font-size:12px;margin:30px 0 10px 0;font-weight:bold;">* is required field</div>
 	<div id="checkout-info" class="single_field">
 		<div id="checkout-addresses" style="float:left;">
 			<table>	
 				<tr>
-					<td style="font-weight:bold;width:93px;">Email:</td>
+					<td style="font-weight:bold;width:103px;">Email:</td>
 					<td style="width:10px;">*</td>
 					<td>
 						<input name="new_email" id="new_email" type="text" style="width:180px;"> 
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">Unit: </td>
+					<td style="font-weight:bold;width:103px;">Unit: </td>
 					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_unit" id="shipto_unit" type="text"style="width:180px;">
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:93px;">First Name:</td>
+					<td style="font-weight:bold;width:103px;">First Name:</td>
 					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_first_name" id="shipto_first_name" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">Street: </td>
+					<td style="font-weight:bold;width:103px;">Street: </td>
 					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_street" id="shipto_street" type="text" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:93px;">Middle Name:</td>
+					<td style="font-weight:bold;width:103px;">Middle Name:</td>
 					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_middle_name" id="shipto_middle_name" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">City: </td>
+					<td style="font-weight:bold;width:103px;">City: </td>
 					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_city" id="shipto_city" type="text" style="width:180px;">
@@ -106,7 +96,7 @@
 						<input name="shipto_last_name" id="shipto_last_name" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">Province: </td>
+					<td style="font-weight:bold;width:103px;">Province: </td>
 					<td style="width:10px;">*</td>
 					<td>
 						<select name="shipto_province_id" id="shipto_province_id" style="width:190px;">
@@ -118,13 +108,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:93px;">Company:</td>
+					<td style="font-weight:bold;width:103px;">Company:</td>
 					<td style="width:10px;"></td>
 					<td>
 						<input name="shipto_company" id="shipto_company" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">Postal Code/ZIP: </td>
+					<td style="font-weight:bold;width:103px;">Postal Code/ZIP: </td>
 					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_postal_code" id="shipto_postal_code" type="text"style="width:180px;">
@@ -137,7 +127,7 @@
 						<input name="shipto_phone" id="shipto_phone" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">Country: </td>
+					<td style="font-weight:bold;width:103px;">Country: </td>
 					<td style="width:10px;">*</td>
 					<td>
 						<select name="shipto_country_id" id="shipto_country_id" style="width:190px;">

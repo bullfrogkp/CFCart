@@ -5,7 +5,7 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif StructKeyExists(FORM,"update_cutomer_info")>			
+		<cfif StructKeyExists(FORM,"shipping_to_new_address")>			
 			<cfif Trim(FORM.shipto_first_name) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your first name.") />
 			</cfif>
