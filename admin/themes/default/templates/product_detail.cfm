@@ -1044,23 +1044,23 @@
 						<cfelse>
 							<div class="form-group">
 								<label>Video 1</label>
-								<input name="video1" type="text" class="form-control" placeholder="Enter ..." />
+								<input name="video1" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.video1#"/>
 							</div>
 							<div class="form-group">
 								<label>Video 2</label>
-								<input name="video2" type="text" class="form-control" placeholder="Enter ..." />
+								<input name="video2" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.video2#"/>
 							</div>
 							<div class="form-group">
 								<label>Video 3</label>
-								<input name="video3" type="text" class="form-control" placeholder="Enter ..." />
+								<input name="video3" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.video3#"/>
 							</div>
 							<div class="form-group">
 								<label>Video 4</label>
-								<input name="video4" type="text" class="form-control" placeholder="Enter ..." />
+								<input name="video4" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.video4#"/>
 							</div>
 							<div class="form-group">
 								<label>Video 5</label>
-								<input name="video5" type="text" class="form-control" placeholder="Enter ..." />
+								<input name="video5" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.video5#"/>
 							</div>
 						</cfif>
 					</div>

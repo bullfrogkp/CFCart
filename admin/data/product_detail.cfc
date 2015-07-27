@@ -529,6 +529,12 @@
 				<cfset LOCAL.pageData.formData.special_price_from_date = "" />
 				<cfset LOCAL.pageData.formData.special_price_to_date = "" />
 				
+				<cfset LOCAL.pageData.formData.video1 = "" />
+				<cfset LOCAL.pageData.formData.video2 = "" />
+				<cfset LOCAL.pageData.formData.video3 = "" />
+				<cfset LOCAL.pageData.formData.video4 = "" />
+				<cfset LOCAL.pageData.formData.video5 = "" />
+				
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
