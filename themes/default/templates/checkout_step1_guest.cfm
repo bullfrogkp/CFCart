@@ -63,10 +63,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:93px;">Company:</td>
-					<td style="width:10px;"></td>
+					<td style="font-weight:bold;width:93px;">First Name:</td>
+					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Street: </td>
@@ -76,23 +76,23 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:93px;">First Name:</td>
-					<td style="width:10px;">*</td>
+					<td style="font-weight:bold;width:93px;">Middle Name:</td>
+					<td style="width:10px;"></td>
 					<td>
-						<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_middle_name" id="shipto_middle_name" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">City: </td>
-					<td style="width:10px;"></td>
+					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_city" id="shipto_city" type="text" maxlength="40" size="25" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;width:93px;">Middle Name:</td>
-					<td style="width:10px;"></td>
+					<td style="font-weight:bold;">Last Name:</td>
+					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_middle_name" id="shipto_middle_name" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_last_name" id="shipto_last_name" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Province: </td>
@@ -107,16 +107,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="font-weight:bold;">Last Name:</td>
-					<td style="width:10px;">*</td>
+					<td style="font-weight:bold;width:93px;">Company:</td>
+					<td style="width:10px;"></td>
 					<td>
-						<input name="shipto_last_name" id="shipto_last_name" type="text" maxlength="32" size="30" style="width:180px;">
-						
-						&nbsp;&nbsp;<span style="color:red;display:none;" class="validation-falied" id="last-name-validation-shipping">Please enter your last name</span>
+						<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Postal Code: </td>
-					<td style="width:10px;"></td>
+					<td style="width:10px;">*</td>
 					<td>
 						<input name="shipto_postal_code" id="shipto_postal_code" type="text" maxlength="10" size="10" style="width:180px;">
 					</td>
@@ -139,7 +137,6 @@
 						</select>
 					</td>
 				</tr>
-				
 				<tr>
 					<td style="font-weight:bold;padding-top:15px;" colspan="5">
 						<table>
