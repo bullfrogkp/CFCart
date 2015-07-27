@@ -53,46 +53,46 @@
 					<td style="font-weight:bold;width:93px;">Email:</td>
 					<td style="width:10px;">*</td>
 					<td>
-						<input name="new_email" id="new_email" type="text" maxlength="32" size="30" style="width:180px;"> 
+						<input name="new_email" id="new_email" type="text" style="width:180px;"> 
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Unit: </td>
 					<td style="width:10px;"></td>
 					<td>
-						<input name="shipto_unit" id="shipto_unit" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="shipto_unit" id="shipto_unit" type="text"style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;width:93px;">First Name:</td>
 					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_first_name" id="shipto_first_name" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_first_name" id="shipto_first_name" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Street: </td>
 					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_street" id="shipto_street" type="text" maxlength="100" size="25" style="width:180px;">
+						<input name="shipto_street" id="shipto_street" type="text" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;width:93px;">Middle Name:</td>
 					<td style="width:10px;"></td>
 					<td>
-						<input name="shipto_middle_name" id="shipto_middle_name" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_middle_name" id="shipto_middle_name" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">City: </td>
 					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_city" id="shipto_city" type="text" maxlength="40" size="25" style="width:180px;">
+						<input name="shipto_city" id="shipto_city" type="text" style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Last Name:</td>
 					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_last_name" id="shipto_last_name" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_last_name" id="shipto_last_name" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Province: </td>
@@ -110,20 +110,20 @@
 					<td style="font-weight:bold;width:93px;">Company:</td>
 					<td style="width:10px;"></td>
 					<td>
-						<input name="shipto_company" id="shipto_company" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_company" id="shipto_company" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
-					<td style="font-weight:bold;width:93px;">Postal Code: </td>
+					<td style="font-weight:bold;width:93px;">Postal Code/ZIP: </td>
 					<td style="width:10px;">*</td>
 					<td>
-						<input name="shipto_postal_code" id="shipto_postal_code" type="text" maxlength="10" size="10" style="width:180px;">
+						<input name="shipto_postal_code" id="shipto_postal_code" type="text"style="width:180px;">
 					</td>
 				</tr>
 				<tr>
 					<td style="font-weight:bold;">Phone:</td>
 					<td style="width:10px;"></td>
 					<td>
-						<input name="shipto_phone" id="shipto_phone" type="text" maxlength="32" size="30" style="width:180px;">
+						<input name="shipto_phone" id="shipto_phone" type="text" style="width:180px;">
 					</td>
 					<td style="width:10px;"></td>
 					<td style="font-weight:bold;width:93px;">Country: </td>
@@ -154,13 +154,13 @@
 										<tr>
 											<td style="font-weight:bold;width:120px;">Password:</td>
 											<td>
-												<input name="new_password" id="new-password" type="password" maxlength="32" size="30" style="width:180px;">
+												<input name="new_password" id="new-password" type="password" style="width:180px;">
 											</td>
 										</tr>
 										<tr>
 											<td style="font-weight:bold;">Confirm Password:</td>
 											<td>
-												<input name="confirm_new_password" id="confirm-new-password" type="password" maxlength="32" size="30" style="width:180px;">
+												<input name="confirm_new_password" id="confirm-new-password" type="password" style="width:180px;">
 											</td>
 										</tr>
 									</table>
