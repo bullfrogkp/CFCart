@@ -85,7 +85,7 @@
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				
 				<cfset THIS[ "$Config" ].env = {} />
-				<cfset THIS[ "$Config" ].env.domain = "bullfrogdesign.ca" />
+				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com" />
 				<cfset THIS[ "$Config" ].env.emailCustomerService = "customerservice@#THIS[ "$Config" ].env.domain#" />
 				<cfset THIS[ "$Config" ].env.emailAdmin = "admin@#THIS[ "$Config" ].env.domain#" />
 				<cfset THIS[ "$Config" ].env.emailDevelopment = "dev@#THIS[ "$Config" ].env.domain#" />
@@ -98,7 +98,7 @@
 				<!--- absolute path --->	
 				<cfset THIS[ "$Config" ].env.absolutePathRoot = ExpandPath(THIS[ "$Config" ].env.absoluteUrlWeb) />
 				<!--- url --->
-				<cfset THIS[ "$Config" ].env.urlRoot = "pinmydeals.#THIS[ "$Config" ].env.domain#" />	
+				<cfset THIS[ "$Config" ].env.urlRoot = "www.#THIS[ "$Config" ].env.domain#" />	
 				<cfset THIS[ "$Config" ].env.urlWeb = "http://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
 				<cfset THIS[ "$Config" ].env.urlHttpsWeb = "http://#THIS[ "$Config" ].env.urlRoot##THIS[ "$Config" ].env.absoluteUrlWeb#" />
 				<!--- component --->

@@ -1,43 +1,27 @@
-﻿/*tax category*/
-INSERT INTO tax_category
-(name,display_name)
+﻿/*attribute*/
+INSERT INTO attribute
+(name,display_name,is_enabled,is_deleted)
 VALUES
-('taxable','Taxable');
-
-INSERT INTO tax_category
-(name,display_name,rate)
-VALUES
-('zero-rated','Zero-rated',0),
-('exempt','Exempt',0);
+('color','Color'),
+('size','Size');
 
 /*calculation type*/
 INSERT INTO calculation_type
-(name,display_name)
+(name,display_name,is_enabled,is_deleted)
 VALUES
 ('percentage','Percentage'),
 ('fixed','Fixed');
 
-/*attribute*/
-INSERT INTO attribute
-(name,display_name)
-VALUES
-('color','Color'),
-('size','Size'),
-('brand','Brand'),
-('material','Material');
-
-/*filter*/
-INSERT INTO filter
-(name,display_name)
-VALUES
-('color','Color'),
-('size','Size'),
-('brand','Brand'),
-('material','Material');
-
 /*country*/
 INSERT INTO country
-(code,display_name)
+(code,display_name,is_enabled,is_deleted)
+VALUES
+('US','USA'),
+('CA','Canada');
+
+/*currency*/
+INSERT INTO currency
+(name,display_name,is_enabled,is_deleted)
 VALUES
 ('US','USA'),
 ('CA','Canada');
@@ -50,6 +34,26 @@ VALUES
 ('expired','Expired'),
 ('used','Used'),
 ('disabled','Disabled');
+
+
+
+/*filter*/
+INSERT INTO filter
+(name,display_name)
+VALUES
+('color','Color'),
+('size','Size'),
+('brand','Brand'),
+('material','Material');
+
+
+/*link_status_type*/
+INSERT INTO link_status_type
+(name,display_name,is_enabled,is_deleted)
+VALUES
+('US','USA'),
+('CA','Canada');
+
 
 /*order_product_status_type*/
 /*www.amazon.com/gp/help/customer/display.html?nodeId=200243170*/
@@ -87,13 +91,28 @@ VALUES
 ('deleted','Deleted'),
 ('receiving_with_problems','Receiving with Problems');
 
-/*payment_solution*/
-INSERT INTO payment_solution
-(name,display_name)
+/*order_transaction_type*/
+INSERT INTO link_status_type
+(name,display_name,is_enabled,is_deleted)
 VALUES
-('paypal','PayPal'),
-('google_checkout','Google Checkout'),
-('amazon_payments','Amazon Payments');
+('US','USA'),
+('CA','Canada');
+
+/*page_section*/
+INSERT INTO link_status_type
+(name,display_name,is_enabled,is_deleted)
+VALUES
+('US','USA'),
+('CA','Canada');
+
+/*product_type*/
+INSERT INTO link_status_type
+(name,display_name,is_enabled,is_deleted)
+VALUES
+('US','USA'),
+('CA','Canada');
+
+
 
 /*payment_method*/
 INSERT INTO payment_method
@@ -105,6 +124,36 @@ VALUES
 ('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout')),
 ('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments')),
 ('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
+
+
+/*review_status_type*/
+INSERT INTO review_status_type
+(name,display_name)
+VALUES
+('approved','Approved'),
+('rejected','Rejected'),
+('pending','Pending');
+
+
+/*tax category*/
+INSERT INTO tax_category
+(name,display_name)
+VALUES
+('taxable','Taxable');
+
+INSERT INTO tax_category
+(name,display_name,rate)
+VALUES
+('zero-rated','Zero-rated',0),
+('exempt','Exempt',0);
+
+
+
+
+
+
+
+
 
 /*province*/
 INSERT INTO province
@@ -178,13 +227,6 @@ INSERT into province values
 ('WI', 'Wisconsin'),
 ('WY', 'Wyoming');
 
-/*review_status_type*/
-INSERT INTO review_status_type
-(name,display_name)
-VALUES
-('approved','Approved'),
-('rejected','Rejected'),
-('pending','Pending');
 
 /*shipping_carrier*/
 INSERT INTO shipping_carrier
