@@ -45,6 +45,17 @@
 			margin-left:20px;
 		}
 	</style>	
+	
+	<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+		<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
+			<ul>
+				<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+					<li>#msg#</li>
+				</cfloop>
+			</ul>
+		</div>
+	</cfif>
+	
 	<div style="font-size:12px;margin:30px 0 10px 0;font-weight:bold;">* is required field</div>
 	<div id="checkout-info" class="single_field">
 		<div id="checkout-addresses" style="float:left;">
