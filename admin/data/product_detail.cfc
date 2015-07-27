@@ -13,8 +13,12 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid SKU.") />
 		</cfif>
 		
-		<cfif StructKeyExists(FORM,"add_new_product") AND NOT IsNumeric(FORM.new_product_id)>
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product ID.") />
+		<cfif NOT IsNumeric(Trim(FORM.stock))>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid stock number.") />
+		</cfif>
+		
+		<cfif NOT IsNumeric(Trim(FORM.price))>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid price.") />
 		</cfif>
 		
 		<cfif NOT StructKeyExists(FORM,"category_id")>
