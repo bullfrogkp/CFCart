@@ -1,27 +1,27 @@
 ﻿/*attribute*/
 INSERT INTO attribute
-(name,display_name,is_enabled,is_deleted)
+(name,display_name)
 VALUES
 ('color','Color'),
 ('size','Size');
 
 /*calculation type*/
 INSERT INTO calculation_type
-(name,display_name,is_enabled,is_deleted)
+(name,display_name)
 VALUES
 ('percentage','Percentage'),
 ('fixed','Fixed');
 
 /*country*/
 INSERT INTO country
-(code,display_name,is_enabled,is_deleted)
+(code,display_name)
 VALUES
 ('US','USA'),
 ('CA','Canada');
 
 /*currency*/
 INSERT INTO currency
-(name,display_name,is_enabled,is_deleted)
+(name,display_name)
 VALUES
 ('US','USA'),
 ('CA','Canada');
@@ -35,25 +35,27 @@ VALUES
 ('used','Used'),
 ('disabled','Disabled');
 
-
+/*customer_group*/
+INSERT INTO customer_group
+(name,display_name,is_default)
+VALUES
+('default','Default',1),
+('wholesaler','Wholesaler',0),
+('retailer','Retailer',0);
 
 /*filter*/
 INSERT INTO filter
 (name,display_name)
 VALUES
 ('color','Color'),
-('size','Size'),
-('brand','Brand'),
-('material','Material');
-
+('size','Size');
 
 /*link_status_type*/
 INSERT INTO link_status_type
-(name,display_name,is_enabled,is_deleted)
+(name,display_name)
 VALUES
-('US','USA'),
-('CA','Canada');
-
+('active','Active'),
+('processed','Processed');
 
 /*order_product_status_type*/
 /*www.amazon.com/gp/help/customer/display.html?nodeId=200243170*/
@@ -92,39 +94,35 @@ VALUES
 ('receiving_with_problems','Receiving with Problems');
 
 /*order_transaction_type*/
-INSERT INTO link_status_type
-(name,display_name,is_enabled,is_deleted)
+INSERT INTO order_transaction_type
+(name,display_name)
 VALUES
-('US','USA'),
-('CA','Canada');
+('purchase','Purchase');
 
 /*page_section*/
-INSERT INTO link_status_type
-(name,display_name,is_enabled,is_deleted)
+INSERT INTO page_section
+(name,content,page_id)
 VALUES
-('US','USA'),
-('CA','Canada');
+('slide','',1),
+('advertisement','',1),
+('top selling','',1),
+('group buying','',1),
+('advertisement','',2),
+('best seller','',2);
 
 /*product_type*/
-INSERT INTO link_status_type
-(name,display_name,is_enabled,is_deleted)
+INSERT INTO product_type
+(name,display_name)
 VALUES
-('US','USA'),
-('CA','Canada');
-
-
+('simple','Simple'),
+('package','Package'),
+('configured_product','Configured Product');
 
 /*payment_method*/
 INSERT INTO payment_method
-(name,display_name,payment_solution_id)
+(name,display_name)
 VALUES
-('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal')),
-('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'paypal')),
-('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout')),
-('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'google_checkout')),
-('regular','Regular',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments')),
-('express','Express',(SELECT payment_solution_id FROM payment_solution WHERE name = 'amazon_payments'));
-
+('paypal','PayPal');
 
 /*review_status_type*/
 INSERT INTO review_status_type
@@ -134,6 +132,33 @@ VALUES
 ('rejected','Rejected'),
 ('pending','Pending');
 
+/*shipping_carrier*/
+INSERT INTO shipping_carrier
+(name,display_name)
+VALUES
+('ups','UPS'),
+('fedex','Fedex'),
+('chinapost','China Post'),
+('dhl','DHL'),
+('ems','EMS'),
+('canadapost','Canada Post');
+
+/*shipping_method*/
+INSERT INTO shipping_method
+(name,display_name,shipping_carrier_id)
+VALUES
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
+('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
 
 /*tax category*/
 INSERT INTO tax_category
@@ -228,41 +253,10 @@ INSERT into province values
 ('WY', 'Wyoming');
 
 
-/*shipping_carrier*/
-INSERT INTO shipping_carrier
-(name,display_name)
-VALUES
-('ups','UPS'),
-('fedex','Fedex'),
-('chinapost','China Post'),
-('dhl','DHL'),
-('ems','EMS'),
-('canadapost','Canada Post');
 
-/*shipping_method*/
-INSERT INTO shipping_method
-(name,display_name,shipping_carrier_id)
-VALUES
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
 
-/*customer_group*/
-INSERT INTO customer_group
-(name,display_name,is_default)
-VALUES
-('default','Default',1),
-('wholesaler','Wholesaler',0),
-('retailer','Retailer',0);
+
+
 
 /*add page and page_section records*/
 /*add tracking_record_type records*/
