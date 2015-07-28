@@ -134,31 +134,31 @@ VALUES
 
 /*shipping_carrier*/
 INSERT INTO shipping_carrier
-(name,display_name)
+(name,display_name, image_name, component, is_enabled)
 VALUES
-('ups','UPS'),
-('fedex','Fedex'),
-('chinapost','China Post'),
-('dhl','DHL'),
-('ems','EMS'),
-('canadapost','Canada Post');
+('ups','UPS','ups','ups',1),
+('fedex','Fedex','fedex','fedex',0),
+('chinapost','China Post','chinapost','chinapost',1),
+('dhl','DHL','dhl','dhl',0),
+('ems','EMS','ems','ems',0),
+('canadapost','Canada Post','canadapost','canadapost',1);
 
 /*shipping_method*/
 INSERT INTO shipping_method
 (name,display_name,shipping_carrier_id)
 VALUES
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
-('regular','Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
-('express','Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
+('ups regular','UPS - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('ups express','UPS - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('fedex regular','Fedex - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('fedex express','Fedex - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('chinapost regular','Chinapost - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('chinapost express','Chinapost - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('dhl regular','DHL - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('dhl express','DHL - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('ems regular','EMS - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('ems express','EMS - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('canadapost regular','Canadapost - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
+('canadapost express','Canadapost - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
 
 /*tax category*/
 INSERT INTO tax_category
