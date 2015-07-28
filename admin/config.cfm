@@ -164,21 +164,9 @@ VALUES
 INSERT INTO tax_category
 (name,display_name)
 VALUES
-('taxable','Taxable');
-
-INSERT INTO tax_category
-(name,display_name,rate)
-VALUES
-('zero-rated','Zero-rated',0),
-('exempt','Exempt',0);
-
-
-
-
-
-
-
-
+('taxable','Taxable'),
+('zero-rated','Zero-rated'),
+('exempt','Exempt');
 
 /*province*/
 INSERT INTO province
@@ -251,12 +239,6 @@ INSERT into province values
 ('WV', 'West Virginia'),
 ('WI', 'Wisconsin'),
 ('WY', 'Wyoming');
-
-
-
-
-
-
 
 /*add page and page_section records*/
 /*add tracking_record_type records*/
