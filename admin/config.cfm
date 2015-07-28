@@ -240,6 +240,13 @@ INSERT into province values
 ('WI', 'Wisconsin'),
 ('WY', 'Wyoming');
 
-/*add page and page_section records*/
-/*add tracking_record_type records*/
+/*tracking_record_type*/
+INSERT INTO tax_category
+(name)
+VALUES
+('shopping cart'),
+('buy later'),
+('history'),
+('wishlist');
+
 /*add top selling and group buying category*/
