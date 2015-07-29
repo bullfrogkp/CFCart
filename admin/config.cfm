@@ -14,12 +14,12 @@ VALUES
 
 /*add top selling and group buying category*/
 INSERT INTO category
-(name,display_name,is_enabled,rank,show_category_on_navigation,display_category_list,display_custom_design,display_filter,is_special)
+(name,display_name,is_enabled,rank,show_category_on_navigation,display_category_list,display_custom_design,display_filter,is_special,is_deleted, title,keywords,description)
 VALUES
-('new arrivals','New Arrivals',1,0,0,0,0,0,1),
-('group buying','Group Buying',1,0,0,0,0,0,1),
-('search result','Search Result',1,0,0,0,0,0,1),
-('top sellers','Top Sellers',1,0,0,0,0,0,1);
+('new arrivals','New Arrivals',1,0,0,0,0,0,1,0,'New Arrivals','New Arrivals','New Arrivals'),
+('group buying','Group Buying',1,0,0,0,0,0,1,0,'Group Buying','Group Buying','Group Buying'),
+('search result','Search Result',1,0,0,0,0,0,0,1,'Search Result','Search Result','Search Result'),
+('top sellers','Top Sellers',1,0,0,0,0,0,1,0,'Top Sellers','Top Sellers','Top Sellers');
 
 /*country*/
 INSERT INTO country
@@ -39,10 +39,10 @@ VALUES
 
 /*currency*/
 INSERT INTO currency
-(name,code,display_name,is_default,locale,multiplier)
+(name,code,display_name,is_default,locale,multiplier,is_enabled,is_deleted)
 VALUES
-('cad','CAD','CAD',1,'English (Canadian)',1),
-('usd','USD','USD',0,'English (US)',0.81);
+('cad','CAD','CAD',1,'English (Canadian)',1,1,0),
+('usd','USD','USD',0,'English (US)',0.81,1,0);
 
 /*customer_group*/
 INSERT INTO customer_group
@@ -264,7 +264,7 @@ VALUES
 ('exempt','Exempt');
 
 /*tracking_record_type*/
-INSERT INTO tax_category
+INSERT INTO tracking_record_type
 (name)
 VALUES
 ('shopping cart'),
@@ -272,9 +272,10 @@ VALUES
 ('history'),
 ('wishlist');
 
-/*user*/
-INSERT INTO user
-(username,password)
+/*admin_user*/
+INSERT INTO admin_user
+(username,password,is_enabled,is_deleted)
 VALUES
-('kevin','9D5E3ECDEB4CDB7ACFD63075AE046672');
+('kevin','9D5E3ECDEB4CDB7ACFD63075AE046672',1,0);
 
+/* images folder clean up */
