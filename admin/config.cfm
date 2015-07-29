@@ -46,11 +46,17 @@ VALUES
 
 /*customer_group*/
 INSERT INTO customer_group
-(name,display_name,is_default)
+(name,display_name,is_default,is_enabled,is_deleted,discount_type_id)
 VALUES
-('default','Default',1),
-('wholesaler','Wholesaler',0),
-('retailer','Retailer',0);
+('default','Default',1,1,0,(SELECT discount_type_id FROM discount_type WHERE name = 'no discount')),
+('wholesaler','Wholesaler',0,1,0,(SELECT discount_type_id FROM discount_type WHERE name = 'no discount')),
+('retailer','Retailer',0,1,0,(SELECT discount_type_id FROM discount_type WHERE name = 'no discount'));
+
+/*discount_type*/
+INSERT INTO discount_type
+(name,display_name,is_enabled,is_deleted,amount,calculation_type_id)
+VALUES
+('no discount','No Discount',1,0,0,(SELECT calculation_type_id FROM calculation_type WHERE name = 'fixed'));
 
 /*email_content_type*/
 INSERT INTO email_content_type
