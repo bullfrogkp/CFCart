@@ -12,16 +12,18 @@ VALUES
 ('percentage','Percentage'),
 ('fixed','Fixed');
 
+/*add top selling and group buying category*/
+INSERT INTO category
+(name,display_name,is_enabled,rank,show_category_on_navigation,display_category_list,display_custom_design,display_filter,is_special)
+VALUES
+('new arrivals','New Arrivals',1,0,0,0,0,0,1),
+('group buying','Group Buying',1,0,0,0,0,0,1),
+('search result','Search Result',1,0,0,0,0,0,1),
+('top sellers','Top Sellers',1,0,0,0,0,0,1);
+
 /*country*/
 INSERT INTO country
 (code,display_name)
-VALUES
-('US','USA'),
-('CA','Canada');
-
-/*currency*/
-INSERT INTO currency
-(name,display_name)
 VALUES
 ('US','USA'),
 ('CA','Canada');
@@ -35,6 +37,13 @@ VALUES
 ('used','Used'),
 ('disabled','Disabled');
 
+/*currency*/
+INSERT INTO currency
+(name,code,display_name,is_default,locale,multiplier)
+VALUES
+('cad','CAD','CAD',1,'English (Canadian)',1),
+('usd','USD','USD',0,'English (US)',0.81);
+
 /*customer_group*/
 INSERT INTO customer_group
 (name,display_name,is_default)
@@ -42,6 +51,13 @@ VALUES
 ('default','Default',1),
 ('wholesaler','Wholesaler',0),
 ('retailer','Retailer',0);
+
+/*email_content_type*/
+INSERT INTO email_content_type
+(name,display_name)
+VALUES
+('html','HTML'),
+('plain text','Plain Text');
 
 /*filter*/
 INSERT INTO filter
@@ -100,6 +116,13 @@ VALUES
 ('purchase','Purchase');
 
 /*page_section*/
+INSERT INTO page
+(name,title,keywords,description)
+VALUES
+('index','index','index','index'),
+('products','products','products','products');
+
+/*page_section*/
 INSERT INTO page_section
 (name,content,page_id)
 VALUES
@@ -123,50 +146,6 @@ INSERT INTO payment_method
 (name,display_name)
 VALUES
 ('paypal','PayPal');
-
-/*review_status_type*/
-INSERT INTO review_status_type
-(name,display_name)
-VALUES
-('approved','Approved'),
-('rejected','Rejected'),
-('pending','Pending');
-
-/*shipping_carrier*/
-INSERT INTO shipping_carrier
-(name,display_name, image_name, component, is_enabled)
-VALUES
-('ups','UPS','ups','ups',1),
-('fedex','Fedex','fedex','fedex',0),
-('chinapost','China Post','chinapost','chinapost',1),
-('dhl','DHL','dhl','dhl',0),
-('ems','EMS','ems','ems',0),
-('canadapost','Canada Post','canadapost','canadapost',1);
-
-/*shipping_method*/
-INSERT INTO shipping_method
-(name,display_name,shipping_carrier_id)
-VALUES
-('ups regular','UPS - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
-('ups express','UPS - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
-('fedex regular','Fedex - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
-('fedex express','Fedex - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
-('chinapost regular','Chinapost - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
-('chinapost express','Chinapost - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
-('dhl regular','DHL - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
-('dhl express','DHL - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
-('ems regular','EMS - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
-('ems express','EMS - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
-('canadapost regular','Canadapost - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
-('canadapost express','Canadapost - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
-
-/*tax category*/
-INSERT INTO tax_category
-(name,display_name)
-VALUES
-('taxable','Taxable'),
-('zero-rated','Zero-rated'),
-('exempt','Exempt');
 
 /*province*/
 INSERT INTO province
@@ -240,6 +219,50 @@ INSERT into province values
 ('WI', 'Wisconsin'),
 ('WY', 'Wyoming');
 
+/*review_status_type*/
+INSERT INTO review_status_type
+(name,display_name)
+VALUES
+('approved','Approved'),
+('rejected','Rejected'),
+('pending','Pending');
+
+/*shipping_carrier*/
+INSERT INTO shipping_carrier
+(name,display_name, image_name, component, is_enabled)
+VALUES
+('ups','UPS','ups','ups',1),
+('fedex','Fedex','fedex','fedex',0),
+('chinapost','China Post','chinapost','chinapost',1),
+('dhl','DHL','dhl','dhl',0),
+('ems','EMS','ems','ems',0),
+('canadapost','Canada Post','canadapost','canadapost',1);
+
+/*shipping_method*/
+INSERT INTO shipping_method
+(name,display_name,shipping_carrier_id)
+VALUES
+('ups regular','UPS - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('ups express','UPS - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups')),
+('fedex regular','Fedex - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('fedex express','Fedex - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'fedex')),
+('chinapost regular','Chinapost - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('chinapost express','Chinapost - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'chinapost')),
+('dhl regular','DHL - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('dhl express','DHL - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'dhl')),
+('ems regular','EMS - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('ems express','EMS - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ems')),
+('canadapost regular','Canadapost - Regular',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost')),
+('canadapost express','Canadapost - Express',(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'));
+
+/*tax category*/
+INSERT INTO tax_category
+(name,display_name)
+VALUES
+('taxable','Taxable'),
+('zero-rated','Zero-rated'),
+('exempt','Exempt');
+
 /*tracking_record_type*/
 INSERT INTO tax_category
 (name)
@@ -249,11 +272,3 @@ VALUES
 ('history'),
 ('wishlist');
 
-/*add top selling and group buying category*/
-INSERT INTO category
-(name,display_name,is_enabled,rank,show_category_on_navigation,display_category_list,display_custom_design,display_filter,is_special)
-VALUES
-('new arrivals','New Arrivals',),
-('group buying','Group Buying'),
-('search result','Search Result'),
-('top sellers','Top Sellers');
