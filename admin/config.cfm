@@ -126,12 +126,18 @@ VALUES
 INSERT INTO page_section
 (name,content,page_id)
 VALUES
-('slide','',1),
-('advertisement','',1),
-('top selling','',1),
-('group buying','',1),
-('advertisement','',2),
-('best seller','',2);
+('slide','',(select page_id from page where name = 'index')),
+('advertisement','',(select page_id from page where name = 'index')),
+('top selling','',(select page_id from page where name = 'index')),
+('group buying','',(select page_id from page where name = 'index')),
+('advertisement','',(select page_id from page where name = 'products')),
+('best seller','',(select page_id from page where name = 'products'));
+
+/*payment_method*/
+INSERT INTO payment_method
+(name,display_name)
+VALUES
+('paypal','PayPal');
 
 /*product_type*/
 INSERT INTO product_type
@@ -140,12 +146,6 @@ VALUES
 ('simple','Simple'),
 ('package','Package'),
 ('configured_product','Configured Product');
-
-/*payment_method*/
-INSERT INTO payment_method
-(name,display_name)
-VALUES
-('paypal','PayPal');
 
 /*province*/
 INSERT INTO province
@@ -231,12 +231,12 @@ VALUES
 INSERT INTO shipping_carrier
 (name,display_name, image_name, component, is_enabled)
 VALUES
-('ups','UPS','ups','ups',1),
-('fedex','Fedex','fedex','fedex',0),
-('chinapost','China Post','chinapost','chinapost',1),
-('dhl','DHL','dhl','dhl',0),
-('ems','EMS','ems','ems',0),
-('canadapost','Canada Post','canadapost','canadapost',1);
+('ups','UPS','ups.jpg','ups',1),
+('fedex','Fedex','fedex.png','fedex',0),
+('chinapost','China Post','chinapost.jpg','chinapost',1),
+('dhl','DHL','dhl.png','dhl',0),
+('ems','EMS','ems.jpg','ems',0),
+('canadapost','Canada Post','canadapost.jpg','canadapost',1);
 
 /*shipping_method*/
 INSERT INTO shipping_method
