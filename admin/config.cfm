@@ -250,3 +250,10 @@ VALUES
 ('wishlist');
 
 /*add top selling and group buying category*/
+INSERT INTO category
+(name,display_name,is_enabled,rank,show_category_on_navigation,display_category_list,display_custom_design,display_filter,is_special)
+VALUES
+('new arrivals','New Arrivals',),
+('group buying','Group Buying'),
+('search result','Search Result'),
+('top sellers','Top Sellers');
