@@ -4,7 +4,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.pageData.title = "Users | #APPLICATION.applicationName#" />
-		<cfset LOCAL.pageData.users = EntityLoad("user",{isDeleted=false}) />
+		<cfset LOCAL.pageData.users = EntityLoad("admin_user",{isDeleted=false}) />
 	
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

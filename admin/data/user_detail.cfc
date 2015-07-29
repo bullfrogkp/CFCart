@@ -12,7 +12,7 @@
 		<cfif Trim(FORM.username) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid username.") />
 		<cfelse>
-			<cfset LOCAL.existingUser = EntityLoad("user",{username=Trim(FORM.username)},true) />
+			<cfset LOCAL.existingUser = EntityLoad("admin_user",{username=Trim(FORM.username)},true) />
 			<cfif NOT IsNull(LOCAL.existingUser) AND LOCAL.existingUser.getUserId() NEQ FORM.id>
 				<cfset ArrayAppend(LOCAL.messageArray,"Username already exists.") />
 			</cfif>
@@ -58,11 +58,11 @@
 		<cfset SESSION.temp.message.messageType = "alert-success" />
 		
 		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.user = EntityLoadByPK("user", FORM.id)> 
+			<cfset LOCAL.user = EntityLoadByPK("admin_user", FORM.id)> 
 			<cfset LOCAL.user.setUpdatedUser(SESSION.adminUser) />
 			<cfset LOCAL.user.setUpdatedDatetime(Now()) />
 		<cfelse>
-			<cfset LOCAL.user = EntityNew("user") />
+			<cfset LOCAL.user = EntityNew("admin_user") />
 			<cfset LOCAL.user.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.user.setCreatedDatetime(Now()) />
 			<cfset LOCAL.user.setIsDeleted(false) />
@@ -103,7 +103,7 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.user = EntityLoadByPK("user", URL.id)> 
+			<cfset LOCAL.pageData.user = EntityLoadByPK("admin_user", URL.id)> 
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.user.getDisplayName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			

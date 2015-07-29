@@ -80,7 +80,7 @@
                 <cfset THIS[ "$Config" ].ormSettings = {} />
                 <cfset THIS[ "$Config" ].ormSettings.dbCreate = "update" />
 				<cfset THIS[ "$Config" ].ormSettings.cfclocation = "/core/entities/" />
-                <cfset THIS[ "$Config" ].dataSource = "bullfrog" />
+                <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				

@@ -34,7 +34,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.user = EntityLoad("user",{username=Trim(FORM.username)},true) />
+		<cfset LOCAL.user = EntityLoad("admin_user",{username=Trim(FORM.username)},true) />
 		<cfset LOCAL.user.setLastLoginDatetime(Now()) />
 		<cfset SESSION.adminUser = LOCAL.user.getUsername() />
 		<cfset LOCAL.redirectUrl = "index.cfm" />

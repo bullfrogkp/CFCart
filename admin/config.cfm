@@ -272,3 +272,9 @@ VALUES
 ('history'),
 ('wishlist');
 
+/*user*/
+INSERT INTO user
+(username,password)
+VALUES
+('kevin','9D5E3ECDEB4CDB7ACFD63075AE046672');
+
