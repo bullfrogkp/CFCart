@@ -46,6 +46,7 @@
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfif StructKeyExists(FORM,"checkout_login")>
 			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.username),password=Hash(Trim(FORM.password)),isDeleted=false,isEnabled=true},true) />
