@@ -284,4 +284,22 @@ INSERT INTO admin_user
 VALUES
 ('kevin','9D5E3ECDEB4CDB7ACFD63075AE046672',1,0);
 
+/*tax*/
+INSERT INTO tax
+(province_id, rate, tax_category_id)
+SELECT	province_id,0, (SELECT tax_category_id FROM tax_category WHERE name = 'taxable')
+FROM province;
+
+INSERT INTO tax
+(province_id, rate, tax_category_id)
+SELECT	province_id,0, (SELECT tax_category_id FROM tax_category WHERE name = 'zero-rated')
+FROM province;
+
+INSERT INTO tax
+(province_id, rate, tax_category_id)
+SELECT	province_id,0, (SELECT tax_category_id FROM tax_category WHERE name = 'exempt')
+FROM province;
+
+/*tax detail page for update*/
+
 /* images folder clean up */

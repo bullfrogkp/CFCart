@@ -992,7 +992,7 @@
 															>
 														</td>
 														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>style="color:red;"</cfif>>Default</td>
-														<td><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;padding-right:5px;"></td>
+														<td colspan="2"><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;padding-right:5px;"></td>
 													</tr>
 													<tr style="font-size:12px;">
 														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false>style="color:red;"</cfif>>
@@ -1002,7 +1002,7 @@
 															</cfif>
 															>
 														</td>
-														<td colspan="2">Calculated</td>
+														<td colspan="3">Calculated</td>
 													</tr>
 													</cfoutput>
 												</table>

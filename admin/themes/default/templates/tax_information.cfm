@@ -37,6 +37,7 @@
 						<thead>
 							<tr>
 								<th>Province/State</th>
+								<th>Tax Category</th>
 								<th>Tax Rate</th>
 								<th>Action</th>
 							</tr>
@@ -45,6 +46,7 @@
 							<cfloop array="#REQUEST.pageData.taxes#" index="tax">
 								<tr>
 									<td>#tax.getProvince().getDisplayName()#</td>
+									<td>#tax.getTaxCategory().getDisplayName()#</td>
 									<td>
 										<input type="text" name="rate_#tax.getTaxId()#" value="#tax.getRate()#" />
 									</td>
