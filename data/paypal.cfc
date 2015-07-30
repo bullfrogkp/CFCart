@@ -48,6 +48,17 @@
 					<cfset EntityDelete(LOCAL.record) />
 				</cfloop>
 				
+				<!--- send email --->
+				<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.emailService"() />
+				<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
+				<cfset LOCAL.emailService.setToEmail(LOCAL.order.getCustomerEmail()) />
+				<cfset LOCAL.emailService.setContentName("order placed") />
+				
+				<cfset LOCAL.replaceStruct = {} />
+				<cfset LOCAL.replaceStruct.customerName = LOCAL.order.getFirstName() />
+				<cfset LOCAL.emailService.setReplaceStruct(LOCAL.replaceStruct) />
+				<cfset LOCAL.emailService.sendEmail() />
+				
 				<cflocation url="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm" addToken="false" />
 			<cfelse>
 				<cfdump var="#LOCAL.responseStruct#" abort>

@@ -28,12 +28,12 @@
 		<cfargument name="emailType" type="string" required="true" />
 		
 	    <cfset var LOCAL = StructNew() />
-		<!---
+		
 		<cfmail from="#Trim(ARGUMENTS.fromEmail)#" 
 				to="#Trim(ARGUMENTS.toEmail)#" 
 				type="#ARGUMENTS.emailType#"
 				subject="#Trim(ARGUMENTS.emailSubject)#">#Trim(ARGUMENTS.emailContent)#</cfmail>
-		--->
+		
 	</cffunction>
 	
 	<cffunction name="replaceEmailVariables" access="private" output="false" returnType="string">
