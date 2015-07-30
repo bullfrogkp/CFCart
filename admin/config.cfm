@@ -95,6 +95,8 @@ VALUES
 ('closed','Closed'),
 ('canceled','Cancelled'),
 ('deleted','Deleted'),
+('placed','Placed'),
+('paid','Paid'),
 ('receiving_with_problems','Receiving with Problems');
 
 /*order_status_type*/
@@ -113,6 +115,8 @@ VALUES
 ('closed','Closed'),
 ('canceled','Cancelled'),
 ('deleted','Deleted'),
+('placed','Placed'),
+('paid','Paid'),
 ('receiving_with_problems','Receiving with Problems');
 
 /*order_transaction_type*/
