@@ -187,28 +187,6 @@
 		<cfset LOCAL.paymentService.setCart(this) />
 		<cfset LOCAL.paymentService.process() />
 	</cffunction>
-	<!------------------------------------------------------------------------------->
-	<cffunction name="setPaid" access="public" output="false" returnType="void">
-		<cfset var LOCAL = {} />
-		
-		<cfset LOCAL.orderId = getOrder().getOrderId() />
-		<cfset LOCAL.order = EntityLoadByPK("order",LOCAL.orderId) />
-		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
-		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
-		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
-		<cfset EntitySave(LOCAL.currentOrderStatus) /> 
-		
-		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "paid"},true) />
-		<cfset LOCAL.orderStatus = EntityNew("order_status") />
-		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
-		<cfset LOCAL.orderStatus.setCurrent(true) />
-		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
-		<cfset EntitySave(LOCAL.orderStatus) /> 
-		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
-		<cfset LOCAL.order.setIsComplete(true) />
-		
-		<cfset EntitySave(LOCAL.order) />
-	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="saveCustomer" access="public">
 		<cfset var LOCAL = {} />

@@ -73,4 +73,28 @@
 	<cffunction name="getCurrentOrderStatus" access="public" output="false" returnType="any">
 		<cfreturn EntityLoad("order_status",{order=this, current=true},true) />
 	</cffunction>
+	
+	
+	<!------------------------------------------------------------------------------->
+	<cffunction name="setPaid" access="public" output="false" returnType="void">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.orderId = getOrderId() />
+		<cfset LOCAL.order = EntityLoadByPK("order",LOCAL.orderId) />
+		<cfset LOCAL.currentOrderStatus = EntityLoad("order_status",{order = LOCAL.order, current = true},true) />
+		<cfset LOCAL.currentOrderStatus.setCurrent(false) />
+		<cfset LOCAL.currentOrderStatus.setEndDatetime(Now()) />
+		<cfset EntitySave(LOCAL.currentOrderStatus) /> 
+		
+		<cfset LOCAL.orderStatusType = EntityLoad("order_status_type",{name = "paid"},true) />
+		<cfset LOCAL.orderStatus = EntityNew("order_status") />
+		<cfset LOCAL.orderStatus.setStartDatetime(Now()) />
+		<cfset LOCAL.orderStatus.setCurrent(true) />
+		<cfset LOCAL.orderStatus.setOrderStatusType(LOCAL.orderStatusType) />
+		<cfset EntitySave(LOCAL.orderStatus) /> 
+		<cfset LOCAL.order.addOrderStatus(LOCAL.orderStatus) />
+		<cfset LOCAL.order.setIsComplete(true) />
+		
+		<cfset EntitySave(LOCAL.order) />
+	</cffunction>
 </cfcomponent>

@@ -39,7 +39,7 @@
 		<cfset LOCAL.requestData.TAXAMT = getCart().getTotalTax()>
 		<cfset LOCAL.requestData.AMT = getCart().getTotalPrice()>
 		<cfset LOCAL.requestData.CancelURL = "#APPLICATION.urlHttpsWeb#checkout/checkout_confirmation.cfm" >
-		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.urlHttpsWeb#payments/paypal.cfm">
+		<cfset LOCAL.requestData.ReturnURL = "#APPLICATION.urlHttpsWeb#payments/paypal.cfm?order_id=#SESSION.cart.getOrder().getOrderId()#">
 
 		<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
 			<cfinvokeargument name="requestData" value="#LOCAL.requestData#">

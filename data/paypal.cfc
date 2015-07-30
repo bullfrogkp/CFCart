@@ -3,8 +3,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(URL,"token") AND StructKeyExists(URL,"payerId")>
-		
-			<cfset LOCAL.order = EntityLoadByPK("order",SESSION.cart.getOrder().getOrderId()) />
+			<cfset LOCAL.order = EntityLoadByPK("order",URL.order_id) />
 			<cfset LOCAL.order.setToken(URL.token) />
 			<cfset LOCAL.order.setPayerId(URL.payerId) />
 			<cfset EntitySave(LOCAL.order) />
@@ -18,7 +17,7 @@
 			<cfset LOCAL.requestData.TOKEN = URL.token>
 			<cfset LOCAL.requestData.PAYERID = URL.payerId>
 			<cfset LOCAL.requestData.PAYMENTACTION = "sale">
-			<cfset LOCAL.requestData.AMT = SESSION.cart.getTotalPrice()>
+			<cfset LOCAL.requestData.AMT = LOCAL.order.getTotalPrice()>
 			<cfset LOCAL.requestData.CURRENCYCODE = SESSION.currency.code>
 					
 			<cfinvoke component="#APPLICATION.componentPathRoot#core.services.callerService" method="doHttppost" returnvariable="LOCAL.response">
@@ -41,9 +40,9 @@
 				<cfset LOCAL.orderTransaction.setTransactionId(LOCAL.responseStruct.transactionId) />
 				<cfset EntitySave(LOCAL.orderTransaction) />
 				
-				<cfset SESSION.cart.setPaid() />
+				<cfset LOCAL.order.setPaid() />
+				<cfset EntitySave(LOCAL.order) />
 				
-				<cfset StructDelete(SESSION,"cart") />
 				<cfset LOCAL.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken).getTrackingRecords(trackingRecordType = "shopping cart") />
 				<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 					<cfset EntityDelete(LOCAL.record) />
