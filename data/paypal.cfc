@@ -52,10 +52,10 @@
 				<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.emailService"() />
 				<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
 				<cfset LOCAL.emailService.setToEmail(LOCAL.order.getCustomerEmail()) />
-				<cfset LOCAL.emailService.setContentName("order placed") />
+				<cfset LOCAL.emailService.setContentName("order confirmation") />
 				
 				<cfset LOCAL.replaceStruct = {} />
-				<cfset LOCAL.replaceStruct.customerName = LOCAL.order.getFirstName() />
+				<cfset LOCAL.replaceStruct.firstName = LOCAL.order.getFirstName() />
 				<cfset LOCAL.emailService.setReplaceStruct(LOCAL.replaceStruct) />
 				<cfset LOCAL.emailService.sendEmail() />
 				
