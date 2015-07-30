@@ -243,7 +243,7 @@
 					<td></td>
 					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/return-policy">Return Policy</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/faq">FAQs</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/faqs">FAQs</a></td>
 					<td></td>
 				</tr>
 				<tr>
