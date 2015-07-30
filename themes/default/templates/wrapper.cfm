@@ -263,7 +263,7 @@
 							<img src="#SESSION.absoluteUrlTheme#images/paypal.gif">
 						</div>
 						<div id="bottom-secure-shopping">
-							<a href="#APPLICATION.absoluteUrlWeb#secure_shopping.cfm" style="color:##333;">SECURE SHOPPING</a>
+							<a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/secure-shopping" style="color:##333;">SECURE SHOPPING</a>
 						</div>
 					</td>
 				</tr>
