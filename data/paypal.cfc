@@ -55,7 +55,7 @@
 				<cfset LOCAL.emailService.setContentName("order confirmation") />
 				
 				<cfset LOCAL.replaceStruct = {} />
-				<cfset LOCAL.replaceStruct.firstName = LOCAL.order.getFirstName() />
+				<cfset LOCAL.replaceStruct.firstName = LOCAL.order.getCustomerFirstName() />
 				<cfset LOCAL.emailService.setReplaceStruct(LOCAL.replaceStruct) />
 				<cfset LOCAL.emailService.sendEmail() />
 				
