@@ -7,14 +7,13 @@
 	<cffunction name="sendEmail" access="public" returntype="void">		
 	    <cfset var LOCAL = StructNew() />
 		
-		<cfset LOCAL.emailContent = EntityLoad("email_content",{name=getContentName()},true) />
-
+		<cfset LOCAL.emailContent = EntityLoad("system_email",{name=getContentName()},true) />
 		<cfset LOCAL.emailContentSent = replaceEmailVariables(	replaceContent = LOCAL.emailContent.getContent(),
 																replaceStruct = getReplaceStruct()) />
 			
 		<cfset sendDirectEmail(	fromEmail = getFromEmail(), 
 								toEmail = getToEmail(), 
-								emailType = LOCAL.emailContent.getEmailContentType().getName(),
+								emailType = LOCAL.emailContent.getType(),
 								emailSubject = LOCAL.emailContent.getSubject(),
 								emailContent = LOCAL.emailContentSent) />
 		
@@ -50,5 +49,4 @@
 		
 		<cfreturn LOCAL.retContent />
 	</cffunction>
-	
 </cfcomponent>

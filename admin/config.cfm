@@ -307,3 +307,4 @@ FROM province;
 /*tax detail page for update*/
 
 /* images folder clean up */
+/*order placed email*/
