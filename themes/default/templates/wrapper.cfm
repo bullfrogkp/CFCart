@@ -160,7 +160,7 @@
 			<div id="about-us">
 				<h2>About Us</h2>
 				<p style="font-size:12px;line-height:18px;margin:0;padding:0;">
-					As a new and growing company in Canada, TOMTOP is dedicated to be one of the best supplier of high quality products. We have our own manufactory in China with more than 15-year history and our company goal is to have the larger selection of photographic supplies around at the best prices you will find anywhere. 
+					As a new and growing company in Canada, PinMyDeals is dedicated to be one of the best supplier of high quality products. We have our own manufactory in China with more than 15-year history and our company goal is to have the larger selection of photographic supplies around at the best prices you will find anywhere. 
 				</p>
 				<div id="sidebar" style="margin:12px 0 10px 0">
 					<form id="signup">
@@ -178,7 +178,7 @@
 			<div id="secure-shopping" style="margin-bottom:14px;width:350px;float:right;">
 				<h2>Secure Shopping</h2>
 				<p style="font-size:12px;line-height:18px;margin:0;padding:0;margin-bottom:12px;">
-					We want you to have peace of mind when shopping online at TOMTOP. If you are not an existing TOMTOP customer, rest assured that shopping here is safe. Our security systems use up-to-date technology embodying industry standards, and secure shopping is our priority. The TOMTOP Secure Shopping Guarantee is our commitment to you. 
+					We want you to have peace of mind when shopping online at PinMyDeals. If you are not an existing PinMyDeals customer, rest assured that shopping here is safe. Our security systems use up-to-date technology embodying industry standards, and secure shopping is our priority. The PinMyDeals Secure Shopping Guarantee is our commitment to you. 
 				</p>
 				<img src="#SESSION.absoluteUrlTheme#images/visa1.gif">
 				<img src="#SESSION.absoluteUrlTheme#images/mastercard1.gif">
@@ -201,11 +201,11 @@
 					<td style="padding-bottom:10px;"><strong>CONNECT</strong></td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absoluteUrlWeb#payment_info.cfm">Payment Info</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/payment">Payment Info</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#privacy.cfm">Privacy Policy</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/privacy">Privacy Policy</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#about_us.cfm">About Us</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/about-us">About Us</a></td>
 					<td></td>
 					<td rowspan="5" valign="top">
 						<div>
@@ -231,25 +231,25 @@
 					</td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absoluteUrlWeb#shipping_info.cfm">Shipping Info</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/shipping">Shipping Info</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#term_of_use.cfm">Terms of Use</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/term-of-use">Terms of Use</a></td>
 					<td></td>
 					<td><a href="#APPLICATION.absoluteUrlWeb#contact_us.cfm">Contact Us</a></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absoluteUrlWeb#estimate.cfm">Delivery Estimate</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/delivery-estimate">Delivery Estimate</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#return_policy.cfm">Return Policy</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/return-policy">Return Policy</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#faq.cfm">FAQs</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/faq">FAQs</a></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td><a href="#APPLICATION.absoluteUrlWeb#locations.cfm">Locations</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/locations">Locations</a></td>
 					<td></td>
-					<td><a href="#APPLICATION.absoluteUrlWeb#wholesale.cfm">Wholesale</a></td>
+					<td><a href="#APPLICATION.absoluteUrlWeb#site_content.cfm/wholesale">Wholesale</a></td>
 					<td></td>
 					<td><a href="#APPLICATION.absoluteUrlWeb#report_problems.cfm">Report Problems</a></td>
 					<td></td>
@@ -269,7 +269,7 @@
 				</tr>
 				<tr>
 					<td colspan="6" style="padding-top:15px;">
-						1998 - 2014, TOMTOP, Inc. | <a href="#APPLICATION.absoluteUrlWeb#conditions_of_use.cfm">Conditions of Use</a> | <a href="#APPLICATION.absoluteUrlWeb#site_index.cfm">Site Index</a>
+						1998 - 2014, PinMyDeals, Inc. | <a href="#APPLICATION.absoluteUrlWeb#conditions_of_use.cfm">Conditions of Use</a> | <a href="#APPLICATION.absoluteUrlWeb#site_index.cfm">Site Index</a>
 					</td>
 					<td>
 					</td>

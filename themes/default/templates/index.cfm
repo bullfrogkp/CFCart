@@ -202,6 +202,7 @@
 					</a>
 				</cfloop>
 			</cfif>
+			<!---
 			<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
 				<h2>INFORMATION</h2>
 				<table style="width:100%;border-collapse: collapse;">
@@ -224,6 +225,7 @@
 					</tr>
 				</table>
 			</div>
+			--->
 		</div>
 		<div style="clear:both;"></div>
 	</div>
