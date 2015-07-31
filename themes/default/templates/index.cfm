@@ -18,7 +18,7 @@
 		<ul>
 			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
 				<cfset cat = REQUEST.pageData.categoryTree[i] />
-				<li class="<cfif ArrayLen(cat.getSubCategories()) NEQ 0>has-sub-menu</cfif> first-level-menu" <cfif i EQ 1>style="margin-top:6px;<cfelseif i EQ ArrayLen(REQUEST.pageData.categoryTree)>style="margin-bottom:6px;</cfif>">
+				<li class="<cfif ArrayLen(cat.getSubCategories()) NEQ 0>has-sub-menu</cfif> first-level-menu" style="<cfif i EQ 1>margin-top:6px;</cfif><cfif i EQ ArrayLen(REQUEST.pageData.categoryTree)>margin-bottom:6px;</cfif>">
 					<a href="#cat.getDetailPageURL()#">#cat.getDisplayName()#</a>
 					<cfif ArrayLen(cat.getSubCategories()) NEQ 0>
 						<div class="cat-submenu">

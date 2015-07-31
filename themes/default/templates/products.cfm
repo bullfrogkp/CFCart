@@ -120,9 +120,8 @@
 	<div class="recommendation">
 		Browse By Category
 	</div>
-	<div style="font-size:12px;padding-bottom:10px;margin-bottom:4px;border: 1px solid ##CCC;
-margin-top: -1px;
-padding: 0 8px 8px;">
+	<div style="font-size:12px;margin-bottom:4px;border: 1px solid ##CCC;
+margin-top: -1px;padding: 2px 5px 3px 3px;">
 		<div id="demo1_menu">
 			<ul>
 				<cfloop from="1" to="#ArrayLen(REQUEST.pageData.subCategoryTree)#" index="i">
