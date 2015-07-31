@@ -45,6 +45,7 @@
 		<cfif StructKeyExists(FORM,"save_item")>
 			
 			<cfset LOCAL.systemEmail.setDisplayName(Trim(FORM.display_name)) />
+			<cfset LOCAL.systemEmail.setName(LCase(Trim(FORM.display_name))) />
 			<cfset LOCAL.systemEmail.setSubject(Trim(FORM.subject)) />
 			<cfset LOCAL.systemEmail.setContent(Trim(FORM.content)) />
 			<cfset LOCAL.systemEmail.setType(Trim(FORM.type)) />
@@ -58,6 +59,7 @@
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
 			<cfset LOCAL.systemEmail.setIsDeleted(true) />
+			<cfset LOCAL.systemEmail.setIsEnabled(false) />
 			
 			<cfset EntitySave(LOCAL.systemEmail) />
 			

@@ -79,6 +79,12 @@ VALUES
 ('active','Active'),
 ('processed','Processed');
 
+/*link_type*/
+INSERT INTO link_type
+(name,display_name,redirect_url)
+VALUES
+('reset password','Reset Password','reset_password');
+
 /*order_product_status_type*/
 /*www.amazon.com/gp/help/customer/display.html?nodeId=200243170*/
 INSERT INTO order_product_status_type

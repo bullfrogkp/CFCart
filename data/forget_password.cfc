@@ -9,7 +9,7 @@
 			<cfif NOT IsValid("email",Trim(FORM.email))>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
 			<cfelse>
-				<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email)},true) />
+				<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email),isEnabled=true,isDeleted=false},true) />
 				<cfif IsNull(LOCAL.customer)>
 					<cfset ArrayAppend(LOCAL.messageArray,"Sorry we cannot find the customer with the email: #Trim(FORM.email)#.") />
 				</cfif>
@@ -41,7 +41,7 @@
 		<cfset var LOCAL = {} />
 		
 		<cfif StructKeyExists(FORM,"send_email")>
-			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email)},true) />
+			<cfset LOCAL.customer = EntityLoad("customer",{email=Trim(FORM.email),isEnabled=true,isDeleted=false},true) />
 			
 			<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.emailService"() />
 			<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
