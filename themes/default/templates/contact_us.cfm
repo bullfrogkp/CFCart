@@ -6,10 +6,19 @@
 			<span style="vertical-align:middle">Contact Us</span> 
 		</div>
 		<div class="info-detail">
+			<cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
+				<div style="font-size:12px;color:red;margin:20px 0 20px 20px;">
+					<ul>
+						<cfloop array="#REQUEST.pageData.message.messageArray#" index="msg">
+							<li>#msg#</li>
+						</cfloop>
+					</ul>
+				</div>
+			</cfif>
 			<h2>Contact Us</h2>
 			<div id="login-wrapper">
 				<div id="login-form"><!--login form-->
-					<form action="##">
+					<form method="post">
 						<table>
 							<tr>
 								<td colspan="2">
