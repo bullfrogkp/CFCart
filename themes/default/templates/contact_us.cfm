@@ -13,22 +13,22 @@
 						<table>
 							<tr>
 								<td colspan="2">
-									<input type="text" placeholder="Name">
+									<input name="contact_name" type="text" placeholder="Name">
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="email" placeholder="Email Address">
+									<input name="contact_email" type="email" placeholder="Email Address">
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">
-									<textarea placeholder="Message" style="height:150px;"></textarea>
+									<textarea name="contact_message" placeholder="Message" style="height:150px;"></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td style="padding-top:10px;">
-									<button type="submit" class="btn-signup">Send</button>
+									<button name="send_message" type="submit" class="btn-signup">Send</button>
 								</td>
 							</tr>
 						</table>
