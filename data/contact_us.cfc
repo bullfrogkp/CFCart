@@ -36,7 +36,7 @@
 		<!--- send internal email --->
 		<cfset LOCAL.emailService = new "#APPLICATION.componentPathRoot#core.services.emailService"() />
 		<cfset LOCAL.emailService.setFromEmail(APPLICATION.emailCustomerService) />
-		<cfset LOCAL.emailService.setToEmail(APPLICATION.emailCustomerService)) />
+		<cfset LOCAL.emailService.setToEmail(APPLICATION.emailCustomerService) />
 		<cfset LOCAL.emailService.setContentName("contact us internal") />
 		
 		<cfset LOCAL.replaceStruct = {} />
@@ -59,6 +59,8 @@
 		
 		<cfset LOCAL.emailService.setReplaceStruct(LOCAL.replaceStruct) />
 		<cfset LOCAL.emailService.sendEmail() />
+		
+		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#email_sent.cfm" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
