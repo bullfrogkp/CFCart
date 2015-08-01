@@ -70,4 +70,10 @@
 			<cfreturn false />
 		</cfif>
 	</cffunction>
+	
+	<cffunction name="setDeleted" access="public" output="false" returnType="void">
+		<cfset setIsDeleted(true) />
+		<cfset setIsEnabled(false) />
+		<cfset setSubscribed(false) />
+	</cffunction>
 </cfcomponent>

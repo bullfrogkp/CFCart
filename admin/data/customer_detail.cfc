@@ -90,8 +90,7 @@
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 		
-			<cfset LOCAL.customer.setIsDeleted(true) />
-			<cfset LOCAL.customer.setIsEnabled(false) />
+			<cfset LOCAL.customer.setDeleted() />
 			<cfset EntitySave(LOCAL.customer) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Customer #LOCAL.customer.getDisplayName()# has been deleted.") />
