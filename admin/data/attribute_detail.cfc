@@ -40,7 +40,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.attribute.setName(Trim(FORM.display_name)) />
+			<cfset LOCAL.attribute.setName(LCase(Trim(FORM.display_name))) />
 			<cfset LOCAL.attribute.setDisplayName(Trim(FORM.display_name)) />
 			
 			<cfset EntitySave(LOCAL.attribute) />

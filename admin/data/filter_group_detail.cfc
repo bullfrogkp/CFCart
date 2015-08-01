@@ -40,7 +40,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
-			<cfset LOCAL.filterGroup.setName(Trim(FORM.display_name)) />
+			<cfset LOCAL.filterGroup.setName(LCase(Trim(FORM.display_name))) />
 			<cfset LOCAL.filterGroup.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.filterGroup.removeFilters() />
 			
