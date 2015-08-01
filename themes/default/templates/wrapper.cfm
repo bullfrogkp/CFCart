@@ -163,14 +163,14 @@
 					As a new and growing company in Canada, PinMyDeals is dedicated to be one of the best supplier of high quality products. We have our own manufactory in China with more than 15-year history and our company goal is to have the larger selection of photographic supplies around at the best prices you will find anywhere. 
 				</p>
 				<div id="sidebar" style="margin:12px 0 10px 0">
-					<form id="signup">
+					<form id="signup" method="post">
 						<div class="signup-header">
 							<h3>Newsletter Subscription</h3>
 							<p>Get the latest product and promotion information!</p>
 						</div>
 						<div class="inputs">
-							<input type="email" placeholder="Email" />
-							<a id="submit" href="##">SIGN UP FOR SUBSCRIPTION</a>
+							<input name="subscribe_email" type="email" placeholder="Email" />
+							<button id="submit" type="submit">SIGN UP FOR SUBSCRIPTION</button>
 						</div>
 					</form>
 				</div>
