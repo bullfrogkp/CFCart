@@ -170,7 +170,7 @@
 						</div>
 						<div class="inputs">
 							<input name="subscribe_email" type="email" placeholder="Email" />
-							<button id="submit" type="submit" style="cursor:hand;cursor:pointer;">SIGN UP FOR SUBSCRIPTION</button>
+							<button name="subscribe_customer" id="submit" type="submit" style="cursor:hand;cursor:pointer;">SIGN UP FOR SUBSCRIPTION</button>
 						</div>
 					</form>
 				</div>

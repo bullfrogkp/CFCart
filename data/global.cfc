@@ -101,9 +101,9 @@
 			<cfset LOCAL.pathInfo = "/#LOCAL.searchCategoryName#/#LOCAL.searchCategoryId#/1/1/-/#LOCAL.searchText#/" />
 				
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#products.cfm#LOCAL.pathInfo#" />
-		</cfif>
+			
+		<cfelseif StructKeyExists(FORM,"currency_id")>
 		
-		<cfif StructKeyExists(FORM,"currency_id")>
 			<cfset LOCAL.newCurrency = EntityLoadByPK("currency",FORM.currency_id) />
 			<cfset SESSION.currency.id = LOCAL.newCurrency.getCurrencyId() />
 			<cfset SESSION.currency.code = LOCAL.newCurrency.getCode() />
@@ -112,6 +112,25 @@
 			<cfif StructKeyExists(SESSION,"cart")>
 				<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
 				<cfset SESSION.cart.calculate() />
+			</cfif>
+		
+		<cfelseif StructKeyExists(FORM,"subscribe_customer")>
+		
+			<cfif IsValid("email",Trim(FORM.subscribe_email))>
+				<cfset LOCAL.customer = EntityNew("customer") />
+				<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
+				<cfset LOCAL.customer.setCreatedDatetime(Now()) />
+				<cfset LOCAL.customer.setIsDeleted(false) />
+				<cfset LOCAL.customer.setIsEnabled(false) />
+				<cfset LOCAL.customer.setEmail(Trim(FORM.subscribe_email)) />
+				<cfset LOCAL.customer.setSubscribed(true) />
+				
+				<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
+				<cfset LOCAL.customer.setCustomerGroup(LOCAL.defaultCustomerGroup) />
+				
+				<cfset EntitySave(LOCAL.customer) />
+				
+				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#subscription_done.cfm" />
 			</cfif>
 		</cfif>
 		
