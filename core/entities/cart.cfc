@@ -77,7 +77,11 @@
 				
 					<cfset LOCAL.shippingCarrier = LOCAL.productShippingCarrierRela.getShippingCarrier() />
 					<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.shippingCarrier.getComponent()#"() />
-					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethods(address = getShippingAddressStruct(), product = , customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
+					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethods(	fromAddress = 
+																									, toAddress = getShippingAddressStruct()
+																									, product = 
+																									, customerGroupName = getCustomerGroupName()
+																									, currencyId = getCurrencyId()) />
 					
 					<cfloop array="#LOCAL.shippingMethodsArray#" index="LOCAL.shippingMethod">
 						<cfset LOCAL.shippingMethodStruct = {} />
@@ -87,7 +91,7 @@
 						<cfset LOCAL.shippingMethodStruct.price = LOCAL.shippingMethod.price * LOCAL.productStruct.count />
 						<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />
 						<cfset LOCAL.shippingMethodStruct.priceWCInter = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"international",LOCAL.currency.getLocale()) />
-						<cfset LOCAL.shippingMethodStruct.label = LOCAL.shippingMethod.displayName />
+						<cfset LOCAL.shippingMethodStruct.label = LOCAL.shippingMethod.name />
 					
 						<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
 					</cfloop>
