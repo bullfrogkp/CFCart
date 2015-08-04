@@ -3,9 +3,8 @@
 	<cfproperty name="productId" type="numeric"> 
     <cfproperty name="address" type="struct"> 
 	<!------------------------------------------------------------------------------->
-	<cffunction name="getShippingFee" access="public" returntype="numeric">
+	<cffunction name="getShippingMethodsArray" access="public" returntype="array">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",getShippingMethodId()) />
 		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 		
 		<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = LOCAL.siteInfo.getAddress()
@@ -13,9 +12,9 @@
 													,	serviceCode = LOCAL.shippingMethod.getServiceCode())>										
 										
 		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
-		<cfset LOCAL.rate = _parseResponse(LOCAL.shippingRateResponse).rate />
+		<cfset LOCAL.shippingMethods = _parseResponse(LOCAL.shippingRateResponse) />
 		
-		<cfreturn LOCAL.rate />
+		<cfreturn LOCAL.shippingMethods />
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_submitXml" displayname="Submit XML" description="Submits XML documents to UPS to get the response data" access="private" output="false" returntype="any">

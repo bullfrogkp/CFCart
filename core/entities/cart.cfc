@@ -77,11 +77,10 @@
 				
 					<cfset LOCAL.shippingCarrier = LOCAL.productShippingCarrierRela.getShippingCarrier() />
 					<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.shippingCarrier.getComponent()#"() />
-					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethods(	fromAddress = 
-																									, toAddress = getShippingAddressStruct()
-																									, product = 
-																									, customerGroupName = getCustomerGroupName()
-																									, currencyId = getCurrencyId()) />
+					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethodsArray(	toAddress = getShippingAddressStruct()
+																										, 	product = 
+																										, 	customerGroupName = getCustomerGroupName()
+																										, 	currencyId = getCurrencyId()) />
 					
 					<cfloop array="#LOCAL.shippingMethodsArray#" index="LOCAL.shippingMethod">
 						<cfset LOCAL.shippingMethodStruct = {} />
