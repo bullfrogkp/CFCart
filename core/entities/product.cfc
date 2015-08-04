@@ -19,7 +19,7 @@
 	<cfproperty name="reviews" type="array" fieldtype="one-to-many" cfc="review" fkcolumn="product_id" singularname="review" cascade="delete-orphan">
 	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="product_image" fkcolumn="product_id" singularname="image" cascade="delete-orphan" orderby="rank">
 	<cfproperty name="productCustomerGroupRelas" type="array" fieldtype="one-to-many" cfc="product_customer_group_rela" fkcolumn="product_id" singularname="productCustomerGroupRela" cascade="delete-orphan">
-	<cfproperty name="productShippingMethodRelas" type="array" fieldtype="one-to-many" cfc="product_shipping_method_rela" fkcolumn="product_id" singularname="productShippingMethodRela" cascade="delete-orphan">
+	<cfproperty name="productShippingCarrierRelas" type="array" fieldtype="one-to-many" cfc="product_shipping_carrier_rela" fkcolumn="product_id" singularname="productShippingCarrierRela" cascade="delete-orphan">
 	<cfproperty name="categories" fieldtype="many-to-many" cfc="category" linktable="category_product_rela" fkcolumn="product_id" inversejoincolumn="category_id" singularname="category">
 	<cfproperty name="relatedProducts" fieldtype="many-to-many" cfc="product" linktable="related_product_rela" fkcolumn="product_id" inversejoincolumn="related_parent_product_id" singularname="relatedProduct">
 	<cfproperty name="relatedParentProducts" fieldtype="many-to-many" cfc="product" linktable="related_product_rela" fkcolumn="related_parent_product_id" inversejoincolumn="product_id" singularname="relatedParentProduct">
@@ -238,12 +238,12 @@
 		
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getProductShippingMethodRelasMV" access="public" output="false" returnType="any">
+	<cffunction name="getProductShippingCarrierRelasMV" access="public" output="false" returnType="any">
 		
 		<cfif getProductType().getName() EQ "configured_product">
-			<cfreturn getParentProduct().getProductShippingMethodRelas() />
+			<cfreturn getParentProduct().getProductShippingCarrierRelas() />
 		<cfelse>
-			<cfreturn getProductShippingMethodRelas() />
+			<cfreturn getProductShippingCarrierRelas() />
 		</cfif>
 		
 	</cffunction>

@@ -71,36 +71,27 @@
 			<cfset LOCAL.productStruct.totalPriceWCInter = LSCurrencyFormat(LOCAL.productStruct.totalPrice,"international",LOCAL.currency.getLocale()) />
 		
 			<cfif NOT IsNull(getShippingAddressStruct())>
-				<cfset LOCAL.productShippingMethodRelas = LOCAL.product.getProductShippingMethodRelasMV() />
 				<cfset LOCAL.productStruct.shippingMethodArray = [] />
 			
-				<cfloop array="#LOCAL.productShippingMethodRelas#" index="LOCAL.productShippingMethodRela">
-					<cfset LOCAL.shippingMethod = LOCAL.productShippingMethodRela.getShippingMethod() />
-					<cfset LOCAL.shippingMethodStruct = {} />
-					<cfset LOCAL.shippingMethodStruct.productShippingMethodRelaId = LOCAL.productShippingMethodRela.getProductShippingMethodRelaId() />
-					<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
-					<cfset LOCAL.shippingMethodStruct.logo = LOCAL.shippingMethod.getShippingCarrier().getImageName() />
-					<cfset LOCAL.shippingMethodStruct.price = LOCAL.product.getShippingFeeMV(	address = getShippingAddressStruct()
-																							, 	shippingMethodId = LOCAL.shippingMethod.getShippingMethodId()
-																							,	customerGroupName = getCustomerGroupName()
-																							, 	currencyId = getCurrencyId()) * LOCAL.productStruct.count />
-					
-					<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />
-					<cfset LOCAL.shippingMethodStruct.priceWCInter = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"international",LOCAL.currency.getLocale()) />
-					
-					<cfset LOCAL.shippingMethodStruct.label = "#LOCAL.shippingMethod.getDisplayName()#" />
+				<cfloop array="#LOCAL.product.getProductShippingCarrierRelasMV()#" index="LOCAL.productShippingCarrierRela">
 				
-					<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
+					<cfset LOCAL.shippingCarrier = LOCAL.productShippingCarrierRela.getShippingCarrier() />
+					<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.shippingCarrier.getComponent()#"() />
+					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethods(address = getShippingAddressStruct(), product = , customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
+					
+					<cfloop array="#LOCAL.shippingMethodsArray#" index="LOCAL.shippingMethod">
+						<cfset LOCAL.shippingMethodStruct = {} />
+						<cfset LOCAL.shippingMethodStruct.productShippingCarrierRelaId = LOCAL.productShippingCarrierRela.getProductShippingCarrierRelaId() />
+						<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingCarrier.getDisplayName() />
+						<cfset LOCAL.shippingMethodStruct.logo = LOCAL.getShippingCarrier().getImageName() />
+						<cfset LOCAL.shippingMethodStruct.price = LOCAL.shippingMethod.price * LOCAL.productStruct.count />
+						<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />
+						<cfset LOCAL.shippingMethodStruct.priceWCInter = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"international",LOCAL.currency.getLocale()) />
+						<cfset LOCAL.shippingMethodStruct.label = LOCAL.shippingMethod.displayName />
+					
+						<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
+					</cfloop>
 				</cfloop>
-				
-				<cfscript>
-					ArraySort(LOCAL.productStruct.shippingMethodArray, function(a,b) {	if ( a.price GT b.price ) {
-																							return true;
-																						} else {
-																							return false;
-																						}
-																					});
-				</cfscript>
 				
 				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = getShippingAddressStruct().provinceId, currencyId = getCurrencyId()),"0.00") />
 				<cfset LOCAL.productStruct.singleTaxWCLocal = LSCurrencyFormat(LOCAL.productStruct.singleTax,"local",LOCAL.currency.getLocale()) />
