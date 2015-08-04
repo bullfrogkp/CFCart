@@ -15,7 +15,7 @@
 			<mailing-scenario xmlns="http://www.canadapost.ca/ws/ship/rate-v3">
 				<quote-type>counter</quote-type>
 				<services>
-					<service-code>DOM.XP</service-code>
+					<service-code>#LOCAL.shippingMethod.getServiceCode()#</service-code>
 				</services>
 				<parcel-characteristics>
 					<weight>#LOCAL.product.getWeight()#</weight>
