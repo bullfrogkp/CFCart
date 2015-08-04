@@ -3,9 +3,8 @@
 	<cfproperty name="productId" type="numeric"> 
     <cfproperty name="address" type="struct"> 
 	<!------------------------------------------------------------------------------->
-	<cffunction name="getShippingFee" access="public" returntype="numeric">
+	<cffunction name="getShippingMethodsArray" access="public" returntype="array">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",getShippingMethodId()) />
 		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 		<cfset LOCAL.product = EntityLoadByPK("product",getProductId()) /> 
 				
@@ -14,9 +13,6 @@
 			<?xml version="1.0" encoding="utf-8"?>
 			<mailing-scenario xmlns="http://www.canadapost.ca/ws/ship/rate-v3">
 				<quote-type>counter</quote-type>
-				<services>
-					<service-code>#LOCAL.shippingMethod.getServiceCode()#</service-code>
-				</services>
 				<parcel-characteristics>
 					<weight>#LOCAL.product.getWeight()#</weight>
 				</parcel-characteristics>
@@ -58,18 +54,18 @@
 			<cfhttpparam type="header" name="Accept-language" value="en-CA">
 		</cfhttp>
 
-		<cfset LOCAL.rate = _parseResponse(LOCAL.httpResponse).rate />
+		<cfset LOCAL.shippingMethodsArray = _parseResponse(LOCAL.httpResponse) />
 		
-		<cfreturn LOCAL.rate />
+		<cfreturn LOCAL.shippingMethodsArray />
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_parseResponse" access="private" returntype="struct">
+	<cffunction name="_parseResponse" access="private" returntype="array">
 		<cfargument name="response" type="any" required="true">
 	
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.response = XMLParse(ARGUMENTS.response.fileContent) />
-		<cfset LOCAL.retStruct.rate = LOCAL.response["price-quotes"]["price-quote"]["price-details"].due.XmlText />
+		<cfset LOCAL.shippingMethodsArray = LOCAL.response["price-quotes"]["price-quote"]["price-details"].due.XmlText />
 	
 		<cfreturn LOCAL.retStruct>
 	</cffunction>
