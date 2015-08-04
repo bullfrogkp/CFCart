@@ -93,6 +93,15 @@
 					<cfset ArrayAppend(LOCAL.productStruct.shippingMethodArray, LOCAL.shippingMethodStruct) />
 				</cfloop>
 				
+				<cfscript>
+					ArraySort(LOCAL.productStruct.shippingMethodArray, function(a,b) {	if ( a.price GT b.price ) {
+																							return true;
+																						} else {
+																							return false;
+																						}
+																					});
+				</cfscript>
+				
 				<cfset LOCAL.productStruct.singleTax = NumberFormat(LOCAL.productStruct.singlePrice * LOCAL.product.getTaxRateMV(provinceId = getShippingAddressStruct().provinceId, currencyId = getCurrencyId()),"0.00") />
 				<cfset LOCAL.productStruct.singleTaxWCLocal = LSCurrencyFormat(LOCAL.productStruct.singleTax,"local",LOCAL.currency.getLocale()) />
 				<cfset LOCAL.productStruct.singleTaxWCInter = LSCurrencyFormat(LOCAL.productStruct.singleTax,"international",LOCAL.currency.getLocale()) />
