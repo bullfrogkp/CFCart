@@ -8,8 +8,7 @@
 		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 		
 		<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = LOCAL.siteInfo.getAddress()
-													,	toAddress = getAddress()
-													,	serviceCode = LOCAL.shippingMethod.getServiceCode())>										
+													,	toAddress = getAddress())>										
 										
 		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
 		<cfset LOCAL.shippingMethods = _parseResponse(LOCAL.shippingRateResponse) />
@@ -30,20 +29,18 @@
 		<cfreturn LOCAL.xmlDataParsed>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_parseResponse" access="private" returntype="struct">
+	<cffunction name="_parseResponse" access="private" returntype="array">
 		<cfargument name="response" type="any" required="true">
 	
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.retStruct.rate = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
+		<cfset LOCAL.shippingMethodsArray = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
 		
-		<cfreturn LOCAL.retStruct>
+		<cfreturn LOCAL.shippingMethodsArray>
 	</cffunction>	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_createShippingRateXml" displayname="Create XML Documents" description="Creates the XML needed to send to UPS" access="private" output="false" returntype="Any">
 		<cfargument name="fromAddress" type="struct" required="true">
 		<cfargument name="toAddress" type="struct" required="true">
-		<cfargument name="serviceCode" type="string" required="true">
 		
 		<cfset var LOCAL = {} />
 		
