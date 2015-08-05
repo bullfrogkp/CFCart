@@ -130,8 +130,8 @@
 		<cfif NOT IsNull(getProductShippingMethodIdList())>
 			<!--- product_shipping_method_rela_id_list is from ddslick.min.js --->
 			<cfloop list="#getProductShippingMethodIdList()#" index="LOCAL.productShippingMethodRelaId">
-				<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
-				<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
+				<cfset LOCAL.productId = ListGetAt(LOCAL.productShippingMethodRelaId, 1, "_") />
+				<cfset LOCAL.shippingMethodId = ListGetAt(LOCAL.productShippingMethodRelaId, 2, "_") />
 				<cfloop array="#LOCAL.productArray#" index="LOCAL.productStruct">
 					<cfset LOCAL.productEntity = EntityLoadByPK("product",LOCAL.productStruct.productId) />
 					<cfif 	NOT IsNull(LOCAL.productEntity.getParentProduct()) AND LOCAL.productEntity.getParentProduct().getProductId() EQ LOCAL.productId
