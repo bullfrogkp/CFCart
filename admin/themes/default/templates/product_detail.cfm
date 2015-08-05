@@ -949,58 +949,30 @@
 							<label>Weight</label>
 							<input name="weight" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.weight#"/>
 						</div>
-						</cfoutput>
 						<div class="form-group">
-							<label>Shipping Methods</label>
+							<label>Shipping Carriers</label>
 							<div class="row" style="margin-top:10px;">
-								<cfset s = REQUEST.pageData.shippingMethods />
-								<cfoutput query="s" group="shippingCarrierName">						
+								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#s.imageName#" style="height:25px;vertical-align:top;" /></th>
-														<th colspan="2" style="text-align:right;padding-right:10px;" nowrap>#s.shippingCarrierName#</th>
-													</tr>
-													<cfoutput>
-													<cfif IsNumeric(s.productShippingMethodRelaId)>
-														<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",s.productShippingMethodRelaId) />
-														<cfset defaultPrice = productShippingMethodRela.getPrice() />
-													<cfelse>
-														<cfset defaultPrice = 0 />
-													</cfif>
-													
-													<tr class="default" style="font-size:12px;">
-														<td colspan="3">#s.shippingMethodName#</td>
-														<td style="text-align:right;width:20px;">
-															<input type="checkbox" class="form-control pull-right" name="shipping_method_id" value="#s.shippingMethodId#"
-
-															<cfif IsNumeric(s.productShippingMethodRelaId)>
-																checked
-															</cfif>
-
-															/>
+														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
+														<th colspan="2" style="text-align:right;padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
+													</tr>	
+													<tr style="font-size:12px;">
+														<td>
+															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="1">
+														</td>
+														<td>Default</td>
+														<td colspan="2">
+															<input type="text" name="default_price_#sc.getShippingCarrierId()#" value="" style="width:100%;text-align:right;padding-right:5px;">
 														</td>
 													</tr>
 													<tr style="font-size:12px;">
 														<td>
-															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="1"
-															<cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>
-															checked
-															</cfif>
-															>
-														</td>
-														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ true>style="color:red;"</cfif>>Default</td>
-														<td colspan="2"><input type="text" name="default_price_#s.shippingMethodId#" value="#defaultPrice#" style="width:100%;text-align:right;padding-right:5px;"></td>
-													</tr>
-													<tr style="font-size:12px;">
-														<td <cfif IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false>style="color:red;"</cfif>>
-															<input type="radio" name="use_default_price_#s.shippingMethodId#" value="0"
-															<cfif NOT IsNumeric(s.productShippingMethodRelaId) OR (IsNumeric(s.productShippingMethodRelaId) AND productShippingMethodRela.getUseDefaultPrice() EQ false)>
-															checked
-															</cfif>
-															>
+															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="0">
 														</td>
 														<td colspan="3">Calculated</td>
 													</tr>
@@ -1009,10 +981,9 @@
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
 									</div>
-								</cfoutput>
+								</cfloop>
 							</div>
 						</div>
-						<cfoutput>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_9']#" id="tab_9">
 						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideosMV())>
