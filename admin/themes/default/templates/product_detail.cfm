@@ -979,7 +979,6 @@
 														</td>
 														<td colspan="3">Calculated</td>
 													</tr>
-													</cfoutput>
 												</table>
 											</div><!-- /.box-body -->
 										</div><!-- /.box -->
