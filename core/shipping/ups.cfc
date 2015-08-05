@@ -36,9 +36,6 @@
 		<cfargument name="response" type="any" required="true">
 	
 		<cfset var LOCAL = {} />
-		
-		<cfdump var="#ARGUMENTS.response["RatingServiceSelectionResponse"].XmlChildren#" abort>
-		
 		<cfset LOCAL.shippingMethodsArray = [] />
 		
 		<cfloop array="#ARGUMENTS.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
@@ -53,10 +50,10 @@
 				<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
 				<cfset LOCAL.ratedShipmentStruct.price = LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText />
 				<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
+				
+				<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
 			</cfif>
 		</cfloop>
-		
-		<cfset LOCAL.shippingMethodsArray = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
 		
 		<cfreturn LOCAL.shippingMethodsArray>
 	</cffunction>	
