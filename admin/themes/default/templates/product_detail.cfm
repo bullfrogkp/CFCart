@@ -958,8 +958,11 @@
 											<div class="box-body table-responsive no-padding">
 												<table class="table table-hover">
 													<tr class="warning">
-														<th colspan="2"><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
+														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
 														<th colspan="2" style="text-align:right;padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
+														<th>
+															<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"/>
+														</th>
 													</tr>	
 													<tr style="font-size:12px;">
 														<td>

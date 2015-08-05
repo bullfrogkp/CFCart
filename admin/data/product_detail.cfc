@@ -246,28 +246,28 @@
 			</cfloop>
 			
 			<!--- update: not necessary for each time --->
-			<cfset LOCAL.product.removeProductShippingMethodRelas() />
+			<cfset LOCAL.product.removeProductShippingCarrierRelas() />
 			
-			<cfif StructKeyExists(FORM,"shipping_method_id")>
-				<cfloop list="#FORM.shipping_method_id#" index="LOCAL.shippingMethodId">
-					<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",LOCAL.shippingMethodId) />
-					<cfset LOCAL.newProductShippingMethodRela = EntityNew("product_shipping_method_rela") />
-					<cfset LOCAL.newProductShippingMethodRela.setShippingMethod(LOCAL.shippingMethod) />
-					<cfset LOCAL.newProductShippingMethodRela.setProduct(LOCAL.product) />
+			<cfif StructKeyExists(FORM,"shipping_carrier_id")>
+				<cfloop list="#FORM.shipping_carrier_id#" index="LOCAL.shippingCarrierId">
+					<cfset LOCAL.shippingCarrier = EntityLoadByPK("shipping_carrier",LOCAL.shippingCarrierId) />
+					<cfset LOCAL.newProductShippingCarrierRela = EntityNew("product_shipping_carrier_rela") />
+					<cfset LOCAL.newProductShippingCarrierRela.setShippingCarrier(LOCAL.shippingCarrier) />
+					<cfset LOCAL.newProductShippingCarrierRela.setProduct(LOCAL.product) />
 					
-					<cfif IsNumeric(FORM["default_price_#LOCAL.shippingMethodId#"])>
-						<cfset LOCAL.newProductShippingMethodRela.setPrice(FORM["default_price_#LOCAL.shippingMethodId#"]) />
+					<cfif IsNumeric(FORM["default_price_#LOCAL.shippingCarrierId#"])>
+						<cfset LOCAL.newProductShippingCarrierRela.setPrice(FORM["default_price_#LOCAL.shippingCarrierId#"]) />
 					</cfif>
 					
-					<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingMethodId#") AND FORM["use_default_price_#LOCAL.shippingMethodId#"] EQ 1>
-						<cfset LOCAL.newProductShippingMethodRela.setUseDefaultPrice(true) />
+					<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingCarrierId#") AND FORM["use_default_price_#LOCAL.shippingCarrierId#"] EQ 1>
+						<cfset LOCAL.newProductShippingCarrierRela.setUseDefaultPrice(true) />
 					<cfelse>
-						<cfset LOCAL.newProductShippingMethodRela.setUseDefaultPrice(false) />
+						<cfset LOCAL.newProductShippingCarrierRela.setUseDefaultPrice(false) />
 					</cfif>
 					
-					<cfset EntitySave(LOCAL.newProductShippingMethodRela) />
+					<cfset EntitySave(LOCAL.newProductShippingCarrierRela) />
 					
-					<cfset LOCAL.product.addProductShippingMethodRela(LOCAL.newProductShippingMethodRela) />
+					<cfset LOCAL.product.addProductShippingCarrierRela(LOCAL.newProductShippingCarrierRela) />
 				</cfloop>
 			</cfif>
 					
