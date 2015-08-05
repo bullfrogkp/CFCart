@@ -42,16 +42,16 @@
 		<cfset LOCAL.shippingMethodsArray = [] />
 		
 		<cfloop array="#ARGUMENTS.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
-			<cfif LOCAL.ratedShipment.XmlName EQ "Response" AND LOCAL.ratedShipment.ResponseStatusDescription.XmlText NEQ "Success">
-				<cfthrow message="UPS rate request failed: #LOCAL.ratedShipment.ResponseStatusDescription.XmlText#" />
+			<cfif LOCAL.ratedShipment.XmlName EQ "Response" AND LOCAL.ratedShipment["ResponseStatusDescription"].XmlText NEQ "Success">
+				<cfthrow message="UPS rate request failed: #LOCAL.ratedShipment["ResponseStatusDescription"].XmlText#" />
 			</cfif>
 			
 			<cfif LOCAL.ratedShipment.XmlName EQ "RatedShipment">
-				<cfset LOCAL.serviceCode = LOCAL.ratedShipment.Service.Code />
+				<cfset LOCAL.serviceCode = LOCAL.ratedShipment["Service"]["Code"].XmlText />
 				<cfset LOCAL.shippingM
 				<cfset LOCAL.ratedShipmentStruct = {} />
 				<cfset LOCAL.ratedShipmentStruct.name = En />
-				<cfset LOCAL.ratedShipmentStruct.price =  />
+				<cfset LOCAL.ratedShipmentStruct.price = LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText />
 				<cfset LOCAL.ratedShipmentStruct.description =  />
 			</cfif>
 		</cfloop>
