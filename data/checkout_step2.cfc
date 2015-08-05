@@ -13,7 +13,7 @@
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-		
+		<cfdump var="#FORM#" abort>
 		<cfif StructKeyExists(FORM,"product_shipping_method_rela_id_list")>
 			<cfset SESSION.cart.setProductShippingMethodRelaIdList(FORM.product_shipping_method_rela_id_list) />
 			<cfset SESSION.cart.calculate() />
