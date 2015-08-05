@@ -15,7 +15,7 @@
     <cfproperty name="shippingAddressStruct" type="struct"> 
     <cfproperty name="billingAddressStruct" type="struct">
     <cfproperty name="productArray" type="array"> 
-    <cfproperty name="productShippingMethodRelaIdList" type="string"> 
+    <cfproperty name="productShippingMethodIdList" type="string"> 
 	
     <cfproperty name="subTotalPrice" type="numeric"> 
     <cfproperty name="totalPrice" type="numeric"> 
@@ -127,9 +127,9 @@
 			</cfif>
 		</cfif>
 		
-		<cfif NOT IsNull(getProductShippingMethodRelaIdList())>
+		<cfif NOT IsNull(getProductShippingMethodIdList())>
 			<!--- product_shipping_method_rela_id_list is from ddslick.min.js --->
-			<cfloop list="#getProductShippingMethodRelaIdList()#" index="LOCAL.productShippingMethodRelaId">
+			<cfloop list="#getProductShippingMethodIdList()#" index="LOCAL.productShippingMethodRelaId">
 				<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", LOCAL.productShippingMethodRelaId) />
 				<cfset LOCAL.productId = LOCAL.productShippingMethodRela.getProduct().getProductId() />
 				<cfloop array="#LOCAL.productArray#" index="LOCAL.productStruct">
