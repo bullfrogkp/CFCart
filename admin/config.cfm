@@ -314,3 +314,26 @@ FROM province;
 
 /* images folder clean up */
 /*order placed email*/
+
+/*ups shipping*/
+INSERT INTO shipping_method
+(name, display_name, service_code, is_enabled, shipping_carrier_id)
+VALUES
+('next day air early','Next Day Air Early','14',1,1),
+('next day air','Next Day Air','01',1,1),
+('next day saver','Next Day Saver','13',1,1),
+('2nd day air am','2nd Day Air AM','59',1,1),
+('2nd day air','2nd Day Air','02',1,1),
+('3 day select','3 Day Select','12',1,1),
+('ground','Ground','03',1,1),
+('standard','Standard','11',1,1),
+('worldwide express','Worldwide Express','07',1,1),
+('worldwide express plus','Worldwide Express Plus','54',1,1),
+('worldwide expedited','Worldwide Expedited','08',1,1),
+('saver','Saver','65',1,1),
+('ups today standard','UPS Today Standard','82',1,1),
+('ups today dedicated courier','UPS Today Dedicated Courier','83',1,1),
+('ups today intercity','UPS Today Intercity','84',1,1),
+('ups today express','UPS Today Express','85',1,1),
+('ups today express saver','UPS Today Express Saver','86',1,1),
+('ups world wide express freight','UPS World Wide Express Freight','96',1,1);
