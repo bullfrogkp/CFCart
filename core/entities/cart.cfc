@@ -86,6 +86,7 @@
 						<cfset LOCAL.shippingMethodStruct = {} />
 						<cfset LOCAL.shippingMethodStruct.productShippingCarrierRelaId = LOCAL.productShippingCarrierRela.getProductShippingCarrierRelaId() />
 						<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingCarrier.getDisplayName() />
+						<cfset LOCAL.shippingMethodStruct.description = LOCAL.shippingCarrier.getDisplayName() />
 						<cfset LOCAL.shippingMethodStruct.logo = LOCAL.getShippingCarrier().getImageName() />
 						<cfset LOCAL.shippingMethodStruct.price = LOCAL.shippingMethod.price * LOCAL.productStruct.count />
 						<cfset LOCAL.shippingMethodStruct.priceWCLocal = LSCurrencyFormat(LOCAL.shippingMethodStruct.price,"local",LOCAL.currency.getLocale()) />

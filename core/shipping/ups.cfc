@@ -48,11 +48,11 @@
 			
 			<cfif LOCAL.ratedShipment.XmlName EQ "RatedShipment">
 				<cfset LOCAL.serviceCode = LOCAL.ratedShipment["Service"]["Code"].XmlText />
-				<cfset LOCAL.shippingM
+				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = EntityLoad("shipping_carrier",{name="ups"},true), serviceCode = LOCAL.serviceCode},true) />
 				<cfset LOCAL.ratedShipmentStruct = {} />
-				<cfset LOCAL.ratedShipmentStruct.name = En />
+				<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
 				<cfset LOCAL.ratedShipmentStruct.price = LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText />
-				<cfset LOCAL.ratedShipmentStruct.description =  />
+				<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
 			</cfif>
 		</cfloop>
 		
