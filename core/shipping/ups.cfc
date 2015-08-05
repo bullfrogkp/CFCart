@@ -1,14 +1,17 @@
 <cfcomponent output="false" accessors="true">
-	<cfproperty name="shippingMethodId" type="numeric"> 
-	<cfproperty name="productId" type="numeric"> 
-    <cfproperty name="address" type="struct"> 
 	<!------------------------------------------------------------------------------->
 	<cffunction name="getShippingMethodsArray" access="public" returntype="array">
+		<cfargument name="toAddress" type="struct" required="true">
+		<cfargument name="productId" type="numeric" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
+		<cfargument name="customerGroupName" type="string" required="true">
+		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 		
 		<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = LOCAL.siteInfo.getAddress()
-													,	toAddress = getAddress())>										
+													,	toAddress = ARGUMENTS.toAddress
+													,	productId = ARGUMENTS.productId)>										
 										
 		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
 		<cfset LOCAL.shippingMethods = _parseResponse(LOCAL.shippingRateResponse) />
@@ -44,6 +47,7 @@
 	<cffunction name="_createShippingRateXml" displayname="Create XML Documents" description="Creates the XML needed to send to UPS" access="private" output="false" returntype="Any">
 		<cfargument name="fromAddress" type="struct" required="true">
 		<cfargument name="toAddress" type="struct" required="true">
+		<cfargument name="productId" type="numeric" required="true">
 		
 		<cfset var LOCAL = {} />
 		
@@ -82,7 +86,7 @@
 							<UnitOfMeasurement>
 								<Code>LBS</Code>
 							</UnitOfMeasurement>
-							<Weight>#xmlFormat(EntityLoadByPK("product",getProductId()).getWeight())#</Weight>
+							<Weight>#xmlFormat(EntityLoadByPK("product", ARGUMENTS.productId).getWeight())#</Weight>
 						</PackageWeight>
 					</Package>
 					<ShipmentServiceOptions/>
