@@ -33,6 +33,9 @@
 		<cfargument name="response" type="any" required="true">
 	
 		<cfset var LOCAL = {} />
+		
+		<cfdump var="#ARGUMENTS.response#" abort>
+		
 		<cfset LOCAL.shippingMethodsArray = ARGUMENTS.response["RatingServiceSelectionResponse"]["RatedShipment"]["TotalCharges"]["MonetaryValue"].xmlText />
 		
 		<cfreturn LOCAL.shippingMethodsArray>
@@ -49,10 +52,8 @@
 			<RatingServiceSelectionRequest>
 				<Request>
 					<RequestAction>Rate</RequestAction>
+					<RequestOption>Shop</RequestOption>
 				</Request>
-				<PickupType>
-					<Code>06</Code>
-				</PickupType>
 				<Shipment>
 					<Shipper>
 						<Address>
@@ -71,16 +72,12 @@
 							<PostalCode>#ARGUMENTS.toAddress.postalCode#</PostalCode>
 							<CountryCode>#ARGUMENTS.toAddress.countryCode#</CountryCode>
 						</Address>
-					</ShipTo>
-					<Service>
-						<Code>#ARGUMENTS.serviceCode#</Code>
-					</Service>													
+					</ShipTo>												
 					<Package>
 						<PackagingType>
 							<Code>02</Code>
 							<Description>Package</Description>
 						</PackagingType>
-						<Description>Rate Shopping</Description>
 						<PackageWeight>
 							<UnitOfMeasurement>
 								<Code>LBS</Code>
@@ -88,7 +85,6 @@
 							<Weight>#xmlFormat(EntityLoadByPK("product",getProductId()).getWeight())#</Weight>
 						</PackageWeight>
 					</Package>
-					
 					<ShipmentServiceOptions/>
 				</Shipment>
 			</RatingServiceSelectionRequest>
