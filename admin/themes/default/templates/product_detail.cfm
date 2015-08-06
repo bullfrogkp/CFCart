@@ -949,6 +949,11 @@
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
 									<cfset productShippingCarrierRela = EntityLoad("product_shipping_carrier_rela",{product = REQUEST.pageData.product, shippingCarrier = sc},true) />
+									<cfif NOT IsNull(productShippingCarrierRela)>
+										<cfset defaultPrice = productShippingCarrierRela.getPrice() />
+									<cfelse>
+										<cfset defaultPrice = 0 />
+									</cfif>
 									<div class="col-xs-3">
 										<div class="box box-warning">
 											<div class="box-body table-responsive no-padding">
@@ -956,7 +961,7 @@
 													<tr class="warning">
 														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
 														<th colspan="2" style="text-align:right;padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
-														<th>
+														<th style="text-align:right;">
 															<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"
 															
 															<cfif NOT IsNull(productShippingCarrierRela)>
@@ -978,14 +983,14 @@
 														</td>
 														<td>Default</td>
 														<td colspan="2">
-															<input type="text" name="default_price_#sc.getShippingCarrierId()#" value="" style="width:100%;text-align:right;padding-right:5px;">
+															<input type="text" name="default_price_#sc.getShippingCarrierId()#" value="#defaultPrice#" style="width:100%;text-align:right;padding-right:5px;">
 														</td>
 													</tr>
 													<tr style="font-size:12px;">
 														<td>
 															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="0"
 															
-															<cfif IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ false)>
+															<cfif IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ false>
 															checked
 															</cfif>
 															
