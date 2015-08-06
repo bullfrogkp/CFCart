@@ -1,61 +1,72 @@
 ﻿<cfcomponent extends="master">	
-	<!---
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif StructKeyExists(FORM,"update_cutomer_info")>
+		<cfif StructKeyExists(FORM,"shipto_this_address")>			
+			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			
+			<cfset LOCAL.billingAddress = {} />
+			<cfset LOCAL.billingAddress.unit = LOCAL.address.getUnit() />
+			<cfset LOCAL.billingAddress.street = LOCAL.address.getStreet() />
+			<cfset LOCAL.billingAddress.city = LOCAL.address.getCity() />
+			<cfset LOCAL.billingAddress.postalCode = LOCAL.address.getPostalCode() />
+			<cfset LOCAL.billingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
+			<cfset LOCAL.billingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
+			<cfset LOCAL.billingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
+			<cfset LOCAL.billingAddress.countryCode = LOCAL.address.getCountry().getCode() />
+					
+			<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+			<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
+			<cfif LOCAL.isValidAddress EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+			</cfif>
+		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfif Trim(FORM.shipto_first_name) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping first name.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your first name.") />
 			</cfif>
 			<cfif Trim(FORM.shipto_last_name) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping last name.") />
-			</cfif>
-			<cfif Trim(FORM.shipto_phone) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping phone number.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your last name.") />
 			</cfif>
 			<cfif Trim(FORM.shipto_street) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping street name.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping street.") />
 			</cfif>
 			<cfif Trim(FORM.shipto_city) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping city name.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping city.") />
 			</cfif>
 			<cfif NOT IsNumeric(FORM.shipto_province_id)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping province.") />
 			</cfif>
 			<cfif Trim(FORM.shipto_postal_code) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping postal code.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping postal code.") />
 			</cfif>
 			<cfif NOT IsNumeric(FORM.shipto_country_id)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
 			</cfif>
 			
-			<cfif StructKeyExists(FORM,"billing_info_is_different")>
-				<cfif Trim(FORM.billto_first_name) EQ "">
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing first name.") />
-				</cfif>
-				<cfif Trim(FORM.billto_last_name) EQ "">
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing last name.") />
-				</cfif>
-				<cfif Trim(FORM.billto_phone) EQ "">
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing phone number.") />
-				</cfif>
-				<cfif Trim(FORM.billto_street) EQ "">
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing street name.") />
-				</cfif>
-				<cfif Trim(FORM.billto_city) EQ "">
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing city name.") />
-				</cfif>
-				<cfif NOT IsNumeric(FORM.billto_province_id)>
-					<cfset ArrayAppend(LOCAL.messageArray,"Please choose your billing province.") />
-				</cfif>
-				<cfif Trim(FORM.billto_postal_code) EQ "">
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid billing postal code.") />
-				</cfif>
-				<cfif NOT IsNumeric(FORM.billto_country_id)>
-					<cfset ArrayAppend(LOCAL.messageArray,"Please choose your billing country.") />
+			<cfif IsNumeric(FORM.shipto_province_id) 
+				AND
+				IsNumeric(FORM.shipto_country_id)>
+				<cfset LOCAL.billingAddress = {} />
+				<cfset LOCAL.billingAddress.unit = Trim(FORM.shipto_unit) />
+				<cfset LOCAL.billingAddress.street = Trim(FORM.shipto_street) />
+				<cfset LOCAL.billingAddress.city = Trim(FORM.shipto_city) />
+				<cfset LOCAL.billingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+				
+				<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
+				<cfset LOCAL.billingAddress.provinceId = FORM.shipto_province_id />
+				<cfset LOCAL.billingAddress.provinceCode = LOCAL.province.getCode() />
+				
+				<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+				<cfset LOCAL.billingAddress.countryId = FORM.shipto_country_id />
+				<cfset LOCAL.billingAddress.countryCode = LOCAL.country.getCode() />
+						
+				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+				<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
+				<cfif LOCAL.isValidAddress EQ false>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
 				</cfif>
 			</cfif>
 		</cfif>
@@ -68,7 +79,6 @@
 		
 		<cfreturn LOCAL />
 	</cffunction>
-	--->
 	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />

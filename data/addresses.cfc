@@ -1,4 +1,66 @@
 ﻿<cfcomponent extends="master">	
+	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
+		
+		<cfset LOCAL.messageArray = [] />
+		
+		<cfif StructKeyExists(FORM,"update_address")>			
+			<cfif Trim(FORM["first_name_#FORM.submitted_address_id#"]) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your first name.") />
+			</cfif>
+			<cfif Trim(FORM["last_name_#FORM.submitted_address_id#"]) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your last name.") />
+			</cfif>
+			<cfif Trim(FORM["street_#FORM.submitted_address_id#"]) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping street.") />
+			</cfif>
+			<cfif Trim(FORM["city_#FORM.submitted_address_id#"]) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping city.") />
+			</cfif>
+			<cfif NOT IsNumeric(FORM["province_id_#FORM.submitted_address_id#"])>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping province.") />
+			</cfif>
+			<cfif Trim(FORM["postal_code_#FORM.submitted_address_id#"]) EQ "">
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping postal code.") />
+			</cfif>
+			<cfif NOT IsNumeric(FORM["country_id_#FORM.submitted_address_id#"])>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
+			</cfif>
+			
+			<cfif IsNumeric(FORM["province_id_#FORM.submitted_address_id#"])
+				AND
+				IsNumeric(FORM["country_id_#FORM.submitted_address_id#"])>
+				<cfset LOCAL.province = EntityLoadByPK("province",FORM["province_id_#FORM.submitted_address_id#"]) />
+				<cfset LOCAL.country = EntityLoadByPK("country",FORM["country_id_#FORM.submitted_address_id#"]) />
+			
+				<cfset LOCAL.billingAddress = {} />
+				<cfset LOCAL.billingAddress.unit = FORM["unit_#FORM.submitted_address_id#"] />
+				<cfset LOCAL.billingAddress.street = FORM["street_#FORM.submitted_address_id#"] />
+				<cfset LOCAL.billingAddress.city = FORM["city_#FORM.submitted_address_id#"] />
+				<cfset LOCAL.billingAddress.postalCode = FORM["postal_code_#FORM.submitted_address_id#"] />
+				<cfset LOCAL.billingAddress.provinceId = FORM["province_id_#FORM.submitted_address_id#"] />
+				<cfset LOCAL.billingAddress.provinceCode = LOCAL.province.getCode() />
+				<cfset LOCAL.billingAddress.countryId = FORM["country_id_#FORM.submitted_address_id#"] />
+				<cfset LOCAL.billingAddress.countryCode = LOCAL.country.getCode() />
+				
+				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+				<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
+				<cfif LOCAL.isValidAddress EQ false>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+				</cfif>
+			</cfif>
+		</cfif>
+		
+		<cfif ArrayLen(LOCAL.messageArray) GT 0>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
+		</cfif>
+		
+		<cfreturn LOCAL />
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />

@@ -5,7 +5,18 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif StructKeyExists(FORM,"shipping_to_new_address")>			
+		<cfif StructKeyExists(FORM,"shipto_this_address")>		
+			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
+			<cfset LOCAL.shippingAddress = {} />
+			<cfset LOCAL.shippingAddress.unit = LOCAL.address.getUnit() />
+			<cfset LOCAL.shippingAddress.street = LOCAL.address.getStreet() />
+			<cfset LOCAL.shippingAddress.city = LOCAL.address.getCity() />
+			<cfset LOCAL.shippingAddress.postalCode = LOCAL.address.getPostalCode() />
+			<cfset LOCAL.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
+			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
+			<cfset LOCAL.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
+			<cfset LOCAL.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
+		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfif Trim(FORM.shipto_first_name) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your first name.") />
 			</cfif>
@@ -27,6 +38,26 @@
 			<cfif NOT IsNumeric(FORM.shipto_country_id)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
 			</cfif>
+			
+			<cfset LOCAL.shippingAddress = {} />
+			<cfset LOCAL.shippingAddress.unit = Trim(FORM.shipto_unit) />
+			<cfset LOCAL.shippingAddress.street = Trim(FORM.shipto_street) />
+			<cfset LOCAL.shippingAddress.city = Trim(FORM.shipto_city) />
+			<cfset LOCAL.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+			
+			<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
+			<cfset LOCAL.shippingAddress.provinceId = FORM.shipto_province_id />
+			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.province.getCode() />
+			
+			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+			<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
+			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
+		</cfif>
+		
+		<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+		<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
+		<cfif LOCAL.isValidAddress EQ false>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>

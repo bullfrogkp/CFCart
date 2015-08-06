@@ -36,6 +36,26 @@
 					<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.new_email)#.") />
 				</cfif>
 			</cfif>
+			
+			<cfset LOCAL.shippingAddress = {} />
+			<cfset LOCAL.shippingAddress.unit = Trim(FORM.shipto_unit) />
+			<cfset LOCAL.shippingAddress.street = Trim(FORM.shipto_street) />
+			<cfset LOCAL.shippingAddress.city = Trim(FORM.shipto_city) />
+			<cfset LOCAL.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+			
+			<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
+			<cfset LOCAL.shippingAddress.provinceId = FORM.shipto_province_id />
+			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.province.getCode() />
+			
+			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+			<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
+			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
+			
+			<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+			<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
+			<cfif LOCAL.isValidAddress EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+			</cfif>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
