@@ -5,13 +5,14 @@
 		<cfargument name="productId" type="numeric" required="true">
 		<cfargument name="currencyId" type="numeric" required="true">
 		<cfargument name="shippingCarrierId" type="numeric" required="true">
+		<cfargument name="productShippingCarrierRelaId" type="numeric" required="true">
 		
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.shippingCarrier = EntityLoadByPK("shipping_carrier",ARGUMENTS.shippingCarrierId) />
-		<cfif LOCAL.shippingCarrier.getUseDefaultPrice() EQ true>
+		<cfset LOCAL.productShippingCarrierRela = EntityLoadByPK("product_shipping_carrier_rela",ARGUMENTS.productShippingCarrierRelaId) />
+		<cfif LOCAL.productShippingCarrierRela.getUseDefaultPrice() EQ true>
 			<cfset LOCAL.shippingMethods = [] />
-			<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = LOCAL.shippingCarrier, isDefault = true},true) />
+			<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = LOCAL.productShippingCarrierRela.getShippingCarrier(), isDefault = true},true) />
 			<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 			
 			<cfset LOCAL.shippingMethodStruct = {} />

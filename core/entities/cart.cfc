@@ -80,6 +80,7 @@
 					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethodsArray(	toAddress = getShippingAddressStruct()
 																										,	shippingCarrierId = LOCAL.shippingCarrier.getShippingCarrierId()
 																										, 	productId = LOCAL.productStruct.productId
+																										,	productShippingCarrierRelaId = LOCAL.productShippingCarrierRela.getProductShippingCarrierRelaId()
 																										, 	currencyId = getCurrencyId()) />
 					
 					<cfloop array="#LOCAL.shippingMethodsArray#" index="LOCAL.shippingMethod">
