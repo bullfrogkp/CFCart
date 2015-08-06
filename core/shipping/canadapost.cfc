@@ -98,7 +98,7 @@
 			<cfset LOCAL.ratedShipmentStruct = {} />
 			<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
 			<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
-			<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["price-detail"]["due"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
+			<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["price-details"]["due"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
 			<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
 			
 			<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
