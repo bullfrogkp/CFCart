@@ -319,23 +319,55 @@ FROM province;
 INSERT INTO shipping_method
 (name, display_name, service_code, is_enabled, shipping_carrier_id,is_default)
 VALUES
-('next day air early','Next Day Air Early','14',1,1,0),
-('next day air','Next Day Air','01',1,1,0),
-('next day saver','Next Day Saver','13',1,1,0),
-('2nd day air am','2nd Day Air AM','59',1,1,0),
-('2nd day air','2nd Day Air','02',1,1,0),
-('3 day select','3 Day Select','12',1,1,0),
-('ground','Ground','03',1,1,0),
-('standard','Standard','11',1,1,0),
-('worldwide express','Worldwide Express','07',1,1,0),
-('worldwide express plus','Worldwide Express Plus','54',1,1,0),
-('worldwide expedited','Worldwide Expedited','08',1,1,0),
-('saver','Saver','65',1,1,0),
-('ups today standard','UPS Today Standard','82',1,1,0),
-('ups today dedicated courier','UPS Today Dedicated Courier','83',1,1,0),
-('ups today intercity','UPS Today Intercity','84',1,1,0),
-('ups today express','UPS Today Express','85',1,1,0),
-('ups today express saver','UPS Today Express Saver','86',1,1,0),
-('ups world wide express freight','UPS World Wide Express Freight','96',1,1,0)
-('flat rate','Flat Rate','',1,1,1)
+('next day air early','Next Day Air Early','14',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('next day air','Next Day Air','01',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('next day saver','Next Day Saver','13',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('2nd day air am','2nd Day Air AM','59',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('2nd day air','2nd Day Air','02',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('3 day select','3 Day Select','12',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ground','Ground','03',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('standard','Standard','11',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('worldwide express','Worldwide Express','07',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('worldwide express plus','Worldwide Express Plus','54',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('worldwide expedited','Worldwide Expedited','08',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('saver','Saver','65',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ups today standard','UPS Today Standard','82',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ups today dedicated courier','UPS Today Dedicated Courier','83',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ups today intercity','UPS Today Intercity','84',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ups today express','UPS Today Express','85',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ups today express saver','UPS Today Express Saver','86',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('ups world wide express freight','UPS World Wide Express Freight','96',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),0),
+('flat rate','Flat Rate','',1,,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'ups'),1)
+;
+
+/*canadapost shipping*/
+INSERT INTO shipping_method
+(name, display_name, service_code, is_enabled, shipping_carrier_id,is_default)
+VALUES
+('Regular Parcel','Regular Parcel','DOM.RP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Expedited Parcel','Expedited Parcel','DOM.EP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Xpresspost','Xpresspost','DOM.XP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Xpresspost Certified','Xpresspost Certified','DOM.XP.CERT',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Priority','Priority','DOM.PC',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Delivered Tonight','Delivered Tonight','DOM.DT',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Library Books','Library Books','DOM.LIB',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Expedited Parcel USA','Expedited Parcel USA','USA.EP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Priority Worldwide Envelope USA','Priority Worldwide Envelope USA','USA.PW.ENV',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Priority Worldwide pak USA','Priority Worldwide pak USA','USA.PW.PAK',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Priority Worldwide Parcel USA','Priority Worldwide Parcel USA','USA.PW.PARCEL',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Small Packet USA Air','Small Packet USA Air','USA.SP.AIR',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Tracked Packet – USA','Tracked Packet – USA','USA.TP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Tracked Packet – USA (LVM)','Tracked Packet – USA (LVM)','USA.TP.LVM',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Xpresspost USA','Xpresspost USA','USA.XP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Xpresspost International','Xpresspost International','INT.XP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('International Parcel Air','International Parcel Air','INT.IP.AIR',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('International Parcel Surface','International Parcel Surface','INT.IP.SURF',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+
+('Priority Worldwide Envelope Int''l','Priority Worldwide Envelope Int''l','INT.PW.ENV',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Priority Worldwide pak Int''l','Priority Worldwide pak Int''l','INT.PW.PAK',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Priority Worldwide parcel Int''l','Priority Worldwide parcel Int''l','INT.PW.PARCEL',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Small Packet International Air','Small Packet International Air','INT.SP.AIR',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Small Packet International Surface','Small Packet International Surface','INT.SP.SURF',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('Tracked Packet','Tracked Packet','INT.TP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
+('flat rate','Flat Rate','',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),1)
 ;
