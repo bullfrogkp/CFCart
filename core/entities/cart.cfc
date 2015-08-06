@@ -396,7 +396,7 @@
 			<cfset LOCAL.displayName = LOCAL.product.getDisplayNameMV() />
 			<cfset LOCAL.imageName = LOCAL.product.getDefaultImageLinkMV(type='small') />
 			
-			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
+			<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",item.shippingMethodId) />
 						
 			<cfset LOCAL.orderProduct = EntityNew("order_product") />
 			<cfset LOCAL.orderProduct.setPrice(item.singlePrice) />
@@ -406,10 +406,8 @@
 			<cfset LOCAL.orderProduct.setShippingAmount(item.totalShippingFee) />
 			<cfset LOCAL.orderProduct.setTotalAmount(item.totalPrice + item.totalTax + item.totalShippingFee) />
 			<cfset LOCAL.orderProduct.setQuantity(item.count) />
-			<cfif NOT IsNull(LOCAL.productShippingMethodRela.getShippingMethod().getShippingCarrier())>
-				<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.productShippingMethodRela.getShippingMethod().getShippingCarrier().getDisplayName()) />
-			</cfif>
-			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.productShippingMethodRela.getShippingMethod().getDisplayName()) />
+			<cfset LOCAL.orderProduct.setShippingCarrierName(LOCAL.shippingMethod.getShippingCarrier().getDisplayName()) />
+			<cfset LOCAL.orderProduct.setShippingMethodName(LOCAL.shippingMethod.getDisplayName()) />
 			<cfset LOCAL.orderProduct.setProduct(LOCAL.product) />
 			<cfset LOCAL.orderProduct.setProductName(LOCAL.displayName) />
 			<cfset LOCAL.orderProduct.setSku(LOCAL.product.getSku()) />
