@@ -28,7 +28,7 @@
 		<cfelse>
 			<cfset var LOCAL = {} />
 			<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
-			<cfset LOCAL.product = EntityLoadByPK("product",getProductId()) /> 
+			<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) /> 
 					
 			<cfsavecontent variable="LOCAL.xmlRequest">
 				<cfoutput>
@@ -40,17 +40,17 @@
 					</parcel-characteristics>
 					<origin-postal-code>#UCase(Replace(LOCAL.siteInfo.getPostalCode()," ","","all"))#</origin-postal-code>
 					<destination>
-						<cfif getAddress().countryCode EQ "CA">
+						<cfif ARGUMENTS.toAddress.countryCode EQ "CA">
 							<domestic>
-								<postal-code>#UCase(Replace(getAddress().postalCode," ","","all"))#</postal-code>
+								<postal-code>#UCase(Replace(ARGUMENTS.toAddress.postalCode," ","","all"))#</postal-code>
 							</domestic>
-						<cfelseif getAddress().countryCode EQ "US">
+						<cfelseif ARGUMENTS.toAddress.countryCode EQ "US">
 							<united-states>
-								<zip-code>#Replace(getAddress().postalCode," ","","all")#</zip-code>
+								<zip-code>#Replace(ARGUMENTS.toAddress.postalCode," ","","all")#</zip-code>
 							</united-states>
 						<cfelse>
 							<international>
-								<country-code>#getAddress().countryCode#</country-code>
+								<country-code>#ARGUMENTS.toAddress.countryCode#</country-code>
 							</international>
 						</cfif>
 					</destination>
@@ -88,6 +88,10 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.response = XMLParse(ARGUMENTS.response.fileContent) />
+		
+		<cfdump var="#LOCAL.response#" abort>
+		
+		
 		<cfset LOCAL.shippingMethodsArray = LOCAL.response["price-quotes"]["price-quote"]["price-details"].due.XmlText />
 	
 		<cfreturn LOCAL.retStruct>
