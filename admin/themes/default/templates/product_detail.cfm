@@ -403,7 +403,7 @@
 								<select class="form-control" multiple name="category_id">
 									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 										<option value="#cat.getCategoryId()#"
-										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
+										<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
 											OR
 											NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, cat.getCategoryId())>
 										selected
@@ -411,7 +411,7 @@
 										>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
 										<cfloop array="#cat.getSubCategories()#" index="subCat">
 											<option value="#subCat.getCategoryId()#"
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)
+											<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)
 												OR
 												NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, subCat.getCategoryId())>
 											selected
@@ -419,7 +419,7 @@
 											>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
 											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
 												<option value="#thirdCat.getCategoryId()#"
-												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)
+												<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)
 													OR
 													NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, thirdCat.getCategoryId())>
 												selected
@@ -437,7 +437,9 @@
 						<div class="form-group">
 							<cfloop array="#REQUEST.pageData.specialCategories#" index="spCategory">
 							<input name="category_id" value="#spCategory.getCategoryId()#" type="checkbox" class="form-control"
-							<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),spCategory)>
+							<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),spCategory)
+								OR
+								NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, spCategory.getCategoryId())>
 							checked
 							</cfif>
 							/>
@@ -954,15 +956,19 @@
 							<label>Shipping Carriers</label>
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
-									<cfif NOT IsNull(REQUEST.pageData.product)>
-										<cfset productShippingCarrierRela = EntityLoad("product_shipping_carrier_rela",{product = REQUEST.pageData.product, shippingCarrier = sc},true) />
-										<cfif NOT IsNull(productShippingCarrierRela)>
-											<cfset defaultPrice = productShippingCarrierRela.getPrice() />
+									<cfif StructKeyExists(REQUEST.pageData.formData,"default_price_#sc.getShippingCarrierId()#")>
+										<cfset defaultPrice = REQUEST.pageData.formData["default_price_#sc.getShippingCarrierId()#"] />
+									<cfelse>
+										<cfif NOT IsNull(REQUEST.pageData.product)>
+											<cfset productShippingCarrierRela = EntityLoad("product_shipping_carrier_rela",{product = REQUEST.pageData.product, shippingCarrier = sc},true) />
+											<cfif NOT IsNull(productShippingCarrierRela)>
+												<cfset defaultPrice = productShippingCarrierRela.getPrice() />
+											<cfelse>
+												<cfset defaultPrice = 0 />
+											</cfif>
 										<cfelse>
 											<cfset defaultPrice = 0 />
 										</cfif>
-									<cfelse>
-										<cfset defaultPrice = 0 />
 									</cfif>
 									<div class="col-xs-3">
 										<div class="box box-warning">
@@ -974,7 +980,9 @@
 														<th style="text-align:right;">
 															<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"
 															
-															<cfif NOT IsNull(productShippingCarrierRela)>
+															<cfif NOT IsNull(productShippingCarrierRela) 
+																OR 
+																NOT IsNull(REQUEST.pageData.formData.shipping_carrier_id) AND ListFind(REQUEST.pageData.formData.shipping_carrier_id, sc.getShippingCarrierId())>
 																checked
 															</cfif>
 															
@@ -985,7 +993,9 @@
 														<td>
 															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="1"
 															
-															<cfif NOT IsNull(productShippingCarrierRela) AND productShippingCarrierRela.getUseDefaultPrice() EQ true>
+															<cfif NOT StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND (IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ true)
+																OR 
+																StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND REQUEST.pageData.formData["use_default_price_#sc.getShippingCarrierId()#"] EQ 1>
 															checked
 															</cfif>
 															
@@ -1000,7 +1010,9 @@
 														<td>
 															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="0"
 															
-															<cfif IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ false>
+															<cfif NOT StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND (IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ false)
+																OR 
+																StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND REQUEST.pageData.formData["use_default_price_#sc.getShippingCarrierId()#"] EQ 0>
 															checked
 															</cfif>
 															
