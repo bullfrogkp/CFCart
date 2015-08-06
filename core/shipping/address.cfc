@@ -21,18 +21,17 @@
 			<cfhttpparam type="xml" value="#ARGUMENTS.xmlData#">
 		</cfhttp>
 		
-		<cfset LOCAL.xmlDataParsed = XmlParse(LOCAL.response.filecontent)>
-		
-		<cfreturn LOCAL.xmlDataParsed>
+		<cfreturn LOCAL.response>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="boolean">
 		<cfargument name="response" type="any" required="true">
 	
-		<cfset var LOCAL = {} />
+		<cfset var LOCAL = {} />		
+		<cfset LOCAL.response = XmlParse(ARGUMENTS.response)>
 		<cfset LOCAL.addressIsValid = "" />
 		
-		<cfdump var="#ARGUMENTS.response#" abort>
+		<cfdump var="#LOCAL.response#" abort>
 		
 		<cfreturn LOCAL.addressIsValid>
 	</cffunction>	

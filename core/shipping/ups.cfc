@@ -40,25 +40,23 @@
 		<cfargument name="submitUrl" type="string" required="true">
 		<cfargument name="xmlData" type="string" required="true">
 				
-		<cfhttp url="#ARGUMENTS.submitUrl#" method="post" result="LOCAL.shippingData">
+		<cfhttp url="#ARGUMENTS.submitUrl#" method="post" result="LOCAL.response">
 			<cfhttpparam type="xml" value="#ARGUMENTS.xmlData#">
 		</cfhttp>
 		
-		<cfset LOCAL.xmlDataParsed = xmlparse(LOCAL.shippingData.filecontent)>
-		
-		<cfreturn LOCAL.xmlDataParsed>
+		<cfreturn LOCAL.response>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="array">
 		<cfargument name="response" type="any" required="true">
 		<cfargument name="currencyId" type="numeric" required="true">
 	
-		<cfset var LOCAL = {} />
+		<cfset var LOCAL = {} />		
+		<cfset LOCAL.response = XmlParse(ARGUMENTS.response)>
 		<cfset LOCAL.shippingMethodsArray = [] />
-		
 		<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
-		<cfloop array="#ARGUMENTS.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
+		<cfloop array="#LOCAL.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
 			<cfif LOCAL.ratedShipment.XmlName EQ "Response" AND LOCAL.ratedShipment["ResponseStatusDescription"].XmlText NEQ "Success">
 				<cfthrow message="UPS rate request failed: #LOCAL.ratedShipment["ResponseStatusDescription"].XmlText#" />
 			</cfif>
