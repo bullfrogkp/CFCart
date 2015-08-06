@@ -18,10 +18,10 @@
 			<cfset LOCAL.shippingMethodStruct = {} />
 			<cfset LOCAL.shippingMethodStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
 			<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
-			<cfset LOCAL.shippingMethodStruct.price = NumberFormat(LOCAL.shippingCarrier.getPrice() * LOCAL.currency.getMultiplier(),"0.00") />
+			<cfset LOCAL.shippingMethodStruct.price = NumberFormat(LOCAL.productShippingCarrierRela.getPrice() * LOCAL.currency.getMultiplier(),"0.00") />
 			<cfset LOCAL.shippingMethodStruct.description = LOCAL.shippingMethod.getDescription() />
 			
-			<cfset ArrayAppend(LOCAL.shippingMethods, LOCAL.shippingMethod) />
+			<cfset ArrayAppend(LOCAL.shippingMethods, LOCAL.shippingMethodStruct) />
 		<cfelse>
 			<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 			
