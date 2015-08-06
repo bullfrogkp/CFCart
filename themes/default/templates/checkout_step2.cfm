@@ -74,7 +74,7 @@ margin-bottom:10px;
 										<cfelse>
 											#LSCurrencyFormat(s.price,"local",SESSION.currency.locale)#
 										</cfif>
-										">Quantity: #item.count# &nbsp;&nbsp;#s.label#</option>
+										">#s.label#</option>
 								</cfloop>
 							</select>
 						</div>
