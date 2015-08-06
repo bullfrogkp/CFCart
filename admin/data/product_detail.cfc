@@ -27,6 +27,14 @@
 		
 		<cfif NOT StructKeyExists(FORM,"shipping_carrier_id")>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one shipping carrier.") />
+		<cfelse>
+			<cfloop list="#FORM.shipping_carrier_id#" index="LOCAL.shippingCarrierId">				
+				<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingCarrierId#") AND FORM["use_default_price_#LOCAL.shippingCarrierId#"] EQ 0
+					AND
+					NOT IsNumeric(Trim(FORM.weight))>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter the product weight to calculate the shipping fee.") />
+				</cfif>
+			</cfloop>
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
