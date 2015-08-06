@@ -38,7 +38,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethodsArray = [] />
 		
-		<fset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
+		<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
 		<cfloop array="#ARGUMENTS.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
 			<cfif LOCAL.ratedShipment.XmlName EQ "Response" AND LOCAL.ratedShipment["ResponseStatusDescription"].XmlText NEQ "Success">
@@ -51,7 +51,7 @@
 				<cfset LOCAL.ratedShipmentStruct = {} />
 				<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
 				<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
-				<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText) * currency.getMultiplier(),"0.00") />
+				<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
 				<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
 				
 				<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />

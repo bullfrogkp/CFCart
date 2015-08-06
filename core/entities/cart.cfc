@@ -138,6 +138,7 @@
 							
 						<cfloop array="#LOCAL.productStruct.shippingMethodArray#" index="LOCAL.shippingMethod">
 							<cfif LOCAL.shippingMethod.shippingMethodId EQ LOCAL.shippingMethodId>
+								<cfset LOCAL.productStruct.shippingMethodId = LOCAL.shippingMethodId />
 								<cfset LOCAL.productStruct.totalShippingFee = LOCAL.shippingMethod.price * LOCAL.productStruct.count />
 								<cfset LOCAL.productStruct.totalShippingFeeWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"local",LOCAL.currency.getLocale()) />
 								<cfset LOCAL.productStruct.totalShippingFeeWCInter = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"international",LOCAL.currency.getLocale()) />

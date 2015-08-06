@@ -27,7 +27,7 @@
 				
 				<cfloop array="#SESSION.cart.getProductArray()#" index="item">
 					<cfset product = EntityLoadByPK("product",item.productId) />
-					<cfset productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela",item.productShippingMethodRelaId) />
+					<cfset shippingMethod = EntityLoadByPK("shipping_method",item.shippingMethodId) />
 					<tr>
 						<td>
 							<h4>#product.getDisplayNameMV()#</h4>
@@ -48,7 +48,7 @@
 							<p>#item.totalTaxWCLocal#</p>
 						</td>
 						<td>
-							<p>#productShippingMethodRela.getShippingMethod().getDisplayName()#: #item.totalShippingFeeWCLocal#</p>
+							<p>#shippingMethod.getDisplayName()#: #item.totalShippingFeeWCLocal#</p>
 						</td>
 					</tr>
 				</cfloop>
