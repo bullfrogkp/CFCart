@@ -79,7 +79,6 @@
 					<cfset LOCAL.shippingComponent = new "#APPLICATION.componentPathRoot#core.shipping.#LOCAL.shippingCarrier.getComponent()#"() />
 					<cfset LOCAL.shippingMethodsArray = LOCAL.shippingComponent.getShippingMethodsArray(	toAddress = getShippingAddressStruct()
 																										, 	productId = LOCAL.productStruct.productId
-																										, 	customerGroupName = getCustomerGroupName()
 																										, 	currencyId = getCurrencyId()) />
 					
 					<cfloop array="#LOCAL.shippingMethodsArray#" index="LOCAL.shippingMethod">
@@ -139,18 +138,13 @@
 							
 						<cfloop array="#LOCAL.productStruct.shippingMethodArray#" index="LOCAL.shippingMethod">
 							<cfif LOCAL.shippingMethod.shippingMethodId EQ LOCAL.shippingMethodId>
-								<cfset LOCAL.productStruct.totalShippingFee = LOCAL.productShippingMethodRela.getProduct().getShippingFeeMV(address = getShippingAddressStruct(), shippingMethodId = LOCAL.productShippingMethodRela.getShippingMethod().getShippingMethodId(),customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * LOCAL.productStruct.count />
+								<cfset LOCAL.productStruct.totalShippingFee = LOCAL.shippingMethod.price * LOCAL.productStruct.count />
 								<cfset LOCAL.productStruct.totalShippingFeeWCLocal = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"local",LOCAL.currency.getLocale()) />
 								<cfset LOCAL.productStruct.totalShippingFeeWCInter = LSCurrencyFormat(LOCAL.productStruct.totalShippingFee,"international",LOCAL.currency.getLocale()) />
 								<cfset LOCAL.totalShippingFee += LOCAL.productStruct.totalShippingFee />
 								<cfbreak />
 							</cfif>
 						</cfloop>
-						
-						
-						
-						<cfset LOCAL.totalShippingFee += LOCAL.productStruct.totalShippingFee />
-						<cfbreak />
 					</cfif>
 				</cfloop>
 			</cfloop>

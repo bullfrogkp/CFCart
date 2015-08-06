@@ -4,7 +4,6 @@
 		<cfargument name="toAddress" type="struct" required="true">
 		<cfargument name="productId" type="numeric" required="true">
 		<cfargument name="currencyId" type="numeric" required="true">
-		<cfargument name="customerGroupName" type="string" required="true">
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
@@ -14,7 +13,7 @@
 													,	productId = ARGUMENTS.productId)>										
 										
 		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
-		<cfset LOCAL.shippingMethods = _parseResponse(LOCAL.shippingRateResponse) />
+		<cfset LOCAL.shippingMethods = _parseResponse(response = LOCAL.shippingRateResponse, currencyId = ARGUMENTS.currencyId) />
 		
 		<cfreturn LOCAL.shippingMethods />
 	</cffunction>	
@@ -34,9 +33,12 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="array">
 		<cfargument name="response" type="any" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
 	
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethodsArray = [] />
+		
+		<fset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
 		<cfloop array="#ARGUMENTS.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
 			<cfif LOCAL.ratedShipment.XmlName EQ "Response" AND LOCAL.ratedShipment["ResponseStatusDescription"].XmlText NEQ "Success">
@@ -49,7 +51,7 @@
 				<cfset LOCAL.ratedShipmentStruct = {} />
 				<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
 				<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
-				<cfset LOCAL.ratedShipmentStruct.price = LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText />
+				<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText) * currency.getMultiplier(),"0.00") />
 				<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
 				
 				<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
