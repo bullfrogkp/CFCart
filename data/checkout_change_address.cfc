@@ -46,9 +46,7 @@
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
 			</cfif>
 			
-			<cfif IsNumeric(FORM.shipto_province_id) 
-				AND
-				IsNumeric(FORM.shipto_country_id)>
+			<cfif IsNumeric(FORM.shipto_province_id) AND IsNumeric(FORM.shipto_country_id)>
 				<cfset LOCAL.billingAddress = {} />
 				<cfset LOCAL.billingAddress.unit = Trim(FORM.shipto_unit) />
 				<cfset LOCAL.billingAddress.street = Trim(FORM.shipto_street) />

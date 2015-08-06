@@ -16,6 +16,12 @@
 			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
 			<cfset LOCAL.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
+			
+			<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+			<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
+			<cfif LOCAL.isValidAddress EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+			</cfif>
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfif Trim(FORM.shipto_first_name) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your first name.") />
@@ -39,19 +45,27 @@
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
 			</cfif>
 			
-			<cfset LOCAL.shippingAddress = {} />
-			<cfset LOCAL.shippingAddress.unit = Trim(FORM.shipto_unit) />
-			<cfset LOCAL.shippingAddress.street = Trim(FORM.shipto_street) />
-			<cfset LOCAL.shippingAddress.city = Trim(FORM.shipto_city) />
-			<cfset LOCAL.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
-			
-			<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
-			<cfset LOCAL.shippingAddress.provinceId = FORM.shipto_province_id />
-			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.province.getCode() />
-			
-			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
-			<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
-			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
+			<cfif IsNumeric(FORM.shipto_province_id) AND IsNumeric(FORM.shipto_country_id)>
+				<cfset LOCAL.shippingAddress = {} />
+				<cfset LOCAL.shippingAddress.unit = Trim(FORM.shipto_unit) />
+				<cfset LOCAL.shippingAddress.street = Trim(FORM.shipto_street) />
+				<cfset LOCAL.shippingAddress.city = Trim(FORM.shipto_city) />
+				<cfset LOCAL.shippingAddress.postalCode = Trim(FORM.shipto_postal_code) />
+				
+				<cfset LOCAL.province = EntityLoadByPK("province",FORM.shipto_province_id) />
+				<cfset LOCAL.shippingAddress.provinceId = FORM.shipto_province_id />
+				<cfset LOCAL.shippingAddress.provinceCode = LOCAL.province.getCode() />
+				
+				<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
+				<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
+				<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
+				
+				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
+				<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
+				<cfif LOCAL.isValidAddress EQ false>
+					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+				</cfif>
+			</cfif>
 		</cfif>
 		
 		<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />

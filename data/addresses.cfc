@@ -28,9 +28,7 @@
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
 			</cfif>
 			
-			<cfif IsNumeric(FORM["province_id_#FORM.submitted_address_id#"])
-				AND
-				IsNumeric(FORM["country_id_#FORM.submitted_address_id#"])>
+			<cfif IsNumeric(FORM["province_id_#FORM.submitted_address_id#"]) AND IsNumeric(FORM["country_id_#FORM.submitted_address_id#"])>
 				<cfset LOCAL.province = EntityLoadByPK("province",FORM["province_id_#FORM.submitted_address_id#"]) />
 				<cfset LOCAL.country = EntityLoadByPK("country",FORM["country_id_#FORM.submitted_address_id#"]) />
 			
