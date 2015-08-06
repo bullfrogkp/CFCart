@@ -4,16 +4,33 @@
 		<cfargument name="toAddress" type="struct" required="true">
 		<cfargument name="productId" type="numeric" required="true">
 		<cfargument name="currencyId" type="numeric" required="true">
+		<cfargument name="shippingCarrierId" type="numeric" required="true">
 		
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
 		
-		<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = LOCAL.siteInfo.getAddress()
-													,	toAddress = ARGUMENTS.toAddress
-													,	productId = ARGUMENTS.productId)>										
-										
-		<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
-		<cfset LOCAL.shippingMethods = _parseResponse(response = LOCAL.shippingRateResponse, currencyId = ARGUMENTS.currencyId) />
+		<cfset LOCAL.shippingCarrier = EntityLoadByPK("shipping_carrier",ARGUMENTS.shippingCarrierId) />
+		<cfif LOCAL.shippingCarrier.getUseDefaultPrice() EQ true>
+			<cfset LOCAL.shippingMethods = [] />
+			<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = LOCAL.shippingCarrier, isDefault = true},true) />
+			<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
+			
+			<cfset LOCAL.shippingMethodStruct = {} />
+			<cfset LOCAL.shippingMethodStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
+			<cfset LOCAL.shippingMethodStruct.name = LOCAL.shippingMethod.getDisplayName() />
+			<cfset LOCAL.shippingMethodStruct.price = NumberFormat(LOCAL.shippingCarrier.getPrice() * LOCAL.currency.getMultiplier(),"0.00") />
+			<cfset LOCAL.shippingMethodStruct.description = LOCAL.shippingMethod.getDescription() />
+			
+			<cfset ArrayAppend(LOCAL.shippingMethods, LOCAL.shippingMethod) />
+		<cfelse>
+			<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
+			
+			<cfset LOCAL.xmlData = _createShippingRateXml(	fromAddress = LOCAL.siteInfo.getAddress()
+														,	toAddress = ARGUMENTS.toAddress
+														,	productId = ARGUMENTS.productId)>										
+											
+			<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
+			<cfset LOCAL.shippingMethods = _parseResponse(response = LOCAL.shippingRateResponse, currencyId = ARGUMENTS.currencyId) />
+		</cfif>
 		
 		<cfreturn LOCAL.shippingMethods />
 	</cffunction>	
