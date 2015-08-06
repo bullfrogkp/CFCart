@@ -226,7 +226,7 @@
 			</cfif>
 		</cfloop>
 		
-		$( "##price" ).change(function() {
+		$( "##price" ).keyup(function() {
 			if(!isNaN($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -239,7 +239,7 @@
 			}
 		});
 		
-		$( "##special-price" ).change(function() {
+		$( "##special-price" ).keyup(function() {
 			if(!isNaN($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -252,7 +252,7 @@
 			}
 		});
 		
-		$( "##special-price-from-date" ).change(function() {
+		$( "##special-price-from-date" ).keyup(function() {
 			console.log(Date.parse($(this).val()));
 			if(Date.parse($(this).val()))
 			{
@@ -263,7 +263,7 @@
 			}
 		});
 		
-		$( "##special-price-to-date" ).change(function() {
+		$( "##special-price-to-date" ).keyup(function() {
 			if(Date.parse($(this).val()))
 			{
 				for(var i=0;i<groupArray.length;i++)
@@ -948,9 +948,13 @@
 							<label>Shipping Carriers</label>
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
-									<cfset productShippingCarrierRela = EntityLoad("product_shipping_carrier_rela",{product = REQUEST.pageData.product, shippingCarrier = sc},true) />
-									<cfif NOT IsNull(productShippingCarrierRela)>
-										<cfset defaultPrice = productShippingCarrierRela.getPrice() />
+									<cfif NOT IsNull(REQUEST.pageData.product)>
+										<cfset productShippingCarrierRela = EntityLoad("product_shipping_carrier_rela",{product = REQUEST.pageData.product, shippingCarrier = sc},true) />
+										<cfif NOT IsNull(productShippingCarrierRela)>
+											<cfset defaultPrice = productShippingCarrierRela.getPrice() />
+										<cfelse>
+											<cfset defaultPrice = 0 />
+										</cfif>
 									<cfelse>
 										<cfset defaultPrice = 0 />
 									</cfif>
