@@ -260,6 +260,8 @@
 				
 				<cfif IsNumeric(FORM["default_price_#LOCAL.shippingCarrierId#"])>
 					<cfset LOCAL.newProductShippingCarrierRela.setPrice(FORM["default_price_#LOCAL.shippingCarrierId#"]) />
+				<cfelse>
+					<cfset LOCAL.newProductShippingCarrierRela.setPrice(0) />
 				</cfif>
 				
 				<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingCarrierId#") AND FORM["use_default_price_#LOCAL.shippingCarrierId#"] EQ 1>
