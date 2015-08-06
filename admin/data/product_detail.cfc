@@ -440,18 +440,7 @@
 			<cfset LOCAL.product.removeSubProduct(EntityLoadByPK("product",FORM.sub_product_id)) />
 			<cfset EntitySave(LOCAL.product) />
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Attribute value has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />		
-		
-		<cfelseif StructKeyExists(FORM,"edit_default_price")>
-			<cfset LOCAL.productShippingMethodRela = EntityLoadByPK("product_shipping_method_rela", FORM.product_shipping_method_rela_id) />
-			<cfset LOCAL.productShippingMethodRela.setPrice(FORM.new_default_price) />
-			
-			<cfset EntitySave(LOCAL.productShippingMethodRela) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Default price has been updated.") />
-			
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_8" />
-		</cfif>
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#FORM.id#&active_tab_id=tab_5" />	
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
