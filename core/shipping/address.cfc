@@ -1,6 +1,6 @@
 <cfcomponent output="false" accessors="true">
 	<!------------------------------------------------------------------------------->
-	<cffunction name="isAddressValid" access="public" returntype="array">
+	<cffunction name="isValidAddress" access="public" returntype="boolean">
 		<cfargument name="address" type="struct" required="true">
 		
 		<cfset var LOCAL = {} />
