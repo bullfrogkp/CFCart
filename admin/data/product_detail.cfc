@@ -25,6 +25,10 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one category.") />
 		</cfif>
 		
+		<cfif NOT StructKeyExists(FORM,"shipping_carrier_id")>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one shipping carrier.") />
+		</cfif>
+		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
@@ -248,28 +252,26 @@
 			<!--- update: not necessary for each time --->
 			<cfset LOCAL.product.removeProductShippingCarrierRelas() />
 			
-			<cfif StructKeyExists(FORM,"shipping_carrier_id")>
-				<cfloop list="#FORM.shipping_carrier_id#" index="LOCAL.shippingCarrierId">
-					<cfset LOCAL.shippingCarrier = EntityLoadByPK("shipping_carrier",LOCAL.shippingCarrierId) />
-					<cfset LOCAL.newProductShippingCarrierRela = EntityNew("product_shipping_carrier_rela") />
-					<cfset LOCAL.newProductShippingCarrierRela.setShippingCarrier(LOCAL.shippingCarrier) />
-					<cfset LOCAL.newProductShippingCarrierRela.setProduct(LOCAL.product) />
-					
-					<cfif IsNumeric(FORM["default_price_#LOCAL.shippingCarrierId#"])>
-						<cfset LOCAL.newProductShippingCarrierRela.setPrice(FORM["default_price_#LOCAL.shippingCarrierId#"]) />
-					</cfif>
-					
-					<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingCarrierId#") AND FORM["use_default_price_#LOCAL.shippingCarrierId#"] EQ 1>
-						<cfset LOCAL.newProductShippingCarrierRela.setUseDefaultPrice(true) />
-					<cfelse>
-						<cfset LOCAL.newProductShippingCarrierRela.setUseDefaultPrice(false) />
-					</cfif>
-					
-					<cfset EntitySave(LOCAL.newProductShippingCarrierRela) />
-					
-					<cfset LOCAL.product.addProductShippingCarrierRela(LOCAL.newProductShippingCarrierRela) />
-				</cfloop>
-			</cfif>
+			<cfloop list="#FORM.shipping_carrier_id#" index="LOCAL.shippingCarrierId">
+				<cfset LOCAL.shippingCarrier = EntityLoadByPK("shipping_carrier",LOCAL.shippingCarrierId) />
+				<cfset LOCAL.newProductShippingCarrierRela = EntityNew("product_shipping_carrier_rela") />
+				<cfset LOCAL.newProductShippingCarrierRela.setShippingCarrier(LOCAL.shippingCarrier) />
+				<cfset LOCAL.newProductShippingCarrierRela.setProduct(LOCAL.product) />
+				
+				<cfif IsNumeric(FORM["default_price_#LOCAL.shippingCarrierId#"])>
+					<cfset LOCAL.newProductShippingCarrierRela.setPrice(FORM["default_price_#LOCAL.shippingCarrierId#"]) />
+				</cfif>
+				
+				<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingCarrierId#") AND FORM["use_default_price_#LOCAL.shippingCarrierId#"] EQ 1>
+					<cfset LOCAL.newProductShippingCarrierRela.setUseDefaultPrice(true) />
+				<cfelse>
+					<cfset LOCAL.newProductShippingCarrierRela.setUseDefaultPrice(false) />
+				</cfif>
+				
+				<cfset EntitySave(LOCAL.newProductShippingCarrierRela) />
+				
+				<cfset LOCAL.product.addProductShippingCarrierRela(LOCAL.newProductShippingCarrierRela) />
+			</cfloop>
 					
 			<!--- product images --->
 			<cfif NOT IsNull(LOCAL.product.getImages())>
