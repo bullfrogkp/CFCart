@@ -76,7 +76,7 @@
 				<cfhttpparam type="header" name="Accept-language" value="en-CA">
 			</cfhttp>
 
-			<cfset LOCAL.shippingMethodsArray = _parseResponse(LOCAL.httpResponse) />
+			<cfset LOCAL.shippingMethodsArray = _parseResponse(response = LOCAL.httpResponse, currencyId = ARGUMENTS.currencyId) />
 		</cfif>
 		
 		<cfreturn LOCAL.shippingMethodsArray />
@@ -84,17 +84,27 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_parseResponse" access="private" returntype="array">
 		<cfargument name="response" type="any" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
 	
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.shippingMethodsArray = [] />
 		<cfset LOCAL.response = XMLParse(ARGUMENTS.response.fileContent) />
 		
-		<cfdump var="#LOCAL.response#" abort>
+		<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
-		
-		<cfset LOCAL.shippingMethodsArray = LOCAL.response["price-quotes"]["price-quote"]["price-details"].due.XmlText />
+		<cfloop array="#LOCAL.response["price-quotes"].XmlChildren#" index="LOCAL.ratedShipment">
+			<cfset LOCAL.serviceCode = LOCAL.ratedShipment["service-code"].XmlText />
+			<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = EntityLoad("shipping_carrier",{name="canadapost"},true), serviceCode = LOCAL.serviceCode},true) />
+			<cfset LOCAL.ratedShipmentStruct = {} />
+			<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
+			<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
+			<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["price-detail"]["due"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
+			<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
+			
+			<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
+		</cfloop>
 	
-		<cfreturn LOCAL.retStruct>
+		<cfreturn LOCAL.shippingMethodsArray>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 </cfcomponent>
