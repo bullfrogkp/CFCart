@@ -2,7 +2,7 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="isValidAddress" access="public" returntype="boolean">
 		<cfargument name="address" type="struct" required="true">
-		
+		<!--- 
 		<cfset var LOCAL = {} />
 	
 		<cfset LOCAL.xmlData = _createAddressValidationXml(address = ARGUMENTS.address)>										
@@ -11,6 +11,8 @@
 		<cfset LOCAL.addressIsValid = _parseResponse(response = LOCAL.response.Filecontent) />
 		
 		<cfreturn LOCAL.addressIsValid />
+		 --->
+		 <cfreturn true />
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_submitXml" displayname="Submit XML" description="Submits XML documents to UPS to get the response data" access="private" output="false" returntype="any">
