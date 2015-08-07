@@ -76,7 +76,7 @@
 				<cfhttpparam type="header" name="Accept-language" value="en-CA">
 			</cfhttp>
 
-			<cfset LOCAL.shippingMethodsArray = _parseResponse(response = LOCAL.httpResponse, currencyId = ARGUMENTS.currencyId) />
+			<cfset LOCAL.shippingMethodsArray = _parseResponse(response = LOCAL.httpResponse.fileContent, currencyId = ARGUMENTS.currencyId) />
 		</cfif>
 		
 		<cfreturn LOCAL.shippingMethodsArray />
@@ -88,7 +88,7 @@
 	
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethodsArray = [] />
-		<cfset LOCAL.response = XMLParse(ARGUMENTS.response.fileContent) />
+		<cfset LOCAL.response = XMLParse(ARGUMENTS.response) />
 		
 		<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		

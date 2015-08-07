@@ -19,7 +19,7 @@
 			<cfset LOCAL.billingAddress.countryCode = LOCAL.address.getCountry().getCode() />
 					
 			<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
-			<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
+			<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
 			<cfif LOCAL.isValidAddress EQ false>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
 			</cfif>
@@ -62,7 +62,7 @@
 				<cfset LOCAL.billingAddress.countryCode = LOCAL.country.getCode() />
 						
 				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
-				<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
+				<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.billingAddress) />
 				<cfif LOCAL.isValidAddress EQ false>
 					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
 				</cfif>

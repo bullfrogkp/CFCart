@@ -8,7 +8,7 @@
 		<cfset LOCAL.xmlData = _createAddressValidationXml(address = ARGUMENTS.address)>										
 										
 		<cfset LOCAL.response = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.av_url)>		
-		<cfset LOCAL.addressIsValid = _parseResponse(response = LOCAL.response) />
+		<cfset LOCAL.addressIsValid = _parseResponse(response = LOCAL.response.Filecontent) />
 		
 		<cfreturn LOCAL.addressIsValid />
 	</cffunction>	
