@@ -61,7 +61,7 @@
 				<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
 				
 				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
-				<cfif LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
+				<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
 				<cfif LOCAL.isValidAddress EQ false>
 					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
 				</cfif>
@@ -109,9 +109,10 @@
 		<cfset SESSION.cart.setSameAddress(true) />
 		<cfset SESSION.cart.setRegisterCustomer(false) />
 
-		<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
-		<cfset LOCAL.customerEntity = EntityLoadByPK("customer",LOCAL.customerStruct.customerId) />
+		<cfset LOCAL.customerStruct = {} />
+		<cfset LOCAL.customerEntity = EntityLoadByPK("customer",SESSION.user.customerId) />
 		<cfset LOCAL.customerStruct.email = LOCAL.customerEntity.getEmail() />
+		<cfset LOCAL.customerStruct.customerId = SESSION.user.customerId />
 		
 		<cfif StructKeyExists(FORM,"shipto_this_address")>		
 			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />

@@ -57,7 +57,7 @@
 			<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
 			<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
 			
-			<cfset SESSION.cart.setCustomerGroup(LOCAL.customer.getCustomerGroup()) />
+			<cfset SESSION.cart.setCustomerGroupName(LOCAL.customer.getCustomerGroup().getName()) />
 			<cfset SESSION.cart.calculate() />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step1_customer.cfm" />
