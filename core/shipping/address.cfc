@@ -29,11 +29,15 @@
 	
 		<cfset var LOCAL = {} />		
 		<cfset LOCAL.response = XmlParse(ARGUMENTS.response)>
-		<cfset LOCAL.addressIsValid = "" />
+		<cfset LOCAL.addressIsValid = LOCAL.response["AddressValidationResponse"]["Response"]["ResponseStatusCode"].XmlText />
+	<cfdump var="#LOCAL.response#" abort>		
+		<cfif LOCAL.addressIsValid EQ 0>
+			<cfset LOCAL.retValue= false />
+		<cfelse>
+			<cfset LOCAL.retValue= true />
+		</cfif>
 		
-		<cfdump var="#LOCAL.response#" abort>
-		
-		<cfreturn LOCAL.addressIsValid>
+		<cfreturn LOCAL.retValue>
 	</cffunction>	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_createAddressValidationXml" displayname="Create XML Documents" description="Creates the XML needed to send to UPS" access="private" output="false" returntype="Any">
@@ -71,7 +75,7 @@
 			</AccessRequest>
 			<cfoutput>#LOCAL.xmlShippingRequest#</cfoutput>
 		</cfsavecontent>	
-		
+	
 		<cfreturn LOCAL.xmlShippingData>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
