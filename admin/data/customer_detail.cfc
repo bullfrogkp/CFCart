@@ -10,7 +10,7 @@
 		<cfelse>
 			<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.email),isDeleted=false,isEnabled=true},true) />
 			<cfif NOT IsNull(LOCAL.existingCustomer) AND LOCAL.existingCustomer.getCustomerId() NEQ FORM.id>
-				<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.email)#.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Active customer already exists with email:#Trim(FORM.email)#. (id = #LOCAL.existingCustomer.getCustomerId()#)") />
 			</cfif>
 		</cfif>
 	

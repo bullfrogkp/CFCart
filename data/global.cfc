@@ -117,6 +117,7 @@
 		<cfelseif StructKeyExists(FORM,"subscribe_customer")>
 		
 			<cfif IsValid("email",Trim(FORM.subscribe_email))>
+				<!--- get the enabled customer with the same email --->
 				<cfset LOCAL.existingActiveCustomer = EntityLoad("customer",{email = Trim(FORM.subscribe_email), isEnabled = true, isDeleted = false}, true) />
 				<cfif NOT IsNull(LOCAL.existingActiveCustomer)>
 					<cfset LOCAL.existingActiveCustomer.setSubscribed(true) />
