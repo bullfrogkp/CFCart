@@ -27,7 +27,7 @@
 			<div class="small-box bg-aqua">
 				<div class="inner">
 					<h3>
-						150
+						#ArrayLen(LOCAL.pageData.newOrders)#
 					</h3>
 					<p>
 						New Orders
@@ -46,7 +46,7 @@
 			<div class="small-box bg-yellow">
 				<div class="inner">
 					<h3>
-						44
+						#ArrayLen(LOCAL.pageData.newCustomers)#
 					</h3>
 					<p>
 						New Customers
@@ -65,7 +65,7 @@
 			<div class="small-box bg-green">
 				<div class="inner">
 					<h3>
-						53
+						#ArrayLen(LOCAL.pageData.newReviews)#
 					</h3>
 					<p>
 						New Reviews
@@ -84,7 +84,7 @@
 			<div class="small-box bg-red">
 				<div class="inner">
 					<h3>
-						65
+						0
 					</h3>
 					<p>
 						New Messages
