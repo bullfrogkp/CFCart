@@ -105,6 +105,11 @@
 		<cfset LOCAL.pageData.orderProductStatusTypes = EntityLoad("order_product_status_type") />
 		<cfset LOCAL.pageData.siteInfo = EntityLoad("site_info",{},true) />
 		
+		<cfif LOCAL.pageData.order.getIsNew() EQ true>
+			<cfset LOCAL.pageData.order.setIsNew(false) />
+			<cfset EntitySave(LOCAL.pageData.order) />
+		</cfif>
+		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>

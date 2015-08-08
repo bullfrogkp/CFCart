@@ -43,6 +43,11 @@
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.review.getSubject()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.deleteButtonClass = "" />	
 		
+		<cfif LOCAL.pageData.review.getIsNew() EQ true>
+			<cfset LOCAL.pageData.review.setIsNew(false) />
+			<cfset EntitySave(LOCAL.pageData.review) />
+		</cfif>
+		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 		<cfelse>

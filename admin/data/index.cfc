@@ -5,6 +5,8 @@
 		
 		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
 		
+		<cfset LOCAL.pageData.newOrders = EntityLoad() />
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>

@@ -146,6 +146,11 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.customer.getFirstName()# #LOCAL.pageData.customer.getMiddleName()# #LOCAL.pageData.customer.getLastName()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
+			<cfif LOCAL.pageData.customer.getIsNew() EQ true>
+				<cfset LOCAL.pageData.customer.setIsNew(false) />
+				<cfset EntitySave(LOCAL.pageData.customer) />
+			</cfif>
+			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
