@@ -9,6 +9,9 @@
 		<cfset LOCAL.pageData.newCustomers = EntityLoad("customer",{isNew = true, isDeleted = false, isEnabled = true}, "createdDatetime Desc") />
 		<cfset LOCAL.pageData.newReviews = EntityLoad("review",{isNew = true, isDeleted = false}, "createdDatetime Desc") />
 		
+		<cfset LOCAL.pageData.LastestOrders = EntityLoad("order",{isDeleted = false, isComplete = true}, "createdDatetime Desc", {maxResults=10}) />
+		<cfset LOCAL.pageData.topViewedProducts = EntityLoad("product",{isDeleted = false}, "viewCount Desc", {maxResults=10}) />
+		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 </cfcomponent>
