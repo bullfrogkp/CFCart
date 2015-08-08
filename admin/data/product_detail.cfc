@@ -70,6 +70,7 @@
 			<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.product.setCreatedDatetime(Now()) />
 			<cfset LOCAL.product.setIsDeleted(false) />
+			<cfset LOCAL.product.setViewCount(0) />
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
 		
