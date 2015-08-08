@@ -13,6 +13,7 @@
 	
 	<cfproperty name="paymentMethodName" column="payment_method_name" ormtype="string"> 
 	<cfproperty name="isComplete" column="is_complete" ormtype="boolean"> 
+	<cfproperty name="isNew" column="is_new" ormtype="boolean"> 
 	
 	<cfproperty name="token" column="token" ormtype="string"> 
 	<cfproperty name="payerId" column="payerId" ormtype="string"> 
