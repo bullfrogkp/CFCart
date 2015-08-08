@@ -117,18 +117,32 @@
 		<cfelseif StructKeyExists(FORM,"subscribe_customer")>
 		
 			<cfif IsValid("email",Trim(FORM.subscribe_email))>
-				<cfset LOCAL.customer = EntityNew("customer") />
-				<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
-				<cfset LOCAL.customer.setCreatedDatetime(Now()) />
-				<cfset LOCAL.customer.setIsDeleted(false) />
-				<cfset LOCAL.customer.setIsEnabled(false) />
-				<cfset LOCAL.customer.setEmail(Trim(FORM.subscribe_email)) />
-				<cfset LOCAL.customer.setSubscribed(true) />
-				
-				<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
-				<cfset LOCAL.customer.setCustomerGroup(LOCAL.defaultCustomerGroup) />
-				
-				<cfset EntitySave(LOCAL.customer) />
+				<cfset LOCAL.existingActiveCustomer = EntityLoad("customer",{email = Trim(FORM.subscribe_email), isEnabled = true, isDeleted = false}, true) />
+				<cfif NOT IsNull(LOCAL.existingActiveCustomer)>
+					<cfset LOCAL.existingActiveCustomer.setSubscribed(true) />
+					<cfset EntitySave(LOCAL.existingActiveCustomer) />
+				<cfelse>
+					<!--- get the latest disable customer with the same email --->
+					<cfset LOCAL.existingInActiveCustomerArray = EntityLoad("customer",{email = Trim(FORM.subscribe_email), isEnabled = false, isDeleted = false}, "createdDatetime Desc") />
+					<cfif NOT ArrayIsEmpty(LOCAL.existingInActiveCustomerArray)>
+						<cfset LOCAL.existingInActiveCustomer = LOCAL.existingInActiveCustomerArray[1] />
+						<cfset LOCAL.existingInActiveCustomer.setSubscribed(true) />
+						<cfset EntitySave(LOCAL.existingInActiveCustomer) />
+					<cfelse>
+						<cfset LOCAL.customer = EntityNew("customer") />
+						<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
+						<cfset LOCAL.customer.setCreatedDatetime(Now()) />
+						<cfset LOCAL.customer.setIsDeleted(false) />
+						<cfset LOCAL.customer.setIsEnabled(false) />
+						<cfset LOCAL.customer.setEmail(Trim(FORM.subscribe_email)) />
+						<cfset LOCAL.customer.setSubscribed(true) />
+						
+						<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />
+						<cfset LOCAL.customer.setCustomerGroup(LOCAL.defaultCustomerGroup) />
+						
+						<cfset EntitySave(LOCAL.customer) />
+					</cfif>
+				</cfif>
 				
 				<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#subscription_done.cfm" />
 			</cfif>
