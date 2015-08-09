@@ -62,7 +62,7 @@
 									<td>
 										#order.getOrderTrackingNumber()#
 										<cfif order.getIsNew() EQ true>
-											<span class="label label-danger">New</span>
+											<span class="label label-danger pull-right" style="margin-top:3px;">New</span>
 										</cfif>
 									</td>
 									<td>

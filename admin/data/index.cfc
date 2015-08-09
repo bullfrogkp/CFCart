@@ -6,7 +6,7 @@
 		<cfset LOCAL.pageData.title = "Dashboard | #APPLICATION.applicationName#" />
 		
 		<cfset LOCAL.pageData.newOrders = EntityLoad("order",{isNew = true, isDeleted = false}, "createdDatetime Desc") />
-		<cfset LOCAL.pageData.newCustomers = EntityLoad("customer",{isNew = true, isDeleted = false, isEnabled = true}, "createdDatetime Desc") />
+		<cfset LOCAL.pageData.newCustomers = EntityLoad("customer",{isNew = true, isDeleted = false}, "createdDatetime Desc") />
 		<cfset LOCAL.pageData.newReviews = EntityLoad("review",{isNew = true, isDeleted = false}, "createdDatetime Desc") />
 		
 		<cfset LOCAL.pageData.LastestOrders = EntityLoad("order",{isDeleted = false, isComplete = true}, "createdDatetime Desc", {maxResults=10}) />
