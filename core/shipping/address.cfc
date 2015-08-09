@@ -9,7 +9,7 @@
 													,	toAddress = ARGUMENTS.address)>										
 										
 		<cfset LOCAL.response = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
-		<cfset LOCAL.responseXml = XmlParse(ARGUMENTS.response)>
+		<cfset LOCAL.responseXml = XmlParse(LOCAL.response.Filecontent)>
 
 		<cfif LOCAL.responseXml["RatingServiceSelectionResponse"]["Response"]["ResponseStatusCode"].XmlText EQ 1>
 			<cfset LOCAL.addressIsValid = true />

@@ -20,7 +20,7 @@
 			<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
 			<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
 			<cfif LOCAL.isValidAddress EQ false>
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Sorry we don't support shipping to this address.") />
 			</cfif>
 		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfif Trim(FORM.shipto_first_name) EQ "">
@@ -63,15 +63,9 @@
 				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
 				<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
 				<cfif LOCAL.isValidAddress EQ false>
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+					<cfset ArrayAppend(LOCAL.messageArray,"Sorry we don't support shipping to this address.") />
 				</cfif>
 			</cfif>
-		</cfif>
-		
-		<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
-		<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
-		<cfif LOCAL.isValidAddress EQ false>
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>

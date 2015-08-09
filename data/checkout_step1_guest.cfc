@@ -55,7 +55,7 @@
 				<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
 				<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
 				<cfif LOCAL.isValidAddress EQ false>
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid shipping address.") />
+					<cfset ArrayAppend(LOCAL.messageArray,"Sorry we don't support shipping to this address.") />
 				</cfif>
 			</cfif>
 		</cfif>
