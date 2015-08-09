@@ -131,11 +131,11 @@
 							<th>Grand Total</th>
 							<th></th>
 						</tr>
-						<cfloop array="#REQUEST.pageData.LastestOrders#" index="LOCAL.order">
+						<cfloop array="#REQUEST.pageData.LastestOrders#" index="order">
 							<tr>
-								<td>#LOCAL.order.getCustomerFullName()#</td>
-								<td>#LSCurrencyFormat(REQUEST.pageData.order.getSubTotalPrice(),"international",LOCAL.order.getCurrency().getLocale())#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#">Detail</a></td>
+								<td>#order.getCustomerFullName()#</td>
+								<td>#LSCurrencyFormat(order.getSubTotalPrice(),"international",order.getCurrency().getLocale())#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#order.getOrderId()#">Detail</a></td>
 							</tr>
 						</cfloop>
 					</table>
@@ -146,7 +146,7 @@
 		<section class="col-lg-6"> 
 			<div class="box box-success">
 				<div class="box-header">
-					<h3 class="box-title">Last 5 Reviews</h3>
+					<h3 class="box-title">Latest Reviews</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body no-padding">
 					<table class="table table-striped">
@@ -155,11 +155,11 @@
 							<th>Review</th>
 							<th></th>
 						</tr>
-						<cfloop array="#REQUEST.pageData.LastestReviews#" index="LOCAL.review">
+						<cfloop array="#REQUEST.pageData.LastestReviews#" index="review">
 							<tr>
-								<td>#LOCAL.review.getReviewerName()#</td>
-								<td>#LOCAL.review.getSubject()#</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#LOCAL.review.getReviewId()#">Detail</a></td>
+								<td>#review.getReviewerName()#</td>
+								<td>#review.getSubject()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">Detail</a></td>
 							</tr>
 						</cfloop>
 					</table>
@@ -179,40 +179,16 @@
 					<table class="table table-striped">
 						<tr>
 							<th>Product</th>
-							<th>Information</th>
 							<th>Sold</th>
 							<th></th>
 						</tr>
-						<tr>
-							<td>Box</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Box</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Box</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Box</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Box</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
+						<cfloop array="#REQUEST.pageData.bestSellerProducts#" index="product">
+							<tr>
+								<td>#product.getDisplayName()#</td>
+								<td>#product.getSoldCount()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">Detail</a></td>
+							</tr>
+						</cfloop>
 					</table>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -230,31 +206,13 @@
 							<th>Viewed</th>
 							<th></th>
 						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm">Detail</a></td>
-						</tr>
+						<cfloop array="#REQUEST.pageData.topViewedProducts#" index="product">
+							<tr>
+								<td>#product.getDisplayName()#</td>
+								<td>#product.getViewCount()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">Detail</a></td>
+							</tr>
+						</cfloop>
 					</table>
 				</div>
 			</div>
