@@ -122,7 +122,7 @@
 		<section class="col-lg-6"> 
 			<div class="box box-danger">
 				<div class="box-header">
-					<h3 class="box-title">Last 5 Orders</h3>
+					<h3 class="box-title">Latest Orders</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body no-padding">
 					<table class="table table-striped">

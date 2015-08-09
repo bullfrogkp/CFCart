@@ -10,7 +10,9 @@
 		<cfset LOCAL.pageData.newReviews = EntityLoad("review",{isNew = true, isDeleted = false}, "createdDatetime Desc") />
 		
 		<cfset LOCAL.pageData.LastestOrders = EntityLoad("order",{isDeleted = false, isComplete = true}, "createdDatetime Desc", {maxResults=10}) />
+		<cfset LOCAL.pageData.LastestReviews = EntityLoad("review",{}, "createdDatetime Desc", {maxResults=10}) />
 		<cfset LOCAL.pageData.topViewedProducts = EntityLoad("product",{isDeleted = false}, "viewCount Desc", {maxResults=10}) />
+		<cfset LOCAL.pageData.bestSellerProducts = EntityLoad("product",{isDeleted = false}, "soldCount Desc", {maxResults=10}) />
 		
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
