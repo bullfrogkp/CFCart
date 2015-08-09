@@ -57,7 +57,12 @@
 						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
 							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="c">
 								<tr>
-									<td>#c.getFirstName()# #c.getMiddleName()# #c.getLastName()#</td>
+									<td>
+										#c.getFirstName()# #c.getMiddleName()# #c.getLastName()#
+										<cfif c.getIsNew() EQ true>
+											<span class="label label-danger">New</span>
+										</cfif>
+									</td>
 									<td>#c.getEmail()#</td>
 									<td>#c.getPhone()#</td>
 									<td>#c.getCustomerGroup().getDisplayName()#</td>

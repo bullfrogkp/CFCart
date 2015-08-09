@@ -51,7 +51,12 @@
 						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
 							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="review">
 								<tr>
-									<td>#review.getSubject()#</td>
+									<td>
+										#review.getSubject()#
+										<cfif review.getIsNew() EQ true>
+											<span class="label label-danger">New</span>
+										</cfif>
+									</td>
 									<td>#review.getProduct().getDisplayName()#</td>
 									<td>#review.getMessage()#</td>
 									<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>

@@ -59,7 +59,12 @@
 							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="order">
 								<tr>
 									<td>#order.getOrderId()#</td>
-									<td>#order.getOrderTrackingNumber()#</td>
+									<td>
+										#order.getOrderTrackingNumber()#
+										<cfif order.getIsNew() EQ true>
+											<span class="label label-danger">New</span>
+										</cfif>
+									</td>
 									<td>
 										#order.getCustomerEmail()#
 									</td>
