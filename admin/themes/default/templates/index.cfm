@@ -128,40 +128,16 @@
 					<table class="table table-striped">
 						<tr>
 							<th>Customer</th>
-							<th>Items</th>
 							<th>Grand Total</th>
 							<th></th>
 						</tr>
-						<tr>
-							<td>Kevin</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Kevin</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Kevin</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Kevin</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>Kevin</td>
-							<td>Red,Blue,White,Black</td>
-							<td>$1000.00</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm">Detail</a></td>
-						</tr>
+						<cfloop array="#REQUEST.pageData.LastestOrders#" index="LOCAL.order">
+							<tr>
+								<td>#LOCAL.order.getCustomerFullName()#</td>
+								<td>#LSCurrencyFormat(REQUEST.pageData.order.getSubTotalPrice(),"international",LOCAL.order.getCurrency().getLocale())#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/order_detail.cfm?id=#LOCAL.order.getOrderId()#">Detail</a></td>
+							</tr>
+						</cfloop>
 					</table>
 				</div>
 			</div><!-- /.box (chat box) -->   
@@ -179,36 +155,17 @@
 							<th>Review</th>
 							<th></th>
 						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
-						</tr>
-						<tr>
-							<td>New Product</td>
-							<td>Red,Blue,White,Black</td>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm">Detail</a></td>
-						</tr>
+						<cfloop array="#REQUEST.pageData.LastestReviews#" index="LOCAL.review">
+							<tr>
+								<td>#LOCAL.review.getReviewerName()#</td>
+								<td>#LOCAL.review.getSubject()#</td>
+								<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#LOCAL.review.getReviewId()#">Detail</a></td>
+							</tr>
+						</cfloop>
 					</table>
 				</div>
 			</div>
 			<!-- /.box -->
-
 		</section><!-- right col -->
 	</div><!-- /.row (main row) -->
 	<div class="row">
