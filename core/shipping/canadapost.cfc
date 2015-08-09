@@ -14,7 +14,7 @@
 		
 		<cfset LOCAL.productShippingCarrierRela = EntityLoadByPK("product_shipping_carrier_rela",ARGUMENTS.productShippingCarrierRelaId) />
 		<cfif LOCAL.productShippingCarrierRela.getUseDefaultPrice() EQ true>
-			<cfset LOCAL.shippingMethods = [] />
+			<cfset LOCAL.shippingMethodsArray = [] />
 			<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = LOCAL.productShippingCarrierRela.getShippingCarrier(), isDefault = true},true) />
 			<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 			
@@ -24,7 +24,7 @@
 			<cfset LOCAL.shippingMethodStruct.price = NumberFormat(LOCAL.productShippingCarrierRela.getPrice() * LOCAL.currency.getMultiplier(),"0.00") />
 			<cfset LOCAL.shippingMethodStruct.description = LOCAL.shippingMethod.getDescription() />
 			
-			<cfset ArrayAppend(LOCAL.shippingMethods, LOCAL.shippingMethodStruct) />
+			<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.shippingMethodStruct) />
 		<cfelse>
 			<cfset var LOCAL = {} />
 			<cfset LOCAL.siteInfo = EntityLoad("site_info",{},true) /> 
@@ -89,21 +89,22 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethodsArray = [] />
 		<cfset LOCAL.response = XMLParse(ARGUMENTS.response) />
-		
+	
 		<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
-		<cfloop array="#LOCAL.response["price-quotes"].XmlChildren#" index="LOCAL.ratedShipment">
-			<cfset LOCAL.serviceCode = LOCAL.ratedShipment["service-code"].XmlText />
-			<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = EntityLoad("shipping_carrier",{name="canadapost"},true), serviceCode = LOCAL.serviceCode},true) />
-			<cfset LOCAL.ratedShipmentStruct = {} />
-			<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
-			<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
-			<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["price-details"]["due"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
-			<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
-			
-			<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
-		</cfloop>
-	
+		<cfif StructKeyExists(LOCAL.response,"price-quotes")>
+			<cfloop array="#LOCAL.response["price-quotes"].XmlChildren#" index="LOCAL.ratedShipment">
+				<cfset LOCAL.serviceCode = LOCAL.ratedShipment["service-code"].XmlText />
+				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = EntityLoad("shipping_carrier",{name="canadapost"},true), serviceCode = LOCAL.serviceCode},true) />
+				<cfset LOCAL.ratedShipmentStruct = {} />
+				<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
+				<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
+				<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["price-details"]["due"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
+				<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
+				
+				<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
+			</cfloop>
+		</cfif>
 		<cfreturn LOCAL.shippingMethodsArray>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	

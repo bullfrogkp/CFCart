@@ -30,7 +30,7 @@
 														,	productId = ARGUMENTS.productId)>										
 											
 			<cfset LOCAL.shippingRateResponse = _submitXml(xmlData = LOCAL.xmlData, submitUrl = APPLICATION.ups.rate_url)>		
-			<cfset LOCAL.shippingMethods = _parseResponse(response = LOCAL.shippingRateResponse, currencyId = ARGUMENTS.currencyId) />
+			<cfset LOCAL.shippingMethods = _parseResponse(response = LOCAL.shippingRateResponse.fileContent, currencyId = ARGUMENTS.currencyId) />
 		</cfif>
 		
 		<cfreturn LOCAL.shippingMethods />
@@ -54,25 +54,23 @@
 		<cfset var LOCAL = {} />		
 		<cfset LOCAL.response = XmlParse(ARGUMENTS.response)>
 		<cfset LOCAL.shippingMethodsArray = [] />
-		<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
-		
-		<cfloop array="#LOCAL.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
-			<cfif LOCAL.ratedShipment.XmlName EQ "Response" AND LOCAL.ratedShipment["ResponseStatusDescription"].XmlText NEQ "Success">
-				<cfthrow message="UPS rate request failed: #LOCAL.ratedShipment["ResponseStatusDescription"].XmlText#" />
-			</cfif>
-			
-			<cfif LOCAL.ratedShipment.XmlName EQ "RatedShipment">
-				<cfset LOCAL.serviceCode = LOCAL.ratedShipment["Service"]["Code"].XmlText />
-				<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = EntityLoad("shipping_carrier",{name="ups"},true), serviceCode = LOCAL.serviceCode},true) />
-				<cfset LOCAL.ratedShipmentStruct = {} />
-				<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
-				<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
-				<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
-				<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
-				
-				<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
-			</cfif>
-		</cfloop>
+
+		<cfif LOCAL.response["RatingServiceSelectionResponse"]["Response"]["ResponseStatusCode"].XmlText EQ 1>
+			<cfset LOCAL.currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
+			<cfloop array="#LOCAL.response["RatingServiceSelectionResponse"].XmlChildren#" index="LOCAL.ratedShipment">
+				<cfif LOCAL.ratedShipment.XmlName EQ "RatedShipment">
+					<cfset LOCAL.serviceCode = LOCAL.ratedShipment["Service"]["Code"].XmlText />
+					<cfset LOCAL.shippingMethod = EntityLoad("shipping_method",{shippingCarrier = EntityLoad("shipping_carrier",{name="ups"},true), serviceCode = LOCAL.serviceCode},true) />
+					<cfset LOCAL.ratedShipmentStruct = {} />
+					<cfset LOCAL.ratedShipmentStruct.shippingMethodId = LOCAL.shippingMethod.getShippingMethodId() />
+					<cfset LOCAL.ratedShipmentStruct.name = LOCAL.shippingMethod.getDisplayName() />
+					<cfset LOCAL.ratedShipmentStruct.price = NumberFormat(Val(LOCAL.ratedShipment["TotalCharges"]["MonetaryValue"].XmlText) * LOCAL.currency.getMultiplier(),"0.00") />
+					<cfset LOCAL.ratedShipmentStruct.description = LOCAL.shippingMethod.getDescription() />
+					
+					<cfset ArrayAppend(LOCAL.shippingMethodsArray, LOCAL.ratedShipmentStruct) />
+				</cfif>
+			</cfloop>
+		</cfif>
 		
 		<cfreturn LOCAL.shippingMethodsArray>
 	</cffunction>	
