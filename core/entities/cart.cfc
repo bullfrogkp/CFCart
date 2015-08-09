@@ -209,6 +209,7 @@
 			<cfset LOCAL.customer.setEmail(getCustomerStruct().email) />
 			<cfset LOCAL.customer.setPhone(getCustomerStruct().phone) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
+			<cfset LOCAL.customer.setIsNew(true) />
 			<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 			<cfset LOCAL.customer.setCustomerGroup(EntityLoad("customer_group",{isDefault=true},true)) />
@@ -368,6 +369,7 @@
 		<cfset LOCAL.order.setCreatedUser(SESSION.user.userName) />
 		<cfset LOCAL.order.setIsComplete(false) />
 		<cfset LOCAL.order.setIsDeleted(false) />
+		<cfset LOCAL.order.setIsNew(true) />
 					
 		<cfset EntitySave(LOCAL.order) />
 		

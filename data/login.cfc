@@ -76,6 +76,7 @@
 				<cfset LOCAL.customer.setSubscribed(true) />
 			</cfif>
 			<cfset LOCAL.customer.setIsEnabled(true) />
+			<cfset LOCAL.customer.setIsNew(true) />
 			<cfset LOCAL.customer.setIsDeleted(false) />
 			<cfset LOCAL.customer.setLastLoginDatetime(Now()) />
 			<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />

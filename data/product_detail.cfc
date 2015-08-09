@@ -11,6 +11,7 @@
 			<cfset LOCAL.review.setMessage(Trim(FORM.review_message)) />			
 			<cfset LOCAL.review.setCreatedDatetime(Now()) />			
 			<cfset LOCAL.review.setCreatedUser(SESSION.user.userName) />			
+			<cfset LOCAL.review.setIsNew(true) />			
 			<cfset LOCAL.review.setIsDeleted(false) />			
 			<cfset LOCAL.review.setProduct(EntityLoadByPK("product",FORM.current_product_id)) />			
 			<cfset LOCAL.review.setReviewStatusType(EntityLoad("review_status_type",{name = "pending"},true)) />

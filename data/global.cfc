@@ -134,6 +134,7 @@
 						<cfset LOCAL.customer.setCreatedUser(SESSION.user.userName) />
 						<cfset LOCAL.customer.setCreatedDatetime(Now()) />
 						<cfset LOCAL.customer.setIsDeleted(false) />
+						<cfset LOCAL.customer.setIsNew(true) />
 						<cfset LOCAL.customer.setIsEnabled(false) />
 						<cfset LOCAL.customer.setEmail(Trim(FORM.subscribe_email)) />
 						<cfset LOCAL.customer.setSubscribed(true) />
