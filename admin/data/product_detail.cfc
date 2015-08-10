@@ -113,26 +113,42 @@
 				<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
 				<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
 				<cfif LOCAL.group.getIsDefault() EQ false>
-					<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"])) />
+					<cfif IsNumeric(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"]))>
+						<cfset LOCAL.groupPrice.setPrice(Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"])) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
+					</cfif>
 					<cfif IsNumeric(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"]))>
 						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"])) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setSpecialPrice(javacast("null","")) />
 					</cfif>
 					<cfif IsDate(Trim(FORM["special_price_from_date_#LOCAL.group.getCustomerGroupId()#"]))>
 						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM["special_price_from_date_#LOCAL.group.getCustomerGroupId()#"])) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(javacast("null","")) />
 					</cfif>
 					<cfif IsDate(Trim(FORM["special_price_to_date_#LOCAL.group.getCustomerGroupId()#"]))>
 						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM["special_price_to_date_#LOCAL.group.getCustomerGroupId()#"])) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setSpecialPriceToDate(javacast("null","")) />
 					</cfif>
 				<cfelse>
 					<cfset LOCAL.groupPrice.setPrice(Trim(FORM.price)) />
 					<cfif IsNumeric(Trim(FORM.special_price))>
 						<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.special_price)) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setSpecialPrice(javacast("null","")) />
 					</cfif>
 					<cfif IsDate(Trim(FORM.special_price_from_date))>
 						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(Trim(FORM.special_price_from_date)) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(javacast("null","")) />
 					</cfif>
 					<cfif IsDate(Trim(FORM.special_price_to_date))>
 						<cfset LOCAL.groupPrice.setSpecialPriceToDate(Trim(FORM.special_price_to_date)) />
+					<cfelse>
+						<cfset LOCAL.groupPrice.setSpecialPriceToDate(javacast("null","")) />
 					</cfif>
 					
 					<!--- for product sorting --->
