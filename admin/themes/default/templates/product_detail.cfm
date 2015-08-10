@@ -398,41 +398,37 @@
 						</div>
 						<div class="form-group">
 							<label>Category</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<select class="form-control" multiple name="category_id">
-									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-										<option value="#cat.getCategoryId()#"
-										<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
+							<select class="form-control" multiple name="category_id">
+								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+									<option value="#cat.getCategoryId()#"
+									<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
+										OR
+										NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, cat.getCategoryId())>
+									selected
+									</cfif>
+									>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+									<cfloop array="#cat.getSubCategories()#" index="subCat">
+										<option value="#subCat.getCategoryId()#"
+										<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)
 											OR
-											NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, cat.getCategoryId())>
+											NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, subCat.getCategoryId())>
 										selected
 										</cfif>
-										>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
-										<cfloop array="#cat.getSubCategories()#" index="subCat">
-											<option value="#subCat.getCategoryId()#"
-											<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)
+										>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+											<option value="#thirdCat.getCategoryId()#"
+											<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)
 												OR
-												NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, subCat.getCategoryId())>
+												NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, thirdCat.getCategoryId())>
 											selected
 											</cfif>
-											>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
-											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-												<option value="#thirdCat.getCategoryId()#"
-												<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)
-													OR
-													NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, thirdCat.getCategoryId())>
-												selected
-												</cfif>
-												>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
-											</cfloop>
-											</li>
+											>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
 										</cfloop>
 										</li>
 									</cfloop>
-								</select>
-							</div>
-							
+									</li>
+								</cfloop>
+							</select>
 						</div>
 						<div class="form-group">
 							<cfloop array="#REQUEST.pageData.specialCategories#" index="spCategory">
@@ -550,6 +546,13 @@
 											<cfset specialPrice = "" />
 											<cfset specialPriceFromDate = "" />
 											<cfset specialPriceToDate = "" />
+										</cfif>
+										
+										<cfif StructKeyExists(REQUEST.pageData.formData,"price_#group.getCustomerGroupId()#")>
+											<cfset price = REQUEST.pageData.formData["price_#group.getCustomerGroupId()#"] />
+											<cfset specialPrice = REQUEST.pageData.formData["special_price_#group.getCustomerGroupId()#"] />
+											<cfset specialPriceFromDate = REQUEST.pageData.formData["special_price_from_date_#group.getCustomerGroupId()#"] />
+											<cfset specialPriceToDate = REQUEST.pageData.formData["special_price_from_date_#group.getCustomerGroupId()#"] />
 										</cfif>
 										
 										<div class="col-xs-3">
