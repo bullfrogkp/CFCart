@@ -28,6 +28,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
+					<p>The attribute set cannot not be updated, please add a new one if you need to add more attributes in the group.</p>
 					<div class="form-group">
 						<label>Name</label>
 						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
@@ -77,10 +78,14 @@
 							</tr>
 						</table>
 					</div>
-					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
-					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Attribute Set</button>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
+					<div class="form-group">
+						<cfif NOT IsNumeric(REQUEST.pageData.formData.id)>
+							<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
+						</cfif>
+						<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Attribute Set</button>
+					</div>
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->

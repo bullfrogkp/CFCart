@@ -276,9 +276,17 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeSubProducts" access="public" output="false" returnType="void">
+		<cfset var LOCAL = {} />
 		<cfif NOT IsNull(getSubProducts())>
-			<cfset ArrayClear(getSubProducts()) />
+			<cfloop array="#getSubProducts()#" index="LOCAL.product">
+				<cfset LOCAL.product.setIsDeleted(true) />
+				<cfset EntitySave(LOCAL.product) />
+			</cfloop>
 		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getSubProducts" access="public" output="false" returnType="array">
+		<cfreturn EntityLoad("product",{parentProduct = this, isDeleted = false}) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeProductAttributeRelas" access="public" output="false" returnType="void">
