@@ -32,6 +32,18 @@
 					<div class="form-group">
 						<label>Name</label>
 						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+					</div
+					<div class="form-group">
+						<label>Attribute</label>
+						<select class="form-control" name="attribute_id">
+							<cfloop array="#REQUEST.pageData.attributes#" index="attr">
+								<option value="#attr.getAttributeId()#"
+								<cfif REQUEST.pageData.formData.attribute_id EQ attr.getAttributeId()>
+								selected
+								</cfif>
+								>#attr.getDisplayName()#</option>
+							</cfloop>
+						</select>
 					</div>
 					<button name="save_item" type="submit" class="btn btn-primary">Submit</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Filter</button>

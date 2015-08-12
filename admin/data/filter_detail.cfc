@@ -42,6 +42,7 @@
 			
 			<cfset LOCAL.filter.setName(LCase(Trim(FORM.display_name))) />
 			<cfset LOCAL.filter.setDisplayName(Trim(FORM.display_name)) />
+			<cfset LOCAL.filter.setAttribute(EntityLoadByPK("attribute",FORM.attribute_id)) />
 			
 			<cfset EntitySave(LOCAL.filter) />
 			
@@ -63,6 +64,7 @@
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageData.attributes = EntityLoad("attribute", {isDeleted = false}) />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.pageData.filter = EntityLoadByPK("filter", URL.id)> 
@@ -73,6 +75,7 @@
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.filter.getDisplayName())?"":LOCAL.pageData.filter.getDisplayName() />
+				<cfset LOCAL.pageData.formData.attribute_id = isNull(LOCAL.pageData.filter.getAttribute())?"":LOCAL.pageData.filter.getAttribute().getAttributeId() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
@@ -83,6 +86,7 @@
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
 				<cfset LOCAL.pageData.formData.display_name = "" />
+				<cfset LOCAL.pageData.formData.attribute_id = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>

@@ -196,7 +196,8 @@
 						<cfif StructKeyExists(FORM,"new_attribute_option_#LOCAL.i#_aset#FORM.attribute_set_id#_attribute_id")>
 							<cfset LOCAL.newAttributeOptionAttributeId = FORM["new_attribute_option_#LOCAL.i#_aset#FORM.attribute_set_id#_attribute_id"] />
 							<cfset LOCAL.newAttributeOptionName = Trim(FORM["new_attribute_option_#LOCAL.i#_name"]) />
-							<cfif LOCAL.newAttributeOptionName EQ "color">
+							<cfset LOCAL.newAttributeOptionAttributeName = Trim(FORM["new_attribute_option_name_hidden"]) />
+							<cfif LOCAL.newAttributeOptionAttributeName EQ "color">
 								<cfset LOCAL.newAttributeOptionThumbnailLabel = Trim(FORM["new_attribute_option_#LOCAL.i#_thumbnail_label"]) />
 							<cfelse>
 								<cfset LOCAL.newAttributeOptionThumbnailLabel = LOCAL.newAttributeOptionName />
@@ -211,7 +212,7 @@
 									
 							<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
 							<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
-							<cfset LOCAL.newAttributeValue.setValue(LOCAL.newAttributeOptionName) />
+							<cfset LOCAL.newAttributeValue.setValue(LOCAL.newAttributeOptionThumbnailLabel) />
 							<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.newAttributeOptionName) />
 							<cfset LOCAL.newAttributeValue.setName(LCase(LOCAL.newAttributeOptionName)) />
 							<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.newAttributeOptionThumbnailLabel) />
