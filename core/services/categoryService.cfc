@@ -65,7 +65,7 @@
 		<cfargument name="isEnabled" type="boolean" required="false" default="true" />
 		<cfargument name="isSpecial" type="boolean" required="false" />
 		<cfargument name="showCategoryOnNavigation" type="boolean" required="false" default="true" />
-		<cfargument name="orderBy" type="string" required="false" default="displayName ASC" />
+		<cfargument name="orderBy" type="string" required="false" default="rank ASC" />
 		<cfargument name="parentCategoryId" type="numeric" required="false" />
 		<cfargument name="currentCategoryId" type="numeric" required="false" />
 		
