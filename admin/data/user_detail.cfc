@@ -13,7 +13,7 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid username.") />
 		<cfelse>
 			<cfset LOCAL.existingUser = EntityLoad("admin_user",{username=Trim(FORM.username)},true) />
-			<cfif NOT IsNull(LOCAL.existingUser) AND LOCAL.existingUser.getUserId() NEQ FORM.id>
+			<cfif NOT IsNull(LOCAL.existingUser) AND LOCAL.existingUser.getAdminUserId() NEQ FORM.id>
 				<cfset ArrayAppend(LOCAL.messageArray,"Username already exists.") />
 			</cfif>
 		</cfif>
@@ -86,7 +86,7 @@
 			<cfset EntitySave(LOCAL.user) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"User has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.user.getUserId()#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.user.getAdminUserId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
 			
