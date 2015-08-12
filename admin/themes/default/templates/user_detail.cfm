@@ -81,27 +81,27 @@
 						<div class="form-group">
 							<label>Avatar</label>
 							<div class="row">
-								<div class="col-md-2">
-									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar1.png" class="img-responsive">
+								<div class="col-md-2" style="text-align:center;">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar1.png" class="img-responsive"><br/>
 									<input class="form-control" type="radio" name="avatar_name" value="avatar1" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar1">checked</cfif>/>
 								</div>
-								<div class="col-md-2">
-									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar2.png" class="img-responsive">
+								<div class="col-md-2" style="text-align:center;">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar2.png" class="img-responsive"><br/>
 									<input class="form-control" type="radio" name="avatar_name" value="avatar2" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar2">checked</cfif>/>
 								</div>
-								<div class="col-md-2">
-									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar3.png" class="img-responsive">
+								<div class="col-md-2" style="text-align:center;">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar3.png" class="img-responsive"><br/>
 									<input class="form-control" type="radio" name="avatar_name" value="avatar3" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar3">checked</cfif>/>
 								</div>
-								<div class="col-md-2">
-									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar4.png" class="img-responsive">
+								<div class="col-md-2" style="text-align:center;">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar4.png" class="img-responsive"><br/>
 									<input class="form-control" type="radio" name="avatar_name" value="avatar4" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar4">checked</cfif>/>
 								</div>
-								<div class="col-md-2">
-									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar5.png" class="img-responsive">
+								<div class="col-md-2" style="text-align:center;">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar5.png" class="img-responsive"><br/>
 									<input class="form-control" type="radio" name="avatar_name" value="avatar5" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar5">checked</cfif>/>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-2" style="text-align:center;">
 								</div>
 							</div>
 						</div>

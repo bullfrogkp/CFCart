@@ -114,6 +114,8 @@
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.user.getDisplayName())?"":LOCAL.pageData.user.getDisplayName() />
 				<cfset LOCAL.pageData.formData.email = isNull(LOCAL.pageData.user.getEmail())?"":LOCAL.pageData.user.getEmail() />
 				<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.user.getPhone())?"":LOCAL.pageData.user.getPhone() />
+				<cfset LOCAL.pageData.formData.is_administrator = isNull(LOCAL.pageData.user.getIsAdministrator())?"":LOCAL.pageData.user.getIsAdministrator() />
+				<cfset LOCAL.pageData.formData.avatar_name = isNull(LOCAL.pageData.user.getAvatarName())?"":LOCAL.pageData.user.getAvatarName() />
 				<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.user.getLastLoginDatetime())?"":LOCAL.pageData.user.getLastLoginDatetime() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
@@ -129,6 +131,8 @@
 				<cfset LOCAL.pageData.formData.email = "" />
 				<cfset LOCAL.pageData.formData.phone = "" />
 				<cfset LOCAL.pageData.formData.last_login_datetime = "" />
+				<cfset LOCAL.pageData.formData.is_administrator = "" />
+				<cfset LOCAL.pageData.formData.avatar_name = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
