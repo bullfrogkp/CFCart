@@ -72,6 +72,8 @@
 			
 			<cfset LOCAL.user.setUsername(Trim(FORM.username)) />
 			<cfset LOCAL.user.setDisplayName(Trim(FORM.display_name)) />
+			<cfset LOCAL.user.setIsAdministrator(FORM.is_administrator) />
+			<cfset LOCAL.user.setIsEnabled(FORM.is_enabled) />
 			<cfif StructKeyExists(FORM,"avatar_name")>
 				<cfset LOCAL.user.setAvatarName(FORM.avatar_name) />
 			</cfif>
@@ -118,6 +120,7 @@
 				<cfset LOCAL.pageData.formData.email = isNull(LOCAL.pageData.user.getEmail())?"":LOCAL.pageData.user.getEmail() />
 				<cfset LOCAL.pageData.formData.phone = isNull(LOCAL.pageData.user.getPhone())?"":LOCAL.pageData.user.getPhone() />
 				<cfset LOCAL.pageData.formData.is_administrator = isNull(LOCAL.pageData.user.getIsAdministrator())?"":LOCAL.pageData.user.getIsAdministrator() />
+				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.user.getIsEnabled())?"":LOCAL.pageData.user.getIsEnabled() />
 				<cfset LOCAL.pageData.formData.avatar_name = isNull(LOCAL.pageData.user.getAvatarName())?"":LOCAL.pageData.user.getAvatarName() />
 				<cfset LOCAL.pageData.formData.last_login_datetime = isNull(LOCAL.pageData.user.getLastLoginDatetime())?"":LOCAL.pageData.user.getLastLoginDatetime() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
@@ -135,6 +138,7 @@
 				<cfset LOCAL.pageData.formData.phone = "" />
 				<cfset LOCAL.pageData.formData.last_login_datetime = "" />
 				<cfset LOCAL.pageData.formData.is_administrator = "" />
+				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.avatar_name = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>

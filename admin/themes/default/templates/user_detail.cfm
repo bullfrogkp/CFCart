@@ -79,6 +79,13 @@
 							</select>
 						</div>
 						<div class="form-group">
+							<label>Status</label>
+							 <select class="form-control" name="is_enabled">
+								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label>Avatar</label>
 							<div class="row">
 								<div class="col-md-2" style="text-align:center;">

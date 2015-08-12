@@ -36,7 +36,10 @@
 		
 		<cfset LOCAL.user = EntityLoad("admin_user",{username=Trim(FORM.username)},true) />
 		<cfset LOCAL.user.setLastLoginDatetime(Now()) />
+		<cfset SESSION.adminUserId = LOCAL.user.getAdminUserId() />
 		<cfset SESSION.adminUser = LOCAL.user.getUsername() />
+		<cfset SESSION.adminUserAvatar = LOCAL.user.getAvatarName() />
+		<cfset SESSION.isSuperAdmin = LOCAL.user.getIsAdministrator() />
 		<cfset LOCAL.redirectUrl = "index.cfm" />
 		
 		<cfreturn LOCAL />	
