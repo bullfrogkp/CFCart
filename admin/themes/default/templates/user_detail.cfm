@@ -71,6 +71,40 @@
 							<label>Phone</label>
 							<input name="phone" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.phone#"/>
 						</div>
+						<div class="form-group">
+							<label>Administrator</label>
+							 <select class="form-control" name="is_enabled">
+								<option value="1" <cfif REQUEST.pageData.formData.is_administrator EQ TRUE>selected</cfif>>No</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_administrator EQ FALSE>selected</cfif>>Yes</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Avatar</label>
+							<div class="row">
+								<div class="col-md-2">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar1.png" class="img-responsive">
+									<input class="form-control" type="radio" name="avatar_name" value="avatar1" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar1">checked</cfif>/>
+								</div>
+								<div class="col-md-2">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar2.png" class="img-responsive">
+									<input class="form-control" type="radio" name="avatar_name" value="avatar2" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar2">checked</cfif>/>
+								</div>
+								<div class="col-md-2">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar3.png" class="img-responsive">
+									<input class="form-control" type="radio" name="avatar_name" value="avatar3" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar3">checked</cfif>/>
+								</div>
+								<div class="col-md-2">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar4.png" class="img-responsive">
+									<input class="form-control" type="radio" name="avatar_name" value="avatar4" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar4">checked</cfif>/>
+								</div>
+								<div class="col-md-2">
+									<img src="#SESSION.absoluteUrlThemeAdmin#img/avatar/avatar5.png" class="img-responsive">
+									<input class="form-control" type="radio" name="avatar_name" value="avatar5" <cfif REQUEST.pageData.formData.avatar_name EQ "avatar5">checked</cfif>/>
+								</div>
+								<div class="col-md-2">
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<cfif IsNumeric(REQUEST.pageData.formData.id)>
