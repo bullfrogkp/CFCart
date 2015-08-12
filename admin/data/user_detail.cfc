@@ -72,6 +72,9 @@
 			
 			<cfset LOCAL.user.setUsername(Trim(FORM.username)) />
 			<cfset LOCAL.user.setDisplayName(Trim(FORM.display_name)) />
+			<cfif StructKeyExists(FORM,"avatar_name")>
+				<cfset LOCAL.user.setAvatarName(FORM.avatar_name) />
+			</cfif>
 			<cfif StructKeyExists(FORM,"new_password")>
 				<cfset LOCAL.user.setPassword(Hash(Trim(FORM.new_password))) />
 			<cfelse>

@@ -73,7 +73,7 @@
 						</div>
 						<div class="form-group">
 							<label>Administrator</label>
-							 <select class="form-control" name="is_enabled">
+							 <select class="form-control" name="is_administrator">
 								<option value="1" <cfif REQUEST.pageData.formData.is_administrator EQ TRUE>selected</cfif>>No</option>
 								<option value="0" <cfif REQUEST.pageData.formData.is_administrator EQ FALSE>selected</cfif>>Yes</option>
 							</select>
