@@ -28,7 +28,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
-					<cfif IsNumeric(REQUEST.pageData.formData.customerId)>
+					<cfif IsNumeric(REQUEST.pageData.formData.id)>
 						<div class="form-group">
 							<label>Customer <a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#REQUEST.pageData.conversation.getCustomer().getCustomerId()#" class="form-link" style="margin-left:18px;">#REQUEST.pageData.conversation.getCustomer().getFullName()#</a></label>
 						</div>
