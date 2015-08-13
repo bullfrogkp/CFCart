@@ -51,6 +51,7 @@
 					<li class="tab-title #REQUEST.pageData.tabs['tab_4']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Addresses</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_5']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Password</a></li>
+					<li class="tab-title #REQUEST.pageData.tabs['tab_7']# #REQUEST.pageData.deleteButtonClass#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Conversations</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']# #REQUEST.pageData.deleteButtonClass#" id="tab_1">
@@ -393,6 +394,42 @@
 							<input type="password" name="confirm_new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 					</div>
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']# #REQUEST.pageData.deleteButtonClass#" id="tab_7">
+						<table class="table table-bordered table-hover">
+							
+							<tr class="default">
+								<th>Subject</th>
+								<th>Description</th>
+								<th>Create Datetime</th>
+								<th>Create User</th>
+								<th>Action</th>
+							</tr>
+					
+							<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getConversations()) AND ArrayLen(REQUEST.pageData.customer.getConversations()) NEQ 0>
+								<cfloop array="#REQUEST.pageData.customer.getConversations()#" index="conv">
+									<tr>
+										<td>#conv.getSubject()#</td>
+										<td>#conv.getDescription()#</td>
+										<td>#conv.getCreatedDatetime()#</td>
+										<td>#conv.getCreatedUser()#</td>
+										<td><a href="#APPLICATION.absoluteUrlWeb#admin/conversation_detail.cfm?id=#conv.getConversationId()#">View Detail</a></td>
+									</tr>
+								</cfloop>
+							<cfelse>
+								<tr>
+									<td colspan="6">No data available</td>
+								</tr>
+							</cfif>
+						
+							<tr class="default">
+								<th>Subject</th>
+								<th>Description</th>
+								<th>Create Datetime</th>
+								<th>Create User</th>
+								<th>Action</th>
+							</tr>
+						</table>
+					</div><!-- /.tab-pane -->
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
 			<div class="form-group">
