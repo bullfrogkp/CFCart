@@ -35,6 +35,9 @@
 						<label>Post By <a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedUser()#</a></label>
 					</div>
 					<div class="form-group">
+						<label><a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedDatetime()#</a></label>
+					</div>
+					<div class="form-group">
 						<label>Subject</label>
 						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.conversation.getSubject()#"/>
 					</div>

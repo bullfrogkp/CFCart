@@ -1,11 +1,11 @@
 ﻿<cfoutput>
 <section class="content-header">
 	<h1>
-		Reviews
+		Conversations
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Reviews</li>
+		<li class="active">Conversations</li>
 	</ol>
 </section>
 <section class="content">
@@ -38,50 +38,36 @@
 			<div class="box box-primary">
 				<div class="box-body table-responsive">
 					<table class="table table-bordered table-hover">
-					
+							
 						<tr class="default">
 							<th>Subject</th>
-							<th>Product</th>
-							<th>Message</th>
+							<th>Description</th>
 							<th>Create Datetime</th>
-							<th>Status</th>
+							<th>Create User</th>
 							<th>Action</th>
 						</tr>
-					
-						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
-							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="review">
+				
+						<cfif NOT ArrayIsEmpty(REQUEST.pageData.conversations)>
+							<cfloop array="#REQUEST.pageData.conversations#" index="conv">
 								<tr>
-									<td>
-										#review.getSubject()#
-										<cfif review.getIsNew() EQ true>
-											<span class="label label-danger pull-right" style="margin-top:3px;">New</span>
-										</cfif>
-									</td>
-									<td>#review.getProduct().getDisplayName()#</td>
-									<td>#review.getMessage()#</td>
-									<td>#DateFormat(review.getCreatedDatetime(),"mmm dd,yyyy")#</td>
-									<td>
-										<cfswitch expression="#review.getReviewStatusType().getDisplayName()#">
-											<cfcase value="Approved"><span class="label label-success">Approved</span></cfcase>
-											<cfcase value="Denied"><span class="label label-danger">Denied</span></cfcase>
-											<cfcase value="Pending"><span class="label label-warning">Pending</span></cfcase>
-										</cfswitch>
-									</td>
-									<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+									<td>#conv.getSubject()#</td>
+									<td>#conv.getDescription()#</td>
+									<td>#conv.getCreatedDatetime()#</td>
+									<td>#conv.getCreatedUser()#</td>
+									<td><a href="#APPLICATION.absoluteUrlWeb#admin/conversation_detail.cfm?id=#conv.getConversationId()#">View Detail</a></td>
 								</tr>
 							</cfloop>
 						<cfelse>
 							<tr>
-								<td colspan="7">No data available</td>
+								<td colspan="5">No data available</td>
 							</tr>
 						</cfif>
 					
 						<tr class="default">
 							<th>Subject</th>
-							<th>Product</th>
-							<th>Message</th>
+							<th>Description</th>
 							<th>Create Datetime</th>
-							<th>Status</th>
+							<th>Create User</th>
 							<th>Action</th>
 						</tr>
 					</table>

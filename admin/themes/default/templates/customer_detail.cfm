@@ -417,7 +417,7 @@
 								</cfloop>
 							<cfelse>
 								<tr>
-									<td colspan="6">No data available</td>
+									<td colspan="5">No data available</td>
 								</tr>
 							</cfif>
 						
