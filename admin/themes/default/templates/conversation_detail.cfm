@@ -11,7 +11,7 @@
 
 <!-- Main content -->
 <form method="post">
-<input type="hidden" name="id" value="#REQUEST.pageData.conversation.getConversationId()#" />
+<input type="hidden" name="id" value="#REQUEST.pageData.formData.id#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -28,9 +28,13 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-body">
-					<div class="form-group">
-						<label>Customer <a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#REQUEST.pageData.conversation.getCustomer().getCustomerId()#" class="form-link" style="margin-left:18px;">#REQUEST.pageData.conversation.getCustomer().getFullName()#</a></label>
-					</div>
+					<cfif IsNumeric(REQUEST.pageData.formData.customerId)>
+						<div class="form-group">
+							<label>Customer <a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#REQUEST.pageData.conversation.getCustomer().getCustomerId()#" class="form-link" style="margin-left:18px;">#REQUEST.pageData.conversation.getCustomer().getFullName()#</a></label>
+						</div>
+					<cfelse>
+					
+					</cfif>
 					<div class="form-group">
 						<label>Post By <a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedUser()#</a></label>
 					</div>
@@ -51,6 +55,11 @@
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
+			<cfif NOT IsNumeric(REQUEST.pageData.formData.id)>
+				<div class="form-group">
+					<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Conversation</button>
+				</div>
+			</cfif>
 		</div><!--/.col (left) -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
