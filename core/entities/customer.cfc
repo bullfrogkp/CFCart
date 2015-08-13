@@ -16,6 +16,7 @@
 	<cfproperty name="website" column="website" ormtype="string"> 
 	<cfproperty name="subscribed" column="subscribed" ormtype="boolean">
 	<cfproperty name="isNew" column="is_new" ormtype="boolean">
+	<cfproperty name="isAnonymous" column="is_anonymous" ormtype="boolean">
 	
 	<cfproperty name="customerGroup" fieldtype="many-to-one" cfc="customer_group" fkcolumn="customer_group_id">
 	

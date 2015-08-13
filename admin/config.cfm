@@ -370,3 +370,5 @@ VALUES
 ('canadapost - tracked packet','Canada Post - Tracked Packet','INT.TP',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),0),
 ('canadapost - flat rate','Canada Post - Flat Rate','',1,(SELECT shipping_carrier_id FROM shipping_carrier WHERE name = 'canadapost'),1)
 ;
+
+add anonymous customer for conversation tracking
