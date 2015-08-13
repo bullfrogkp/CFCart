@@ -10,9 +10,6 @@
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.convService.setId(URL.id) />
 		</cfif>
-		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
-			<cfset LOCAL.convService.setIsEnabled(URL.is_enabled) />
-		</cfif>
 		<cfif StructKeyExists(URL,"search_keyword") AND Trim(URL.search_keyword) NEQ "">
 			<cfset LOCAL.convService.setSearchKeywords(Trim(URL.search_keyword)) />
 		</cfif>
