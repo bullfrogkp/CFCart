@@ -32,26 +32,31 @@
 						<div class="form-group">
 							<label>Customer <a href="#APPLICATION.absoluteUrlWeb#admin/customer_detail.cfm?id=#REQUEST.pageData.conversation.getCustomer().getCustomerId()#" class="form-link" style="margin-left:18px;">#REQUEST.pageData.conversation.getCustomer().getFullName()#</a></label>
 						</div>
+						<div class="form-group">
+							<label>Post By <a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedUser()#</a></label>
+						</div>
+						<div class="form-group">
+							<label><a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedDatetime()#</a></label>
+						</div>
 					<cfelse>
-					
+						<div class="form-group">
+							<label>Customer</label>
+							<input type="text" name="search_customer_keywords" class="form-control" placeholder="Enter ID or keywords..." />
+							<button name="search_customer">Search Customer</button>
+						</div>
 					</cfif>
-					<div class="form-group">
-						<label>Post By <a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedUser()#</a></label>
-					</div>
-					<div class="form-group">
-						<label><a href="" class="form-link">#REQUEST.pageData.conversation.getCreatedDatetime()#</a></label>
-					</div>
+					
 					<div class="form-group">
 						<label>Subject</label>
-						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.conversation.getSubject()#"/>
+						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
 					</div>
 					<div class="form-group">
 						<label>Description</label>
-						<textarea name="message" class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.conversation.getDescription()#</textarea>
+						<textarea name="message" class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
 					</div>
 					<div class="form-group">
 						<label>Content</label>
-						<textarea name="message" class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.conversation.getContent()#</textarea>
+						<textarea name="message" class="form-control" rows="5" placeholder="Enter ...">#REQUEST.pageData.formData.content#</textarea>
 					</div>
 				</div><!-- /.box-body -->
 			</div><!-- /.box -->
