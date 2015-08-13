@@ -1,0 +1,29 @@
+﻿<cfcomponent extends="master">	
+	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
+		
+		<cfset LOCAL.pageData.title = "Conversations | #APPLICATION.applicationName#" />
+		
+		<cfset LOCAL.convService = new "#APPLICATION.componentPathRoot#core.services.conversationService"() />
+		<cfset LOCAL.convService.setRecordsPerPage(APPLICATION.recordsPerPage) />
+		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
+			<cfset LOCAL.convService.setId(URL.id) />
+		</cfif>
+		<cfif StructKeyExists(URL,"is_enabled") AND IsNumeric(URL.is_enabled)>
+			<cfset LOCAL.convService.setIsEnabled(URL.is_enabled) />
+		</cfif>
+		<cfif StructKeyExists(URL,"search_keyword") AND Trim(URL.search_keyword) NEQ "">
+			<cfset LOCAL.convService.setSearchKeywords(Trim(URL.search_keyword)) />
+		</cfif>
+		
+		<cfif StructKeyExists(URL,"page") AND IsNumeric(Trim(URL.page))>
+			<cfset LOCAL.convService.setPageNumber(Trim(URL.page)) />
+		</cfif>
+		
+		<cfset LOCAL.recordStruct = LOCAL.convService.getRecords() />
+		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(LOCAL.recordStruct) />
+		
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+</cfcomponent>
