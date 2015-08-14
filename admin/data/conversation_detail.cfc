@@ -13,7 +13,7 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter the content.") />
 		</cfif>
 		
-		<cfif StructKeyExists(FORM,"customer_id") AND NOT IsNumeric(Trim(FORM.customer_id))>
+		<cfif StructKeyExists(FORM,"customer_id") AND Trim(FORM.customer_id) NEQ "" AND NOT IsNumeric(Trim(FORM.customer_id))>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a numeric value for the customer id.") />
 		<cfelseif StructKeyExists(FORM,"customer_id") AND IsNumeric(Trim(FORM.customer_id))>
 			<cfset LOCAL.customer = EntityLoadByPK("customer",Trim(FORM.customer_id)) />

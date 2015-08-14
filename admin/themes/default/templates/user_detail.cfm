@@ -62,10 +62,7 @@
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input name="email" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
-							</div>
+							<input name="email" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
 						</div>
 						<div class="form-group">
 							<label>Phone</label>

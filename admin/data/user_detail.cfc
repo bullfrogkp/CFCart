@@ -7,7 +7,7 @@
 		
 		<cfif Trim(FORM.display_name) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid name.") />
-		</cfif>
+		</cfif>		
 		
 		<cfif Trim(FORM.username) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid username.") />
@@ -76,6 +76,8 @@
 			<cfset LOCAL.user.setIsEnabled(FORM.is_enabled) />
 			<cfif StructKeyExists(FORM,"avatar_name")>
 				<cfset LOCAL.user.setAvatarName(FORM.avatar_name) />
+			<cfelse>
+				<cfset LOCAL.user.setAvatarName("avatar1") />
 			</cfif>
 			<cfif StructKeyExists(FORM,"new_password")>
 				<cfset LOCAL.user.setPassword(Hash(Trim(FORM.new_password))) />
@@ -114,6 +116,9 @@
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+				<cfif NOT StructKeyExists(LOCAL.pageData,"avatar_name")>
+					<cfset LOCAL.pageData.formData.avatar_name = "" />
+				</cfif>
 			<cfelse>
 				<cfset LOCAL.pageData.formData.username = isNull(LOCAL.pageData.user.getUsername())?"":LOCAL.pageData.user.getUsername() />
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.user.getDisplayName())?"":LOCAL.pageData.user.getDisplayName() />
@@ -131,6 +136,9 @@
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
+				<cfif NOT StructKeyExists(LOCAL.pageData,"avatar_name")>
+					<cfset LOCAL.pageData.formData.avatar_name = "" />
+				</cfif>
 			<cfelse>
 				<cfset LOCAL.pageData.formData.username = "" />
 				<cfset LOCAL.pageData.formData.display_name = "" />

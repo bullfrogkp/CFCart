@@ -39,9 +39,9 @@
 							<th>Create User</th>
 							<th>Action</th>
 						</tr>
-				
-						<cfif NOT ArrayIsEmpty(REQUEST.pageData.conversations)>
-							<cfloop array="#REQUEST.pageData.conversations#" index="conv">
+						
+						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="conv">
 								<tr>
 									<td>
 										#conv.getSubject()#
