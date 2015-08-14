@@ -13,6 +13,15 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter the content.") />
 		</cfif>
 		
+		<cfif StructKeyExists(FORM,"customer_id") AND NOT IsNumeric(Trim(FORM.customer_id))>
+			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a numeric value for the customer id.") />
+		<cfelseif StructKeyExists(FORM,"customer_id") AND IsNumeric(Trim(FORM.customer_id))>
+			<cfset LOCAL.customer = EntityLoadByPK("customer",Trim(FORM.customer_id)) />
+			<cfif IsNull(LOCAL.customer)>
+				<cfset ArrayAppend(LOCAL.messageArray,"Cannot find the customer for id #Trim(FORM.customer_id)#.") />
+			</cfif>
+		</cfif>
+		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
