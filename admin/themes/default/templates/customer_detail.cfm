@@ -389,14 +389,13 @@
 							<label>New Password</label>
 							<input type="password" name="new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
-						  <div class="form-group">
+						 <div class="form-group">
 							<label>Confirm New Password</label>
 							<input type="password" name="confirm_new_password" class="form-control" placeholder="Enter ..." value=""/>
 						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']# #REQUEST.pageData.deleteButtonClass#" id="tab_7">
 						<table class="table table-bordered table-hover">
-							
 							<tr class="default">
 								<th>Subject</th>
 								<th>Description</th>
@@ -441,6 +440,7 @@
 				<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Customer</button>
 				<cfif NOT IsNull(REQUEST.pageData.customer)>
 					<a href="#APPLICATION.absoluteUrlWeb#admin/new_order.cfm?customer_id=#REQUEST.pageData.customer.getCustomerId()#" class="btn btn-primary top-nav-button">Add Order</a>
+					<a href="#APPLICATION.absoluteUrlWeb#admin/conversation_detail.cfm?customer_id=#REQUEST.pageData.customer.getCustomerId()#" class="btn btn-primary top-nav-button">Add Conversation</a>
 				</cfif>
 				<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Customer</button>
 			</div>

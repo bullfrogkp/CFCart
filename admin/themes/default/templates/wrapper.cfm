@@ -383,6 +383,17 @@
                         </li>
 						<li class="treeview">
                             <a href="##">
+                                <i class="fa fa-money"></i>
+                                <span>Conversations</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="conversations"><a href="#APPLICATION.absoluteUrlWeb#admin/conversations.cfm"><i class="fa fa-angle-double-right"></i> Conversations</a></li>
+                                <li class="conversation_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/conversation_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Conversation</a></li>
+                            </ul>
+                        </li>
+						<li class="treeview">
+                            <a href="##">
                                 <i class="fa fa-user"></i>
                                 <span>Users</span>
                                 <i class="fa fa-angle-left pull-right"></i>
