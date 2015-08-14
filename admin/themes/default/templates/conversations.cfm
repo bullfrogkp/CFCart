@@ -18,18 +18,11 @@
 							<div class="col-xs-2" style="padding-right:0;">
 								<input type="text" name="id" class="form-control" placeholder="ID" <cfif StructKeyExists(URL,"id")>value="#URL.id#"</cfif>>
 							</div>
-							<div class="col-xs-3" style="padding-right:0;padding-left:10px;">
-								<select class="form-control" name="is_enabled">
-									<option value="">All Status</option>
-									<option value="1" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 1>selected</cfif>>Enabled</option>
-									<option value="0" <cfif StructKeyExists(URL,"is_enabled") AND URL.is_enabled EQ 0>selected</cfif>>Disabled</option>
-								</select>
-							</div>
 							<div class="col-xs-5" style="padding-right:0;padding-left:10px;">
 								<input type="text" name="search_keyword" class="form-control" placeholder="Keywords" <cfif StructKeyExists(URL,"search_keyword")>value="#URL.search_keyword#"</cfif>>
 							</div>
 							<div class="col-xs-2" style="padding-left:10px;">
-								<button name="search_category" type="submit" class="btn btn-sm btn-primary search-button pull-right">Search</button>
+								<button name="search_item" type="submit" class="btn btn-sm btn-primary search-button pull-right">Search</button>
 							</div>
 						</div>
 					</div>
@@ -50,7 +43,12 @@
 						<cfif NOT ArrayIsEmpty(REQUEST.pageData.conversations)>
 							<cfloop array="#REQUEST.pageData.conversations#" index="conv">
 								<tr>
-									<td>#conv.getSubject()#</td>
+									<td>
+										#conv.getSubject()#
+										<cfif conv.getIsNew() EQ true>
+											<span class="label label-danger pull-right" style="margin-top:3px;">New</span>
+										</cfif>
+									</td>
 									<td>#conv.getDescription()#</td>
 									<td>#conv.getCreatedDatetime()#</td>
 									<td>#conv.getCreatedUser()#</td>

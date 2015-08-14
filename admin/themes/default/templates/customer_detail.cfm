@@ -408,7 +408,12 @@
 							<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getConversations()) AND ArrayLen(REQUEST.pageData.customer.getConversations()) NEQ 0>
 								<cfloop array="#REQUEST.pageData.customer.getConversations()#" index="conv">
 									<tr>
-										<td>#conv.getSubject()#</td>
+										<td>
+											#conv.getSubject()# 
+											<cfif conv.getIsNew() EQ true>
+												<span class="label label-danger pull-right" style="margin-top:3px;">New</span>
+											</cfif>
+										</td>
 										<td>#conv.getDescription()#</td>
 										<td>#conv.getCreatedDatetime()#</td>
 										<td>#conv.getCreatedUser()#</td>

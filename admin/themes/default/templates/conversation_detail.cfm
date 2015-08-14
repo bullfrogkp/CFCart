@@ -40,9 +40,8 @@
 						</div>
 					<cfelse>
 						<div class="form-group">
-							<label>Customer</label>
-							<input type="text" name="search_customer_keywords" class="form-control" placeholder="Enter ID or keywords..." />
-							<button name="search_customer">Search Customer</button>
+							<label>Customer ID</label>
+							<input type="text" name="customer_id" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.customer_id#"/>
 						</div>
 					</cfif>
 					
