@@ -49,6 +49,7 @@
 			<cfset LOCAL.conv.setCreatedUser(SESSION.adminUser) />
 			<cfset LOCAL.conv.setCreatedDatetime(Now()) />
 			<cfset LOCAL.conv.setIsDeleted(false) />
+			<cfset LOCAL.conv.setIsNew(false) />
 		</cfif>
 		
 		<cfif StructKeyExists(FORM,"save_item")>
@@ -66,7 +67,7 @@
 			<cfset EntitySave(LOCAL.conv) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Conversation has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.conv.getconvId()#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.conv.getConvId()#" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -77,7 +78,9 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.conv = EntityLoadByPK("customer", URL.id)> 
+			<cfset LOCAL.pageData.conv = EntityLoadByPK("conversation", URL.id)> 
+			<cfset LOCAL.pageData.conv.setIsNew(false) />
+			<cfset EntitySave(LOCAL.pageData.conv) />
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.conv.getSubject()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
@@ -99,6 +102,7 @@
 				<cfset LOCAL.pageData.formData.subject = "" />
 				<cfset LOCAL.pageData.formData.description = "" />
 				<cfset LOCAL.pageData.formData.content = "" />
+				<cfset LOCAL.pageData.formData.customer_id = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
 		</cfif>
