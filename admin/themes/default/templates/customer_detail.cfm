@@ -404,7 +404,7 @@
 								<th>Action</th>
 							</tr>
 					
-							<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT IsNull(REQUEST.pageData.customer.getConversations()) AND ArrayLen(REQUEST.pageData.customer.getConversations()) NEQ 0>
+							<cfif NOT IsNull(REQUEST.pageData.customer) AND NOT ArrayIsEmpty(REQUEST.pageData.customer.getConversations())>
 								<cfloop array="#REQUEST.pageData.customer.getConversations()#" index="conv">
 									<tr>
 										<td>

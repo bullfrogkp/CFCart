@@ -36,23 +36,23 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfset SESSION.temp.message = {} />
-		<cfset SESSION.temp.message.messageArray = [] />
-		<cfset SESSION.temp.message.messageType = "alert-success" />
-		
-		<cfif IsNumeric(FORM.id)>
-			<cfset LOCAL.conv = EntityLoadByPK("conversation", FORM.id)> 
-			<cfset LOCAL.conv.setUpdatedUser(SESSION.adminUser) />
-			<cfset LOCAL.conv.setUpdatedDatetime(Now()) />
-		<cfelse>
-			<cfset LOCAL.conv = EntityNew("conversation") />
-			<cfset LOCAL.conv.setCreatedUser(SESSION.adminUser) />
-			<cfset LOCAL.conv.setCreatedDatetime(Now()) />
-			<cfset LOCAL.conv.setIsDeleted(false) />
-			<cfset LOCAL.conv.setIsNew(false) />
-		</cfif>
-		
 		<cfif StructKeyExists(FORM,"save_item")>
+			<cfset SESSION.temp.message = {} />
+			<cfset SESSION.temp.message.messageArray = [] />
+			<cfset SESSION.temp.message.messageType = "alert-success" />
+			
+			<cfif IsNumeric(FORM.id)>
+				<cfset LOCAL.conv = EntityLoadByPK("conversation", FORM.id)> 
+				<cfset LOCAL.conv.setUpdatedUser(SESSION.adminUser) />
+				<cfset LOCAL.conv.setUpdatedDatetime(Now()) />
+			<cfelse>
+				<cfset LOCAL.conv = EntityNew("conversation") />
+				<cfset LOCAL.conv.setCreatedUser(SESSION.adminUser) />
+				<cfset LOCAL.conv.setCreatedDatetime(Now()) />
+				<cfset LOCAL.conv.setIsDeleted(false) />
+				<cfset LOCAL.conv.setIsNew(false) />
+			</cfif>
+		
 			<cfset LOCAL.conv.setSubject(Trim(FORM.subject)) />
 			<cfset LOCAL.conv.setDescription(Trim(FORM.description)) />
 			<cfset LOCAL.conv.setContent(Trim(FORM.content)) />
@@ -67,7 +67,7 @@
 			<cfset EntitySave(LOCAL.conv) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Conversation has been saved successfully.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.conv.getConvId()#" />
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.conv.getConversationId()#" />
 		</cfif>
 		
 		<cfreturn LOCAL />	
@@ -78,18 +78,18 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
-			<cfset LOCAL.pageData.conv = EntityLoadByPK("conversation", URL.id)> 
-			<cfset LOCAL.pageData.conv.setIsNew(false) />
-			<cfset EntitySave(LOCAL.pageData.conv) />
-			<cfset LOCAL.pageData.title = "#LOCAL.pageData.conv.getSubject()# | #APPLICATION.applicationName#" />
+			<cfset LOCAL.pageData.conversation = EntityLoadByPK("conversation", URL.id)> 
+			<cfset LOCAL.pageData.conversation.setIsNew(false) />
+			<cfset EntitySave(LOCAL.pageData.conversation) />
+			<cfset LOCAL.pageData.title = "#LOCAL.pageData.conversation.getSubject()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />	
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>
-				<cfset LOCAL.pageData.formData.subject = isNull(LOCAL.pageData.conv.getSubject())?"":LOCAL.pageData.conv.getSubject() />
-				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.conv.getDescription())?"":LOCAL.pageData.conv.getDescription() />
-				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.conv.getContent())?"":LOCAL.pageData.conv.getContent() />
+				<cfset LOCAL.pageData.formData.subject = isNull(LOCAL.pageData.conversation.getSubject())?"":LOCAL.pageData.conversation.getSubject() />
+				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.conversation.getDescription())?"":LOCAL.pageData.conversation.getDescription() />
+				<cfset LOCAL.pageData.formData.content = isNull(LOCAL.pageData.conversation.getContent())?"":LOCAL.pageData.conversation.getContent() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
@@ -102,8 +102,13 @@
 				<cfset LOCAL.pageData.formData.subject = "" />
 				<cfset LOCAL.pageData.formData.description = "" />
 				<cfset LOCAL.pageData.formData.content = "" />
-				<cfset LOCAL.pageData.formData.customer_id = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
+				
+				<cfif StructKeyExists(URL,"customer_id") AND IsNumeric(URL.customer_id)>
+					<cfset LOCAL.pageData.formData.customer_id = URL.customer_id />
+				<cfelse>
+					<cfset LOCAL.pageData.formData.customer_id = "" />
+				</cfif>
 			</cfif>
 		</cfif>
 		
