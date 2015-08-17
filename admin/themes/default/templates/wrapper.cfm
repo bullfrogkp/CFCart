@@ -383,7 +383,7 @@
                         </li>
 						<li class="treeview">
                             <a href="##">
-                                <i class="fa fa-bullhorn"></i>
+                                <i class="fa fa-comments"></i>
                                 <span>Conversations</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
