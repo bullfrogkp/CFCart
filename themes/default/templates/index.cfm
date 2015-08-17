@@ -7,7 +7,7 @@
 		});
 	});
 </script>
-<div id="slide-div" style="width:722px;float:right;">
+<div id="slide-div" style="width:722px;float:right;margin-top:4px;">
 	#REQUEST.pageData.slideSection.getSectionData()#
 </div>
 <div id="top-sidebar">

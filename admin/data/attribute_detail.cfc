@@ -49,7 +49,7 @@
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.attribute.getAttributeId()#" />
 			
 		<cfelseif StructKeyExists(FORM,"delete_item")>
-			<cfset LOCAL.attribute.setIsDeleted(false) />
+			<cfset LOCAL.attribute.setIsDeleted(true) />
 			
 			<cfset EntitySave(LOCAL.attribute) />
 			
