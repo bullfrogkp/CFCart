@@ -590,6 +590,8 @@
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
 		<cfset LOCAL.newProduct.setProductType(EntityLoad("product_type",{name="configured_product"},true)) />
 		<cfset LOCAL.newProduct.setStock(LOCAL.parentProduct.getStock()) />
+		<cfset LOCAL.newProduct.setIsDeleted(false) />
+		<cfset LOCAL.newProduct.setIsEnabled(true) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
 		

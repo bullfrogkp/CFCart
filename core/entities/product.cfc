@@ -286,7 +286,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSubProducts" access="public" output="false" returnType="array">
-		<cfreturn EntityLoad("product",{parentProduct = this, isDeleted = false}) />
+		<cfreturn EntityLoad("product",{parentProduct = this}) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeProductAttributeRelas" access="public" output="false" returnType="void">
