@@ -81,8 +81,11 @@
 			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.tracking_record_id) />
 			<cfset LOCAL.trackingRecord.setCount(FORM["product_count_#FORM.tracking_record_id#"]) />
 			<cfset EntitySave(LOCAL.trackingRecord) />
-		<cfelseif StructKeyExists(FORM,"remove_product") OR StructKeyExists(FORM,"remove_product.x")>
-			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM.remove_product) />
+		<cfelseif StructKeyExists(FORM,"remove_product")>
+			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM["remove_product"]) />
+			<cfset EntityDelete(LOCAL.trackingRecord) />
+		<cfelseif StructKeyExists(FORM,"remove_product.x")>
+			<cfset LOCAL.trackingRecord = EntityLoadByPK("tracking_record",FORM["remove_product.x"]) />
 			<cfset EntityDelete(LOCAL.trackingRecord) />
 		</cfif>
 		
