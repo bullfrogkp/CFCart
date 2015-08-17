@@ -1110,7 +1110,7 @@
 					<input id="new-attribute-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Name">
 				</div>
 				<div class="form-group">
-					<input id="new-attribute-option-label" name="new_attribute_option_label" type="text" class="form-control" placeholder="Thumbnail Label">
+					<input id="new-attribute-option-label" name="new_attribute_option_label" type="text" class="form-control" placeholder="Value">
 				</div>	
 				<div class="form-group">
 					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;" id="new-attribute-option-1-image-div">
