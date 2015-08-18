@@ -421,7 +421,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
-		<cfreturn "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getDisplayName())#/#getProductId()#" />
+		<cfreturn "#APPLICATION.absoluteUrlWeb#product_detail.cfm/#URLEncodedFormat(getName())#/#getProductId()#" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="isProductAttributeComplete" output="false" access="public" returntype="boolean">

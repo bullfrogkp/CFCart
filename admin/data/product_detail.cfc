@@ -76,7 +76,7 @@
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			<!--- general information --->
-			<cfset LOCAL.product.setName(LCase(Trim(FORM.display_name))) />
+			<cfset LOCAL.product.setName(LCase(Trim(Replace(FORM.display_name,"/","-","all")))) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
