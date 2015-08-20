@@ -736,7 +736,7 @@
 										AND
 										NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
 									<div class="form-group">
-										<label>Attribute Value(s)</label>
+										<label>Product(s)</label>
 										<div id="attributes" class="row" style="margin-top:10px;">
 											<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 												<div class="col-xs-3">
