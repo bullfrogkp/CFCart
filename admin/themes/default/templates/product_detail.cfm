@@ -327,7 +327,9 @@
 		
 		$('##remove').click(function() {  
 			return !$('##products-selected option:selected').remove().appendTo('##products-searched').removeAttr("selected"); 
-		});		
+		});	
+
+		$("##category-id").attr("size",$("##category-id option").length);
 	});
 </script>
 
@@ -398,7 +400,7 @@
 						</div>
 						<div class="form-group">
 							<label>Category</label>
-							<select class="form-control" multiple name="category_id">
+							<select class="form-control" multiple name="category_id" id="category-id">
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 									<option value="#cat.getCategoryId()#"
 									<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
