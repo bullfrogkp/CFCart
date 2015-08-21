@@ -44,16 +44,16 @@
 					<table class="table table-bordered table-hover">
 						
 							<tr class="default">
+								<th>ID</th>
 								<th>Name</th>
-								<th>Created</th>
 								<th style="width:110px;">Action</th>
 							</tr>
 						
 							<cfif ArrayLen(REQUEST.pageData.productGroups) GT 0>
 								<cfloop array="#REQUEST.pageData.productGroups#" index="group">
 								<tr>
+									<td>#group.getProductGroupId()#</td>
 									<td>#group.getDisplayName()#</td>
-									<td>#DateFormat(group.getCreatedDatetime(),"mmm dd, yyyy")#</td>
 									<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_group_detail.cfm?id=#group.getProductGroupId()#">View Detail</a></td>
 								</tr>
 								</cfloop>
