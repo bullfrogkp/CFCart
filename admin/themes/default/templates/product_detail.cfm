@@ -738,22 +738,27 @@
 									<div class="form-group">
 										<label>Product(s)</label>
 										<div id="attributes" class="row" style="margin-top:10px;">
-											<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-												<div class="col-xs-3">
-													<div class="box box-info">
-														<div class="box-body table-responsive no-padding">
-															<table class="table table-hover">
-																<tr class="success">
-																	<th><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></th>
-																	<th colspan="2"></th>
-																</tr>
-																
+											
+											<div class="col-xs-12">
+												<div class="box box-info">
+													<div class="box-body table-responsive no-padding">
+														<table class="table table-hover">
+															<tr class="success">
+																<th>ID</th>
 																<cfloop array="#p.getProductAttributeRelas()#" index="productAttributeRela">
-																	<tr style="background-color:##f9f9f9;color:##3c8dbc;">
-																		<td>#LCase(productAttributeRela.getAttribute().getDisplayName())#</td>
-																		<td>#productAttributeRela.getAttributeValues()[1].getDisplayName()#</td>
-																		<td>
-																		<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
+																	<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
+																</cfloop>
+																<th>Sku</th>
+																<th>Stock</th>
+																<th>Action</th>
+															</tr>
+															<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+															<tr>
+																<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></td>
+																<cfloop array="#p.getProductAttributeRelas()#" index="productAttributeRela">
+																	<td>
+																		#productAttributeRela.getAttributeValues()[1].getDisplayName()#
+																		<cfif productAttributeRela.getAttribute.getDisplayName() EQ "color">
 																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
 																				<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
 																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
@@ -762,56 +767,20 @@
 																				<div class="pull-right" style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
 																			</cfif>
 																		</cfif>
-																		</td>
-																	</tr>
-																</cfloop>
-																<tr>
-																	<td>sku</td>
-																	<td colspan="2">
-																		<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
 																	</td>
-																</tr>
-																<tr>
-																	<td>stock</td>
-																	<td colspan="2">
-																		<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-																	</td>
-																</tr>
-																<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
-																	<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=p,customerGroup=customerGroup},true) />
-																	<tr style="background-color:##f9f9f9;color:##3c8dbc;">
-																		<td colspan="3">#customerGroup.getDisplayName()#</td>
-																	</tr>
-																	<tr>
-																		<td>price</td>
-																		<td colspan="2">
-																			<input name="price_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;" />
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>special price</td>
-																		<td colspan="2">
-																			<input name="special_price_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;" />
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>from</td>
-																		<td colspan="2">
-																			<input name="special_price_from_date_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" style="width:100%;" />
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>to</td>
-																		<td colspan="2">
-																			<input name="special_price_to_date_#p.getProductId()#_#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" style="width:100%;" />
-																		</td>
-																	</tr>
 																</cfloop>
-															</table>
-														</div><!-- /.box-body -->
-													</div><!-- /.box -->
-												</div>
-											</cfloop>
+																<td>
+																	<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+															</tr>
+															</cfloop>
+														</table>
+													</div><!-- /.box-body -->
+												</div><!-- /.box -->
+											</div>
 										</div>
 									</div>
 								</cfif>
