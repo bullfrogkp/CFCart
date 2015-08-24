@@ -487,49 +487,70 @@
 						
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
-						<div class="form-group">
-							<label>Price</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price"]#" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label>Tax Category</label>
-							<select name="tax_category_id" class="form-control">
-								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
-									<option value="#tc.getTaxCategoryId()#"
-									
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
-									selected
+					
+						<div class="box box-warning">
+							<div class="box-body table-responsive">
+								<div class="form-group">
+									<label>Tax Category</label>
+									<select name="tax_category_id" class="form-control">
+										<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
+											<option value="#tc.getTaxCategoryId()#"
+											
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
+											selected
+											</cfif>
+											
+											>#tc.getDisplayName()#</option>
+										</cfloop>
+									</select>
+								</div>
+								<table class="table table-bordered table-hover">
+									<tr class="default">
+										<cfif IsNull(REQUEST.pageData.product.getAttributeSetMV())>
+										<th>Product</th>
+										</cfif>
+										<th>Price</th>
+										<th>Special Price</th>
+										<th>From Date</th>
+										<th>To Date</th>
+									</tr>
+								
+									<cfif IsNull(REQUEST.pageData.product.getAttributeSetMV())>
+										<tr>
+											<td><input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price"]#" /></td>
+											<td><input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["special_price"]#" /></td>
+											<td><input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(REQUEST.pageData.formData["special_price_from_date"],"mmm dd, yyyy")#" /></td>
+											<td><input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-from-date" value="#DateFormat(REQUEST.pageData.formData["special_price_from_date"],"mmm dd, yyyy")#" /></td>
+										</tr>
+									<cfelse>
+										<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
+										<tr>
+											<td>#product.getProductId()#</td>
+											<td>#product.getDisplayNameMV()#</td>
+											<td>#product.getSku()#</td>
+											<td>
+												<cfswitch expression="#product.getIsEnabledMV()#">
+													<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
+													<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
+												</cfswitch>
+											</td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
+										</tr>
+										</cfloop>
 									</cfif>
-									
-									>#tc.getDisplayName()#</option>
-								</cfloop>
-							</select>
-						</div>
-						<div class="form-group">
-							<label>Special Price</label>
-							<input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["special_price"]#" />
-						</div>
-						 <div class="form-group">
-							<label>Special Price From Date</label>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(REQUEST.pageData.formData["special_price_from_date"],"mmm dd, yyyy")#" />
-							</div><!-- /.input group -->
-						</div><!-- /.form group -->
-						<div class="form-group">
-							<label>Special Price To Date</label>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-to-date" value="#DateFormat(REQUEST.pageData.formData["special_price_to_date"],"mmm dd, yyyy")#" />
-							</div><!-- /.input group -->
-						</div><!-- /.form group -->
+								
+									<tr class="default">
+										<th>Product</th>
+										<th>Price</th>
+										<th>Special Price</th>
+										<th>From Date</th>
+										<th>To Date</th>
+									</tr>
+								</table>
+							</div><!-- /.box-body -->
+						</div><!-- /.box -->
+					
+					
 						<div class="form-group">
 							<div class="row" style="margin-top:10px;">
 								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">		
@@ -753,7 +774,7 @@
 															</tr>
 															<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 															<tr>
-																<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">ID: #p.getProductId()#</a></td>
+																<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
 																<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
 																	<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=rela.getAttribute()},true) />
 																	<td>
