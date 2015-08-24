@@ -504,8 +504,8 @@
 					
 						<cfloop array="#REQUEST.pageData.productArray#" index="product">
 							<div class="box box-warning">
-								<div class="box-header">
-									<cfif product.getProductType().getName() EQ "configured_product">
+								<cfif product.getProductType().getName() EQ "configured_product">
+									<div class="box-header">
 										<h3 class="box-title">
 										<cfloop array="#product.getProductAttributeRelas()#" index="productAttributeRela">
 											<div class="pull-left" style="margin-right:10px;">#LCase(productAttributeRela.getAttribute().getDisplayName())#: #productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
@@ -520,8 +520,8 @@
 											</cfif>
 										</cfloop>
 										</h3>
-									</cfif>
-								</div><!-- /.box-header -->
+									</div><!-- /.box-header -->
+								</cfif>
 								<div class="box-body table-responsive">
 									<table class="table table-bordered table-hover">
 										<tr class="default">
@@ -535,10 +535,10 @@
 											<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = product, customerGroup = customerGroup},true) />
 											<tr>
 												<td>#customerGroup.getDisplayName()#</td>
-												<td><input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getPrice()#" /></td>
-												<td><input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getSpecialPrice()#" /></td>
-												<td><input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" /></td>
-												<td><input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" /></td>
+												<td><input type="text" name="price_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="price-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getPrice()#" /></td>
+												<td><input name="special_price_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="special-price-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getSpecialPrice()#" /></td>
+												<td><input type="text" class="form-control pull-right" name="special_price_from_date_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="special-price-from-date-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" /></td>
+												<td><input type="text" class="form-control pull-right" name="special_price_to_date_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="special-price-from-date-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" /></td>
 											</tr>
 										</cfloop>
 									</table>
