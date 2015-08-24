@@ -487,137 +487,70 @@
 						
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
-					
-						<div class="box box-warning">
-							<div class="box-body table-responsive">
-								<div class="form-group">
-									<label>Tax Category</label>
-									<select name="tax_category_id" class="form-control">
-										<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
-											<option value="#tc.getTaxCategoryId()#"
-											
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
-											selected
-											</cfif>
-											
-											>#tc.getDisplayName()#</option>
-										</cfloop>
-									</select>
-								</div>
-								<table class="table table-bordered table-hover">
-									<tr class="default">
-										<cfif IsNull(REQUEST.pageData.product.getAttributeSetMV())>
-										<th>Product</th>
-										</cfif>
-										<th>Price</th>
-										<th>Special Price</th>
-										<th>From Date</th>
-										<th>To Date</th>
-									</tr>
-								
-									<cfif IsNull(REQUEST.pageData.product.getAttributeSetMV())>
-										<tr>
-											<td><input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["price"]#" /></td>
-											<td><input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["special_price"]#" /></td>
-											<td><input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(REQUEST.pageData.formData["special_price_from_date"],"mmm dd, yyyy")#" /></td>
-											<td><input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-from-date" value="#DateFormat(REQUEST.pageData.formData["special_price_from_date"],"mmm dd, yyyy")#" /></td>
-										</tr>
-									<cfelse>
-										<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
-										<tr>
-											<td>#product.getProductId()#</td>
-											<td>#product.getDisplayNameMV()#</td>
-											<td>#product.getSku()#</td>
-											<td>
-												<cfswitch expression="#product.getIsEnabledMV()#">
-													<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
-													<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
-												</cfswitch>
-											</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#product.getProductId()#">View Detail</a></td>
-										</tr>
-										</cfloop>
-									</cfif>
-								
-									<tr class="default">
-										<th>Product</th>
-										<th>Price</th>
-										<th>Special Price</th>
-										<th>From Date</th>
-										<th>To Date</th>
-									</tr>
-								</table>
-							</div><!-- /.box-body -->
-						</div><!-- /.box -->
-					
-					
 						<div class="form-group">
-							<div class="row" style="margin-top:10px;">
-								<cfloop array="#REQUEST.pageData.customerGroups#" index="group">		
-									<cfif group.getIsDefault() EQ false>
-										<cfif NOT IsNull(REQUEST.pageData.product)>
-											<cfset groupPrice = EntityLoad("product_customer_group_rela",{product=REQUEST.pageData.product,customerGroup=group},true) />
-										</cfif>
+							<label>Tax Category</label>
+							<select name="tax_category_id" class="form-control">
+								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
+									<option value="#tc.getTaxCategoryId()#"
 									
-										<cfif NOT IsNull(groupPrice)>
-											<cfset price = isNull(groupPrice.getPrice())?"":groupPrice.getPrice() />
-											<cfset specialPrice = isNull(groupPrice.getSpecialPrice())?"":groupPrice.getSpecialPrice() />
-											<cfset specialPriceFromDate = isNull(groupPrice.getSpecialPriceFromDate())?"":groupPrice.getSpecialPriceFromDate() />
-											<cfset specialPriceToDate = isNull(groupPrice.getSpecialPriceToDate())?"":groupPrice.getSpecialPriceToDate() />
-										<cfelse>
-											<cfset price = "" />
-											<cfset specialPrice = "" />
-											<cfset specialPriceFromDate = "" />
-											<cfset specialPriceToDate = "" />
-										</cfif>
-										
-										<cfif StructKeyExists(REQUEST.pageData.formData,"price_#group.getCustomerGroupId()#")>
-											<cfset price = REQUEST.pageData.formData["price_#group.getCustomerGroupId()#"] />
-											<cfset specialPrice = REQUEST.pageData.formData["special_price_#group.getCustomerGroupId()#"] />
-											<cfset specialPriceFromDate = REQUEST.pageData.formData["special_price_from_date_#group.getCustomerGroupId()#"] />
-											<cfset specialPriceToDate = REQUEST.pageData.formData["special_price_from_date_#group.getCustomerGroupId()#"] />
-										</cfif>
-										
-										<div class="col-xs-3">
-											<div class="box box-warning">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="warning">
-															<th>#group.getDisplayName()#</th>
-															<th style="text-align:right;">#group.getDiscountType().getDisplayName()#</th>
-														</tr>
-														<tr>
-															<td>price:</td>
-															<td>
-																<input type="text" name="price_#group.getCustomerGroupId()#" id="price-#group.getCustomerGroupId()#" value="#price#" style="width:100%" />
-															</td>
-														</tr>
-														<tr>
-															<td>special price:</td>
-															<td>
-																<input type="text" name="special_price_#group.getCustomerGroupId()#" id="special-price-#group.getCustomerGroupId()#" value="#specialPrice#" style="width:100%" />
-															</td>
-														</tr>
-														<tr>
-															<td>from:</td>
-															<td>
-																<input type="text" class="special-price-from-date" name="special_price_from_date_#group.getCustomerGroupId()#" id="special-price-from-date-#group.getCustomerGroupId()#" value="#DateFormat(specialPriceFromDate,"mmm dd, yyyy")#" style="width:100%" />
-															</td>
-														</tr>
-														<tr>
-															<td>to:</td>
-															<td>
-																<input type="text" class="special-price-to-date" name="special_price_to_date_#group.getCustomerGroupId()#" id="special-price-to-date-#group.getCustomerGroupId()#" value="#DateFormat(specialPriceToDate,"mmm dd, yyyy")#" style="width:100%" />
-															</td>
-														</tr>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
+									selected
 									</cfif>
+									
+									>#tc.getDisplayName()#</option>
 								</cfloop>
-							</div>
+							</select>
 						</div>
+						
+						<cfif IsNull(REQUEST.pageData.product.getAttributeSetMV())>
+							<cfset product = REQUEST.pageData.product>
+						<cfelse>
+							<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="product">
+						</cfif>
+								<div class="box box-warning">
+									<div class="box-header">
+										<h3 class="box-title">#customerGroup.getDisplayName()#</h3>
+										<cfif product.getProductType().getName() EQ "configured_product")>
+											<cfloop array="#product.getProductAttributeRelas()#" index="productAttributeRela">
+												#LCase(productAttributeRela.getAttribute().getDisplayName())#: #productAttributeRela.getAttributeValues()[1].getDisplayName()#
+												<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
+													<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+														<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+															<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+														</div>
+													<cfelse>
+														<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+													</cfif>
+												</cfif>
+											</cfloop>
+										</cfif>
+									</div><!-- /.box-header -->
+									<div class="box-body table-responsive">
+										<table class="table table-bordered table-hover">
+											<tr class="default">
+												<th>Group</th>
+												<th>Price</th>
+												<th>Special Price</th>
+												<th>From Date</th>
+												<th>To Date</th>
+											</tr>
+											<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
+												<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = product, customerGroup = customerGroup},true) />
+												<tr>
+													<td>#customerGroup.getDisplayName()#</td>
+													<td><input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getPrice()#" /></td>
+													<td><input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getSpecialPrice()#" /></td>
+													<td><input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" /></td>
+													<td><input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" /></td>
+												</tr>
+											</cfif>
+										</table>
+									</div><!-- /.box-body -->
+								</div><!-- /.box -->
+							</cfloop>
+						<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSetMV())>
+							</cfloop>
+						</cfif>
 					</div><!-- /.tab-pane -->
 					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
