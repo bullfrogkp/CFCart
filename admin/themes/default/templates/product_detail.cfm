@@ -685,55 +685,46 @@
 										NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
 									<div class="form-group">
 										<label>Product(s)</label>
-										<div id="attributes" class="row" style="margin-top:10px;">
-											
-											<div class="col-xs-12">
-												<div class="box box-info">
-													<div class="box-body table-responsive no-padding">
-														<table class="table table-hover">
-															<tr class="success">
-																<th>ID</th>
-																<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
-																	<th>#LCase(rela.getAttribute().getDisplayName())#</th>
-																</cfloop>
-																<th>Sku</th>
-																<th>Stock</th>
-															</tr>
-															<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-															<tr>
-																<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
-																<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
-																	<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=rela.getAttribute()},true) />
-																	<td>
-																		<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-																			<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
-																			<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																				<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																					<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																						<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																					</div>
-																				<cfelse>
-																					<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
-																				</cfif>
-																			</cfif>
-																		<cfelse>
-																			N/A
-																		</cfif>
-																	</td>
-																</cfloop>
-																<td>
-																	<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
-																</td>
-																<td>
-																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-																</td>
-															</tr>
-															</cfloop>
-														</table>
-													</div><!-- /.box-body -->
-												</div><!-- /.box -->
-											</div>
-										</div>
+										<table class="table table-bordered table-hover">
+											<tr class="default">
+												<th>ID</th>
+												<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
+													<th>#LCase(rela.getAttribute().getDisplayName())#</th>
+												</cfloop>
+												<th>Sku</th>
+												<th>Stock</th>
+											</tr>
+											<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+											<tr>
+												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
+												<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
+													<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=rela.getAttribute()},true) />
+													<td>
+														<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+															<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
+															<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																	<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																		<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																	</div>
+																<cfelse>
+																	<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+																</cfif>
+															</cfif>
+														<cfelse>
+															N/A
+														</cfif>
+													</td>
+												</cfloop>
+												<td>
+													<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+												</td>
+												<td>
+													<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+												</td>
+											</tr>
+											</cfloop>
+										</table>
 									</div>
 								</cfif>
 							</div>
