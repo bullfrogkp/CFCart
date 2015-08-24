@@ -500,6 +500,13 @@
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
 			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
 			
+			<cfif IsNull(LOCAL.pageData.product.getAttributeSetMV())>
+				<cfset LOCAL.pageData.productArray = [] />
+				<cfset ArrayAppend(LOCAL.pageData.productArray, LOCAL.pageData.product) />
+			<cfelse>
+				<cfset LOCAL.pageData.productArray = LOCAL.pageData.product.getSubProducts() />
+			</cfif>
+						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
 			<cfelse>

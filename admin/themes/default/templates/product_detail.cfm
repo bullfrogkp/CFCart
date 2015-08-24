@@ -501,56 +501,50 @@
 								</cfloop>
 							</select>
 						</div>
-						
-						<cfif IsNull(REQUEST.pageData.product.getAttributeSetMV())>
-							<cfset product = REQUEST.pageData.product>
-						<cfelse>
-							<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="product">
-						</cfif>
-								<div class="box box-warning">
-									<div class="box-header">
-										<h3 class="box-title">#customerGroup.getDisplayName()#</h3>
-										<cfif product.getProductType().getName() EQ "configured_product")>
-											<cfloop array="#product.getProductAttributeRelas()#" index="productAttributeRela">
-												#LCase(productAttributeRela.getAttribute().getDisplayName())#: #productAttributeRela.getAttributeValues()[1].getDisplayName()#
-												<cfif productAttributeRela.getAttributeValues()[1].getDisplayName() EQ "color">
-													<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-														<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-															<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-														</div>
-													<cfelse>
-														<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
-													</cfif>
+					
+						<cfloop array="#REQUEST.pageData.productArray#" index="product">
+							<div class="box box-warning">
+								<div class="box-header">
+									<cfif product.getProductType().getName() EQ "configured_product">
+										<h3 class="box-title">
+										<cfloop array="#product.getProductAttributeRelas()#" index="productAttributeRela">
+											<div class="pull-left" style="margin-right:10px;">#LCase(productAttributeRela.getAttribute().getDisplayName())#: #productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
+											<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+												<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+													<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+														<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:middle;" />
+													</div>
+												<cfelse>
+													<div class="pull-left" style="width:16px;height:16px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
 												</cfif>
-											</cfloop>
-										</cfif>
-									</div><!-- /.box-header -->
-									<div class="box-body table-responsive">
-										<table class="table table-bordered table-hover">
-											<tr class="default">
-												<th>Group</th>
-												<th>Price</th>
-												<th>Special Price</th>
-												<th>From Date</th>
-												<th>To Date</th>
-											</tr>
-											<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
-												<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = product, customerGroup = customerGroup},true) />
-												<tr>
-													<td>#customerGroup.getDisplayName()#</td>
-													<td><input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getPrice()#" /></td>
-													<td><input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getSpecialPrice()#" /></td>
-													<td><input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" /></td>
-													<td><input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" /></td>
-												</tr>
 											</cfif>
-										</table>
-									</div><!-- /.box-body -->
-								</div><!-- /.box -->
-							</cfloop>
-						<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSetMV())>
-							</cfloop>
-						</cfif>
+										</cfloop>
+										</h3>
+									</cfif>
+								</div><!-- /.box-header -->
+								<div class="box-body table-responsive">
+									<table class="table table-bordered table-hover">
+										<tr class="default">
+											<th>Group</th>
+											<th>Price</th>
+											<th>Special Price</th>
+											<th>From Date</th>
+											<th>To Date</th>
+										</tr>
+										<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
+											<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = product, customerGroup = customerGroup},true) />
+											<tr>
+												<td>#customerGroup.getDisplayName()#</td>
+												<td><input type="text" name="price" id="price" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getPrice()#" /></td>
+												<td><input name="special_price" id="special-price" type="text" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getSpecialPrice()#" /></td>
+												<td><input type="text" class="form-control pull-right" name="special_price_from_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" /></td>
+												<td><input type="text" class="form-control pull-right" name="special_price_to_date" id="special-price-from-date" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" /></td>
+											</tr>
+										</cfloop>
+									</table>
+								</div><!-- /.box-body -->
+							</div><!-- /.box -->
+						</cfloop>
 					</div><!-- /.tab-pane -->
 					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
