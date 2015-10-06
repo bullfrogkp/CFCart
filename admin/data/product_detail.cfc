@@ -133,7 +133,6 @@
 						</cfif>
 						
 						<cfset EntitySave(LOCAL.groupPrice) />
-						<cfset LOCAL.product.addProductCustomerGroupRela(LOCAL.groupPrice) />
 					</cfloop>
 				</cfloop>
 			<cfelse>

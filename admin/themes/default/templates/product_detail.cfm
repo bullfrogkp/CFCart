@@ -723,7 +723,7 @@
 											<tr>
 												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
 												<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
-													<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=rela.getAttribute()},true) />
+													<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=p,attribute=rela.getAttribute()},true) />
 													<td>
 														<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
 															<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
