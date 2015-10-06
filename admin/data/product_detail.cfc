@@ -140,7 +140,7 @@
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
 					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) />
-					<cfset LOCAL.groupPrice.setGroup(LOCAL.group) />
+					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
 					
 					<cfset LOCAL.newPrice = Trim(FORM["price_#LOCAL.group.getCustomerGroupId()#"]) />
 					<cfset LOCAL.newSpecialPrice = Trim(FORM["special_price_#LOCAL.group.getCustomerGroupId()#"]) />
