@@ -374,21 +374,6 @@
 						<cfif Trim(FORM["sku_#LOCAL.subProduct.getProductId()#"]) NEQ "">
 							<cfset LOCAL.subProduct.setSku(FORM["sku_#LOCAL.subProduct.getProductId()#"]) />
 						</cfif>
-						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.customerGroup">
-							<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.subProduct,customerGroup=LOCAL.customerGroup},true) />
-							<cfif IsNumeric(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-								<cfset LOCAL.productCustomerGroupRela.setPrice(FORM["price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
-							</cfif>
-							<cfif IsNumeric(FORM["special_price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-								<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(FORM["special_price_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
-							</cfif>
-							<cfif IsDate(FORM["special_price_from_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(FORM["special_price_from_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
-							</cfif>
-							<cfif IsDate(FORM["special_price_to_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"])>
-								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(FORM["special_price_to_date_#LOCAL.subProduct.getProductId()#_#LOCAL.customerGroup.getCustomerGroupId()#"]) />
-							</cfif>
-						</cfloop>
 					</cfloop>
 				</cfif>
 				
