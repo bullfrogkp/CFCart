@@ -878,6 +878,59 @@
 						</div>
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
+						<table class="table table-hover">
+							<tr>
+								<td>
+									<input type="radio" name="shipping_method" value="free" checked>
+								</td>
+								<td>Free Shipping</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="shipping_method" value="flat">
+								</td>
+								<td>Flat Rate: <input type="text" name="flat_rate_price" value="" style="margin-left:20px;"></td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="shipping_method" value="carrier">
+								</td>
+								<td>Choose Carrier</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div class="row" style="margin-top:10px;">
+										<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
+											<div class="col-xs-2">
+												<div class="box box-warning">
+													<div class="box-body table-responsive no-padding">
+														<table class="table table-hover">
+															<tr class="warning">
+																<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
+																<th colspan="2" style="padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
+																<th style="text-align:right;">
+																	<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"
+																	
+																	<cfif NOT IsNull(productShippingCarrierRela) 
+																		OR 
+																		NOT IsNull(REQUEST.pageData.formData.shipping_carrier_id) AND ListFind(REQUEST.pageData.formData.shipping_carrier_id, sc.getShippingCarrierId())>
+																		checked
+																	</cfif>
+																	
+																	/>
+																</th>
+															</tr>	
+														</table>
+													</div><!-- /.box-body -->
+												</div><!-- /.box -->
+											</div>
+										</cfloop>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<!---
 						<div class="form-group">
 							<label>Length</label>
 							<input name="length" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.length#"/>
@@ -969,6 +1022,7 @@
 								</cfloop>
 							</div>
 						</div>
+						--->
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_9']#" id="tab_9">
 						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideosMV())>
