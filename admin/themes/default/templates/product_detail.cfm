@@ -515,40 +515,28 @@
 									<td>
 										<div class="form-group">
 											<label>Price</label>
-											<div class="input-group">
-												<input name="price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
-											</div>
+											<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 										</div>
 										<div class="form-group">
 											<label>SKU</label>
-											<div class="input-group">
-												<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
-											</div>
+											<input name="sku" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
 										</div>
 										<div class="form-group">
 											<label>Stock</label>
-											<div class="input-group">
-												<input name="stock" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
-											</div>
+											<input name="stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
 										
 										<div class="form-group">
 											<label>Special Price</label>
-											<div class="input-group">
-												<input name="price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
-											</div>
+											<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 										</div>
 										<div class="form-group">
 											<label>From Date</label>
-											<div class="input-group">
-												<input type="text" class="form-control pull-right special-price-from-date" name="" id="" />
-											</div>
+											<input type="text" class="form-control pull-right special-price-from-date" name="" id="" style="width:100%" />
 										</div>
 										<div class="form-group">
 											<label>To Date</label>
-											<div class="input-group">
-												<input type="text" class="form-control pull-right special-price-from-date" name="" id="" />
-											</div>
+											<input type="text" class="form-control pull-right special-price-from-date" name="" id="" style="width:100%" />
 										</div>
 									</td>
 								</tr>
@@ -561,33 +549,154 @@
 								<tr>
 									<td></td>
 									<td>
-										<div class="row" style="margin-top:10px;">
-											<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
-												<div class="col-xs-2">
-													<div class="box box-warning">
-														<div class="box-body table-responsive no-padding">
-															<table class="table table-hover">
-																<tr class="warning">
-																	<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
-																	<th colspan="2" style="padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
-																	<th style="text-align:right;">
-																		<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"
-																		
-																		<cfif NOT IsNull(productShippingCarrierRela) 
-																			OR 
-																			NOT IsNull(REQUEST.pageData.formData.shipping_carrier_id) AND ListFind(REQUEST.pageData.formData.shipping_carrier_id, sc.getShippingCarrierId())>
-																			checked
-																		</cfif>
-																		
-																		/>
-																	</th>
-																</tr>	
-															</table>
-														</div><!-- /.box-body -->
-													</div><!-- /.box -->
-												</div>
-											</cfloop>
+										<div class="form-group">
+											<label>Attribute Set</label>
+											<select name="attribute_set_id" id="attribute-set-id" class="form-control">
+												<option value="">Please Select...</option>
+												<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
+													<option value="#as.getAttributeSetId()#"
+													
+													<cfif as.getAttributeSetId() EQ REQUEST.pageData.formData.attribute_set_id>
+													selected
+													</cfif>
+													
+													>#as.getDisplayName()#</option>
+												</cfloop>
+											</select>
 										</div>
+										
+										<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
+											<cfif NOT IsNull(REQUEST.pageData.product)>
+												<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
+											</cfif>
+											<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="
+											<cfif IsNull(REQUEST.pageData.product) OR IsNull(currentAttributeSet) OR (NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>
+											display:none;
+											</cfif>">
+												<label>Attribute Option(s)</label>
+										
+												<div class="row" style="margin-top:10px;">
+													<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
+														<cfset attribute = attributeSetAttributeRela.getAttribute() />
+														<div class="col-xs-3">
+															<div class="box box-warning">
+																<div class="box-body table-responsive no-padding">
+																	<table class="table table-hover">
+																		<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
+																			<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
+																			<th>
+																				<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" req="#attributeSetAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+																					<span class="label label-primary">Add Option</span>
+																				</a>
+																			</th>
+																		</tr>
+																		
+																		<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()>
+																			<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+																			<cfif NOT IsNull(productAttributeRela)>
+																				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+																					<tr id="tr-av-#attributeValue.getAttributeValueId()#">
+																						<td>#attributeValue.getDisplayName()#</td>
+																						<td>
+																							<cfif attributeValue.getThumbnailImageName() NEQ "">
+																								<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+																									<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																								</div>
+																							<cfelse>
+																								<cfif attribute.getDisplayName() EQ "color">
+																									<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
+																								<cfelse>
+																									#attributeValue.getThumbnailLabel()#
+																								</cfif>
+																							</cfif>
+																						</td>
+																						<td>
+																							<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+																								<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																							</div>
+																						</td>
+																						<td>
+																							<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																						</td>
+																					</tr>
+																				</cfloop>
+																			</cfif>
+																		</cfif>
+																	</table>
+																</div><!-- /.box-body -->
+															</div><!-- /.box -->
+														</div>
+													</cfloop>
+												</div>
+												<cfif 	NOT IsNull(REQUEST.pageData.product) 
+														AND 
+														NOT IsNull(currentAttributeSet)
+														AND 
+														attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()
+														AND
+														NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
+													<div class="form-group">
+														<label>Product(s)</label>
+														<table class="table table-bordered table-hover">
+															<tr class="default">
+																<th>ID</th>
+																<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
+																	<th>#LCase(rela.getAttribute().getDisplayName())#</th>
+																</cfloop>
+																<th>Sku</th>
+																<th>Stock</th>
+																<th>Price</th>
+																<th>Special Price</th>
+																<th>From Date</th>
+																<th>To Date</th>
+															</tr>
+															<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+															<tr>
+																<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
+																<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
+																	<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=p,attribute=rela.getAttribute()},true) />
+																	<td>
+																		<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+																			<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
+																			<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																				<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																					<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																						<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																					</div>
+																				<cfelse>
+																					<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+																				</cfif>
+																			</cfif>
+																		<cfelse>
+																			N/A
+																		</cfif>
+																	</td>
+																</cfloop>
+																<td>
+																	<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+															</tr>
+															</cfloop>
+														</table>
+													</div>
+												</cfif>
+											</div>
+										</cfloop>
 									</td>
 								</tr>
 							</table>
