@@ -511,6 +511,48 @@
 									<td>Single</td>
 								</tr>
 								<tr>
+									<td></td>
+									<td>
+										<div class="form-group">
+											<label>Price</label>
+											<div class="input-group">
+												<input name="price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label>SKU</label>
+											<div class="input-group">
+												<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label>Stock</label>
+											<div class="input-group">
+												<input name="stock" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label>Special Price</label>
+											<div class="input-group">
+												<input name="price" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label>From Date</label>
+											<div class="input-group">
+												<input type="text" class="form-control pull-right special-price-from-date" name="" id="" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label>To Date</label>
+											<div class="input-group">
+												<input type="text" class="form-control pull-right special-price-from-date" name="" id="" />
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
 									<td>
 										<input type="radio" name="product_type" value="configurable">
 									</td>
