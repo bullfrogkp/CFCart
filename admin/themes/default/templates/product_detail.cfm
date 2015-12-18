@@ -445,18 +445,8 @@
 							</cfloop>
 						</div>
 						<div class="form-group">
-							<label>SKU</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input name="sku" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label>Stock</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input name="stock" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
-							</div>
+							<label>Product Detail</label>
+							<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
 						</div>
 						<div class="form-group">
 							<label>Status</label>
@@ -464,10 +454,6 @@
 								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
 								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
 							</select>
-						</div>
-						<div class="form-group">
-							<label>Product Detail</label>
-							<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
@@ -649,6 +635,7 @@
 																<th>Special Price</th>
 																<th>From Date</th>
 																<th>To Date</th>
+																<th>Enabled</th>
 															</tr>
 															<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 															<tr>
@@ -689,6 +676,9 @@
 																</td>
 																<td>
 																	<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+																<td style="text-align:right;">
+																	<input type="checkbox" class="form-control" name="product_enabled" value="" />
 																</td>
 															</tr>
 															</cfloop>
