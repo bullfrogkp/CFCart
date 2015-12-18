@@ -381,7 +381,7 @@
 				<ul class="nav nav-tabs">
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Price</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Product Type</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Attributes</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
@@ -501,7 +501,56 @@
 								</cfloop>
 							</select>
 						</div>
-						
+						<div class="form-group">
+							<label>Product Type</label>
+							<table class="table table-hover">
+								<tr>
+									<td>
+										<input type="radio" name="product_type" value="single" checked>
+									</td>
+									<td>Single</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="radio" name="product_type" value="configurable">
+									</td>
+									<td>Configurable</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<div class="row" style="margin-top:10px;">
+											<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
+												<div class="col-xs-2">
+													<div class="box box-warning">
+														<div class="box-body table-responsive no-padding">
+															<table class="table table-hover">
+																<tr class="warning">
+																	<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
+																	<th colspan="2" style="padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
+																	<th style="text-align:right;">
+																		<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"
+																		
+																		<cfif NOT IsNull(productShippingCarrierRela) 
+																			OR 
+																			NOT IsNull(REQUEST.pageData.formData.shipping_carrier_id) AND ListFind(REQUEST.pageData.formData.shipping_carrier_id, sc.getShippingCarrierId())>
+																			checked
+																		</cfif>
+																		
+																		/>
+																	</th>
+																</tr>	
+															</table>
+														</div><!-- /.box-body -->
+													</div><!-- /.box -->
+												</div>
+											</cfloop>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!---
 						<cfif IsNumeric(REQUEST.pageData.formData.id)>
 							<cfloop array="#REQUEST.pageData.productArray#" index="product">
 								<div class="box box-warning">
@@ -570,6 +619,7 @@
 								</div><!-- /.box-body -->
 							</div><!-- /.box -->
 						</cfif>
+						--->
 					</div><!-- /.tab-pane -->
 					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
