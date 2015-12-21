@@ -442,7 +442,7 @@
 						</div>
 						<div class="form-group">
 							<label>Product Type</label>&nbsp;&nbsp;(required)
-							<table class="table table-hover table-bordered">
+							<table class="table table-hover">
 								<tr>
 									<td style="width:10px;">
 										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control">
