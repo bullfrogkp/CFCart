@@ -290,11 +290,8 @@
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						<div class="form-group">
-							<label>Category Name</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value="#REQUEST.pageData.formData.display_name#"/>
-							</div>
+							<label>Category Name</label>&nbsp;&nbsp;(required)
+							<input type="text" class="form-control" placeholder="Enter ..." name="display_name" value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Parent Category</label>

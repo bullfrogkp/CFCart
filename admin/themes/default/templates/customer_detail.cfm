@@ -165,11 +165,8 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						<div class="form-group">
-							<label>Email</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
-							</div>
+							<label>Email</label>&nbsp;&nbsp;(required)
+							<input type="text" name="email" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>
 						</div>
 						<div class="form-group">
 							<label>Customer Group</label>

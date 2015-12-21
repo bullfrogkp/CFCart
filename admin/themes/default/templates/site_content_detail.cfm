@@ -45,18 +45,12 @@
 						</div>
 					</cfif>
 					<div class="form-group">
-						<label>Name</label>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-						</div>
+						<label>Name</label>&nbsp;&nbsp;(required)
+						<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					 <div class="form-group">
-						<label>Title</label>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
-						</div>
+						<label>Title</label>&nbsp;&nbsp;(required)
+						<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
 					</div>
 					<div class="form-group">
 						<label>Description</label>

@@ -30,18 +30,12 @@
 				
 				<div class="box-body">
 					<div class="form-group">
-						<label>Name</label>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-						</div>
+						<label>Name</label>&nbsp;&nbsp;(required)
+						<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					<div class="form-group">
-						<label>Amount</label>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input name="amount" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.amount#"/>
-						</div>
+						<label>Amount</label>&nbsp;&nbsp;(required)
+						<input name="amount" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.amount#"/>
 					</div>
 					<div class="form-group">
 						<label>Calculation Type</label>

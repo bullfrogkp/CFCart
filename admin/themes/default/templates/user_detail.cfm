@@ -47,19 +47,12 @@
 						</div>
 						</cfif>
 						<div class="form-group">
-							<label>Username</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input name="username" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.username#"/>
-							</div>
+							<label>Username</label>&nbsp;&nbsp;(required)
+							<input name="username" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.username#"/>
 						</div>
 						<div class="form-group">
-							<label>Name</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-							</div>
-						</div>
+							<label>Name</label>&nbsp;&nbsp;(required)
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 						<div class="form-group">
 							<label>Email</label>
 							<input name="email" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.email#"/>

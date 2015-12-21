@@ -41,18 +41,12 @@
 				
 				<div class="box-body">
 					<div class="form-group">
-						<label>Subject</label>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
-						</div>
+						<label>Subject</label>&nbsp;&nbsp;(required)
+						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
 					</div>
 					 <div class="form-group">
-						<label>Name</label>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-							<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-						</div>
+						<label>Name</label>&nbsp;&nbsp;(required)
+						<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 					</div>
 					<div class="form-group">
 						<label>Type</label>

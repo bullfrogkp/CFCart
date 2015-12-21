@@ -29,11 +29,8 @@
 			<div class="box box-primary">
 					<div class="box-body">
 						<div class="form-group">
-							<label>Group Name</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input type="text" name="group_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.group_name#"/>
-							</div>
+							<label>Group Name</label>&nbsp;&nbsp;(required)
+							<input type="text" name="group_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.group_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Default</label>
