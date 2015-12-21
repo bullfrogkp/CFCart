@@ -390,14 +390,11 @@
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						 <div class="form-group">
-							<label>Product Name</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-								<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-							</div>
+							<label>Product Name</label>&nbsp;&nbsp;(required)
+							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 						<div class="form-group">
-							<label>Category</label>
+							<label>Category</label>&nbsp;&nbsp;(required)
 							<select class="form-control" multiple name="category_id" id="category-id">
 								<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
 									<option value="#cat.getCategoryId()#"
@@ -443,21 +440,7 @@
 							</cfloop>
 						</div>
 						<div class="form-group">
-							<label>Tax Category</label>
-							<select name="tax_category_id" class="form-control">
-								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
-									<option value="#tc.getTaxCategoryId()#"
-									
-									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
-									selected
-									</cfif>
-									
-									>#tc.getDisplayName()#</option>
-								</cfloop>
-							</select>
-						</div>
-						<div class="form-group">
-							<label>Product Type</label>
+							<label>Product Type</label>&nbsp;&nbsp;(required)
 							<table class="table table-hover">
 								<tr>
 									<td>
@@ -666,6 +649,20 @@
 									</td>
 								</tr>
 							</table>
+						</div>
+						<div class="form-group">
+							<label>Tax Category</label>
+							<select name="tax_category_id" class="form-control">
+								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
+									<option value="#tc.getTaxCategoryId()#"
+									
+									<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getTaxCategoryMV()) AND tc.getTaxCategoryId() EQ REQUEST.pageData.formData.tax_category_id>
+									selected
+									</cfif>
+									
+									>#tc.getDisplayName()#</option>
+								</cfloop>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Product Detail</label>
