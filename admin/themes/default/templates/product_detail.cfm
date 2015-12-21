@@ -173,15 +173,6 @@
 			$("##attribute-set-" + $(this).val()).show();
 		});
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		$( ".delete-image" ).click(function() {
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
@@ -330,6 +321,16 @@
 		});	
 
 		$("##category-id").attr("size",$("##category-id option").length);
+		
+		$('##product-type-single').on('ifChecked', function(event){
+			$('##single-product').show();
+			$('##configurable-product').hide();
+		});
+		
+		$('##product-type-configurable').on('ifChecked', function(event){
+			$('##single-product').hide();
+			$('##configurable-product').show();
+		});
 	});
 </script>
 
@@ -391,7 +392,7 @@
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
 						 <div class="form-group">
 							<label>Product Name</label>&nbsp;&nbsp;(required)
-							<input name="display_name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
+							<input name="display_name" id="display-name" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
 						</div>
 						<div class="form-group">
 							<label>Category</label>&nbsp;&nbsp;(required)
@@ -441,14 +442,14 @@
 						</div>
 						<div class="form-group">
 							<label>Product Type</label>&nbsp;&nbsp;(required)
-							<table class="table table-hover">
+							<table class="table table-hover table-bordered">
 								<tr>
-									<td>
-										<input type="radio" name="product_type" value="single" checked>
+									<td style="width:10px;">
+										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control">
 									</td>
 									<td>Single</td>
 								</tr>
-								<tr>
+								<tr id="single-product" style="display:none;">
 									<td></td>
 									<td>
 										<div class="form-group">
@@ -487,11 +488,11 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="radio" name="product_type" value="configurable">
+										<input type="radio" name="product_type" id="product-type-configurable" value="configurable" class="form-control">
 									</td>
 									<td>Configurable</td>
 								</tr>
-								<tr>
+								<tr id="configurable-product" style="display:none;">
 									<td></td>
 									<td>
 										<div class="form-group">
