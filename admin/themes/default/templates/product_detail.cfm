@@ -381,9 +381,7 @@
 				<ul class="nav nav-tabs">
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_3']#" tabid="tab_3"><a href="##tab_3" data-toggle="tab">Product Type</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_5']#" tabid="tab_5"><a href="##tab_5" data-toggle="tab">Attributes</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
@@ -445,35 +443,6 @@
 							</cfloop>
 						</div>
 						<div class="form-group">
-							<label>Product Detail</label>
-							<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
-						</div>
-						<div class="form-group">
-							<label>Status</label>
-							 <select class="form-control" name="is_enabled">
-								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
-								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
-							</select>
-						</div>
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
-						
-						 <div class="form-group">
-							<label>Title</label>
-							<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
-						</div>
-						<div class="form-group">
-							<label>Description</label>
-							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
-						</div>
-						<div class="form-group">
-							<label>Keywords</label>
-							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
-						</div>
-						
-					</div><!-- /.tab-pane -->
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
-						<div class="form-group">
 							<label>Tax Category</label>
 							<select name="tax_category_id" class="form-control">
 								<cfloop array="#REQUEST.pageData.taxCategories#" index="tc">
@@ -523,6 +492,13 @@
 										<div class="form-group">
 											<label>To Date</label>
 											<input type="text" class="form-control pull-right special-price-from-date" name="" id="" style="width:100%" />
+										</div>
+										<div class="form-group">
+											<label>Status</label>
+											 <select class="form-control" name="is_enabled">
+												<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
+												<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
+											</select>
 										</div>
 									</td>
 								</tr>
@@ -691,76 +667,26 @@
 								</tr>
 							</table>
 						</div>
-						<!---
-						<cfif IsNumeric(REQUEST.pageData.formData.id)>
-							<cfloop array="#REQUEST.pageData.productArray#" index="product">
-								<div class="box box-warning">
-									<cfif product.getProductType().getName() EQ "configured_product">
-										<div class="box-header">
-											<h3 class="box-title">
-											<cfloop array="#product.getProductAttributeRelas()#" index="productAttributeRela">
-												<div class="pull-left" style="margin-right:10px;">#LCase(productAttributeRela.getAttribute().getDisplayName())#: #productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
-												<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-													<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-														<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-															<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:middle;" />
-														</div>
-													<cfelse>
-														<div class="pull-left" style="width:16px;height:16px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
-													</cfif>
-												</cfif>
-											</cfloop>
-											</h3>
-										</div><!-- /.box-header -->
-									</cfif>
-									<div class="box-body table-responsive">
-										<table class="table table-bordered table-hover">
-											<tr class="default">
-												<th>Group</th>
-												<th>Price</th>
-												<th>Special Price</th>
-												<th>From Date</th>
-												<th>To Date</th>
-											</tr>
-											<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
-												<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = product, customerGroup = customerGroup},true) />
-												<tr>
-													<td>#customerGroup.getDisplayName()#</td>
-													<td><input type="text" name="price_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="price-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getPrice()#" /></td>
-													<td><input name="special_price_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="special-price-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="#productCustomerGroupRela.getSpecialPrice()#" /></td>
-													<td><input type="text" class="form-control pull-right special-price-from-date" name="special_price_from_date_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="special-price-from-date-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceFromDate(),"mmm dd, yyyy")#" /></td>
-													<td><input type="text" class="form-control pull-right special-price-to-date" name="special_price_to_date_#product.getProductId()#_#customerGroup.getCustomerGroupId()#" id="special-price-from-date-#product.getProductId()#-#customerGroup.getCustomerGroupId()#" value="#DateFormat(productCustomerGroupRela.getSpecialPriceToDate(),"mmm dd, yyyy")#" /></td>
-												</tr>
-											</cfloop>
-										</table>
-									</div><!-- /.box-body -->
-								</div><!-- /.box -->
-							</cfloop>
-						<cfelse>
-							<div class="box box-warning">
-								<div class="box-body table-responsive">
-									<table class="table table-bordered table-hover">
-										<tr class="default">
-											<th>Group</th>
-											<th>Price</th>
-											<th>Special Price</th>
-											<th>From Date</th>
-											<th>To Date</th>
-										</tr>
-										<cfloop array="#REQUEST.pageData.customerGroups#" index="customerGroup">
-											<tr>
-												<td>#customerGroup.getDisplayName()#</td>
-												<td><input type="text" name="price_#customerGroup.getCustomerGroupId()#" id="price-#customerGroup.getCustomerGroupId()#" class="form-control" placeholder="Enter ..." value="" /></td>
-												<td><input name="special_price_#customerGroup.getCustomerGroupId()#" id="special-price-#customerGroup.getCustomerGroupId()#" type="text" class="form-control" placeholder="Enter ..." value="" /></td>
-												<td><input type="text" class="form-control pull-right special-price-from-date" name="special_price_from_date_#customerGroup.getCustomerGroupId()#" id="special-price-from-date-#customerGroup.getCustomerGroupId()#" value="" /></td>
-												<td><input type="text" class="form-control pull-right special-price-to-date" name="special_price_to_date_#customerGroup.getCustomerGroupId()#" id="special-price-from-date-#customerGroup.getCustomerGroupId()#" value="" /></td>
-											</tr>
-										</cfloop>
-									</table>
-								</div><!-- /.box-body -->
-							</div><!-- /.box -->
-						</cfif>
-						--->
+						<div class="form-group">
+							<label>Product Detail</label>
+							<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
+						</div>
+					</div><!-- /.tab-pane -->
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
+						
+						 <div class="form-group">
+							<label>Title</label>
+							<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<textarea name="description" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.description#</textarea>
+						</div>
+						<div class="form-group">
+							<label>Keywords</label>
+							<textarea name="keywords" class="form-control" rows="3" placeholder="Enter ...">#REQUEST.pageData.formData.keywords#</textarea>
+						</div>
+						
 					</div><!-- /.tab-pane -->
 					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
@@ -811,141 +737,7 @@
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_5']#" id="tab_5">
-						<!-- text input -->
-						<div class="form-group">
-							<label>Attribute Set</label>
-							<select name="attribute_set_id" id="attribute-set-id" class="form-control">
-								<option value="">Please Select...</option>
-								<cfloop array="#REQUEST.pageData.attributeSets#" index="as">
-									<option value="#as.getAttributeSetId()#"
-									
-									<cfif as.getAttributeSetId() EQ REQUEST.pageData.formData.attribute_set_id>
-									selected
-									</cfif>
-									
-									>#as.getDisplayName()#</option>
-								</cfloop>
-							</select>
-						</div>
-						
-						<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-							<cfif NOT IsNull(REQUEST.pageData.product)>
-								<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
-							</cfif>
-							<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="
-							<cfif IsNull(REQUEST.pageData.product) OR IsNull(currentAttributeSet) OR (NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>
-							display:none;
-							</cfif>">
-								<label>Attribute Option(s)</label>
-						
-								<div class="row" style="margin-top:10px;">
-									<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="attributeSetAttributeRela">
-										<cfset attribute = attributeSetAttributeRela.getAttribute() />
-										<div class="col-xs-3">
-											<div class="box box-warning">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="warning" id="tr-#attributeSet.getAttributeSetId()#-#attribute.getAttributeId()#">
-															<th colspan="3">#attribute.getDisplayName()#<cfif attributeSetAttributeRela.getRequired() EQ true> (required)</cfif></th>
-															<th>
-																<a attributesetid="#attributeSet.getAttributeSetId()#" attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" req="#attributeSetAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
-																	<span class="label label-primary">Add Option</span>
-																</a>
-															</th>
-														</tr>
-														
-														<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()>
-															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
-															<cfif NOT IsNull(productAttributeRela)>
-																<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-																	<tr id="tr-av-#attributeValue.getAttributeValueId()#">
-																		<td>#attributeValue.getDisplayName()#</td>
-																		<td>
-																			<cfif attributeValue.getThumbnailImageName() NEQ "">
-																				<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																					<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																				</div>
-																			<cfelse>
-																				<cfif attribute.getDisplayName() EQ "color">
-																					<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
-																				<cfelse>
-																					#attributeValue.getThumbnailLabel()#
-																				</cfif>
-																			</cfif>
-																		</td>
-																		<td>
-																			<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																				<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
-																			</div>
-																		</td>
-																		<td>
-																			<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
-																		</td>
-																	</tr>
-																</cfloop>
-															</cfif>
-														</cfif>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</div>
-								<cfif 	NOT IsNull(REQUEST.pageData.product) 
-										AND 
-										NOT IsNull(currentAttributeSet)
-										AND 
-										attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()
-										AND
-										NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
-									<div class="form-group">
-										<label>Product(s)</label>
-										<table class="table table-bordered table-hover">
-											<tr class="default">
-												<th>ID</th>
-												<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
-													<th>#LCase(rela.getAttribute().getDisplayName())#</th>
-												</cfloop>
-												<th>Sku</th>
-												<th>Stock</th>
-											</tr>
-											<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-											<tr>
-												<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
-												<cfloop array="#attributeSet.getAttributeSetAttributeRelas()#" index="rela">
-													<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=p,attribute=rela.getAttribute()},true) />
-													<td>
-														<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-															<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
-															<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																	<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																		<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																	</div>
-																<cfelse>
-																	<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
-																</cfif>
-															</cfif>
-														<cfelse>
-															N/A
-														</cfif>
-													</td>
-												</cfloop>
-												<td>
-													<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
-												</td>
-												<td>
-													<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-												</td>
-											</tr>
-											</cfloop>
-										</table>
-									</div>
-								</cfif>
-							</div>
-						</cfloop>
-					</div>
+					
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
 					
 						<div class="row">
