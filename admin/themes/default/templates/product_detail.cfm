@@ -647,6 +647,8 @@
 												</cfif>
 											</div>
 										</cfloop>
+										
+										<button class="btn btn-default btn-sm">Add Attribute</button>
 									</td>
 								</tr>
 							</table>
