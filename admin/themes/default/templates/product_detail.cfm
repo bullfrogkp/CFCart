@@ -551,75 +551,77 @@
 											</cfif>
 										</div>
 										
-										<div class="form-group">
-											<label>Product(s)</label>
-											<table class="table table-bordered table-hover">
-												<tr class="warning">
-													<th>ID</th>
-													<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-														<cfif productAttributeRela.getRequired() EQ true>
-															<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
-														</cfif>
-													</cfloop>
-													<th>Sku</th>
-													<th>Stock</th>
-													<th>Price</th>
-													<th>Special Price</th>
-													<th>From Date</th>
-													<th>To Date</th>
-													<th>Enabled</th>
-												</tr>
-												<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-												<tr>
-													<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
-													
-													<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-														<cfif productAttributeRela.getRequired() EQ true>
-															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
-															<td>
-																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-																	<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
-																	<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																			<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																				<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																			</div>
-																		<cfelse>
-																			<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+										<cfif NOT IsNull(REQUEST.pageData.product)>
+											<div class="form-group">
+												<label>Product(s)</label>
+												<table class="table table-bordered table-hover">
+													<tr class="warning">
+														<th>ID</th>
+														<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+															<cfif productAttributeRela.getRequired() EQ true>
+																<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
+															</cfif>
+														</cfloop>
+														<th>Sku</th>
+														<th>Stock</th>
+														<th>Price</th>
+														<th>Special Price</th>
+														<th>From Date</th>
+														<th>To Date</th>
+														<th>Enabled</th>
+													</tr>
+													<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+													<tr>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
+														
+														<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+															<cfif productAttributeRela.getRequired() EQ true>
+																<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
+																<td>
+																	<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+																		<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
+																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																				<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																				</div>
+																			<cfelse>
+																				<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+																			</cfif>
 																		</cfif>
+																	<cfelse>
+																		N/A
 																	</cfif>
-																<cfelse>
-																	N/A
-																</cfif>
-															</td>
-														</cfif>
+																</td>
+															</cfif>
+														</cfloop>
+														
+														<td>
+															<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+														</td>
+														<td>
+															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+														</td>
+														<td>
+															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+														</td>
+														<td>
+															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+														</td>
+														<td>
+															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+														</td>
+														<td>
+															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+														</td>
+														<td style="text-align:right;">
+															<input type="checkbox" class="form-control" name="product_enabled" value="" />
+														</td>
+													</tr>
 													</cfloop>
-													
-													<td>
-														<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
-													</td>
-													<td>
-														<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-													</td>
-													<td>
-														<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-													</td>
-													<td>
-														<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-													</td>
-													<td>
-														<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-													</td>
-													<td>
-														<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-													</td>
-													<td style="text-align:right;">
-														<input type="checkbox" class="form-control" name="product_enabled" value="" />
-													</td>
-												</tr>
-												</cfloop>
-											</table>
-										</div>
+												</table>
+											</div>
+										</cfif>
 									</td>
 								</tr>
 							</table>
