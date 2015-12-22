@@ -580,7 +580,9 @@
 												<tr class="default">
 													<th>ID</th>
 													<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-														<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
+														<cfif productAttributeRela.getRequired() EQ true>
+															<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
+														</cfif>
 													</cfloop>
 													<th>Sku</th>
 													<th>Stock</th>
