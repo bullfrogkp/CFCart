@@ -383,10 +383,10 @@
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_1']#" tabid="tab_1"><a href="##tab_1" data-toggle="tab">General Information</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">Meta Data</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_4']#" tabid="tab_4"><a href="##tab_4" data-toggle="tab">Images</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
-					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_8']#" tabid="tab_8"><a href="##tab_8" data-toggle="tab">Shipping</a></li>
 					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_9']#" tabid="tab_9"><a href="##tab_9" data-toggle="tab">Video</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_6']#" tabid="tab_6"><a href="##tab_6" data-toggle="tab">Related Products</a></li>
+					<li class="tab-title top-level-tab #REQUEST.pageData.tabs['tab_7']#" tabid="tab_7"><a href="##tab_7" data-toggle="tab">Reviews</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_1']#" id="tab_1">
@@ -518,7 +518,10 @@
 											</div>
 										</cfloop>
 										--->
-										<label>Attribute Option(s)</label>
+										<label>Attribute Option(s)</label>&nbsp;&nbsp;&nbsp;
+										<a href="" class="add-new-attribute" data-toggle="modal" data-target="##add-new-attribute-modal">
+											<span class="label label-primary">Edit Attribute(s)</span>
+										</a>
 										
 										<div class="row" style="margin-top:10px;">
 											<cfif NOT IsNull(REQUEST.pageData.product)>
@@ -570,9 +573,6 @@
 												</cfloop>
 											</cfif>
 										</div>
-										<a href="" class="add-new-attribute" data-toggle="modal" data-target="##add-new-attribute-modal">
-											<span class="btn btn-primary">Edit Attribute(s)</span>
-										</a>
 										
 										<div class="form-group">
 											<label>Product(s)</label>
@@ -731,129 +731,6 @@
 							</div>
 						</div>
 					</div><!-- /.tab-pane -->
-					
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
-					
-						<div class="row">
-							<div class="col-xs-3" style="padding-right:0;">
-								<select name="search_product_group_id" id="search-product-group-id" class="form-control">
-									<option value="0">Choose Product Group ...</option>
-									<cfloop array="#REQUEST.pageData.productGroups#" index="group">
-										<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
-									</cfloop>
-								</select>
-							</div>
-							<div class="col-xs-4" style="padding-right:0;">
-								<select class="form-control" name="search_category_id" id="search-category-id">
-									<option value="0">Choose Category ...</option>
-									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-										<option value="#cat.getCategoryId()#"
-										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
-										selected
-										</cfif>
-										>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
-										<cfloop array="#cat.getSubCategories()#" index="subCat">
-											<option value="#subCat.getCategoryId()#"
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
-											selected
-											</cfif>
-											>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
-											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-												<option value="#thirdCat.getCategoryId()#"
-												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
-												selected
-												</cfif>
-												>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
-											</cfloop>
-											</li>
-										</cfloop>
-										</li>
-									</cfloop>
-								</select>
-							</div>
-							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
-								<input type="text" name="search_keywords" id="search-keywords" class="form-control" placeholder="Keywords">
-							</div>
-							<div class="col-xs-1" style="padding-left:10px;">
-								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
-							</div>
-						</div>
-						<div class="row" style="margin-top:18px;">
-							<div class="col-xs-5">	
-								<select name="products_searched" id="products-searched" multiple class="form-control" style="height:270px;">
-								</select>
-							</div>
-							<div class="col-xs-2" style="text-align:center;">
-								<a class="btn btn-app" id="add-all">
-									<i class="fa fa-angle-double-right"></i> Add All
-								</a>
-								<a class="btn btn-app" id="add">
-									<i class="fa fa-angle-right"></i> Add
-								</a>
-								<a class="btn btn-app" id="remove">
-									<i class="fa fa-angle-left"></i> Remove
-								</a>
-								<a class="btn btn-app" id="remove-all">
-									<i class="fa fa-angle-double-left"></i> Remove All
-								</a>
-							</div>
-							<div class="col-xs-5">	
-								<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
-									<cfif NOT IsNull(REQUEST.pageData.product)>
-										<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
-											<option value="#product.getProductId()#">#product.getDisplayName()#</option>
-										</cfloop>
-									</cfif>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="box box-primary">
-									<div class="box-header">
-										<h3 class="box-title">Reviews</h3>
-									</div><!-- /.box-header -->
-									<div class="box-body table-responsive">
-										<table class="table table-bordered table-striped data-table">
-											<thead>
-												<tr>
-													<th>Subject</th>
-													<th>Message</th>
-													<th>Rating</th>
-													<th>Create Datetime</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviewsMV()) AND ArrayLen(REQUEST.pageData.product.getReviewsMV()) GT 0>
-													<cfloop array="#REQUEST.pageData.product.getReviewsMV()#" index="review">
-													<tr>
-														<td>#review.getSubject()#</td>
-														<td>#review.getMessage()#</td>
-														<td>#review.getRating()#</td>
-														<td>#review.getCreatedDatetime()#</td>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
-													</tr>
-													</cfloop>
-												</cfif>
-											</tbody>
-											<tfoot>
-												<tr>
-													<th>Subject</th>
-													<th>Message</th>
-													<th>Rating</th>
-													<th>Create Datetime</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_8']#" id="tab_8">
 						<table class="table table-hover">
 							<tr>
@@ -1050,6 +927,128 @@
 								<input name="video5" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.video5#"/>
 							</div>
 						</cfif>
+					</div>
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_6']#" id="tab_6">
+					
+						<div class="row">
+							<div class="col-xs-3" style="padding-right:0;">
+								<select name="search_product_group_id" id="search-product-group-id" class="form-control">
+									<option value="0">Choose Product Group ...</option>
+									<cfloop array="#REQUEST.pageData.productGroups#" index="group">
+										<option value="#group.getProductGroupId()#">#group.getDisplayName()#</option>
+									</cfloop>
+								</select>
+							</div>
+							<div class="col-xs-4" style="padding-right:0;">
+								<select class="form-control" name="search_category_id" id="search-category-id">
+									<option value="0">Choose Category ...</option>
+									<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+										<option value="#cat.getCategoryId()#"
+										<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)>
+										selected
+										</cfif>
+										>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+										<cfloop array="#cat.getSubCategories()#" index="subCat">
+											<option value="#subCat.getCategoryId()#"
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)>
+											selected
+											</cfif>
+											>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+											<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+												<option value="#thirdCat.getCategoryId()#"
+												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)>
+												selected
+												</cfif>
+												>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+											</cfloop>
+											</li>
+										</cfloop>
+										</li>
+									</cfloop>
+								</select>
+							</div>
+							<div class="col-xs-4" style="padding-right:0;padding-left:10px;">
+								<input type="text" name="search_keywords" id="search-keywords" class="form-control" placeholder="Keywords">
+							</div>
+							<div class="col-xs-1" style="padding-left:10px;">
+								<button name="search_product" id="search-product" type="button" class="btn btn-sm btn-primary search-button" style="width:100%">Search</button>
+							</div>
+						</div>
+						<div class="row" style="margin-top:18px;">
+							<div class="col-xs-5">	
+								<select name="products_searched" id="products-searched" multiple class="form-control" style="height:270px;">
+								</select>
+							</div>
+							<div class="col-xs-2" style="text-align:center;">
+								<a class="btn btn-app" id="add-all">
+									<i class="fa fa-angle-double-right"></i> Add All
+								</a>
+								<a class="btn btn-app" id="add">
+									<i class="fa fa-angle-right"></i> Add
+								</a>
+								<a class="btn btn-app" id="remove">
+									<i class="fa fa-angle-left"></i> Remove
+								</a>
+								<a class="btn btn-app" id="remove-all">
+									<i class="fa fa-angle-double-left"></i> Remove All
+								</a>
+							</div>
+							<div class="col-xs-5">	
+								<select name="products_selected" id="products-selected" multiple class="form-control" style="height:270px;">
+									<cfif NOT IsNull(REQUEST.pageData.product)>
+										<cfloop array="#REQUEST.pageData.product.getRelatedProducts()#" index="product">
+											<option value="#product.getProductId()#">#product.getDisplayName()#</option>
+										</cfloop>
+									</cfif>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane #REQUEST.pageData.tabs['tab_7']#" id="tab_7">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="box box-primary">
+									<div class="box-header">
+										<h3 class="box-title">Reviews</h3>
+									</div><!-- /.box-header -->
+									<div class="box-body table-responsive">
+										<table class="table table-bordered table-striped data-table">
+											<thead>
+												<tr>
+													<th>Subject</th>
+													<th>Message</th>
+													<th>Rating</th>
+													<th>Create Datetime</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getReviewsMV()) AND ArrayLen(REQUEST.pageData.product.getReviewsMV()) GT 0>
+													<cfloop array="#REQUEST.pageData.product.getReviewsMV()#" index="review">
+													<tr>
+														<td>#review.getSubject()#</td>
+														<td>#review.getMessage()#</td>
+														<td>#review.getRating()#</td>
+														<td>#review.getCreatedDatetime()#</td>
+														<td><a href="#APPLICATION.absoluteUrlWeb#admin/review_detail.cfm?id=#review.getReviewId()#">View Detail</a></td>
+													</tr>
+													</cfloop>
+												</cfif>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>Subject</th>
+													<th>Message</th>
+													<th>Rating</th>
+													<th>Create Datetime</th>
+													<th>Action</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div><!-- /.tab-content -->
 			</div><!-- nav-tabs-custom -->
