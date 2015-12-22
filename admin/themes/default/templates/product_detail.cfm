@@ -495,6 +495,7 @@
 								<tr id="configurable-product" style="display:none;">
 									<td></td>
 									<td>
+										<!---
 										<div class="form-group">
 											<label>Attribute Set</label>
 											<select name="attribute_set_id" id="attribute-set-id" class="form-control">
@@ -510,6 +511,7 @@
 												</cfloop>
 											</select>
 										</div>
+										--->
 										
 										<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
 											<cfif NOT IsNull(REQUEST.pageData.product)>
@@ -648,7 +650,9 @@
 											</div>
 										</cfloop>
 										
-										<button class="btn btn-default btn-sm">Add Attribute</button>
+										<a href="" class="add-new-attribute" data-toggle="modal" data-target="##add-new-attribute-modal">
+											<span class="label label-primary">Add Attribute(s)</span>
+										</a>
 									</td>
 								</tr>
 							</table>
@@ -1222,6 +1226,58 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_video" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ADD ATTRIBUTE MODAL -->
+<div class="modal fade" id="add-attribute-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Attribute</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Attributes</label>
+					<select class="form-control" multiple name="category_id" id="category-id">
+						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
+							<option value="#cat.getCategoryId()#"
+							<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
+								OR
+								NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, cat.getCategoryId())>
+							selected
+							</cfif>
+							>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
+							<cfloop array="#cat.getSubCategories()#" index="subCat">
+								<option value="#subCat.getCategoryId()#"
+								<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)
+									OR
+									NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, subCat.getCategoryId())>
+								selected
+								</cfif>
+								>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
+								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+									<option value="#thirdCat.getCategoryId()#"
+									<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)
+										OR
+										NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, thirdCat.getCategoryId())>
+									selected
+									</cfif>
+									>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
+								</cfloop>
+								</li>
+							</cfloop>
+							</li>
+						</cfloop>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_attribute" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
