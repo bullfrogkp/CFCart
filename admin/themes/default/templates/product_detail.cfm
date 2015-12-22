@@ -495,29 +495,6 @@
 								<tr id="configurable-product" style="display:none;">
 									<td></td>
 									<td>
-										<!---
-										
-										<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
-											<cfif NOT IsNull(REQUEST.pageData.product)>
-												<cfset currentAttributeSet = REQUEST.pageData.product.getAttributeSetMV() />
-											</cfif>
-											<div class="attribute-set" id="attribute-set-#attributeSet.getAttributeSetId()#" style="
-											<cfif IsNull(REQUEST.pageData.product) OR IsNull(currentAttributeSet) OR (NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(currentAttributeSet) AND attributeSet.getAttributeSetId() NEQ currentAttributeSet.getAttributeSetId())>
-											display:none;
-											</cfif>">
-												
-												<cfif 	NOT IsNull(REQUEST.pageData.product) 
-														AND 
-														NOT IsNull(currentAttributeSet)
-														AND 
-														attributeSet.getAttributeSetId() EQ currentAttributeSet.getAttributeSetId()
-														AND
-														NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
-													
-												</cfif>
-											</div>
-										</cfloop>
-										--->
 										<label>Attribute Option(s)</label>&nbsp;&nbsp;&nbsp;
 										<a href="" class="add-new-attribute" data-toggle="modal" data-target="##add-new-attribute-modal">
 											<span class="label label-primary">Edit Attribute(s)</span>
@@ -577,7 +554,7 @@
 										<div class="form-group">
 											<label>Product(s)</label>
 											<table class="table table-bordered table-hover">
-												<tr class="default">
+												<tr class="warning">
 													<th>ID</th>
 													<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 														<cfif productAttributeRela.getRequired() EQ true>
