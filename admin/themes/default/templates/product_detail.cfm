@@ -1231,7 +1231,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- ADD ATTRIBUTE MODAL -->
-<div class="modal fade" id="add-attribute-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="add-new-attribute-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -1242,35 +1242,13 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label>Attributes</label>
-					<select class="form-control" multiple name="category_id" id="category-id">
-						<cfloop array="#REQUEST.pageData.categoryTree#" index="cat">
-							<option value="#cat.getCategoryId()#"
-							<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),cat)
-								OR
-								NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, cat.getCategoryId())>
-							selected
-							</cfif>
-							>#RepeatString("&nbsp;",1)##cat.getDisplayName()#</option>
-							<cfloop array="#cat.getSubCategories()#" index="subCat">
-								<option value="#subCat.getCategoryId()#"
-								<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),subCat)
-									OR
-									NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, subCat.getCategoryId())>
-								selected
-								</cfif>
-								>#RepeatString("&nbsp;",11)##subCat.getDisplayName()#</option>
-								<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-									<option value="#thirdCat.getCategoryId()#"
-									<cfif IsNull(REQUEST.pageData.formData.category_id) AND NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.product.getCategoriesMV()) AND ArrayContains(REQUEST.pageData.product.getCategoriesMV(),thirdCat)
-										OR
-										NOT IsNull(REQUEST.pageData.formData.category_id) AND ListFind(REQUEST.pageData.formData.category_id, thirdCat.getCategoryId())>
-									selected
-									</cfif>
-									>#RepeatString("&nbsp;",21)##thirdCat.getDisplayName()#</option>
-								</cfloop>
-								</li>
-							</cfloop>
-							</li>
+					<select class="form-control" multiple name="attribute_id" id="attribute-id">
+						<cfloop array="#REQUEST.pageData.attributes#" index="attr">
+							<option value="#attr.getAttributeId()#">
+							
+							#attr.getDisplayName()#
+							
+							</option>
 						</cfloop>
 					</select>
 				</div>
