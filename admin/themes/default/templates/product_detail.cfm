@@ -511,7 +511,7 @@
 												</cfloop>
 											</select>
 										</div>
-										--->
+										
 										
 										<cfloop array="#REQUEST.pageData.attributeSets#" index="attributeSet">
 											<cfif NOT IsNull(REQUEST.pageData.product)>
@@ -649,7 +649,7 @@
 												</cfif>
 											</div>
 										</cfloop>
-										
+										--->
 										<a href="" class="add-new-attribute" data-toggle="modal" data-target="##add-new-attribute-modal">
 											<span class="label label-primary">Add Attribute(s)</span>
 										</a>
