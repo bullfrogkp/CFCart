@@ -445,11 +445,23 @@
 							<table class="table table-hover">
 								<tr>
 									<td style="width:10px;">
-										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control">
+										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control"
+										
+										<cfif REQUEST.pageData.product.getProductType().getName() EQ "simple">
+										checked
+										</cfif>
+										
+										>
 									</td>
 									<td>Single</td>
 								</tr>
-								<tr id="single-product" style="display:none;">
+								<tr id="single-product" style="
+								
+								<cfif REQUEST.pageData.product.getProductType().getName() NEQ "simple">
+								display:none;
+								</cfif>
+								
+								">
 									<td></td>
 									<td>
 										<div class="form-group">
@@ -488,11 +500,23 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="radio" name="product_type" id="product-type-configurable" value="configurable" class="form-control">
+										<input type="radio" name="product_type" id="product-type-configurable" value="configurable" class="form-control"
+										
+										<cfif REQUEST.pageData.product.getProductType().getName() EQ "configured_product">
+										checked
+										</cfif>
+										
+										>
 									</td>
 									<td>Configurable</td>
 								</tr>
-								<tr id="configurable-product" style="display:none;">
+								<tr id="configurable-product" style="
+								
+								<cfif REQUEST.pageData.product.getProductType().getName() NEQ "configured_product">
+								display:none;
+								</cfif>
+								
+								">
 									<td></td>
 									<td>
 										<label>Attribute Option(s)</label>&nbsp;&nbsp;&nbsp;
