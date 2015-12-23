@@ -447,7 +447,7 @@
 									<td style="width:10px;">
 										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control"
 										
-										<cfif REQUEST.pageData.product.getProductType().getName() EQ "simple">
+										<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0>
 										checked
 										</cfif>
 										
@@ -457,7 +457,7 @@
 								</tr>
 								<tr id="single-product" style="
 								
-								<cfif REQUEST.pageData.product.getProductType().getName() NEQ "simple">
+								<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
 								display:none;
 								</cfif>
 								
@@ -502,7 +502,7 @@
 									<td>
 										<input type="radio" name="product_type" id="product-type-configurable" value="configurable" class="form-control"
 										
-										<cfif REQUEST.pageData.product.getProductType().getName() EQ "configured_product">
+										<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
 										checked
 										</cfif>
 										
@@ -512,7 +512,7 @@
 								</tr>
 								<tr id="configurable-product" style="
 								
-								<cfif REQUEST.pageData.product.getProductType().getName() NEQ "configured_product">
+								<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0>
 								display:none;
 								</cfif>
 								
