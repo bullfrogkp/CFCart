@@ -336,9 +336,25 @@
 		});
 		
 		$('##edit-attribute-confirm').click(function() {  
+			var newAttributeFound = false;
 			var attributeFound = false;
+			
 			if(attributeChanged == true)
 			{
+				for(var i=0;i<attributeArray.length;i++)
+				{	
+					if($('##attribute-id:selected'))
+					{
+						attributeFound = true;
+						break;
+					}
+					
+					if(attributeFound == false)
+					{
+						attributeArray.removeCurrent();
+					}
+				}
+			
 				$('##attribute-id:selected').each(function( index ) {
 					console.log( index + ": " + $( this ).text() );
 					attributeFound = false;
@@ -356,6 +372,8 @@
 						var attribute = new Object();
 						attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
 						attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
+						attribute.options = new Array();
+						attributeArray.push(attribute);
 					}
 				});
 				
