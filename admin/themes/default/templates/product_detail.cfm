@@ -2,6 +2,9 @@
 
 <script>
 	$(document).ready(function() {
+	
+		var attributeChanged = false;
+	
 		CKEDITOR.replace( 'detail',
 		{
 			filebrowserBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins/ckeditor/filemanager/index.html',
@@ -332,9 +335,17 @@
 			$('##configurable-product').show();
 		});
 		
-		$('##add-new-attribute-confirm').click(function() {  
-			return !$('##products-selected option:selected').remove().appendTo('##products-searched').removeAttr("selected"); 
+		$('##edit-attribute-confirm').click(function() {  
+			if(attributeChanged == true)
+			{
+				alert('update');
+				attributeChanged = false;
+			}			
 		});	
+		
+		$('##attribute-id').change(function() {
+			attributeChanged = true;
+		});
 	});
 </script>
 
@@ -1251,7 +1262,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_attribute" id="add-new-attribute-confirm" type="button" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+				<button name="edit_attribute" id="edit-attribute-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

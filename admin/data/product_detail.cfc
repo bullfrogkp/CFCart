@@ -490,6 +490,10 @@
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
 			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
+			<cfset LOCAL.pageData.attributeList = "" />
+			<cfloop array="#LOCAL.pageData.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
+				<cfset LOCAL.pageData.attributeList &= "#LOCAL.productAttributeRela.getAttribute().getAttributeId()#," />
+			</cfloop>
 			
 			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSetMV()) AND NOT ArrayIsEmpty(LOCAL.pageData.product.getSubProducts())>
 				<cfset LOCAL.pageData.productArray = LOCAL.pageData.product.getSubProducts() />
@@ -526,6 +530,7 @@
 		<cfelse>
 			<cfset LOCAL.pageData.title = "New Product | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			<cfset LOCAL.pageData.attributeList = "" />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
