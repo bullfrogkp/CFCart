@@ -352,7 +352,11 @@
 					}
 					
 					if(attributeFound == false)
-						attributeArray.remove(this);
+					{
+						var attribute = new Object();
+						attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
+						attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
+					}
 				});
 				
 				generateAttributes();
