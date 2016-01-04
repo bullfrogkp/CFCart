@@ -336,9 +336,26 @@
 		});
 		
 		$('##edit-attribute-confirm').click(function() {  
+			var attributeFound = false;
 			if(attributeChanged == true)
 			{
-				$('##attribute-options').empty();
+				$('##attribute-id:selected').each(function( index ) {
+					console.log( index + ": " + $( this ).text() );
+					attributeFound = false;
+					for(var i=0;i<attributeArray.length;i++)
+					{	
+						if($( this ).text() == attributeArray[i].aid)
+						{
+							attributeFound = true;
+							break;
+						}
+					}
+					
+					if(attributeFound == false)
+						attributeArray.remove(this);
+				});
+				
+				generateAttributes();
 				attributeChanged = false;
 			}			
 		});	
@@ -367,6 +384,10 @@
 			attribute.options = attributeValues;
 			attributeArray.push(attribute);
 		</cfloop>
+		
+		function generateAttributes() {
+		
+		}
 	});
 </script>
 
