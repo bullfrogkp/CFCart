@@ -350,9 +350,21 @@
 		var attributeArray = new Array();
 		<cfloop array="#REQUEST.pageData.product.getProductAttributeRela()#" index="productAttributeRela">
 			var attribute = new Object();
+			var attributeValues = new Array();
 			attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
-			attribute.options = new Array();
 			attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
+			
+			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+				var attributeValue = new Object();
+				attributeValue.avid = '#attributeValue.getAttributeValueId()#';
+				attributeValue.name = '#attributeValue.getDisplayName()#';
+				attributeValue.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
+				attributeValue.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
+				attributeValue.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
+				attributeValues.push(attributeValue);
+			</cfloop>
+			
+			attribute.options = attributeValues;
 			attributeArray.push(attribute);
 		</cfloop>
 	});
