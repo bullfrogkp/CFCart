@@ -338,7 +338,7 @@
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
-				alert('update');
+				$('##attribute-options').empty();
 				attributeChanged = false;
 			}			
 		});	
@@ -346,6 +346,15 @@
 		$('##attribute-id').change(function() {
 			attributeChanged = true;
 		});
+		
+		var attributeArray = new Array();
+		<cfloop array="#REQUEST.pageData.product.getProductAttributeRela()#" index="productAttributeRela">
+			var attribute = new Object();
+			attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
+			attribute.options = new Array();
+			attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
+			attributeArray.push(attribute);
+		</cfloop>
 	});
 </script>
 
@@ -532,7 +541,7 @@
 											<span class="label label-primary">Edit Attribute(s)</span>
 										</a>
 										
-										<div class="row" style="margin-top:10px;">
+										<div id="attribute-options" class="row" style="margin-top:10px;">
 											<cfif NOT IsNull(REQUEST.pageData.product)>
 												<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 													<cfset attribute = productAttributeRela.getAttribute() />
@@ -802,99 +811,6 @@
 								</td>
 							</tr>
 						</table>
-						<!---
-						<div class="form-group">
-							<label>Length</label>
-							<input name="length" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.length#"/>
-						</div>
-						<div class="form-group">
-							<label>Width</label>
-							<input name="width" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.width#"/>
-						</div>
-						<div class="form-group">
-							<label>Height</label>
-							<input name="height" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.height#"/>
-						</div>
-						<div class="form-group">
-							<label>Weight</label>
-							<input name="weight" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.weight#"/>
-						</div>
-						<div class="form-group">
-							<label>Shipping Carriers</label>
-							<div class="row" style="margin-top:10px;">
-								<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
-									<cfif StructKeyExists(REQUEST.pageData.formData,"default_price_#sc.getShippingCarrierId()#")>
-										<cfset defaultPrice = REQUEST.pageData.formData["default_price_#sc.getShippingCarrierId()#"] />
-									<cfelse>
-										<cfif NOT IsNull(REQUEST.pageData.product)>
-											<cfset productShippingCarrierRela = EntityLoad("product_shipping_carrier_rela",{product = REQUEST.pageData.product, shippingCarrier = sc},true) />
-											<cfif NOT IsNull(productShippingCarrierRela)>
-												<cfset defaultPrice = productShippingCarrierRela.getPrice() />
-											<cfelse>
-												<cfset defaultPrice = 0 />
-											</cfif>
-										<cfelse>
-											<cfset defaultPrice = 0 />
-										</cfif>
-									</cfif>
-									<div class="col-xs-3">
-										<div class="box box-warning">
-											<div class="box-body table-responsive no-padding">
-												<table class="table table-hover">
-													<tr class="warning">
-														<th><img src="#APPLICATION.absoluteUrlWeb#images/uploads/shipping/#sc.getImageName()#" style="height:25px;vertical-align:top;" /></th>
-														<th colspan="2" style="text-align:right;padding-right:10px;" nowrap>#sc.getDisplayName()#</th>
-														<th style="text-align:right;">
-															<input type="checkbox" class="form-control pull-right" name="shipping_carrier_id" value="#sc.getShippingCarrierId()#"
-															
-															<cfif NOT IsNull(productShippingCarrierRela) 
-																OR 
-																NOT IsNull(REQUEST.pageData.formData.shipping_carrier_id) AND ListFind(REQUEST.pageData.formData.shipping_carrier_id, sc.getShippingCarrierId())>
-																checked
-															</cfif>
-															
-															/>
-														</th>
-													</tr>	
-													<tr style="font-size:12px;">
-														<td>
-															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="1"
-															
-															<cfif NOT StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND (IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ true)
-																OR 
-																StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND REQUEST.pageData.formData["use_default_price_#sc.getShippingCarrierId()#"] EQ 1>
-															checked
-															</cfif>
-															
-															>
-														</td>
-														<td>Default</td>
-														<td colspan="2">
-															<input type="text" name="default_price_#sc.getShippingCarrierId()#" value="#defaultPrice#" style="width:100%;text-align:right;padding-right:5px;">
-														</td>
-													</tr>
-													<tr style="font-size:12px;">
-														<td>
-															<input type="radio" name="use_default_price_#sc.getShippingCarrierId()#" value="0"
-															
-															<cfif NOT StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND (IsNull(productShippingCarrierRela) OR productShippingCarrierRela.getUseDefaultPrice() EQ false)
-																OR 
-																StructKeyExists(REQUEST.pageData.formData,"use_default_price_#sc.getShippingCarrierId()#") AND REQUEST.pageData.formData["use_default_price_#sc.getShippingCarrierId()#"] EQ 0>
-															checked
-															</cfif>
-															
-															>
-														</td>
-														<td colspan="3">Calculated</td>
-													</tr>
-												</table>
-											</div><!-- /.box-body -->
-										</div><!-- /.box -->
-									</div>
-								</cfloop>
-							</div>
-						</div>
-						--->
 					</div>
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_9']#" id="tab_9">
 						<cfif NOT IsNULL(REQUEST.pageData.product) AND NOT IsNULL(REQUEST.pageData.product.getProductVideosMV())>
