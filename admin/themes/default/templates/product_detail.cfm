@@ -493,13 +493,6 @@
 											<label>To Date</label>
 											<input type="text" class="form-control pull-right special-price-from-date" name="" id="" style="width:100%" />
 										</div>
-										<div class="form-group">
-											<label>Status</label>
-											 <select class="form-control" name="is_enabled">
-												<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
-												<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
-											</select>
-										</div>
 									</td>
 								</tr>
 								<tr>
@@ -671,6 +664,13 @@
 						<div class="form-group">
 							<label>Product Detail</label>
 							<textarea name="detail" id="detail" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.detail#</textarea>
+						</div>
+						<div class="form-group">
+							<label>Status</label>
+							 <select class="form-control" name="is_enabled">
+								<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ TRUE>selected</cfif>>Enabled</option>
+								<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ FALSE>selected</cfif>>Disabled</option>
+							</select>
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
@@ -1240,11 +1240,11 @@
 					<label>Attributes</label>
 					<select class="form-control" multiple name="attribute_id" id="attribute-id">
 						<cfloop array="#REQUEST.pageData.attributes#" index="attr">
-							<option value="#attr.getAttributeId()#">
-							
-							#attr.getDisplayName()#
-							
-							</option>
+							<option value="#attr.getAttributeId()#"
+							<cfif ListFind(REQUEST.pageData.attributeList,attr.getAttributeId())>
+								selected
+							</cfif>
+							>#attr.getDisplayName()#</option>
 						</cfloop>
 					</select>
 				</div>
