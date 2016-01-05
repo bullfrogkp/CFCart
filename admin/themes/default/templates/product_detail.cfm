@@ -406,9 +406,9 @@
 		function attributeFound(attribute, attributeArray) {
 			var attributeFound = false;
 			
-			for(var i=0;i<arr.length;i++)
+			for(var i=0;i<attributeArray.length;i++)
 			{
-				if(arr[i] == val)
+				if(attributeArray[i].aid == attribute.aid)
 				{
 					attributeFound = true;
 					break;
@@ -418,19 +418,26 @@
 			return attributeFound;
 		}
 		
-		function addAttribute(id, name) {
+		function addAttribute(obj) {
 			var index = attributeArray.length;
 			
 			var attribute = new Object();
-			attribute.aid = id;
-			attribute.name = name;			
+			attribute.aid = obj.aid;
+			attribute.name = obj.name;			
 			attribute.options = new Array();
 			
 			attributeArray[index] = attribute;
 		}
 		
-		function removeAttribute(id) {
-		
+		function removeAttribute(attribute) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attribute.aid)
+				{
+					attributeArray.splice(i, 1);
+					break;
+				}
+			}
 		}
 		
 		function generateAttributes() {
