@@ -336,11 +336,12 @@
 		});
 		
 		var attributeArray = new Array();
-		<cfloop array="#REQUEST.pageData.product.getProductAttributeRela()#" index="productAttributeRela">
+		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 			var attribute = new Object();
 			var attributeValues = new Array();
 			attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
 			attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
+			attribute.deleted = false;
 			
 			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 				var attributeValue = new Object();
@@ -356,9 +357,13 @@
 			attributeArray.push(attribute);
 		</cfloop>
 		
+		console.log(attributeArray);
+		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
+				console.log(attributeArray);
+				
 				var newAttributeArray = getNewAttributeArray();
 				var currentAttributeArray = getCurrentAttributeArray();
 				
@@ -369,7 +374,7 @@
 						removeAttribute(currentAttributeArray[i]);
 					}
 				}
-				
+				/*
 				for(var j=0;j<newAttributeArray.length;j++)
 				{	
 					if(attributeFound(newAttributeArray[j],currentAttributeArray) == false)
@@ -377,6 +382,8 @@
 						addAttribute(newAttributeArray[j]);
 					}
 				}
+				*/
+				console.log(attributeArray);
 				
 				generateAttributes();
 				attributeChanged = false;
@@ -434,7 +441,7 @@
 			{
 				if(attributeArray[i].aid == attribute.aid)
 				{
-					attributeArray.splice(i, 1);
+					attributeArray[i].deleted = true;
 					break;
 				}
 			}
