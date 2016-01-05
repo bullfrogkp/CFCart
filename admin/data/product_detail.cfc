@@ -478,7 +478,7 @@
 		<cfset LOCAL.pageData.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true},"isDefault Desc") />
 		<cfset LOCAL.pageData.taxCategories = EntityLoad("tax_category") />
 		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
-		<cfset LOCAL.pageData.attributes = EntityLoad("attribute",{isDeleted = false}) />
+		<cfset LOCAL.pageData.attributes = EntityLoad("attribute",{isDeleted = false}, "attributeId ASC") />
 		<cfset LOCAL.pageData.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
 		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isDeleted = false, isSpecial = true, isEnabled = true},"rank Asc") />
 		<cfset LOCAL.pageData.shippingCarriers = EntityLoad("shipping_carrier",{isEnabled = true}) />

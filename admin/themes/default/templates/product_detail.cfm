@@ -344,19 +344,21 @@
 			
 			<cfif ListFind(REQUEST.pageData.attributeList,attribute.getAttributeId())>
 				attribute.deleted = false;
+				
+				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
+				
+				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+					var attributeValue = new Object();
+					attributeValue.avid = '#attributeValue.getAttributeValueId()#';
+					attributeValue.name = '#attributeValue.getDisplayName()#';
+					attributeValue.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
+					attributeValue.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
+					attributeValue.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
+					attributeValues.push(attributeValue);
+				</cfloop>
 			<cfelse>
 				attribute.deleted = true;
 			</cfif>
-			
-			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-				var attributeValue = new Object();
-				attributeValue.avid = '#attributeValue.getAttributeValueId()#';
-				attributeValue.name = '#attributeValue.getDisplayName()#';
-				attributeValue.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
-				attributeValue.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
-				attributeValue.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
-				attributeValues.push(attributeValue);
-			</cfloop>
 			
 			attribute.options = attributeValues;
 			attributeArray.push(attribute);
