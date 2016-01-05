@@ -339,9 +339,14 @@
 		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 			var attribute = new Object();
 			var attributeValues = new Array();
-			attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
-			attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
-			attribute.deleted = false;
+			attribute.aid = '#attribute.getAttributeId()#';
+			attribute.name = '#attribute.getDisplayName()#';
+			
+			<cfif ListFind(REQUEST.pageData.attributeList,attribute.getAttributeId())>
+				attribute.deleted = false;
+			<cfelse>
+				attribute.deleted = true;
+			</cfif>
 			
 			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 				var attributeValue = new Object();
