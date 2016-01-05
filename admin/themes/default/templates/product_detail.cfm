@@ -390,23 +390,20 @@
 		function getNewAttributeArray() {
 			var newAttributeArray = []; 
 			$('##attribute-id :selected').each(function(i, selected){ 
-				newAttributeArray[i] = $(selected).text(); 
+				var attribute = new Object();
+				attribute.aid = $(selected).val();
+				attribute.name = $(selected).text();
+				newAttributeArray[i] = attribute; 
 			});
 			
 			return newAttributeArray;
 		}
 		
-		function getCurrentAttributeArray() {
-			var currentAttributeArray = [];
-			for(var i=0;i<attributeArray.length;i++)
-			{
-				currentAttributeArray[i] = attributeArray[i].aid;
-			}
-			
-			return currentAttributeArray;
+		function getCurrentAttributeArray() {			
+			return attributeArray;
 		}
 		
-		function attributeFound(val, arr) {
+		function attributeFound(attribute, attributeArray) {
 			var attributeFound = false;
 			
 			for(var i=0;i<arr.length;i++)
