@@ -335,57 +335,6 @@
 			$('##configurable-product').show();
 		});
 		
-		$('##edit-attribute-confirm').click(function() {  
-			var newAttributeFound = false;
-			var attributeFound = false;
-			
-			if(attributeChanged == true)
-			{
-				for(var i=0;i<attributeArray.length;i++)
-				{	
-					if($('##attribute-id:selected'))
-					{
-						attributeFound = true;
-						break;
-					}
-					
-					if(attributeFound == false)
-					{
-						attributeArray.removeCurrent();
-					}
-				}
-			
-				$('##attribute-id:selected').each(function( index ) {
-					console.log( index + ": " + $( this ).text() );
-					attributeFound = false;
-					for(var i=0;i<attributeArray.length;i++)
-					{	
-						if($( this ).text() == attributeArray[i].aid)
-						{
-							attributeFound = true;
-							break;
-						}
-					}
-					
-					if(attributeFound == false)
-					{
-						var attribute = new Object();
-						attribute.aid = '#productAttributeRela.getAttribute().getAttributeId()#';
-						attribute.name = '#productAttributeRela.getAttribute().getDisplayName()#';
-						attribute.options = new Array();
-						attributeArray.push(attribute);
-					}
-				});
-				
-				generateAttributes();
-				attributeChanged = false;
-			}			
-		});	
-		
-		$('##attribute-id').change(function() {
-			attributeChanged = true;
-		});
-		
 		var attributeArray = new Array();
 		<cfloop array="#REQUEST.pageData.product.getProductAttributeRela()#" index="productAttributeRela">
 			var attribute = new Object();
@@ -406,6 +355,86 @@
 			attribute.options = attributeValues;
 			attributeArray.push(attribute);
 		</cfloop>
+		
+		$('##edit-attribute-confirm').click(function() {  
+			if(attributeChanged == true)
+			{
+				var newAttributeArray = getNewAttributeArray();
+				var currentAttributeArray = getCurrentAttributeArray();
+				
+				for(var i=0;i<currentAttributeArray.length;i++)
+				{	
+					if(attributeFound(currentAttributeArray[i],newAttributeArray) == false)
+					{
+						removeAttribute(currentAttributeArray[i]);
+					}
+				}
+				
+				for(var j=0;j<newAttributeArray.length;j++)
+				{	
+					if(attributeFound(newAttributeArray[j],currentAttributeArray) == false)
+					{
+						addAttribute(newAttributeArray[j]);
+					}
+				}
+				
+				generateAttributes();
+				attributeChanged = false;
+			}			
+		});	
+		
+		$('##attribute-id').change(function() {
+			attributeChanged = true;
+		});
+		
+		function getNewAttributeArray() {
+			var newAttributeArray = []; 
+			$('##attribute-id :selected').each(function(i, selected){ 
+				newAttributeArray[i] = $(selected).text(); 
+			});
+			
+			return newAttributeArray;
+		}
+		
+		function getCurrentAttributeArray() {
+			var currentAttributeArray = [];
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				currentAttributeArray[i] = attributeArray[i].aid;
+			}
+			
+			return currentAttributeArray;
+		}
+		
+		function attributeFound(val, arr) {
+			var attributeFound = false;
+			
+			for(var i=0;i<arr.length;i++)
+			{
+				if(arr[i] == val)
+				{
+					attributeFound = true;
+					break;
+				}
+			}
+			
+			return attributeFound;
+		}
+		
+		function addAttribute(id, name) {
+			var index = attributeArray.length;
+			
+			var attribute = new Object();
+			attribute.aid = id;
+			attribute.name = name;			
+			attribute.options = new Array();
+			
+			attributeArray[index] = attribute;
+		}
+		
+		function removeAttribute(id) {
+		
+		}
 		
 		function generateAttributes() {
 		
