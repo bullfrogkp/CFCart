@@ -460,13 +460,13 @@
 			{
 				if(attributeArray[i].deleted == false)
 				{
-					var options = attributeArray[j].options;
+					var options = attributeArray[i].options;
 					str = str + '<div class="col-xs-3">
 									<div class="box box-warning">
 										<div class="box-body table-responsive no-padding">
 											<table class="table table-hover">
-												<tr class="warning" id="">
-													<th colspan="3">' + attributeArray[j].name + '</th>
+												<tr class="warning">
+													<th colspan="3">' + attributeArray[i].name + '</th>
 													<th>
 														<a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 															<span class="label label-primary">Add Option</span>
@@ -485,7 +485,7 @@
 															{
 																str = str + '
 																<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																	<img src="#options[j].thumbnailImageName#" style="width:100%;height:100%;vertical-align:top;" />
+																	<img src="'+options[j].thumbnailImageName+'" style="width:100%;height:100%;vertical-align:top;" />
 																</div>';
 															}
 															else
@@ -510,8 +510,8 @@
 												}
 											str = str + '
 											</table>
-										</div><!-- /.box-body -->
-									</div><!-- /.box -->
+										</div>
+									</div>
 								</div>';
 				}
 			}
@@ -711,9 +711,9 @@
 															<div class="box-body table-responsive no-padding">
 																<table class="table table-hover">
 																	<tr class="warning" id="tr-#productAttributeRela.getProductAttributeRelaId()#">
-																		<th colspan="3">#attribute.getDisplayName()#<cfif productAttributeRela.getRequired() EQ true> (required)</cfif></th>
+																		<th colspan="3">#attribute.getDisplayName()#</th>
 																		<th>
-																			<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" req="#productAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+																			<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 																				<span class="label label-primary">Add Option</span>
 																			</a>
 																		</th>
@@ -760,9 +760,7 @@
 													<tr class="warning">
 														<th>ID</th>
 														<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-															<cfif productAttributeRela.getRequired() EQ true>
-																<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
-															</cfif>
+															<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
 														</cfloop>
 														<th>Sku</th>
 														<th>Stock</th>
@@ -777,25 +775,25 @@
 														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
 														
 														<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-															<cfif productAttributeRela.getRequired() EQ true>
-																<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
-																<td>
-																	<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-																		<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
-																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																				<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																				</div>
-																			<cfelse>
-																				<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
-																			</cfif>
+														
+															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
+															<td>
+																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+																	<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
+																	<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																			<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																				<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																			</div>
+																		<cfelse>
+																			<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
 																		</cfif>
-																	<cfelse>
-																		N/A
 																	</cfif>
-																</td>
-															</cfif>
+																<cfelse>
+																	N/A
+																</cfif>
+															</td>
+														
 														</cfloop>
 														
 														<td>
