@@ -404,7 +404,7 @@
 				var attribute = new Object();
 				attribute.aid = $(selected).val();
 				attribute.name = $(selected).text();
-				attribute.disabled = false;
+				attribute.deleted = false;
 				newAttributeArray[i] = attribute; 
 			});
 			
@@ -420,7 +420,7 @@
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
-				if(attributeArray[i].aid == attribute.aid && attributeArray[i].disabled == false)
+				if(attributeArray[i].aid == attribute.aid && attributeArray[i].deleted == false)
 				{
 					attributeFound = true;
 					break;
@@ -431,11 +431,11 @@
 		}
 		
 		function addAttribute(attribute) {
-			attribute.disabled = false;
+			attribute.deleted = false;
 		}
 		
 		function removeAttribute(attribute) {
-			attribute.disabled = true;
+			attribute.deleted = true;
 			attribute.options = [];
 		}
 		
