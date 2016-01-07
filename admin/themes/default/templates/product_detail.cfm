@@ -466,40 +466,49 @@
 										<div class="box-body table-responsive no-padding">
 											<table class="table table-hover">
 												<tr class="warning" id="">
-													<th colspan="3">#attribute.getDisplayName()#</th>
+													<th colspan="3">' + attributeArray[j].name + '</th>
 													<th>
-														<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+														<a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 															<span class="label label-primary">Add Option</span>
 														</a>
 													</th>
-												</tr>
+												</tr>';
 												
 												for(var j=0;i<options.length;j++)
-													<tr id="tr-av-#options[j].avid#">
-														<td>#options[j].name#</td>
-														<td>
-															<cfif options[j].thumbnailImageName NEQ "">
+												{
+													str = str + '
+													<tr id="tr-av-'+options[j].avid+'">
+														<td>'+options[j].name+'</td>
+														<td>';
+														
+															if(options[j].thumbnailImageName == '')
+															{
+																str = str + '
 																<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
 																	<img src="#options[j].thumbnailImageName#" style="width:100%;height:100%;vertical-align:top;" />
-																</div>
-															<cfelse>
-																<cfif options[j].name EQ "color">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#options[j].thumbnailLabel#;margin-top:4px;"></div>
-																<cfelse>
-																	#options[j].thumbnailLabel#
-																</cfif>
-															</cfif>
+																</div>';
+															}
+															else
+															{	
+																if(options[j].name == 'color')
+																	str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].thumbnailLabel+';margin-top:4px;"></div>';
+																else
+																	str = str + options[j].thumbnailLabel;
+															}
+														
+														str = str + '
 														</td>
 														<td>
 															<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																<img src="#options[j].imageLink#" style="width:100%;height:100%;vertical-align:top;" />
+																<img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" />
 															</div>
 														</td>
 														<td>
-															<a attributevalueid="#options[j].avid#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+															<a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 														</td>
-													</tr>
-												</cfloop>
+													</tr>';
+												}
+											str = str + '
 											</table>
 										</div><!-- /.box-body -->
 									</div><!-- /.box -->
