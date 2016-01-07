@@ -460,43 +460,43 @@
 			{
 				if(attributeArray[i].deleted == false)
 				{
-					
+					var options = attributeArray[j].options;
 					str = str + '<div class="col-xs-3">
 									<div class="box box-warning">
 										<div class="box-body table-responsive no-padding">
 											<table class="table table-hover">
-												<tr class="warning" id="tr-#productAttributeRela.getProductAttributeRelaId()#">
-													<th colspan="3">#attribute.getDisplayName()#<cfif productAttributeRela.getRequired() EQ true> (required)</cfif></th>
+												<tr class="warning" id="">
+													<th colspan="3">#attribute.getDisplayName()#</th>
 													<th>
-														<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" req="#productAttributeRela.getRequired()#" href="" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+														<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
 															<span class="label label-primary">Add Option</span>
 														</a>
 													</th>
 												</tr>
 												
-												<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-													<tr id="tr-av-#attributeValue.getAttributeValueId()#">
-														<td>#attributeValue.getDisplayName()#</td>
+												for(var j=0;i<options.length;j++)
+													<tr id="tr-av-#options[j].avid#">
+														<td>#options[j].name#</td>
 														<td>
-															<cfif attributeValue.getThumbnailImageName() NEQ "">
+															<cfif options[j].thumbnailImageName NEQ "">
 																<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																	<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																	<img src="#options[j].thumbnailImageName#" style="width:100%;height:100%;vertical-align:top;" />
 																</div>
 															<cfelse>
-																<cfif attribute.getDisplayName() EQ "color">
-																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
+																<cfif options[j].name EQ "color">
+																	<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#options[j].thumbnailLabel#;margin-top:4px;"></div>
 																<cfelse>
-																	#attributeValue.getThumbnailLabel()#
+																	#options[j].thumbnailLabel#
 																</cfif>
 															</cfif>
 														</td>
 														<td>
 															<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																<img src="#options[j].imageLink#" style="width:100%;height:100%;vertical-align:top;" />
 															</div>
 														</td>
 														<td>
-															<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+															<a attributevalueid="#options[j].avid#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
 														</td>
 													</tr>
 												</cfloop>
