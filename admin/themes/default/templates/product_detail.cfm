@@ -415,12 +415,12 @@
 			return attributeArray.slice(0);
 		}
 		
-		function attributeFound(attribute, attributeArray) {
+		function attributeFound(attr, attrArray) {
 			var attributeFound = false;
 			
-			for(var i=0;i<attributeArray.length;i++)
+			for(var i=0;i<attrArray.length;i++)
 			{
-				if(attributeArray[i].aid == attribute.aid && attributeArray[i].deleted == false)
+				if(attrArray[i].aid == attr.aid && attrArray[i].deleted == false)
 				{
 					attributeFound = true;
 					break;
@@ -430,13 +430,28 @@
 			return attributeFound;
 		}
 		
-		function addAttribute(attribute) {
-			attribute.deleted = false;
+		function addAttribute(attr) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attr.aid)
+				{
+					attributeArray[i].deleted = false;
+					attributeArray[i].options = [];
+					break;
+				}
+			}
 		}
 		
-		function removeAttribute(attribute) {
-			attribute.deleted = true;
-			attribute.options = [];
+		function removeAttribute(attr) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attr.aid)
+				{
+					attributeArray[i].deleted = true;
+					attributeArray[i].options = [];
+					break;
+				}
+			}
 		}
 		
 		function generateAttributes() {
