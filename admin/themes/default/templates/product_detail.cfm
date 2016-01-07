@@ -461,7 +461,7 @@
 				if(attributeArray[i].deleted == false)
 				{
 					var options = attributeArray[i].options;
-					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="3">' + attributeArray[i].name + '</th><th><a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="3">' + attributeArray[i].name + '</th><th><a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 												
 					for(var j=0;i<options.length;j++)
 					{
@@ -479,7 +479,7 @@
 								str = str + options[j].thumbnailLabel;
 						}
 							
-						str = str + '</td><td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '</td><td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
@@ -684,7 +684,7 @@
 																	<tr class="warning" id="tr-#productAttributeRela.getProductAttributeRelaId()#">
 																		<th colspan="3">#attribute.getDisplayName()#</th>
 																		<th>
-																			<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal">
+																			<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
 																				<span class="label label-primary">Add Option</span>
 																			</a>
 																		</th>
@@ -712,7 +712,7 @@
 																				</div>
 																			</td>
 																			<td>
-																				<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a>
+																				<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a>
 																			</td>
 																		</tr>
 																	</cfloop>
