@@ -363,17 +363,14 @@
 			attribute.options = attributeValues;
 			attributeArray.push(attribute);
 		</cfloop>
-		
-		console.log(attributeArray);
-		
+				
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
-				console.log(attributeArray);
-				
 				var newAttributeArray = getNewAttributeArray();
 				var currentAttributeArray = getCurrentAttributeArray();
-				
+			console.log(newAttributeArray);	
+			console.log(currentAttributeArray);	
 				for(var i=0;i<currentAttributeArray.length;i++)
 				{	
 					if(attributeFound(currentAttributeArray[i],newAttributeArray) == false)
@@ -381,7 +378,7 @@
 						removeAttribute(currentAttributeArray[i]);
 					}
 				}
-				/*
+				
 				for(var j=0;j<newAttributeArray.length;j++)
 				{	
 					if(attributeFound(newAttributeArray[j],currentAttributeArray) == false)
@@ -389,7 +386,7 @@
 						addAttribute(newAttributeArray[j]);
 					}
 				}
-				*/
+				
 				console.log(attributeArray);
 				
 				generateAttributes();
@@ -407,6 +404,7 @@
 				var attribute = new Object();
 				attribute.aid = $(selected).val();
 				attribute.name = $(selected).text();
+				attribute.disabled = false;
 				newAttributeArray[i] = attribute; 
 			});
 			
@@ -414,7 +412,7 @@
 		}
 		
 		function getCurrentAttributeArray() {			
-			return attributeArray;
+			return attributeArray.slice(0);
 		}
 		
 		function attributeFound(attribute, attributeArray) {
@@ -422,7 +420,7 @@
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
-				if(attributeArray[i].aid == attribute.aid)
+				if(attributeArray[i].aid == attribute.aid && attributeArray[i].disabled == false)
 				{
 					attributeFound = true;
 					break;
@@ -432,26 +430,13 @@
 			return attributeFound;
 		}
 		
-		function addAttribute(obj) {
-			var index = attributeArray.length;
-			
-			var attribute = new Object();
-			attribute.aid = obj.aid;
-			attribute.name = obj.name;			
-			attribute.options = new Array();
-			
-			attributeArray[index] = attribute;
+		function addAttribute(attribute) {
+			attribute.disabled = false;
 		}
 		
 		function removeAttribute(attribute) {
-			for(var i=0;i<attributeArray.length;i++)
-			{
-				if(attributeArray[i].aid == attribute.aid)
-				{
-					attributeArray[i].deleted = true;
-					break;
-				}
-			}
+			attribute.disabled = true;
+			attribute.options = [];
 		}
 		
 		function generateAttributes() {
