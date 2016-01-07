@@ -72,10 +72,8 @@
 		$('##edit_special_price_to_date').datepicker();
 		$('.special-price-from-date').datepicker();
 		$('.special-price-to-date').datepicker();
-		$('##new-attribute-option-label').colorpicker();
-		
-		
-		
+		$('##new-attribute-option-name-color').colorpicker();
+				
 		$( ".delete-attribute-option-value" ).click(function() {
 			$("##sub_product_id").val($(this).attr('subproductid'));
 		});
@@ -94,11 +92,13 @@
 			
 			if($(this).attr('attributename') == 'color')
 			{
-				$("##new-attribute-option-label").show();
+				$("##new-attribute-option-name-color").show();
+				$("##new-attribute-option-name").hide();
 			}
 			else
 			{
-				$("##new-attribute-option-label").hide();
+				$("##new-attribute-option-name-color").hide();
+				$("##new-attribute-option-name").show();
 			}
 			
 			$(".image-uploader").hide();
@@ -678,10 +678,10 @@
 														<div class="box box-warning">
 															<div class="box-body table-responsive no-padding">
 																<table class="table table-hover">
-																	<tr class="warning" id="tr-#productAttributeRela.getProductAttributeRelaId()#">
+																	<tr class="warning">
 																		<th colspan="2">#attribute.getDisplayName()#</th>
 																		<th>
-																			<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																			<a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
 																				<span class="label label-primary">Add Option</span>
 																			</a>
 																		</th>
@@ -1130,11 +1130,9 @@
 		
 			<div class="modal-body">
 				<div class="form-group">
-					<input id="new-attribute-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Name">
+					<input id="new-attribute-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Value">
+					<input id="new-attribute-option-name-color" name="new_attribute_option_name_color" type="text" class="form-control" placeholder="Value">
 				</div>
-				<div class="form-group">
-					<input id="new-attribute-option-label" name="new_attribute_option_label" type="text" class="form-control" placeholder="Value">
-				</div>	
 				<div class="form-group">
 					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;" id="new-attribute-option-1-image-div">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
@@ -1176,9 +1174,7 @@
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
 						<input type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image"/>
 					</div>
-					<input type="radio" class="form-control" name="generate_option" value="1"/> Thumbnail Only &nbsp;&nbsp;&nbsp;
-					<input type="radio" class="form-control" name="generate_option" value="2"/> Image Only &nbsp;&nbsp;&nbsp;
-					<input type="radio" class="form-control" name="generate_option" value="3"/> Both
+					<input type="checkbox" class="form-control" name="generate_thumbnail" value="1"/> Generate Image Thumbnail
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
