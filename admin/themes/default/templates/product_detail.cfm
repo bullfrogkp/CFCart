@@ -461,24 +461,21 @@
 				if(attributeArray[i].deleted == false)
 				{
 					var options = attributeArray[i].options;
-					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="3">' + attributeArray[i].name + '</th><th><a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="2">' + attributeArray[i].name + '</th><th><a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 												
 					for(var j=0;i<options.length;j++)
 					{
-						str = str + '<tr id="tr-av-'+options[j].avid+'"><td>'+options[j].name+'</td><td>';
-							
-						if(options[j].thumbnailImageName == '')
+						str = str + '<tr id="tr-av-'+options[j].avid+'"><td>';
+						
+						if(options[j].name == 'color')
 						{
-							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].thumbnailImageName+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
+							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].thumbnailLabel+';margin-top:4px;"></div></td><td>';
 						}
 						else
-						{	
-							if(options[j].name == 'color')
-								str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].thumbnailLabel+';margin-top:4px;"></div>';
-							else
-								str = str + options[j].thumbnailLabel;
+						{
+							str = str + options[j].name+'</td><td>';
 						}
-							
+						
 						str = str + '</td><td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
@@ -677,12 +674,12 @@
 											<cfif NOT IsNull(REQUEST.pageData.product)>
 												<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 													<cfset attribute = productAttributeRela.getAttribute() />
-													<div class="col-xs-3">
+													<div class="col-xs-2">
 														<div class="box box-warning">
 															<div class="box-body table-responsive no-padding">
 																<table class="table table-hover">
 																	<tr class="warning" id="tr-#productAttributeRela.getProductAttributeRelaId()#">
-																		<th colspan="3">#attribute.getDisplayName()#</th>
+																		<th colspan="2">#attribute.getDisplayName()#</th>
 																		<th>
 																			<a productattributerelaid="#productAttributeRela.getProductAttributeRelaId()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
 																				<span class="label label-primary">Add Option</span>
@@ -692,18 +689,11 @@
 																	
 																	<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 																		<tr id="tr-av-#attributeValue.getAttributeValueId()#">
-																			<td>#attributeValue.getDisplayName()#</td>
 																			<td>
-																				<cfif attributeValue.getThumbnailImageName() NEQ "">
-																					<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																						<img src="#attributeValue.getThumbnailImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																					</div>
+																				<cfif attribute.getDisplayName() EQ "color">
+																					<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
 																				<cfelse>
-																					<cfif attribute.getDisplayName() EQ "color">
-																						<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
-																					<cfelse>
-																						#attributeValue.getThumbnailLabel()#
-																					</cfif>
+																					#attributeValue.getDisplayName()#
 																				</cfif>
 																			</td>
 																			<td>
