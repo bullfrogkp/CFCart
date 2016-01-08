@@ -86,6 +86,7 @@
 		
 		$('##attribute-options').on("click","a.add-new-attribute-option", function() {
 			$("##new-attribute-id-hidden").val($(this).attr('attributeid'));
+			$("##new-attribute-name-hidden").val(attributename);
 			
 			if($(this).attr('attributename') == 'color')
 			{
@@ -109,9 +110,8 @@
 			var new_option_name =  'new_attribute_option_' + new_option_index;
 			var new_option_tr_id =  'tr-av-new-option-' + new_option_index;
 			var image_upload_id =  'new-attribute-option-' + new_option_index + '-image';
-			var generate_option_selected = $('input[name="generate_option"]:checked').val();
 			
-			if($("##new-attribute-option-name-hidden").val() == 'color')
+			if($("##new-attribute-name-hidden").val() == 'color')
 			{
 				name_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-name-color").val()+';margin-top:4px;"></div>';
 			}
@@ -120,26 +120,20 @@
 			{
 				loadThumbnail($("##"+image_upload_id)[0].files[0], function(image_src) { 
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
 			{
-				$("##tr-" $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_req',value: $("##new-attribute-option-req-hidden").val()}).appendTo($("##product-detail"));
 			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_generate_option',value: $('input[name="generate_option"]:checked').val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_aset'+$("##attribute-set-id").val()+'_attribute_id',value: $("##new-attribute-option-id-hidden").val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
-			$("##new-attribute-option-label").val('');
-			$('input[name="generate_option"]').prop('checked', false);
-			$(".iradio_minimal").removeClass("checked");
-			$(".iradio_minimal").attr("aria-checked",false);
+			$("##new-attribute-option-name-color").val('');
 			
 			new_option_index++;
 		});
@@ -1170,7 +1164,7 @@
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
 						<input type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image"/>
 					</div>
-					<input type="checkbox" class="form-control" name="generate_thumbnail" value="1"/> Generate Image Thumbnail
+					<input type="checkbox" class="form-control" name="generate_thumbnail" id="generate-thumbnail" value="1"/> Generate Image Thumbnail
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
