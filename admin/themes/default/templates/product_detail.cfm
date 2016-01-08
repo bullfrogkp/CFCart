@@ -453,7 +453,7 @@
 		
 		function generateAttributes() {
 			$('##attribute-options').empty();
-			console.log('a');
+			
 			var str = '';
 			
 			for(var i=0;i<attributeArray.length;i++)
@@ -462,10 +462,10 @@
 				{
 					var options = attributeArray[i].options;
 					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="2">' + attributeArray[i].name + '</th><th><a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
-												
-					for(var j=0;i<options.length;j++)
-					{
-						str = str + '<tr id="tr-av-'+options[j].avid+'"><td>';
+											
+					for(var j=0;j<options.length;j++)
+					{console.log(options[j]);	
+						str = str + '<tr><td>';
 						
 						if(options[j].name == 'color')
 						{
@@ -702,7 +702,9 @@
 																				</div>
 																			</td>
 																			<td>
-																				<a attributevalueid="#attributeValue.getAttributeValueId()#" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a>
+																				<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																					<span class="label label-danger">Delete</span>
+																				</a>
 																			</td>
 																		</tr>
 																	</cfloop>
