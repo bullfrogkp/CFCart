@@ -84,7 +84,8 @@
 		
 		var new_option_index = 1;
 		
-		$('##attribute-options').on("click","a.add-new-attribute-option", function() {
+		$('##attribute-options').on("click","a.add-new-attribute-option", function(e) {
+		
 			$("##new-attribute-id-hidden").val($(this).attr('attributeid'));
 			$("##new-attribute-name-hidden").val($(this).attr('attributename'));
 			
@@ -124,7 +125,7 @@
 				});
 			}
 			else
-			{console.log($("##tr-" + $("##new-attribute-id-hidden").val()));
+			{console.log($("##new-attribute-id-hidden").val());
 				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
@@ -498,10 +499,8 @@
 <input type="hidden" name="deleted_product_customer_group_rela_id" id="deleted_product_customer_group_rela_id" value="" />
 <input type="hidden" name="deleted_product_video_id" id="deleted_product_video_id" value="" />
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
-<input type="hidden" name="new_attribute_option_id_hidden" id="new-attribute-option-id-hidden" value="" />
-<input type="hidden" name="new_attribute_option_set_id_hidden" id="new-attribute-option-set-id-hidden" value="" />
-<input type="hidden" name="new_attribute_option_name_hidden" id="new-attribute-option-name-hidden" value="" />
-<input type="hidden" name="new_attribute_option_req_hidden" id="new-attribute-option-req-hidden" value="" />
+<input type="hidden" name="new_attribute_id_hidden" id="new-attribute-id-hidden" value="" />
+<input type="hidden" name="new_attribute_name_hidden" id="new-attribute-name-hidden" value="" />
 <input type="hidden" name="deleted_attribute_option_id_hidden" id="deleted-attribute-option-id-hidden" value="" />
 <input type="hidden" name="new_attribute_option_id_list" id="new-attribute-option-id-list" value="" />
 <input type="hidden" name="remove_attribute_option_id_list" id="remove-attribute-option-id-list" value="" />
