@@ -113,7 +113,7 @@
 			
 			if($("##new-attribute-option-name-hidden").val() == 'color')
 			{
-				name_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-label").val()+';margin-top:4px;"></div>';
+				name_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-name-color").val()+';margin-top:4px;"></div>';
 			}
 			
 			if($("##"+image_upload_id).val() != '')
