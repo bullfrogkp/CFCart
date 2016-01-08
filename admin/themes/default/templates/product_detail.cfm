@@ -84,11 +84,8 @@
 		
 		var new_option_index = 1;
 		
-		$('.attribute-set').on("click","a.add-new-attribute-option", function() {
-			$("##new-attribute-option-set-id-hidden").val($(this).attr('attributesetid'));
-			$("##new-attribute-option-id-hidden").val($(this).attr('attributeid'));
-			$("##new-attribute-option-name-hidden").val($(this).attr('attributename'));
-			$("##new-attribute-option-req-hidden").val($(this).attr('req'));
+		$('##attribute-options').on("click","a.add-new-attribute-option", function() {
+			$("##new-attribute-id-hidden").val($(this).attr('attributeid'));
 			
 			if($(this).attr('attributename') == 'color')
 			{
@@ -461,7 +458,7 @@
 				if(attributeArray[i].deleted == false)
 				{
 					var options = attributeArray[i].options;
-					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="2">' + attributeArray[i].name + '</th><th><a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 											
 					for(var j=0;j<options.length;j++)
 					{console.log(options[j]);	
@@ -681,7 +678,7 @@
 																	<tr class="warning">
 																		<th colspan="2">#attribute.getDisplayName()#</th>
 																		<th>
-																			<a class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																			<a attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
 																				<span class="label label-primary">Add Option</span>
 																			</a>
 																		</th>
