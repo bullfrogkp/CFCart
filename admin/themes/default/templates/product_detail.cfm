@@ -467,16 +467,16 @@
 					{console.log(options[j]);	
 						str = str + '<tr><td>';
 						
-						if(options[j].name == 'color')
+						if(attributeArray[i].name == 'color')
 						{
-							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].thumbnailLabel+';margin-top:4px;"></div></td><td>';
+							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].thumbnailLabel+';margin-top:4px;"></div></td>';
 						}
 						else
 						{
-							str = str + options[j].name+'</td><td>';
+							str = str + options[j].name+'</td>';
 						}
 						
-						str = str + '</td><td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
