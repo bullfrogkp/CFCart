@@ -86,7 +86,7 @@
 		
 		$('##attribute-options').on("click","a.add-new-attribute-option", function() {
 			$("##new-attribute-id-hidden").val($(this).attr('attributeid'));
-			$("##new-attribute-name-hidden").val(attributename);
+			$("##new-attribute-name-hidden").val($(this).attr('attributename'));
 			
 			if($(this).attr('attributename') == 'color')
 			{
@@ -124,7 +124,7 @@
 				});
 			}
 			else
-			{
+			{console.log($("##tr-" + $("##new-attribute-id-hidden").val()));
 				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
