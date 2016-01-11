@@ -109,7 +109,7 @@
 			var image_content = '';
 			var name_content = $("##new-attribute-option-name").val();
 			var new_option_name =  'new_attribute_option_' + new_option_index;
-			var new_option_tr_id =  'tr-av-new-option-' + new_option_index;
+			var new_option_tr_id =  'tr-ao-new-option-' + new_option_index;
 			var image_upload_id =  'new-attribute-option-' + new_option_index + '-image';
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
@@ -144,8 +144,8 @@
 		});
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {			
-			$("##tr-av-" + $("##deleted-attribute-option-id-hidden").val()).remove();
-			$("##tr-av-new-option-" + $("##deleted-attribute-option-id-hidden").val()).remove();
+			$("##tr-ao-" + $("##deleted-attribute-option-id-hidden").val()).remove();
+			$("##tr-ao-new-option-" + $("##deleted-attribute-option-id-hidden").val()).remove();
 			
 			var str = $("##new-attribute-option-id-list").val();
 			var n = str.indexOf($("##deleted-attribute-option-id-hidden").val() + ',');
@@ -670,7 +670,7 @@
 																	</tr>
 																	
 																	<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-																		<tr id="tr-av-#attributeValue.getAttributeValueId()#">
+																		<tr id="tr-ao-#attributeValue.getAttributeValueId()#">
 																			<td>
 																				<cfif attribute.getDisplayName() EQ "color">
 																					<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
@@ -684,7 +684,7 @@
 																				</div>
 																			</td>
 																			<td>
-																				<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																				<a attributeoptionid="#attributeValue.getAttributeValueId()#" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
 																					<span class="label label-danger">Delete</span>
 																				</a>
 																			</td>
