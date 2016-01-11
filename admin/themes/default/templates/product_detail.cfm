@@ -108,30 +108,27 @@
 			var thumbnail_content = '';
 			var image_content = '';
 			var name_content = $("##new-attribute-option-name").val();
-			var new_option_name =  'new_attribute_option_' + new_option_index;
-			var new_option_tr_id =  'tr-ao-new-option-' + new_option_index;
-			var image_upload_id =  'new-attribute-option-' + new_option_index + '-image';
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
 			{
 				name_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-name-color").val()+';margin-top:4px;"></div>';
 			}
 			
-			if($("##"+image_upload_id).val() != '')
+			if($("##"+'new-attribute-option-' + new_option_index + '-image').val() != '')
 			{
-				loadThumbnail($("##"+image_upload_id)[0].files[0], function(image_src) { 
+				loadThumbnail($("##"+'new-attribute-option-' + new_option_index + '-image')[0].files[0], function(image_src) { 
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
 			{
-				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: new_option_name+'_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-name-color").val('');
