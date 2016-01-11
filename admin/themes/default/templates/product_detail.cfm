@@ -121,12 +121,12 @@
 			{
 				loadThumbnail($("##"+image_upload_id)[0].files[0], function(image_src) { 
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				});
 			}
 			else
-			{console.log($("##new-attribute-id-hidden").val());
-				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributevalueid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+			{
+				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="'+new_option_tr_id+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 			}
 			
 			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
@@ -139,8 +139,8 @@
 			new_option_index++;
 		});
 		
-		$('.attribute-set').on("click","a.delete-attribute-option", function() {
-			$("##deleted-attribute-option-id-hidden").val($(this).attr('attributevalueid'));
+		$('##attribute-options').on("click","a.delete-attribute-option", function() {
+			$("##deleted-attribute-option-id-hidden").val($(this).attr('attributeoptionid'));
 		});
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {			
@@ -158,11 +158,6 @@
 			{	
 				$("##remove-attribute-option-id-list").val($("##remove-attribute-option-id-list").val() + $("##deleted-attribute-option-id-hidden").val() + ',');
 			}	
-		});
-		
-		$( "##attribute-set-id" ).change(function() {
-			$(".attribute-set").hide();
-			$("##attribute-set-" + $(this).val()).show();
 		});
 		
 		$( ".delete-image" ).click(function() {
@@ -338,7 +333,7 @@
 				
 				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 					var attributeValue = new Object();
-					attributeValue.avid = '#attributeValue.getAttributeValueId()#';
+					attributeValue.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeValue.name = '#attributeValue.getDisplayName()#';
 					attributeValue.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
 					attributeValue.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
@@ -465,7 +460,7 @@
 							str = str + options[j].name+'</td>';
 						}
 						
-						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributevalueid="'+options[j].avid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
