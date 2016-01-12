@@ -99,9 +99,6 @@
 				$("##new-attribute-option-name-color").hide();
 				$("##new-attribute-option-name").show();
 			}
-			
-			$(".image-uploader").hide();
-			$("##new-attribute-option-" + new_option_index + "-image-div").show();
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
@@ -114,28 +111,38 @@
 				name_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-name-color").val()+';margin-top:4px;"></div>';
 			}
 			
-			if($("##"+'new-attribute-option-' + new_option_index + '-image').val() != '')
+			if($("##"+'new-attribute-option-image').val() != '')
 			{
-				loadThumbnail($("##"+'new-attribute-option-' + new_option_index + '-image')[0].files[0], function(image_src) { 
+				loadThumbnail($("##"+'new-attribute-option-image')[0].files[0], function(image_src) { 
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
 					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					
+					$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
+					$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+					$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_color',value: $("##new-attribute-option-name-color").val()}).appendTo($("##product-detail"));
+					$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
+					
+					$("##new-attribute-option-name").val('');
+					$("##new-attribute-option-name-color").val('');
+					$("##new-attribute-option-image").val('');
+					
+					new_option_index++;
 				});
 			}
 			else
 			{
 				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
+				$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
+				$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_color',value: $("##new-attribute-option-name-color").val()}).appendTo($("##product-detail"));
+				$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
+				
+				$("##new-attribute-option-name").val('');
+				$("##new-attribute-option-name-color").val('');
+				$("##new-attribute-option-image").val('');
+				
+				new_option_index++;
 			}
-			
-			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
-			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_color',value: $("##new-attribute-option-name-color").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
-			
-			$("##new-attribute-option-name").val('');
-			$("##new-attribute-option-name-color").val('');
-			$("##new-attribute-option-image").val('');
-			
-			new_option_index++;
 		});
 		
 		$('##attribute-options').on("click","a.delete-attribute-option", function() {
@@ -1117,7 +1124,7 @@
 					<input id="new-attribute-option-name-color" name="new_attribute_option_name_color" type="text" class="form-control" placeholder="Value">
 				</div>
 				<div class="form-group">
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;" id="new-attribute-option-1-image-div">
+					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
 						<input type="file" name="new_attribute_option_image" id="new-attribute-option-image"/>
 					</div>
