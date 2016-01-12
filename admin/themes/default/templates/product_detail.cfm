@@ -128,10 +128,12 @@
 			
 			$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
 			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
-			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_thumbnail_label',value: $("##new-attribute-option-label").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_color',value: $("##new-attribute-option-name-color").val()}).appendTo($("##product-detail"));
+			$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_image',value: $("##new-attribute-option-image").val()}).appendTo($("##product-detail"));
 			
 			$("##new-attribute-option-name").val('');
 			$("##new-attribute-option-name-color").val('');
+			$("##new-attribute-option-image").val('');
 			
 			new_option_index++;
 		});
@@ -1117,43 +1119,7 @@
 				<div class="form-group">
 					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;" id="new-attribute-option-1-image-div">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_1_image" id="new-attribute-option-1-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-2-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_2_image" id="new-attribute-option-2-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-3-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_3_image" id="new-attribute-option-3-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-4-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_4_image" id="new-attribute-option-4-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-5-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_5_image" id="new-attribute-option-5-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-6-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_6_image" id="new-attribute-option-6-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-7-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_7_image" id="new-attribute-option-7-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-8-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_8_image" id="new-attribute-option-8-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-9-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_9_image" id="new-attribute-option-9-image"/>
-					</div>
-					<div class="btn btn-success btn-file image-uploader" style="width:150px;margin-right:20px;display:none;" id="new-attribute-option-10-image-div">
-						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_10_image" id="new-attribute-option-10-image"/>
+						<input type="file" name="new_attribute_option_image" id="new-attribute-option-image"/>
 					</div>
 					<input type="checkbox" class="form-control" name="generate_thumbnail" id="generate-thumbnail" value="1"/> Generate Image Thumbnail
 				</div>
