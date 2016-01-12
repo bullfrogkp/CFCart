@@ -451,11 +451,11 @@
 				if(attributeArray[i].deleted == false)
 				{
 					var options = attributeArray[i].options;
-					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="'+attributeArray[i].aid+'"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" attributename="'+attributeArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 											
 					for(var j=0;j<options.length;j++)
-					{console.log(options[j]);	
-						str = str + '<tr><td>';
+					{
+						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td>';
 						
 						if(attributeArray[i].name == 'color')
 						{
