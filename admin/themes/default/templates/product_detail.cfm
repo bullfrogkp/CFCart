@@ -328,7 +328,7 @@
 		var attributeArray = new Array();
 		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 			var attribute = new Object();
-			var attributeValues = new Array();
+			var attributeOptions = new Array();
 			attribute.aid = '#attribute.getAttributeId()#';
 			attribute.name = '#attribute.getDisplayName()#';
 			
@@ -338,19 +338,19 @@
 				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
 				
 				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-					var attributeValue = new Object();
-					attributeValue.aoid = '#attributeValue.getAttributeValueId()#';
-					attributeValue.name = '#attributeValue.getDisplayName()#';
-					attributeValue.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
-					attributeValue.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
-					attributeValue.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
-					attributeValues.push(attributeValue);
+					var attributeOption = new Object();
+					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
+					attributeOption.name = '#attributeValue.getDisplayName()#';
+					attributeOption.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
+					attributeOption.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
+					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
+					attributeOptions.push(attributeOption);
 				</cfloop>
 			<cfelse>
 				attribute.deleted = true;
 			</cfif>
 			
-			attribute.options = attributeValues;
+			attribute.options = attributeOptions;
 			attributeArray.push(attribute);
 		</cfloop>
 				
@@ -436,6 +436,42 @@
 				{
 					attributeArray[i].deleted = true;
 					attributeArray[i].options = [];
+					break;
+				}
+			}
+		}
+		
+		function addAttributeOption(attr, attrOption) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attr.aid)
+				{
+					var attributeOption = new Object();
+					attributeOption.aoid = attrOption.aoid;
+					attributeOption.name = attrOption.name;
+					attributeOption.thumbnailImageLink = attrOption.thumbnailImageLink;
+					attributeOption.thumbnailLabel = attrOption.thumbnailLabel;
+					attributeOption.imageLink = attrOption.imageLink;
+					attributeOptions.push(attributeOption);
+					break;
+				}
+			}
+		}
+		
+		function removeAttribute(attr, attrOption) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attr.aid)
+				{
+					var options = attributeArray[i].options;
+					for(var j=0;j<options.length;j++)
+					{
+						if(options[j].aoid == attrOption.aoid)
+						{
+							options.splice(j, 1);
+							break;
+						}
+					}
 					break;
 				}
 			}
