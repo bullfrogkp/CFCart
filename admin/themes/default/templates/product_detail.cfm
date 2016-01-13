@@ -121,20 +121,29 @@
 			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
-					console.log(image_src);
 					option.imageLink = image_src;
+					
+					addAttributeOption(attr, option);
+					generateAttributes();
+					
+					$("##new-attribute-option-name").val('');
+					$("##new-attribute-option-name-color").val('');
+					$("##new-attribute-option-image").val('');
+					
+					new_option_index++;
 				});
 			}
-			console.log(attr);
-			console.log(option);
-			addAttributeOption(attr, option);
-			generateAttributes();
-			
-			$("##new-attribute-option-name").val('');
-			$("##new-attribute-option-name-color").val('');
-			$("##new-attribute-option-image").val('');
-			
-			new_option_index++;
+			else
+			{
+				addAttributeOption(attr, option);
+				generateAttributes();
+				
+				$("##new-attribute-option-name").val('');
+				$("##new-attribute-option-name-color").val('');
+				$("##new-attribute-option-image").val('');
+				
+				new_option_index++;
+			}
 		});
 		
 		$('##attribute-options').on("click","a.delete-attribute-option", function() {
@@ -485,7 +494,12 @@
 							str = str + options[j].value+'</td>';
 						}
 						
-						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributeid="+attributeArray[i].aid+" attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						if(options[j].imageLink == '')
+							str = str + '<td></td>';
+						else
+							str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
+					
+						str = str + '<td><a attributeid="+attributeArray[i].aid+" attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
