@@ -151,6 +151,14 @@
 			generateAttributes();
 		});
 		
+		function loadThumbnail(file, callback) {
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onloadend = function () {
+				callback(reader.result);
+			}
+		}
+		
 		$( ".delete-image" ).click(function() {
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
@@ -174,15 +182,6 @@
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
 		});
-		
-		
-		function loadThumbnail(file, callback) {
-			var reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onloadend = function () {
-				callback(reader.result);
-			}
-		}
 		
 		var groupArray = new Array();
 		<cfloop array="#REQUEST.pageData.customerGroups#" index="group">	
