@@ -105,10 +105,10 @@
 		
 			var new_option_index = 1;
 			
-			var attr = newObject();
+			var attr = new Object();
 			attr.aid = $("##new-attribute-id-hidden").val();
 			
-			var option = newObject();
+			var option = new Object();
 			option.aoid = 'new-' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '';
@@ -118,7 +118,7 @@
 				option.value = $("##new-attribute-option-name-color").val();
 			}
 			
-			if($("##new-attribute-option-image').val() != '')
+			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##"+'new-attribute-option-image')[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
@@ -142,10 +142,10 @@
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {		
 
-			var attr = newObject();
+			var attr = new Object();
 			attr.aid = $("##deleted-attribute-id-hidden").val();
 			
-			var option = newObject();
+			var option = new Object();
 			option.aoid = $("##deleted-attribute-option-id-hidden").val();
 			
 			removeAttributeOption(attr, option);
