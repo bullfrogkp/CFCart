@@ -495,7 +495,7 @@
 				<cfset LOCAL.pageData.attributeList &= "#LOCAL.productAttributeRela.getAttribute().getAttributeId()#," />
 			</cfloop>
 			
-			<cfif NOT IsNull(LOCAL.pageData.product.getAttributeSetMV()) AND NOT ArrayIsEmpty(LOCAL.pageData.product.getSubProducts())>
+			<cfif NOT ArrayIsEmpty(LOCAL.pageData.product.getSubProducts())>
 				<cfset LOCAL.pageData.productArray = LOCAL.pageData.product.getSubProducts() />
 			<cfelse>
 				<cfset LOCAL.pageData.productArray = [] />

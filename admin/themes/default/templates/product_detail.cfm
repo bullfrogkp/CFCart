@@ -102,20 +102,19 @@
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
-			var thumbnail_content = '';
 			var image_content = '';
-			var name_content = $("##new-attribute-option-name").val();
+			var option_value_content = $("##new-attribute-option-name").val();
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
 			{
-				name_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-name-color").val()+';margin-top:4px;"></div>';
+				option_value_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-attribute-option-name-color").val()+';margin-top:4px;"></div>';
 			}
 			
 			if($("##"+'new-attribute-option-image').val() != '')
 			{
 				loadThumbnail($("##"+'new-attribute-option-image')[0].files[0], function(image_src) { 
 					image_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+image_src+'" style="width:100%;height:100%;vertical-align:top;" /></div>';
-					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+					$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+option_value_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 					
 					$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
 					$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
@@ -131,7 +130,7 @@
 			}
 			else
 			{
-				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+name_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
+				$("##tr-" + $("##new-attribute-id-hidden").val()).after('<tr id="tr-ao-new-option-'+new_option_index+'"><td>'+option_value_content+'</td><td>'+image_content+'</td><td><a attributeoptionid="'+new_option_index+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
 				$("##new-attribute-option-id-list").val($("##new-attribute-option-id-list").val() + new_option_index + ',');			
 				$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_name',value: $("##new-attribute-option-name").val()}).appendTo($("##product-detail"));
 				$('<input>').attr({type: 'hidden',name: 'new_attribute_option_' + new_option_index + '_color',value: $("##new-attribute-option-name-color").val()}).appendTo($("##product-detail"));
@@ -341,8 +340,6 @@
 					var attributeOption = new Object();
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.name = '#attributeValue.getDisplayName()#';
-					attributeOption.thumbnailImageLink = '#attributeValue.getThumbnailImageLink()#';
-					attributeOption.thumbnailLabel = '#attributeValue.getThumbnailLabel()#';
 					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
 					attributeOptions.push(attributeOption);
 				</cfloop>
@@ -449,8 +446,6 @@
 					var attributeOption = new Object();
 					attributeOption.aoid = attrOption.aoid;
 					attributeOption.name = attrOption.name;
-					attributeOption.thumbnailImageLink = attrOption.thumbnailImageLink;
-					attributeOption.thumbnailLabel = attrOption.thumbnailLabel;
 					attributeOption.imageLink = attrOption.imageLink;
 					attributeOptions.push(attributeOption);
 					break;
@@ -495,7 +490,7 @@
 						
 						if(attributeArray[i].name == 'color')
 						{
-							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].thumbnailLabel+';margin-top:4px;"></div></td>';
+							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
 						else
 						{
@@ -715,9 +710,9 @@
 																		<tr id="tr-ao-#attributeValue.getAttributeValueId()#">
 																			<td>
 																				<cfif attribute.getDisplayName() EQ "color">
-																					<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getThumbnailLabel()#;margin-top:4px;"></div>
+																					<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;"></div>
 																				<cfelse>
-																					#attributeValue.getDisplayName()#
+																					#attributeValue.getValue()#
 																				</cfif>
 																			</td>
 																			<td>
