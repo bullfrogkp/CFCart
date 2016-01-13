@@ -761,7 +761,7 @@
 															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
 															<td>
 																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-																	<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getDisplayName()#</div>
+																	<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getValue()#</div>
 																	<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
 																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
 																			<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
