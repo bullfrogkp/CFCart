@@ -120,7 +120,8 @@
 			
 			if($("##new-attribute-option-image").val() != '')
 			{
-				loadThumbnail($("##"+'new-attribute-option-image')[0].files[0], function(image_src) { 
+				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
+					console.log(image_src);
 					option.imageLink = image_src;
 				});
 			}
