@@ -102,6 +102,30 @@
 		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
+			var attr = newObject();
+			attr.aid = $("##new-attribute-id-hidden").val();
+			
+			var option = newObject();
+			option.aoid = new_option_index;
+			option.value = $("##new-attribute-option-name").val();
+			if($("##new-attribute-name-hidden").val() == 'color')
+			{
+				option.value = $("##new-attribute-option-name-color").val();
+			}
+			
+			option.imageLink = '';
+			
+			if($("##"+'new-attribute-option-image').val() != '')
+			{
+				loadThumbnail($("##"+'new-attribute-option-image')[0].files[0], function(image_src) { 
+					option.imageLink = image_src;
+				});
+			}
+			
+			addAttributeOption(attr, option);
+			generateAttributes();
+			
+			
 			var image_content = '';
 			var option_value_content = $("##new-attribute-option-name").val();
 			
@@ -438,22 +462,22 @@
 			}
 		}
 		
-		function addAttributeOption(attr, attrOption) {
+		function addAttributeOption(attr, option) {
 			for(var i=0;i<attributeArray.length;i++)
 			{
 				if(attributeArray[i].aid == attr.aid)
 				{
 					var attributeOption = new Object();
-					attributeOption.aoid = attrOption.aoid;
-					attributeOption.value = attrOption.value;
-					attributeOption.imageLink = attrOption.imageLink;
+					attributeOption.aoid = option.aoid;
+					attributeOption.value = option.value;
+					attributeOption.imageLink = option.imageLink;
 					attributeOptions.push(attributeOption);
 					break;
 				}
 			}
 		}
 		
-		function removeAttribute(attr, attrOption) {
+		function removeAttribute(attr, option) {
 			for(var i=0;i<attributeArray.length;i++)
 			{
 				if(attributeArray[i].aid == attr.aid)
@@ -461,7 +485,7 @@
 					var options = attributeArray[i].options;
 					for(var j=0;j<options.length;j++)
 					{
-						if(options[j].aoid == attrOption.aoid)
+						if(options[j].aoid == option.aoid)
 						{
 							options.splice(j, 1);
 							break;
