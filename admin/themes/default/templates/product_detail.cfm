@@ -339,7 +339,7 @@
 				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 					var attributeOption = new Object();
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
-					attributeOption.name = '#attributeValue.getDisplayName()#';
+					attributeOption.value = '#attributeValue.getValue()#';
 					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
 					attributeOptions.push(attributeOption);
 				</cfloop>
@@ -445,7 +445,7 @@
 				{
 					var attributeOption = new Object();
 					attributeOption.aoid = attrOption.aoid;
-					attributeOption.name = attrOption.name;
+					attributeOption.value = attrOption.value;
 					attributeOption.imageLink = attrOption.imageLink;
 					attributeOptions.push(attributeOption);
 					break;
@@ -494,7 +494,7 @@
 						}
 						else
 						{
-							str = str + options[j].name+'</td>';
+							str = str + options[j].value+'</td>';
 						}
 						
 						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
