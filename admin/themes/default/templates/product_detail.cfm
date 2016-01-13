@@ -136,13 +136,14 @@
 		});
 		
 		$('##attribute-options').on("click","a.delete-attribute-option", function() {
+			$("##deleted-attribute-id-hidden").val($(this).attr('attributeid'));
 			$("##deleted-attribute-option-id-hidden").val($(this).attr('attributeoptionid'));
 		});
 		
 		$( "##delete-attribute-option-confirm" ).click(function() {		
 
 			var attr = newObject();
-			attr.aid = $("##new-attribute-id-hidden").val();
+			attr.aid = $("##deleted-attribute-id-hidden").val();
 			
 			var option = newObject();
 			option.aoid = $("##deleted-attribute-option-id-hidden").val();
@@ -482,7 +483,7 @@
 							str = str + options[j].value+'</td>';
 						}
 						
-						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td><td><a attributeid="+attributeArray[i].aid+" attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
@@ -518,9 +519,8 @@
 <input type="hidden" name="add_customer_group_id" id="add_customer_group_id" value="" />
 <input type="hidden" name="new_attribute_id_hidden" id="new-attribute-id-hidden" value="" />
 <input type="hidden" name="new_attribute_name_hidden" id="new-attribute-name-hidden" value="" />
+<input type="hidden" name="deleted_attribute_id_hidden" id="deleted-attribute-id-hidden" value="" />
 <input type="hidden" name="deleted_attribute_option_id_hidden" id="deleted-attribute-option-id-hidden" value="" />
-<input type="hidden" name="new_attribute_option_id_list" id="new-attribute-option-id-list" value="" />
-<input type="hidden" name="remove_attribute_option_id_list" id="remove-attribute-option-id-list" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -706,7 +706,7 @@
 																				</div>
 																			</td>
 																			<td>
-																				<a attributeoptionid="#attributeValue.getAttributeValueId()#" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																				<a attributeid="#attribute.getAttributeId()#" attributeoptionid="#attributeValue.getAttributeValueId()#" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
 																					<span class="label label-danger">Delete</span>
 																				</a>
 																			</td>
