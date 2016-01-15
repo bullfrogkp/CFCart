@@ -16,10 +16,7 @@
 			console.log($(this).attr('tabid'));
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
-		
-		$("##group_price_tabs li:first-child").addClass("active");
-		$("##group_price_tab_content div:first-child").addClass("active");
-		
+				
 		$("##uploader").plupload({
 			// General settings
 			runtimes: 'html5,flash,silverlight,html4',
@@ -62,14 +59,6 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		$('##new_special_price_from_date').datepicker();
-		$('##new_special_price_to_date').datepicker();
-		$('##special-price-from-date').datepicker();
-		$('##special-price-to-date').datepicker();
-		$('##new_single_special_price_from_date').datepicker();
-		$('##new_single_special_price_to_date').datepicker();
-		$('##edit_special_price_from_date').datepicker();
-		$('##edit_special_price_to_date').datepicker();
 		$('.special-price-from-date').datepicker();
 		$('.special-price-to-date').datepicker();
 		$('##new-attribute-option-name-color').colorpicker();
@@ -125,6 +114,7 @@
 					
 					addAttributeOption(attr, option);
 					generateAttributes();
+					generateSubProducts();
 					
 					$("##new-attribute-option-name").val('');
 					$("##new-attribute-option-name-color").val('');
@@ -137,6 +127,7 @@
 			{
 				addAttributeOption(attr, option);
 				generateAttributes();
+				generateSubProducts();
 				
 				$("##new-attribute-option-name").val('');
 				$("##new-attribute-option-name-color").val('');
@@ -161,6 +152,7 @@
 			
 			removeAttributeOption(attr, option);
 			generateAttributes();
+			generateSubProducts();
 		});
 		
 		function loadThumbnail(file, callback) {
@@ -174,83 +166,13 @@
 		$( ".delete-image" ).click(function() {
 			$("##deleted_image_id").val($(this).attr('imageid'));
 		});
-		
-		$( ".edit-group-price" ).click(function() {
-			$("##edit_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
-			$("##edit_price").val($(this).attr('price'));
-			$("##edit_special_price").val($(this).attr('specialprice'));
-			$("##edit_special_price_from_date").val($(this).attr('fromdate'));
-			$("##edit_special_price_to_date").val($(this).attr('todate'));
-		});
-		
-		$( ".delete-group-price" ).click(function() {
-			$("##deleted_product_customer_group_rela_id").val($(this).attr('productcustomergrouprelaid'));
-		});
-		
+				
 		$( ".delete-video" ).click(function() {
 			$("##deleted_product_video_id").val($(this).attr('productvideoid'));
 		});
 		
 		$( ".add-single-group-price" ).click(function() {
 			$("##add_customer_group_id").val($(this).attr('customergroupid'));
-		});
-		
-		var groupArray = new Array();
-		<cfloop array="#REQUEST.pageData.customerGroups#" index="group">	
-			<cfif group.getIsDefault() EQ false>
-				var group = new Object();
-				group.eid = '#group.getCustomerGroupId()#';
-				group.type = '#group.getDiscountType().getCalculationType().getName()#';
-				group.amount = '#group.getDiscountType().getAmount()#';
-				groupArray.push(group);
-			</cfif>
-		</cfloop>
-		
-		$( "##price" ).keyup(function() {
-			if(!isNaN($(this).val()))
-			{
-				for(var i=0;i<groupArray.length;i++)
-				{
-					if(groupArray[i].type == 'fixed')
-						$("##price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0).toFixed(2));
-					else if (groupArray[i].type == 'percentage')
-						$("##price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount/100)).toFixed(2));
-				}		
-			}
-		});
-		
-		$( "##special-price" ).keyup(function() {
-			if(!isNaN($(this).val()))
-			{
-				for(var i=0;i<groupArray.length;i++)
-				{
-					if(groupArray[i].type == 'fixed')
-						$("##special-price-" + groupArray[i].eid).val(Math.max($(this).val() - groupArray[i].amount,0).toFixed(2));
-					else if (groupArray[i].type == 'percentage')
-						$("##special-price-" + groupArray[i].eid).val(($(this).val() * (1-groupArray[i].amount/100)).toFixed(2));
-				}		
-			}
-		});
-		
-		$( "##special-price-from-date" ).keyup(function() {
-			console.log(Date.parse($(this).val()));
-			if(Date.parse($(this).val()))
-			{
-				for(var i=0;i<groupArray.length;i++)
-				{
-					$("##special-price-from-date-" + groupArray[i].eid).val($(this).val());
-				}		
-			}
-		});
-		
-		$( "##special-price-to-date" ).keyup(function() {
-			if(Date.parse($(this).val()))
-			{
-				for(var i=0;i<groupArray.length;i++)
-				{
-					$("##special-price-to-date-" + groupArray[i].eid).val($(this).val());
-				}		
-			}
 		});
 		
 		$("##search-product").click(function() {
@@ -371,6 +293,7 @@
 				}
 								
 				generateAttributes();
+				generateSubProducts();
 				attributeChanged = false;
 			}			
 		});	
@@ -506,6 +429,10 @@
 			}
 			
 			$('##attribute-options').append(str);
+		}
+		
+		function generateSubProducts() {
+		
 		}
 	});
 </script>
