@@ -431,9 +431,55 @@
 			$('##attribute-options').append(str);
 		}
 		
-		function generateSubProducts() {
-		
+		function generateSubProducts(attributeArray) {
+			var arr = createArrayPermutation(attributeArray);
+			
+			for(var i=0;i<arr.length;i++)
+			{
+				generateRow(arr[i]);
+			}
 		}
+		
+		function generateRow(attribute) {
+			if(attribute)
+		}
+		
+		function createArrayPermutation(attributeArray) {
+			var result = [];
+			var _arrayslen = attributeArray.length;
+			var _size = (_arrayslen) ? 1 : 0;
+			var _array = '';
+			var x = 0;
+			var i = 0;
+			var j = 0;
+			var _current = [];
+
+			for (x=1; x <= _arrayslen; x++) {
+				_size = _size * attributeArray[x].length;
+				_current[x] = 1;
+			}
+
+			for (i=1; i <= _size; i++) {
+				result[i] = [];
+
+				for (j=1; j <= _arrayslen; j++) {
+					arrayappend(result[i], attributeArray[j][_current[j]]);
+				}
+
+				for (j=_arrayslen; j > 0; j--) {
+					if (ArrayLen(attributeArray[j]) > _current[j])  {
+						_current[j]++;
+						break;
+					}
+					else {
+						_current[j] = 1;
+					}
+				}
+			}
+
+			return result;
+		}
+	</cffunction>
 	});
 </script>
 
