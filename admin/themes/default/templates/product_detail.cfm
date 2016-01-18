@@ -481,7 +481,8 @@
 		}
 		
 		function createArrayPermutation(attributeArray) {
-			var result = [];
+			var results = [];
+			var result = '';
 			var _arrayslen = attributeArray.length;
 			var _size = (_arrayslen) ? 1 : 0;
 			var _array = '';
@@ -497,16 +498,15 @@
 			}
 
 			for (i=1; i <= _size; i++) {
-				result[i] = {};
-				result[i].productId = '';
-				result[i].attributeName = '';
-				result[i].attributeName = '';
-				result[i].sku = '';
-				result[i].stock = '';
-				result[i].price = '';
-				result[i].specialPrice = '';
-				result[i].fromDate = '';
-				result[i].toDate = '';
+				result = new Object();
+				result.productId = '';
+				result.attributeName = '';
+				result.sku = '';
+				result.stock = '';
+				result.price = '';
+				result.specialPrice = '';
+				result.fromDate = '';
+				result.toDate = '';
 
 				options = [];
 				
@@ -514,7 +514,9 @@
 					arrayappend(options, attributeArray[j][_current[j]]);
 				}
 
-				result[i].options = options;
+				result.options = options;
+				
+				results[i] = result;
 				
 				for (j=_arrayslen; j > 0; j--) {
 					if (attributeArray[j].length > _current[j])  {
@@ -527,7 +529,7 @@
 				}
 			}
 
-			return result;
+			return results;
 		}
 	</cffunction>
 	});
