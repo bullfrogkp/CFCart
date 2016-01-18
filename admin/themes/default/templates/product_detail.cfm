@@ -517,7 +517,7 @@
 				result[i].options = options;
 				
 				for (j=_arrayslen; j > 0; j--) {
-					if (ArrayLen(attributeArray[j]) > _current[j])  {
+					if (attributeArray[j].length > _current[j])  {
 						_current[j]++;
 						break;
 					}
