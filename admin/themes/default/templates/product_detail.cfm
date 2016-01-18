@@ -444,11 +444,11 @@
 			var str = 	'<tr>
 							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
 							
-							for(var i=0;i<subProduct.attributeOptions.length;i++)
+							for(var i=0;i<subProductoptions.length;i++)
 							{
 								str = str + '<td>';
 								
-								if(subProduct.attributeOptions[i].)attributeName = 'color')
+								if(subProduct.options[i].)attributeName = 'color')
 									str = str + '<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>';
 								else
 									str = str + '<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getValue()#</div>';
@@ -489,6 +489,7 @@
 			var i = 0;
 			var j = 0;
 			var _current = [];
+			var _options = [];
 
 			for (x=1; x <= _arrayslen; x++) {
 				_size = _size * attributeArray[x].length;
@@ -496,12 +497,25 @@
 			}
 
 			for (i=1; i <= _size; i++) {
-				result[i] = [];
+				result[i] = {};
+				result[i].productId = '';
+				result[i].attributeName = '';
+				result[i].attributeName = '';
+				result[i].sku = '';
+				result[i].stock = '';
+				result[i].price = '';
+				result[i].specialPrice = '';
+				result[i].fromDate = '';
+				result[i].toDate = '';
 
+				options = [];
+				
 				for (j=1; j <= _arrayslen; j++) {
-					arrayappend(result[i], attributeArray[j][_current[j]]);
+					arrayappend(options, attributeArray[j][_current[j]]);
 				}
 
+				result[i].options = options;
+				
 				for (j=_arrayslen; j > 0; j--) {
 					if (ArrayLen(attributeArray[j]) > _current[j])  {
 						_current[j]++;
