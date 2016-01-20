@@ -269,6 +269,8 @@
 			attribute.options = attributeOptions;
 			attributeArray.push(attribute);
 		</cfloop>
+		
+		console.log(createArrayPermutation(attributeArray));
 				
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
@@ -432,14 +434,16 @@
 		}
 		
 		function generateSubProducts(attributeArray) {
+			<!---
 			var arr = createArrayPermutation(attributeArray);
 			
 			for(var i=0;i<arr.length;i++)
 			{
 				generateRow(arr[i]);
 			}
+			--->
 		}
-		
+		<!---
 		function generateRow(subProduct) {
 			var str = 	'<tr>
 							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
@@ -448,7 +452,7 @@
 							{
 								str = str + '<td>';
 								
-								if(subProduct.options[i].)attributeName = 'color')
+								if(subProduct.options[i].attributeName = 'color')
 									str = str + '<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>';
 								else
 									str = str + '<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getValue()#</div>';
@@ -479,11 +483,11 @@
 							</td>
 						</tr>';
 		}
-		
-		function createArrayPermutation(attributeArray) {
+		--->
+		function createArrayPermutation(attrArray) {
 			var results = [];
 			var result = '';
-			var _arrayslen = attributeArray.length;
+			var _arrayslen = attrArray.length;
 			var _size = (_arrayslen) ? 1 : 0;
 			var _array = '';
 			var x = 0;
@@ -491,11 +495,11 @@
 			var j = 0;
 			var _current = [];
 			var _options = [];
-
-			for (x=1; x <= _arrayslen; x++) {
-				if(attributeArray[x].deleted == false)
+			
+			for (x=0; x < _arrayslen; x++) {
+				if(attrArray[x].deleted == false)
 				{
-					_size = _size * attributeArray[x].options.length;
+					_size = _size * attrArray[x].options.length;
 					_current[x] = 1;
 				}
 			}
@@ -512,23 +516,23 @@
 
 				_options = [];
 				
-				for (j=1; j <= _arrayslen; j++) {
-					if(attributeArray[j].deleted == false)
+				for (j=0; j < _arrayslen; j++) {
+					if(attrArray[j].deleted == false)
 					{
 						var attr = new Object();
-						attr.name = attributeArray[j].name;
-						attr.value = attributeArray[j].options[_current[j]].value;
+						attr.name = attrArray[j].name;
+						attr.value = attrArray[j].options[_current[j]].value;
 					
-						arrayappend(_options, attr);
+						_options.push(attr);
 					}
 				}
 
 				result.options = _options;
 				
-				results[i] = result;
+				results.push(result);
 				
-				for (j=_arrayslen; j > 0; j--) {
-					if (attributeArray[j].options.length > _current[j])  {
+				for (j=_arrayslen-1; j >= 0; j--) {
+					if (attrArray[j].options.length > _current[j])  {
 						_current[j]++;
 						break;
 					}
@@ -537,10 +541,9 @@
 					}
 				}
 			}
-
+console.log(results);
 			return results;
 		}
-	</cffunction>
 	});
 </script>
 
