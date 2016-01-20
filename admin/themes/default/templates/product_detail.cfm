@@ -493,14 +493,13 @@
 			var _options = [];
 
 			for (x=1; x <= _arrayslen; x++) {
-				_size = _size * attributeArray[x].length;
+				_size = _size * attributeArray[x].options.length;
 				_current[x] = 1;
 			}
 
 			for (i=1; i <= _size; i++) {
 				result = new Object();
 				result.productId = '';
-				result.attributeName = '';
 				result.sku = '';
 				result.stock = '';
 				result.price = '';
@@ -511,7 +510,14 @@
 				options = [];
 				
 				for (j=1; j <= _arrayslen; j++) {
-					arrayappend(options, attributeArray[j][_current[j]]);
+					if(attributeArray[j].deleted == false)
+					{
+						var attr = new Object();
+						attr.name = attributeArray[j].name;
+						attr.value = attributeArray[j].options[_current[j]].value;
+					
+						arrayappend(options, attr);
+					}
 				}
 
 				result.options = options;
