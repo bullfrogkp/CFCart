@@ -504,7 +504,7 @@
 				}
 			}
 console.log(_size);
-			for (i=1; i <= _size; i++) {
+			for (i=0; i < _size; i++) {
 				result = new Object();
 				result.productId = '';
 				result.sku = '';
