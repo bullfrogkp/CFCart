@@ -493,8 +493,11 @@
 			var _options = [];
 
 			for (x=1; x <= _arrayslen; x++) {
-				_size = _size * attributeArray[x].options.length;
-				_current[x] = 1;
+				if(attributeArray[x].deleted == false)
+				{
+					_size = _size * attributeArray[x].options.length;
+					_current[x] = 1;
+				}
 			}
 
 			for (i=1; i <= _size; i++) {
@@ -507,7 +510,7 @@
 				result.fromDate = '';
 				result.toDate = '';
 
-				options = [];
+				_options = [];
 				
 				for (j=1; j <= _arrayslen; j++) {
 					if(attributeArray[j].deleted == false)
@@ -516,16 +519,16 @@
 						attr.name = attributeArray[j].name;
 						attr.value = attributeArray[j].options[_current[j]].value;
 					
-						arrayappend(options, attr);
+						arrayappend(_options, attr);
 					}
 				}
 
-				result.options = options;
+				result.options = _options;
 				
 				results[i] = result;
 				
 				for (j=_arrayslen; j > 0; j--) {
-					if (attributeArray[j].length > _current[j])  {
+					if (attributeArray[j].options.length > _current[j])  {
 						_current[j]++;
 						break;
 					}
