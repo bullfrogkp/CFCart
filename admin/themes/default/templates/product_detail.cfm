@@ -497,13 +497,13 @@
 			var _options = [];
 			
 			for (x=0; x < _arrayslen; x++) {
-				if(attrArray[x].deleted == false)
+				if(attrArray[x].deleted == false && attrArray[x].options.length > 0)
 				{
 					_size = _size * attrArray[x].options.length;
 					_current[x] = 1;
 				}
 			}
-
+console.log(_size);
 			for (i=1; i <= _size; i++) {
 				result = new Object();
 				result.productId = '';
