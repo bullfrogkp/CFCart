@@ -13,7 +13,6 @@
 		 );
 		
 		$(".top-level-tab").click(function() {
-			console.log($(this).attr('tabid'));
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
 				
@@ -495,7 +494,7 @@
 			var j = 0;
 			var _current = [];
 			var _options = [];
-			
+		
 			for (x=0; x < _arrayslen; x++) {
 				if(attrArray[x].deleted == false && attrArray[x].options.length > 0)
 				{
@@ -503,7 +502,7 @@
 					_current[x] = 1;
 				}
 			}
-console.log(_size);
+
 			for (i=0; i < _size; i++) {
 				result = new Object();
 				result.productId = '';
@@ -517,20 +516,24 @@ console.log(_size);
 				_options = [];
 				
 				for (j=0; j < _arrayslen; j++) {
+							console.log(attrArray[j].deleted);
 					if(attrArray[j].deleted == false)
 					{
-						var attr = new Object();
-						attr.name = attrArray[j].name;
-						attr.value = attrArray[j].options[_current[j]].value;
-					
-						_options.push(attr);
+						if(typeof attrArray[j].options[_current[j]] !== 'undefined')
+						{
+							var attr = new Object();
+							attr.name = attrArray[j].name;
+							attr.value = attrArray[j].options[_current[j]].value;
+						
+							_options.push(attr);
+						}
 					}
 				}
 
 				result.options = _options;
 				
 				results.push(result);
-				
+					
 				for (j=_arrayslen-1; j >= 0; j--) {
 					if (attrArray[j].options.length > _current[j])  {
 						_current[j]++;
@@ -541,7 +544,7 @@ console.log(_size);
 					}
 				}
 			}
-console.log(results);
+
 			return results;
 		}
 	});
