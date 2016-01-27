@@ -432,6 +432,7 @@
 		
 		function generateSubProducts() {
 			var arr = createArrayPermutation(attributeArray);
+			
 			var str = '';
 			
 			$('##sub-products').empty();
@@ -473,10 +474,10 @@
 			str = str + '<td><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" /></td><td style="text-align:right;"><input type="checkbox" class="form-control" name="product_enabled" value="" /></td></tr>';
 		}
 		
-		function createArrayPermutation(attrArray) {
+		function createArrayPermutation(attributeArray) {
 			var results = [];
 			var result = '';
-			var _arrayslen = attrArray.length;
+			var _arrayslen = attributeArray.length;
 			var _size = (_arrayslen) ? 1 : 0;
 			var _array = '';
 			var x = 0;
@@ -486,9 +487,9 @@
 			var _options = [];
 		
 			for (x=0; x < _arrayslen; x++) {
-				if(attrArray[x].deleted == false && attrArray[x].options.length > 0)
+				if(attributeArray[x].deleted == false && attributeArray[x].options.length > 0)
 				{
-					_size = _size * attrArray[x].options.length;
+					_size = _size * attributeArray[x].options.length;
 					_current[x] = 0;
 				}
 			}
@@ -507,13 +508,13 @@
 				
 				for (j=0; j < _arrayslen; j++) {
 					
-					if(attrArray[j].deleted == false)
+					if(attributeArray[j].deleted == false)
 					{
-						if(attrArray[j].options.length > 0)
+						if(attributeArray[j].options.length > 0)
 						{
 							var attr = new Object();
-							attr.name = attrArray[j].name;
-							attr.value = attrArray[j].options[_current[j]].value;
+							attr.name = attributeArray[j].name;
+							attr.value = attributeArray[j].options[_current[j]].value;
 						
 							_options.push(attr);
 						}
@@ -525,7 +526,7 @@
 				results.push(result);
 					
 				for (j=_arrayslen-1; j >= 0; j--) {
-					if (attrArray[j].options.length > _current[j])  {
+					if (attributeArray[j].options.length > (_current[j] + 1))  {
 						_current[j]++;
 						break;
 					}
