@@ -268,8 +268,6 @@
 			attribute.options = attributeOptions;
 			attributeArray.push(attribute);
 		</cfloop>
-		
-		console.log(createArrayPermutation(attributeArray));
 				
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
@@ -433,16 +431,14 @@
 		}
 		
 		function generateSubProducts(attributeArray) {
-			<!---
 			var arr = createArrayPermutation(attributeArray);
 			
 			for(var i=0;i<arr.length;i++)
 			{
 				generateRow(arr[i]);
 			}
-			--->
 		}
-		<!---
+		
 		function generateRow(subProduct) {
 			var str = 	'<tr>
 							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
@@ -482,7 +478,7 @@
 							</td>
 						</tr>';
 		}
-		--->
+		
 		function createArrayPermutation(attrArray) {
 			var results = [];
 			var result = '';
