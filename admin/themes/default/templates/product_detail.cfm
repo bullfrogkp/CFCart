@@ -457,43 +457,20 @@
 		}
 				
 		function generateRow(subProduct) {
-			var str = 	'<tr>
-							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
+			var str = 	'<tr><td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
 							
-							for(var i=0;i<subProductoptions.length;i++)
-							{
-								str = str + '<td>';
-								
-								if(subProduct.options[i].attributeName = 'color')
-									str = str + '<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>';
-								else
-									str = str + '<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getValue()#</div>';
-								str = str + '</td>';
-							}
+			for(var i=0;i<subProduct.options.length;i++)
+			{
+				str = str + '<td>';
+				
+				if(subProduct.options[i].name = 'color')
+					str = str + '<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:3px;"></div>';
+				else
+					str = str + '<div class="pull-left">'+subProduct.options[i].value+'</div>';
+				str = str + '</td>';
+			}
 							
-							str = str + '
-							<td>
-								<input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" />
-							</td>
-							<td>
-								<input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" />
-							</td>
-							<td>
-								<input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" />
-							</td>
-							<td>
-								<input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" />
-							</td>
-							<td>
-								<input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" />
-							</td>
-							<td>
-								<input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" />
-							</td>
-							<td style="text-align:right;">
-								<input type="checkbox" class="form-control" name="product_enabled" value="" />
-							</td>
-						</tr>';
+			str = str + '<td><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" /></td><td style="text-align:right;"><input type="checkbox" class="form-control" name="product_enabled" value="" /></td></tr>';
 		}
 		
 		function createArrayPermutation(attrArray) {
