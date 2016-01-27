@@ -499,7 +499,7 @@
 				if(attrArray[x].deleted == false && attrArray[x].options.length > 0)
 				{
 					_size = _size * attrArray[x].options.length;
-					_current[x] = 1;
+					_current[x] = 0;
 				}
 			}
 
@@ -540,7 +540,7 @@
 						break;
 					}
 					else {
-						_current[j] = 1;
+						_current[j] = 0;
 					}
 				}
 			}
