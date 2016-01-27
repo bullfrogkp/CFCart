@@ -441,7 +441,7 @@
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
-				if(attributeArray[i].deleted == false)
+				if(attributeArray[i].deleted == false && attributeArray[i].options.length > 0)
 				{
 					str += '<th>' + attributeArray[i].name + '</th>';
 				}
