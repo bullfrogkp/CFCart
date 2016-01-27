@@ -432,13 +432,35 @@
 		
 		function generateSubProducts(attributeArray) {
 			var arr = createArrayPermutation(attributeArray);
+			var str = '';
+			
+			$(##"sub-products").empty();
+			
+			str += '<div class="form-group">
+													<label>Product(s)</label>
+													<table class="table table-bordered table-hover">
+														<tr class="warning">
+															<th>ID</th>
+															<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+																<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
+															</cfloop>
+															<th>Sku</th>
+															<th>Stock</th>
+															<th>Price</th>
+															<th>Special Price</th>
+															<th>From Date</th>
+															<th>To Date</th>
+															<th>Enabled</th>
+														</tr>';
 			
 			for(var i=0;i<arr.length;i++)
 			{
-				generateRow(arr[i]);
+				str += generateRow(arr[i]);
 			}
+			
+			$(##"sub-products").html(str);
 		}
-		
+				
 		function generateRow(subProduct) {
 			var str = 	'<tr>
 							<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
@@ -774,75 +796,77 @@
 											</cfif>
 										</div>
 										
-										<cfif NOT IsNull(REQUEST.pageData.product)>
-											<div class="form-group">
-												<label>Product(s)</label>
-												<table class="table table-bordered table-hover">
-													<tr class="warning">
-														<th>ID</th>
-														<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-															<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
-														</cfloop>
-														<th>Sku</th>
-														<th>Stock</th>
-														<th>Price</th>
-														<th>Special Price</th>
-														<th>From Date</th>
-														<th>To Date</th>
-														<th>Enabled</th>
-													</tr>
-													<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-													<tr>
-														<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
-														
-														<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-														
-															<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
-															<td>
-																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-																	<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getValue()#</div>
-																	<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																		<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																			<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																				<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																			</div>
-																		<cfelse>
-																			<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+										<div id="sub-products">
+											<cfif NOT IsNull(REQUEST.pageData.product)>
+												<div class="form-group">
+													<label>Product(s)</label>
+													<table class="table table-bordered table-hover">
+														<tr class="warning">
+															<th>ID</th>
+															<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+																<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
+															</cfloop>
+															<th>Sku</th>
+															<th>Stock</th>
+															<th>Price</th>
+															<th>Special Price</th>
+															<th>From Date</th>
+															<th>To Date</th>
+															<th>Enabled</th>
+														</tr>
+														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+														<tr>
+															<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
+															
+															<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+															
+																<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
+																<td>
+																	<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+																		<div class="pull-left">#productAttributeRela.getAttributeValues()[1].getValue()#</div>
+																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
+																				<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
+																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
+																				</div>
+																			<cfelse>
+																				<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:3px;"></div>
+																			</cfif>
 																		</cfif>
+																	<cfelse>
+																		N/A
 																	</cfif>
-																<cfelse>
-																	N/A
-																</cfif>
+																</td>
+															
+															</cfloop>
+															
+															<td>
+																<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
 															</td>
-														
+															<td>
+																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+															</td>
+															<td>
+																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+															</td>
+															<td>
+																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+															</td>
+															<td>
+																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+															</td>
+															<td>
+																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+															</td>
+															<td style="text-align:right;">
+																<input type="checkbox" class="form-control" name="product_enabled" value="" />
+															</td>
+														</tr>
 														</cfloop>
-														
-														<td>
-															<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
-														</td>
-														<td>
-															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-														</td>
-														<td>
-															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-														</td>
-														<td>
-															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-														</td>
-														<td>
-															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-														</td>
-														<td>
-															<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-														</td>
-														<td style="text-align:right;">
-															<input type="checkbox" class="form-control" name="product_enabled" value="" />
-														</td>
-													</tr>
-													</cfloop>
-												</table>
-											</div>
-										</cfif>
+													</table>
+												</div>
+											</cfif>
+										</div>
 									</td>
 								</tr>
 							</table>
