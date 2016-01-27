@@ -516,10 +516,10 @@
 				_options = [];
 				
 				for (j=0; j < _arrayslen; j++) {
-							console.log(attrArray[j].deleted);
+					
 					if(attrArray[j].deleted == false)
 					{
-						if(typeof attrArray[j].options[_current[j]] !== 'undefined')
+						if(attrArray[j].options.length > 0)
 						{
 							var attr = new Object();
 							attr.name = attrArray[j].name;
