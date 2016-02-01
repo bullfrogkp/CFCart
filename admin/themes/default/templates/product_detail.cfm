@@ -450,7 +450,7 @@
 			
 			$('##sub-products').empty();
 			
-			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning"><th>ID</th>';
+			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning">';
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
