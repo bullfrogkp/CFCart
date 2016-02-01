@@ -101,6 +101,7 @@
 			option.aoid = 'new-' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '';
+			option.hasThumbnail = false;
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
 			{
@@ -111,6 +112,10 @@
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
+					
+					$('##generate-thumbnail').on('ifChecked', function(event){
+						option.hasThumbnail = true;
+					});
 					
 					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
@@ -268,6 +273,7 @@
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.value = '#attributeValue.getValue()#';
 					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
+					attributeOption.hasThumbnail = '#attributeValue.getHasThumbnail()#';
 					attributeOptions.push(attributeOption);
 				</cfloop>
 			<cfelse>
@@ -375,11 +381,7 @@
 				{
 					if(attributeArray[i].options.length == 0)
 						isFirstOption = true;
-					var attributeOption = new Object();
-					attributeOption.aoid = option.aoid;
-					attributeOption.value = option.value;
-					attributeOption.imageLink = option.imageLink;
-					attributeArray[i].options.push(attributeOption);
+					attributeArray[i].options.push(option);
 					break;
 				}
 			}
