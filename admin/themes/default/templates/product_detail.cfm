@@ -122,6 +122,7 @@
 					$("##new-attribute-option-name").val('');
 					$("##new-attribute-option-name-color").val('');
 					$("##new-attribute-option-image").val('');
+					$("##generate-thumbnail").iCheck('uncheck');
 					
 					new_option_index++;
 				});
@@ -138,6 +139,7 @@
 				$("##new-attribute-option-name").val('');
 				$("##new-attribute-option-name-color").val('');
 				$("##new-attribute-option-image").val('');
+				$("##generate-thumbnail").iCheck('uncheck');
 				
 				new_option_index++;
 			}
