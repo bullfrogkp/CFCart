@@ -92,6 +92,7 @@
 		$( "##add-new-attribute-option-confirm" ).click(function() {
 		
 			var new_option_index = 1;
+			var isFirstOption = false;
 			
 			var attr = new Object();
 			attr.aid = $("##new-attribute-id-hidden").val();
@@ -111,9 +112,12 @@
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
 					
-					addAttributeOption(attr, option);
+					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
-					generateSubProducts();
+					if(isFirstOption)
+						generateAllSubProducts();
+					else
+						generateSubProducts();
 					
 					$("##new-attribute-option-name").val('');
 					$("##new-attribute-option-name-color").val('');
@@ -124,9 +128,12 @@
 			}
 			else
 			{
-				addAttributeOption(attr, option);
+				isFirstOption = addAttributeOption(attr, option);
 				generateAttributes();
-				generateSubProducts();
+				if(isFirstOption)
+					generateAllSubProducts();
+				else
+					generateSubProducts();
 				
 				$("##new-attribute-option-name").val('');
 				$("##new-attribute-option-name-color").val('');
@@ -292,7 +299,7 @@
 				}
 								
 				generateAttributes();
-				generateSubProducts();
+				generateAllSubProducts();
 				attributeChanged = false;
 			}			
 		});	
@@ -358,10 +365,14 @@
 		}
 		
 		function addAttributeOption(attr, option) {
+			var isFirstOption = false;
+			
 			for(var i=0;i<attributeArray.length;i++)
 			{
 				if(attributeArray[i].aid == attr.aid)
 				{
+					if(attributeArray[i].options.length == 0)
+						isFirstOption = true;
 					var attributeOption = new Object();
 					attributeOption.aoid = option.aoid;
 					attributeOption.value = option.value;
@@ -370,6 +381,8 @@
 					break;
 				}
 			}
+			
+			return isFirstOption;
 		}
 		
 		function removeAttributeOption(attr, option) {
@@ -428,6 +441,33 @@
 			}
 			
 			$('##attribute-options').append(str);
+		}
+		
+		function generateAllSubProducts() {
+			var arr = createArrayPermutation(attributeArray);
+			
+			var str = '';
+			
+			$('##sub-products').empty();
+			
+			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning"><th>ID</th>';
+			
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].deleted == false && attributeArray[i].options.length > 0)
+				{
+					str += '<th>' + attributeArray[i].name + '</th>';
+				}
+			}
+			
+			str += '<th>Sku</th><th>Stock</th><th>Price</th><th>Special Price</th><th>From Date</th><th>To Date</th><th>Enabled</th></tr>';
+			
+			for(var i=0;i<arr.length;i++)
+			{
+				str += generateRow(arr[i]);
+			}
+			
+			$('##sub-products').html(str);
 		}
 		
 		function generateSubProducts() {
