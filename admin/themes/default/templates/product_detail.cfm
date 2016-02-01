@@ -477,7 +477,7 @@
 			
 			$('##sub-products').empty();
 			
-			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning"><th>ID</th>';
+			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning">';
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
@@ -497,14 +497,14 @@
 			$('##sub-products').html(str);
 		}
 				
-		function generateRow(subProduct) {
-			var str = 	'<tr><td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id='+subProduct.productId+'">'+subProduct.productId+'</a></td>';
+		function generateRow(subProduct) {console.log(subProduct);
+			var str = 	'<tr>';
 							
 			for(var i=0;i<subProduct.options.length;i++)
 			{
 				str = str + '<td>';
 				
-				if(subProduct.options[i].name = 'color')
+				if(subProduct.options[i].name == 'color')
 					str = str + '<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:3px;"></div>';
 				else
 					str = str + '<div class="pull-left">'+subProduct.options[i].value+'</div>';
@@ -538,7 +538,7 @@
 
 			for (i=0; i < _size; i++) {
 				result = new Object();
-				result.productId = '';
+				result.productId = 'new_sub_product_' + i;
 				result.sku = '';
 				result.stock = '';
 				result.price = '';
@@ -819,7 +819,6 @@
 													<label>Product(s)</label>
 													<table class="table table-bordered table-hover">
 														<tr class="warning">
-															<th>ID</th>
 															<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 																<cfif NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
 																	<th>#LCase(productAttributeRela.getAttribute().getDisplayName())#</th>
@@ -835,8 +834,6 @@
 														</tr>
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 														<tr>
-															<td><a href="#APPLICATION.absoluteUrlWeb#admin/product_detail.cfm?id=#p.getProductId()#">#p.getProductId()#</a></td>
-															
 															<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
 																<cfset productAttributeRela = EntityLoad("product_attribute_rela",{attribute = productAttributeRela.getAttribute(), product = p},true) />
 																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
