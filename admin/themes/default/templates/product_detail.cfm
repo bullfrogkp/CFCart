@@ -122,7 +122,7 @@
 					if(isFirstOption)
 						generateAllSubProducts();
 					else
-						generateSubProducts();
+						generateSubProducts(attr, option);
 					
 					$("##new-attribute-option-name").val('');
 					$("##new-attribute-option-name-color").val('');
@@ -139,7 +139,7 @@
 				if(isFirstOption)
 					generateAllSubProducts();
 				else
-					generateSubProducts();
+					generateSubProducts(attr, option);
 				
 				$("##new-attribute-option-name").val('');
 				$("##new-attribute-option-name-color").val('');
@@ -165,7 +165,10 @@
 			
 			removeAttributeOption(attr, option);
 			generateAttributes();
-			generateSubProducts();
+			if(isLastOption)
+				generateAllSubProducts();
+			else
+				removeSubProducts(attr, option);
 		});
 		
 		function loadThumbnail(file, callback) {
@@ -474,7 +477,34 @@
 			$('##sub-products').html(str);
 		}
 		
-		function generateSubProducts() {
+		function generateSubProducts(attr, option) {
+			var arr = createArrayPermutation(attributeArray);
+			
+			var str = '';
+			
+			$('##sub-products').empty();
+			
+			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning">';
+			
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].deleted == false && attributeArray[i].options.length > 0)
+				{
+					str += '<th>' + attributeArray[i].name + '</th>';
+				}
+			}
+			
+			str += '<th>Sku</th><th>Stock</th><th>Price</th><th>Special Price</th><th>From Date</th><th>To Date</th><th>Enabled</th></tr>';
+			
+			for(var i=0;i<arr.length;i++)
+			{
+				str += generateRow(arr[i]);
+			}
+			
+			$('##sub-products').html(str);
+		}
+		
+		function removeSubProducts(attr, option) {
 			var arr = createArrayPermutation(attributeArray);
 			
 			var str = '';
