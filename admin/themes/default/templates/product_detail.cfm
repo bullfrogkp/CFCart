@@ -478,11 +478,23 @@
 		}
 		
 		function generateSubProducts(attr, option) {
-			var arr = createArrayPermutation(attributeArray);
+		
+			var newArr = attributeArray.slice(0);
+			
+			for(var i=0;i<newArr.length;i++)
+			{
+				if(newArr[i].aid == attr.aid)
+				{
+					newArr[i].options = [];
+					newArr[i].options.push(option);
+					break;
+				}
+			}
+		
+			var arr = createArrayPermutation(newArr);
 			
 			var str = '';
 			
-			$('##sub-products').empty();
 			
 			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning">';
 			
