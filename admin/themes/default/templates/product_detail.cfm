@@ -158,12 +158,13 @@
 		$( "##delete-attribute-option-confirm" ).click(function() {		
 
 			var attr = new Object();
+			var isLastOption = false;
 			attr.aid = $("##deleted-attribute-id-hidden").val();
 			
 			var option = new Object();
 			option.aoid = $("##deleted-attribute-option-id-hidden").val();
 			
-			removeAttributeOption(attr, option);
+			isLastOption = removeAttributeOption(attr, option);
 			generateAttributes();
 			if(isLastOption)
 				generateAllSubProducts();
@@ -394,6 +395,8 @@
 		}
 		
 		function removeAttributeOption(attr, option) {
+			var isLastOption = false;
+			
 			for(var i=0;i<attributeArray.length;i++)
 			{
 				if(attributeArray[i].aid == attr.aid)
@@ -404,12 +407,17 @@
 						if(options[j].aoid == option.aoid)
 						{
 							options.splice(j, 1);
+							if(attributeArray[i].options.length == 0)
+							{
+								isLastOption = true;
+							}
 							break;
 						}
 					}
 					break;
 				}
 			}
+			return isLastOption;
 		}
 		
 		function generateAttributes() {
