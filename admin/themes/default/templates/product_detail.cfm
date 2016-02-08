@@ -286,7 +286,7 @@
 			attribute.options = attributeOptions;
 			attributeArray.push(attribute);
 		</cfloop>
-		console.log(attributeArray);		
+		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
@@ -390,7 +390,6 @@
 					break;
 				}
 			}
-			console.log(attributeArray);
 			return isFirstOption;
 		}
 		
