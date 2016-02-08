@@ -455,9 +455,7 @@
 			
 			var str = '';
 			
-			$('##sub-products').empty();
-			
-			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning">';
+			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover" id="sub-products-table"><tr class="warning">';
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
@@ -495,25 +493,12 @@
 			
 			var str = '';
 			
-			
-			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover"><tr class="warning">';
-			
-			for(var i=0;i<attributeArray.length;i++)
-			{
-				if(attributeArray[i].deleted == false && attributeArray[i].options.length > 0)
-				{
-					str += '<th>' + attributeArray[i].name + '</th>';
-				}
-			}
-			
-			str += '<th>Sku</th><th>Stock</th><th>Price</th><th>Special Price</th><th>From Date</th><th>To Date</th><th>Enabled</th></tr>';
-			
 			for(var i=0;i<arr.length;i++)
 			{
 				str += generateRow(arr[i]);
 			}
 			
-			$('##sub-products').html(str);
+			$('##sub-products-table').append(str);
 		}
 		
 		function removeSubProducts(attr, option) {
@@ -863,7 +848,7 @@
 											<cfif NOT IsNull(REQUEST.pageData.product)>
 												<div class="form-group">
 													<label>Product(s)</label>
-													<table class="table table-bordered table-hover">
+													<table class="table table-bordered table-hover" id="sub-products-table">
 														<tr class="warning">
 															<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 																<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
