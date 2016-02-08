@@ -286,7 +286,7 @@
 			attribute.options = attributeOptions;
 			attributeArray.push(attribute);
 		</cfloop>
-				
+		console.log(attributeArray);		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
@@ -383,12 +383,14 @@
 				if(attributeArray[i].aid == attr.aid)
 				{
 					if(attributeArray[i].options.length == 0)
+					{
 						isFirstOption = true;
+					}
 					attributeArray[i].options.push(option);
 					break;
 				}
 			}
-			
+			console.log(attributeArray);
 			return isFirstOption;
 		}
 		
@@ -477,7 +479,7 @@
 		
 		function generateSubProducts(attr, option) {
 		
-			var newArr = attributeArray.slice(0);
+			var newArr = $.extend(true, [], attributeArray);;
 			
 			for(var i=0;i<newArr.length;i++)
 			{
@@ -528,7 +530,7 @@
 			$('##sub-products').html(str);
 		}
 				
-		function generateRow(subProduct) {console.log(subProduct);
+		function generateRow(subProduct) {
 			var str = 	'<tr>';
 							
 			for(var i=0;i<subProduct.options.length;i++)
