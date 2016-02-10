@@ -288,6 +288,20 @@
 			attributeArray.push(attribute);
 		</cfloop>
 		
+		var attributeValueRowsStruct = new Object();
+		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+			<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+			<cfif NOT IsNull(productAttributeRela)>
+				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+					
+					attributeRowsStruct['av_#attributeValue.getAttributeValueId()#'] = '';
+					
+					<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+						<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = p, attribute = attribute}, true) />
+						
+					</cfloop>
+		</cfloop>
+		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
