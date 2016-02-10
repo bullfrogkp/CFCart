@@ -288,20 +288,6 @@
 			attributeArray.push(attribute);
 		</cfloop>
 		
-		var attributeValueRowsStruct = new Object();
-		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-			<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
-			<cfif NOT IsNull(productAttributeRela)>
-				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-					
-					attributeRowsStruct['av_#attributeValue.getAttributeValueId()#'] = '';
-					
-					<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-						<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = p, attribute = attribute}, true) />
-						
-					</cfloop>
-		</cfloop>
-		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
 			{
@@ -890,8 +876,10 @@
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 														<tr>
 															<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+																<cfset cls = "" />
 																<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
 																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+																	<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
 																	<td>
 																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
 																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
@@ -914,7 +902,7 @@
 																</cfif>
 															</cfloop>
 															
-															<td>
+															<td class="#cls#">
 																<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
 															</td>
 															<td>
