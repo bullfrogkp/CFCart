@@ -69,9 +69,7 @@
 		$( ".delete-related-product" ).click(function() {
 			$("##delete_related_product_id").val($(this).attr('relatedproductid'));
 		});
-		
-		var new_option_index = 1;
-		
+				
 		$('##attribute-options').on("click","a.add-new-attribute-option", function(e) {
 		
 			$("##new-attribute-id-hidden").val($(this).attr('attributeid'));
@@ -89,9 +87,10 @@
 			}
 		});
 		
+		var new_option_index = 1;
+		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
 		
-			var new_option_index = 1;
 			var isFirstOption = false;
 			
 			var attr = new Object();
