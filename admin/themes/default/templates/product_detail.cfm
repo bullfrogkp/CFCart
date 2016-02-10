@@ -512,7 +512,9 @@
 		
 		function removeSubProducts(attr, option) {
 			var cls = 'tr-ao-' + option.aoid;
-			$('.' + cls).parent().remove();
+			$('.' + cls).each(function( index ) {
+			  $(this).parent().remove();
+			});
 		}
 				
 		function generateRow(subProduct) {
@@ -532,7 +534,7 @@
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class='+cls+'><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" /></td><td style="text-align:right;"><div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="form-control" name="product_enabled" value="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" /></td><td style="text-align:right;"><div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="form-control" name="product_enabled" value="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td></tr>';
 			
 			return str;
 		}
@@ -857,8 +859,8 @@
 														</tr>
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 														<tr>
+															<cfset cls = "" />
 															<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-																<cfset cls = "" />
 																<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
 																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
 																	<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
