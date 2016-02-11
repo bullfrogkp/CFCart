@@ -100,7 +100,6 @@
 			option.aoid = 'new-' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '';
-			option.imageName = '';
 			option.hasThumbnail = false;
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
@@ -112,7 +111,6 @@
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
-					option.imageName = image_src;
 					
 					$('##generate-thumbnail').on('ifChecked', function(event){
 						option.hasThumbnail = true;
@@ -278,7 +276,6 @@
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.value = '#attributeValue.getValue()#';
 					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
-					attributeOption.imageName = '#attributeValue.getImageName()#';
 					<cfif attributeValue.getHasThumbnail()>
 						attributeOption.hasThumbnail = true;
 					<cfelse>
@@ -833,11 +830,14 @@
 																					</cfif>
 																				</td>
 																				<td>
-																					<cfif attributeValue.getImageName() NEQ "">
-																						<div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
-																							<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
-																						</div>
+																					<cfif attributeValue.getHasThumbnail()>
+																						<cfset color = "red" />
+																					<cfelse>
+																						<cfset color = " ##CCC" />
 																					</cfif>
+																					<div style="width:14px;height:14px;border:1px solid #color#;margin-top:4px;">
+																						<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																					</div>
 																				</td>
 																				<td>
 																					<a attributeid="#attribute.getAttributeId()#" attributeoptionid="#attributeValue.getAttributeValueId()#" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
@@ -883,23 +883,14 @@
 																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
 																	<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
 																	<td>
-																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																				<div class="pull-left" style="width:15px;height:15px;border:1px solid <cfif productAttributeRela.getAttributeValues()[1].getHasThumbnail() EQ true>red##CCC<cfelse></cfif>;margin-top:4px;">
-																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																				</div>
-																			<cfelse>
-																				<div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div>
-																			</cfif>
-																		<cfelse>
-																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																				<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:3px;">
-																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
-																				</div>
-																			<cfelse>
-																				#productAttributeRela.getAttributeValues()[1].getValue()#
-																			</cfif>
-																		</cfif>
+																		<table>
+																			<tr>
+																				<td>#productAttributeRela.getAttributeValues()[1].getValue()#</td>
+																				<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																					<td><div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div></td>
+																				</cfif>
+																			</tr>
+																		</table>
 																	</td>
 																</cfif>
 															</cfloop>
