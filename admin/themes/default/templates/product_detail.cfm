@@ -107,15 +107,15 @@
 				option.value = $("##new-attribute-option-name-color").val();
 			}
 			
-			$('##generate-thumbnail').on('ifChecked', function(event){
-				option.hasThumbnail = true;
-			});
-			
 			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
-					console.log(option.hasThumbnail);
+					
+					$('##generate-thumbnail').on('ifChecked', function(event){console.log(option.hasThumbnail);
+						option.hasThumbnail = true;
+					});
+					
 					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
 					if(isFirstOption)
