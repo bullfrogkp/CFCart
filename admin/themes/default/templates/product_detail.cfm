@@ -448,18 +448,14 @@
 							str = str + options[j].value+'</td>';
 						}
 						
-						if(options[j].imageName == '')
-							str = str + '<td></td>';
+						str = str + '<td><div style="width:15px;height:15px;border:1px solid ';
+						if(options[j].hasThumbnail == false)
+							str = str + '##CCC';
 						else
-						{
-							str = str + '<td><div style="width:15px;height:15px;border:1px solid ';
-							if(options[j].hasThumbnail == false)
-								str = str + '##CCC';
-							else
-								str = str + 'red';
-					
-							str = str + ';margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
-						}
+							str = str + 'red';
+				
+						str = str + ';margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
+						
 						str = str + '<td><a attributeid='+attributeArray[i].aid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
@@ -538,13 +534,10 @@
 							
 			for(var i=0;i<subProduct.options.length;i++)
 			{
-				str = str + '<td>';
-				
+				str = str + '<td><table><tr><td>' + subProduct.options[i].value + '</td>';
 				if(subProduct.options[i].name == 'color')
-					str = str + '<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:4px;"></div>';
-				else
-					str = str + '<div class="pull-left">'+subProduct.options[i].value+'</div>';
-				str = str + '</td>';
+					str = str + '<td><div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:4px;"></div></td>';
+				str = str + '</tr></table></td>';
 				
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
