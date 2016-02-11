@@ -88,6 +88,11 @@
 		});
 		
 		var new_option_index = 1;
+		var thumb = false;
+		
+		$('##generate-thumbnail').on('ifChecked', function(event){
+			thumb = true;
+		});
 		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
 		
@@ -100,7 +105,7 @@
 			option.aoid = 'new-' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
-			option.hasThumbnail = false;
+			option.hasThumbnail = thumb;
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
 			{
@@ -111,10 +116,6 @@
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
-					
-					$('##generate-thumbnail').on('ifChecked', function(event){console.log(option.hasThumbnail);
-						option.hasThumbnail = true;
-					});
 					
 					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
@@ -127,6 +128,7 @@
 					$("##new-attribute-option-name-color").val('');
 					$("##new-attribute-option-image").val('');
 					$("##generate-thumbnail").iCheck('uncheck');
+					thumb = false
 					
 					new_option_index++;
 				});
@@ -144,6 +146,7 @@
 				$("##new-attribute-option-name-color").val('');
 				$("##new-attribute-option-image").val('');
 				$("##generate-thumbnail").iCheck('uncheck');
+				thumb = false
 				
 				new_option_index++;
 			}
