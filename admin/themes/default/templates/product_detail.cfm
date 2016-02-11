@@ -58,8 +58,7 @@
 			silverlight_xap_url : 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
 		});
 		
-		$('.special-price-from-date').datepicker();
-		$('.special-price-to-date').datepicker();
+		$('.date').datepicker();
 		$('##new-attribute-option-name-color').colorpicker();
 				
 		$( ".delete-attribute-option-value" ).click(function() {
@@ -541,7 +540,7 @@
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class="'+cls+'"><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" /></td><td style="text-align:right;"><div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="form-control" name="product_enabled" value="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.fromDate+'" style="width:100%;" class="date" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.toDate+'" style="width:100%;" class="date" /></td><td style="text-align:right;"><div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="form-control" name="product_enabled" value="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td></tr>';
 			
 			return str;
 		}
@@ -760,11 +759,11 @@
 										</div>
 										<div class="form-group">
 											<label>From Date</label>
-											<input type="text" class="form-control pull-right special-price-from-date" name="" id="" style="width:100%" />
+											<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
 										</div>
 										<div class="form-group">
 											<label>To Date</label>
-											<input type="text" class="form-control pull-right special-price-from-date" name="" id="" style="width:100%" />
+											<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
 										</div>
 									</td>
 								</tr>
@@ -897,19 +896,19 @@
 																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																<input name="price_#p.getProductId()#" value="#p.getPrice()#" style="width:100%;" />
 															</td>
 															<td>
-																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																<input name="special_price_#p.getProductId()#" value="#p.getSpecialPrice()#" style="width:100%;" />
 															</td>
 															<td>
-																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																<input name="special_price_from_date_#p.getProductId()#" value="#p.getSpecialPriceFromDate()#" style="width:100%;" />
 															</td>
 															<td>
-																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																<input name="special_price_to_date_#p.getProductId()#" value="#p.getSpecialPriceToDate()#" style="width:100%;" />
 															</td>
 															<td style="text-align:right;">
-																<input type="checkbox" class="form-control" name="product_enabled" value="" />
+																<input type="checkbox" class="form-control" name="product_enabled_#p.getProductId()#" value="" />
 															</td>
 														</tr>
 														</cfloop>
