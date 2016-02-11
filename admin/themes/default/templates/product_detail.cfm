@@ -99,7 +99,7 @@
 			var option = new Object();
 			option.aoid = 'new-' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
-			option.imageLink = '';
+			option.imageLink = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
 			option.hasThumbnail = false;
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
@@ -449,6 +449,7 @@
 						}
 						
 						str = str + '<td><div style="width:15px;height:15px;border:1px solid ';
+						
 						if(options[j].hasThumbnail == false)
 							str = str + '##CCC';
 						else
@@ -536,7 +537,7 @@
 			{
 				str = str + '<td><table><tr><td>' + subProduct.options[i].value + '</td>';
 				if(subProduct.options[i].name == 'color')
-					str = str + '<td><div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:4px;"></div></td>';
+					str = str + '<td><div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:4px;"></div></td>';
 				str = str + '</tr></table></td>';
 				
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
@@ -817,7 +818,7 @@
 																			<tr id="tr-ao-#attributeValue.getAttributeValueId()#">
 																				<td>
 																					<cfif attribute.getDisplayName() EQ "color">
-																						<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;"></div>
+																						<div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;"></div>
 																					<cfelse>
 																						#attributeValue.getValue()#
 																					</cfif>
@@ -828,7 +829,7 @@
 																					<cfelse>
 																						<cfset color = " ##CCC" />
 																					</cfif>
-																					<div style="width:14px;height:14px;border:1px solid #color#;margin-top:4px;">
+																					<div style="width:15px;height:15px;border:1px solid #color#;margin-top:4px;">
 																						<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
 																					</div>
 																				</td>
