@@ -100,6 +100,7 @@
 			option.aoid = 'new-' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '';
+			option.imageName = '';
 			option.hasThumbnail = false;
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
@@ -111,11 +112,12 @@
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = image_src;
+					option.imageName = image_src;
 					
 					$('##generate-thumbnail').on('ifChecked', function(event){
 						option.hasThumbnail = true;
 					});
-					
+					console.log(option.hasThumbnail);
 					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
 					if(isFirstOption)
@@ -276,7 +278,12 @@
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.value = '#attributeValue.getValue()#';
 					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
-					attributeOption.hasThumbnail = '#attributeValue.getHasThumbnail()#';
+					attributeOption.imageName = '#attributeValue.getImageName()#';
+					<cfif attributeValue.getHasThumbnail()>
+						attributeOption.hasThumbnail = true;
+					<cfelse>
+						attributeOption.hasThumbnail = false;
+					</cfif>
 					attributeOptions.push(attributeOption);
 				</cfloop>
 			<cfelse>
@@ -444,12 +451,11 @@
 							str = str + options[j].value+'</td>';
 						}
 						
-						if(options[j].imageLink == '')
+						if(options[j].imageName == '')
 							str = str + '<td></td>';
 						else
 						{
 							str = str + '<td><div style="width:15px;height:15px;border:1px solid ';
-							console.log(options[j].hasThumbnail);
 							if(options[j].hasThumbnail == false)
 								str = str + '##CCC';
 							else
