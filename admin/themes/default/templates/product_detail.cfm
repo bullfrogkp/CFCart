@@ -447,8 +447,16 @@
 						if(options[j].imageLink == '')
 							str = str + '<td></td>';
 						else
-							str = str + '<td><div style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
+						{
+							str = str + '<td><div style="width:15px;height:15px;border:2px solid ';
+							console.log(options[j].hasThumbnail);
+							if(options[j].hasThumbnail == false)
+								str = str + '##CCC';
+							else
+								str = str + 'red';
 					
+							str = str + ';margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
+						}
 						str = str + '<td><a attributeid='+attributeArray[i].aid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
@@ -871,7 +879,7 @@
 																	<td>
 																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
 																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																				<div class="pull-left" style="width:14px;height:14px;border:1px solid ##CCC;margin-top:4px;">
+																				<div class="pull-left" style="width:15px;height:15px;border:2px solid <cfif productAttributeRela.getAttributeValues()[1].getHasThumbnail() EQ true>red##CCC<cfelse></cfif>;margin-top:4px;">
 																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
 																				</div>
 																			<cfelse>
