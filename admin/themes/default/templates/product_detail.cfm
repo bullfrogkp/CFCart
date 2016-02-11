@@ -437,7 +437,7 @@
 						
 						if(attributeArray[i].name == 'color')
 						{
-							str = str + '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
+							str = str + '<div style="width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
 						else
 						{
@@ -448,7 +448,7 @@
 							str = str + '<td></td>';
 						else
 						{
-							str = str + '<td><div style="width:15px;height:15px;border:2px solid ';
+							str = str + '<td><div style="width:15px;height:15px;border:1px solid ';
 							console.log(options[j].hasThumbnail);
 							if(options[j].hasThumbnail == false)
 								str = str + '##CCC';
@@ -879,11 +879,11 @@
 																	<td>
 																		<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
 																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
-																				<div class="pull-left" style="width:15px;height:15px;border:2px solid <cfif productAttributeRela.getAttributeValues()[1].getHasThumbnail() EQ true>red##CCC<cfelse></cfif>;margin-top:4px;">
+																				<div class="pull-left" style="width:15px;height:15px;border:1px solid <cfif productAttributeRela.getAttributeValues()[1].getHasThumbnail() EQ true>red##CCC<cfelse></cfif>;margin-top:4px;">
 																					<img src="#productAttributeRela.getAttributeValues()[1].getImageLink()#" style="width:100%;height:100%;vertical-align:top;" />
 																				</div>
 																			<cfelse>
-																				<div class="pull-left" style="margin-left:10px;width:14px;height:14px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div>
+																				<div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div>
 																			</cfif>
 																		<cfelse>
 																			<cfif productAttributeRela.getAttributeValues()[1].getImageName() NEQ "">
