@@ -462,6 +462,7 @@
 			var arr = createArrayPermutation(attributeArray);
 			
 			var str = '';
+			var emptyOption = true;
 			
 			str += '<div class="form-group"><label>Product(s)</label><table class="table table-bordered table-hover" id="sub-products-table"><tr class="warning">';
 			
@@ -470,6 +471,7 @@
 				if(attributeArray[i].deleted == false && attributeArray[i].options.length > 0)
 				{
 					str += '<th>' + attributeArray[i].name + '</th>';
+					emptyOption = false;
 				}
 			}
 			
@@ -480,7 +482,10 @@
 				str += generateRow(arr[i]);
 			}
 			
-			$('##sub-products').html(str);
+			if(emptyOption == false)
+				$('##sub-products').html(str);
+			else
+				$('##sub-products').empty();
 		}
 		
 		function generateSubProducts(attr, option) {
