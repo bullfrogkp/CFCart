@@ -433,7 +433,7 @@
 				if(attributeArray[i].deleted == false)
 				{
 					var options = attributeArray[i].options;
-					str = str + '<div class="col-xs-2"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributeArray[i].aid+'"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" attributename="'+attributeArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributeArray[i].aid+'"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" attributename="'+attributeArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 											
 					for(var j=0;j<options.length;j++)
 					{
@@ -441,7 +441,7 @@
 						
 						if(attributeArray[i].name == 'color')
 						{
-							str = str + '<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
+							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
 						str = str + '</tr></table></td><td><div style="width:15px;height:15px;border:1px solid ';
 						
