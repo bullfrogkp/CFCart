@@ -437,18 +437,13 @@
 											
 					for(var j=0;j<options.length;j++)
 					{
-						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td>';
+						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td><table><tr><td>' + options[j].value+'</td>';
 						
 						if(attributeArray[i].name == 'color')
 						{
-							str = str + '<div style="width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
+							str = str + '<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
-						else
-						{
-							str = str + options[j].value+'</td>';
-						}
-						
-						str = str + '<td><div style="width:15px;height:15px;border:1px solid ';
+						str = str + '</tr></table></td><td><div style="width:15px;height:15px;border:1px solid ';
 						
 						if(options[j].hasThumbnail == false)
 							str = str + '##CCC';
@@ -801,7 +796,7 @@
 												<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
 													<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
 													<cfif NOT IsNull(productAttributeRela)>
-														<div class="col-xs-2">
+														<div class="col-xs-3">
 															<div class="box box-warning">
 																<div class="box-body table-responsive no-padding">
 																	<table class="table table-hover">
@@ -817,11 +812,14 @@
 																		<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 																			<tr id="tr-ao-#attributeValue.getAttributeValueId()#">
 																				<td>
-																					<cfif attribute.getDisplayName() EQ "color">
-																						<div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;"></div>
-																					<cfelse>
-																						#attributeValue.getValue()#
-																					</cfif>
+																					<table>
+																						<tr>
+																							<td>#attributeValue.getValue()#</td>
+																							<cfif attribute.getDisplayName() EQ "color">
+																								<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;margin-left:10px;"></div></td>
+																							</cfif>
+																						</tr>
+																					</table>
 																				</td>
 																				<td>
 																					<cfif attributeValue.getHasThumbnail()>
