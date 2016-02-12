@@ -1470,11 +1470,11 @@
 								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 							</div>
 							<div class="form-group">
-								<label>Special Price From Date</label>
+								<label>From Date</label>
 								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
 							</div>
 							<div class="form-group">
-								<label>Special Price To Date</label>
+								<label>To Date</label>
 								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
 							</div>
 						</div><!-- /.tab-pane -->
