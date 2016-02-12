@@ -896,7 +896,7 @@
 																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<table>
+																<table style="margin-top:-1px;">
 																	<tr>
 																		<td>
 																			<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
