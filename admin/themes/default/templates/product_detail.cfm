@@ -896,10 +896,18 @@
 																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-																<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
-																	<span class="label label-danger">Advanced</span>
-																</a>
+																<table>
+																	<tr>
+																		<td>
+																			<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																		</td>
+																		<td>
+																			<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-3px;margin-left:5px;">
+																				<span class="label label-danger">Advanced</span>
+																			</a>
+																		</td>
+																	</tr>
+																</table>
 															</td>
 															<td>
 																<input name="special_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
@@ -1409,18 +1417,69 @@
 			</div>
 		
 			<div class="modal-body">
-				<div class="form-group">
-					<label>Attributes</label>
-					<select class="form-control" multiple name="attribute_id" id="attribute-id">
-						<cfloop array="#REQUEST.pageData.attributes#" index="attr">
-							<option value="#attr.getAttributeId()#"
-							<cfif ListFind(REQUEST.pageData.attributeList,attr.getAttributeId())>
-								selected
-							</cfif>
-							>#attr.getDisplayName()#</option>
-						</cfloop>
-					</select>
-				</div>
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="##price-1" data-toggle="tab">Default</a></li>
+						<li><a href="##price-2" data-toggle="tab">Retailer</a></li>
+						<li><a href="##price-3" data-toggle="tab">WholeSaler</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="price-1">
+							<div class="form-group">
+								<label>Price</label>
+								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Special Price</label>
+								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Special Price From Date</label>
+								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+							</div>
+							<div class="form-group">
+								<label>Special Price To Date</label>
+								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+							</div>
+						</div><!-- /.tab-pane -->
+						<div class="tab-pane" id="price-2">
+							<div class="form-group">
+								<label>Price</label>
+								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Special Price</label>
+								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Special Price From Date</label>
+								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+							</div>
+							<div class="form-group">
+								<label>Special Price To Date</label>
+								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+							</div>
+						</div><!-- /.tab-pane -->
+						<div class="tab-pane" id="price-3">
+							<div class="form-group">
+								<label>Price</label>
+								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Special Price</label>
+								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+							</div>
+							<div class="form-group">
+								<label>Special Price From Date</label>
+								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+							</div>
+							<div class="form-group">
+								<label>Special Price To Date</label>
+								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+							</div>
+						</div><!-- /.tab-pane -->
+					</div><!-- /.tab-content -->
+				</div><!-- nav-tabs-custom -->
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
