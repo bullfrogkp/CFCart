@@ -897,6 +897,9 @@
 															</td>
 															<td>
 																<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																	<span class="label label-danger">Advanced</span>
+																</a>
 															</td>
 															<td>
 																<input name="special_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
@@ -1396,5 +1399,36 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!-- ADVANCED PRICE MODAL -->
+<div class="modal fade" id="advanced-price-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Advanced Price Settings</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Attributes</label>
+					<select class="form-control" multiple name="attribute_id" id="attribute-id">
+						<cfloop array="#REQUEST.pageData.attributes#" index="attr">
+							<option value="#attr.getAttributeId()#"
+							<cfif ListFind(REQUEST.pageData.attributeList,attr.getAttributeId())>
+								selected
+							</cfif>
+							>#attr.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="edit_attribute" id="edit-attribute-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </form>
 </cfoutput>
