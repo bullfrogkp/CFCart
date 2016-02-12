@@ -1419,65 +1419,31 @@
 			<div class="modal-body">
 				<div class="nav-tabs-custom">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="##price-1" data-toggle="tab">Default</a></li>
-						<li><a href="##price-2" data-toggle="tab">Retailer</a></li>
-						<li><a href="##price-3" data-toggle="tab">WholeSaler</a></li>
+						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
+							<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
+						</cfloop>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="price-1">
-							<div class="form-group">
-								<label>Price</label>
-								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>Special Price</label>
-								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>Special Price From Date</label>
-								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
-							</div>
-							<div class="form-group">
-								<label>Special Price To Date</label>
-								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
-							</div>
-						</div><!-- /.tab-pane -->
-						<div class="tab-pane" id="price-2">
-							<div class="form-group">
-								<label>Price</label>
-								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>Special Price</label>
-								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>Special Price From Date</label>
-								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
-							</div>
-							<div class="form-group">
-								<label>Special Price To Date</label>
-								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
-							</div>
-						</div><!-- /.tab-pane -->
-						<div class="tab-pane" id="price-3">
-							<div class="form-group">
-								<label>Price</label>
-								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>Special Price</label>
-								<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
-							</div>
-							<div class="form-group">
-								<label>From Date</label>
-								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
-							</div>
-							<div class="form-group">
-								<label>To Date</label>
-								<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
-							</div>
-						</div><!-- /.tab-pane -->
+						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
+							<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
+								<div class="form-group">
+									<label>Price</label>
+									<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+								</div>
+								<div class="form-group">
+									<label>Special Price</label>
+									<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+								</div>
+								<div class="form-group">
+									<label>From Date</label>
+									<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+								</div>
+								<div class="form-group">
+									<label>To Date</label>
+									<input type="text" class="form-control pull-right date" name="" id="" style="width:100%" />
+								</div>
+							</div><!-- /.tab-pane -->
+						</cfloop>
 					</div><!-- /.tab-content -->
 				</div><!-- nav-tabs-custom -->
 			</div>
