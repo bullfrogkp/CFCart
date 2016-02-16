@@ -758,11 +758,11 @@
 											<label>Stock</label>
 											<input name="simple_stock" id="simple-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
-										<div class="form-group" id="simple-price-form-group">
+										<div class="form-group" id="simple-price-form-group" <cfif REQUEST.pageData.product.getIsAdvancedPriceSetting() EQ true>style="display:none;"</cfif>>
 											<label>Price</label>
 											<input name="simple_price" id="simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
-										<div class="nav-tabs-custom" id="advanced-price-section">
+										<div class="nav-tabs-custom" id="advanced-price-section" <cfif REQUEST.pageData.product.getIsAdvancedPriceSetting() EQ false>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
 													<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
@@ -792,7 +792,11 @@
 											</div><!-- /.tab-content -->
 										</div><!-- nav-tabs-custom -->
 										<div class="form-group">
-											<input type="checkbox" class="form-control" name=advanced_price_settings" id="advanced-price-settings" value="" />&nbsp;&nbsp;&nbsp;Advanced Price Settings
+											<input type="checkbox" class="form-control" name=advanced_price_settings" id="advanced-price-settings" value="1"
+											<cfif REQUEST.pageData.product.getIsAdvancedPriceSetting() EQ true>
+											checked
+											</cfif>
+											/>&nbsp;&nbsp;&nbsp;Advanced Price Settings
 										</div>
 									</td>
 								</tr>
