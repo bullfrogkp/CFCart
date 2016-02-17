@@ -490,7 +490,7 @@
 				}
 			}
 			
-			str += '<th>Sku</th><th>Stock</th><th>Price</th><th>Enabled</th></tr>';
+			str += '<th>Sku</th><th>Stock</th><th>Price</th><th style="width:10px;">Enabled</th></tr>';
 			
 			for(var i=0;i<arr.length;i++)
 			{
@@ -781,19 +781,19 @@
 													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="simple_advanced_price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
-															<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="simple_advanced_special_price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>From Date</label>
-															<input type="text" class="form-control date" name="" id="" style="width:100%" />
+															<input type="text" class="form-control date" name="simple_advanced_from_date" id="" style="width:100%" />
 														</div>
 														<div class="form-group">
 															<label>To Date</label>
-															<input type="text" class="form-control date" name="" id="" style="width:100%" />
+															<input type="text" class="form-control date" name="simple_advanced_to_date" id="" style="width:100%" />
 														</div>
 													</div><!-- /.tab-pane -->
 												</cfloop>
@@ -905,7 +905,7 @@
 															<th>Sku</th>
 															<th>Stock</th>
 															<th>Price</th>
-															<th>Enabled</th>
+															<th style="width:10px;">Enabled</th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 														<tr>
@@ -937,10 +937,16 @@
 																<table style="margin-top:-1px;">
 																	<tr>
 																		<td>
+																			<input type="radio" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
+																		</td>
+																		<td style="padding-left:7px;padding-right:25px;">
 																			<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 																		</td>
 																		<td>
-																			<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-3px;margin-left:5px;">
+																			<input type="radio" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
+																		</td>
+																		<td>
+																			<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-1px;margin-left:5px;">
 																				<span class="label label-danger">Advanced</span>
 																			</a>
 																		</td>
