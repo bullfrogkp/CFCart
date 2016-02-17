@@ -501,6 +501,11 @@
 				$('##sub-products').html(str);
 			else
 				$('##sub-products').empty();
+				
+			$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+				checkboxClass: 'icheckbox_minimal',
+				radioClass: 'iradio_minimal'
+			});
 		}
 		
 		function generateSubProducts(attr, option) {
@@ -527,6 +532,11 @@
 			}
 			
 			$('##sub-products-table').append(str);
+			
+			$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+				checkboxClass: 'icheckbox_minimal',
+				radioClass: 'iradio_minimal'
+			});
 		}
 		
 		function removeSubProducts(attr, option) {
@@ -550,7 +560,7 @@
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class="'+cls+'"><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><table style="margin-top:-1px;"><tr><td><input name="price_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-3px;margin-left:5px;"><span class="label label-danger">Advanced</span></a></td></tr></table></td><td style="text-align:right;"><div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" class="form-control" name="product_enabled" value="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><table style="margin-top:-1px;"><tr><td><input name="price_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;" /></td><td><a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-3px;margin-left:5px;"><span class="label label-danger">Advanced</span></a></td></tr></table></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="product_enabled_'+subProduct.productId+'" value="1" /></td></tr>';
 			
 			return str;
 		}
@@ -940,7 +950,7 @@
 																</table>
 															</td>
 															<td style="text-align:right;">
-																<input type="checkbox" class="form-control" name="product_enabled_#p.getProductId()#" value="" />
+																<input type="checkbox" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
 															</td>
 														</tr>
 														</cfloop>
