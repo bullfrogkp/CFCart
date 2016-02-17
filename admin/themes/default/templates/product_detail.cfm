@@ -502,9 +502,8 @@
 			else
 				$('##sub-products').empty();
 				
-			$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal'
+			$(".new-checkbox").iCheck({
+				checkboxClass: 'icheckbox_minimal'
 			});
 		}
 		
@@ -533,9 +532,8 @@
 			
 			$('##sub-products-table').append(str);
 			
-			$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
-				checkboxClass: 'icheckbox_minimal',
-				radioClass: 'iradio_minimal'
+			$(".new-checkbox").iCheck({
+				checkboxClass: 'icheckbox_minimal'
 			});
 		}
 		
