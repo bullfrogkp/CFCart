@@ -936,22 +936,22 @@
 															</cfloop>
 															
 															<td class="#cls#">
-																<input name="sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																<input name="sub_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
 															</td>
 															<td>
-																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<input class="pull-left simple-sub-product-price" name="price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;margin-right:20px;"/>
+																<input class="pull-left simple-sub-product-price" name="sub_price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;margin-right:20px;"/>
 																<div class="pull-left" style="margin-right:10px;">
-																	<input type="checkbox" class="form-control use-advanced-price" name="advanced_price_#p.getProductId()#" value="1" />
+																	<input type="checkbox" class="form-control use-advanced-price" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
 																</div>
-																<a class="delete-attribute-option pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																<a productid="#p.getProductId()#" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																	<span class="label label-danger">Advanced</span>
 																</a>
 															</td>
 															<td style="text-align:right;">
-																<input type="checkbox" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
+																<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" value="1" />
 															</td>
 														</tr>
 														</cfloop>
