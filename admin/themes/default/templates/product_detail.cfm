@@ -94,7 +94,11 @@
 		});
 		
 		$('.use-advanced-price').on('ifChecked', function(event){
-			thumb = true;
+			$(this).parent().parent().siblings('.simple-sub-product-price').hide();
+		});
+		
+		$('.use-advanced-price').on('ifUnchecked', function(event){
+			$(this).parent().parent().siblings('.simple-sub-product-price').show();
 		});
 		
 		$('##advanced-price-settings').on('ifChecked', function(event){
@@ -938,13 +942,13 @@
 																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<input class="pull-left" name="price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;"/>
-																<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
-																	<span class="label label-danger">Advanced</span>
-																</a>
-																<div class="pull-right" style="margin-right:10px;">
+																<input class="pull-left simple-sub-product-price" name="price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;margin-right:20px;"/>
+																<div class="pull-left" style="margin-right:10px;">
 																	<input type="checkbox" class="form-control use-advanced-price" name="advanced_price_#p.getProductId()#" value="1" />
 																</div>
+																<a class="delete-attribute-option pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																	<span class="label label-danger">Advanced</span>
+																</a>
 															</td>
 															<td style="text-align:right;">
 																<input type="checkbox" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
