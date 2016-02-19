@@ -934,18 +934,15 @@
 																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<table style="margin-top:-1px;">
+																<table style="margin-top:-1px;width:100%;">
 																	<tr>
-																		<td>
-																			<input type="radio" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
-																		</td>
-																		<td style="padding-left:7px;padding-right:25px;">
+																		<td style="padding-right:10px;">
 																			<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 																		</td>
-																		<td>
-																			<input type="radio" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
+																		<td style="width:10px;">
+																			<input type="checkbox" class="form-control" name="advanced_price_#p.getProductId()#" value="1" />
 																		</td>
-																		<td>
+																		<td style="width:20px;">
 																			<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-1px;margin-left:5px;">
 																				<span class="label label-danger">Advanced</span>
 																			</a>
