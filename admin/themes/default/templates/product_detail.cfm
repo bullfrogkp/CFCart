@@ -93,6 +93,10 @@
 			thumb = true;
 		});
 		
+		$('.use-advanced-price').on('ifChecked', function(event){
+			thumb = true;
+		});
+		
 		$('##advanced-price-settings').on('ifChecked', function(event){
 			$('##simple-price-form-group').hide();
 			$('##advanced-price-section').show();
@@ -934,21 +938,13 @@
 																<input name="stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<table style="margin-top:-1px;width:100%;">
-																	<tr>
-																		<td style="padding-right:10px;">
-																			<input name="price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-																		</td>
-																		<td style="width:10px;">
-																			<input type="checkbox" class="form-control" name="advanced_price_#p.getProductId()#" value="1" />
-																		</td>
-																		<td style="width:20px;">
-																			<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;margin-top:-1px;margin-left:5px;">
-																				<span class="label label-danger">Advanced</span>
-																			</a>
-																		</td>
-																	</tr>
-																</table>
+																<input class="pull-left" name="price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;"/>
+																<a class="delete-attribute-option pull-right" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																	<span class="label label-danger">Advanced</span>
+																</a>
+																<div class="pull-right" style="margin-right:10px;">
+																	<input type="checkbox" class="form-control use-advanced-price" name="advanced_price_#p.getProductId()#" value="1" />
+																</div>
 															</td>
 															<td style="text-align:right;">
 																<input type="checkbox" class="form-control" name="product_enabled_#p.getProductId()#" value="1" />
