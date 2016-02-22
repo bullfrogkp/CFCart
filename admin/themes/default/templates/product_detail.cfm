@@ -325,6 +325,10 @@
 		$('##advanced-price-settings').on('ifChecked', function(event){
 			$('##simple-price-form-group').hide();
 			$('##advanced-price-section').show();
+			
+			$('##advanced-price').val();
+			$('##advanced-price').val();
+			
 		});
 		
 		$('##advanced-price-settings').on('ifUnchecked', function(event){
@@ -1513,19 +1517,19 @@
 							<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
 								<div class="form-group">
 									<label>Price</label>
-									<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+									<input name="advanced_price" id="advanced-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 								</div>
 								<div class="form-group">
 									<label>Special Price</label>
-									<input name="price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+									<input name="advanced_special_price" id="advanced-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 								</div>
 								<div class="form-group">
 									<label>From Date</label>
-									<input type="text" class="form-control date" name="" id="" style="width:100%" />
+									<input type="text" class="form-control date" name="advanced_from_date" id="advanced-from-date" style="width:100%" />
 								</div>
 								<div class="form-group">
 									<label>To Date</label>
-									<input type="text" class="form-control date" name="" id="" style="width:100%" />
+									<input type="text" class="form-control date" name="advanced_to_date" id="advanced-to-date" style="width:100%" />
 								</div>
 							</div><!-- /.tab-pane -->
 						</cfloop>
