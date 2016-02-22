@@ -188,7 +188,7 @@
 			if(isLastOption)
 				generateAllSubProducts();
 			else
-				removeSubProducts(attr, option);
+				removeSubProduct(attr, option);
 		});
 		
 		function loadThumbnail(file, callback) {
@@ -310,6 +310,8 @@
 			attribute.options = attributeOptions;
 			attributeArray.push(attribute);
 		</cfloop>
+		
+		var subProductArray = createArrayPermutation(attributeArray);
 		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
@@ -482,7 +484,7 @@
 		}
 		
 		function generateAllSubProducts() {
-			var arr = createArrayPermutation(attributeArray);
+			subProductArray = createArrayPermutation(attributeArray);
 			
 			var str = '';
 			var emptyOption = true;
@@ -500,9 +502,9 @@
 			
 			str += '<th>Sku</th><th>Stock</th><th>Price</th><th style="width:10px;">Enabled</th></tr>';
 			
-			for(var i=0;i<arr.length;i++)
+			for(var i=0;i<subProductArray.length;i++)
 			{
-				str += generateRow(arr[i]);
+				str += generateRow(subProductArray[i]);
 			}
 			
 			if(emptyOption == false)
@@ -539,6 +541,8 @@
 		
 			var arr = createArrayPermutation(newArr);
 			
+			subProductArray = subProductArray.concat(arr);
+			
 			var str = '';
 			
 			for(var i=0;i<arr.length;i++)
@@ -561,7 +565,7 @@
 			});
 		}
 		
-		function removeSubProducts(attr, option) {
+		function removeSubProduct(attr, option) {
 			var cls = 'tr-ao-' + option.aoid;
 			$('.' + cls).each(function( index ) {
 			  $(this).parent().remove();
