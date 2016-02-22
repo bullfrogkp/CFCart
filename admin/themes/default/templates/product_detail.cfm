@@ -598,6 +598,7 @@
 			var j = 0;
 			var _current = [];
 			var _options = [];
+			var _group = new Object();
 		
 			for (x=0; x < _arrayslen; x++) {
 				if(attributeArray[x].deleted == false && attributeArray[x].options.length > 0)
@@ -616,6 +617,17 @@
 				result.specialPrice = '';
 				result.fromDate = '';
 				result.toDate = '';
+				result.advancedPrice = '';
+				result.groupPrice = new Object();
+				
+				<cfloop array="REQUEST.pageData.customerGroups" index="group">
+					_group = new Object();
+					_group.price = '';
+					_group.specialPrice = '';
+					_group.fromDate = '';
+					_group.toDate = '';
+					groupPrice['sub_#group,getCustomerGroupId()#'] = _group;
+				</cfloop>
 
 				_options = [];
 				
