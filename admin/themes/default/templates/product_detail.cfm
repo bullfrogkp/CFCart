@@ -620,7 +620,7 @@
 				result.advancedPrice = '';
 				result.groupPrice = new Object();
 				
-				<cfloop array="REQUEST.pageData.customerGroups" index="group">
+				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 					_group = new Object();
 					_group.price = '';
 					_group.specialPrice = '';
@@ -972,7 +972,7 @@
 															<td>
 																<input class="pull-left simple-sub-product-price" name="sub_price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;margin-right:20px;"/>
 																<div class="pull-left" style="margin-right:10px;">
-																	<input type="checkbox" class="form-control use-advanced-price" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
+																	<input type="checkbox" class="form-control use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
 																</div>
 																<a productid="#p.getProductId()#" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																	<span class="label label-danger">Advanced</span>
