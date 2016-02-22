@@ -188,7 +188,7 @@
 			if(isLastOption)
 				generateAllSubProducts();
 			else
-				removeSubProduct(attr, option);
+				removeSubProducts(attr, option);
 		});
 		
 		function loadThumbnail(file, callback) {
@@ -565,7 +565,7 @@
 			});
 		}
 		
-		function removeSubProduct(attr, option) {
+		function removeSubProducts(attr, option) {
 			var cls = 'tr-ao-' + option.aoid;
 			$('.' + cls).each(function( index ) {
 			  $(this).parent().remove();
