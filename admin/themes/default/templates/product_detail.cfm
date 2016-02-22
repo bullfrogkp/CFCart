@@ -312,6 +312,7 @@
 		</cfloop>
 		
 		var subProductArray = createArrayPermutation(attributeArray);
+		var newSubProductId = 0;
 		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
@@ -614,7 +615,7 @@
 
 			for (i=0; i < _size; i++) {
 				result = new Object();
-				result.productId = 'new_sub_product_' + i;
+				result.productId = 'new_sub_product_' + newSubProductId;
 				result.sku = '';
 				result.stock = '';
 				result.price = '';
@@ -664,6 +665,8 @@
 						_current[j] = 0;
 					}
 				}
+				
+				newSubProductId++;
 			}
 
 			return results;
