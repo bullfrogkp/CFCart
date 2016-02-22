@@ -93,24 +93,6 @@
 			thumb = true;
 		});
 		
-		$('.use-advanced-price').on('ifChecked', function(event){
-			$(this).parent().parent().siblings('.simple-sub-product-price').hide();
-		});
-		
-		$('.use-advanced-price').on('ifUnchecked', function(event){
-			$(this).parent().parent().siblings('.simple-sub-product-price').show();
-		});
-		
-		$('##advanced-price-settings').on('ifChecked', function(event){
-			$('##simple-price-form-group').hide();
-			$('##advanced-price-section').show();
-		});
-		
-		$('##advanced-price-settings').on('ifUnchecked', function(event){
-			$('##simple-price-form-group').show();
-			$('##advanced-price-section').hide();
-		});
-		
 		$( "##add-new-attribute-option-confirm" ).click(function() {
 		
 			var isFirstOption = false;
@@ -313,6 +295,42 @@
 		
 		var subProductArray = createArrayPermutation(attributeArray);
 		var newSubProductId = 0;
+		
+		$('.use-advanced-price').on('ifChecked', function(event){
+			$(this).parent().parent().siblings('.simple-sub-product-price').hide();
+			
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					subProductArray[i].advancedPrice = true;
+					break;
+				}
+			}
+		});
+		
+		$('.use-advanced-price').on('ifUnchecked', function(event){
+			$(this).parent().parent().siblings('.simple-sub-product-price').show();
+			
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					subProductArray[i].advancedPrice = false;
+					break;
+				}
+			}
+		});
+		
+		$('##advanced-price-settings').on('ifChecked', function(event){
+			$('##simple-price-form-group').hide();
+			$('##advanced-price-section').show();
+		});
+		
+		$('##advanced-price-settings').on('ifUnchecked', function(event){
+			$('##simple-price-form-group').show();
+			$('##advanced-price-section').hide();
+		});
 		
 		$('##edit-attribute-confirm').click(function() {  
 			if(attributeChanged == true)
@@ -622,7 +640,7 @@
 				result.specialPrice = '';
 				result.fromDate = '';
 				result.toDate = '';
-				result.advancedPrice = '';
+				result.advancedPrice = false;
 				result.groupPrice = new Object();
 				
 				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
