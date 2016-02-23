@@ -333,15 +333,33 @@
 		});
 		
 		$('.advanced-price').click(function() { 
+			$('##edit-sub-product-id-hidden').val($(this).attr('productid'));
+			
 			for(var i=0;i<subProductArray.length;i++)
 			{
 				if(subProductArray[i].productId == $(this).attr('productid'))
 				{
 					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						$('.advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price);
-						$('.advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice);
-						$('.advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate);
-						$('.advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate);
+						$('##advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price);
+						$('##advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice);
+						$('##advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate);
+						$('##advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate);
+					</cfloop>
+					break;
+				}
+			}
+		});
+		
+		$('##edit-advanced-price-confirm').click(function() { 
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $('##edit-sub-product-id-hidden').val())
+				{
+					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price = $('##advanced-price-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice = $('##advanced-special-price-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate = $('##advanced-from-date-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate = $('##advanced-to-date-#group.getCustomerGroupId()#').val();
 					</cfloop>
 					break;
 				}
@@ -751,6 +769,7 @@
 <input type="hidden" name="new_attribute_name_hidden" id="new-attribute-name-hidden" value="" />
 <input type="hidden" name="deleted_attribute_id_hidden" id="deleted-attribute-id-hidden" value="" />
 <input type="hidden" name="deleted_attribute_option_id_hidden" id="deleted-attribute-option-id-hidden" value="" />
+<input type="hidden" name="edit_sub_product_id_hidden" id="edit-sub-product-id-hidden" value="" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -1566,7 +1585,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="edit_attribute" id="edit-attribute-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
+				<button name="edit_advanced_price" id="edit-advanced-price-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
