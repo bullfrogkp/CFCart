@@ -332,16 +332,17 @@
 			$('##advanced-price-section').hide();
 		});
 		
-		
 		$('.advanced-price').click(function() { 
 			for(var i=0;i<subProductArray.length;i++)
 			{
 				if(subProductArray[i].productId == $(this).attr('productid'))
 				{
-					$('.advanced-price').val(subProductArray[i].price);
-					$('.advanced-special-price').val(subProductArray[i].specialPrice);
-					$('.advanced-from-date').val(subProductArray[i].fromDate);
-					$('.advanced-to-date').val(subProductArray[i].toDate);
+					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+						$('.advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price);
+						$('.advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice);
+						$('.advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate);
+						$('.advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate);
+					</cfloop>
 					break;
 				}
 			}
@@ -1528,19 +1529,19 @@
 							<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
 								<div class="form-group">
 									<label>Price</label>
-									<input name="advanced_price" id="advanced-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+									<input name="advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 								</div>
 								<div class="form-group">
 									<label>Special Price</label>
-									<input name="advanced_special_price" id="advanced-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+									<input name="advanced_special_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-special-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 								</div>
 								<div class="form-group">
 									<label>From Date</label>
-									<input type="text" class="form-control date" name="advanced_from_date" id="advanced-from-date" style="width:100%" />
+									<input type="text" class="form-control date" name="advanced_from_date_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-from-date-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" style="width:100%" />
 								</div>
 								<div class="form-group">
 									<label>To Date</label>
-									<input type="text" class="form-control date" name="advanced_to_date" id="advanced-to-date" style="width:100%" />
+									<input type="text" class="form-control date" name="advanced_to_date_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-to-date-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" style="width:100%" />
 								</div>
 							</div><!-- /.tab-pane -->
 						</cfloop>
