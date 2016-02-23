@@ -602,9 +602,28 @@
 		
 		function removeSubProducts(attr, option) {
 			var cls = 'tr-ao-' + option.aoid;
+			var options = [];
+			
 			$('.' + cls).each(function( index ) {
 			  $(this).parent().remove();
 			});
+			
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				
+			
+			
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+						$('.advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price);
+						$('.advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice);
+						$('.advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate);
+						$('.advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate);
+					</cfloop>
+					break;
+				}
+			}
 		}
 				
 		function generateRow(subProduct) {
