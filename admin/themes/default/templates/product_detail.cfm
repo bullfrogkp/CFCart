@@ -294,8 +294,8 @@
 		</cfloop>
 		
 		var subProductArray = createArrayPermutation(attributeArray);
-		var result = new Object();
 		
+		var result = new Object();
 		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 			result = new Object();
 			result.productId = 'new_sub_product_#p.getProductId()#';
@@ -309,14 +309,26 @@
 			</cfif>
 			result.groupPrice = new Object();
 			
-			<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-				_group = new Object();
-				_group.price = '';
-				_group.specialPrice = '';
-				_group.fromDate = '';
-				_group.toDate = '';
-				result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
-			</cfloop>
+			<cfif p.getAdvancedPrice() EQ true>
+				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+					_group = new Object();
+					_group.price = '';
+					_group.specialPrice = '';
+					_group.fromDate = '';
+					_group.toDate = '';
+					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
+				</cfloop>
+			<cfelse>
+				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+					<cfloop array="#REQUEST.pageData.product.getProductCustomerGroupRela()#" index="rela">	
+					_group = new Object();
+					_group.price = '#rela.getPrice()#';
+					_group.specialPrice = '#rela.getSpecialPrice()#';
+					_group.fromDate = '#rela.getSpecialPriceFromDate()#';
+					_group.toDate = '#rela.getSpecialPriceToDate()#';
+					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
+				</cfloop>
+			</cfif>
 
 			_options = [];
 		
