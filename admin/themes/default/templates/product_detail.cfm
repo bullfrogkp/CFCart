@@ -300,7 +300,7 @@
 			result = new Object();
 			result.productId = 'new_sub_product_#p.getProductId()#';
 			result.sku = '#p.getSku()#';
-			result.stock = '#p.getSku()#';
+			result.stock = '#p.getStock()#';
 			result.price = '#p.getPrice()#';
 			<cfif p.getAdvancedPrice() EQ true>
 			result.advancedPrice = true;
