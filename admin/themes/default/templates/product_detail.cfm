@@ -616,7 +616,7 @@
 				{
 					if(option.aoid == options[j].aoid)
 					{
-						subProductArray.slice(i,1);
+						subProductArray = subProductArray.slice(i,1);
 						break;
 					}
 				}
@@ -681,7 +681,7 @@
 					_group.specialPrice = '';
 					_group.fromDate = '';
 					_group.toDate = '';
-					groupPrice['sub_#group,getCustomerGroupId()#'] = _group;
+					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
 				</cfloop>
 
 				_options = [];
