@@ -294,6 +294,70 @@
 		</cfloop>
 		
 		var subProductArray = createArrayPermutation(attributeArray);
+		var result = new Object();
+		
+		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+			result = new Object();
+			result.productId = 'new_sub_product_#p.getProductId()#';
+			result.sku = '';
+			result.stock = '';
+			result.price = '';
+			result.advancedPrice = false;
+			result.groupPrice = new Object();
+			
+			<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
+				_group = new Object();
+				_group.price = '';
+				_group.specialPrice = '';
+				_group.fromDate = '';
+				_group.toDate = '';
+				result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
+			</cfloop>
+
+			_options = [];
+		
+		
+		
+			<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
+				<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+					<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
+					<td>
+						<table>
+							<tr>
+								<td>#productAttributeRela.getAttributeValues()[1].getValue()#</td>
+								<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+									<td><div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div></td>
+								</cfif>
+							</tr>
+						</table>
+					</td>
+				</cfif>
+			</cfloop>
+			
+			<td class="#cls#">
+				<input name="sub_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+			</td>
+			<td>
+				<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+			</td>
+			<td>
+				<input class="pull-left simple-sub-product-price" name="sub_price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;margin-right:20px;"/>
+				<div class="pull-left" style="margin-right:10px;">
+					<input type="checkbox" class="form-control use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
+				</div>
+				<a productid="#p.getProductId()#" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+					<span class="label label-danger">Advanced</span>
+				</a>
+			</td>
+			<td style="text-align:right;">
+				<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" value="1" />
+			</td>
+		</tr>
+		</cfloop>
+		
+		
+		
 		var newSubProductId = 0;
 		
 		$('.use-advanced-price').on('ifChecked', function(event){
@@ -687,9 +751,6 @@
 				result.sku = '';
 				result.stock = '';
 				result.price = '';
-				result.specialPrice = '';
-				result.fromDate = '';
-				result.toDate = '';
 				result.advancedPrice = false;
 				result.groupPrice = new Object();
 				
