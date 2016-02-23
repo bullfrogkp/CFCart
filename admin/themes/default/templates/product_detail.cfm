@@ -325,15 +325,26 @@
 		$('##advanced-price-settings').on('ifChecked', function(event){
 			$('##simple-price-form-group').hide();
 			$('##advanced-price-section').show();
-			
-			$('##advanced-price').val();
-			$('##advanced-price').val();
-			
 		});
 		
 		$('##advanced-price-settings').on('ifUnchecked', function(event){
 			$('##simple-price-form-group').show();
 			$('##advanced-price-section').hide();
+		});
+		
+		
+		$('.advanced-price').click(function() { 
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					$('.advanced-price').val(subProductArray[i].price);
+					$('.advanced-special-price').val(subProductArray[i].specialPrice);
+					$('.advanced-from-date').val(subProductArray[i].fromDate);
+					$('.advanced-to-date').val(subProductArray[i].toDate);
+					break;
+				}
+			}
 		});
 		
 		$('##edit-attribute-confirm').click(function() {  
