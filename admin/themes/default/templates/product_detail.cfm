@@ -331,6 +331,21 @@
 			</cfif>
 
 			_options = [];
+				
+			<cfloop array="#REQUEST.pageData.product.getProductAttributeRela()#" index="rela">	
+				<cfloop array="#rela.getAttributeValue()#" index="av">
+					var attr = new Object();
+					attr.name = '#rela.getAttribute().getDisplayName()#';
+					attr.value = '#rela.getValue()#';
+					attr.aoid = attributeArray[j].options[_current[j]].aoid;
+				
+					_options.push(attr);
+				</cfloop>
+			</cfloop>
+
+			result.options = _options;
+			
+			results.push(result);
 		
 		
 		
