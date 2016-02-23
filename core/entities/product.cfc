@@ -9,7 +9,6 @@
 	<cfproperty name="width" column="width" ormtype="float"> 
 	<cfproperty name="height" column="height" ormtype="float"> 
 	<cfproperty name="weight" column="weight" ormtype="float"> 
-	<cfproperty name="price" column="weight" ormtype="float"> 
 	<cfproperty name="viewCount" column="view_count" ormtype="integer"> 
 	<cfproperty name="useAdvancedPrices" column="use_advanced_prices" ormtype="boolean"> 
 	<cfproperty name="productType" fieldtype="many-to-one" cfc="product_type" fkcolumn="product_type_id">
