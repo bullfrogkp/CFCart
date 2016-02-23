@@ -610,18 +610,15 @@
 			
 			for(var i=0;i<subProductArray.length;i++)
 			{
+				options = subProductArray[i].options;
 				
-			
-			
-				if(subProductArray[i].productId == $(this).attr('productid'))
+				for(var j=0;j<options.length;j++)
 				{
-					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						$('.advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price);
-						$('.advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice);
-						$('.advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate);
-						$('.advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate);
-					</cfloop>
-					break;
+					if(option.aoid == options[j].aoid)
+					{
+						subProductArray.slice(i,1);
+						break;
+					}
 				}
 			}
 		}
