@@ -299,10 +299,14 @@
 		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
 			result = new Object();
 			result.productId = 'new_sub_product_#p.getProductId()#';
-			result.sku = '';
-			result.stock = '';
-			result.price = '';
+			result.sku = '#p.getSku()#';
+			result.stock = '#p.getSku()#';
+			result.price = '#p.getPrice()#';
+			<cfif p.getAdvancedPrice() EQ true>
+			result.advancedPrice = true;
+			<cfelse>
 			result.advancedPrice = false;
+			</cfif>
 			result.groupPrice = new Object();
 			
 			<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
