@@ -887,7 +887,7 @@
 											<input name="single_stock" id="single-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
 										
-										<div id="single-simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
+										<div id="single-simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>style="display:none;"</cfif>>
 											<div class="form-group">
 												<label>Price</label>
 												<input name="single_simple_price" id="single-simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
@@ -928,7 +928,7 @@
 										</div><!-- nav-tabs-custom -->
 										<div class="form-group">
 											<input type="checkbox" class="form-control" name=single_advanced_price_settings" id="single-advanced-price-settings" value="1"
-											<cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>
+											<cfif REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>
 											checked
 											</cfif>
 											/>&nbsp;&nbsp;&nbsp;Advanced Price Settings
