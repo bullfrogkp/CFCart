@@ -339,28 +339,10 @@
 		
 		$('.use-advanced-price').on('ifChecked', function(event){
 			$(this).parent().parent().siblings('.simple-sub-product-price').hide();
-			
-			for(var i=0;i<subProductArray.length;i++)
-			{
-				if(subProductArray[i].productId == $(this).attr('productid'))
-				{
-					subProductArray[i].advancedPrice = true;
-					break;
-				}
-			}
 		});
 		
 		$('.use-advanced-price').on('ifUnchecked', function(event){
 			$(this).parent().parent().siblings('.simple-sub-product-price').show();
-			
-			for(var i=0;i<subProductArray.length;i++)
-			{
-				if(subProductArray[i].productId == $(this).attr('productid'))
-				{
-					subProductArray[i].advancedPrice = false;
-					break;
-				}
-			}
 		});
 		
 		$('##advanced-price-settings').on('ifChecked', function(event){
@@ -373,7 +355,7 @@
 			$('##advanced-price-section').hide();
 		});
 		
-		$('.advanced-price').click(function() { 
+		$('.advanced-sub-product-price').click(function() { 
 			$('##edit-sub-product-id-hidden').val($(this).attr('productid'));
 			
 			for(var i=0;i<subProductArray.length;i++)
@@ -609,14 +591,6 @@
 			$(".new-checkbox").iCheck({
 				checkboxClass: 'icheckbox_minimal'
 			});
-			
-			$('.use-advanced-price').on('ifChecked', function(event){
-				$(this).parent().parent().siblings('.simple-sub-product-price').hide();
-			});
-			
-			$('.use-advanced-price').on('ifUnchecked', function(event){
-				$(this).parent().parent().siblings('.simple-sub-product-price').show();
-			});
 		}
 		
 		function generateSubProducts(attr, option) {
@@ -648,14 +622,6 @@
 			
 			$(".new-checkbox").iCheck({
 				checkboxClass: 'icheckbox_minimal'
-			});
-			
-			$('.use-advanced-price').on('ifChecked', function(event){
-				$(this).parent().parent().siblings('.simple-sub-product-price').hide();
-			});
-			
-			$('.use-advanced-price').on('ifUnchecked', function(event){
-				$(this).parent().parent().siblings('.simple-sub-product-price').show();
 			});
 		}
 		
@@ -696,7 +662,7 @@
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="simple-sub-product-price" name="sub_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input class="simple-sub-product-special-price" name="sub_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="product_enabled_'+subProduct.productId+'" value="1" /></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="simple-sub-product-price" name="sub_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input class="simple-sub-product-special-price" name="sub_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="advanced-sub-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="product_enabled_'+subProduct.productId+'" value="1" /></td></tr>';
 			
 			return str;
 		}
@@ -1101,7 +1067,7 @@
 																<div class="pull-left" style="margin-right:10px;">
 																	<input type="checkbox" class="form-control use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
 																</div>
-																<a productid="#p.getProductId()#" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																<a productid="#p.getProductId()#" class="advanced-sub-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																	<span class="label label-danger">Advanced</span>
 																</a>
 															</td>
