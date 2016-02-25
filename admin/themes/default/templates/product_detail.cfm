@@ -307,7 +307,7 @@
 			</cfif>
 			result.groupPrice = new Object();
 			
-			<cfloop array="#REQUEST.pageData.product.getProductCustomerGroupRelas()#" index="rela">	
+			<cfloop array="#p.getProductCustomerGroupRelas()#" index="rela">	
 				_group = new Object();
 				_group.price = '#rela.getPrice()#';
 				_group.specialPrice = '#rela.getSpecialPrice()#';
@@ -1033,49 +1033,50 @@
 															<th style="width:10px;">Enabled</th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-														<tr>
-															<cfset cls = "" />
-															<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-																<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
-																<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
-																	<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
-																	<td>
-																		<table>
-																			<tr>
-																				<td>#productAttributeRela.getAttributeValues()[1].getValue()#</td>
-																				<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-																					<td><div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div></td>
-																				</cfif>
-																			</tr>
-																		</table>
-																	</td>
-																</cfif>
-															</cfloop>
-															
-															<td class="#cls#">
-																<input name="sub_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
-															</td>
-															<td>
-																<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
-															</td>
-															<td>
-																<input class="sub-simple-product-price" name="sub_simple_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
-															</td>
-															<td>
-																<input class="sub-simple-product-special-price" name="sub_simple_special_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
-															</td>
-															<td>
-																<div class="pull-left" style="margin-right:10px;">
-																	<input type="checkbox" class="form-control sub-use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
-																</div>
-																<a productid="#p.getProductId()#" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
-																	<span class="label label-danger">Advanced</span>
-																</a>
-															</td>
-															<td style="text-align:right;">
-																<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
-															</td>
-														</tr>
+															<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = REQUEST.pageData.product, customerGroup = REQUEST.pageData.defaultCustomerGroup}, true)
+															<tr>
+																<cfset cls = "" />
+																<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+																	<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
+																	<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
+																		<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
+																		<td>
+																			<table>
+																				<tr>
+																					<td>#productAttributeRela.getAttributeValues()[1].getValue()#</td>
+																					<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+																						<td><div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:#productAttributeRela.getAttributeValues()[1].getValue()#;margin-top:4px;"></div></td>
+																					</cfif>
+																				</tr>
+																			</table>
+																		</td>
+																	</cfif>
+																</cfloop>
+																
+																<td class="#cls#">
+																	<input name="sub_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																</td>
+																<td>
+																	<input class="sub-simple-product-price" name="sub_simple_price_#p.getProductId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;"/>
+																</td>
+																<td>
+																	<input class="sub-simple-product-special-price" name="sub_simple_special_price_#p.getProductId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;"/>
+																</td>
+																<td>
+																	<div class="pull-left" style="margin-right:10px;">
+																		<input type="checkbox" class="form-control sub-use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
+																	</div>
+																	<a productid="#p.getProductId()#" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																		<span class="label label-danger">Advanced</span>
+																	</a>
+																</td>
+																<td style="text-align:right;">
+																	<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
+																</td>
+															</tr>
 														</cfloop>
 													</table>
 												</div>
