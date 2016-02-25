@@ -1072,7 +1072,7 @@
 																</a>
 															</td>
 															<td style="text-align:right;">
-																<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" value="1" />
+																<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
 															</td>
 														</tr>
 														</cfloop>
