@@ -299,14 +299,14 @@
 			<cfset defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true}, true) />
 			<cfset pcRela = EntityLoad("product_customer_group_rela",{product = p, customerGroup = defaultCustomerGroup},true) />
 			result = new Object();
-			result.productId = 'new_sub_product_#p.getProductId()#';
+			result.productId = 'sub_product_#p.getProductId()#';
 			result.sku = '#p.getSku()#';
 			result.stock = '#p.getStock()#';
 			result.price = '#pcRela.getPrice()#';
 			<cfif p.getUseAdvancedPrices() EQ true>
-			result.advancedPrice = true;
+				result.advancedPrice = true;
 			<cfelse>
-			result.advancedPrice = false;
+				result.advancedPrice = false;
 			</cfif>
 			result.groupPrice = new Object();
 			
@@ -348,7 +348,7 @@
 			
 			subProductArray.push(result);
 		</cfloop>
-		
+console.log(subProductArray);		
 		var newSubProductId = 0;
 		
 		$('.use-advanced-price').on('ifChecked', function(event){
