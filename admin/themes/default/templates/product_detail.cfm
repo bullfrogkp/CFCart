@@ -1033,7 +1033,7 @@
 															<th style="width:10px;">Enabled</th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-															<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = REQUEST.pageData.product, customerGroup = REQUEST.pageData.defaultCustomerGroup}, true)
+															<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = p, customerGroup = REQUEST.pageData.defaultCustomerGroup}, true) />
 															<tr>
 																<cfset cls = "" />
 																<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
