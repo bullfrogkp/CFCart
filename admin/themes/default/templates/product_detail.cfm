@@ -296,13 +296,11 @@
 		var subProductArray = [];
 		var result = new Object();
 		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">
-			<cfset defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true}, true) />
-			<cfset pcRela = EntityLoad("product_customer_group_rela",{product = p, customerGroup = defaultCustomerGroup},true) />
 			result = new Object();
 			result.productId = 'sub_product_#p.getProductId()#';
 			result.sku = '#p.getSku()#';
 			result.stock = '#p.getStock()#';
-			result.price = '#pcRela.getPrice()#';
+			result.price = '#REQUEST.pageData.formData.price#';
 			<cfif p.getUseAdvancedPrices() EQ true>
 				result.advancedPrice = true;
 			<cfelse>
@@ -930,9 +928,24 @@ console.log(subProductArray);
 											<label>Stock</label>
 											<input name="simple_stock" id="simple-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
-										<div class="form-group" id="simple-price-form-group" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
-											<label>Price</label>
-											<input name="simple_price" id="simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+										
+										<div <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
+											<div class="form-group" id="simple-price-form-group">
+												<label>Price</label>
+												<input name="simple_price" id="simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+											</div>
+											<div class="form-group" id="simple-price-form-group">
+												<label>Special Price</label>
+												<input name="simple_special_price" id="simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+											</div>
+											<div class="form-group">
+												<label>From Date</label>
+												<input type="text" class="form-control date" name="simple_from_date" id="simple-from-date" style="width:100%" />
+											</div>
+											<div class="form-group">
+												<label>To Date</label>
+												<input type="text" class="form-control date" name="simple_to_date" id="simple-to-date" style="width:100%" />
+											</div>
 										</div>
 										<div class="nav-tabs-custom" id="advanced-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ false>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
