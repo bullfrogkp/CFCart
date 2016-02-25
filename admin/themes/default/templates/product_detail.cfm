@@ -297,11 +297,12 @@
 		
 		var result = new Object();
 		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+			<cfset pcRela = EntityLoad("product_customer_group_rela",{product = p, customerGroup = EntityLoad("customer_group",{isDefault = true}, true)},true) />
 			result = new Object();
 			result.productId = 'new_sub_product_#p.getProductId()#';
 			result.sku = '#p.getSku()#';
 			result.stock = '#p.getStock()#';
-			result.price = '#p.getPrice()#';
+			result.price = '#pcRela.getPrice()#';
 			<cfif p.getAdvancedPrice() EQ true>
 			result.advancedPrice = true;
 			<cfelse>
@@ -319,14 +320,13 @@
 					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
 				</cfloop>
 			<cfelse>
-				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-					<cfloop array="#REQUEST.pageData.product.getProductCustomerGroupRela()#" index="rela">	
+				<cfloop array="#REQUEST.pageData.product.getProductCustomerGroupRela()#" index="rela">	
 					_group = new Object();
 					_group.price = '#rela.getPrice()#';
 					_group.specialPrice = '#rela.getSpecialPrice()#';
 					_group.fromDate = '#rela.getSpecialPriceFromDate()#';
 					_group.toDate = '#rela.getSpecialPriceToDate()#';
-					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
+					result.groupPrice['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
 				</cfloop>
 			</cfif>
 
