@@ -376,12 +376,12 @@ console.log(subProductArray);
 		});
 		
 		$('##advanced-price-settings').on('ifChecked', function(event){
-			$('##simple-price-form-group').hide();
+			$('##simple-price-section').hide();
 			$('##advanced-price-section').show();
 		});
 		
 		$('##advanced-price-settings').on('ifUnchecked', function(event){
-			$('##simple-price-form-group').show();
+			$('##simple-price-section').show();
 			$('##advanced-price-section').hide();
 		});
 		
@@ -929,12 +929,12 @@ console.log(subProductArray);
 											<input name="simple_stock" id="simple-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
 										
-										<div <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
-											<div class="form-group" id="simple-price-form-group">
+										<div id="simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
+											<div class="form-group">
 												<label>Price</label>
 												<input name="simple_price" id="simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 											</div>
-											<div class="form-group" id="simple-price-form-group">
+											<div class="form-group">
 												<label>Special Price</label>
 												<input name="simple_special_price" id="simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
 											</div>
