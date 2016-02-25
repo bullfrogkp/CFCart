@@ -297,7 +297,7 @@
 		var result = new Object();
 		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">
 			result = new Object();
-			result.productId = 'sub_product_#p.getProductId()#';
+			result.productId = '#p.getProductId()#';
 			result.sku = '#p.getSku()#';
 			result.stock = '#p.getStock()#';
 			<cfif p.getUseAdvancedPrices() EQ true>
@@ -337,25 +337,25 @@
 		
 		var newSubProductId = 0;
 		
-		$('.use-advanced-price').on('ifChecked', function(event){
+		$('.sub-use-advanced-price').on('ifChecked', function(event){
 			$(this).parent().parent().siblings('.simple-sub-product-price').hide();
 		});
 		
-		$('.use-advanced-price').on('ifUnchecked', function(event){
+		$('.sub-use-advanced-price').on('ifUnchecked', function(event){
 			$(this).parent().parent().siblings('.simple-sub-product-price').show();
 		});
 		
-		$('##advanced-price-settings').on('ifChecked', function(event){
-			$('##simple-price-section').hide();
-			$('##advanced-price-section').show();
+		$('##single-advanced-price-settings').on('ifChecked', function(event){
+			$('##single-simple-price-section').hide();
+			$('##single-advanced-price-section').show();
 		});
 		
-		$('##advanced-price-settings').on('ifUnchecked', function(event){
-			$('##simple-price-section').show();
-			$('##advanced-price-section').hide();
+		$('##single-advanced-price-settings').on('ifUnchecked', function(event){
+			$('##single-simple-price-section').show();
+			$('##single-advanced-price-section').hide();
 		});
 		
-		$('.advanced-sub-product-price').click(function() { 
+		$('.sub-advanced-product-price').click(function() { 
 			$('##edit-sub-product-id-hidden').val($(this).attr('productid'));
 			
 			for(var i=0;i<subProductArray.length;i++)
@@ -875,24 +875,24 @@
 									<td>
 										<div class="form-group">
 											<label>SKU</label>
-											<input name="simple_sku" id="simple-sku" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+											<input name="single_sku" id="single-sku" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
 										</div>
 										<div class="form-group">
 											<label>Stock</label>
-											<input name="simple_stock" id="simple-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+											<input name="single_stock" id="single-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
 										</div>
 										
-										<div id="simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
+										<div id="single-simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>style="display:none;"</cfif>>
 											<div class="form-group">
 												<label>Price</label>
-												<input name="simple_price" id="simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+												<input name="single_simple_price" id="single-simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
 											</div>
 											<div class="form-group">
 												<label>Special Price</label>
-												<input name="simple_special_price" id="simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+												<input name="single_simple_special_price" id="single-simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
 											</div>
 										</div>
-										<div class="nav-tabs-custom" id="advanced-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ false>style="display:none;"</cfif>>
+										<div class="nav-tabs-custom" id="single-advanced-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ false>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
 													<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
@@ -903,26 +903,26 @@
 													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#i#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="advanced_price_#i#" id="advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="single_advanced_price_#i#" id="single-advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
-															<input name="advanced_special_price_#i#" id="advanced-special-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="single_advanced_special_price_#i#" id="single-advanced-special-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>From Date</label>
-															<input type="text" class="form-control date" name="advanced_from_date_#i#" id="advanced-from-date-#i#" style="width:100%" />
+															<input type="text" class="form-control date" name="single_advanced_from_date_#i#" id="single-advanced-from-date-#i#" style="width:100%" />
 														</div>
 														<div class="form-group">
 															<label>To Date</label>
-															<input type="text" class="form-control date" name="advanced_to_date_" id="advanced-to-date-#i#" style="width:100%" />
+															<input type="text" class="form-control date" name="single_advanced_to_date_" id="single-advanced-to-date-#i#" style="width:100%" />
 														</div>
 													</div><!-- /.tab-pane -->
 												</cfloop>
 											</div><!-- /.tab-content -->
 										</div><!-- nav-tabs-custom -->
 										<div class="form-group">
-											<input type="checkbox" class="form-control" name=advanced_price_settings" id="advanced-price-settings" value="1"
+											<input type="checkbox" class="form-control" name=single_advanced_price_settings" id="single-advanced-price-settings" value="1"
 											<cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ true>
 											checked
 											</cfif>
@@ -1058,16 +1058,16 @@
 																<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<input class="simple-sub-product-price" name="sub_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
+																<input class="sub-simple-product-price" name="sub_simple_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
 															</td>
 															<td>
-																<input class="simple-sub-product-special-price" name="sub_special_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
+																<input class="sub-simple-product-special-price" name="sub_simple_special_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
 															</td>
 															<td>
 																<div class="pull-left" style="margin-right:10px;">
-																	<input type="checkbox" class="form-control use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
+																	<input type="checkbox" class="form-control sub-use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
 																</div>
-																<a productid="#p.getProductId()#" class="advanced-sub-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																<a productid="#p.getProductId()#" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																	<span class="label label-danger">Advanced</span>
 																</a>
 															</td>
