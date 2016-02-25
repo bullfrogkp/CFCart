@@ -938,14 +938,6 @@ console.log(subProductArray);
 												<label>Special Price</label>
 												<input name="simple_special_price" id="simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
 											</div>
-											<div class="form-group">
-												<label>From Date</label>
-												<input type="text" class="form-control date" name="simple_from_date" id="simple-from-date" style="width:100%" />
-											</div>
-											<div class="form-group">
-												<label>To Date</label>
-												<input type="text" class="form-control date" name="simple_to_date" id="simple-to-date" style="width:100%" />
-											</div>
 										</div>
 										<div class="nav-tabs-custom" id="advanced-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ false>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
@@ -1082,6 +1074,8 @@ console.log(subProductArray);
 															<th>Sku</th>
 															<th>Stock</th>
 															<th>Price</th>
+															<th>Special Price</th>
+															<th style="width:110px;">Advanced</th>
 															<th style="width:10px;">Enabled</th>
 														</tr>
 														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
@@ -1111,7 +1105,12 @@ console.log(subProductArray);
 																<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 															</td>
 															<td>
-																<input class="pull-left simple-sub-product-price" name="sub_price_#p.getProductId()#" value="#p.getStock()#" style="width:70%;margin-right:20px;"/>
+																<input class="pull-left simple-sub-product-price" name="sub_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
+															</td>
+															<td>
+																<input class="pull-left simple-sub-product-special-price" name="sub_special_price_#p.getProductId()#" value="#p.getStock()#" style="width:100%;"/>
+															</td>
+															<td>
 																<div class="pull-left" style="margin-right:10px;">
 																	<input type="checkbox" class="form-control use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
 																</div>
