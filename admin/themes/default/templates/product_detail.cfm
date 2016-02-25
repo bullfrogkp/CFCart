@@ -300,7 +300,6 @@
 			result.productId = 'sub_product_#p.getProductId()#';
 			result.sku = '#p.getSku()#';
 			result.stock = '#p.getStock()#';
-			result.price = '#REQUEST.pageData.formData.price#';
 			<cfif p.getUseAdvancedPrices() EQ true>
 				result.advancedPrice = true;
 			<cfelse>
@@ -346,7 +345,7 @@
 			
 			subProductArray.push(result);
 		</cfloop>
-console.log(subProductArray);		
+		
 		var newSubProductId = 0;
 		
 		$('.use-advanced-price').on('ifChecked', function(event){
@@ -708,7 +707,7 @@ console.log(subProductArray);
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="simple-sub-product-price" name="sub_price_'+subProduct.productId+'" value="'+subProduct.price+'" style="width:100%;"/></td><td><input class="simple-sub-product-special-price" name="sub_special_price_'+subProduct.productId+'" value="'+subProduct.specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="product_enabled_'+subProduct.productId+'" value="1" /></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="simple-sub-product-price" name="sub_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input class="simple-sub-product-special-price" name="sub_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="advanced-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="product_enabled_'+subProduct.productId+'" value="1" /></td></tr>';
 			
 			return str;
 		}
@@ -739,7 +738,6 @@ console.log(subProductArray);
 				result.productId = 'new_sub_product_' + newSubProductId;
 				result.sku = '';
 				result.stock = '';
-				result.price = '';
 				result.advancedPrice = false;
 				result.groupPrice = new Object();
 				
