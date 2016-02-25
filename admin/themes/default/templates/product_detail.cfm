@@ -354,8 +354,8 @@
 			$('##single-simple-price-section').show();
 			$('##single-advanced-price-section').hide();
 		});
-		
-		$('.sub-advanced-product-price').click(function() { 
+				
+		$('##sub-products').on("click","a.sub-advanced-product-price", function() {
 			$('##edit-sub-product-id-hidden').val($(this).attr('productid'));
 			console.log($(this).attr('productid'));
 			console.log(subProductArray);
@@ -373,6 +373,8 @@
 				}
 			}
 		});
+		
+		
 		
 		$('##edit-advanced-price-confirm').click(function() { 
 			for(var i=0;i<subProductArray.length;i++)
