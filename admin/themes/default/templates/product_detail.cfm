@@ -958,7 +958,7 @@ console.log(subProductArray);
 													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="simple_advanced_price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="advanced_price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
