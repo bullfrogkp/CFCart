@@ -294,10 +294,10 @@
 		</cfloop>
 		
 		var subProductArray = [];
-		
 		var result = new Object();
 		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
-			<cfset pcRela = EntityLoad("product_customer_group_rela",{product = p, customerGroup = EntityLoad("customer_group",{isDefault = true}, true)},true) />
+			<cfset defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true}, true) />
+			<cfset pcRela = EntityLoad("product_customer_group_rela",{product = p, customerGroup = defaultCustomerGroup},true) />
 			result = new Object();
 			result.productId = 'new_sub_product_#p.getProductId()#';
 			result.sku = '#p.getSku()#';
