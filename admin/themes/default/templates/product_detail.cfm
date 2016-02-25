@@ -307,25 +307,14 @@
 			</cfif>
 			result.groupPrice = new Object();
 			
-			<cfif p.getUseAdvancedPrices() EQ true>
-				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-					_group = new Object();
-					_group.price = '';
-					_group.specialPrice = '';
-					_group.fromDate = '';
-					_group.toDate = '';
-					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
-				</cfloop>
-			<cfelse>
-				<cfloop array="#REQUEST.pageData.product.getProductCustomerGroupRelas()#" index="rela">	
-					_group = new Object();
-					_group.price = '#rela.getPrice()#';
-					_group.specialPrice = '#rela.getSpecialPrice()#';
-					_group.fromDate = '#DateFormat(rela.getSpecialPriceFromDate(),"yyyy-mm-dd")#';
-					_group.toDate = '#DateFormat(rela.getSpecialPriceToDate(),"yyyy-mm-dd")#';
-					result.groupPrice['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
-				</cfloop>
-			</cfif>
+			<cfloop array="#REQUEST.pageData.product.getProductCustomerGroupRelas()#" index="rela">	
+				_group = new Object();
+				_group.price = '#rela.getPrice()#';
+				_group.specialPrice = '#rela.getSpecialPrice()#';
+				_group.fromDate = '#DateFormat(rela.getSpecialPriceFromDate(),"yyyy-mm-dd")#';
+				_group.toDate = '#DateFormat(rela.getSpecialPriceToDate(),"yyyy-mm-dd")#';
+				result.groupPrice['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
+			</cfloop>
 
 			_options = [];
 				
