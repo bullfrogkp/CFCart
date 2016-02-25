@@ -955,22 +955,22 @@ console.log(subProductArray);
 											</ul>
 											<div class="tab-content">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
+													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#i#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="advanced_price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="advanced_price_#i#" id="advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
-															<input name="simple_advanced_special_price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="advanced_special_price_#i#" id="advanced-special-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
 														</div>
 														<div class="form-group">
 															<label>From Date</label>
-															<input type="text" class="form-control date" name="simple_advanced_from_date" id="" style="width:100%" />
+															<input type="text" class="form-control date" name="advanced_from_date_#i#" id="advanced-from-date-#i#" style="width:100%" />
 														</div>
 														<div class="form-group">
 															<label>To Date</label>
-															<input type="text" class="form-control date" name="simple_advanced_to_date" id="" style="width:100%" />
+															<input type="text" class="form-control date" name="advanced_to_date_" id="advanced-to-date-#i#" style="width:100%" />
 														</div>
 													</div><!-- /.tab-pane -->
 												</cfloop>
