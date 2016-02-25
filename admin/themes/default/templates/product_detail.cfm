@@ -357,8 +357,12 @@
 				
 		$('##sub-products').on("click","a.sub-advanced-product-price", function() {
 			$('##edit-sub-product-id-hidden').val($(this).attr('productid'));
-			console.log($(this).attr('productid'));
-			console.log(subProductArray);
+			
+			$('.advanced-price-tab').removeClass('active');
+			$('.advanced-price-tab-content').removeClass('active');
+			$('##advanced-price-tab-1').addClass('active');
+			$('##advanced-price-tab-content-1').addClass('active');
+			
 			for(var i=0;i<subProductArray.length;i++)
 			{
 				if(subProductArray[i].productId == $(this).attr('productid'))
@@ -373,8 +377,6 @@
 				}
 			}
 		});
-		
-		
 		
 		$('##edit-advanced-price-confirm').click(function() { 
 			for(var i=0;i<subProductArray.length;i++)
@@ -1577,12 +1579,12 @@
 				<div class="nav-tabs-custom">
 					<ul class="nav nav-tabs">
 						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-							<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
+							<li class="advanced-price-tab<cfif i EQ 1> active</cfif>" id="advanced-price-tab-#i#"><a href="##advanced-price-tab-content-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
 						</cfloop>
 					</ul>
 					<div class="tab-content">
 						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-							<div class="tab-pane<cfif i EQ 1> active</cfif>" id="price-#i#">
+							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-content-#i#">
 								<div class="form-group">
 									<label>Price</label>
 									<input name="advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
