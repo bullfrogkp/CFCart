@@ -694,6 +694,14 @@
 			}).appendTo('form');
 		}
 		
+		function convertAttributeArray() {
+			
+		}
+		
+		function convertSubProductArray() {
+		
+		}
+		
 		function createArrayPermutation(attributeArray) {
 			var results = [];
 			var result = '';
