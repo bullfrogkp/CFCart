@@ -338,11 +338,25 @@
 		var newSubProductId = 0;
 		
 		$('.sub-use-advanced-price').on('ifChecked', function(event){
-			$(this).parent().parent().siblings('.simple-sub-product-price').hide();
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					subProductArray[i].advancedPrice = true;
+					break;
+				}
+			}
 		});
 		
 		$('.sub-use-advanced-price').on('ifUnchecked', function(event){
-			$(this).parent().parent().siblings('.simple-sub-product-price').show();
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					subProductArray[i].advancedPrice = false;
+					break;
+				}
+			}
 		});
 		
 		$('##single-advanced-price-settings').on('ifChecked', function(event){
