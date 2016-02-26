@@ -686,6 +686,14 @@
 			return str;
 		}
 		
+		function createHiddenField(n, v) {
+			$('<input>').attr({
+				type: 'hidden',
+				name: n,
+				value: v,
+			}).appendTo('form');
+		}
+		
 		function createArrayPermutation(attributeArray) {
 			var results = [];
 			var result = '';
