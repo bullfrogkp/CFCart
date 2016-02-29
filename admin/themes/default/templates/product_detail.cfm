@@ -114,7 +114,7 @@
 			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
-					option.imageLink = image_src;
+					option.imageLink = $("##new-attribute-option-image")[0].files[0].name;
 					
 					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
