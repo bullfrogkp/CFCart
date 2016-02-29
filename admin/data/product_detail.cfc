@@ -70,7 +70,7 @@
 			<cfset LOCAL.tab_id = "tab_1" />
 		</cfif>
 		
-		<cfif StructKeyExists(FORM,"save_item")>
+		<cfif StructKeyExists(FORM,"id")>
 			<!--- general information --->
 			<cfset LOCAL.product.setName(LCase(Trim(Replace(FORM.display_name,"/","-","all")))) />
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
