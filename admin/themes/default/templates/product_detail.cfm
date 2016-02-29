@@ -300,6 +300,13 @@
 			result.productId = '#p.getProductId()#';
 			result.sku = '#p.getSku()#';
 			result.stock = '#p.getStock()#';
+			
+			<cfif p.getIsEnabled() EQ true>
+				result.enabled = true;
+			<cfelse>
+				result.enabled = false;
+			</cfif>
+			
 			<cfif p.getUseAdvancedPrices() EQ true>
 				result.advancedPrice = true;
 			<cfelse>
@@ -798,6 +805,7 @@
 				result.productId = 'new_sub_product_' + newSubProductId;
 				result.sku = '';
 				result.stock = '';
+				result.enabled = false;
 				result.advancedPrice = false;
 				result.groupPrices = new Object();
 				
