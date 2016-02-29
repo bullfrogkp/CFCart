@@ -737,6 +737,15 @@
 					createHiddenField('sub_product_attribute_option_name_' + subProduct[i].productid + '_' + options[j].aoid, options[j].name);
 					createHiddenField('sub_product_attribute_option_value_' + subProduct[i].productid + '_' + options[j].aoid, options[j].value);
 				}
+				
+				for(var key in groupPrices) {
+					if(groupPrices.hasOwnProperty(key)) {
+						createHiddenField('sub_product_price_' + subProduct[i].productid + '_' + key, groupPrices[key].price);
+						createHiddenField('sub_product_specialprice_' + subProduct[i].productid + '_' + key, groupPrices[key].specialPrice);
+						createHiddenField('sub_product_fromdate_' + subProduct[i].productid + '_' + key, groupPrices[key].fromDate);
+						createHiddenField('sub_product_todate_' + subProduct[i].productid + '_' + key, groupPrices[key].toDate);
+					}
+				}
 			}
 		}
 		
