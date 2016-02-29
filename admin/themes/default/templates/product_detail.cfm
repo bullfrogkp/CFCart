@@ -305,7 +305,7 @@
 			<cfelse>
 				result.advancedPrice = false;
 			</cfif>
-			result.groupPrice = new Object();
+			result.groupPrices = new Object();
 			
 			<cfloop array="#p.getProductCustomerGroupRelas()#" index="rela">	
 				_group = new Object();
@@ -313,7 +313,7 @@
 				_group.specialPrice = '#rela.getSpecialPrice()#';
 				_group.fromDate = '#DateFormat(rela.getSpecialPriceFromDate(),"yyyy-mm-dd")#';
 				_group.toDate = '#DateFormat(rela.getSpecialPriceToDate(),"yyyy-mm-dd")#';
-				result.groupPrice['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
+				result.groupPrices['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
 			</cfloop>
 
 			_options = [];
@@ -382,10 +382,10 @@
 				if(subProductArray[i].productId == $(this).attr('productid'))
 				{
 					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						$('##advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price);
-						$('##advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice);
-						$('##advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate);
-						$('##advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate);
+						$('##advanced-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].price);
+						$('##advanced-special-price-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].specialPrice);
+						$('##advanced-from-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].fromDate);
+						$('##advanced-to-date-#group.getCustomerGroupId()#').val(subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].toDate);
 					</cfloop>
 					break;
 				}
@@ -398,10 +398,10 @@
 				if(subProductArray[i].productId == $('##edit-sub-product-id-hidden').val())
 				{
 					<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
-						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].price = $('##advanced-price-#group.getCustomerGroupId()#').val();
-						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].specialPrice = $('##advanced-special-price-#group.getCustomerGroupId()#').val();
-						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].fromDate = $('##advanced-from-date-#group.getCustomerGroupId()#').val();
-						subProductArray[i].groupPrice['sub_#group.getCustomerGroupId()#'].toDate = $('##advanced-to-date-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].price = $('##advanced-price-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].specialPrice = $('##advanced-special-price-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].fromDate = $('##advanced-from-date-#group.getCustomerGroupId()#').val();
+						subProductArray[i].groupPrices['sub_#group.getCustomerGroupId()#'].toDate = $('##advanced-to-date-#group.getCustomerGroupId()#').val();
 					</cfloop>
 					break;
 				}
@@ -681,7 +681,7 @@
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="sub-simple-product-price" name="sub_simple_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input class="sub-simple-product-special-price" name="sub_simple_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrice['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control sub-use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="sub_product_enabled_'+subProduct.productId+'" id="sub-product-enabled_'+subProduct.productId+'" value="1" /></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="sub-simple-product-price" name="sub_simple_price_'+subProduct.productId+'" value="'+subProduct.groupPrices['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input class="sub-simple-product-special-price" name="sub_simple_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrices['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control sub-use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="sub_product_enabled_'+subProduct.productId+'" id="sub-product-enabled_'+subProduct.productId+'" value="1" /></td></tr>';
 			
 			return str;
 		}
@@ -718,24 +718,25 @@
 		
 		function convertSubProductArray() {
 			
-			var groupPrice = new Object();
+			var groupPrices = new Object();
 			var options = [];
 			
 			for(var i=0;i<subProduct.length;i++)
 			{
-				if(attributeArray[i].aid == false)
+				createHiddenField('sub_product_id', subProduct[i].productid);
+				createHiddenField('sub_product_sku_' + subProduct[i].productid, subProduct[i].sku);
+				createHiddenField('sub_product_stock_' + subProduct[i].productid, subProduct[i].stock);
+				createHiddenField('sub_product_advancedprice_' + subProduct[i].productid, subProduct[i].advancedPrice);
+				
+				options = subProduct[i].options;
+				groupPrices = subProduct[i].groupPrices;
+				
+				for(var j=0;j<options.length;j++)
 				{
-					createHiddenField('attribute_id', attributeArray[i].aid);
-					createHiddenField('attribute_name_' + attributeArray[i].aid, attributeArray[i].name);
-					
-					options = attributeArray[i].options;
-					for(var j=0;j<options.length;j++)
-					{
-						createHiddenField('attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
-						createHiddenField('attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
-						createHiddenField('attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
-						createHiddenField('attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
-					}
+					createHiddenField('attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
+					createHiddenField('attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
+					createHiddenField('attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
+					createHiddenField('attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
 				}
 			}
 		}
@@ -767,7 +768,7 @@
 				result.sku = '';
 				result.stock = '';
 				result.advancedPrice = false;
-				result.groupPrice = new Object();
+				result.groupPrices = new Object();
 				
 				<cfloop array="#REQUEST.pageData.customerGroups#" index="group">
 					_group = new Object();
@@ -775,7 +776,7 @@
 					_group.specialPrice = '';
 					_group.fromDate = '';
 					_group.toDate = '';
-					result.groupPrice['sub_#group.getCustomerGroupId()#'] = _group;
+					result.groupPrices['sub_#group.getCustomerGroupId()#'] = _group;
 				</cfloop>
 
 				_options = [];
