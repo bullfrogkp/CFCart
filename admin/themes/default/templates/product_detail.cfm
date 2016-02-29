@@ -359,6 +359,29 @@
 			}
 		});
 		
+		$('.enable-sub-product').on('ifChecked', function(event){
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					subProductArray[i].enabled = true;
+					break;
+				}
+			}
+		});
+		
+		
+		$('.sub-use-advanced-price').on('ifUnchecked', function(event){
+			for(var i=0;i<subProductArray.length;i++)
+			{
+				if(subProductArray[i].productId == $(this).attr('productid'))
+				{
+					subProductArray[i].enabled = false;
+					break;
+				}
+			}
+		});
+		
 		$('##single-advanced-price-settings').on('ifChecked', function(event){
 			$('##single-simple-price-section').hide();
 			$('##single-advanced-price-section').show();
@@ -1161,7 +1184,7 @@
 																	</a>
 																</td>
 																<td style="text-align:right;">
-																	<input type="checkbox" class="form-control" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
+																	<input type="checkbox" class="form-control enable-sub-product" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
 																</td>
 															</tr>
 														</cfloop>
