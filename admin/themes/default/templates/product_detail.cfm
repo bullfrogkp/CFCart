@@ -756,6 +756,7 @@
 				createHiddenField('c_sub_product_id', subProductArray[i].productId);
 				createHiddenField('c_sub_product_sku_' + subProductArray[i].productId, subProductArray[i].sku);
 				createHiddenField('c_sub_product_stock_' + subProductArray[i].productId, subProductArray[i].stock);
+				createHiddenField('c_sub_product_enabled_' + subProductArray[i].productId, subProductArray[i].enabled);
 				createHiddenField('c_sub_product_advancedprice_' + subProductArray[i].productId, subProductArray[i].advancedPrice);
 				
 				options = subProductArray[i].options;
