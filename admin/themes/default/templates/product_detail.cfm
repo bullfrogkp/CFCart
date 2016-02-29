@@ -101,7 +101,7 @@
 			attr.aid = $("##new-attribute-id-hidden").val();
 			
 			var option = new Object();
-			option.aoid = 'new-' + new_option_index;
+			option.aoid = 'new_' + new_option_index;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
 			option.hasThumbnail = thumb;
