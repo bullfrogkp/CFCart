@@ -733,10 +733,9 @@
 				
 				for(var j=0;j<options.length;j++)
 				{
-					createHiddenField('attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
-					createHiddenField('attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
-					createHiddenField('attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
-					createHiddenField('attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
+					createHiddenField('sub_product_attribute_option_id_' + subProduct[i].productid, options[j].aoid);
+					createHiddenField('sub_product_attribute_option_name_' + subProduct[i].productid + '_' + options[j].aoid, options[j].name);
+					createHiddenField('sub_product_attribute_option_value_' + subProduct[i].productid + '_' + options[j].aoid, options[j].value);
 				}
 			}
 		}
