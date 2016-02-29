@@ -378,7 +378,7 @@
 		});
 		
 		
-		$('.sub-use-advanced-price').on('ifUnchecked', function(event){
+		$('.enable-sub-product').on('ifUnchecked', function(event){
 			for(var i=0;i<subProductArray.length;i++)
 			{
 				if(subProductArray[i].productId == $(this).attr('productid'))
@@ -1193,7 +1193,7 @@
 																	</a>
 																</td>
 																<td style="text-align:right;">
-																	<input type="checkbox" class="form-control enable-sub-product" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
+																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
 																</td>
 															</tr>
 														</cfloop>
