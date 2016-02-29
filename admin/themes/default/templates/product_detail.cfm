@@ -695,11 +695,30 @@
 		}
 		
 		function convertAttributeArray() {
+			var attribute_id_list = '';
+			var options = [];
 			
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == false)
+				{
+					createHiddenField('attribute_id', attributeArray[i].aid);
+					createHiddenField('attribute_name_' + attributeArray[i].aid, attributeArray[i].name);
+					
+					options = attributeArray[i].options;
+					for(var j=0;j<options.length;j++)
+					{
+						createHiddenField('attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
+						createHiddenField('attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
+						createHiddenField('attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
+						createHiddenField('attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
+					}
+				}
+			}
 		}
 		
 		function convertSubProductArray() {
-		
+			for(var i=0;i<subProduct.length;i++)
 		}
 		
 		function createArrayPermutation(attributeArray) {
