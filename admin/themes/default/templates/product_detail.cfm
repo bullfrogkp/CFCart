@@ -825,8 +825,6 @@
 			return results;
 		}
 		
-		save-item.click
-		
 		$('##save-item').click(function(){
 			convertAttributeArray();
 			convertSubProductArray();
