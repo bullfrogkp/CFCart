@@ -723,27 +723,27 @@
 			
 			for(var i=0;i<subProductArray.length;i++)
 			{
-				createHiddenField('c_sub_product_id', subProductArray[i].productid);
-				createHiddenField('c_sub_product_sku_' + subProductArray[i].productid, subProductArray[i].sku);
-				createHiddenField('c_sub_product_stock_' + subProductArray[i].productid, subProductArray[i].stock);
-				createHiddenField('c_sub_product_advancedprice_' + subProductArray[i].productid, subProductArray[i].advancedPrice);
+				createHiddenField('c_sub_product_id', subProductArray[i].productId);
+				createHiddenField('c_sub_product_sku_' + subProductArray[i].productId, subProductArray[i].sku);
+				createHiddenField('c_sub_product_stock_' + subProductArray[i].productId, subProductArray[i].stock);
+				createHiddenField('c_sub_product_advancedprice_' + subProductArray[i].productId, subProductArray[i].advancedPrice);
 				
 				options = subProductArray[i].options;
 				groupPrices = subProductArray[i].groupPrices;
 				
 				for(var j=0;j<options.length;j++)
 				{
-					createHiddenField('c_sub_product_attribute_option_id_' + subProductArray[i].productid, options[j].aoid);
-					createHiddenField('c_sub_product_attribute_option_name_' + subProductArray[i].productid + '_' + options[j].aoid, options[j].name);
-					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productid + '_' + options[j].aoid, options[j].value);
+					createHiddenField('c_sub_product_attribute_option_id_' + subProductArray[i].productId, options[j].aoid);
+					createHiddenField('c_sub_product_attribute_option_name_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].name);
+					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].value);
 				}
 				
 				for(var key in groupPrices) {
 					if(groupPrices.hasOwnProperty(key)) {
-						createHiddenField('c_sub_product_price_' + subProductArray[i].productid + '_' + key, groupPrices[key].price);
-						createHiddenField('c_sub_product_specialprice_' + subProductArray[i].productid + '_' + key, groupPrices[key].specialPrice);
-						createHiddenField('c_sub_product_fromdate_' + subProductArray[i].productid + '_' + key, groupPrices[key].fromDate);
-						createHiddenField('c_sub_product_todate_' + subProductArray[i].productid + '_' + key, groupPrices[key].toDate);
+						createHiddenField('c_sub_product_price_' + subProductArray[i].productId + '_' + key, groupPrices[key].price);
+						createHiddenField('c_sub_product_specialprice_' + subProductArray[i].productId + '_' + key, groupPrices[key].specialPrice);
+						createHiddenField('c_sub_product_fromdate_' + subProductArray[i].productId + '_' + key, groupPrices[key].fromDate);
+						createHiddenField('c_sub_product_todate_' + subProductArray[i].productId + '_' + key, groupPrices[key].toDate);
 					}
 				}
 			}
