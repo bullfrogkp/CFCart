@@ -701,16 +701,16 @@
 			{
 				if(attributeArray[i].aid == false)
 				{
-					createHiddenField('attribute_id', attributeArray[i].aid);
-					createHiddenField('attribute_name_' + attributeArray[i].aid, attributeArray[i].name);
+					createHiddenField('c_attribute_id', attributeArray[i].aid);
+					createHiddenField('c_attribute_name_' + attributeArray[i].aid, attributeArray[i].name);
 					
 					options = attributeArray[i].options;
 					for(var j=0;j<options.length;j++)
 					{
-						createHiddenField('attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
-						createHiddenField('attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
-						createHiddenField('attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
-						createHiddenField('attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
+						createHiddenField('c_attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
+						createHiddenField('c_attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
+						createHiddenField('c_attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
+						createHiddenField('c_attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
 					}
 				}
 			}
@@ -721,29 +721,29 @@
 			var groupPrices = new Object();
 			var options = [];
 			
-			for(var i=0;i<subProduct.length;i++)
+			for(var i=0;i<subProductArray.length;i++)
 			{
-				createHiddenField('sub_product_id', subProduct[i].productid);
-				createHiddenField('sub_product_sku_' + subProduct[i].productid, subProduct[i].sku);
-				createHiddenField('sub_product_stock_' + subProduct[i].productid, subProduct[i].stock);
-				createHiddenField('sub_product_advancedprice_' + subProduct[i].productid, subProduct[i].advancedPrice);
+				createHiddenField('c_sub_product_id', subProductArray[i].productid);
+				createHiddenField('c_sub_product_sku_' + subProductArray[i].productid, subProductArray[i].sku);
+				createHiddenField('c_sub_product_stock_' + subProductArray[i].productid, subProductArray[i].stock);
+				createHiddenField('c_sub_product_advancedprice_' + subProductArray[i].productid, subProductArray[i].advancedPrice);
 				
-				options = subProduct[i].options;
-				groupPrices = subProduct[i].groupPrices;
+				options = subProductArray[i].options;
+				groupPrices = subProductArray[i].groupPrices;
 				
 				for(var j=0;j<options.length;j++)
 				{
-					createHiddenField('sub_product_attribute_option_id_' + subProduct[i].productid, options[j].aoid);
-					createHiddenField('sub_product_attribute_option_name_' + subProduct[i].productid + '_' + options[j].aoid, options[j].name);
-					createHiddenField('sub_product_attribute_option_value_' + subProduct[i].productid + '_' + options[j].aoid, options[j].value);
+					createHiddenField('c_sub_product_attribute_option_id_' + subProductArray[i].productid, options[j].aoid);
+					createHiddenField('c_sub_product_attribute_option_name_' + subProductArray[i].productid + '_' + options[j].aoid, options[j].name);
+					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productid + '_' + options[j].aoid, options[j].value);
 				}
 				
 				for(var key in groupPrices) {
 					if(groupPrices.hasOwnProperty(key)) {
-						createHiddenField('sub_product_price_' + subProduct[i].productid + '_' + key, groupPrices[key].price);
-						createHiddenField('sub_product_specialprice_' + subProduct[i].productid + '_' + key, groupPrices[key].specialPrice);
-						createHiddenField('sub_product_fromdate_' + subProduct[i].productid + '_' + key, groupPrices[key].fromDate);
-						createHiddenField('sub_product_todate_' + subProduct[i].productid + '_' + key, groupPrices[key].toDate);
+						createHiddenField('c_sub_product_price_' + subProductArray[i].productid + '_' + key, groupPrices[key].price);
+						createHiddenField('c_sub_product_specialprice_' + subProductArray[i].productid + '_' + key, groupPrices[key].specialPrice);
+						createHiddenField('c_sub_product_fromdate_' + subProductArray[i].productid + '_' + key, groupPrices[key].fromDate);
+						createHiddenField('c_sub_product_todate_' + subProductArray[i].productid + '_' + key, groupPrices[key].toDate);
 					}
 				}
 			}
@@ -1496,7 +1496,7 @@
 					OR
 					NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "simple">
 				<div class="form-group">
-					<button name="save_item" id="save-item" type="submit" class="btn btn-primary top-nav-button">Save Product</button>
+					<button name="save_item" id="save-item" type="button" class="btn btn-primary top-nav-button">Save Product</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>
 				</div>
 			</cfif>
