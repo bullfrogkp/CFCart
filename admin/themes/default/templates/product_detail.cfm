@@ -699,7 +699,7 @@
 			
 			for(var i=0;i<attributeArray.length;i++)
 			{
-				if(attributeArray[i].aid == false)
+				if(attributeArray[i].deleted == false)
 				{
 					createHiddenField('c_attribute_id', attributeArray[i].aid);
 					createHiddenField('c_attribute_name_' + attributeArray[i].aid, attributeArray[i].name);
