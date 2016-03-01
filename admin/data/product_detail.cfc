@@ -102,6 +102,10 @@
 			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 			<cfif IsNumeric(FORM.id)>
 			
+				<cfset LOCAL.product.removeSubProducts() />
+				<cfset LOCAL.product.removeGroupPrices() />
+				<cfset LOCAL.product.removeProductAttributeRelas() />
+			
 				<cfif FORM.product_type EQ "single">
 					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 						<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
@@ -137,7 +141,12 @@
 						<cfset EntitySave(LOCAL.groupPrice) />
 					</cfloop>
 				<cfelseif FORM.product_type EQ "configurable">
-				
+					<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
+						<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
+						<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+						<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByID("attribute",LOCAL.attribute_id)) />
+						<cfset EntitySave(LOCAL.productAttributeRela) />
+					</cfloop>
 				</cfif>
 			
 			
