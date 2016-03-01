@@ -151,6 +151,7 @@
 						</cfif>
 						
 						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
+							<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela") />
 							<cfset LOCAL.currentSubProduct.setPrice(true) />
 						</cfloop>
 						
