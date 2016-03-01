@@ -159,6 +159,13 @@
 				
 			<cfset EntitySave(LOCAL.product) />
 			
+			
+			
+			
+			
+			
+			
+			
 			<cfif FORM.tax_category_id NEQ "">
 				<cfset LOCAL.product.setTaxCategory(EntityLoadByPK("tax_category",FORM.tax_category_id)) />
 			</cfif>
