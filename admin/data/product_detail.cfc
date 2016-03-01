@@ -101,6 +101,47 @@
 			<!--- price information --->
 			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 			<cfif IsNumeric(FORM.id)>
+			
+				<cfif FORM.product_type EQ "single">
+					<cfif StructKeyExists(FORM,"single_advanced_price_settings"")>
+						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
+							<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+							
+							<cfset LOCAL.groupPrice.setPrice(Trim(FORM.single_simple_price)) />
+							<cfif IsNumeric(Trim(FORM.single_simple_special_price))>
+								<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.single_simple_special_price)) />
+							</cfif>
+							
+							<!--- for listing page sorting --->
+							<cfset LOCAL.product.setPriceMV(Trim(FORM.single_simple_price)) />
+							<cfset EntitySave(LOCAL.groupPrice) />
+						</cfloop>
+					<cfelse>
+						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
+							<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+							
+							<cfset LOCAL.newPrice = Trim(FORM["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"]) />
+							<cfset LOCAL.newSpecialPrice = Trim(FORM["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"]) />
+							<cfset LOCAL.newSpecialFromDate = Trim(FORM["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"]) />
+							<cfset LOCAL.newSpecialToDate = Trim(FORM["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"]) />
+							
+							<cfset LOCAL.groupPrice.setPrice(Trim(FORM.single_simple_price)) />
+							<cfif IsNumeric(Trim(FORM.single_simple_special_price))>
+								<cfset LOCAL.groupPrice.setSpecialPrice(Trim(FORM.single_simple_special_price)) />
+							</cfif>
+							
+							<!--- for listing page sorting --->
+							<cfset LOCAL.product.setPriceMV(Trim(FORM.single_simple_price)) />
+							<cfset EntitySave(LOCAL.groupPrice) />
+						</cfloop>
+					</cfif>
+				<cfelseif FORM.product_type EQ "configurable">
+				
+				</cfif>
+			
+			
+			
+			
 				<cfif NOT IsNull(LOCAL.product.getAttributeSetMV()) AND NOT ArrayIsEmpty(LOCAL.product.getSubProducts())>
 					<cfset LOCAL.productArray = LOCAL.product.getSubProducts() />
 				<cfelse>

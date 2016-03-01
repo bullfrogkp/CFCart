@@ -1035,14 +1035,14 @@
 														</div>
 														<div class="form-group">
 															<label>To Date</label>
-															<input type="text" class="form-control date" name="single_advanced_to_date_" id="single-advanced-to-date-#i#" style="width:100%" />
+															<input type="text" class="form-control date" name="single_advanced_to_date_#i#" id="single-advanced-to-date-#i#" style="width:100%" />
 														</div>
 													</div><!-- /.tab-pane -->
 												</cfloop>
 											</div><!-- /.tab-content -->
 										</div><!-- nav-tabs-custom -->
 										<div class="form-group">
-											<input type="checkbox" class="form-control" name=single_advanced_price_settings" id="single-advanced-price-settings" value="1"
+											<input type="checkbox" class="form-control" name="single_advanced_price_settings" id="single-advanced-price-settings" value="1"
 											<cfif REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>
 											checked
 											</cfif>
