@@ -106,10 +106,12 @@
 			<cfset LOCAL.product.removeProductAttributeRelas() />
 		
 			<cfif FORM.product_type EQ "single">
+				<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
+				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 					<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
 					
-					<cfif StructKeyExists(FORM,"single_advanced_price_settings"")>
+					<cfif StructKeyExists(FORM,"single_advanced_price_settings")>
 						<cfset LOCAL.newPrice = Trim(FORM["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"]) />
 						<cfset LOCAL.newSpecialPrice = Trim(FORM["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"]) />
 						<cfset LOCAL.newSpecialPriceFromDate = Trim(FORM["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"]) />
@@ -142,6 +144,19 @@
 			<cfelseif FORM.product_type EQ "configurable">
 				<cfloop list="#FORM.c_sub_product_id#" index="LOCAL.sub_product_id">
 					<cfif IsNumeric(LOCAL.sub_product_id)>
+						<cfset LOCAL.currentSubProduct = EntityLoadByPK("product",LOCAL.sub_product_id) />
+						
+						<cfif FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"] EQ true>
+							<cfset LOCAL.currentSubProduct.setAdvancedPrice(true) />
+						</cfif>
+						
+						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
+							<cfset LOCAL.currentSubProduct.setPrice(true) />
+						</cfloop>
+						
+						<cfset EntitySave(LOCAL.currentSubProduct) />
+					
+					
 						<cfset _updateSubProduct(subProductId = LOCAL.sub_product_id, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 					<cfelse>
 						<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
