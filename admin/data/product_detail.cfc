@@ -145,9 +145,17 @@
 				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
 					<cfset LOCAL.existingProductAttributeRela = EntityLoad("product_attribute_rela",{product = LOCAL.product, attribute = EntityLoadByPK("attribute",LOCAL.attribute_id)},true) />
 					<cfif NOT IsNull(LOCAL.existingProductAttributeRela)>
+						<cfset LOCAL.existingProductAttributeRela.set
+					<cfelse>
 						<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
 						<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
 						<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByID("attribute",LOCAL.attribute_id)) />
+						
+						<cfloop list="#FORM["c_sub_product_id_#LOCAL.sub_product_id#"]#" index="LOCAL.aoid">
+						
+						
+						</cfloop>
+						
 						<cfset EntitySave(LOCAL.productAttributeRela) />
 					</cfif>
 				</cfloop>
