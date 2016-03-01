@@ -142,6 +142,17 @@
 					<cfset EntitySave(LOCAL.groupPrice) />
 				</cfloop>
 			<cfelseif FORM.product_type EQ "configurable">
+				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
+					<cfset LOCAL.existingProductAttributeRela = EntityLoad("product_attribute_rela",{product = LOCAL.product, attribute = EntityLoadByPK("attribute",LOCAL.attribute_id)},true) />
+					<cfif NOT IsNull(LOCAL.existingProductAttributeRela)>
+						<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
+						<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+						<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByID("attribute",LOCAL.attribute_id)) />
+						<cfset EntitySave(LOCAL.productAttributeRela) />
+					</cfif>
+				</cfloop>
+			
+			
 				<cfloop list="#FORM.c_sub_product_id#" index="LOCAL.sub_product_id">
 					<cfif IsNumeric(LOCAL.sub_product_id)>
 						<cfset LOCAL.currentSubProduct = EntityLoadByPK("product",LOCAL.sub_product_id) />
@@ -171,12 +182,7 @@
 				</cfloop>
 			
 			
-				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
-					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
-					<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
-					<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByID("attribute",LOCAL.attribute_id)) />
-					<cfset EntitySave(LOCAL.productAttributeRela) />
-				</cfloop>
+				
 			</cfif>
 				
 			<cfset EntitySave(LOCAL.product) />
