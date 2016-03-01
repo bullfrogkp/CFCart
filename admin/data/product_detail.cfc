@@ -146,19 +146,25 @@
 					<cfif IsNumeric(LOCAL.sub_product_id)>
 						<cfset LOCAL.currentSubProduct = EntityLoadByPK("product",LOCAL.sub_product_id) />
 						
+						<cfset LOCAL.currentSubProduct.setSku(FORM["c_sub_product_sku_#LOCAL.sub_product_id#"]) />
+						<cfset LOCAL.currentSubProduct.setStock(FORM["c_sub_product_stock_#LOCAL.sub_product_id#"]) />
 						<cfif FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"] EQ true>
 							<cfset LOCAL.currentSubProduct.setAdvancedPrice(true) />
+						<cfelse>
+							<cfset LOCAL.currentSubProduct.setAdvancedPrice(false) />
 						</cfif>
 						
 						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-							<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela") />
-							<cfset LOCAL.currentSubProduct.setPrice(true) />
+							<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product = LOCAL.currentSubProduct, customerGroup = LOCAL.group},true) />
+							<cfset LOCAL.productCustomerGroupRela.setPrice(FORM["c_sub_product_price_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
+							<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(FORM["c_sub_product_specialprice_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
+							<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(FORM["c_sub_product_fromdate_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
+							<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(FORM["c_sub_product_todate_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
+							
+							<cfset EntitySave(LOCAL.productCustomerGroupRela) />
 						</cfloop>
 						
 						<cfset EntitySave(LOCAL.currentSubProduct) />
-					
-					
-						<cfset _updateSubProduct(subProductId = LOCAL.sub_product_id, attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 					<cfelse>
 						<cfset _createSubProduct(parentProductId = LOCAL.product.getProductId(), attributeValueIdList = ArrayToList(LOCAL.attributeValueIdArray)) />
 					</cfif>
