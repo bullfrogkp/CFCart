@@ -344,7 +344,7 @@
 		
 		var newSubProductId = 0;
 		
-		$('.sub-use-advanced-price').on('ifChecked', function(event){
+		$('.c-sub-product-use-advanced-price').on('ifChecked', function(event){
 			for(var i=0;i<subProductArray.length;i++)
 			{
 				if(subProductArray[i].productId == $(this).attr('productid'))
@@ -355,7 +355,7 @@
 			}
 		});
 		
-		$('.sub-use-advanced-price').on('ifUnchecked', function(event){
+		$('.c-sub-product-use-advanced-price').on('ifUnchecked', function(event){
 			for(var i=0;i<subProductArray.length;i++)
 			{
 				if(subProductArray[i].productId == $(this).attr('productid'))
@@ -399,7 +399,7 @@
 			$('##single-advanced-price-section').hide();
 		});
 				
-		$('##sub-products').on("click","a.sub-advanced-product-price", function() {
+		$('##sub-products').on("click","a.c-sub-product-advanced-product-price", function() {
 			$('##edit-sub-product-id-hidden').val($(this).attr('productid'));
 			
 			$('.advanced-price-tab').removeClass('active');
@@ -711,7 +711,7 @@
 				cls += 'tr-ao-' + subProduct.options[i].aoid + ' ';
 			}
 							
-			str = str + '<td class="'+cls+'"><input name="sub_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="sub_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input class="sub-simple-product-price" name="sub_simple_price_'+subProduct.productId+'" value="'+subProduct.groupPrices['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input class="sub-simple-product-special-price" name="sub_simple_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrices['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control sub-use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="sub_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control new-checkbox" name="sub_product_enabled_'+subProduct.productId+'" id="sub-product-enabled_'+subProduct.productId+'" value="1" /></td></tr>';
+			str = str + '<td class="'+cls+'"><input name="c_sub_product_sku_'+subProduct.productId+'" value="'+subProduct.sku+'" style="width:100%;" /></td><td><input name="c_sub_product_stock_'+subProduct.productId+'" value="'+subProduct.stock+'" style="width:100%;" /></td><td><input name="c_sub_product_simple_price_'+subProduct.productId+'" value="'+subProduct.groupPrices['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].price+'" style="width:100%;"/></td><td><input name="c_sub_product_simple_special_price_'+subProduct.productId+'" value="'+subProduct.groupPrices['sub_#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#'].specialPrice+'" style="width:100%;"/></td><td><div class="pull-left" style="margin-right:10px;"><input type="checkbox" class="form-control c-sub-product-use-advanced-price new-checkbox" productid="'+subProduct.productId+'" name="c_sub_product_use_advanced_price_'+subProduct.productId+'" value="1" /></div><a productid="'+subProduct.productId+'" class="c-sub-product-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Advanced</span></a></td><td style="text-align:right;"><input type="checkbox" class="form-control enable-sub-product new-checkbox" name="c_sub_product_enabled_'+subProduct.productId+'" id="c-sub-product-enabled-'+subProduct.productId+'" value="1" /></td></tr>';
 			
 			return str;
 		}
@@ -1173,27 +1173,27 @@
 																</cfloop>
 																
 																<td class="#cls#">
-																	<input name="sub_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																	<input name="c_sub_product_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
 																</td>
 																<td>
-																	<input name="sub_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																	<input name="c_sub_product_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 																</td>
 																<td>
-																	<input class="sub-simple-product-price" name="sub_simple_price_#p.getProductId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;"/>
+																	<input name="c_sub_product_simple_price_#p.getProductId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;"/>
 																</td>
 																<td>
-																	<input class="sub-simple-product-special-price" name="sub_simple_special_price_#p.getProductId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;"/>
+																	<input name="c_sub_product_simple_special_price_#p.getProductId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;"/>
 																</td>
 																<td>
 																	<div class="pull-left" style="margin-right:10px;">
-																		<input type="checkbox" class="form-control sub-use-advanced-price" productid="#p.getProductId()#" name="sub_use_advanced_price_#p.getProductId()#" value="1" />
+																		<input type="checkbox" class="form-control c-sub-product-use-advanced-price" productid="#p.getProductId()#" name="c_sub_product_use_advanced_price_#p.getProductId()#" value="1" />
 																	</div>
-																	<a productid="#p.getProductId()#" class="sub-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
+																	<a productid="#p.getProductId()#" class="c-sub-product-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																		<span class="label label-danger">Advanced</span>
 																	</a>
 																</td>
 																<td style="text-align:right;">
-																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="sub_product_enabled_#p.getProductId()#" id="sub-product-enabled-#p.getProductId()#" value="1" />
+																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="c_sub_product_enabled_#p.getProductId()#" id="c-sub-product-enabled-#p.getProductId()#" value="1" />
 																</td>
 															</tr>
 														</cfloop>
