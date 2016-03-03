@@ -316,8 +316,6 @@
 						<cfset LOCAL.subProduct.setSKU(LOCAL.product.getSKU() & "-" & LOCAL.subProduct.getProductId()) />
 						<cfset EntitySave(LOCAL.subProduct) />
 						<cfset LOCAL.product.addSubProduct(LOCAL.subProduct) />
-						<cfset EntitySave(LOCAL.product) />
-						<cfset ORMFlush() />
 					</cfif>
 				</cfloop>
 			</cfif>
