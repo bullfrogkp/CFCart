@@ -304,7 +304,7 @@
 							<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
 							<cfset EntitySave(LOCAL.productAttributeRela) />
 						
-							<cfloop list="#FORM["c_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
+							<cfloop list="#FORM["c_sub_product_attribute_option_value_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
 								<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
 								<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
 								<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
