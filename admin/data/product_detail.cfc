@@ -273,6 +273,7 @@
 						
 						<cfset EntitySave(LOCAL.subProduct) />
 					
+						<!--- attribute and values --->
 						<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
 							<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value", LOCAL.attributeValueId) />
 							
@@ -304,24 +305,23 @@
 					</cfif>
 				</cfloop>
 			
-			
-			
+				<!--- product attributes and values --->
+				<cfset LOCAL.product.removeProductAttributeRelas() />
+				
 				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
-					<cfset LOCAL.existingProductAttributeRela = EntityLoad("product_attribute_rela",{product = LOCAL.product, attribute = EntityLoadByPK("attribute",LOCAL.attribute_id)},true) />
-					<cfif NOT IsNull(LOCAL.existingProductAttributeRela)>
-						<cfset LOCAL.existingProductAttributeRela.set
-					<cfelse>
-						<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
-						<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
-						<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByID("attribute",LOCAL.attribute_id)) />
-						
-						<cfloop list="#FORM["c_sub_product_id_#LOCAL.sub_product_id#"]#" index="LOCAL.aoid">
-						
-						
-						</cfloop>
-						
-						<cfset EntitySave(LOCAL.productAttributeRela) />
-					</cfif>
+					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
+					<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+					<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByID("attribute",LOCAL.attribute_id)) />
+					<cfset EntitySave(LOCAL.productAttributeRela) />
+					
+					<cfloop list="#FORM["c_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
+						<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
+						<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
+						<cfset LOCAL.attributeValue.setHasThumbnail() />
+						<cfset LOCAL.attributeValue.setImageName() />
+						<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
+						<cfset EntitySave(LOCAL.attributeValue) />
+					</cfloop>
 				</cfloop>
 			
 			
