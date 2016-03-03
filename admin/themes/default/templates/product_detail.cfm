@@ -102,6 +102,7 @@
 			
 			var option = new Object();
 			option.aoid = 'new_' + new_option_index;
+			option.aid = attr.aid;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageLink = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
 			option.hasThumbnail = thumb;
@@ -329,6 +330,7 @@
 				<cfif NOT ArrayIsEmpty(rela.getAttributeValues())>
 					<cfset attributeValue = rela.getAttributeValues()[1] />
 					var attr = new Object();
+					attr.aid = '#rela.getAttribute().getAttributeId()#';
 					attr.name = '#rela.getAttribute().getDisplayName()#';
 					attr.value = '#attributeValue.getValue()#';
 					attr.aoid = #attributeValue.getAttributeValueId()#;
@@ -765,7 +767,7 @@
 				for(var j=0;j<options.length;j++)
 				{
 					createHiddenField('c_sub_product_attribute_option_id_' + subProductArray[i].productId, options[j].aoid);
-					createHiddenField('c_sub_product_attribute_option_name_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].name);
+					createHiddenField('c_sub_product_attribute_option_attribute_id_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].name);
 					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].value);
 				}
 				
@@ -828,6 +830,7 @@
 						if(attributeArray[j].options.length > 0)
 						{
 							var attr = new Object();
+							attr.aid = attributeArray[j].aid;
 							attr.name = attributeArray[j].name;
 							attr.value = attributeArray[j].options[_current[j]].value;
 							attr.aoid = attributeArray[j].options[_current[j]].aoid;
