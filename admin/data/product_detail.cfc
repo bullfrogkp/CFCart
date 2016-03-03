@@ -102,13 +102,17 @@
 			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 								
 			<cfif FORM.product_type EQ "single">
+			
 				<cfset LOCAL.product.removeSubProducts() />
 			
 				<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
 				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
 				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
+				
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-					<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+					<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
+					<cfset LOCAL.groupPrice.setProduct(LOCAL.product) /> />
+					<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) /> />
 					
 					<cfif StructKeyExists(FORM,"single_advanced_price_settings")>
 						<cfset LOCAL.newPrice = Trim(FORM["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"]) />
@@ -140,7 +144,10 @@
 					
 					<cfset EntitySave(LOCAL.groupPrice) />
 				</cfloop>
+				
 			<cfelseif FORM.product_type EQ "configurable">
+			
+				<cfset LOCAL.product.removeProductCustomerGroupRelas() />
 				
 				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
 					<cfif ListFind(FORM.c_attribute_id, LOCAL.subProduct.getProductId())>
