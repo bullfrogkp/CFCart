@@ -277,7 +277,7 @@
 							<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value", LOCAL.attributeValueId) />
 							
 							<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
-							<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newSubProduct) />
+							<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.subProduct) />
 							<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeValue.getProductAttributeRela().getAttribute()) />
 							<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeValue.getProductAttributeRela().getRequired()) />
 							<cfset EntitySave(LOCAL.newProductAttributeRela) />
@@ -295,10 +295,10 @@
 							<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
 						</cfloop>
 						
-						<cfset EntitySave(LOCAL.newSubProduct) />
-						<cfset LOCAL.newSubProduct.setSKU(LOCAL.product.getSKU() & "-" & LOCAL.newSubProduct.getProductId()) />
-						<cfset EntitySave(LOCAL.newSubProduct) />
-						<cfset LOCAL.product.addSubProduct(LOCAL.newSubProduct) />
+						<cfset EntitySave(LOCAL.subProduct) />
+						<cfset LOCAL.subProduct.setSKU(LOCAL.product.getSKU() & "-" & LOCAL.subProduct.getProductId()) />
+						<cfset EntitySave(LOCAL.subProduct) />
+						<cfset LOCAL.product.addSubProduct(LOCAL.subProduct) />
 						<cfset EntitySave(LOCAL.product) />
 						<cfset ORMFlush() />
 					</cfif>
