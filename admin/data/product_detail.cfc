@@ -133,13 +133,19 @@
 					
 					<cfset LOCAL.groupPrice.setPrice(LOCAL.newPrice) />
 					<cfif IsNumeric(LOCAL.newSpecialPrice)>
-						<cfset LOCAL.groupPrice.setSpecialPrice(LOCAL.newSpecialPrice) />
+						<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(LOCAL.newSpecialPrice) />
+					<cfelse>
+						<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(JavaCast("NULL","")) />
 					</cfif>
 					<cfif IsDate(LOCAL.newSpecialPriceFromDate)>
-						<cfset LOCAL.groupPrice.setSpecialPriceFromDate(LOCAL.newSpecialPriceFromDate) />
+						<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(LOCAL.newSpecialPriceFromDate) />
+					<cfelse>
+						<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(JavaCast("NULL","")) />
 					</cfif>
 					<cfif IsDate(LOCAL.newSpecialPriceToDate)>
-						<cfset LOCAL.groupPrice.setSpecialPriceToDate(LOCAL.newSpecialPriceToDate) />
+						<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(LOCAL.newSpecialPriceToDate) />
+					<cfelse>
+						<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(JavaCast("NULL","")) />
 					</cfif>
 					
 					<!--- for listing page sorting --->
@@ -182,12 +188,23 @@
 							<cfset LOCAL.productCustomerGroupRela.setPrice(LOCAL.newPrice) />
 							<cfif IsNumeric(LOCAL.newSpecialPrice)>
 								<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(LOCAL.newSpecialPrice) />
+							<cfelse>
+								<cfset LOCAL.productCustomerGroupRela.setSpecialPrice(JavaCast("NULL","")) />
 							</cfif>
 							<cfif IsDate(LOCAL.newSpecialPriceFromDate)>
 								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(LOCAL.newSpecialPriceFromDate) />
+							<cfelse>
+								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceFromDate(JavaCast("NULL","")) />
 							</cfif>
 							<cfif IsDate(LOCAL.newSpecialPriceToDate)>
 								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(LOCAL.newSpecialPriceToDate) />
+							<cfelse>
+								<cfset LOCAL.productCustomerGroupRela.setSpecialPriceToDate(JavaCast("NULL","")) />
+							</cfif>
+							
+							<!--- for listing page sorting --->
+							<cfif LOCAL.group.getIsDefault() EQ true>
+								<cfset LOCAL.product.setPriceMV(LOCAL.newPrice) />
 							</cfif>
 							
 							<cfset EntitySave(LOCAL.productCustomerGroupRela) />
