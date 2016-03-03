@@ -166,7 +166,7 @@
 					<cfif NOT IsNumeric(LOCAL.sub_product_id)>
 						<cfset LOCAL.newSubProduct = EntityNew("product")>
 						<cfset LOCAL.newSubProduct.setParentProduct(LOCAL.product) />
-						<cfset LOCAL.newSubProduct.setProductType(EntityLoad("product_type",{name="configured_product"},true)) />
+						<cfset LOCAL.newSubProduct.setProductType(EntityLoad("product_type",{name="option"},true)) />
 						<cfset LOCAL.newSubProduct.setStock(LOCAL.product.getStock()) />
 						<cfset LOCAL.newSubProduct.setCreatedUser(SESSION.adminUser) />
 						<cfset LOCAL.newSubProduct.setCreatedDatetime(Now()) />
@@ -645,7 +645,7 @@
 		<cfset LOCAL.parentProduct = EntityLoadByPK("product",ARGUMENTS.parentProductId)>
 		<cfset LOCAL.newProduct = EntityNew("product")>
 		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
-		<cfset LOCAL.newProduct.setProductType(EntityLoad("product_type",{name="configured_product"},true)) />
+		<cfset LOCAL.newProduct.setProductType(EntityLoad("product_type",{name="option"},true)) />
 		<cfset LOCAL.newProduct.setStock(LOCAL.parentProduct.getStock()) />
 		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
 		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />

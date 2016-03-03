@@ -159,9 +159,10 @@ VALUES
 INSERT INTO product_type
 (name,display_name)
 VALUES
-('simple','Simple'),
+('single','Single'),
 ('package','Package'),
-('configured_product','Configured Product');
+('option','Option'),
+('configurable','Configurable');
 
 /*province*/
 INSERT INTO province

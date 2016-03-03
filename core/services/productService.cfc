@@ -116,7 +116,7 @@
 							SELECT	product_shipping_method_rela_id 
 							FROM 	product_shipping_method_rela psmr
 							WHERE 	psmr.product_id = 
-							<cfif NOT IsNull(LOCAL.product) AND LOCAL.product.getProductType().getName() EQ "configured_product">
+							<cfif NOT IsNull(LOCAL.product) AND LOCAL.product.getProductType().getName() EQ "option">
 								<cfqueryparam cfsqltype="cf_sql_integer" value="#LOCAL.product.getParentProduct().getProductId()#" />	
 							<cfelse>
 								<cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
