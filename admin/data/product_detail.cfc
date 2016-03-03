@@ -298,26 +298,18 @@
 						<cfset EntitySave(LOCAL.subProduct) />
 					
 						<!--- attribute and values --->
-						<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
-							<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value", LOCAL.attributeValueId) />
-							
-							<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
-							<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.subProduct) />
-							<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeValue.getProductAttributeRela().getAttribute()) />
-							<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeValue.getProductAttributeRela().getRequired()) />
-							<cfset EntitySave(LOCAL.newProductAttributeRela) />
-							
-							<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-							<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
-							<cfset LOCAL.newAttributeValue.setValue(LOCAL.attributeValue.getValue()) />
-							<cfset LOCAL.newAttributeValue.setName(LOCAL.attributeValue.getName()) />
-							<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.attributeValue.getDisplayName()) />
-							<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.attributeValue.getThumbnailLabel()) />
-							<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.attributeValue.getThumbnailImageName()) />
-							<cfset LOCAL.newAttributeValue.setImageName(LOCAL.attributeValue.getImageName()) />
-							<cfset EntitySave(LOCAL.newAttributeValue) />
-							
-							<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
+						<cfloop list="#FORM["c_sub_product_attribute_option_id_#LOCAL.sub_product_id#"]#" index="LOCAL.attribute_id">
+							<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
+							<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+							<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
+							<cfset EntitySave(LOCAL.productAttributeRela) />
+						
+							<cfloop list="#FORM["c_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
+								<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
+								<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
+								<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
+								<cfset EntitySave(LOCAL.attributeValue) />
+							</cfloop>
 						</cfloop>
 						
 						<cfset EntitySave(LOCAL.subProduct) />
