@@ -106,6 +106,7 @@
 			
 				<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
 				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
+				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 					<cfset LOCAL.groupPrice = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
 					

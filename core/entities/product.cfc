@@ -35,7 +35,7 @@
 	<cffunction name="setPriceMV" access="public" output="false" returnType="void">
 		<cfargument name="price" type="numeric" required="true">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset getParentProduct().setPrice(ARGUMENTS.price) />
 		<cfelse>
 			<cfset setPrice(ARGUMENTS.price) />
@@ -45,7 +45,7 @@
 	<cffunction name="setSoldCountMV" access="public" output="false" returnType="void">
 		<cfargument name="soldCount" type="numeric" required="true">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset getParentProduct().setSoldCount(ARGUMENTS.soldCount) />
 		<cfelse>
 			<cfset setSoldCount(ARGUMENTS.soldCount) />
@@ -55,7 +55,7 @@
 	<cffunction name="setReviewCountMV" access="public" output="false" returnType="void">
 		<cfargument name="reviewCount" type="numeric" required="true">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset getParentProduct().setReviewCount(ARGUMENTS.reviewCount) />
 		<cfelse>
 			<cfset setReviewCount(ARGUMENTS.reviewCount) />
@@ -64,7 +64,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSoldCountMV" access="public" output="false" returnType="numeric">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getSoldCount() />
 		<cfelse>
 			<cfreturn getSoldCount() />
@@ -73,7 +73,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getReviewCountMV" access="public" output="false" returnType="numeric">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getReviewCount() />
 		<cfelse>
 			<cfreturn getReviewCount() />
@@ -82,7 +82,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDescriptionMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getDescription() />
 		<cfelse>
 			<cfreturn getDescription() />
@@ -92,7 +92,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getNameMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getName() />
 		<cfelse>
 			<cfreturn getName() />
@@ -102,7 +102,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDisplayNameMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getDisplayName() />
 		<cfelse>
 			<cfreturn getDisplayName() />
@@ -112,7 +112,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getIsEnabledMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getIsEnabled() />
 		<cfelse>
 			<cfreturn getIsEnabled() />
@@ -122,7 +122,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTitleMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getTitle() />
 		<cfelse>
 			<cfreturn getTitle() />
@@ -132,7 +132,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getKeywordsMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getKeywords() />
 		<cfelse>
 			<cfreturn getKeywords() />
@@ -142,7 +142,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getDetail() />
 		<cfelse>
 			<cfreturn getDetail() />
@@ -152,7 +152,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getLengthMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getLength() />
 		<cfelse>
 			<cfreturn getLength() />
@@ -162,7 +162,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getWidthMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getWidth() />
 		<cfelse>
 			<cfreturn getWidth() />
@@ -172,7 +172,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getHeightMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getHeight() />
 		<cfelse>
 			<cfreturn getHeight() />
@@ -182,7 +182,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getWeightMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getWeight() />
 		<cfelse>
 			<cfreturn getWeight() />
@@ -192,7 +192,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getAttributeSetMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getAttributeSet() />
 		<cfelse>
 			<cfreturn getAttributeSet() />
@@ -202,7 +202,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTaxCategoryMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getTaxCategory() />
 		<cfelse>
 			<cfreturn getTaxCategory() />
@@ -212,7 +212,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getProductVideosMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getProductVideos() />
 		<cfelse>
 			<cfreturn getProductVideos() />
@@ -222,7 +222,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getReviewsMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getReviews() />
 		<cfelse>
 			<cfreturn getReviews() />
@@ -232,7 +232,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getImagesMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getImages() />
 		<cfelse>
 			<cfreturn getImages() />
@@ -242,7 +242,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getProductShippingCarrierRelasMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getProductShippingCarrierRelas() />
 		<cfelse>
 			<cfreturn getProductShippingCarrierRelas() />
@@ -252,7 +252,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getCategoriesMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getCategories() />
 		<cfelse>
 			<cfreturn getCategories() />
@@ -262,7 +262,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getRelatedProductsMV" access="public" output="false" returnType="any">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfreturn getParentProduct().getRelatedProducts() />
 		<cfelse>
 			<cfreturn getRelatedProducts() />
@@ -348,7 +348,7 @@
 	<cffunction name="getDefaultImageLinkMV" access="public" output="false" returnType="string">
 		<cfargument name="type" type="string" required="false" default="" />
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset var imageLink = getParentProduct().getDefaultImageLink(argumentCollection = ARGUMENTS) />
 		<cfelse>
 			<cfset var imageLink = getDefaultImageLink(argumentCollection = ARGUMENTS) />
@@ -383,7 +383,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="isFreeShippingMV" access="public" output="false" returnType="boolean">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset var retValue = getParentProduct().isFreeShipping() />
 		<cfelse>
 			<cfset var retValue = isFreeShipping() />
@@ -412,7 +412,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailPageURLMV" access="public" output="false" returnType="string">
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset var pageUrl = getParentProduct().getDetailPageURL() />
 		<cfelse>
 			<cfset var pageUrl = getDetailPageURL() />
@@ -454,7 +454,7 @@
 		
 		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset var taxRate = getParentProduct().getTaxRate(argumentCollection = ARGUMENTS) />
 		<cfelse>
 			<cfset var taxRate = getTaxRate(argumentCollection = ARGUMENTS) />
@@ -479,7 +479,7 @@
 		
 		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		
-		<cfif getProductType().getName() EQ "configured_product">
+		<cfif getProductType().getName() EQ "option">
 			<cfset var shippingFee = getParentProduct().getShippingFee(argumentCollection = ARGUMENTS) />
 		<cfelse>
 			<cfset var shippingFee = getShippingFee(argumentCollection = ARGUMENTS) />
