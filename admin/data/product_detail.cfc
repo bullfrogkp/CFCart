@@ -165,14 +165,14 @@
 						<cfset LOCAL.subProduct.setSku(FORM["c_sub_product_sku_#LOCAL.sub_product_id#"]) />
 						<cfset LOCAL.subProduct.setStock(FORM["c_sub_product_stock_#LOCAL.sub_product_id#"]) />
 						
-						<cfif StructKeyExists(FORM,"c_sub_product_use_advanced_price_#LOCAL.sub_product_id#")>
+						<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
 							<cfset LOCAL.subProduct.setAdvancedPrice(true) />
 						<cfelse>
 							<cfset LOCAL.subProduct.setAdvancedPrice(false) />
 						</cfif>
 						
 						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-							<cfif StructKeyExists(FORM,"c_sub_product_use_advanced_price_#LOCAL.sub_product_id#")>
+							<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
 								<cfset LOCAL.newPrice = Trim(FORM["c_sub_product_price_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 								<cfset LOCAL.newSpecialPrice =Trim(FORM["c_sub_product_specialprice_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 								<cfset LOCAL.newSpecialPriceFromDate = Trim(FORM["c_sub_product_fromdate_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
@@ -247,14 +247,14 @@
 						<cfset LOCAL.subProduct.setCreatedUser(SESSION.adminUser) />
 						<cfset LOCAL.subProduct.setCreatedDatetime(Now()) />
 										
-						<cfif StructKeyExists(FORM,"c_sub_product_use_advanced_price_#LOCAL.sub_product_id#")>
+						<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
 							<cfset LOCAL.subProduct.setAdvancedPrice(true) />
 						<cfelse>
 							<cfset LOCAL.subProduct.setAdvancedPrice(false) />
 						</cfif>
 						
 						<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-							<cfif StructKeyExists(FORM,"c_sub_product_use_advanced_price_#LOCAL.sub_product_id#")>
+							<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
 								<cfset LOCAL.newPrice = Trim(FORM["c_sub_product_price_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 								<cfset LOCAL.newSpecialPrice =Trim(FORM["c_sub_product_specialprice_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 								<cfset LOCAL.newSpecialPriceFromDate = Trim(FORM["c_sub_product_fromdate_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
@@ -298,15 +298,15 @@
 						<cfset EntitySave(LOCAL.subProduct) />
 					
 						<!--- attribute and values --->
-						<cfloop list="#FORM["c_sub_product_attribute_option_id_#LOCAL.sub_product_id#"]#" index="LOCAL.attribute_id">
+						<cfloop list="#FORM["c_sub_product_attribute_option_attribute_id_#LOCAL.sub_product_id#"]#" index="LOCAL.attribute_id">
 							<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
 							<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
 							<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
 							<cfset EntitySave(LOCAL.productAttributeRela) />
 						
-							<cfloop list="#FORM["c_sub_product_attribute_option_value_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
+							<cfloop list="#FORM["c_sub_product_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
 								<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
-								<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
+								<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.sub_product_id#_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
 								<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 								<cfset EntitySave(LOCAL.attributeValue) />
 							</cfloop>

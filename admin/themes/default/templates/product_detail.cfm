@@ -768,7 +768,7 @@
 				{
 					createHiddenField('c_sub_product_attribute_option_id_' + subProductArray[i].productId, options[j].aoid);
 					createHiddenField('c_sub_product_attribute_option_attribute_id_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].aid);
-					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].value);
+					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].aid + '_' + options[j].aoid, options[j].value);
 				}
 				
 				for(var key in groupPrices) {
