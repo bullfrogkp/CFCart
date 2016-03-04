@@ -12,7 +12,6 @@
 	<cfproperty name="viewCount" column="view_count" ormtype="integer"> 
 	<cfproperty name="useAdvancedPrices" column="use_advanced_prices" ormtype="boolean"> 
 	<cfproperty name="productType" fieldtype="many-to-one" cfc="product_type" fkcolumn="product_type_id">
-	<cfproperty name="attributeSet" fieldtype="many-to-one" cfc="attribute_set" fkcolumn="attribute_set_id">
 	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">
 	<cfproperty name="productAttributeRelas" type="array" fieldtype="one-to-many" cfc="product_attribute_rela" fkcolumn="product_id" singularname="productAttributeRela" cascade="delete-orphan">
 	<cfproperty name="productVideos" type="array" fieldtype="one-to-many" cfc="product_video" fkcolumn="product_id" singularname="productVideo" cascade="delete-orphan">
@@ -186,16 +185,6 @@
 			<cfreturn getParentProduct().getWeight() />
 		<cfelse>
 			<cfreturn getWeight() />
-		</cfif>
-		
-	</cffunction>
-	<!------------------------------------------------------------------------------->	
-	<cffunction name="getAttributeSetMV" access="public" output="false" returnType="any">
-		
-		<cfif getProductType().getName() EQ "option">
-			<cfreturn getParentProduct().getAttributeSet() />
-		<cfelse>
-			<cfreturn getAttributeSet() />
 		</cfif>
 		
 	</cffunction>

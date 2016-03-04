@@ -1,5 +1,4 @@
 ﻿<cfcomponent extends="service" output="false" accessors="true">
-    <cfproperty name="attributeSetId" type="numeric"> 
     <cfproperty name="parentProductId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
     <cfproperty name="sortTypeId" type="numeric"> 
