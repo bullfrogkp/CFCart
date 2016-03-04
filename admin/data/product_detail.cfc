@@ -158,8 +158,30 @@
 				
 			<cfelseif FORM.product_type EQ "configurable">
 			
-				<cfset LOCAL.product.removeProductCustomerGroupRelas() />
+				<!--- product attributes and values --->
+				<cfset LOCAL.product.removeProductAttributeRelas() />
 				
+				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
+					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
+					<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+					<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
+					<cfset EntitySave(LOCAL.productAttributeRela) />
+					
+					<cfif StructKeyExists(FORM,"c_attribute_option_id_#LOCAL.attribute_id#")>
+						<cfloop list="#FORM["c_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
+							<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
+							<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
+							<cfset LOCAL.attributeValue.setHasThumbnail(FORM["c_attribute_option_hasthumbnail_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
+							<cfif NOT Find("no_image_available.png", FORM["c_attribute_option_imagelink_#LOCAL.attribute_id#_#LOCAL.aoid#"])>
+								<cfset LOCAL.attributeValue.setImageName(FORM["c_attribute_option_imagelink_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
+							</cfif>
+							<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
+							<cfset EntitySave(LOCAL.attributeValue) />
+						</cfloop>
+					</cfif>
+				</cfloop>
+				
+				<!--- update existing sub product --->
 				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
 					<cfif ListFind(FORM.c_sub_product_id, LOCAL.subProduct.getProductId())>
 						<cfset LOCAL.subProduct.setSku(FORM["c_sub_product_sku_#LOCAL.sub_product_id#"]) />
@@ -210,30 +232,7 @@
 					</cfif>
 				</cfloop>
 				
-				<!--- product attributes and values --->
-				<cfset LOCAL.product.removeProductAttributeRelas() />
-				
-				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
-					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
-					<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
-					<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
-					<cfset EntitySave(LOCAL.productAttributeRela) />
-					
-					<cfif StructKeyExists(FORM,"c_attribute_option_id_#LOCAL.attribute_id#")>
-						<cfloop list="#FORM["c_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
-							<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
-							<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
-							<cfset LOCAL.attributeValue.setHasThumbnail(FORM["c_attribute_option_hasthumbnail_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
-							<cfif NOT Find("no_image_available.png", FORM["c_attribute_option_imagelink_#LOCAL.attribute_id#_#LOCAL.aoid#"])>
-								<cfset LOCAL.attributeValue.setImageName(FORM["c_attribute_option_imagelink_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
-							</cfif>
-							<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
-							<cfset EntitySave(LOCAL.attributeValue) />
-						</cfloop>
-					</cfif>
-				</cfloop>
-				
-				<!--- sub products --->
+				<!--- add new sub products --->
 				<cfloop list="#FORM.c_sub_product_id#" index="LOCAL.sub_product_id">
 					<cfif NOT IsNumeric(LOCAL.sub_product_id)>
 						<cfset LOCAL.subProduct = EntityNew("product")>
