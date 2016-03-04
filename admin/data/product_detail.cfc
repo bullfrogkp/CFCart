@@ -158,8 +158,13 @@
 				
 			<cfelseif FORM.product_type EQ "configurable">
 			
+				<!--- doesn't need single prices any more --->
+				<cfset LOCAL.product.removeProductCustomerGroupRelas() />
+				
 				<!--- product attributes and values --->
 				<cfset LOCAL.product.removeProductAttributeRelas() />
+				
+				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="configurable"},true)) />
 				
 				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
 					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
@@ -182,6 +187,15 @@
 				</cfloop>
 				
 				<!--- sub products --->
+				
+				<!--- remove sub products --->
+				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
+					<cfif NOT ListFind(FORM.c_sub_product_id, LOCAL.subProduct.getProductId())>
+						<cfset EntityDelete(LOCAL.subProduct) />
+					</cfif>
+				</cfloop>
+				
+				<!--- add/update sub products --->
 				<cfloop list="#FORM.c_sub_product_id#" index="LOCAL.sub_product_id">
 					<cfif IsNumeric(LOCAL.sub_product_id)>
 						<cfset LOCAL.subProduct = EntityLoadByPK("product",LOCAL.sub_product_id)>
@@ -214,9 +228,9 @@
 						<cfif IsNumeric(LOCAL.sub_product_id)>
 							<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product = LOCAL.subProduct, customerGroup = LOCAL.group},true) />
 						<cfelse>
-							<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-							<cfset LOCAL.groupPrice.setProduct(LOCAL.subProduct) />
-							<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.group) />
+							<cfset LOCAL.productCustomerGroupRela = EntityNew("product_customer_group_rela") />
+							<cfset LOCAL.productCustomerGroupRela.setProduct(LOCAL.subProduct) />
+							<cfset LOCAL.productCustomerGroupRela.setCustomerGroup(LOCAL.group) />
 						</cfif>
 						
 						<cfset LOCAL.productCustomerGroupRela.setPrice(LOCAL.newPrice) />
@@ -262,13 +276,6 @@
 					</cfif>
 					
 					<cfset EntitySave(LOCAL.subProduct) />
-				</cfloop>
-				
-				<!--- remove sub products --->
-				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
-					<cfif NOT ListFind(FORM.c_sub_product_id, LOCAL.subProduct.getProductId())>
-						<cfset EntityDelete(LOCAL.subProduct) />
-					</cfif>
 				</cfloop>
 			</cfif>
 			
