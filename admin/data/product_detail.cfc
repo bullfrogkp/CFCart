@@ -89,9 +89,9 @@
 				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
 				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
 				<cfif StructKeyExists(FORM,"single_advanced_price_settings")>
-					<cfset LOCAL.subProduct.setAdvancedPrice(true) />
+					<cfset LOCAL.subProduct.setUseAdvancedPrices(true) />
 				<cfelse>
-					<cfset LOCAL.subProduct.setAdvancedPrice(false) />
+					<cfset LOCAL.subProduct.setUseAdvancedPrices(false) />
 				</cfif>
 				
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
@@ -190,7 +190,7 @@
 					<cfset LOCAL.subProduct.setSku(FORM["c_sub_product_sku_#LOCAL.sub_product_id#"]) />
 					<cfset LOCAL.subProduct.setStock(FORM["c_sub_product_stock_#LOCAL.sub_product_id#"]) />
 					<cfset LOCAL.subProduct.setIsEnabled(FORM["c_sub_product_enabled_#LOCAL.sub_product_id#"]) />
-					<cfset LOCAL.subProduct.setAdvancedPrice(FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"]) />
+					<cfset LOCAL.subProduct.setUseAdvancedPrices(FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"]) />
 					
 					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 						<cfif FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"] EQ true>
@@ -271,7 +271,7 @@
 				<cfset LOCAL.product.addCategory(LOCAL.newCategory) />
 			</cfloop>
 			
-			<!--- update: not necessary for each time --->
+			<!--- update: not necessary for each time
 			<cfset LOCAL.product.removeProductShippingCarrierRelas() />
 			
 			<cfloop list="#FORM.shipping_carrier_id#" index="LOCAL.shippingCarrierId">
@@ -296,7 +296,7 @@
 				
 				<cfset LOCAL.product.addProductShippingCarrierRela(LOCAL.newProductShippingCarrierRela) />
 			</cfloop>
-					
+			 --->		
 			<!--- product images --->
 			<cfif NOT IsNull(LOCAL.product.getImages())>
 				<cfloop array="#LOCAL.product.getImages()#" index="LOCAL.img">
