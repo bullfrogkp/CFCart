@@ -998,21 +998,21 @@
 									<td>
 										<div class="form-group">
 											<label>SKU</label>
-											<input name="single_sku" id="single-sku" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.sku#"/>
+											<input name="single_sku" id="single-sku" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_sku#"/>
 										</div>
 										<div class="form-group">
 											<label>Stock</label>
-											<input name="single_stock" id="single-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.stock#"/>
+											<input name="single_stock" id="single-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_stock#"/>
 										</div>
 										
 										<div id="single-simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>style="display:none;"</cfif>>
 											<div class="form-group">
 												<label>Price</label>
-												<input name="single_simple_price" id="single-simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.price#"/>
+												<input name="single_simple_price" id="single-simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_simple_price#"/>
 											</div>
 											<div class="form-group">
 												<label>Special Price</label>
-												<input name="single_simple_special_price" id="single-simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.special_price#"/>
+												<input name="single_simple_special_price" id="single-simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_simple_special_price#"/>
 											</div>
 										</div>
 										<div class="nav-tabs-custom" id="single-advanced-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ false>style="display:none;"</cfif>>
@@ -1026,7 +1026,7 @@
 													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#i#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="single_advanced_price_#i#" id="single-advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="single_advanced_price_#i#" id="single-advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_advanced_price_#i##"/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
