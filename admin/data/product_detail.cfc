@@ -9,14 +9,6 @@
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product name.") />
 		</cfif>
 		
-		<cfif Trim(FORM.sku) EQ "">
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid SKU.") />
-		</cfif>
-		
-		<cfif NOT IsNumeric(Trim(FORM.stock))>
-			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid stock number.") />
-		</cfif>
-		
 		<cfif NOT StructKeyExists(FORM,"category_id")>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one category.") />
 		</cfif>
@@ -463,7 +455,6 @@
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayNameMV()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
 			<cfset LOCAL.pageData.customerGroupPrices = LOCAL.productService.getCustomerGroupPrices() />
-			<cfset LOCAL.pageData.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
 			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
 			<cfset LOCAL.pageData.attributeList = "" />
 			<cfloop array="#LOCAL.pageData.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
@@ -542,117 +533,5 @@
 		<cfset LOCAL.pageData.message = _setTempMessage() />
 	
 		<cfreturn LOCAL.pageData />	
-	</cffunction>
-	
-	<cffunction name="_getAttributeValueIdArray" access="private" output="false" returnType="array">
-		<cfargument name="productAttributeRelaId" type="numeric" required="true">
-		<cfset var LOCAL = {} />
-		
-		<cfquery name="LOCAL.getAttributeValueIdList">
-			SELECT	attribute_value_id
-			FROM	attribute_value
-			WHERE	product_attribute_rela_id = <cfqueryparam cfsqltype="cf_sql_integer" value="#ARGUMENTS.productAttributeRelaId#" />
-		</cfquery>
-		
-		<cfreturn ListToArray(ValueList(LOCAL.getAttributeValueIdList.attribute_value_id)) />
-	</cffunction>
-	
-	<cffunction name="_createSubProduct" access="private" output="false" returnType="any">
-		<cfargument name="parentProductId" type="numeric" required="true">
-		<cfargument name="attributeValueIdList" type="string" required="true">
-	
-		<cfset LOCAL.parentProduct = EntityLoadByPK("product",ARGUMENTS.parentProductId)>
-		<cfset LOCAL.newProduct = EntityNew("product")>
-		<cfset LOCAL.newProduct.setParentProduct(LOCAL.parentProduct) />
-		<cfset LOCAL.newProduct.setProductType(EntityLoad("product_type",{name="option"},true)) />
-		<cfset LOCAL.newProduct.setStock(LOCAL.parentProduct.getStock()) />
-		<cfset LOCAL.newProduct.setCreatedUser(SESSION.adminUser) />
-		<cfset LOCAL.newProduct.setCreatedDatetime(Now()) />
-		
-		<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
-	
-		<cfloop array="#LOCAL.customerGroups#" index="LOCAL.customerGroup">
-			<cfset LOCAL.groupPrice = EntityNew("product_customer_group_rela") />
-			<cfset LOCAL.groupPrice.setProduct(LOCAL.newProduct) />
-			<cfset LOCAL.groupPrice.setCustomerGroup(LOCAL.customerGroup) />
-			
-			<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.parentProduct,customerGroup=LOCAL.customerGroup},true) />
-			
-			<cfset LOCAL.groupPrice.setPrice(LOCAL.productCustomerGroupRela.getPrice()) />
-			<cfset LOCAL.groupPrice.setSpecialPrice(LOCAL.productCustomerGroupRela.getPrice()) />
-			<cfset LOCAL.groupPrice.setSpecialPriceFromDate(LOCAL.productCustomerGroupRela.getSpecialPriceFromDate()) />
-			<cfset LOCAL.groupPrice.setSpecialPriceToDate(LOCAL.productCustomerGroupRela.getSpecialPriceToDate()) />
-			<cfset EntitySave(LOCAL.groupPrice) />
-		</cfloop>
-	
-		<cfloop list="#ARGUMENTS.attributeValueIdList#" index="LOCAL.attributeValueId">
-			<cfset LOCAL.attributeValue = EntityLoadByPK("attribute_value", LOCAL.attributeValueId) />
-			
-			<cfset LOCAL.newProductAttributeRela = EntityNew("product_attribute_rela") />
-			<cfset LOCAL.newProductAttributeRela.setProduct(LOCAL.newProduct) />
-			<cfset LOCAL.newProductAttributeRela.setAttribute(LOCAL.attributeValue.getProductAttributeRela().getAttribute()) />
-			<cfset LOCAL.newProductAttributeRela.setRequired(LOCAL.attributeValue.getProductAttributeRela().getRequired()) />
-			<cfset EntitySave(LOCAL.newProductAttributeRela) />
-			
-			<cfset LOCAL.newAttributeValue = EntityNew("attribute_value") />
-			<cfset LOCAL.newAttributeValue.setProductAttributeRela(LOCAL.newProductAttributeRela) />
-			<cfset LOCAL.newAttributeValue.setValue(LOCAL.attributeValue.getValue()) />
-			<cfset LOCAL.newAttributeValue.setName(LOCAL.attributeValue.getName()) />
-			<cfset LOCAL.newAttributeValue.setDisplayName(LOCAL.attributeValue.getDisplayName()) />
-			<cfset LOCAL.newAttributeValue.setThumbnailLabel(LOCAL.attributeValue.getThumbnailLabel()) />
-			<cfset LOCAL.newAttributeValue.setThumbnailImageName(LOCAL.attributeValue.getThumbnailImageName()) />
-			<cfset LOCAL.newAttributeValue.setImageName(LOCAL.attributeValue.getImageName()) />
-			<cfset EntitySave(LOCAL.newAttributeValue) />
-			
-			<cfset LOCAL.newProductAttributeRela.addAttributeValue(LOCAL.newAttributeValue) />
-		</cfloop>
-		
-		<cfset EntitySave(LOCAL.newProduct) />
-		<cfset LOCAL.newProduct.setSKU(LOCAL.parentProduct.getSKU() & "-" & LOCAL.newProduct.getProductId()) />
-		<cfset EntitySave(LOCAL.newProduct) />
-		<cfset LOCAL.parentProduct.addSubProduct(LOCAL.newProduct) />
-		<cfset EntitySave(LOCAL.parentProduct) />
-		<cfset ORMFlush() />
-		
-		<cfreturn LOCAL.newProduct />
-	</cffunction>
-	
-	<cffunction name="_createPermutaionArray" access="private" output="false" returnType="array">
-		<cfargument name="attributeValueIdArray" type="array" required="true">
-		<cfscript>
-			var result = [];
-			var _arrayslen = ArrayLen(arguments.attributeValueIdArray);
-			var _size = (_arrayslen) ? 1 : 0;
-			var _array = '';
-			var x = 0;
-			var i = 0;
-			var j = 0;
-			var _current = [];
-
-			for (x=1; x lte _arrayslen; x++) {
-				_size = _size * ArrayLen(arguments.attributeValueIdArray[x]);
-				_current[x] = 1;
-			}
-
-			for (i=1; i lte _size; i++) {
-				result[i] = [];
-
-				for (j=1; j lte _arrayslen; j++) {
-					arrayappend(result[i], arguments.attributeValueIdArray[j][_current[j]]);
-				}
-
-				for (j=_arrayslen; j gt 0; j--) {
-					if (ArrayLen(arguments.attributeValueIdArray[j]) gt _current[j])  {
-						_current[j]++;
-						break;
-					}
-					else {
-						_current[j] = 1;
-					}
-				}
-			}
-
-			return result;
-		</cfscript>
 	</cffunction>
 </cfcomponent>
