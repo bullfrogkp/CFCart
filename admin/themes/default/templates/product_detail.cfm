@@ -1026,19 +1026,19 @@
 													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#i#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="single_advanced_price_#i#" id="single-advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_advanced_price_#i##"/>
+															<input name="single_advanced_price_#i#" id="single-advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_price_#i#"]#"/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
-															<input name="single_advanced_special_price_#i#" id="single-advanced-special-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
+															<input name="single_advanced_special_price_#i#" id="single-advanced-special-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_special_price_#i#"]#"/>
 														</div>
 														<div class="form-group">
 															<label>From Date</label>
-															<input type="text" class="form-control date" name="single_advanced_from_date_#i#" id="single-advanced-from-date-#i#" style="width:100%" />
+															<input type="text" class="form-control date" name="single_advanced_from_date_#i#" id="single-advanced-from-date-#i#" style="width:100%" value="#REQUEST.pageData.formData["single_advanced_from_date_#i#"]#" />
 														</div>
 														<div class="form-group">
 															<label>To Date</label>
-															<input type="text" class="form-control date" name="single_advanced_to_date_#i#" id="single-advanced-to-date-#i#" style="width:100%" />
+															<input type="text" class="form-control date" name="single_advanced_to_date_#i#" id="single-advanced-to-date-#i#" style="width:100%" value="#REQUEST.pageData.formData["single_advanced_to_date_#i#"]#" />
 														</div>
 													</div><!-- /.tab-pane -->
 												</cfloop>
