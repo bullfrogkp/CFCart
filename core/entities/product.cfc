@@ -285,6 +285,12 @@
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="removeProductCustomerRelas" access="public" output="false" returnType="void">
+		<cfif NOT IsNull(getProductCustomerRelas())>
+			<cfset ArrayClear(getProductCustomerRelas()) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeProductShippingCarrierRelas" access="public" output="false" returnType="void">
 		<cfif NOT IsNull(getProductShippingCarrierRelas())>
 			<cfset ArrayClear(getProductShippingCarrierRelas()) />

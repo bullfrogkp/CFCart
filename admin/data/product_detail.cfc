@@ -12,19 +12,7 @@
 		<cfif NOT StructKeyExists(FORM,"category_id")>
 			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one category.") />
 		</cfif>
-		
-		<cfif NOT StructKeyExists(FORM,"shipping_carrier_id")>
-			<cfset ArrayAppend(LOCAL.messageArray,"Please choose at least one shipping carrier.") />
-		<cfelse>
-			<cfloop list="#FORM.shipping_carrier_id#" index="LOCAL.shippingCarrierId">				
-				<cfif StructKeyExists(FORM,"use_default_price_#LOCAL.shippingCarrierId#") AND FORM["use_default_price_#LOCAL.shippingCarrierId#"] EQ 0
-					AND
-					NOT IsNumeric(Trim(FORM.weight))>
-					<cfset ArrayAppend(LOCAL.messageArray,"Please enter the product weight to calculate the shipping fee.") />
-				</cfif>
-			</cfloop>
-		</cfif>
-		
+				
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
@@ -68,15 +56,15 @@
 			<cfset LOCAL.product.setDisplayName(Trim(FORM.display_name)) />
 			<cfset LOCAL.product.setIsEnabled(FORM.is_enabled) />
 			<cfset LOCAL.product.setTitle(Trim(FORM.title)) />
-			<cfset LOCAL.product.setSku(Trim(FORM.sku)) />
-			<cfif IsNumeric(Trim(FORM.stock))>
-				<cfset LOCAL.product.setStock(Trim(FORM.stock)) />
+			<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
+			<cfif IsNumeric(Trim(FORM.single_stock))>
+				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
 			</cfif>
 			<cfset LOCAL.product.setKeywords(Trim(FORM.keywords)) />
 			<cfset LOCAL.product.setDetail(Trim(FORM.detail)) />
 			<cfset LOCAL.product.setDescription(Trim(FORM.description)) />
 			
-			<!--- shipping information --->
+			<!--- shipping information 
 			<cfif IsNumeric(Trim(FORM.length))>
 				<cfset LOCAL.product.setLength(Trim(FORM.length)) />
 			</cfif>
@@ -88,7 +76,7 @@
 			</cfif>
 			<cfif IsNumeric(Trim(FORM.weight))>
 				<cfset LOCAL.product.setWeight(Trim(FORM.weight)) />
-			</cfif>
+			</cfif>--->
 				
 			<!--- price information --->
 			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
@@ -474,7 +462,7 @@
 				<cfset LOCAL.pageData.formData.display_name = isNull(LOCAL.pageData.product.getDisplayNameMV())?"":LOCAL.pageData.product.getDisplayNameMV() />
 				<cfset LOCAL.pageData.formData.detail = isNull(LOCAL.pageData.product.getDetailMV())?"":LOCAL.pageData.product.getDetailMV() />
 				<cfset LOCAL.pageData.formData.single_sku = isNull(LOCAL.pageData.product.getSku())?"":LOCAL.pageData.product.getSku() />
-				<cfset LOCAL.pageData.formData.stock = isNull(LOCAL.pageData.product.getStock())?"":LOCAL.pageData.product.getStock() />
+				<cfset LOCAL.pageData.formData.single_stock = isNull(LOCAL.pageData.product.getStock())?"":LOCAL.pageData.product.getStock() />
 				<cfset LOCAL.pageData.formData.is_enabled = isNull(LOCAL.pageData.product.getIsEnabledMV())?"":LOCAL.pageData.product.getIsEnabledMV() />
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.product.getTitleMV())?"":LOCAL.pageData.product.getTitleMV() />
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.product.getKeywordsMV())?"":LOCAL.pageData.product.getKeywordsMV() />
@@ -490,6 +478,16 @@
 				<cfset LOCAL.pageData.formData.special_price_from_date = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceFromDate() />
 				<cfset LOCAL.pageData.formData.special_price_to_date = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPriceToDate() />
 				
+				<cfset LOCAL.pageData.formData.single_simple_price = "" />
+				<cfset LOCAL.pageData.formData.single_simple_special_price = "" />
+				
+				<cfloop from="1" to="#ArrayLen(LOCAL.pageData.customerGroups)#" index="i">
+					<cfset LOCAL.pageData.formData["single_advanced_price_#i#"] = "" />
+					<cfset LOCAL.pageData.formData["single_advanced_special_price_#i#"] = "" />
+					<cfset LOCAL.pageData.formData["single_advanced_from_date_#i#"] = "" />
+					<cfset LOCAL.pageData.formData["single_advanced_to_date_#i#"] = "" />
+				</cfloop>
+				
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
 		<cfelse>
@@ -502,8 +500,8 @@
 			<cfelse>
 				<cfset LOCAL.pageData.formData.display_name = "" />
 				<cfset LOCAL.pageData.formData.detail = "" />
-				<cfset LOCAL.pageData.formData.sku = "" />
-				<cfset LOCAL.pageData.formData.stock = "" />
+				<cfset LOCAL.pageData.formData.single_sku = "" />
+				<cfset LOCAL.pageData.formData.single_stock = "" />
 				<cfset LOCAL.pageData.formData.is_enabled = "" />
 				<cfset LOCAL.pageData.formData.title = "" />
 				<cfset LOCAL.pageData.formData.keywords = "" />
@@ -527,6 +525,16 @@
 				
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
+			
+			<cfset LOCAL.pageData.formData.single_simple_price = "" />
+			<cfset LOCAL.pageData.formData.single_simple_special_price = "" />
+			
+			<cfloop from="1" to="#ArrayLen(LOCAL.pageData.customerGroups)#" index="i">
+				<cfset LOCAL.pageData.formData["single_advanced_price_#i#"] = "" />
+				<cfset LOCAL.pageData.formData["single_advanced_special_price_#i#"] = "" />
+				<cfset LOCAL.pageData.formData["single_advanced_from_date_#i#"] = "" />
+				<cfset LOCAL.pageData.formData["single_advanced_to_date_#i#"] = "" />
+			</cfloop>
 		</cfif>
 	
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
