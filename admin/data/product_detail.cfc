@@ -82,16 +82,17 @@
 			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 								
 			<cfif FORM.product_type EQ "single">
-			
-				<cfset LOCAL.product.removeSubProducts() />
+				<cfif IsNumeric(FORM.id)>
+					<cfset LOCAL.product.removeSubProducts() />
+				</cfif>
 			
 				<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
 				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
 				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
 				<cfif StructKeyExists(FORM,"single_advanced_price_settings")>
-					<cfset LOCAL.subProduct.setUseAdvancedPrices(true) />
+					<cfset LOCAL.product.setUseAdvancedPrices(true) />
 				<cfelse>
-					<cfset LOCAL.subProduct.setUseAdvancedPrices(false) />
+					<cfset LOCAL.product.setUseAdvancedPrices(false) />
 				</cfif>
 				
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
