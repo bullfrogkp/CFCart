@@ -770,7 +770,7 @@
 				{
 					createHiddenField('c_sub_product_attribute_option_id_' + subProductArray[i].productId, options[j].aoid);
 					createHiddenField('c_sub_product_attribute_option_attribute_id_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].aid);
-					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].aid + '_' + options[j].aoid, options[j].value);
+					createHiddenField('c_sub_product_attribute_option_value_' + subProductArray[i].productId + '_' + options[j].aoid, options[j].value);
 				}
 				
 				for(var key in groupPrices) {
@@ -1020,12 +1020,12 @@
 										<div class="nav-tabs-custom" id="single-advanced-price-section" <cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getUseAdvancedPrices() EQ false)>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-													<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
+													<li<cfif i EQ 1> class="active"</cfif>><a href="##single-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
 												</cfloop>
 											</ul>
 											<div class="tab-content">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
+													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="single-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
 														<div class="form-group">
 															<label>Price</label>
 															<input name="single_advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="single-advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#"]#"/>
@@ -1720,7 +1720,7 @@
 					</ul>
 					<div class="tab-content">
 						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-content-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
+							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
 								<div class="form-group">
 									<label>Price</label>
 									<input name="advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>

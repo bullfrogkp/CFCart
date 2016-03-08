@@ -4,7 +4,7 @@
 		<cfset LOCAL.redirectUrl = "" />
 	
 		<cfset LOCAL.messageArray = [] />
-		
+<cfdump var="#FORM#" abort>		
 		<cfif Trim(FORM.display_name) EQ "">
 			<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid product name.") />
 		</cfif>
@@ -227,18 +227,18 @@
 				
 					<cfif NOT IsNumeric(LOCAL.sub_product_id)>
 						<!--- attribute and values --->
-						<cfloop list="#FORM["c_sub_product_attribute_option_attribute_id_#LOCAL.sub_product_id#"]#" index="LOCAL.attribute_id">
+						<cfloop list="c_sub_product_attribute_option_id_#LOCAL.sub_product_id#" index="LOCAL.attribute_option_id">
+							<cfset LOCAL.attribute_id = FORM["c_sub_product_attribute_option_attribute_id_#LOCAL.sub_product_id#_#LOCAL.attribute_option_id#"] />
 							<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
 							<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
 							<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
 							<cfset EntitySave(LOCAL.productAttributeRela) />
 						
-							<cfloop list="#FORM["c_sub_product_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
-								<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
-								<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.sub_product_id#_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
-								<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
-								<cfset EntitySave(LOCAL.attributeValue) />
-							</cfloop>
+							<cfset LOCAL.value = Trim(FORM["c_sub_product_attribute_option_value_#LOCAL.sub_product_id#_#LOCAL.attribute_option_id#"]) />
+							<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
+							<cfset LOCAL.attributeValue.setValue(LOCAL.value) />
+							<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
+							<cfset EntitySave(LOCAL.attributeValue) />
 						</cfloop>
 					</cfif>
 					
