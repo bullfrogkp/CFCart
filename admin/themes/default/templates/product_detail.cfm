@@ -1020,27 +1020,27 @@
 										<div class="nav-tabs-custom" id="single-advanced-price-section" <cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getUseAdvancedPrices() EQ false)>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-													<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
+													<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
 												</cfloop>
 											</ul>
 											<div class="tab-content">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#i#">
+													<div class="tab-pane<cfif i EQ 1> active</cfif>" id="tab-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
 														<div class="form-group">
 															<label>Price</label>
-															<input name="single_advanced_price_#i#" id="single-advanced-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_price_#i#"]#"/>
+															<input name="single_advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="single-advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#"]#"/>
 														</div>
 														<div class="form-group">
 															<label>Special Price</label>
-															<input name="single_advanced_special_price_#i#" id="single-advanced-special-price-#i#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_special_price_#i#"]#"/>
+															<input name="single_advanced_special_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="single-advanced-special-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData["single_advanced_special_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#"]#"/>
 														</div>
 														<div class="form-group">
 															<label>From Date</label>
-															<input type="text" class="form-control date" name="single_advanced_from_date_#i#" id="single-advanced-from-date-#i#" style="width:100%" value="#REQUEST.pageData.formData["single_advanced_from_date_#i#"]#" />
+															<input type="text" class="form-control date" name="single_advanced_from_date_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="single-advanced-from-date-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" style="width:100%" value="#REQUEST.pageData.formData["single_advanced_from_date_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#"]#" />
 														</div>
 														<div class="form-group">
 															<label>To Date</label>
-															<input type="text" class="form-control date" name="single_advanced_to_date_#i#" id="single-advanced-to-date-#i#" style="width:100%" value="#REQUEST.pageData.formData["single_advanced_to_date_#i#"]#" />
+															<input type="text" class="form-control date" name="single_advanced_to_date_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="single-advanced-to-date-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" style="width:100%" value="#REQUEST.pageData.formData["single_advanced_to_date_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#"]#" />
 														</div>
 													</div><!-- /.tab-pane -->
 												</cfloop>
@@ -1715,12 +1715,12 @@
 				<div class="nav-tabs-custom">
 					<ul class="nav nav-tabs">
 						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-							<li class="advanced-price-tab<cfif i EQ 1> active</cfif>" id="advanced-price-tab-#i#"><a href="##advanced-price-tab-content-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
+							<li class="advanced-price-tab<cfif i EQ 1> active</cfif>" id="advanced-price-tab-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#"><a href="##advanced-price-tab-content-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
 						</cfloop>
 					</ul>
 					<div class="tab-content">
 						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-content-#i#">
+							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-content-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
 								<div class="form-group">
 									<label>Price</label>
 									<input name="advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
