@@ -1238,7 +1238,7 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_2']#" id="tab_2">
 						
-						 <div class="form-group">
+						<div class="form-group">
 							<label>Title</label>
 							<input name="title" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
 						</div>
@@ -1324,6 +1324,22 @@
 							<tr>
 								<td></td>
 								<td>
+									<div class="form-group">
+										<label>Weight</label>
+										<input name="weight" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.weight#"/>
+									</div>
+									<div class="form-group">
+										<label>Length</label>
+										<input name="length" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.length#"/>
+									</div>
+									<div class="form-group">
+										<label>Width</label>
+										<input name="width" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.width#"/>
+									</div>
+									<div class="form-group">
+										<label>Height</label>
+										<input name="height" type="text" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.height#"/>
+									</div>
 									<div class="row" style="margin-top:10px;">
 										<cfloop array="#REQUEST.pageData.shippingCarriers#" index="sc">
 											<div class="col-xs-2">
