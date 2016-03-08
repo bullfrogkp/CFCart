@@ -296,53 +296,55 @@
 		
 		var subProductArray = [];
 		var result = new Object();
-		<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">
-			result = new Object();
-			result.productId = '#p.getProductId()#';
-			result.sku = '#p.getSku()#';
-			result.stock = '#p.getStock()#';
-			
-			<cfif p.getIsEnabled() EQ true>
-				result.enabled = true;
-			<cfelse>
-				result.enabled = false;
-			</cfif>
-			
-			<cfif p.getUseAdvancedPrices() EQ true>
-				result.advancedPrice = true;
-			<cfelse>
-				result.advancedPrice = false;
-			</cfif>
-			result.groupPrices = new Object();
-			
-			<cfloop array="#p.getProductCustomerGroupRelas()#" index="rela">	
-				_group = new Object();
-				_group.price = '#rela.getPrice()#';
-				_group.specialPrice = '#rela.getSpecialPrice()#';
-				_group.fromDate = '#DateFormat(rela.getSpecialPriceFromDate(),"yyyy-mm-dd")#';
-				_group.toDate = '#DateFormat(rela.getSpecialPriceToDate(),"yyyy-mm-dd")#';
-				result.groupPrices['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
-			</cfloop>
-
-			_options = [];
+		<cfif NOT IsNull(REQUEST.pageData.product)>
+			<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">
+				result = new Object();
+				result.productId = '#p.getProductId()#';
+				result.sku = '#p.getSku()#';
+				result.stock = '#p.getStock()#';
 				
-			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="rela">
-				<cfif NOT ArrayIsEmpty(rela.getAttributeValues())>
-					<cfset attributeValue = rela.getAttributeValues()[1] />
-					var attr = new Object();
-					attr.aid = '#rela.getAttribute().getAttributeId()#';
-					attr.name = '#rela.getAttribute().getDisplayName()#';
-					attr.value = '#attributeValue.getValue()#';
-					attr.aoid = #attributeValue.getAttributeValueId()#;
-				
-					_options.push(attr);
+				<cfif p.getIsEnabled() EQ true>
+					result.enabled = true;
+				<cfelse>
+					result.enabled = false;
 				</cfif>
-			</cfloop>
+				
+				<cfif p.getUseAdvancedPrices() EQ true>
+					result.advancedPrice = true;
+				<cfelse>
+					result.advancedPrice = false;
+				</cfif>
+				result.groupPrices = new Object();
+				
+				<cfloop array="#p.getProductCustomerGroupRelas()#" index="rela">	
+					_group = new Object();
+					_group.price = '#rela.getPrice()#';
+					_group.specialPrice = '#rela.getSpecialPrice()#';
+					_group.fromDate = '#DateFormat(rela.getSpecialPriceFromDate(),"yyyy-mm-dd")#';
+					_group.toDate = '#DateFormat(rela.getSpecialPriceToDate(),"yyyy-mm-dd")#';
+					result.groupPrices['sub_#rela.getCustomerGroup().getCustomerGroupId()#'] = _group;
+				</cfloop>
 
-			result.options = _options;
-			
-			subProductArray.push(result);
-		</cfloop>
+				_options = [];
+					
+				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="rela">
+					<cfif NOT ArrayIsEmpty(rela.getAttributeValues())>
+						<cfset attributeValue = rela.getAttributeValues()[1] />
+						var attr = new Object();
+						attr.aid = '#rela.getAttribute().getAttributeId()#';
+						attr.name = '#rela.getAttribute().getDisplayName()#';
+						attr.value = '#attributeValue.getValue()#';
+						attr.aoid = #attributeValue.getAttributeValueId()#;
+					
+						_options.push(attr);
+					</cfif>
+				</cfloop>
+
+				result.options = _options;
+				
+				subProductArray.push(result);
+			</cfloop>
+		</cfif>
 		
 		var newSubProductId = 0;
 		
@@ -979,7 +981,7 @@
 									<td style="width:10px;">
 										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control"
 										
-										<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0>
+										<cfif NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0>
 										checked
 										</cfif>
 										
@@ -989,7 +991,7 @@
 								</tr>
 								<tr id="single-product" style="
 								
-								<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
+								<cfif NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
 								display:none;
 								</cfif>
 								
@@ -1005,7 +1007,7 @@
 											<input name="single_stock" id="single-stock" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_stock#"/>
 										</div>
 										
-										<div id="single-simple-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>style="display:none;"</cfif>>
+										<div id="single-simple-price-section" <cfif  NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>style="display:none;"</cfif>>
 											<div class="form-group">
 												<label>Price</label>
 												<input name="single_simple_price" id="single-simple-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_simple_price#"/>
@@ -1015,7 +1017,7 @@
 												<input name="single_simple_special_price" id="single-simple-special-price" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.single_simple_special_price#"/>
 											</div>
 										</div>
-										<div class="nav-tabs-custom" id="single-advanced-price-section" <cfif REQUEST.pageData.product.getUseAdvancedPrices() EQ false>style="display:none;"</cfif>>
+										<div class="nav-tabs-custom" id="single-advanced-price-section" <cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getUseAdvancedPrices() EQ false)>style="display:none;"</cfif>>
 											<ul class="nav nav-tabs">
 												<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
 													<li<cfif i EQ 1> class="active"</cfif>><a href="##price-#i#" data-toggle="tab">#REQUEST.pageData.customerGroups[i].getDisplayName()#</a></li>
@@ -1046,7 +1048,7 @@
 										</div><!-- nav-tabs-custom -->
 										<div class="form-group">
 											<input type="checkbox" class="form-control" name="single_advanced_price_settings" id="single-advanced-price-settings" value="1"
-											<cfif REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>
+											<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getUseAdvancedPrices() NEQ false>
 											checked
 											</cfif>
 											/>&nbsp;&nbsp;&nbsp;Advanced Price Settings
@@ -1057,7 +1059,7 @@
 									<td>
 										<input type="radio" name="product_type" id="product-type-configurable" value="configurable" class="form-control"
 										
-										<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
+										<cfif NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
 										checked
 										</cfif>
 										
@@ -1067,7 +1069,7 @@
 								</tr>
 								<tr id="configurable-product" style="
 								
-								<cfif ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0>
+								<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0)>
 								display:none;
 								</cfif>
 								

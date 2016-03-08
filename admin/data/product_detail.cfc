@@ -448,13 +448,6 @@
 			<cfloop array="#LOCAL.pageData.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
 				<cfset LOCAL.pageData.attributeList &= "#LOCAL.productAttributeRela.getAttribute().getAttributeId()#," />
 			</cfloop>
-			
-			<cfif NOT ArrayIsEmpty(LOCAL.pageData.product.getSubProducts())>
-				<cfset LOCAL.pageData.productArray = LOCAL.pageData.product.getSubProducts() />
-			<cfelse>
-				<cfset LOCAL.pageData.productArray = [] />
-				<cfset ArrayAppend(LOCAL.pageData.productArray, LOCAL.pageData.product) />
-			</cfif>
 						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
