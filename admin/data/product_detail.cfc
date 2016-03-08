@@ -153,6 +153,8 @@
 					</cfif>
 				</cfloop>
 				
+				<cfset EntitySave(LOCAL.product) />
+				
 				<!--- sub products --->
 				
 				<!--- remove sub products --->
