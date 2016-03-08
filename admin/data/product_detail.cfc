@@ -464,10 +464,10 @@
 				
 				<cfloop array="#LOCAL.pageData.customerGroups#" index="LOCAL.group">
 					<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product = LOCAL.product, customerGroup = LOCAL.group},true) />
-					<cfset LOCAL.pageData.formData["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCUstomerGroupRela.getPrice() />
-					<cfset LOCAL.pageData.formData["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCUstomerGroupRela.getSpecialPrice() />
-					<cfset LOCAL.pageData.formData["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCUstomerGroupRela.getSpecialPriceFromDate() />
-					<cfset LOCAL.pageData.formData["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCUstomerGroupRela.getSpecialPriceToDate() />
+					<cfset LOCAL.pageData.formData["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCustomerGroupRela.getPrice() />
+					<cfset LOCAL.pageData.formData["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCustomerGroupRela.getSpecialPrice() />
+					<cfset LOCAL.pageData.formData["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCustomerGroupRela.getSpecialPriceFromDate() />
+					<cfset LOCAL.pageData.formData["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCustomerGroupRela.getSpecialPriceToDate() />
 				</cfloop>
 				
 				<cfset LOCAL.pageData.formData.id = URL.id />
@@ -494,10 +494,8 @@
 				<cfset LOCAL.pageData.formData.width = "" />
 				<cfset LOCAL.pageData.formData.weight = "" />
 				
-				<cfset LOCAL.pageData.formData.price = "" />
-				<cfset LOCAL.pageData.formData.special_price = "" />
-				<cfset LOCAL.pageData.formData.special_price_from_date = "" />
-				<cfset LOCAL.pageData.formData.special_price_to_date = "" />
+				<cfset LOCAL.pageData.formData.single_simple_price = "" />
+				<cfset LOCAL.pageData.formData.single_simple_special_price = "" />
 				
 				<cfset LOCAL.pageData.formData.video1 = "" />
 				<cfset LOCAL.pageData.formData.video2 = "" />
@@ -505,18 +503,15 @@
 				<cfset LOCAL.pageData.formData.video4 = "" />
 				<cfset LOCAL.pageData.formData.video5 = "" />
 				
+				<cfloop array="#LOCAL.pageData.customerGroups#" index="LOCAL.group">
+					<cfset LOCAL.pageData.formData["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"] = "" />
+					<cfset LOCAL.pageData.formData["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"] = "" />
+					<cfset LOCAL.pageData.formData["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"] = "" />
+					<cfset LOCAL.pageData.formData["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"] = "" />
+				</cfloop>
+				
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
-			
-			<cfset LOCAL.pageData.formData.single_simple_price = "" />
-			<cfset LOCAL.pageData.formData.single_simple_special_price = "" />
-			
-			<cfloop from="1" to="#ArrayLen(LOCAL.pageData.customerGroups)#" index="i">
-				<cfset LOCAL.pageData.formData["single_advanced_price_#i#"] = "" />
-				<cfset LOCAL.pageData.formData["single_advanced_special_price_#i#"] = "" />
-				<cfset LOCAL.pageData.formData["single_advanced_from_date_#i#"] = "" />
-				<cfset LOCAL.pageData.formData["single_advanced_to_date_#i#"] = "" />
-			</cfloop>
 		</cfif>
 	
 		<cfset LOCAL.pageData.tabs = _setActiveTab() />
