@@ -439,7 +439,9 @@
 			<cfset LOCAL.pageData.product = EntityLoadByPK("product", URL.id)>
 			<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayNameMV()# | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "" />
-			<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
+			<cfif LOCAL.pageData.product.getProductType().getName() EQ "single" OR LOCAL.pageData.product.getProductType().getName() EQ "configurable">
+				<cfset LOCAL.pageData.defaultCustomerGroupPrice = EntityLoad("product_customer_group_rela", {product = LOCAL.pageData.product, customerGroup = EntityLoad("customer_group",{isDefault = true},true)},true) />
+			</cfif>
 			<cfset LOCAL.pageData.attributeList = "" />
 			<cfloop array="#LOCAL.pageData.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
 				<cfset LOCAL.pageData.attributeList &= "#LOCAL.productAttributeRela.getAttribute().getAttributeId()#," />
@@ -462,15 +464,27 @@
 				<cfset LOCAL.pageData.formData.width = isNull(LOCAL.pageData.product.getWidthMV())?"":LOCAL.pageData.product.getWidthMV() />
 				<cfset LOCAL.pageData.formData.weight = isNull(LOCAL.pageData.product.getWeightMV())?"":LOCAL.pageData.product.getWeightMV() />
 		
-				<cfset LOCAL.pageData.formData.single_simple_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getPrice() />
-				<cfset LOCAL.pageData.formData.single_simple_special_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice() />
+				<cfif NOT isNull(LOCAL.pageData.defaultCustomerGroupPrice)>
+					<cfset LOCAL.pageData.formData.single_simple_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getPrice() />
+					<cfset LOCAL.pageData.formData.single_simple_special_price = isNull(LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice())?"":LOCAL.pageData.defaultCustomerGroupPrice.getSpecialPrice() />
+				<cfelse>
+					<cfset LOCAL.pageData.formData.single_simple_price = "" />
+					<cfset LOCAL.pageData.formData.single_simple_special_price = "" />
+				</cfif>
 				
 				<cfloop array="#LOCAL.pageData.customerGroups#" index="LOCAL.group">
 					<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product = LOCAL.pageData.product, customerGroup = LOCAL.group},true) />
-					<cfset LOCAL.pageData.formData["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCustomerGroupRela.getPrice() />
-					<cfset LOCAL.pageData.formData["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"] = isNull(LOCAL.productCustomerGroupRela.getSpecialPrice())?"":LOCAL.productCustomerGroupRela.getSpecialPrice() />
-					<cfset LOCAL.pageData.formData["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"] = isNull(LOCAL.productCustomerGroupRela.getSpecialPriceFromDate())?"":LOCAL.productCustomerGroupRela.getSpecialPriceFromDate() />
-					<cfset LOCAL.pageData.formData["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"] = isNull(LOCAL.productCustomerGroupRela.getSpecialPriceToDate())?"":LOCAL.productCustomerGroupRela.getSpecialPriceToDate() />
+					<cfif NOT isNull(LOCAL.productCustomerGroupRela)>
+						<cfset LOCAL.pageData.formData["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"] = LOCAL.productCustomerGroupRela.getPrice() />
+						<cfset LOCAL.pageData.formData["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"] = isNull(LOCAL.productCustomerGroupRela.getSpecialPrice())?"":LOCAL.productCustomerGroupRela.getSpecialPrice() />
+						<cfset LOCAL.pageData.formData["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"] = isNull(LOCAL.productCustomerGroupRela.getSpecialPriceFromDate())?"":LOCAL.productCustomerGroupRela.getSpecialPriceFromDate() />
+						<cfset LOCAL.pageData.formData["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"] = isNull(LOCAL.productCustomerGroupRela.getSpecialPriceToDate())?"":LOCAL.productCustomerGroupRela.getSpecialPriceToDate() />
+					<cfelse>
+						<cfset LOCAL.pageData.formData["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"] = "" />
+						<cfset LOCAL.pageData.formData["single_advanced_special_price_#LOCAL.group.getCustomerGroupId()#"] = "" />
+						<cfset LOCAL.pageData.formData["single_advanced_from_date_#LOCAL.group.getCustomerGroupId()#"] = "" />
+						<cfset LOCAL.pageData.formData["single_advanced_to_date_#LOCAL.group.getCustomerGroupId()#"] = "" />
+					</cfif>
 				</cfloop>
 				
 				<cfset LOCAL.pageData.formData.id = URL.id />
