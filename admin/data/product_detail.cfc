@@ -68,6 +68,8 @@
 			<cfset LOCAL.customerGroups = EntityLoad("customer_group",{isDeleted = false, isEnabled = true}) />
 								
 			<cfif FORM.product_type EQ "single">
+				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
+				
 				<cfif IsNumeric(FORM.id)>
 					<cfset LOCAL.product.removeSubProducts() />
 					<cfset LOCAL.product.removeProductAttributeRelas() />
@@ -75,7 +77,7 @@
 			
 				<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
 				<cfset LOCAL.product.setStock(Trim(FORM.single_stock)) />
-				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
+				
 				<cfif StructKeyExists(FORM,"single_advanced_price_settings")>
 					<cfset LOCAL.product.setUseAdvancedPrices(true) />
 				<cfelse>
@@ -125,6 +127,8 @@
 				</cfloop>
 				
 			<cfelseif FORM.product_type EQ "configurable">
+				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="configurable"},true)) />
+				
 				<cfif IsNumeric(FORM.id)>
 					<!--- doesn't need single prices any more --->
 					<cfset LOCAL.product.removeProductCustomerGroupRelas() />
@@ -132,8 +136,6 @@
 					<!--- product attributes and values --->
 					<cfset LOCAL.product.removeProductAttributeRelas() />
 				</cfif>
-				
-				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="configurable"},true)) />
 				
 				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
 					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
