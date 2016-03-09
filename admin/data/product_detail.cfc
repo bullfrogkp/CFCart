@@ -2,7 +2,7 @@
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-	
+<cfdump var="#FORM#" abort>	
 		<cfset LOCAL.messageArray = [] />
 
 		<cfif Trim(FORM.display_name) EQ "">
@@ -233,7 +233,7 @@
 						<cfloop list="#LOCAL.attribute_option_id_list#" index="LOCAL.attribute_option_id">
 							<cfset LOCAL.attribute_id = FORM["c_sub_product_attribute_option_attribute_id_#LOCAL.sub_product_id#_#LOCAL.attribute_option_id#"] />
 							<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
-							<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
+							<cfset LOCAL.productAttributeRela.setProduct(LOCAL.subProduct) />
 							<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
 							<cfset EntitySave(LOCAL.productAttributeRela) />
 						

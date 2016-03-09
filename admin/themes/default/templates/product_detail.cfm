@@ -1720,7 +1720,7 @@
 					</ul>
 					<div class="tab-content">
 						<cfloop from="1" to="#ArrayLen(REQUEST.pageData.customerGroups)#" index="i">
-							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
+							<div class="tab-pane<cfif i EQ 1> active</cfif> advanced-price-tab-content" id="advanced-price-tab-content-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#">
 								<div class="form-group">
 									<label>Price</label>
 									<input name="advanced_price_#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" id="advanced-price-#REQUEST.pageData.customerGroups[i].getCustomerGroupId()#" type="text" style="width:100%" class="form-control" placeholder="Enter ..." value=""/>
