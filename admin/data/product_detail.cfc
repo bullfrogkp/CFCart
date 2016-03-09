@@ -2,7 +2,7 @@
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-<cfdump var="#FORM#" abort>	
+
 		<cfset LOCAL.messageArray = [] />
 
 		<cfif Trim(FORM.display_name) EQ "">

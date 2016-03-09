@@ -104,7 +104,8 @@
 			option.aoid = 'new_' + new_option_index;
 			option.aid = attr.aid;
 			option.value = $("##new-attribute-option-name").val();
-			option.imageLink = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
+			option.imageLink = '';
+			option.imageSrc = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
 			option.hasThumbnail = thumb;
 			
 			if($("##new-attribute-name-hidden").val() == 'color')
@@ -116,6 +117,7 @@
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
 					option.imageLink = $("##new-attribute-option-image")[0].files[0].name;
+					option.imageSrc = image_src;
 					
 					isFirstOption = addAttributeOption(attr, option);
 					generateAttributes();
@@ -278,7 +280,8 @@
 					var attributeOption = new Object();
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.value = '#attributeValue.getValue()#';
-					attributeOption.imageLink = '#attributeValue.getImageLink(type = "thumbnail")#';
+					attributeOption.imageLink = '';
+					attributeOption.imageSrc = '#attributeValue.getImageLink(type = "thumbnail")#';
 					<cfif attributeValue.getHasThumbnail()>
 						attributeOption.hasThumbnail = true;
 					<cfelse>
@@ -601,7 +604,7 @@
 						else
 							str = str + 'red';
 				
-						str = str + ';margin-top:4px;"><img src="'+options[j].imageLink+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
+						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
 						
 						str = str + '<td><a attributeid='+attributeArray[i].aid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
