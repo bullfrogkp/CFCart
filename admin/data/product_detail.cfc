@@ -70,6 +70,7 @@
 			<cfif FORM.product_type EQ "single">
 				<cfif IsNumeric(FORM.id)>
 					<cfset LOCAL.product.removeSubProducts() />
+					<cfset LOCAL.product.removeProductAttributeRelas() />
 				</cfif>
 			
 				<cfset LOCAL.product.setSku(Trim(FORM.single_sku)) />
@@ -124,12 +125,13 @@
 				</cfloop>
 				
 			<cfelseif FORM.product_type EQ "configurable">
-			
-				<!--- doesn't need single prices any more --->
-				<cfset LOCAL.product.removeProductCustomerGroupRelas() />
-				
-				<!--- product attributes and values --->
-				<cfset LOCAL.product.removeProductAttributeRelas() />
+				<cfif IsNumeric(FORM.id)>
+					<!--- doesn't need single prices any more --->
+					<cfset LOCAL.product.removeProductCustomerGroupRelas() />
+					
+					<!--- product attributes and values --->
+					<cfset LOCAL.product.removeProductAttributeRelas() />
+				</cfif>
 				
 				<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="configurable"},true)) />
 				
