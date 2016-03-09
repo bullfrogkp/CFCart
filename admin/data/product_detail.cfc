@@ -136,7 +136,7 @@
 					<!--- product attributes and values --->
 					<cfset LOCAL.product.removeProductAttributeRelas() />
 				</cfif>
-				
+				<cfset EntitySave(LOCAL.product) />
 				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
 					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
 					<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
