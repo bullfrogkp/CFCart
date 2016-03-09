@@ -104,7 +104,7 @@
 			option.aoid = 'new_' + new_option_index;
 			option.aid = attr.aid;
 			option.value = $("##new-attribute-option-name").val();
-			option.imageLink = '';
+			option.imageName = 'no_image_available.png';
 			option.imageSrc = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
 			option.hasThumbnail = thumb;
 			
@@ -116,7 +116,7 @@
 			if($("##new-attribute-option-image").val() != '')
 			{
 				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
-					option.imageLink = $("##new-attribute-option-image")[0].files[0].name;
+					option.imageName = $("##new-attribute-option-image")[0].files[0].name;
 					option.imageSrc = image_src;
 					
 					isFirstOption = addAttributeOption(attr, option);
@@ -280,7 +280,7 @@
 					var attributeOption = new Object();
 					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.value = '#attributeValue.getValue()#';
-					attributeOption.imageLink = '';
+					attributeOption.imageName = '#attributeValue.getImageName()#';
 					attributeOption.imageSrc = '#attributeValue.getImageLink(type = "thumbnail")#';
 					<cfif attributeValue.getHasThumbnail()>
 						attributeOption.hasThumbnail = true;
@@ -746,7 +746,7 @@
 					{
 						createHiddenField('c_attribute_option_id_' + attributeArray[i].aid, options[j].aoid);
 						createHiddenField('c_attribute_option_value_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].value);
-						createHiddenField('c_attribute_option_imagelink_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageLink);
+						createHiddenField('c_attribute_option_imagename_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].imageName);
 						createHiddenField('c_attribute_option_hasthumbnail_' + attributeArray[i].aid + '_' + options[j].aoid, options[j].hasThumbnail);
 					}
 				}
@@ -1550,7 +1550,9 @@
 			</div><!-- nav-tabs-custom -->
 			<cfif 	IsNull(REQUEST.pageData.product)
 					OR
-					NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "single">
+					NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "single"
+					OR
+					NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 				<div class="form-group">
 					<button name="save_item" id="save-item" type="button" class="btn btn-primary top-nav-button">Save Product</button>
 					<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Product</button>

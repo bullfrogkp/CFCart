@@ -144,8 +144,8 @@
 							<cfset LOCAL.attributeValue = EntityNew("attribute_value") />
 							<cfset LOCAL.attributeValue.setValue(Trim(FORM["c_attribute_option_value_#LOCAL.attribute_id#_#LOCAL.aoid#"])) />
 							<cfset LOCAL.attributeValue.setHasThumbnail(FORM["c_attribute_option_hasthumbnail_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
-							<cfif NOT Find("no_image_available.png", FORM["c_attribute_option_imagelink_#LOCAL.attribute_id#_#LOCAL.aoid#"])>
-								<cfset LOCAL.attributeValue.setImageName(FORM["c_attribute_option_imagelink_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
+							<cfif NOT Find("no_image_available.png", FORM["c_attribute_option_imagename_#LOCAL.attribute_id#_#LOCAL.aoid#"])>
+								<cfset LOCAL.attributeValue.setImageName(FORM["c_attribute_option_imagename_#LOCAL.attribute_id#_#LOCAL.aoid#"]) />
 							</cfif>
 							<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 							<cfset EntitySave(LOCAL.attributeValue) />
