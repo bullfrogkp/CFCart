@@ -743,7 +743,6 @@
 		
 		function convertAttributeArray() {
 			var options = [];
-			console.log(attributeArray);
 			for(var i=0;i<attributeArray.length;i++)
 			{
 				if(attributeArray[i].deleted == false)
@@ -769,7 +768,7 @@
 			var options = [];
 			
 			for(var i=0;i<subProductArray.length;i++)
-			{
+			{console.log(subProductArray[i]);
 				createHiddenField('c_sub_product_id', subProductArray[i].productId);
 				createHiddenField('c_sub_product_sku_' + subProductArray[i].productId, subProductArray[i].sku);
 				createHiddenField('c_sub_product_stock_' + subProductArray[i].productId, subProductArray[i].stock);
@@ -878,7 +877,7 @@
 		$('##save-item').click(function(){
 			convertAttributeArray();
 			convertSubProductArray();
-			$('form[id=product-detail]').submit();
+			//$('form[id=product-detail]').submit();
 		});
 	});
 </script>
@@ -1192,27 +1191,27 @@
 																</cfloop>
 																
 																<td class="#cls#">
-																	<input name="c_sub_product_sku_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
+																	<input name="c_sub_product_sku_new_#p.getProductId()#" value="#p.getSku()#" style="width:100%;" />
 																</td>
 																<td>
-																	<input name="c_sub_product_stock_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
+																	<input name="c_sub_product_stock_new_#p.getProductId()#" value="#p.getStock()#" style="width:100%;" />
 																</td>
 																<td>
-																	<input name="c_sub_product_simple_price_#p.getProductId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;"/>
+																	<input name="c_sub_product_simple_price_new_#p.getProductId()#" value="#productCustomerGroupRela.getPrice()#" style="width:100%;"/>
 																</td>
 																<td>
-																	<input name="c_sub_product_simple_special_price_#p.getProductId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;"/>
+																	<input name="c_sub_product_simple_special_price_new_#p.getProductId()#" value="#productCustomerGroupRela.getSpecialPrice()#" style="width:100%;"/>
 																</td>
 																<td>
 																	<div class="pull-left" style="margin-right:10px;">
-																		<input type="checkbox" class="form-control c-sub-product-use-advanced-price" productid="#p.getProductId()#" name="c_sub_product_use_advanced_price_#p.getProductId()#" value="1" />
+																		<input type="checkbox" class="form-control c-sub-product-use-advanced-price" productid="#p.getProductId()#" name="c_sub_product_use_advanced_price_new_#p.getProductId()#" value="1" />
 																	</div>
 																	<a productid="#p.getProductId()#" class="c-sub-product-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																		<span class="label label-danger">Advanced</span>
 																	</a>
 																</td>
 																<td style="text-align:right;">
-																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="c_sub_product_enabled_#p.getProductId()#" id="c-sub-product-enabled-#p.getProductId()#" value="1" />
+																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="c_sub_product_enabled_new_#p.getProductId()#" id="c-sub-product-enabled-#p.getProductId()#" value="1" />
 																</td>
 															</tr>
 														</cfloop>
