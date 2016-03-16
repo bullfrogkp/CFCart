@@ -217,11 +217,21 @@
 					
 					<cfset LOCAL.subProduct.setSku(FORM["c_sub_product_sku_#LOCAL.sub_product_id#"]) />
 					<cfset LOCAL.subProduct.setStock(FORM["c_sub_product_stock_#LOCAL.sub_product_id#"]) />
-					<cfset LOCAL.subProduct.setIsEnabled(FORM["c_sub_product_enabled_#LOCAL.sub_product_id#"]) />
-					<cfset LOCAL.subProduct.setUseAdvancedPrices(FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"]) />
+					
+					<cfif StructKeyExists(FORM,"c_sub_product_enabled_#LOCAL.sub_product_id#")>
+						<cfset LOCAL.subProduct.setIsEnabled(true) />
+					<cfelse>
+						<cfset LOCAL.subProduct.setIsEnabled(false) />
+					</cfif>
+					
+					<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
+						<cfset LOCAL.subProduct.setUseAdvancedPrices(true) />
+					<cfelse>
+						<cfset LOCAL.subProduct.setUseAdvancedPrices(false) />
+					</cfif>
 					
 					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-						<cfif FORM["c_sub_product_advancedprice_#LOCAL.sub_product_id#"] EQ true>
+						<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
 							<cfset LOCAL.newPrice = Trim(FORM["c_sub_product_price_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 							<cfset LOCAL.newSpecialPrice =Trim(FORM["c_sub_product_specialprice_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 							<cfset LOCAL.newSpecialPriceFromDate = Trim(FORM["c_sub_product_fromdate_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
