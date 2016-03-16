@@ -877,7 +877,7 @@
 		$('##save-item').click(function(){
 			convertAttributeArray();
 			convertSubProductArray();
-			//$('form[id=product-detail]').submit();
+			$('form[id=product-detail]').submit();
 		});
 	});
 </script>

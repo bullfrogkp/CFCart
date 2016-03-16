@@ -222,8 +222,11 @@
 					<cfelse>
 						<cfset LOCAL.subProduct.setIsEnabled(false) />
 					</cfif>
-					<cfset LOCAL.subProduct.setUseAdvancedPrices(FORM["c_sub_product_advancedprice_new_#LOCAL.sub_product_id#"]) />
-					
+					<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_new_#LOCAL.sub_product_id#")>
+						<cfset LOCAL.subProduct.setUseAdvancedPrices(true) />
+					<cfelse>
+						<cfset LOCAL.subProduct.setUseAdvancedPrices(false) />
+					</cfif>
 					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
 						<cfif FORM["c_sub_product_advancedprice_new_#LOCAL.sub_product_id#"] EQ true>
 							<cfset LOCAL.newPrice = Trim(FORM["c_sub_product_price_new_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
