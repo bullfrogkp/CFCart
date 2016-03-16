@@ -2,7 +2,7 @@
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-<cfdump var="#FORM#" abort>
+
 		<cfset LOCAL.messageArray = [] />
 
 		<cfif Trim(FORM.display_name) EQ "">
@@ -153,48 +153,49 @@
 							</cfif>
 							<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 							
-							<!--- attribute option images --->
-							<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
-							<cfif NOT DirectoryExists(LOCAL.imageDir)>
-								<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
-							</cfif>	
-												
-							<cfif LOCAL.newAttributeOptionImage NEQ "">
-								<cffile action = "upload"  
-										fileField = "new_attribute_option_#LOCAL.i#_image"
-										destination = "#LOCAL.imageDir#"
-										nameConflict = "MakeUnique"> 
-								
-								<cfset LOCAL.productImage = EntityNew("product_image") />
-								<cfset LOCAL.productImage.setName(cffile.serverFile) />
-								<cfset EntitySave(LOCAL.productImage) />
-								<cfset LOCAL.product.addImage(LOCAL.productImage) />
-								<cfset EntitySave(LOCAL.product) />
-								
-								<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
-														, {name = "small", width = "200", height = "200", position="center", crop = true}
-														, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
-														] />			
-								<cfset _createImages(	imagePath = LOCAL.imageDir,
-														imageNameWithExtension = cffile.serverFile,
-														sizeArray = LOCAL.sizeArray) />
-								
-								<cfif LOCAL.newAttributeOptionGenerateOption EQ 1>
-									<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-								<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 2>
-									<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-								<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 3>
-									<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-									<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-								</cfif>
-							</cfif>
-							
 							<cfset EntitySave(LOCAL.attributeValue) />
 						</cfloop>
 					</cfif>
 				</cfloop>
 				
 				<cfset EntitySave(LOCAL.product) />
+				
+				<!--- attribute option images --->
+				<cfif FORM.image_count_hidden GT 0>
+					<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
+					<cfif NOT DirectoryExists(LOCAL.imageDir)>
+						<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+					</cfif>	
+					<cfloop from="1" to="#FORM.image_count_hidden#" index="LOCAL.i">
+						<cffile action = "upload"  
+								fileField = "new_attribute_option_image_#LOCAL.i - 1#"
+								destination = "#LOCAL.imageDir#"
+								nameConflict = "MakeUnique"> 
+						
+						<cfset LOCAL.productImage = EntityNew("product_image") />
+						<cfset LOCAL.productImage.setName(cffile.serverFile) />
+						<cfset EntitySave(LOCAL.productImage) />
+						<cfset LOCAL.product.addImage(LOCAL.productImage) />
+						<cfset EntitySave(LOCAL.product) />
+						
+						<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
+												, {name = "small", width = "200", height = "200", position="center", crop = true}
+												, {name = "thumbnail", width = "30", height = "30", position="center", crop = true}
+												] />			
+						<cfset _createImages(	imagePath = LOCAL.imageDir,
+												imageNameWithExtension = cffile.serverFile,
+												sizeArray = LOCAL.sizeArray) />
+						
+						<cfif LOCAL.newAttributeOptionGenerateOption EQ 1>
+							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
+						<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 2>
+							<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+						<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 3>
+							<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
+							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
+						</cfif>
+					</cfloop>
+				</cfif>
 				
 				<!--- sub products --->
 				
