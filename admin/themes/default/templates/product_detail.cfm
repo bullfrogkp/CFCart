@@ -113,11 +113,11 @@
 				option.value = $("##new-attribute-option-name-color").val();
 			}
 			
-			if($("##new-attribute-option-image" + $('##image-coutnt-hidden').val()).val() != '')
+			if($("##new-attribute-option-image-" + $('##image-coutnt-hidden').val()).val() != '')
 			{
-				loadThumbnail($("##new-attribute-option-image" + $('##image-coutnt-hidden').val())[0].files[0], function(image_src) { 
+				loadThumbnail($("##new-attribute-option-image-" + $('##image-coutnt-hidden').val())[0].files[0], function(image_src) { 
 				
-					option.imageName = $("##new-attribute-option-image" + $('##image-coutnt-hidden').val())[0].files[0].name;
+					option.imageName = $("##new-attribute-option-image-" + $('##image-coutnt-hidden').val())[0].files[0].name;
 					option.imageSrc = image_src;
 					
 					isFirstOption = addAttributeOption(attr, option);
@@ -179,8 +179,10 @@
 		
 		function createNewImageUploader() {
 		
+			var newCount = $('##image-coutnt-hidden').val() + 1;
+			
 			$('.attribute-option-image-div').hide();
-			$('##image-coutnt-hidden').val($('##image-coutnt-hidden').val() + 1);
+			$('##image-coutnt-hidden').val(newCount);
 			
 			$('##attribute-option-modal-div').append('<div class="form-group attribute-option-image-div" id="attribute-option-image-div-'+$('##image-coutnt-hidden').val()+'"><div class="btn btn-success btn-file" style="width:150px;margin-right:20px;"><i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image<input type="file" name="new_attribute_option_image_'+$('##image-coutnt-hidden').val()+'" id="new-attribute-option-image-'+$('##image-coutnt-hidden').val()+'"/></div><input type="checkbox" class="form-control" name="generate_thumbnail_'+$('##image-coutnt-hidden').val()+'" id="generate-thumbnail-'+$('##image-coutnt-hidden').val()+'" value="1"/> Generate Image Thumbnail</div>');
 		}
@@ -910,7 +912,7 @@
 <input type="hidden" name="deleted_attribute_id_hidden" id="deleted-attribute-id-hidden" value="" />
 <input type="hidden" name="deleted_attribute_option_id_hidden" id="deleted-attribute-option-id-hidden" value="" />
 <input type="hidden" name="edit_sub_product_id_hidden" id="edit-sub-product-id-hidden" value="" />
-<input type="hidden" name="image_count" id="image-coutnt-hidden" value="0" />
+<input type="hidden" name="image_count_hidden" id="image-coutnt-hidden" value="0" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -1587,12 +1589,12 @@
 					<input id="new-attribute-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Value">
 					<input id="new-attribute-option-name-color" name="new_attribute_option_name_color" type="text" class="form-control" placeholder="Value">
 				</div>
-				<div class="form-group attribute-option-image-div" id="attribute-option-image-div-1">
+				<div class="form-group attribute-option-image-div" id="attribute-option-image-div-0">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_image_1" id="new-attribute-option-image-1"/>
+						<input type="file" name="new_attribute_option_image_0" id="new-attribute-option-image-0"/>
 					</div>
-					<input type="checkbox" class="form-control" name="generate_thumbnail" id="generate-thumbnail" value="1"/> Generate Image Thumbnail
+					<input type="checkbox" class="form-control" name="generate_thumbnail_0" id="generate-thumbnail-0" value="1"/> Generate Image Thumbnail
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
