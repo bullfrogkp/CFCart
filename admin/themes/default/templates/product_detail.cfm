@@ -135,6 +135,7 @@
 					thumb = false
 					
 					new_option_index++;
+					createNewImageUploader();
 				});
 			}
 			else
@@ -153,6 +154,7 @@
 				thumb = false
 				
 				new_option_index++;
+				createNewImageUploader();
 			}
 		});
 		
@@ -178,7 +180,7 @@
 				removeSubProducts(attr, option);
 		});
 		
-		function createNewImageUploader(idx) {
+		function createNewImageUploader() {
 		
 			$('.attribute-option-image-div').hide();
 			$('##image-coutnt-hidden').val($('##image-coutnt-hidden').val() + 1);
