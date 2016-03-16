@@ -743,7 +743,7 @@
 		
 		function convertAttributeArray() {
 			var options = [];
-			
+			console.log(attributeArray);
 			for(var i=0;i<attributeArray.length;i++)
 			{
 				if(attributeArray[i].deleted == false)

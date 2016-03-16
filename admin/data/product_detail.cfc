@@ -136,12 +136,14 @@
 					<!--- product attributes and values --->
 					<cfset LOCAL.product.removeProductAttributeRelas() />
 				</cfif>
+				
 				<cfset EntitySave(LOCAL.product) />
+				
 				<cfloop list="#FORM.c_attribute_id#" index="LOCAL.attribute_id">
 					<cfset LOCAL.productAttributeRela = EntityNew("product_attribute_rela") />
 					<cfset LOCAL.productAttributeRela.setProduct(LOCAL.product) />
 					<cfset LOCAL.productAttributeRela.setAttribute(EntityLoadByPK("attribute",LOCAL.attribute_id)) />
-					<cfset EntitySave(LOCAL.productAttributeRela) />
+					<cfset LOCAL.product.addProductAttributeRela(LOCAL.productAttributeRela) /> 
 					
 					<cfif StructKeyExists(FORM,"c_attribute_option_id_#LOCAL.attribute_id#")>
 						<cfloop list="#FORM["c_attribute_option_id_#LOCAL.attribute_id#"]#" index="LOCAL.aoid">
@@ -154,9 +156,14 @@
 							<cfset LOCAL.attributeValue.setProductAttributeRela(LOCAL.productAttributeRela) />
 							
 							<cfset EntitySave(LOCAL.attributeValue) />
+							<cfset LOCAL.productAttributeRela.addAttributeValue(LOCAL.attributeValue) />
 						</cfloop>
 					</cfif>
+					
+					<cfset EntitySave(LOCAL.productAttributeRela) />
 				</cfloop>
+				
+				<cfset EntitySave(LOCAL.product) />
 				
 				<!--- attribute option images --->
 				<cfif FORM.image_count_hidden GT 0>
