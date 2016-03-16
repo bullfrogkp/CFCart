@@ -309,8 +309,8 @@
 		
 		var subProductArray = [];
 		var result = new Object();
-		<cfif NOT IsNull(REQUEST.pageData.product)>
-			<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">
+		<cfif NOT IsNull(REQUEST.pageData.product) AND NOT IsNull(REQUEST.pageData.subProducts)>
+			<cfloop array="#REQUEST.pageData.subProducts#" index="p">
 				result = new Object();
 				result.productId = '#p.getProductId()#';
 				result.sku = '#p.getSku()#';
@@ -990,7 +990,7 @@
 									<td style="width:10px;">
 										<input type="radio" name="product_type" id="product-type-single" value="single" class="form-control"
 										
-										<cfif NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0>
+										<cfif IsNull(REQUEST.pageData.product) OR REQUEST.pageData.product.getProductType().getName() EQ "single">
 										checked
 										</cfif>
 										
@@ -1000,7 +1000,7 @@
 								</tr>
 								<tr id="single-product" style="
 								
-								<cfif NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
+								<cfif NOT (IsNull(REQUEST.pageData.product) OR REQUEST.pageData.product.getProductType().getName() EQ "single")>
 								display:none;
 								</cfif>
 								
@@ -1068,7 +1068,7 @@
 									<td>
 										<input type="radio" name="product_type" id="product-type-configurable" value="configurable" class="form-control"
 										
-										<cfif NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) NEQ 0>
+										<cfif NOT IsNull(REQUEST.pageData.product) AND REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 										checked
 										</cfif>
 										
@@ -1078,7 +1078,7 @@
 								</tr>
 								<tr id="configurable-product" style="
 								
-								<cfif IsNull(REQUEST.pageData.product) OR (NOT IsNull(REQUEST.pageData.product) AND ArrayLen(REQUEST.pageData.product.getSubProducts()) EQ 0)>
+								<cfif IsNull(REQUEST.pageData.product) OR REQUEST.pageData.product.getProductType().getName() NEQ "configurable">
 								display:none;
 								</cfif>
 								
@@ -1147,7 +1147,7 @@
 										</div>
 										
 										<div id="sub-products">
-											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT ArrayIsEmpty(REQUEST.pageData.subProducts)>
 												<div class="form-group">
 													<label>Product(s)</label>
 													<table class="table table-bordered table-hover" id="sub-products-table">
@@ -1165,7 +1165,7 @@
 															<th style="width:110px;">Advanced</th>
 															<th style="width:10px;">Enabled</th>
 														</tr>
-														<cfloop array="#REQUEST.pageData.product.getSubProducts()#" index="p">	
+														<cfloop array="#REQUEST.pageData.subProducts#" index="p">	
 															<cfset productCustomerGroupRela = EntityLoad("product_customer_group_rela", {product = p, customerGroup = REQUEST.pageData.defaultCustomerGroup}, true) />
 															<tr>
 																<cfset cls = "" />

@@ -208,7 +208,8 @@
 				<!--- remove sub products --->
 				<cfloop array="#LOCAL.product.getSubProducts()#" index="LOCAL.subProduct">
 					<cfif NOT ListFind(FORM.c_sub_product_id, LOCAL.subProduct.getProductId())>
-						<cfset EntityDelete(LOCAL.subProduct) />
+						<cfset LOCAL.subProduct.setIsDeleted(true) />
+						<cfset EntitySave(LOCAL.subProduct) />
 					</cfif>
 				</cfloop>
 				
@@ -220,6 +221,7 @@
 						<cfset LOCAL.subProduct = EntityNew("product")>
 						<cfset LOCAL.subProduct.setParentProduct(LOCAL.product) />
 						<cfset LOCAL.subProduct.setProductType(EntityLoad("product_type",{name="option"},true)) />
+						<cfset LOCAL.subProduct.setIsDeleted(false) />
 						<cfset LOCAL.subProduct.setCreatedUser(SESSION.adminUser) />
 						<cfset LOCAL.subProduct.setCreatedDatetime(Now()) />
 					</cfif>
@@ -504,6 +506,8 @@
 			<cfloop array="#LOCAL.pageData.product.getProductAttributeRelas()#" index="LOCAL.productAttributeRela">
 				<cfset LOCAL.pageData.attributeList &= "#LOCAL.productAttributeRela.getAttribute().getAttributeId()#," />
 			</cfloop>
+			
+			<cfset LOCAL.pageData.subProducts = EntityLoad("product",{parentProduct = LOCAL.pageData.product, isDeleted = false}) />
 						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
