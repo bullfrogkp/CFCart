@@ -84,10 +84,16 @@
 					<cfset LOCAL.product.setUseAdvancedPrices(false) />
 				</cfif>
 				
+				<cfset EntitySave(LOCAL.product) />
+				
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-					<cfset LOCAL.productCustomerGroupRela = EntityNew("product_customer_group_rela") />
-					<cfset LOCAL.productCustomerGroupRela.setProduct(LOCAL.product) /> />
-					<cfset LOCAL.productCustomerGroupRela.setCustomerGroup(LOCAL.group) /> />
+					<cfif IsNumeric(FORM.id)>
+						<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+					<cfelse>
+						<cfset LOCAL.productCustomerGroupRela = EntityNew("product_customer_group_rela") />
+						<cfset LOCAL.productCustomerGroupRela.setProduct(LOCAL.product) />
+						<cfset LOCAL.productCustomerGroupRela.setCustomerGroup(LOCAL.group) /> 
+					</cfif>
 					
 					<cfif StructKeyExists(FORM,"single_advanced_price_settings")>
 						<cfset LOCAL.newPrice = Trim(FORM["single_advanced_price_#LOCAL.group.getCustomerGroupId()#"]) />
