@@ -151,7 +151,6 @@
 				thumb = false
 				
 				new_option_index++;
-				createNewImageUploader();
 			}
 		});
 		
@@ -179,12 +178,12 @@
 		
 		function createNewImageUploader() {
 		
-			var newCount = $('##image-coutnt-hidden').val() + 1;
-			
+			var imageCount = $('##image-coutnt-hidden').val();
+			imageCount++;
 			$('.attribute-option-image-div').hide();
-			$('##image-coutnt-hidden').val(newCount);
+			$('##image-coutnt-hidden').val(imageCount);
 			
-			$('##attribute-option-modal-div').append('<div class="form-group attribute-option-image-div" id="attribute-option-image-div-'+$('##image-coutnt-hidden').val()+'"><div class="btn btn-success btn-file" style="width:150px;margin-right:20px;"><i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image<input type="file" name="new_attribute_option_image_'+$('##image-coutnt-hidden').val()+'" id="new-attribute-option-image-'+$('##image-coutnt-hidden').val()+'"/></div><input type="checkbox" class="form-control" name="generate_thumbnail_'+$('##image-coutnt-hidden').val()+'" id="generate-thumbnail-'+$('##image-coutnt-hidden').val()+'" value="1"/> Generate Image Thumbnail</div>');
+			$('##attribute-option-modal-div').append('<div class="form-group attribute-option-image-div" id="attribute-option-image-div-'+imageCount+'"><div class="btn btn-success btn-file" style="width:150px;margin-right:20px;"><i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image<input type="file" name="new_attribute_option_image_'+imageCount+'" id="new-attribute-option-image-'+imageCount+'"/></div><input type="checkbox" class="form-control" name="generate_thumbnail_'+imageCount+'" id="generate-thumbnail-'+imageCount+'" value="1"/> Generate Image Thumbnail</div>');
 		}
 		
 		function loadThumbnail(file, callback) {
