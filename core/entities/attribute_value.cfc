@@ -21,7 +21,7 @@
 			<cfset LOCAL.productId = getProductAttributeRela().getProduct().getProductId() />
 		</cfif>
 		
-		<cfif IsNull(getImageName())>
+		<cfif IsNull(getImageName()) OR Trim(getImageName()) EQ "">
 			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
 		<cfelse>
 			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/product/#LOCAL.productId#/#imageType##getImageName()#" />

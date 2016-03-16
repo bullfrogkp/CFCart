@@ -183,7 +183,10 @@
 			$('.attribute-option-image-div').hide();
 			$('##image-coutnt-hidden').val(imageCount);
 			
-			$('##attribute-option-modal-div').append('<div class="form-group attribute-option-image-div" id="attribute-option-image-div-'+imageCount+'"><div class="btn btn-success btn-file" style="width:150px;margin-right:20px;"><i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image<input type="file" name="new_attribute_option_image_'+imageCount+'" id="new-attribute-option-image-'+imageCount+'"/></div><input type="checkbox" class="form-control" name="generate_thumbnail_'+imageCount+'" id="generate-thumbnail-'+imageCount+'" value="1"/> Generate Image Thumbnail</div>');
+			$('##attribute-option-modal-div').append('<div class="form-group attribute-option-image-div" style="margin-top:15px;" id="attribute-option-image-div-'+imageCount+'"><div class="btn btn-success btn-file" style="width:150px;margin-right:20px;"><i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image<input type="file" name="new_attribute_option_image_'+imageCount+'" id="new-attribute-option-image-'+imageCount+'"/></div><input type="checkbox" class="form-control new-checkbox" name="generate_thumbnail_'+imageCount+'" id="generate-thumbnail-'+imageCount+'" value="1"/> Generate Image Thumbnail</div>');
+			$(".new-checkbox").iCheck({
+				checkboxClass: 'icheckbox_minimal'
+			});
 		}
 		
 		function loadThumbnail(file, callback) {
