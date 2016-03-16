@@ -1147,7 +1147,7 @@
 										</div>
 										
 										<div id="sub-products">
-											<cfif NOT IsNull(REQUEST.pageData.product)>
+											<cfif NOT IsNull(REQUEST.pageData.product) AND NOT ArrayIsEmpty(REQUEST.pageData.product.getSubProducts())>
 												<div class="form-group">
 													<label>Product(s)</label>
 													<table class="table table-bordered table-hover" id="sub-products-table">
