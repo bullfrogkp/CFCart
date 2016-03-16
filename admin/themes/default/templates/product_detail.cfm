@@ -88,7 +88,6 @@
 		
 		var new_option_index = 1;
 		var thumb = false;
-		var imageCount = 0;
 		
 		$('##generate-thumbnail').on('ifChecked', function(event){
 			thumb = true;
@@ -114,11 +113,11 @@
 				option.value = $("##new-attribute-option-name-color").val();
 			}
 			
-			if($("##new-attribute-option-image").val() != '')
+			if($("##new-attribute-option-image" + $('##image-coutnt-hidden').val()).val() != '')
 			{
-				loadThumbnail($("##new-attribute-option-image")[0].files[0], function(image_src) { 
+				loadThumbnail($("##new-attribute-option-image" + $('##image-coutnt-hidden').val())[0].files[0], function(image_src) { 
 				
-					option.imageName = $("##new-attribute-option-image")[0].files[0].name;
+					option.imageName = $("##new-attribute-option-image" + $('##image-coutnt-hidden').val())[0].files[0].name;
 					option.imageSrc = image_src;
 					
 					isFirstOption = addAttributeOption(attr, option);
@@ -130,7 +129,6 @@
 					
 					$("##new-attribute-option-name").val('');
 					$("##new-attribute-option-name-color").val('');
-					$("##new-attribute-option-image").val('');
 					$("##generate-thumbnail").iCheck('uncheck');
 					thumb = false
 					
@@ -149,7 +147,6 @@
 				
 				$("##new-attribute-option-name").val('');
 				$("##new-attribute-option-name-color").val('');
-				$("##new-attribute-option-image").val('');
 				$("##generate-thumbnail").iCheck('uncheck');
 				thumb = false
 				
