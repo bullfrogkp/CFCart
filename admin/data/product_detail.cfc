@@ -87,9 +87,8 @@
 				<cfset EntitySave(LOCAL.product) />
 				
 				<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-					<cfif IsNumeric(FORM.id)>
-						<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
-					<cfelse>
+					<cfset LOCAL.productCustomerGroupRela = EntityLoad("product_customer_group_rela",{product=LOCAL.product,customerGroup=LOCAL.group},true) />
+					<cfif IsNull(LOCAL.productCustomerGroupRela)>
 						<cfset LOCAL.productCustomerGroupRela = EntityNew("product_customer_group_rela") />
 						<cfset LOCAL.productCustomerGroupRela.setProduct(LOCAL.product) />
 						<cfset LOCAL.productCustomerGroupRela.setCustomerGroup(LOCAL.group) /> 
@@ -142,6 +141,10 @@
 					<!--- product attributes and values --->
 					<cfset LOCAL.product.removeProductAttributeRelas() />
 				</cfif>
+				
+				<cfset LOCAL.product.setSku(JavaCast("NULL","")) />
+				<cfset LOCAL.product.setStock(JavaCast("NULL","")) />
+				<cfset LOCAL.product.setUseAdvancedPrices(JavaCast("NULL","")) />
 				
 				<cfset EntitySave(LOCAL.product) />
 				
