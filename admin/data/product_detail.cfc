@@ -158,8 +158,6 @@
 					</cfif>
 				</cfloop>
 				
-				<cfset EntitySave(LOCAL.product) />
-				
 				<!--- attribute option images --->
 				<cfif FORM.image_count_hidden GT 0>
 					<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\product\#LOCAL.product.getProductId()#\" />
@@ -176,7 +174,6 @@
 						<cfset LOCAL.productImage.setName(cffile.serverFile) />
 						<cfset EntitySave(LOCAL.productImage) />
 						<cfset LOCAL.product.addImage(LOCAL.productImage) />
-						<cfset EntitySave(LOCAL.product) />
 						
 						<cfset LOCAL.sizeArray = [{name = "medium", width = "410", height = "410", position="", crop = false}
 												, {name = "small", width = "200", height = "200", position="center", crop = true}
@@ -185,17 +182,10 @@
 						<cfset _createImages(	imagePath = LOCAL.imageDir,
 												imageNameWithExtension = cffile.serverFile,
 												sizeArray = LOCAL.sizeArray) />
-						
-						<cfif LOCAL.newAttributeOptionGenerateOption EQ 1>
-							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-						<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 2>
-							<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-						<cfelseif LOCAL.newAttributeOptionGenerateOption EQ 3>
-							<cfset LOCAL.newAttributeValue.setImageName(cffile.serverFile) />
-							<cfset LOCAL.newAttributeValue.setThumbnailImageName("thumbnail_#cffile.serverFile#") />
-						</cfif>
 					</cfloop>
 				</cfif>
+				
+				<cfset EntitySave(LOCAL.product) />
 				
 				<!--- sub products --->
 				
