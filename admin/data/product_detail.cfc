@@ -2,7 +2,7 @@
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-<cfdump var="#FORM#" abort>
+
 		<cfset LOCAL.messageArray = [] />
 
 		<cfif Trim(FORM.display_name) EQ "">
@@ -507,7 +507,7 @@
 				<cfset LOCAL.pageData.attributeList &= "#LOCAL.productAttributeRela.getAttribute().getAttributeId()#," />
 			</cfloop>
 			
-			<cfset LOCAL.pageData.subProducts = EntityLoad("product",{parentProduct = LOCAL.pageData.product, isDeleted = false}) />
+			<cfset LOCAL.pageData.subProducts = EntityLoad("product",{parentProduct = LOCAL.pageData.product, isDeleted = false},"productId Asc") />
 						
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />

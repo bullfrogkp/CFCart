@@ -1203,7 +1203,7 @@
 																</td>
 																<td>
 																	<div class="pull-left" style="margin-right:10px;">
-																		<input type="checkbox" class="form-control c-sub-product-use-advanced-price" productid="#p.getProductId()#" name="c_sub_product_use_advanced_price_#p.getProductId()#" value="1" />
+																		<input type="checkbox" class="form-control c-sub-product-use-advanced-price" productid="#p.getProductId()#" name="c_sub_product_use_advanced_price_#p.getProductId()#" value="1" <cfif p.getUseAdvancedPrices() EQ true>checked</cfif> />
 																	</div>
 																	<a productid="#p.getProductId()#" class="c-sub-product-advanced-product-price pull-left" data-toggle="modal" data-target="##advanced-price-modal" style="cursor:pointer;cursor:hand;">
 																		<span class="label label-danger">Advanced</span>
