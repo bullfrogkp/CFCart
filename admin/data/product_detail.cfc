@@ -2,7 +2,7 @@
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-
+<cfdump var="#FORM#" abort>
 		<cfset LOCAL.messageArray = [] />
 
 		<cfif Trim(FORM.display_name) EQ "">
@@ -235,14 +235,14 @@
 						<cfset LOCAL.subProduct.setIsEnabled(false) />
 					</cfif>
 					
-					<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
+					<cfif StructKeyExists(FORM,"c_sub_product_use_advanced_price_#LOCAL.sub_product_id#")>
 						<cfset LOCAL.subProduct.setUseAdvancedPrices(true) />
 					<cfelse>
 						<cfset LOCAL.subProduct.setUseAdvancedPrices(false) />
 					</cfif>
 					
 					<cfloop array="#LOCAL.customerGroups#" index="LOCAL.group">
-						<cfif StructKeyExists(FORM,"c_sub_product_advancedprice_#LOCAL.sub_product_id#")>
+						<cfif StructKeyExists(FORM,"c_sub_product_use_advanced_price_#LOCAL.sub_product_id#")>
 							<cfset LOCAL.newPrice = Trim(FORM["c_sub_product_price_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 							<cfset LOCAL.newSpecialPrice =Trim(FORM["c_sub_product_specialprice_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
 							<cfset LOCAL.newSpecialPriceFromDate = Trim(FORM["c_sub_product_fromdate_#LOCAL.sub_product_id#_sub_#LOCAL.group.getCustomerGroupId()#"]) />
