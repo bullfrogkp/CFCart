@@ -43,6 +43,8 @@
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywordsMV() />
 		
 		<cfset LOCAL.trackingService.addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
+		
+		<cfset LOCAL.pageData.requiredAttributeCount = 2 />
 														
 		<cfreturn LOCAL.pageData />	
 	</cffunction>

@@ -200,7 +200,7 @@
 				option.attributevalueid = index;
 				optionArray.push(option);
 			}
-			<!---
+			
 			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
 			{
 				var optionList = '';
@@ -256,7 +256,6 @@
 						}
 				});
 			}
-			--->
 		});
 		
 		$("##add-current-to-cart").click(function() {
