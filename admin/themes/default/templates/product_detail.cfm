@@ -1210,7 +1210,7 @@
 																	</a>
 																</td>
 																<td style="text-align:right;">
-																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="c_sub_product_enabled_#p.getProductId()#" id="c-sub-product-enabled-#p.getProductId()#" value="1" />
+																	<input type="checkbox" productid="#p.getProductId()#" class="form-control enable-sub-product" name="c_sub_product_enabled_#p.getProductId()#" id="c-sub-product-enabled-#p.getProductId()#" <cfif p.getIsEnabled() EQ true>checked</cfif> value="1" />
 																</td>
 															</tr>
 														</cfloop>
