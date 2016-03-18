@@ -483,34 +483,31 @@
 		--->
 		
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:18px;border-top:1px dashed ##ccc;padding-top:15px;">
-			<!---
-			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
+			<cfif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
-			<cfelse>
+			<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "single">
 				#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#
 				<div style="color:##8F8F8F;margin-top:10px;font-size:14px;">
 					#REQUEST.pageData.product.getStock()# in stock
 				</div>
 			</cfif>
-			--->
 		</div>
 		<div id="product-addtocart" style="margin-top:30px;">
 			<span style="font-size:13px;">Qty: </span>
 			<button id="minus">-</button>
 			<input id="product-count" type="text" value="1" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
-			<!---
-			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
+			
+			<cfif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 				<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
 				<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
 				<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;display:none;">Add to Wishlist</a>
 				<a id="add-current-to-wishlist-disabled" class="btn-wish" style="padding-right:13px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Wishlist</a>
-			<cfelse>
+			<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "single">
 				<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
 				<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
 			</cfif>
-			--->
 		</div>
 		
 		<div id="product-description">
