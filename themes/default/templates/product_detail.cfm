@@ -171,11 +171,9 @@
 		var optionArray = new Array();
 		
 		<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-			<cfif productAttributeRela.getRequired() EQ true>
-				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-					optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
-				</cfloop>
-			</cfif>
+			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+				optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
+			</cfloop>
 		</cfloop>
 		
 		$(".filter-options div").click(function() {
@@ -447,32 +445,30 @@
 		<div id="product-filters" style="font-size:12px;margin-top:14px;padding-top:7px;border-top:1px dashed ##ccc;margin-bottom:-16px;">
 			<div id="gallery_01">
 			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-				<cfif productAttributeRela.getRequired() EQ true>
-					<ul>
-						<li style="width:40px;font-weight:bold;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
-						<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-							<li style="-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;" class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
-								<cfif NOT IsNull(attributeValue.getImageName())>
-									<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
-								</cfif>
-								<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-									<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
+				<ul>
+					<li style="width:40px;font-weight:bold;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
+					<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+						<li style="-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;" class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
+							<cfif NOT IsNull(attributeValue.getImageName())>
+								<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
+							</cfif>
+							<cfif NOT IsNull(attributeValue.getImageName())>
+								<div style="width:22px;height:22px;background-image: url('#attributeValue.getImageLink(type = "thumbnail")#');background-size: 22px 22px;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
+							<cfelse>
+								<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+									<div style="width:22px;height:22px;background-color:#attributeValue.getValue()#;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
 								<cfelse>
-									<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-										<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
-									<cfelse>
-										<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
-									</cfif>
+									<div style="padding:5px 8px;">#attributeValue.getValue()#</div>
 								</cfif>
-								<cfif NOT IsNull(attributeValue.getImageName())>
-								</a>
-								</cfif>
-							</li>
-						</cfloop>
-						
-					</ul>
-					<div style="clear:both;"></div>
-				</cfif>
+							</cfif>
+							<cfif NOT IsNull(attributeValue.getImageName())>
+							</a>
+							</cfif>
+						</li>
+					</cfloop>
+					
+				</ul>
+				<div style="clear:both;"></div>
 			</cfloop>
 			</div>
 		</div>
