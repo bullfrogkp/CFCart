@@ -424,8 +424,8 @@
 			
 			$('.advanced-price-tab').removeClass('active');
 			$('.advanced-price-tab-content').removeClass('active');
-			$('##advanced-price-tab-1').addClass('active');
-			$('##advanced-price-tab-content-1').addClass('active');
+			$('##advanced-price-tab-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#').addClass('active');
+			$('##advanced-price-tab-content-#REQUEST.pageData.defaultCustomerGroup.getCustomerGroupId()#').addClass('active');
 			
 			for(var i=0;i<subProductArray.length;i++)
 			{

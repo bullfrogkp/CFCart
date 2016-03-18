@@ -2,6 +2,7 @@
     <cfproperty name="parentProductId" type="numeric"> 
     <cfproperty name="categoryId" type="numeric"> 
     <cfproperty name="sortTypeId" type="numeric"> 
+    <cfproperty name="productTypeList" type="string"> 
     <cfproperty name="filters" type="struct"> 
 
 	<cffunction name="_getQuery" output="false" access="private" returntype="array">
@@ -23,6 +24,11 @@
 			<cfif getSearchKeywords() NEQ "">	
 			AND	(p.displayName like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR keywords like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" /> OR description like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#getSearchKeywords()#%" />)
 			</cfif>
+			
+			<cfif getProductTypeList() NEQ "">
+			AND	p.productType.name IN (<cfqueryparam cfsqltype="cf_sql_varchar" list="true" value="#getProductTypeList()#" />)
+			</cfif>
+			
 			<cfif NOT IsNull(getId())>
 			AND p.productId = <cfqueryparam cfsqltype="cf_sql_integer" value="#getId()#" />
 			</cfif>
