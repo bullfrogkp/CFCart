@@ -44,7 +44,7 @@
 		
 		<cfset LOCAL.trackingService.addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
 		
-		<cfset LOCAL.pageData.requiredAttributeCount = 2 />
+		<cfset LOCAL.pageData.requiredAttributeCount = ArrayLen(LOCAL.pageData.product.getProductAttributeRelas()) />
 														
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
