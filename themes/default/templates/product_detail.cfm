@@ -219,27 +219,32 @@
 							customerGroupName: '#SESSION.user.customerGroupName#'
 						},		
 						success: function(result) {
-							if(result.price > 0)
+							var price = result.PRICE;
+							var stock = result.STOCK;
+							var productid = result.PRODUCTID;
+						
+						
+							if(price > 0)
 							{
-								$("##price-amount").html('$' + result.price.toFixed(2));
+								$("##price-amount").html('$' + price.toFixed(2));
 							}
 							else
 							{
 								$("##price-amount").html('Price is not available');
 							}
 							
-							if(result.stock > 0)
+							if(stock > 0)
 							{
-								$("##stock-count").html(result.stock + ' in stock');
+								$("##stock-count").html(stock + ' in stock');
 							}
 							else
 							{
 								$("##stock-count").html('Stock is not available');
 							}
 							
-							if(result.price > 0 && result.stock > 0)
+							if(price > 0 && stock > 0)
 							{
-								$("##selected_product_id").val(result.productid);
+								$("##selected_product_id").val(productid);
 								$("##add-current-to-cart").show();
 								$("##add-current-to-cart-disabled").hide();
 								$("##add-current-to-wishlist").show();
