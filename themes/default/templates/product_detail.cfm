@@ -166,101 +166,101 @@
 			openEffect	: 'none',
 			closeEffect	: 'none'
 		});
+	
+		var optionStruct = new Object();
+		var optionArray = new Array();
 		
-		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND  REQUEST.pageData.product.isProductAttributeComplete()>
-			var optionStruct = new Object();
-			var optionArray = new Array();
+		<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+			<cfif productAttributeRela.getRequired() EQ true>
+				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+					optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
+				</cfloop>
+			</cfif>
+		</cfloop>
+		
+		$(".filter-options div").click(function() {
+			$(this).closest('.filter-options').css("border-color","red");
+			$(this).closest('.filter-options').siblings().css("border-color","##CCC");
 			
-			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-				<cfif productAttributeRela.getRequired() EQ true>
-					<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-						optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
-					</cfloop>
-				</cfif>
-			</cfloop>
+			var index = $(this).closest('.filter-options').attr('attributevalueid');
+			var value = optionStruct[index];
+			var insert = true;
 			
-			$(".filter-options div").click(function() {
-				$(this).closest('.filter-options').css("border-color","red");
-				$(this).closest('.filter-options').siblings().css("border-color","##CCC");
-				
-				var index = $(this).closest('.filter-options').attr('attributevalueid');
-				var value = optionStruct[index];
-				var insert = true;
-				
+			for (var i = 0; i < optionArray.length; i++) {
+				if(optionArray[i].attributeid == value)
+				{
+					optionArray[i].attributevalueid = index;
+					insert = false;
+					break;
+				}
+			}
+			
+			if(insert == true)
+			{
+				var option = new Object();
+				option.attributeid = value;
+				option.attributevalueid = index;
+				optionArray.push(option);
+			}
+			<!---
+			if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
+			{
+				var optionList = '';
 				for (var i = 0; i < optionArray.length; i++) {
-					if(optionArray[i].attributeid == value)
-					{
-						optionArray[i].attributevalueid = index;
-						insert = false;
-						break;
-					}
+					optionList = optionList + optionArray[i].attributevalueid + ',';
 				}
 				
-				if(insert == true)
-				{
-					var option = new Object();
-					option.attributeid = value;
-					option.attributevalueid = index;
-					optionArray.push(option);
-				}
-			
-				if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
-				{
-					var optionList = '';
-					for (var i = 0; i < optionArray.length; i++) {
-						optionList = optionList + optionArray[i].attributevalueid + ',';
-					}
-					
-					$.ajax({
-							type: "get",
-							url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
-							dataType: 'json',
-							data: {
-								method: 'getProduct',
-								parentProductId: #REQUEST.pageData.product.getProductId()#,
-								attributeValueIdList: optionList,
-								customerGroupName: '#SESSION.user.customerGroupName#'
-							},		
-							success: function(result) {
-								if(result.price > 0)
-								{
-									$("##price-amount").html('$' + result.price.toFixed(2));
-								}
-								else
-								{
-									$("##price-amount").html('Price is not available');
-								}
-								
-								if(result.stock > 0)
-								{
-									$("##stock-count").html(result.stock + ' in stock');
-								}
-								else
-								{
-									$("##stock-count").html('Stock is not available');
-								}
-								
-								if(result.price > 0 && result.stock > 0)
-								{
-									$("##selected_product_id").val(result.productid);
-									$("##add-current-to-cart").show();
-									$("##add-current-to-cart-disabled").hide();
-									$("##add-current-to-wishlist").show();
-									$("##add-current-to-wishlist-disabled").hide();
-								}
-								else
-								{
-									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
-									$("##add-current-to-cart").hide();
-									$("##add-current-to-cart-disabled").show();
-									$("##add-current-to-wishlist").hide();
-									$("##add-current-to-wishlist-disabled").show();
-								}
+				$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'getProduct',
+							parentProductId: #REQUEST.pageData.product.getProductId()#,
+							attributeValueIdList: optionList,
+							customerGroupName: '#SESSION.user.customerGroupName#'
+						},		
+						success: function(result) {
+							if(result.price > 0)
+							{
+								$("##price-amount").html('$' + result.price.toFixed(2));
 							}
-					});
-				}
-			});
-		</cfif>	
+							else
+							{
+								$("##price-amount").html('Price is not available');
+							}
+							
+							if(result.stock > 0)
+							{
+								$("##stock-count").html(result.stock + ' in stock');
+							}
+							else
+							{
+								$("##stock-count").html('Stock is not available');
+							}
+							
+							if(result.price > 0 && result.stock > 0)
+							{
+								$("##selected_product_id").val(result.productid);
+								$("##add-current-to-cart").show();
+								$("##add-current-to-cart-disabled").hide();
+								$("##add-current-to-wishlist").show();
+								$("##add-current-to-wishlist-disabled").hide();
+							}
+							else
+							{
+								$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
+								$("##add-current-to-cart").hide();
+								$("##add-current-to-cart-disabled").show();
+								$("##add-current-to-wishlist").hide();
+								$("##add-current-to-wishlist-disabled").show();
+							}
+						}
+				});
+			}
+			--->
+		});
+		
 		$("##add-current-to-cart").click(function() {
 			$.ajax({
 						type: "get",
@@ -443,40 +443,39 @@
 		<div id="product-sku" style="font-size:12px;margin-top:10px;">
 			SKU:#REQUEST.pageData.product.getSku()#
 		</div>
-		<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
-			<div id="product-filters" style="font-size:12px;margin-top:14px;padding-top:7px;border-top:1px dashed ##ccc;margin-bottom:-16px;">
-				<div id="gallery_01">
-				<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-					<cfif productAttributeRela.getRequired() EQ true>
-						<ul>
-							<li style="width:40px;font-weight:bold;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
-							<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-								<li style="-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;" class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
-									<cfif NOT IsNull(attributeValue.getImageName())>
-										<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
-									</cfif>
-									<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
-										<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
+	
+		<div id="product-filters" style="font-size:12px;margin-top:14px;padding-top:7px;border-top:1px dashed ##ccc;margin-bottom:-16px;">
+			<div id="gallery_01">
+			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+				<cfif productAttributeRela.getRequired() EQ true>
+					<ul>
+						<li style="width:40px;font-weight:bold;">#productAttributeRela.getAttribute().getDisplayName()#: </li>
+						<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+							<li style="-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;" class="filter-options" attributevalueid="#attributeValue.getAttributeValueId()#">
+								<cfif NOT IsNull(attributeValue.getImageName())>
+									<a href="##" data-image="#attributeValue.getImageLink(type="medium")#" data-zoom-image="#attributeValue.getImageLink()#">
+								</cfif>
+								<cfif NOT IsNull(attributeValue.getThumbnailImageName())>
+									<div style="width:22px;height:22px;background-image: url('#attributeValue.getThumbnailImageLink()#');background-size: 22px 22px;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
+								<cfelse>
+									<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
+										<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
 									<cfelse>
-										<cfif productAttributeRela.getAttribute().getDisplayName() EQ "color">
-											<div style="width:22px;height:22px;background-color:#attributeValue.getThumbnailLabel()#;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"></div>
-										<cfelse>
-											<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
-										</cfif>
+										<div style="padding:5px 8px;">#attributeValue.getThumbnailLabel()#</div>
 									</cfif>
-									<cfif NOT IsNull(attributeValue.getImageName())>
-									</a>
-									</cfif>
-								</li>
-							</cfloop>
-							
-						</ul>
-						<div style="clear:both;"></div>
-					</cfif>
-				</cfloop>
-				</div>
+								</cfif>
+								<cfif NOT IsNull(attributeValue.getImageName())>
+								</a>
+								</cfif>
+							</li>
+						</cfloop>
+						
+					</ul>
+					<div style="clear:both;"></div>
+				</cfif>
+			</cfloop>
 			</div>
-		</cfif>
+		</div>
 		<!---
 		<div id="shipping_methods_div" style="margin-top:15px;padding-top:17px;border-top:1px dashed ##ccc;">
 			<div id="shipping_methods"></div>
@@ -484,6 +483,7 @@
 		--->
 		
 		<div id="product-price" style="font-size:18px;font-weight:bold;color:##C20000;margin-top:18px;border-top:1px dashed ##ccc;padding-top:15px;">
+			<!---
 			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
@@ -493,12 +493,14 @@
 					#REQUEST.pageData.product.getStock()# in stock
 				</div>
 			</cfif>
+			--->
 		</div>
 		<div id="product-addtocart" style="margin-top:30px;">
 			<span style="font-size:13px;">Qty: </span>
 			<button id="minus">-</button>
 			<input id="product-count" type="text" value="1" style="width:30px;text-align:center;" />
 			<button id="plus">+</button>
+			<!---
 			<cfif NOT IsNull(REQUEST.pageData.product.getAttributeSet()) AND REQUEST.pageData.product.isProductAttributeComplete()>
 				<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;display:none;">Add to Cart</a>
 				<a id="add-current-to-cart-disabled" class="btn" style="padding-right:13px;margin-left:15px;opacity:0.5;cursor:not-allowed;pointer:not-allowed;">Add to Cart</a>
@@ -508,6 +510,7 @@
 				<a id="add-current-to-cart" class="btn add-to-cart" style="padding-right:13px;margin-left:15px;">Add to Cart</a>
 				<a id="add-current-to-wishlist" class="btn-wish" style="padding-right:13px;">Add to Wishlist</a>
 			</cfif>
+			--->
 		</div>
 		
 		<div id="product-description">

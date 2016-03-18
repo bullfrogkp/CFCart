@@ -42,10 +42,6 @@
 		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescriptionMV() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywordsMV() />
 		
-		<cfif LOCAL.pageData.product.isProductAttributeComplete()>
-			<cfset LOCAL.pageData.requiredAttributeCount = ArrayLen(EntityLoad("attribute_set_attribute_rela", {attributeSet = LOCAL.pageData.product.getAttributeSet(), required = true})) />
-		</cfif>	
-		
 		<cfset LOCAL.trackingService.addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
 														
 		<cfreturn LOCAL.pageData />	
