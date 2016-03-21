@@ -275,7 +275,7 @@
 							count: $("##product-count").val()
 						},		
 						success: function(result) {
-							if(result.trackingRecordId)
+							if(result.TRACKINGRECORDID)
 							{
 								dialog.dialog( "open" );
 								$("##cart-info").html( parseInt($("##cart-info").html(), 10) + parseInt($("##product-count").val(), 10));

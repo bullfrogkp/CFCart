@@ -11,7 +11,7 @@
 		<cfset LOCAL.productService.setRecordsPerPage(APPLICATION.recordsPerPage) />
 		<cfset LOCAL.productService.setIsDeleted(false) />
 		<cfset LOCAL.productService.setSortTypeId(1) />
-		<cfset LOCAL.productService.setProductTypeList("single","configurable") />
+		<cfset LOCAL.productService.setProductTypeList("single,configurable") />
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>
 			<cfset LOCAL.productService.setProductId(URL.id) />
 		</cfif>
