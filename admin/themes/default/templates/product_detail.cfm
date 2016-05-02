@@ -1173,7 +1173,7 @@
 															<tr>
 																<cfset cls = "" />
 																<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-																	<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
+																	<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = p, attribute = attribute}, true) />
 																	<cfif NOT IsNull(productAttributeRela) AND NOT ArrayIsEmpty(productAttributeRela.getAttributeValues())>
 																		<cfset cls &= "tr-ao-#productAttributeRela.getAttributeValues()[1].getAttributeValueId()# " />
 																		<td>
