@@ -74,7 +74,7 @@
 			$("##new-attribute-id-hidden").val($(this).attr('attributeid'));
 			$("##new-attribute-name-hidden").val($(this).attr('attributename'));
 			
-			if($(this).attr('attributename') == 'color')
+			if($(this).attr('attributename').toLowerCase() == 'color')
 			{
 				$("##new-attribute-option-name-color").show();
 				$("##new-attribute-option-name").hide();
@@ -105,10 +105,10 @@
 			option.aid = attr.aid;
 			option.value = $("##new-attribute-option-name").val();
 			option.imageName = 'no_image_available.png';
-			option.imageSrc = '#APPLICATION.absoluteUrlWeb#/images/site/no_image_available.png';
+			option.imageSrc = '#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png';
 			option.hasThumbnail = thumb;
 			
-			if($("##new-attribute-name-hidden").val() == 'color')
+			if($("##new-attribute-name-hidden").val().toLowerCase() == 'color')
 			{
 				option.value = $("##new-attribute-option-name-color").val();
 			}
@@ -606,7 +606,7 @@
 					{
 						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td><table><tr><td>' + options[j].value+'</td>';
 						
-						if(attributeArray[i].name == 'color')
+						if(attributeArray[i].name.toLowerCase() == 'color')
 						{
 							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
@@ -724,7 +724,7 @@
 			for(var i=0;i<subProduct.options.length;i++)
 			{
 				str = str + '<td><table><tr><td>' + subProduct.options[i].value + '</td>';
-				if(subProduct.options[i].name == 'color')
+				if(subProduct.options[i].name.toLowerCase() == 'color')
 					str = str + '<td><div class="pull-left" style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+subProduct.options[i].value+';margin-top:4px;"></div></td>';
 				str = str + '</tr></table></td>';
 				

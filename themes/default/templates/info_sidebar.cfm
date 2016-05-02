@@ -1,5 +1,5 @@
 ﻿<div class="info-sidebar">
-	<img src="http://www.bullfrogdesign.ca/themes/w/images/sidebar/contact-us.jpg" style="width:100%;">
+	<img src="http://demo.fusioncloud.ca/themes/default/images/contact-us.jpg" style="width:100%;">
 	<p><strong>Address</strong></p>
 	<p>9030 Leslie st. unit 3</p>
 	<p>Richmond Hill, ON</p>
