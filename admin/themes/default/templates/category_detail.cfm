@@ -329,10 +329,42 @@
 		function removeFilter(f) {
 			for(var i=0;i<filterArray.length;i++)
 			{
-				if(filterArray[i].fid == attr.fid)
+				if(filterArray[i].fid == f.fid)
 				{
 					filterArray[i].deleted = true;
 					filterArray[i].options = [];
+					break;
+				}
+			}
+		}
+		
+		function addFilterOption(f, option) {
+			
+			for(var i=0;i<filterArray.length;i++)
+			{
+				if(filterArray[i].fid == f.fid)
+				{
+					filterArray[i].options.push(option);
+					break;
+				}
+			}
+		}
+		
+		function removeFilterOption(f, option) {
+			
+			for(var i=0;i<filterArray.length;i++)
+			{
+				if(filterArray[i].fid == f.fid)
+				{
+					var options = filterArray[i].options;
+					for(var j=0;j<options.length;j++)
+					{
+						if(options[j].foid == option.foid)
+						{
+							options.splice(j, 1);
+							break;
+						}
+					}
 					break;
 				}
 			}
