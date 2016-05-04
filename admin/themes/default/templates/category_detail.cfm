@@ -419,6 +419,19 @@
 			}
 		});
 		
+		function createNewImageUploader() {
+		
+			var imageCount = $('##image-coutnt-hidden').val();
+			imageCount++;
+			$('.filter-option-image-div').hide();
+			$('##image-coutnt-hidden').val(imageCount);
+			
+			$('##filter-option-modal-div').append('<div class="form-group filter-option-image-div" style="margin-top:15px;" id="filter-option-image-div-'+imageCount+'"><div class="btn btn-success btn-file" style="width:150px;margin-right:20px;"><i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image<input type="file" name="new_filter_option_image_'+imageCount+'" id="new-filter-option-image-'+imageCount+'"/></div></div>');
+			$(".new-checkbox").iCheck({
+				checkboxClass: 'icheckbox_minimal'
+			});
+		}
+		
 		$('##filters').on("click","a.delete-filter-option", function() {
 			$("##deleted-filter-id-hidden").val($(this).attr('filterid'));
 			$("##deleted-filter-option-id-hidden").val($(this).attr('filteroptionid'));
