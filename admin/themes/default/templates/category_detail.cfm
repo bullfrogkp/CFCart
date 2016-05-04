@@ -22,12 +22,8 @@
 					filterOption.foid = '#filterValue.getFilterValueId()#';
 					filterOption.value = '#filterValue.getValue()#';
 					filterOption.imageName = '#filterValue.getImageName()#';
-					filterOption.imageSrc = '#filterValue.getImageLink(type = "thumbnail")#';
-					<cfif filterValue.getHasThumbnail()>
-						filterOption.hasThumbnail = true;
-					<cfelse>
-						filterOption.hasThumbnail = false;
-					</cfif>
+					filterOption.imageSrc = '#filterValue.getImageLink()#';
+					
 					filterOptions.push(filterOption);
 				</cfloop>
 			<cfelse>
@@ -149,24 +145,7 @@
 		var new_filter_index = 1;
 		
 		$('##new-filter-value-color').colorpicker();
-		
-		$('.filter-group').on("click","a.add-filter-value", function() {
-			$("##new-filter-group-id-hidden").val($(this).attr('filtergroupid'));
-			$("##new-filter-id-hidden").val($(this).attr('filterid'));
-			$("##new-filter-name-hidden").val($(this).attr('filtername'));
-			
-			if($(this).attr('filtername') == 'color')
-			{
-				$('##new-filter-value').hide();
-				$('##new-filter-value-color').show();
-			}
-			else
-			{
-				$('##new-filter-value-color').hide();
-				$('##new-filter-value').show();
-			}
-		});
-		
+				
 		$( "##add-new-filter-value-confirm" ).click(function() {
 			var thumbnail_content = '';
 			var name_content = $("##new-filter-display-name").val();
@@ -506,6 +485,13 @@
 <input type="hidden" name="deleted_filter_value_id_hidden" id="deleted-filter-value-id-hidden" value="" />
 <input type="hidden" name="new_filter_id_list" id="new-filter-id-list" value="" />
 <input type="hidden" name="remove_filter_id_list" id="remove-filter-id-list" value="" />
+
+<input type="hidden" name="new_filter_id_hidden" id="new-filter-id-hidden" value="" />
+<input type="hidden" name="new_filter_name_hidden" id="new-filter-name-hidden" value="" />
+<input type="hidden" name="deleted_filter_id_hidden" id="deleted-filter-id-hidden" value="" />
+<input type="hidden" name="deleted_filter_option_id_hidden" id="deleted-filter-option-id-hidden" value="" />
+<input type="hidden" name="image_count_hidden" id="image-coutnt-hidden" value="0" />
+
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
