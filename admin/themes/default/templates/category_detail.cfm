@@ -278,6 +278,10 @@
 			}			
 		});	
 		
+		$('##filter-id').change(function() {
+			filterChanged = true;
+		});
+		
 		function getNewFilterArray() {
 			var newFilterArray = []; 
 			$('##filter-id :selected').each(function(i, selected){ 
