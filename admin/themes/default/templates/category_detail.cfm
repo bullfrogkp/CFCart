@@ -268,77 +268,77 @@
 		
 		function getNewFilterArray() {
 			var newFilterArray = []; 
-			$('##attribute-id :selected').each(function(i, selected){ 
-				var attribute = new Object();
-				attribute.aid = $(selected).val();
-				attribute.name = $(selected).text();
-				attribute.deleted = false;
-				newFilterArray[i] = attribute; 
+			$('##filter-id :selected').each(function(i, selected){ 
+				var filter = new Object();
+				filter.fid = $(selected).val();
+				filter.name = $(selected).text();
+				filter.deleted = false;
+				newFilterArray[i] = filter; 
 			});
 			
 			return newFilterArray;
 		}
 		
-		function getCurrentAttributeArray() {			
-			return attributeArray.slice(0);
+		function getCurrentFilterArray() {			
+			return filterArray.slice(0);
 		}
 		
-		function attributeFound(attr, attrArray) {
-			var attributeFound = false;
+		function filterFound(f, fArray) {
+			var filterFound = false;
 			
-			for(var i=0;i<attrArray.length;i++)
+			for(var i=0;i<fArray.length;i++)
 			{
-				if(attrArray[i].aid == attr.aid && attrArray[i].deleted == false)
+				if(fArray[i].fid == f.fid && fArray[i].deleted == false)
 				{
-					attributeFound = true;
+					filterFound = true;
 					break;
 				}
 			}
 			
-			return attributeFound;
+			return filterFound;
 		}
 		
-		function addAttribute(attr) {
-			for(var i=0;i<attributeArray.length;i++)
+		function addFilter(f) {
+			for(var i=0;i<filterArray.length;i++)
 			{
-				if(attributeArray[i].aid == attr.aid)
+				if(filterArray[i].fid == f.fid)
 				{
-					attributeArray[i].deleted = false;
-					attributeArray[i].options = [];
+					filterArray[i].deleted = false;
+					filterArray[i].options = [];
 					break;
 				}
 			}
 		}
 		
-		function removeAttribute(attr) {
-			for(var i=0;i<attributeArray.length;i++)
+		function removeFilter(f) {
+			for(var i=0;i<filterArray.length;i++)
 			{
-				if(attributeArray[i].aid == attr.aid)
+				if(filterArray[i].fid == attr.fid)
 				{
-					attributeArray[i].deleted = true;
-					attributeArray[i].options = [];
+					filterArray[i].deleted = true;
+					filterArray[i].options = [];
 					break;
 				}
 			}
 		}
 		
-		function generateAttributes() {
-			$('##attribute-options').empty();
+		function generateFilters() {
+			$('##filters').empty();
 			
 			var str = '';
 			
-			for(var i=0;i<attributeArray.length;i++)
+			for(var i=0;i<filterArray.length;i++)
 			{
-				if(attributeArray[i].deleted == false)
+				if(filterArray[i].deleted == false)
 				{
-					var options = attributeArray[i].options;
-					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributeArray[i].aid+'"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" attributename="'+attributeArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					var options = filterArray[i].options;
+					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+filterArray[i].fid+'"><th colspan="2">' + filterArray[i].name + '</th><th><a attributeid="' + filterArray[i].fid + '" attributename="'+filterArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 											
 					for(var j=0;j<options.length;j++)
 					{
 						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td><table><tr><td>' + options[j].value+'</td>';
 						
-						if(attributeArray[i].name.toLowerCase() == 'color')
+						if(filterArray[i].name.toLowerCase() == 'color')
 						{
 							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
@@ -351,7 +351,7 @@
 				
 						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
 						
-						str = str + '<td><a attributeid='+attributeArray[i].aid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><a attributeid='+filterArray[i].fid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
@@ -500,7 +500,61 @@
 							<span class="label label-primary">Edit Filter(s)</span>
 						</a>
 
-
+						<div id="filters" class="row" style="margin-top:10px;">
+							<cfif NOT IsNull(REQUEST.pageData.product)>
+								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
+									<cfif NOT IsNull(productAttributeRela)>
+										<div class="col-xs-3">
+											<div class="box box-warning">
+												<div class="box-body table-responsive no-padding">
+													<table class="table table-hover">
+														<tr class="warning" id="tr-#attribute.getAttributeId()#">
+															<th colspan="2">#attribute.getDisplayName()#</th>
+															<th>
+																<a attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																	<span class="label label-primary">Add Option</span>
+																</a>
+															</th>
+														</tr>
+														
+														<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+															<tr id="tr-ao-#attributeValue.getAttributeValueId()#">
+																<td>
+																	<table>
+																		<tr>
+																			<td>#attributeValue.getValue()#</td>
+																			<cfif attribute.getDisplayName() EQ "color">
+																				<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;margin-left:10px;"></div></td>
+																			</cfif>
+																		</tr>
+																	</table>
+																</td>
+																<td>
+																	<cfif attributeValue.getHasThumbnail()>
+																		<cfset color = "red" />
+																	<cfelse>
+																		<cfset color = " ##CCC" />
+																	</cfif>
+																	<div style="width:15px;height:15px;border:1px solid #color#;margin-top:4px;">
+																		<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																	</div>
+																</td>
+																<td>
+																	<a attributeid="#attribute.getAttributeId()#" attributeoptionid="#attributeValue.getAttributeValueId()#" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																		<span class="label label-danger">Delete</span>
+																	</a>
+																</td>
+															</tr>
+														</cfloop>
+													</table>
+												</div><!-- /.box-body -->
+											</div><!-- /.box -->
+										</div>
+									</cfif>
+								</cfloop>
+							</cfif>
+						</div>
 
 
 
