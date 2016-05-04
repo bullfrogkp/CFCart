@@ -257,6 +257,7 @@
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
 		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
+		<cfset LOCAL.pageData.filters = EntityLoad("filter",{isDeleted = false}, "filterId ASC") />
 		
 		<cfset LOCAL.currentPageName = "products" />
 		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
@@ -270,6 +271,11 @@
 			
 			<cfset LOCAL.pageData.advertisementSection.setCategory(LOCAL.pageData.category)> 
 			<cfset LOCAL.pageData.bestSellerSection.setCategory(LOCAL.pageData.category)> 
+			
+			<cfset LOCAL.pageData.filterList = "" />
+			<cfloop array="#LOCAL.pageData.category.getCategoryFilterRelas()#" index="LOCAL.categoryFilterRela">
+				<cfset LOCAL.pageData.filterList &= "#LOCAL.categoryFilterRela.getFilter().getFilterId()#," />
+			</cfloop>
 			
 			<cfset LOCAL.categoryService.setId(URL.id) />
 			<cfset LOCAL.categoryService.setRecordsPerPage(APPLICATION.recordsPerPage) />
@@ -301,6 +307,7 @@
 		<cfelse>
 			<cfset LOCAL.pageData.title = "New Category | #APPLICATION.applicationName#" />
 			<cfset LOCAL.pageData.deleteButtonClass = "hide-this" />
+			<cfset LOCAL.pageData.filterList = "" />
 			
 			<cfif IsDefined("SESSION.temp.formData")>
 				<cfset LOCAL.pageData.formData = SESSION.temp.formData />
