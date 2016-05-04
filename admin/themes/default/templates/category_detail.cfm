@@ -984,7 +984,7 @@
 					<label>Filters</label>
 					<select class="form-control" multiple name="filter_id" id="filter-id">
 						<cfloop array="#REQUEST.pageData.filters#" index="filter">
-							<option value="#filter.geFilterId()#"
+							<option value="#filter.getFilterId()#"
 							<cfif ListFind(REQUEST.pageData.filterList,filter.getFilterId())>
 								selected
 							</cfif>
