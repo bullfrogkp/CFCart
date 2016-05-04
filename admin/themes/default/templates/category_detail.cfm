@@ -6,20 +6,20 @@
 		var filterChanged = false;
 		
 		var filterArray = new Array();
-		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-			var attribute = new Object();
+		<cfloop array="#REQUEST.pageData.filters#" index="filter">
+			var filter = new Object();
 			var attributeOptions = new Array();
-			attribute.aid = '#attribute.getAttributeId()#';
-			attribute.name = '#attribute.getDisplayName()#';
+			filter.fid = '#filter.getAttributeId()#';
+			filter.name = '#filter.getDisplayName()#';
 			
-			<cfif ListFind(REQUEST.pageData.attributeList,attribute.getAttributeId())>
-				attribute.deleted = false;
+			<cfif ListFind(REQUEST.pageData.attributeList,filter.getAttributeId())>
+				filter.deleted = false;
 				
-				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
+				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, filter = filter}, true) />
 				
 				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
 					var attributeOption = new Object();
-					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
+					attributeOption.foid = '#attributeValue.getAttributeValueId()#';
 					attributeOption.value = '#attributeValue.getValue()#';
 					attributeOption.imageName = '#attributeValue.getImageName()#';
 					attributeOption.imageSrc = '#attributeValue.getImageLink(type = "thumbnail")#';
@@ -31,11 +31,11 @@
 					attributeOptions.push(attributeOption);
 				</cfloop>
 			<cfelse>
-				attribute.deleted = true;
+				filter.deleted = true;
 			</cfif>
 			
-			attribute.options = attributeOptions;
-			filterArray.push(attribute);
+			filter.options = attributeOptions;
+			filterArray.push(filter);
 		</cfloop>
 		
 		$(".tab-title").click(function() {
@@ -369,7 +369,7 @@
 											
 					for(var j=0;j<options.length;j++)
 					{
-						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td><table><tr><td>' + options[j].value+'</td>';
+						str = str + '<tr id="tr-ao-'+options[j].foid+'"><td><table><tr><td>' + options[j].value+'</td>';
 						
 						if(filterArray[i].name.toLowerCase() == 'color')
 						{
@@ -384,7 +384,7 @@
 				
 						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
 						
-						str = str + '<td><a attributeid='+filterArray[i].fid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><a attributeid='+filterArray[i].fid+' attributeoptionid="'+options[j].foid+'" href="" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
@@ -412,42 +412,38 @@
 		
 		var new_option_index = 1;
 		
-		$( "##add-new-attribute-option-confirm" ).click(function() {
+		$( "##add-new-filter-option-confirm" ).click(function() {
 		
 			var isFirstOption = false;
 			
-			var attr = new Object();
-			attr.aid = $("##new-attribute-id-hidden").val();
+			var f = new Object();
+			f.fid = $("##new-filter-id-hidden").val();
 			
 			var option = new Object();
-			option.aoid = 'new_' + new_option_index;
-			option.aid = attr.aid;
-			option.value = $("##new-attribute-option-name").val();
+			option.foid = 'new_' + new_option_index;
+			option.fid = f.fid;
+			option.value = $("##new-filter-option-name").val();
 			option.imageName = 'no_image_available.png';
 			option.imageSrc = '#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png';
 			option.hasThumbnail = thumb;
 			
-			if($("##new-attribute-name-hidden").val().toLowerCase() == 'color')
+			if($("##new-filter-name-hidden").val().toLowerCase() == 'color')
 			{
-				option.value = $("##new-attribute-option-name-color").val();
+				option.value = $("##new-filter-option-name-color").val();
 			}
 			
-			if($("##new-attribute-option-image-" + $('##image-coutnt-hidden').val()).val() != '')
+			if($("##new-filter-option-image-" + $('##image-coutnt-hidden').val()).val() != '')
 			{
-				loadThumbnail($("##new-attribute-option-image-" + $('##image-coutnt-hidden').val())[0].files[0], function(image_src) { 
+				loadThumbnail($("##new-filter-option-image-" + $('##image-coutnt-hidden').val())[0].files[0], function(image_src) { 
 				
-					option.imageName = $("##new-attribute-option-image-" + $('##image-coutnt-hidden').val())[0].files[0].name;
+					option.imageName = $("##new-filter-option-image-" + $('##image-coutnt-hidden').val())[0].files[0].name;
 					option.imageSrc = image_src;
 					
-					isFirstOption = addAttributeOption(attr, option);
-					generateAttributes();
-					if(isFirstOption)
-						generateAllSubProducts();
-					else
-						generateSubProducts(attr, option);
+					isFirstOption = addFilterOption(f, option);
+					generateFilters();
 					
-					$("##new-attribute-option-name").val('');
-					$("##new-attribute-option-name-color").val('');
+					$("##new-filter-option-name").val('');
+					$("##new-filter-option-name-color").val('');
 					$("##generate-thumbnail").iCheck('uncheck');
 					thumb = false
 					
@@ -457,15 +453,11 @@
 			}
 			else
 			{
-				isFirstOption = addAttributeOption(attr, option);
-				generateAttributes();
-				if(isFirstOption)
-					generateAllSubProducts();
-				else
-					generateSubProducts(attr, option);
+				isFirstOption = addAttributeOption(f, option);
+				generateFilters();
 				
-				$("##new-attribute-option-name").val('');
-				$("##new-attribute-option-name-color").val('');
+				$("##new-filter-option-name").val('');
+				$("##new-filter-option-name-color").val('');
 				$("##generate-thumbnail").iCheck('uncheck');
 				thumb = false
 				
@@ -473,26 +465,26 @@
 			}
 		});
 		
-		$('##attribute-options').on("click","a.delete-attribute-option", function() {
-			$("##deleted-attribute-id-hidden").val($(this).attr('attributeid'));
-			$("##deleted-attribute-option-id-hidden").val($(this).attr('attributeoptionid'));
+		$('##filters').on("click","a.delete-filter-option", function() {
+			$("##deleted-filter-id-hidden").val($(this).attr('attributeid'));
+			$("##deleted-filter-option-id-hidden").val($(this).attr('attributeoptionid'));
 		});
 		
-		$( "##delete-attribute-option-confirm" ).click(function() {		
+		$( "##delete-filter-option-confirm" ).click(function() {		
 
-			var attr = new Object();
+			var f = new Object();
 			var isLastOption = false;
-			attr.aid = $("##deleted-attribute-id-hidden").val();
+			f.fid = $("##deleted-filter-id-hidden").val();
 			
 			var option = new Object();
-			option.aoid = $("##deleted-attribute-option-id-hidden").val();
+			option.foid = $("##deleted-filter-option-id-hidden").val();
 			
-			isLastOption = removeAttributeOption(attr, option);
+			isLastOption = removeAttributeOption(f, option);
 			generateAttributes();
 			if(isLastOption)
 				generateAllSubProducts();
 			else
-				removeSubProducts(attr, option);
+				removeSubProducts(f, option);
 		});
 	});
 </script>
