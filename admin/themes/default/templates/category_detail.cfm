@@ -614,7 +614,7 @@
 																	</table>
 																</td>
 																<td>
-																	<div style="width:15px;height:15px;border:1px solid ##CCC;margin-top:4px;">
+																	<div style="width:15px;height:15px;border:1px solid ##CCC;margin-top:2px;">
 																		<img src="#filerValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
 																	</div>
 																</td>
