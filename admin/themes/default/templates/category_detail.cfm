@@ -144,56 +144,7 @@
 		
 		var new_filter_index = 1;
 		
-		$('##new-filter-value-color').colorpicker();
-				
-		$( "##add-new-filter-value-confirm" ).click(function() {
-			var thumbnail_content = '';
-			var name_content = $("##new-filter-display-name").val();
-			var new_filter_name =  'new_filter_' + new_filter_index;
-			var new_filter_tr_id =  'tr-fg-new-filter-' + new_filter_index;
-		
-			if($("##new-filter-name-hidden").val() == 'color')
-				thumbnail_content = '<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:'+$("##new-filter-value-color").val()+';margin-top:4px;"></div>';
-			else
-				thumbnail_content = name_content;
-				
-			$("##tr-" + $("##new-filter-group-id-hidden").val() + '-' + $("##new-filter-id-hidden").val()).after('<tr id="'+new_filter_tr_id+'"><td>'+name_content+'</td><td>'+thumbnail_content+'</td><td><a filtervalueid="'+new_filter_index+'" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a></td></tr>'); 
-		
-			$("##new-filter-id-list").val($("##new-filter-id-list").val() + new_filter_index + ',');			
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_name',value: $("##new-filter-display-name").val()}).appendTo($("##category-detail"));
-			$('<input>').attr({type: 'hidden',name: new_filter_name+'_fgroup'+$("##filter-group-id").val()+'_filter_id',value: $("##new-filter-id-hidden").val()}).appendTo($("##category-detail"));
-			if($("##new-filter-name-hidden").val() == 'color')
-				$('<input>').attr({type: 'hidden',name: new_filter_name+'_value',value: $("##new-filter-value-color").val()}).appendTo($("##category-detail"));
-			else
-				$('<input>').attr({type: 'hidden',name: new_filter_name+'_value',value: $("##new-filter-value").val()}).appendTo($("##category-detail"));
-			
-			$("##new-filter-display-name").val('');
-			$("##new-filter-value").val('');
-			$("##new-filter-value-color").val('');
-			
-			new_filter_index++;
-		});
-		
-		$('.filter-group').on("click","a.delete-filter-value", function() {
-			$("##deleted-filter-value-id-hidden").val($(this).attr('filtervalueid'));
-		});
-		
-		$( "##delete-filter-value-confirm" ).click(function() {			
-			$("##tr-fg-" + $("##deleted-filter-value-id-hidden").val()).remove();
-			$("##tr-fg-new-filter-" + $("##deleted-filter-value-id-hidden").val()).remove();
-			
-			var str = $("##new-filter-id-list").val();
-			var n = str.indexOf($("##deleted-filter-value-id-hidden").val() + ',');
-			
-			if(n != -1)
-			{
-				$("##new-filter-id-list").val($("##new-filter-id-list").val().replace($("##deleted-filter-value-id-hidden").val() + ',', ''));
-			}
-			else
-			{	
-				$("##remove-filter-id-list").val($("##remove-filter-id-list").val() + $("##deleted-filter-value-id-hidden").val() + ',');
-			}	
-		});
+		$('##new-filter-option-name-color').colorpicker();
 		
 		$("##search-product").click(function() {
 			$.ajax({
@@ -917,48 +868,7 @@
 		</div><!-- /.col -->
 	</div>   <!-- /.row -->
 </section><!-- /.content -->
-<!-- ADD OPTION MODAL -->
-<div class="modal fade" id="add-filter-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Add New Option</h4>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<input id="new-filter-display-name" name="new_filter_display_name" type="text" class="form-control" placeholder="Name">
-				</div>
-				<div class="form-group">
-					<input id="new-filter-value" name="new_filter_value" type="text" class="form-control" placeholder="Option value">
-					<input id="new-filter-value-color" name="new_filter_value_color" type="text" class="form-control" placeholder="Option value" style="display:none;">
-				</div>
-			</div>
-			<div class="modal-footer clearfix">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="add_new_filter_value_confirm" id="add-new-filter-value-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
-			</div>
-		
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- DELETE OPTION MODAL -->
-<div class="modal fade" id="delete-filter-value-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this option?</h4>
-			</div>
-		
-			<div class="modal-body clearfix">
-				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_filter_value_confirm" id="delete-filter-value-confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
-			</div>
-		
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
 <!-- DELETE ENTITY MODAL -->
 <div class="modal fade" id="delete-current-entity-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
