@@ -444,7 +444,6 @@
 					
 					$("##new-filter-option-name").val('');
 					$("##new-filter-option-name-color").val('');
-					$("##generate-thumbnail").iCheck('uncheck');
 					thumb = false
 					
 					new_option_index++;
@@ -458,7 +457,6 @@
 				
 				$("##new-filter-option-name").val('');
 				$("##new-filter-option-name-color").val('');
-				$("##generate-thumbnail").iCheck('uncheck');
 				thumb = false
 				
 				new_option_index++;
@@ -1050,7 +1048,6 @@
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
 						<input type="file" name="new_filter_option_image_0" id="new-filter-option-image-0"/>
 					</div>
-					<input type="checkbox" class="form-control" name="generate_thumbnail_0" id="generate-thumbnail-0" value="1"/> Generate Image Thumbnail
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
