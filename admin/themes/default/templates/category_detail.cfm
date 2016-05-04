@@ -355,12 +355,7 @@
 							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
 						}
 						str = str + '</tr></table></td><td><div style="width:15px;height:15px;border:1px solid ';
-						
-						if(options[j].hasThumbnail == false)
-							str = str + '##CCC';
-						else
-							str = str + 'red';
-				
+						str = str + '##CCC';
 						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
 						
 						str = str + '<td><a filterid='+filterArray[i].fid+' filteroptionid="'+options[j].foid+'" href="" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
@@ -393,8 +388,6 @@
 		
 		$( "##add-new-filter-option-confirm" ).click(function() {
 		
-			var isFirstOption = false;
-			
 			var f = new Object();
 			f.fid = $("##new-filter-id-hidden").val();
 			
@@ -404,7 +397,6 @@
 			option.value = $("##new-filter-option-name").val();
 			option.imageName = 'no_image_available.png';
 			option.imageSrc = '#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png';
-			option.hasThumbnail = thumb;
 			
 			if($("##new-filter-name-hidden").val().toLowerCase() == 'color')
 			{
@@ -418,12 +410,11 @@
 					option.imageName = $("##new-filter-option-image-" + $('##image-coutnt-hidden').val())[0].files[0].name;
 					option.imageSrc = image_src;
 					
-					isFirstOption = addFilterOption(f, option);
+					addFilterOption(f, option);
 					generateFilters();
 					
 					$("##new-filter-option-name").val('');
 					$("##new-filter-option-name-color").val('');
-					thumb = false
 					
 					new_option_index++;
 					createNewImageUploader();
@@ -431,12 +422,11 @@
 			}
 			else
 			{
-				isFirstOption = addFilterOption(f, option);
+				addFilterOption(f, option);
 				generateFilters();
 				
 				$("##new-filter-option-name").val('');
 				$("##new-filter-option-name-color").val('');
-				thumb = false
 				
 				new_option_index++;
 			}
@@ -459,6 +449,14 @@
 			isLastOption = removeFilterOption(f, option);
 			generateFilters();
 		});
+		
+		function loadThumbnail(file, callback) {
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onloadend = function () {
+				callback(reader.result);
+			}
+		}
 	});
 </script>
 <section class="content-header">
@@ -637,12 +635,7 @@
 																	</table>
 																</td>
 																<td>
-																	<cfif filerValue.getHasThumbnail()>
-																		<cfset color = "red" />
-																	<cfelse>
-																		<cfset color = " ##CCC" />
-																	</cfif>
-																	<div style="width:15px;height:15px;border:1px solid #color#;margin-top:4px;">
+																	<div style="width:15px;height:15px;border:1px solid ##CCC;margin-top:4px;">
 																		<img src="#filerValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
 																	</div>
 																</td>
