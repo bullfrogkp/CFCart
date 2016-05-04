@@ -5,6 +5,39 @@
 	
 		var filterChanged = false;
 		
+		var filterArray = new Array();
+		<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
+			var attribute = new Object();
+			var attributeOptions = new Array();
+			attribute.aid = '#attribute.getAttributeId()#';
+			attribute.name = '#attribute.getDisplayName()#';
+			
+			<cfif ListFind(REQUEST.pageData.attributeList,attribute.getAttributeId())>
+				attribute.deleted = false;
+				
+				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, attribute = attribute}, true) />
+				
+				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+					var attributeOption = new Object();
+					attributeOption.aoid = '#attributeValue.getAttributeValueId()#';
+					attributeOption.value = '#attributeValue.getValue()#';
+					attributeOption.imageName = '#attributeValue.getImageName()#';
+					attributeOption.imageSrc = '#attributeValue.getImageLink(type = "thumbnail")#';
+					<cfif attributeValue.getHasThumbnail()>
+						attributeOption.hasThumbnail = true;
+					<cfelse>
+						attributeOption.hasThumbnail = false;
+					</cfif>
+					attributeOptions.push(attributeOption);
+				</cfloop>
+			<cfelse>
+				attribute.deleted = true;
+			</cfif>
+			
+			attribute.options = attributeOptions;
+			filterArray.push(attribute);
+		</cfloop>
+		
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
@@ -359,6 +392,108 @@
 			
 			$('##filters').append(str);
 		}
+		
+		$('##filters').on("click","a.add-new-filter-option", function(e) {
+		
+			$("##new-filter-id-hidden").val($(this).attr('filterid'));
+			$("##new-filter-name-hidden").val($(this).attr('filtername'));
+			
+			if($(this).attr('filtername').toLowerCase() == 'color')
+			{
+				$("##new-filter-option-name-color").show();
+				$("##new-filter-option-name").hide();
+			}
+			else
+			{
+				$("##new-filter-option-name-color").hide();
+				$("##new-filter-option-name").show();
+			}
+		});
+		
+		var new_option_index = 1;
+		
+		$( "##add-new-attribute-option-confirm" ).click(function() {
+		
+			var isFirstOption = false;
+			
+			var attr = new Object();
+			attr.aid = $("##new-attribute-id-hidden").val();
+			
+			var option = new Object();
+			option.aoid = 'new_' + new_option_index;
+			option.aid = attr.aid;
+			option.value = $("##new-attribute-option-name").val();
+			option.imageName = 'no_image_available.png';
+			option.imageSrc = '#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png';
+			option.hasThumbnail = thumb;
+			
+			if($("##new-attribute-name-hidden").val().toLowerCase() == 'color')
+			{
+				option.value = $("##new-attribute-option-name-color").val();
+			}
+			
+			if($("##new-attribute-option-image-" + $('##image-coutnt-hidden').val()).val() != '')
+			{
+				loadThumbnail($("##new-attribute-option-image-" + $('##image-coutnt-hidden').val())[0].files[0], function(image_src) { 
+				
+					option.imageName = $("##new-attribute-option-image-" + $('##image-coutnt-hidden').val())[0].files[0].name;
+					option.imageSrc = image_src;
+					
+					isFirstOption = addAttributeOption(attr, option);
+					generateAttributes();
+					if(isFirstOption)
+						generateAllSubProducts();
+					else
+						generateSubProducts(attr, option);
+					
+					$("##new-attribute-option-name").val('');
+					$("##new-attribute-option-name-color").val('');
+					$("##generate-thumbnail").iCheck('uncheck');
+					thumb = false
+					
+					new_option_index++;
+					createNewImageUploader();
+				});
+			}
+			else
+			{
+				isFirstOption = addAttributeOption(attr, option);
+				generateAttributes();
+				if(isFirstOption)
+					generateAllSubProducts();
+				else
+					generateSubProducts(attr, option);
+				
+				$("##new-attribute-option-name").val('');
+				$("##new-attribute-option-name-color").val('');
+				$("##generate-thumbnail").iCheck('uncheck');
+				thumb = false
+				
+				new_option_index++;
+			}
+		});
+		
+		$('##attribute-options').on("click","a.delete-attribute-option", function() {
+			$("##deleted-attribute-id-hidden").val($(this).attr('attributeid'));
+			$("##deleted-attribute-option-id-hidden").val($(this).attr('attributeoptionid'));
+		});
+		
+		$( "##delete-attribute-option-confirm" ).click(function() {		
+
+			var attr = new Object();
+			var isLastOption = false;
+			attr.aid = $("##deleted-attribute-id-hidden").val();
+			
+			var option = new Object();
+			option.aoid = $("##deleted-attribute-option-id-hidden").val();
+			
+			isLastOption = removeAttributeOption(attr, option);
+			generateAttributes();
+			if(isLastOption)
+				generateAllSubProducts();
+			else
+				removeSubProducts(attr, option);
+		});
 	});
 </script>
 <section class="content-header">
