@@ -339,7 +339,7 @@
 						
 						if(filterArray[i].name.toLowerCase() == 'color')
 						{
-							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
+							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:2px;"></div></td>';
 						}
 						str = str + '</tr></table></td><td><div style="width:15px;height:15px;border:1px solid ';
 						str = str + '##CCC';
@@ -608,7 +608,7 @@
 																		<tr>
 																			<td>#filerValue.getValue()#</td>
 																			<cfif filter.getDisplayName() EQ "color">
-																				<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#filerValue.getValue()#;margin-top:4px;margin-left:10px;"></div></td>
+																				<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#filerValue.getValue()#;margin-top:2px;margin-left:10px;"></div></td>
 																			</cfif>
 																		</tr>
 																	</table>
