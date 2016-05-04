@@ -332,7 +332,7 @@
 				if(filterArray[i].deleted == false)
 				{
 					var options = filterArray[i].options;
-					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+filterArray[i].fid+'"><th colspan="2">' + filterArray[i].name + '</th><th><a attributeid="' + filterArray[i].fid + '" attributename="'+filterArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+filterArray[i].fid+'"><th colspan="2">' + filterArray[i].name + '</th><th><a attributeid="' + filterArray[i].fid + '" attributename="'+filterArray[i].name+'" class="add-new-filter-option pull-right" data-toggle="modal" data-target="##add-new-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 											
 					for(var j=0;j<options.length;j++)
 					{
@@ -351,13 +351,13 @@
 				
 						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
 						
-						str = str + '<td><a attributeid='+filterArray[i].fid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><a attributeid='+filterArray[i].fid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
 			}
 			
-			$('##attribute-options').append(str);
+			$('##filters').append(str);
 		}
 	});
 </script>
@@ -494,7 +494,6 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 					
-						
 						<label>Filter(s)</label>&nbsp;&nbsp;&nbsp;
 						<a href="" class="add-new-filter" data-toggle="modal" data-target="##add-new-filter-modal">
 							<span class="label label-primary">Edit Filter(s)</span>
@@ -502,46 +501,46 @@
 
 						<div id="filters" class="row" style="margin-top:10px;">
 							<cfif NOT IsNull(REQUEST.pageData.product)>
-								<cfloop array="#REQUEST.pageData.attributes#" index="attribute">
-									<cfset productAttributeRela = EntityLoad("product_attribute_rela",{product=REQUEST.pageData.product,attribute=attribute},true) />
-									<cfif NOT IsNull(productAttributeRela)>
+								<cfloop array="#REQUEST.pageData.filters#" index="filter">
+									<cfset categoryFilterRela = EntityLoad("category_filter_rela",{category=REQUEST.pageData.category,filter=filter},true) />
+									<cfif NOT IsNull(categoryFilterRela)>
 										<div class="col-xs-3">
 											<div class="box box-warning">
 												<div class="box-body table-responsive no-padding">
 													<table class="table table-hover">
-														<tr class="warning" id="tr-#attribute.getAttributeId()#">
-															<th colspan="2">#attribute.getDisplayName()#</th>
+														<tr class="warning" id="tr-#filter.getFilterId()#">
+															<th colspan="2">#filter.getDisplayName()#</th>
 															<th>
-																<a attributeid="#attribute.getAttributeId()#" attributename="#attribute.getName()#" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																<a filterid="#filter.getFilterId()#" filtername="#filter.getName()#" class="add-new-filter-option pull-right" data-toggle="modal" data-target="##add-new-filter-option-modal" style="cursor:pointer;cursor:hand;">
 																	<span class="label label-primary">Add Option</span>
 																</a>
 															</th>
 														</tr>
 														
-														<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-															<tr id="tr-ao-#attributeValue.getAttributeValueId()#">
+														<cfloop array="#categoryFilterRela.getFilterValues()#" index="filerValue">
+															<tr id="tr-ao-#filerValue.getFilterValueId()#">
 																<td>
 																	<table>
 																		<tr>
-																			<td>#attributeValue.getValue()#</td>
-																			<cfif attribute.getDisplayName() EQ "color">
-																				<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#attributeValue.getValue()#;margin-top:4px;margin-left:10px;"></div></td>
+																			<td>#filerValue.getValue()#</td>
+																			<cfif filter.getDisplayName() EQ "color">
+																				<td><div style="width:15px;height:15px;border:1px solid ##CCC;background-color:#filerValue.getValue()#;margin-top:4px;margin-left:10px;"></div></td>
 																			</cfif>
 																		</tr>
 																	</table>
 																</td>
 																<td>
-																	<cfif attributeValue.getHasThumbnail()>
+																	<cfif filerValue.getHasThumbnail()>
 																		<cfset color = "red" />
 																	<cfelse>
 																		<cfset color = " ##CCC" />
 																	</cfif>
 																	<div style="width:15px;height:15px;border:1px solid #color#;margin-top:4px;">
-																		<img src="#attributeValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
+																		<img src="#filerValue.getImageLink(type = "thumbnail")#" style="width:100%;height:100%;vertical-align:top;" />
 																	</div>
 																</td>
 																<td>
-																	<a attributeid="#attribute.getAttributeId()#" attributeoptionid="#attributeValue.getAttributeValueId()#" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;">
+																	<a attributeid="#filter.getFilterId()#" attributeoptionid="#filerValue.getFilterValueId()#" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;">
 																		<span class="label label-danger">Delete</span>
 																	</a>
 																</td>
@@ -555,72 +554,6 @@
 								</cfloop>
 							</cfif>
 						</div>
-
-
-
-
-
-
-
-
-
-
-						
-						<div class="form-group">
-							<label>Display Filter</label>
-							 <select class="form-control" name="display_filter">
-								<option value="1" <cfif REQUEST.pageData.formData.display_filter EQ TRUE>selected</cfif>>Yes</option>
-								<option value="0" <cfif REQUEST.pageData.formData.display_filter EQ FALSE OR REQUEST.pageData.formData.display_filter EQ "">selected</cfif>>No</option>
-							</select>
-						</div>
-					
-						<cfloop array="#REQUEST.pageData.filterGroups#" index="filterGroup">
-							<div class="filter-group" id="filter-group-#filterGroup.getFilterGroupId()#" style="<cfif IsNull(REQUEST.pageData.category) OR IsNull(REQUEST.pageData.category.getFilterGroup()) OR (NOT IsNull(REQUEST.pageData.category) AND (filterGroup.getFilterGroupId() NEQ REQUEST.pageData.category.getFilterGroup().getFilterGroupId()))>display:none;</cfif>">
-								<label>Filter(s)</label>
-								
-								<div class="row" style="margin-top:10px;">
-									<cfloop array="#filterGroup.getFilters()#" index="filter">	
-										<div class="col-xs-3">
-											<div class="box box-warning">
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-hover">
-														<tr class="warning" id="tr-#filterGroup.getFilterGroupId()#-#filter.getFilterId()#">
-															<th colspan="2">#filter.getDisplayName()#</th>
-															<th>
-																<a filtergroupid="#filterGroup.getFilterGroupId()#" filterid="#filter.getFilterId()#" filtername="#filter.getName()#" href="" class="add-filter-value pull-right" data-toggle="modal" data-target="##add-filter-value-modal">
-																	<span class="label label-primary">Add Option</span>
-																</a>
-															</th>
-														</tr>
-														
-														<cfif NOT IsNull(REQUEST.pageData.category) AND NOT IsNull(REQUEST.pageData.category.getFilterGroup()) AND filterGroup.getFilterGroupId() EQ REQUEST.pageData.category.getFilterGroup().getFilterGroupId()>
-															<cfset categoryFilterRela = EntityLoad("category_filter_rela",{category=REQUEST.pageData.category,filter=filter},true) />
-															<cfif NOT IsNull(categoryFilterRela.getFilterValues())>
-																<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
-																	<tr id="tr-fg-#filterValue.getFilterValueId()#">
-																		<td>#filterValue.getDisplayName()#</td>
-																		<td>
-																		<cfif filter.getDisplayName() EQ "color">
-																			<div style="width:14px;height:14px;border:1px solid ##CCC;background-color:#filterValue.getValue()#;display:inline-block;vertical-align:middle"></div>
-																		<cfelse>
-																			#filterValue.getValue()#
-																		</cfif>
-																		</td>
-																		<td>
-																			<a filtervalueid="#filterValue.getFilterValueId()#" href="" class="delete-filter-value pull-right" data-toggle="modal" data-target="##delete-filter-value-modal"><span class="label label-danger">Delete</span></a>
-																		</td>
-																	</tr>
-																</cfloop>
-															</cfif>
-														</cfif>
-													</table>
-												</div><!-- /.box-body -->
-											</div><!-- /.box -->
-										</div>
-									</cfloop>
-								</div>
-							</div>
-						</cfloop>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_4']#" id="tab_4">
 						<div class="form-group">
