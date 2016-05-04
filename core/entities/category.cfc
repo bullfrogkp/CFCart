@@ -10,7 +10,6 @@
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
 	<cfproperty name="customDesign" column="custom_design" ormtype="text"> 
 	
-	<cfproperty name="filterGroup" fieldtype="one-to-one" cfc="filter_group" fkcolumn="filter_group_id">
 	<cfproperty name="parentCategory" fieldtype="many-to-one" cfc="category" fkcolumn="parent_category_id">
 	
 	<cfproperty name="images" type="array" fieldtype="one-to-many" cfc="category_image" fkcolumn="category_id" singularname="image" orderby="rank">

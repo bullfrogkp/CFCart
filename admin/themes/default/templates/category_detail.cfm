@@ -476,14 +476,6 @@
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
 <input type="hidden" name="deleted_ad_id" id="deleted_ad_id" value="" />
 
-<input type="hidden" name="new_filter_value_id_hidden" id="new-filter-value-id-hidden" value="" />
-<input type="hidden" name="new_filter_group_id_hidden" id="new-filter-group-id-hidden" value="" />
-<input type="hidden" name="new_filter_id_hidden" id="new-filter-id-hidden" value="" />
-<input type="hidden" name="new_filter_name_hidden" id="new-filter-name-hidden" value="" />
-<input type="hidden" name="deleted_filter_value_id_hidden" id="deleted-filter-value-id-hidden" value="" />
-<input type="hidden" name="new_filter_id_list" id="new-filter-id-list" value="" />
-<input type="hidden" name="remove_filter_id_list" id="remove-filter-id-list" value="" />
-
 <input type="hidden" name="new_filter_id_hidden" id="new-filter-id-hidden" value="" />
 <input type="hidden" name="new_filter_name_hidden" id="new-filter-name-hidden" value="" />
 <input type="hidden" name="deleted_filter_id_hidden" id="deleted-filter-id-hidden" value="" />

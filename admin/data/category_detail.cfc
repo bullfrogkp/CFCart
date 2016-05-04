@@ -66,54 +66,7 @@
 			<cfset LOCAL.category.setDescription(Trim(FORM.description)) />
 			<cfset LOCAL.category.setCustomDesign(Trim(FORM.custom_design)) />
 			
-			
 			<!--- attribute information --->
-			<cfif FORM.filter_group_id NEQ "">
-				<cfif IsNull(LOCAL.category.getFilterGroup())
-					OR
-					(NOT IsNull(LOCAL.category.getFilterGroup()) AND FORM.filter_group_id NEQ LOCAL.category.getFilterGroup().getFilterGroupId())>
-					<cfset LOCAL.category.removeAllCategoryFilterRelas() />
-					<cfset LOCAL.category.setFilterGroup(EntityLoadByPK("filter_group",FORM.filter_group_id)) />
-					
-					<cfloop array="#LOCAL.category.getFilterGroup().getFilters()#" index="LOCAL.filter">
-						<cfset LOCAL.newCategoryFilterRela = EntityNew("category_filter_rela") />
-						<cfset LOCAL.newCategoryFilterRela.setCategory(LOCAL.category) />
-						<cfset LOCAL.newCategoryFilterRela.setFilter(LOCAL.filter) />
-						<cfset EntitySave(LOCAL.newCategoryFilterRela) />
-						
-						<cfset LOCAL.category.addCategoryFilterRela(LOCAL.newCategoryFilterRela) />
-					</cfloop>
-				</cfif>
-				
-				<cfset EntitySave(LOCAL.category) />
-				<cfset ORMFlush() />
-				
-				<cfif FORM.new_filter_id_list NEQ "">
-					<cfloop list="#FORM.new_filter_id_list#" index="LOCAL.i">
-						<cfif StructKeyExists(FORM,"new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id")>
-							<cfset LOCAL.filter = EntityLoadByPK("filter",FORM["new_filter_#LOCAL.i#_fgroup#FORM.filter_group_id#_filter_id"]) />
-							<cfset LOCAL.categoryFilterRela = EntityLoad("category_filter_rela", {category=LOCAL.category, filter=LOCAL.filter},true) />
-							
-							<cfset LOCAL.filterValue = EntityNew("filter_value") />
-							<cfset LOCAL.filterValue.setCategoryFilterRela(LOCAL.categoryFilterRela) />
-							<cfset LOCAL.filterValue.setValue(Trim(FORM["new_filter_#LOCAL.i#_value"])) />
-							<cfset LOCAL.filterValue.setDisplayName(Trim(FORM["new_filter_#LOCAL.i#_name"])) />
-							<cfset EntitySave(LOCAL.filterValue) />
-							
-							<cfset LOCAL.categoryFilterRela.addFilterValue(LOCAL.filterValue) />
-							<cfset EntitySave(LOCAL.categoryFilterRela) />
-						</cfif>
-					</cfloop>
-				</cfif>
-				
-				<cfif FORM.remove_filter_id_list NEQ "">
-					<cfloop list="#FORM.remove_filter_id_list#" index="LOCAL.i">
-						<cfset LOCAL.filterValue = EntityLoadByPK("filter_value",LOCAL.i) />		
-						<cfset EntityDelete(LOCAL.filterValue) />
-					</cfloop>
-				</cfif>
-			</cfif>
-		
 			<!--- to get the category id for image path, extra entitysave here --->
 			<cfset EntitySave(LOCAL.category) />
 		
@@ -255,7 +208,6 @@
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
 		
 		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree() />
-		<cfset LOCAL.pageData.filterGroups = EntityLoad("filter_group")> 
 		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
 		<cfset LOCAL.pageData.filters = EntityLoad("filter",{isDeleted = false}, "filterId ASC") />
 		
@@ -300,7 +252,6 @@
 				<cfset LOCAL.pageData.formData.title = isNull(LOCAL.pageData.category.getTitle())?"":LOCAL.pageData.category.getTitle() />
 				<cfset LOCAL.pageData.formData.keywords = isNull(LOCAL.pageData.category.getKeywords())?"":LOCAL.pageData.category.getKeywords() />
 				<cfset LOCAL.pageData.formData.description = isNull(LOCAL.pageData.category.getDescription())?"":LOCAL.pageData.category.getDescription() />
-				<cfset LOCAL.pageData.formData.filter_group_id = isNull(LOCAL.pageData.category.getFilterGroup())?"":LOCAL.pageData.category.getFilterGroup().getFilterGroupId() />
 				<cfset LOCAL.pageData.formData.custom_design = isNull(LOCAL.pageData.category.getCustomDesign())?"":LOCAL.pageData.category.getCustomDesign() />
 				<cfset LOCAL.pageData.formData.id = URL.id />
 			</cfif>
@@ -324,7 +275,6 @@
 				<cfset LOCAL.pageData.formData.title = "" />
 				<cfset LOCAL.pageData.formData.keywords = "" />
 				<cfset LOCAL.pageData.formData.description = "" />
-				<cfset LOCAL.pageData.formData.filter_group_id = "" />
 				<cfset LOCAL.pageData.formData.custom_design = "" />
 				<cfset LOCAL.pageData.formData.id = "" />
 			</cfif>
