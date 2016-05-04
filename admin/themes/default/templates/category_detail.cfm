@@ -8,33 +8,33 @@
 		var filterArray = new Array();
 		<cfloop array="#REQUEST.pageData.filters#" index="filter">
 			var filter = new Object();
-			var attributeOptions = new Array();
-			filter.fid = '#filter.getAttributeId()#';
+			var filterOptions = new Array();
+			filter.fid = '#filter.getFilterId()#';
 			filter.name = '#filter.getDisplayName()#';
 			
-			<cfif ListFind(REQUEST.pageData.attributeList,filter.getAttributeId())>
+			<cfif ListFind(REQUEST.pageData.filterList,filter.getFilterId())>
 				filter.deleted = false;
 				
-				<cfset productAttributeRela = EntityLoad("product_attribute_rela", {product = REQUEST.pageData.product, filter = filter}, true) />
+				<cfset categoryFilterRela = EntityLoad("category_filter_rela", {category = REQUEST.pageData.category, filter = filter}, true) />
 				
-				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-					var attributeOption = new Object();
-					attributeOption.foid = '#attributeValue.getAttributeValueId()#';
-					attributeOption.value = '#attributeValue.getValue()#';
-					attributeOption.imageName = '#attributeValue.getImageName()#';
-					attributeOption.imageSrc = '#attributeValue.getImageLink(type = "thumbnail")#';
-					<cfif attributeValue.getHasThumbnail()>
-						attributeOption.hasThumbnail = true;
+				<cfloop array="#categoryFilterRela.getFilterValues()#" index="filterValue">
+					var filterOption = new Object();
+					filterOption.foid = '#filterValue.getFilterValueId()#';
+					filterOption.value = '#filterValue.getValue()#';
+					filterOption.imageName = '#filterValue.getImageName()#';
+					filterOption.imageSrc = '#filterValue.getImageLink(type = "thumbnail")#';
+					<cfif filterValue.getHasThumbnail()>
+						filterOption.hasThumbnail = true;
 					<cfelse>
-						attributeOption.hasThumbnail = false;
+						filterOption.hasThumbnail = false;
 					</cfif>
-					attributeOptions.push(attributeOption);
+					filterOptions.push(filterOption);
 				</cfloop>
 			<cfelse>
 				filter.deleted = true;
 			</cfif>
 			
-			filter.options = attributeOptions;
+			filter.options = filterOptions;
 			filterArray.push(filter);
 		</cfloop>
 		
@@ -365,7 +365,7 @@
 				if(filterArray[i].deleted == false)
 				{
 					var options = filterArray[i].options;
-					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+filterArray[i].fid+'"><th colspan="2">' + filterArray[i].name + '</th><th><a attributeid="' + filterArray[i].fid + '" attributename="'+filterArray[i].name+'" class="add-new-filter-option pull-right" data-toggle="modal" data-target="##add-new-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+filterArray[i].fid+'"><th colspan="2">' + filterArray[i].name + '</th><th><a filterid="' + filterArray[i].fid + '" filtername="'+filterArray[i].name+'" class="add-new-filter-option pull-right" data-toggle="modal" data-target="##add-new-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
 											
 					for(var j=0;j<options.length;j++)
 					{
@@ -384,7 +384,7 @@
 				
 						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
 						
-						str = str + '<td><a attributeid='+filterArray[i].fid+' attributeoptionid="'+options[j].foid+'" href="" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+						str = str + '<td><a filterid='+filterArray[i].fid+' filteroptionid="'+options[j].foid+'" href="" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
 					}
 					str = str + '</table></div></div></div>';
 				}
@@ -453,7 +453,7 @@
 			}
 			else
 			{
-				isFirstOption = addAttributeOption(f, option);
+				isFirstOption = addFilterOption(f, option);
 				generateFilters();
 				
 				$("##new-filter-option-name").val('');
@@ -466,8 +466,8 @@
 		});
 		
 		$('##filters').on("click","a.delete-filter-option", function() {
-			$("##deleted-filter-id-hidden").val($(this).attr('attributeid'));
-			$("##deleted-filter-option-id-hidden").val($(this).attr('attributeoptionid'));
+			$("##deleted-filter-id-hidden").val($(this).attr('filterid'));
+			$("##deleted-filter-option-id-hidden").val($(this).attr('filteroptionid'));
 		});
 		
 		$( "##delete-filter-option-confirm" ).click(function() {		
@@ -479,12 +479,8 @@
 			var option = new Object();
 			option.foid = $("##deleted-filter-option-id-hidden").val();
 			
-			isLastOption = removeAttributeOption(f, option);
-			generateAttributes();
-			if(isLastOption)
-				generateAllSubProducts();
-			else
-				removeSubProducts(f, option);
+			isLastOption = removeFilterOption(f, option);
+			generateFilters();
 		});
 	});
 </script>
@@ -667,7 +663,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a attributeid="#filter.getFilterId()#" attributeoptionid="#filerValue.getFilterValueId()#" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;">
+																	<a filterid="#filter.getFilterId()#" filteroptionid="#filerValue.getFilterValueId()#" class="delete-filter-option pull-right" data-toggle="modal" data-target="##delete-filter-option-modal" style="cursor:pointer;cursor:hand;">
 																		<span class="label label-danger">Delete</span>
 																	</a>
 																</td>
@@ -1030,7 +1026,7 @@
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button name="edit_attribute" id="edit-filter-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
+				<button name="edit_filter" id="edit-filter-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -1046,20 +1042,20 @@
 		
 			<div class="modal-body">
 				<div class="form-group" id="filter-option-modal-div">
-					<input id="new-filter-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Value">
-					<input id="new-filter-option-name-color" name="new_attribute_option_name_color" type="text" class="form-control" placeholder="Value">
+					<input id="new-filter-option-name" name="new_filter_option_name" type="text" class="form-control" placeholder="Value">
+					<input id="new-filter-option-name-color" name="new_filter_option_name_color" type="text" class="form-control" placeholder="Value">
 				</div>
 				<div class="form-group filter-option-image-div" id="filter-option-image-div-0">
 					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
 						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
-						<input type="file" name="new_attribute_option_image_0" id="new-filter-option-image-0"/>
+						<input type="file" name="new_filter_option_image_0" id="new-filter-option-image-0"/>
 					</div>
 					<input type="checkbox" class="form-control" name="generate_thumbnail_0" id="generate-thumbnail-0" value="1"/> Generate Image Thumbnail
 				</div>
 			</div>
 			<div class="modal-footer clearfix">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-				<button id="add-new-filter-option-confirm" name="add_new_attribute_option_confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
+				<button id="add-new-filter-option-confirm" name="add_new_filter_option_confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -1075,7 +1071,7 @@
 		
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
-				<button name="delete_attribute_option_confirm" id="delete-filter-option-confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
+				<button name="delete_filter_option_confirm" id="delete-filter-option-confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
 			</div>
 		
 		</div><!-- /.modal-content -->
