@@ -3,6 +3,8 @@
 <script>
 	$(document).ready(function() {
 	
+		var filterChanged = false;
+		
 		$(".tab-title").click(function() {
 		  $("##tab_id").val($(this).attr('tabid'));
 		});
@@ -236,6 +238,127 @@
 		$('##remove').click(function() {  
 			return !$('##products-selected option:selected').remove().appendTo('##products-searched').removeAttr("selected"); 
 		});		
+		
+		$('##edit-filter-confirm').click(function() {  
+			if(filterChanged == true)
+			{
+				var newFilterArray = getNewFilterArray();
+				var currentFilterArray = getCurrentFilterArray();
+			
+				for(var i=0;i<currentFilterArray.length;i++)
+				{	
+					if(filterFound(currentFilterArray[i],newFilterArray) == false)
+					{
+						removeFilter(currentFilterArray[i]);
+					}
+				}
+				
+				for(var j=0;j<newFilterArray.length;j++)
+				{	
+					if(filterFound(newFilterArray[j],currentFilterArray) == false)
+					{
+						addFilter(newFilterArray[j]);
+					}
+				}
+								
+				generateFilters();
+				filterChanged = false;
+			}			
+		});	
+		
+		function getNewFilterArray() {
+			var newFilterArray = []; 
+			$('##attribute-id :selected').each(function(i, selected){ 
+				var attribute = new Object();
+				attribute.aid = $(selected).val();
+				attribute.name = $(selected).text();
+				attribute.deleted = false;
+				newFilterArray[i] = attribute; 
+			});
+			
+			return newFilterArray;
+		}
+		
+		function getCurrentAttributeArray() {			
+			return attributeArray.slice(0);
+		}
+		
+		function attributeFound(attr, attrArray) {
+			var attributeFound = false;
+			
+			for(var i=0;i<attrArray.length;i++)
+			{
+				if(attrArray[i].aid == attr.aid && attrArray[i].deleted == false)
+				{
+					attributeFound = true;
+					break;
+				}
+			}
+			
+			return attributeFound;
+		}
+		
+		function addAttribute(attr) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attr.aid)
+				{
+					attributeArray[i].deleted = false;
+					attributeArray[i].options = [];
+					break;
+				}
+			}
+		}
+		
+		function removeAttribute(attr) {
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].aid == attr.aid)
+				{
+					attributeArray[i].deleted = true;
+					attributeArray[i].options = [];
+					break;
+				}
+			}
+		}
+		
+		function generateAttributes() {
+			$('##attribute-options').empty();
+			
+			var str = '';
+			
+			for(var i=0;i<attributeArray.length;i++)
+			{
+				if(attributeArray[i].deleted == false)
+				{
+					var options = attributeArray[i].options;
+					str = str + '<div class="col-xs-3"><div class="box box-warning"><div class="box-body table-responsive no-padding"><table class="table table-hover"><tr class="warning" id="tr-'+attributeArray[i].aid+'"><th colspan="2">' + attributeArray[i].name + '</th><th><a attributeid="' + attributeArray[i].aid + '" attributename="'+attributeArray[i].name+'" class="add-new-attribute-option pull-right" data-toggle="modal" data-target="##add-new-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-primary">Add Option</span></a></th></tr>';
+											
+					for(var j=0;j<options.length;j++)
+					{
+						str = str + '<tr id="tr-ao-'+options[j].aoid+'"><td><table><tr><td>' + options[j].value+'</td>';
+						
+						if(attributeArray[i].name.toLowerCase() == 'color')
+						{
+							str = str + '<td><div style="margin-left:10px;width:15px;height:15px;border:1px solid ##CCC;background-color:'+options[j].value+';margin-top:4px;"></div></td>';
+						}
+						str = str + '</tr></table></td><td><div style="width:15px;height:15px;border:1px solid ';
+						
+						if(options[j].hasThumbnail == false)
+							str = str + '##CCC';
+						else
+							str = str + 'red';
+				
+						str = str + ';margin-top:4px;"><img src="'+options[j].imageSrc+'" style="width:100%;height:100%;vertical-align:top;" /></div></td>';
+						
+						str = str + '<td><a attributeid='+attributeArray[i].aid+' attributeoptionid="'+options[j].aoid+'" href="" class="delete-attribute-option pull-right" data-toggle="modal" data-target="##delete-attribute-option-modal" style="cursor:pointer;cursor:hand;"><span class="label label-danger">Delete</span></a></td></tr>';
+					}
+					str = str + '</table></div></div></div>';
+				}
+			}
+			
+			$('##attribute-options').append(str);
+		}
 	});
 </script>
 <section class="content-header">
@@ -371,19 +494,23 @@
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
 					
-						<div class="form-group">
-							<label>Filter Group</label>
-							 <select class="form-control" name="filter_group_id" id="filter-group-id">
-								<option value="">Please Select...</option>
-								<cfloop array="#REQUEST.pageData.filterGroups#" index="fg">
-									<option value="#fg.getFilterGroupId()#"
-									<cfif fg.getFilterGroupId() EQ REQUEST.pageData.formData.filter_group_id>
-									selected
-									</cfif>
-									>#fg.getDisplayName()#</option>
-								</cfloop>
-							</select>
-						</div>
+						
+						<label>Filter(s)</label>&nbsp;&nbsp;&nbsp;
+						<a href="" class="add-new-filter" data-toggle="modal" data-target="##add-new-filter-modal">
+							<span class="label label-primary">Edit Filter(s)</span>
+						</a>
+
+
+
+
+
+
+
+
+
+
+
+
 						
 						<div class="form-group">
 							<label>Display Filter</label>
@@ -759,6 +886,37 @@
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
 				<button name="delete_ad" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- ADD FILTER MODAL -->
+<div class="modal fade" id="add-new-filter-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Filter(s)</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Filters</label>
+					<select class="form-control" multiple name="filter_id" id="filter-id">
+						<cfloop array="#REQUEST.pageData.filters#" index="filter">
+							<option value="#filter.geFilterId()#"
+							<cfif ListFind(REQUEST.pageData.filterList,filter.getFilterId())>
+								selected
+							</cfif>
+							>#filter.getDisplayName()#</option>
+						</cfloop>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="edit_attribute" id="edit-filter-confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Save</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
