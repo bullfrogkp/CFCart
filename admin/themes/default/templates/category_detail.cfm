@@ -908,5 +908,51 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!-- ADD OPTION MODAL -->
+<div class="modal fade" id="add-new-filter-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Add New Filter Option</h4>
+			</div>
+		
+			<div class="modal-body">
+				<div class="form-group" id="filter-option-modal-div">
+					<input id="new-filter-option-name" name="new_attribute_option_name" type="text" class="form-control" placeholder="Value">
+					<input id="new-filter-option-name-color" name="new_attribute_option_name_color" type="text" class="form-control" placeholder="Value">
+				</div>
+				<div class="form-group filter-option-image-div" id="filter-option-image-div-0">
+					<div class="btn btn-success btn-file" style="width:150px;margin-right:20px;">
+						<i class="fa fa-paperclip"></i> &nbsp;&nbsp;Add Image
+						<input type="file" name="new_attribute_option_image_0" id="new-filter-option-image-0"/>
+					</div>
+					<input type="checkbox" class="form-control" name="generate_thumbnail_0" id="generate-thumbnail-0" value="1"/> Generate Image Thumbnail
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button id="add-new-filter-option-confirm" name="add_new_attribute_option_confirm" type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-check"></i> Add</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- DELETE OPTION MODAL -->
+<div class="modal fade" id="delete-filter-option-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"> Delete this option?</h4>
+			</div>
+		
+			<div class="modal-body clearfix">
+				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+				<button name="delete_attribute_option_confirm" id="delete-filter-option-confirm" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Yes</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </form>
 </cfoutput>
