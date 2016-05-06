@@ -119,7 +119,6 @@
 			<cfif NOT IsNull(LOCAL.categoryFilterRela.getFilterValues())>
 				<cfloop array="#LOCAL.categoryFilterRela.getFilterValues()#" index="LOCAL.filterValue">
 					<cfset LOCAL.newFilterValue = {} />
-					<cfset LOCAL.newFilterValue.name = LOCAL.filterValue.getDisplayName() />
 					<cfset LOCAL.newFilterValue.value = LOCAL.filterValue.getValue() />
 					<cfset LOCAL.newFilterValue.selected = false />
 					
