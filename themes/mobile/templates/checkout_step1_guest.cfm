@@ -1,7 +1,7 @@
 <cfoutput>
 <div class="breadcrumb-box">
-	<a href="#">Home</a>
-	<a href="#">Checkout</a>
+	<a href="##">Home</a>
+	<a href="##">Checkout</a>
 </div>
 
 <div class="information-blocks">
@@ -42,7 +42,7 @@
 									<label>Password</label>
 									<input type="password" value="" placeholder="Enter Password" class="simple-field">
 									<div class="button style-10">Login Page<input type="submit" value=""></div>
-									<a class="forgot-password" href="#">Forgot password?</a>
+									<a class="forgot-password" href="##">Forgot password?</a>
 								</form>
 							</div>
 						</div>
@@ -92,11 +92,11 @@
 				<p>Custom CMS block displayed below the one page checkout progress block. Put your own content here.</p>
 			</div>
 			<div class="information-blocks">
-				<a class="sale-entry vertical" href="#">
+				<a class="sale-entry vertical" href="##">
 					<span class="hot-mark yellow">hot</span>
 					<span class="sale-price"><span>-40%</span> Valentine <br/> Underwear Sale</span>
 					<span class="sale-description">Lorem ipsum dolor sitamet, conse adipisc sed do eiusmod tempor.</span>
-					<img style="" class="sale-image" src="img/text-widget-image-3.jpg" alt="" />
+					<img style="" class="sale-image" src="#SESSION.absoluteUrlTheme#images/text-widget-image-3.jpg" alt="" />
 				</a>
 			</div>
 		</div>
@@ -108,10 +108,10 @@
 		<div class="col-sm-4 information-entry">
 			<h3 class="block-title inline-product-column-title">Featured products</h3>
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-1.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -122,10 +122,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-2.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -136,10 +136,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-3.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -152,10 +152,10 @@
 		<div class="col-sm-4 information-entry">
 			<h3 class="block-title inline-product-column-title">Featured products</h3>
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-1.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -166,10 +166,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-2.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -180,10 +180,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-3.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -196,10 +196,10 @@
 		<div class="col-sm-4 information-entry">
 			<h3 class="block-title inline-product-column-title">Featured products</h3>
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-1.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -210,10 +210,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-2.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -224,10 +224,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-3.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>

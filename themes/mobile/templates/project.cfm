@@ -1,14 +1,14 @@
 <cfoutput>
 <div class="breadcrumb-box">
-	<a href="#">Home</a>
-	<a href="#">Portfolio</a>
-	<a href="#">Single Project</a>
+	<a href="##">Home</a>
+	<a href="##">Portfolio</a>
+	<a href="##">Single Project</a>
 </div>
 
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-md-8 information-entry">
-			<img class="project-thumbnail" src="img/project-default.jpg" alt="" />
+			<img class="project-thumbnail" src="#SESSION.absoluteUrlTheme#images/project-default.jpg" alt="" />
 		</div>
 		<div class="col-md-4 information-entry">
 			<h3 class="block-title main-heading">Coffee &amp; Cookie Time</h3>
@@ -32,11 +32,11 @@
 				<div class="share-box">
 					<div class="title"><b>Share social:</b></div>
 					<div class="socials-box">
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
-						<a href="#"><i class="fa fa-google-plus"></i></a>
-						<a href="#"><i class="fa fa-youtube"></i></a>
-						<a href="#"><i class="fa fa-rss"></i></a>
+						<a href="##"><i class="fa fa-facebook"></i></a>
+						<a href="##"><i class="fa fa-twitter"></i></a>
+						<a href="##"><i class="fa fa-google-plus"></i></a>
+						<a href="##"><i class="fa fa-youtube"></i></a>
+						<a href="##"><i class="fa fa-rss"></i></a>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -51,50 +51,50 @@
 		<div class="row">
 			<div class="col-sm-4 portfolio-entry">
 				<div class="image">
-					<img alt="" src="img/portfolio-1.jpg">
+					<img alt="" src="#SESSION.absoluteUrlTheme#images/portfolio-1.jpg">
 					<div class="hover-layer">
 						<div class="info">
 							<div class="actions">
-								<a class="action-button open-image" href="#"><i class="fa fa-search"></i></a>
-								<a class="action-button" href="#"><i class="fa fa-link"></i></a>
+								<a class="action-button open-image" href="##"><i class="fa fa-search"></i></a>
+								<a class="action-button" href="##"><i class="fa fa-link"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<a class="title" href="#">Coffee &amp; Cookie Time</a>
-				<div class="subtitle"><a href="#">food</a>, <a href="#">hipster</a>, <a href="#">general</a>, <a href="#">photography</a> <span class="comments-number">0 comments</span></div>
+				<a class="title" href="##">Coffee &amp; Cookie Time</a>
+				<div class="subtitle"><a href="##">food</a>, <a href="##">hipster</a>, <a href="##">general</a>, <a href="##">photography</a> <span class="comments-number">0 comments</span></div>
 				<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore.</div>
 			</div>
 			<div class="col-sm-4 portfolio-entry">
 				<div class="image">
-					<img alt="" src="img/portfolio-2.jpg">
+					<img alt="" src="#SESSION.absoluteUrlTheme#images/portfolio-2.jpg">
 					<div class="hover-layer">
 						<div class="info">
 							<div class="actions">
-								<a class="action-button open-image" href="#"><i class="fa fa-search"></i></a>
-								<a class="action-button" href="#"><i class="fa fa-link"></i></a>
+								<a class="action-button open-image" href="##"><i class="fa fa-search"></i></a>
+								<a class="action-button" href="##"><i class="fa fa-link"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<a class="title" href="#">Coffee &amp; Cookie Time</a>
-				<div class="subtitle"><a href="#">food</a>, <a href="#">hipster</a>, <a href="#">general</a>, <a href="#">photography</a> <span class="comments-number">0 comments</span></div>
+				<a class="title" href="##">Coffee &amp; Cookie Time</a>
+				<div class="subtitle"><a href="##">food</a>, <a href="##">hipster</a>, <a href="##">general</a>, <a href="##">photography</a> <span class="comments-number">0 comments</span></div>
 				<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore.</div>
 			</div>
 			<div class="col-sm-4 portfolio-entry">
 				<div class="image">
-					<img alt="" src="img/portfolio-3.jpg">
+					<img alt="" src="#SESSION.absoluteUrlTheme#images/portfolio-3.jpg">
 					<div class="hover-layer">
 						<div class="info">
 							<div class="actions">
-								<a class="action-button open-image" href="#"><i class="fa fa-search"></i></a>
-								<a class="action-button" href="#"><i class="fa fa-link"></i></a>
+								<a class="action-button open-image" href="##"><i class="fa fa-search"></i></a>
+								<a class="action-button" href="##"><i class="fa fa-link"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<a class="title" href="#">Coffee &amp; Cookie Time</a>
-				<div class="subtitle"><a href="#">food</a>, <a href="#">hipster</a>, <a href="#">general</a>, <a href="#">photography</a> <span class="comments-number">0 comments</span></div>
+				<a class="title" href="##">Coffee &amp; Cookie Time</a>
+				<div class="subtitle"><a href="##">food</a>, <a href="##">hipster</a>, <a href="##">general</a>, <a href="##">photography</a> <span class="comments-number">0 comments</span></div>
 				<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore.</div>
 			</div>
 		</div>
@@ -106,10 +106,10 @@
 		<div class="col-sm-4 information-entry">
 			<h3 class="block-title inline-product-column-title">Featured products</h3>
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-1.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -120,10 +120,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-2.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -134,10 +134,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-3.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -150,10 +150,10 @@
 		<div class="col-sm-4 information-entry">
 			<h3 class="block-title inline-product-column-title">Featured products</h3>
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-1.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -164,10 +164,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-2.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -178,10 +178,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-3.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -194,10 +194,10 @@
 		<div class="col-sm-4 information-entry">
 			<h3 class="block-title inline-product-column-title">Featured products</h3>
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-1.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -208,10 +208,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-2.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
@@ -222,10 +222,10 @@
 			</div>
 
 			<div class="inline-product-entry">
-				<a href="#" class="image"><img alt="" src="img/product-image-inline-3.jpg"></a>
+				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
 				<div class="content">
 					<div class="cell-view">
-						<a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
 						<div class="price">
 							<div class="prev">$199,99</div>
 							<div class="current">$119,99</div>
