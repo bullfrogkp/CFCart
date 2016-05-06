@@ -623,6 +623,13 @@
 						</div>
 					</div><!-- /.tab-pane -->
 					<div class="tab-pane #REQUEST.pageData.tabs['tab_3']#" id="tab_3">
+						<div class="form-group">
+							<label>Display Filter</label>
+							 <select class="form-control" name="display_filter">
+								<option value="1" <cfif REQUEST.pageData.formData.display_filter EQ TRUE>selected</cfif>>Yes</option>
+								<option value="0" <cfif REQUEST.pageData.formData.display_filter EQ FALSE OR REQUEST.pageData.formData.display_filter EQ "">selected</cfif>>No</option>
+							</select>
+						</div>
 					
 						<label>Filter(s)</label>&nbsp;&nbsp;&nbsp;
 						<a href="" class="add-new-filter" data-toggle="modal" data-target="##add-new-filter-modal">
@@ -630,7 +637,7 @@
 						</a>
 
 						<div id="filters" class="row" style="margin-top:10px;">
-							<cfif NOT IsNull(REQUEST.pageData.product)>
+							<cfif NOT IsNull(REQUEST.pageData.category)>
 								<cfloop array="#REQUEST.pageData.filters#" index="filter">
 									<cfset categoryFilterRela = EntityLoad("category_filter_rela",{category=REQUEST.pageData.category,filter=filter},true) />
 									<cfif NOT IsNull(categoryFilterRela)>

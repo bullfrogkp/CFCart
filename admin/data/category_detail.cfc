@@ -2,7 +2,7 @@
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
-	<cfdump var="#FORM#" abort>	
+	
 		<cfset LOCAL.messageArray = [] />
 		
 		<cfif Trim(FORM.display_name) EQ "">
@@ -168,17 +168,17 @@
 			<!--- filters --->
 			<cfif IsNumeric(FORM.id)>
 				<!--- category filters and values --->
-				<cfset LOCAL.product.removeCategoryFilterRelas() />
+				<cfset LOCAL.category.removeCategoryFilterRelas() />
 			</cfif>
 			
 			<cfloop list="#FORM.c_filter_id#" index="LOCAL.filter_id">
-				<cfset LOCAL.categoryFilterRela = EntityNew("product_attribute_rela") />
+				<cfset LOCAL.categoryFilterRela = EntityNew("category_filter_rela") />
 				<cfset LOCAL.categoryFilterRela.setCategory(LOCAL.category) />
 				<cfset LOCAL.categoryFilterRela.setFilter(EntityLoadByPK("filter",LOCAL.filter_id)) />
-				<cfset LOCAL.product.addCategoryFilterRela(LOCAL.categoryFilterRela) /> 
+				<cfset LOCAL.category.addCategoryFilterRela(LOCAL.categoryFilterRela) /> 
 				
 				<cfif StructKeyExists(FORM,"c_filter_option_id_#LOCAL.filter_id#")>
-					<cfloop list="#FORM["c_filter_option_id_#LOCAL.filter_id#"]#" index="LOCAL.fid">
+					<cfloop list="#FORM["c_filter_option_id_#LOCAL.filter_id#"]#" index="LOCAL.foid">
 						<cfset LOCAL.filterValue = EntityNew("filter_value") />
 						<cfset LOCAL.filterValue.setValue(Trim(FORM["c_filter_option_value_#LOCAL.filter_id#_#LOCAL.foid#"])) />
 						<cfif NOT Find("no_image_available.png", FORM["c_filter_option_imagename_#LOCAL.filter_id#_#LOCAL.foid#"])>
