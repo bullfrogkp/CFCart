@@ -195,6 +195,33 @@
 			</cfloop>
 			
 			<cfset EntitySave(LOCAL.category) />
+						
+			<!--- filter option images --->
+			<cfif FORM.image_count_hidden GT 0>
+				<cfset LOCAL.imageDir = "#APPLICATION.absolutePathRoot#images\uploads\category\#LOCAL.category.getCategoryId()#\filters\" />
+				<cfif NOT DirectoryExists(LOCAL.imageDir)>
+					<cfdirectory action = "create" directory = "#LOCAL.imageDir#" />
+				</cfif>	
+				<cfloop from="1" to="#FORM.image_count_hidden#" index="LOCAL.i">
+					<cffile action = "upload"  
+							fileField = "new_filter_option_image_#LOCAL.i - 1#"
+							destination = "#LOCAL.imageDir#"
+							nameConflict = "MakeUnique"> 
+					
+					<cfset LOCAL.categoryImage = EntityNew("category_image") />
+					<cfset LOCAL.categoryImage.setName(cffile.serverFile) />
+					<cfset EntitySave(LOCAL.categoryImage) />
+					<cfset LOCAL.category.addImage(LOCAL.categoryImage) />
+					
+					<cfset LOCAL.sizeArray = [{name = "thumbnail", width = "30", height = "30", position="center", crop = true}
+											] />			
+					<cfset _createImages(	imagePath = LOCAL.imageDir,
+											imageNameWithExtension = cffile.serverFile,
+											sizeArray = LOCAL.sizeArray) />
+				</cfloop>
+			</cfif>
+			
+			<cfset EntitySave(LOCAL.category) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Category has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?id=#LOCAL.category.getCategoryId()#&active_tab_id=#LOCAL.tab_id#" />

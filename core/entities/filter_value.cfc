@@ -12,7 +12,7 @@
 		<cfif IsNull(getImageName()) OR Trim(getImageName()) EQ "">
 			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/site/no_image_available.png" />
 		<cfelse>
-			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/category/#LOCAL.categoryId#/filters/#getImageName()#" />
+			<cfset imageLink = "#APPLICATION.absoluteUrlWeb#images/uploads/category/#LOCAL.categoryId#/filters/thumbnail_#getImageName()#" />
 		</cfif>
 		
 		<cfreturn imageLink />
