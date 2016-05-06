@@ -503,7 +503,7 @@
 </section>
 
 <!-- Main content -->
-<form id="category-detail" method="post">
+<form id="category-detail" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
 <input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <input type="hidden" name="deleted_image_id" id="deleted_image_id" value="" />
