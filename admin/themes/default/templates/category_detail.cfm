@@ -457,6 +457,39 @@
 				callback(reader.result);
 			}
 		}
+		
+		function createHiddenField(n, v) {
+			$('<input>').attr({
+				type: 'hidden',
+				name: n,
+				value: v,
+			}).appendTo('form');
+		}
+		
+		function convertFilterArray() {
+			var options = [];
+			for(var i=0;i<filterArray.length;i++)
+			{
+				if(filterArray[i].deleted == false)
+				{
+					createHiddenField('c_filter_id', filterArray[i].fid);
+					createHiddenField('c_filter_name_' + filterArray[i].fid, filterArray[i].name);
+					
+					options = filterArray[i].options;
+					for(var j=0;j<options.length;j++)
+					{
+						createHiddenField('c_filter_option_id_' + filterArray[i].fid, options[j].foid);
+						createHiddenField('c_filter_option_value_' + filterArray[i].fid + '_' + options[j].foid, options[j].value);
+						createHiddenField('c_filter_option_imagename_' + filterArray[i].fid + '_' + options[j].foid, options[j].imageName);
+					}
+				}
+			}
+		}
+		
+		$('##save-item').click(function(){
+			convertFilterArray();
+			$('form[id=category-detail]').submit();
+		});
 	});
 </script>
 <section class="content-header">
