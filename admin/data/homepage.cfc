@@ -13,153 +13,15 @@
 		<cfset LOCAL.pageData.modules = _convertModules(EntityLoad("page_module",{page = LOCAL.pageData.currentPage})) />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
-			
-			<cfif NOT IsNull(LOCAL.advertisementSection.getSectionData())>
-				<cfloop array="#LOCAL.advertisementSection.getSectionData()#" index="LOCAL.ad">
-					<cfif IsNumeric(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"])>
-						<cfset LOCAL.ad.setRank(FORM["advertisement_rank_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
-						<cfset EntitySave(LOCAL.ad) />
-					</cfif>
-					<cfif Trim(FORM["advertisement_link_#LOCAL.ad.getPageSectionAdvertisementId()#"]) NEQ "">
-						<cfset LOCAL.ad.setLink(FORM["advertisement_link_#LOCAL.ad.getPageSectionAdvertisementId()#"]) />
-						<cfset EntitySave(LOCAL.ad) />
-					</cfif>
-				</cfloop>
-			</cfif>
-			<cfif FORM["uploader_count"] NEQ 0>
-				<cfloop collection="#FORM#" item="LOCAL.key">
-					<cfif Find("UPLOADER_",LOCAL.key) AND Find("_STATUS",LOCAL.key)>
-						<cfset LOCAL.currentIndex = Replace(Replace(LOCAL.key,"UPLOADER_",""),"_STATUS","") />
-						<cfif StructFind(FORM,LOCAL.key) EQ "done">
-							<cfset LOCAL.imgName = StructFind(FORM,"UPLOADER_#LOCAL.currentIndex#_NAME") />
-							<cfset LOCAL.newAdvertisement = EntityNew("page_section_advertisement") />
-							<cfset LOCAL.newAdvertisement.setName(LOCAL.imgName) />
-							<cfset LOCAL.newAdvertisement.setSection(LOCAL.advertisementSection) />
-							<cfset EntitySave(LOCAL.newAdvertisement) />
-							<cfset LOCAL.advertisementSection.addAdvertisement(LOCAL.newAdvertisement) />
-							
-							<cfset LOCAL.sizeArray = [{name = "small", width = "200", height = "200", position="center", crop = true}] />	
-							<cfset LOCAL.imagePath = ExpandPath("#APPLICATION.absoluteUrlWeb#images/uploads/advertise/") />
-							<cfset _createImages(	imagePath = LOCAL.imagePath,
-													imageNameWithExtension = LOCAL.imgName,
-													sizeArray = LOCAL.sizeArray) />
-						</cfif>
-					</cfif>
-				</cfloop>
-			</cfif>
-			
-			<cfif NOT IsNull(LOCAL.topSellingSection.getSectionData())>
-				<cfloop array="#LOCAL.topSellingSection.getSectionData()#" index="LOCAL.sectionProduct">
-					<cfif IsNumeric(FORM["top_selling_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
-						<cfset LOCAL.sectionProduct.setRank(FORM["top_selling_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
-						<cfset EntitySave(LOCAL.sectionProduct) />
-					</cfif>
-				</cfloop>
-			</cfif>
-			
-			<cfif NOT IsNull(LOCAL.groupBuyingSection.getSectionData())>
-				<cfloop array="#LOCAL.groupBuyingSection.getSectionData()#" index="LOCAL.sectionProduct">
-					<cfif IsNumeric(FORM["group_buying_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"])>
-						<cfset LOCAL.sectionProduct.setRank(FORM["group_buying_rank_#LOCAL.sectionProduct.getPageSectionProductId()#"]) />
-						<cfset EntitySave(LOCAL.sectionProduct) />
-					</cfif>
-				</cfloop>
-			</cfif>
-			
 			<cfset LOCAL.currentPage.setTitle(Trim(FORM.title)) />			
 			<cfset LOCAL.currentPage.setKeywords(Trim(FORM.keywords)) />			
 			<cfset LOCAL.currentPage.setDescription(Trim(FORM.description)) />	
-			<cfset LOCAL.slideSection.setContent(Trim(FORM.slide_content)) />
 			
 			<cfset EntitySave(LOCAL.slideSection) />
 			<cfset EntitySave(LOCAL.currentPage) />
 			
 			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Content has been saved successfully.") />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=#FORM.tab_id#" />
-			
-		<cfelseif StructKeyExists(FORM,"add_top_selling_product")>
-		
-			<cfif StructKeyExists(FORM,"top_selling_product_group_id")>			
-				<cfloop list="#FORM.top_selling_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
-						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
-						<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.product) />
-						<cfset EntitySave(LOCAL.newSectionProduct) />
-					</cfloop>
-				</cfloop>
-			</cfif>
-			
-			<cfif IsNumeric(FORM.new_top_selling_product_id)>
-				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_top_selling_product_id) />
-				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
-				<cfset LOCAL.newSectionProduct.setSection(LOCAL.topSellingSection) />
-				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
-				<cfset EntitySave(LOCAL.newSectionProduct) />
-			</cfif>
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_3" />
-			
-		<cfelseif StructKeyExists(FORM,"add_group_buying_product")>
-		
-			<cfif StructKeyExists(FORM,"group_buying_product_group_id")>			
-				<cfloop list="#FORM.group_buying_product_group_id#" index="LOCAL.groupId">
-					<cfset LOCAL.productGroup = EntityLoadByPK("product_group",LOCAL.groupId) />
-					<cfloop array="#LOCAL.productGroup.getProducts()#" index="LOCAL.product">
-						<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
-						<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-						<cfset LOCAL.newSectionProduct.setProduct(LOCAL.product) />
-						<cfset EntitySave(LOCAL.newSectionProduct) />
-					</cfloop>
-				</cfloop>
-			</cfif>
-			
-			<cfif IsNumeric(FORM.new_group_buying_product_id)>
-				<cfset LOCAL.newProduct = EntityLoadByPK("product",FORM.new_group_buying_product_id) />
-				<cfset LOCAL.newSectionProduct = EntityNew("page_section_product") />
-				<cfset LOCAL.newSectionProduct.setSection(LOCAL.groupBuyingSection) />
-				<cfset LOCAL.newSectionProduct.setProduct(LOCAL.newProduct) />
-				<cfset EntitySave(LOCAL.newSectionProduct) />
-			</cfif>
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been added.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_4" />
-			
-		<cfelseif StructKeyExists(FORM,"delete_top_selling_product")>
-			
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.deleted_top_selling_product_id) />
-			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.topSellingSection, sectionProduct = LOCAL.product}, true) />
-			<cfset LOCAL.topSellingSection.removeProduct(LOCAL.sectionProduct) />
-			
-			<cfset EntitySave(LOCAL.topSellingSection) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_3" />
-			
-		<cfelseif StructKeyExists(FORM,"delete_group_buying_product")>
-		
-			<cfset LOCAL.product = EntityLoadByPK("product",FORM.deleted_group_buying_product_id) />
-			<cfset LOCAL.sectionProduct = EntityLoad("page_section_product", {section = LOCAL.groupBuyingSection, sectionProduct = LOCAL.product}, true) />
-			<cfset LOCAL.groupBuyingSection.removeProduct(LOCAL.sectionProduct) />
-			
-			<cfset EntitySave(LOCAL.groupBuyingSection) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Product has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?active_tab_id=tab_4" />
-			
-		<cfelseif StructKeyExists(FORM,"delete_ad")>
-			
-			<cfset LOCAL.ad = EntityLoadByPK("page_section_advertisement",FORM.deleted_ad_id) />
-			<cfset LOCAL.advertisementSection.removeAdvertisement(LOCAL.ad) />
-			<cfset EntitySave(LOCAL.advertisementSection) />
-			
-			<cfset ArrayAppend(SESSION.temp.message.messageArray,"Advertise image has been deleted.") />
-			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#admin/#getPageName()#.cfm?&active_tab_id=tab_2" />
-			
-		</cfif>
-		
 		<cfreturn LOCAL />	
 	</cffunction>	
 	
@@ -172,12 +34,8 @@
 		
 		<cfset LOCAL.currentPageName = "index" />
 		<cfset LOCAL.pageData.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)>
-		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.pageData.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.pageData.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.pageData.currentPage},true)> 
-		<cfset LOCAL.pageData.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.pageData.currentPage},true)> 
-		
 		<cfset LOCAL.pageData.productGroups = EntityLoad("product_group") />
+		<cfset LOCAL.pageData.modules = _convertModules(EntityLoad("page_module",{page = LOCAL.pageData.currentPage})) />
 		
 		<cfif IsDefined("SESSION.temp.formData")>
 			<cfset LOCAL.pageData.formData = SESSION.temp.formData />
