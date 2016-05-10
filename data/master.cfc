@@ -85,4 +85,17 @@
 		
 		<cfreturn LOCAL /> 
 	</cffunction>
+	
+	<cffunction name="_convertModules" access="private" output="false" returnType="struct">
+		<cfargument name="modules" type="array" required="true"> 
+		
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+	
+		<cfloop array="#ARGUMENTS.modules#" index="LOCAL.module">
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.module) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retStruct /> 
+	</cffunction>
 </cfcomponent>
