@@ -10,10 +10,7 @@
 		<cfset LOCAL.currentPageName = "index" />
 		
 		<cfset LOCAL.currentPage = EntityLoad("page", {name = LOCAL.currentPageName},true)> 
-		<cfset LOCAL.slideSection = EntityLoad("page_section", {name="slide",page=LOCAL.currentPage},true)> 
-		<cfset LOCAL.advertisementSection = EntityLoad("page_section", {name="advertisement",page=LOCAL.currentPage},true)> 
-		<cfset LOCAL.topSellingSection = EntityLoad("page_section", {name="top selling",page=LOCAL.currentPage},true)> 
-		<cfset LOCAL.groupBuyingSection = EntityLoad("page_section", {name="group buying",page=LOCAL.currentPage},true)> 
+		<cfset LOCAL.pageData.modules = _convertModules(EntityLoad("page_module",{page = LOCAL.pageData.currentPage})) />
 		
 		<cfif StructKeyExists(FORM,"save_item")>
 			
