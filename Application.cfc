@@ -41,7 +41,6 @@
 			--->
 			
 				<cfset var pageObj = new "#APPLICATION.componentPathRoot#core.entities.page"(pageName = ARGUMENTS.pageName) />
-				<cfset var modules = EntityLoad("page_module",{page = pageObj, isEnabled = true, isDeleted = false}) /> />
 				<cfset var returnStruct = {} />
 			
 				<!--- form.file is image upload plugin --->
@@ -86,7 +85,7 @@
 				
 				<cfset StructAppend(REQUEST.pageData, pageObj.loadPageData()) />
 				
-				<cfloop array="#modules#" index="module">
+				<cfloop array="#pageObj.getActiveModules()#" index="module">
 					<cfset StructAppend(REQUEST.pageData, module.loadPageData()) />
 				</cfloop>
 			
