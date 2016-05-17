@@ -12,6 +12,14 @@
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
+	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="pageName" required="true"/>
+		
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.pageName) />
+		
+		<cfreturn pageObj />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
 		<cfset _setCurrency() />
