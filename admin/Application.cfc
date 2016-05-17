@@ -162,14 +162,6 @@
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="pageName" required="true"/>
-		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName) />
-		
-		<cfreturn pageObj />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
 		<cfargument type="String" name="targetPage" required="true"/>
 
@@ -205,33 +197,11 @@
 			--->
 				<cfset var args = {} />
 				<cfset args.pageName = currentPageName />
-				
-				<cfset var globalPageObj = _initGlobalPageObject(argumentCollection = args) />
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />
 				<cfset var returnStruct = {} />
 			
 				<!--- form.file is image upload plugin --->
 				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM) AND NOT StructKeyExists(FORM,"file")>
-					<!--- global data handler --->
-					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
-					<cfif returnStruct.redirectUrl NEQ "">
-						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-					</cfif>
-					
-					<cfset returnStruct = globalPageObj.validateGlobalFormData() />
-					<cfif returnStruct.redirectUrl NEQ "">
-						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-					<cfelse>
-						<cfif IsDefined("SESSION.temp.formData")>
-							<cfset StructDelete(SESSION.temp,"formData") />
-						</cfif>
-					</cfif>
-					
-					<cfset returnStruct = globalPageObj.processGlobalFormDataAfterValidation() />
-					<cfif returnStruct.redirectUrl NEQ "">
-						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-					</cfif>
-				
 					<!--- page data handler --->
 					<cfset returnStruct = pageObj.processFormDataBeforeValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
@@ -255,39 +225,21 @@
 					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.processGlobalURLDataBeforeValidation() />
-				<cfif returnStruct.redirectUrl NEQ "">
-					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-				</cfif>		
-						
 				<cfset returnStruct = pageObj.processURLDataBeforeValidation() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.validateGlobalAccessData() />
-				<cfif returnStruct.redirectUrl NEQ "">
-					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-				</cfif>		
-						
 				<cfset returnStruct = pageObj.validateAccessData() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.processGlobalURLDataAfterValidation() />
-				<cfif returnStruct.redirectUrl NEQ "">
-					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-				</cfif>		
-						
 				<cfset returnStruct = pageObj.processURLDataAfterValidation() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
-				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
-			
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
 				</cfif>

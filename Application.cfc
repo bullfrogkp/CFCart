@@ -12,14 +12,6 @@
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="pageName" required="true"/>
-		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.pageName) />
-		
-		<cfreturn pageObj />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
 		<cfset _setCurrency() />
@@ -49,6 +41,7 @@
 			--->
 			
 				<cfset var pageObj = new "#APPLICATION.componentPathRoot#core.entities.page"(pageName = ARGUMENTS.pageName) />
+				<cfset var modules = EntityLoad("page_module",{page = pageObj, isEnabled = true, isDeleted = false}) /> />
 				<cfset var returnStruct = {} />
 			
 				<!--- form.file is image upload plugin --->
@@ -91,7 +84,11 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
+				<cfset StructAppend(REQUEST.pageData, pageObj.loadPageData()) />
+				
+				<cfloop array="#modules#" index="module">
+					<cfset StructAppend(REQUEST.pageData, module.loadPageData()) />
+				</cfloop>
 			
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
