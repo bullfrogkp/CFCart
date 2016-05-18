@@ -133,7 +133,7 @@
 				<cfset StructAppend(REQUEST.pageData, pageObj.loadPageData()) />
 			
 				<cfloop array="#pageObj.getActiveModules()#" index="module">
-					<cfset StructAppend(REQUEST.pageData, module.loadPageData()) />
+					<cfset StructAppend(REQUEST.pageData, module.gerFrontEndData()) />
 				</cfloop>
 			
 				<cfif StructKeyExists(SESSION,"temp")>	

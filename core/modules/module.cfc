@@ -33,8 +33,6 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfset SESSION.temp.formdata = Duplicate(FORM) />
-		
 		<cfreturn LOCAL />	
 	</cffunction>	
 	

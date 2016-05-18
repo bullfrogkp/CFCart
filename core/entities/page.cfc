@@ -4,12 +4,15 @@
     <cfproperty name="title" column="title" ormtype="string"> 
     <cfproperty name="keywords" column="keywords" ormtype="text"> 
     <cfproperty name="description" column="description" ormtype="text"> 
-	<cfproperty name="modules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="page_id" singularname="module" cascade="delete-orphan">
+	<cfproperty name="frontEndModules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="front_end_page_id" singularname="frontEndModule" cascade="delete-orphan">
+	<cfproperty name="backEndModules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="back_end_page_id" singularname="backEndModule" cascade="delete-orphan">
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getActiveModules" access="public" output="false" returnType="any">
-		
-		<cfreturn EntityLoad("page_module",{page = this, isDeleted = false, isEnabled = true}) />
-		
+	<cffunction name="getActiveFrontEndModules" access="public" output="false" returnType="any">
+		<cfreturn EntityLoad("page_module",{frontEndPage = this, isDeleted = false, isEnabled = true}) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getActiveBackEndModules" access="public" output="false" returnType="any">
+		<cfreturn EntityLoad("page_module",{backEndPage = this, isDeleted = false, isEnabled = true}) />
 	</cffunction>
 </cfcomponent>
