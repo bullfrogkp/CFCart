@@ -288,9 +288,7 @@
 				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
 				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
 			
-				<cfloop array="#pageObj.getActiveBackEndModules()#" index="module">
-					<cfset StructAppend(REQUEST.pageData, module.gerBackEndData()) />
-				</cfloop>
+				<cfset StructAppend(REQUEST.pageData, pageObj.getActiveBackEndModuleData()) />
 			
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
