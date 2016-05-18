@@ -288,7 +288,7 @@
 				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
 				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
 			
-				<cfloop array="#pageObj.getActiveModules()#" index="module">
+				<cfloop array="#pageObj.getActiveBackEndModules()#" index="module">
 					<cfset StructAppend(REQUEST.pageData, module.gerBackEndData()) />
 				</cfloop>
 			
