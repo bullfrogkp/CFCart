@@ -170,4 +170,33 @@
 		</cfloop>
 		
 	</cffunction>
+	
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getFrontEndModuleData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) /><cfdump var="#LOCAL.pageEntity#" abort>
+		<cfloop array="#LOCAL.pageEntity.getFrontEndModules()#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontEndData()) />
+		</cfloop>
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getBackEndModuleData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = "admin_" & getPageName()},true) />
+		<cfloop array="#LOCAL.pageEntity.getBackEndModules()#" index="LOCAL.module">>
+			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getBackEndData()) />
+		</cfloop>
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="moduleName" required="true"/>
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#_#getPageName()#"(pageName = ARGUMENTS.pageName) />
+		<cfreturn moduleObj />
+	</cffunction>
 </cfcomponent>
