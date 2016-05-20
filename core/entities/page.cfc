@@ -8,16 +8,21 @@
 	<cfproperty name="backEndModules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="back_end_page_id" singularname="backEndModule" cascade="delete-orphan">
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getActiveFrontEndModuleData" access="public" output="false" returnType="any">
+	<cffunction name="getFrontEndModuleData" access="public" output="false" returnType="any">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.modules = EntityLoad("page_module",{frontEndPage = this, isDeleted = false, isEnabled = true}) />
 		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
-			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.module) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.module.getFrontEndData()) />
 		</cfloop>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getActiveBackEndModuleData" access="public" output="false" returnType="any">
-		<cfreturn EntityLoad("page_module",{backEndPage = this, isDeleted = false, isEnabled = true}) />
+	<cffunction name="getBackEndModuleData" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.modules = EntityLoad("page_module",{backEndPage = this, isDeleted = false, isEnabled = true}) />
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.module.getBackEndData()) />
+		</cfloop>
 	</cffunction>
 </cfcomponent>
