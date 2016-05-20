@@ -1,13 +1,15 @@
 ﻿<cfcomponent extends="module">	
-    <cffunction name="getFrondEndData" access="public" output="false" returnType="struct">
+    <cffunction name="getFrontEndData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.pageData = {} />
-		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page="index"},true)>
-		<cfreturn LOCAL />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.retStruct.slideSection = "<p>aaa</p>" />
+		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	
 	<cffunction name="getBackEndView" access="public" output="false" returnType="string">
 		<cfset var LOCAL = {} />
-		<cfreturn LOCAL />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.retStruct.slideSection = "<p>aaa</p>" />
+		<cfreturn LOCAL.retStruct />
 	</cffunction>
 </cfcomponent>
