@@ -89,7 +89,7 @@
 	<cffunction name="getFrontEndModuleData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.pageEntity = EntityLoad("page",{pageName = getPageName()}) />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getFrontEndModules()#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontEndData()) />
@@ -100,7 +100,7 @@
 	<cffunction name="getBackEndModuleData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.pageEntity = EntityLoad("page",{pageName = getPageName()}) />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getBackEndModules()#" index="LOCAL.module">>
 			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getBackEndData()) />
