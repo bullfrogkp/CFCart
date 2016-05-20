@@ -140,7 +140,7 @@
 				</cfif>
 			
 				<cfset REQUEST.pageData.currentPageName = currentPageName />
-				<cfset REQUEST.pageData.templatePath = currentPageName & ".cfm" />
+				<cfset REQUEST.pageData.templatePath = currentPageName & ".cfm" /><cfdump var="#REQUEST.pageData#" abort>
 			<!---	
 				<cfcatch type="any">
 					<cfset new "#APPLICATION.componentPathRoot#core.utils.utils().handleError(cfcatch = cfcatch) />

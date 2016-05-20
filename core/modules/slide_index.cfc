@@ -2,7 +2,7 @@
     <cffunction name="getFrondEndData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
-		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page=LOCAL.pageData.currentPage},true)>
+		<cfset LOCAL.pageData.slideSection = EntityLoad("page_section", {name="slide",page="index"},true)>
 		<cfreturn LOCAL />
 	</cffunction>
 	
