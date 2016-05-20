@@ -13,6 +13,7 @@
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.modules = EntityLoad("page_module",{frontEndPage = this, isDeleted = false, isEnabled = true}) />
 		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj = new #LOCAL.module.getName()#
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.module.getFrontEndData()) />
 		</cfloop>
 	</cffunction>
@@ -24,5 +25,14 @@
 		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.module.getBackEndData()) />
 		</cfloop>
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="pageName" required="true"/>
+		<cfargument type="string" name="moduleName" required="true"/>
+		
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.##"(pageName = ARGUMENTS.pageName) />
+		
+		<cfreturn moduleObj />
 	</cffunction>
 </cfcomponent>
