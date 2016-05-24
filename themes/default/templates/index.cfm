@@ -8,7 +8,7 @@
 	});
 </script>
 <div id="slide-div" style="width:722px;float:right;margin-top:4px;">
-	#REQUEST.pageData.modules.slide.slideData#
+	#REQUEST.pageData.modules.slide.slideSection#
 </div>
 <div id="top-sidebar">
 	<a href="http://pinmydeals.bullfrogdesign.ca/products.cfm/Weekly%20Deals/71/1/1">
@@ -60,26 +60,7 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<cfif NOT IsNull(REQUEST.pageData.topSellingSection.getSectionData())>
-							<cfloop array="#REQUEST.pageData.topSellingSection.getSectionData()#" index="tp">	
-								<cfset product = tp.getProduct() />
-								<li class="single-products">
-									<a href="#product.getDetailPageURL()#">
-										<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
-									</a>
-									<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-									<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
-									<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
-											<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-							</cfloop>
-						</cfif>
+						#REQUEST.pageData.modules.topselling.products#
 					</ul>
 				</div>
 			</div>
@@ -88,28 +69,7 @@
 				<div class="clear"></div>
 				<div class="cat-thumbnail-section">
 					<ul class="rig columns-4">
-						<cfif NOT IsNull(REQUEST.pageData.groupBuyingSection.getSectionData())>
-							<cfloop array="#REQUEST.pageData.groupBuyingSection.getSectionData()#" index="gb">	
-								<cfset product = gb.getProduct() />
-								<li class="single-products">
-									<a href="#product.getDetailPageURL()#">
-										<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
-									</a>
-									<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-									<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
-									<cfif product.isFreeShipping()>
-										<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
-									</cfif>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<div class="thumbnail-rating"></div>
-											<div class="thumbnail-review"><a href="#product.getDetailPageURL()#">(#ArrayLen(product.getReviews())# Reviews)</a></div>
-											<div class="thumbnail-cart"><a class="btn add-to-cart" style="padding-right:13px;">Add to cart</a></div>
-										</div>
-									</div>
-								</li>
-							</cfloop>
-						</cfif>
+						#REQUEST.pageData.modules.groupbuying.products#
 					</ul>
 				</div>
 			</div>
@@ -195,13 +155,7 @@
 			</div>
 		</div>
 		<div id="sidebar-wrapper">
-			<cfif NOT IsNull(REQUEST.pageData.advertisementSection.getAdvertisements())>
-				<cfloop array="#REQUEST.pageData.advertisementSection.getAdvertisements()#" index="ad">	
-					<a href="#ad.getLink()#">
-						<img src="#APPLICATION.absoluteUrlWeb#images/uploads/advertise/#ad.getName()#" style="width:100%;border:1px solid ##CCC">
-					</a>
-				</cfloop>
-			</cfif>
+			#REQUEST.pageData.modules.advertisement.ads#
 			<!---
 			<div id="information" style="margin-top:14px;border-bottom:1px dotted ##3A3939;border-top:1px dotted ##3A3939;padding-bottom:8px;">
 				<h2>INFORMATION</h2>
