@@ -7,7 +7,9 @@
 	<cfset this.dataSource = Config().dataSource> 
 	<cfset this.sessionManagement = Config().sessionManagement>
 	<cfset this.sessionTimeout = Config().sessionTimeout>
- 
+	
+	<cfset this.mappings[ "/modules" ] = Config().env.absoluteUrlWeb & "core/modules/" />
+
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
 		<cfargument type="boolean" name="reload" required="false" default="false"/>
 		

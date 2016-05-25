@@ -2,32 +2,7 @@
 <div class="parallax-slide fullwidth-block small-slide" style="margin-bottom: 30px; margin-top: -25px;">
 	<div class="swiper-container" data-autoplay="5000" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide no-shadow active" data-val="0" style="background-image: url(#SESSION.absoluteUrlTheme#images/fullwidth-1.jpg);"> 
-				<div class="parallax-vertical-align">
-					<div class="parallax-article left-align">
-						<h2 class="subtitle">Check out this weekend</h2>
-						<h1 class="title">Big sale</h1>
-						<div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</div>
-						<div class="info">
-							<a href="##" class="button style-8">shop now</a>
-							<a href="##" class="button style-8">features</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="swiper-slide no-shadow" data-val="1" style="background-image: url(#SESSION.absoluteUrlTheme#images/fullwidth-2.jpg);"> 
-				<div class="parallax-vertical-align">
-					<div class="parallax-article left-align">
-						<h2 class="subtitle">Check out this weekend</h2>
-						<h1 class="title">Big sale</h1>
-						<div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</div>
-						<div class="info">
-							<a href="##" class="button style-8">shop now</a>
-							<a href="##" class="button style-8">features</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			#REQUEST.pageData.modules.slide.slideSection#
 		</div>
 		<div class="pagination"></div>
 	</div>
