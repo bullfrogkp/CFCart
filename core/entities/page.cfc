@@ -4,6 +4,5 @@
     <cfproperty name="title" column="title" ormtype="string"> 
     <cfproperty name="keywords" column="keywords" ormtype="text"> 
     <cfproperty name="description" column="description" ormtype="text"> 
-	<cfproperty name="frontEndModules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="frontend_page_id" singularname="frontEndModule" cascade="delete-orphan">
-	<cfproperty name="backEndModules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="backend_page_id" singularname="backEndModule" cascade="delete-orphan">
+	<cfproperty name="modules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="page_id" singularname="module" cascade="delete-orphan">
 </cfcomponent>

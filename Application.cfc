@@ -24,7 +24,7 @@
 		<cfset _setUser() />
 		<cfset _setCurrency() />
 		<cfset _setTrackingRecord() />
-		<cfset _setTheme("default") />
+		<cfset _setTheme("mobile") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
@@ -133,7 +133,7 @@
 				<cfset StructAppend(REQUEST.pageData, pageObj.loadPageData()) />
 			
 				<cfset REQUEST.pageData.modules = {} />
-				<cfset StructAppend(REQUEST.pageData.modules, pageObj.getFrontEndModuleData()) />
+				<cfset StructAppend(REQUEST.pageData.modules, pageObj.getModuleData()) />
 			
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
