@@ -15,7 +15,7 @@
         <link href="#SESSION.absoluteUrlTheme#css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
     <link rel="shortcut icon" href="#SESSION.absoluteUrlTheme#images/favicon-6.ico" />
-  	<title>Mango - Fullwidth</title>
+  	<title>PinMyDeals</title>
 </head>
 <body class="style-10">
 
@@ -41,7 +41,7 @@
                             <a href="##" id="logo"><img alt="" src="#SESSION.absoluteUrlTheme#images/logo-9.png"></a>
                         </div>
                         <div class="product-header-message">
-                            FREE SHIPPING ON ALL UK ORDERS this week
+                            FREE SHIPPING ON ALL US ORDERS this week!
                         </div>
                         <div class="product-header-content">
                             <div class="line-entry">
@@ -60,11 +60,16 @@
                                     </div>
                                 </div>
                                 <div class="header-top-entry">
-                                    <div class="title">$ USD <i class="fa fa-caret-down"></i></div>
-                                    <div class="list">
-                                        <a class="list-entry" href="##">$ CAD</a>
-                                        <a class="list-entry" href="##">€ EUR</a>
-                                    </div>
+									<form method="post">
+										<div class="title">#REQUEST.pageData.currency.getSymbol()# #REQUEST.pageData.currency.getCode()# <i class="fa fa-caret-down"></i></div>
+										<div class="list">
+											<cfloop array="#REQUEST.pageData.currencies#" index="currency">
+												<cfif currency.getCurrencyId() NEQ SESSION.currency.id>
+													<a class="list-entry" href="##">#REQUEST.pageData.currency.getSymbol()# #REQUEST.pageData.currency.getCode()#</a>
+												</cfif>
+											</cfloop>
+										</div>
+									</form>
                                 </div>
                             </div>
                             <div class="middle-line"></div>
@@ -544,15 +549,9 @@
                 <div class="title"><span>All categories</span><i class="fa fa-angle-down"></i></div>
                 <div class="list">
                     <div class="overflow">
-                        <div class="category-entry">Category 1</div>
-                        <div class="category-entry">Category 2</div>
-                        <div class="category-entry">Category 2</div>
-                        <div class="category-entry">Category 4</div>
-                        <div class="category-entry">Category 5</div>
-                        <div class="category-entry">Lorem</div>
-                        <div class="category-entry">Ipsum</div>
-                        <div class="category-entry">Dollor</div>
-                        <div class="category-entry">Sit Amet</div>
+						<cfloop array="#REQUEST.pageData.categories#" index="cat">
+							<div class="category-entry">#cat.getDisplayName()#</div>
+						</cfloop>
                     </div>
                 </div>
             </div>
