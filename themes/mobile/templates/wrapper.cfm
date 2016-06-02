@@ -244,7 +244,7 @@
                                         </div>
                                     </li>
                                     <li class="full-width-columns">
-                                        <a href="##">Pages</a><i class="fa fa-chevron-down"></i>
+                                        <a href="##">Products</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="product-column-entry">
                                                 <div class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-menu-2.jpg"></div>
@@ -320,6 +320,7 @@
                                             </div>
                                         </div>
                                     </li>
+									<li><a href="##">Order Tracking</a></li>
                                     <li class="column-1">
                                         <a href="blog.html">Blog</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
@@ -348,7 +349,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="simple-list">
+									<li class="simple-list">
                                         <a>More</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <ul class="simple-menu-list-column">
