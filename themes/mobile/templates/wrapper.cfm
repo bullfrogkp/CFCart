@@ -53,10 +53,10 @@
                                     <div class="title"><i class="fa fa-user"></i> <span>My Account</span></div>
                                 </div>
                                 <div class="header-top-entry">
-                                    <div class="title"><img alt="" src="#SESSION.absoluteUrlTheme#images/flag-lang-1.png">English<i class="fa fa-caret-down"></i></div>
+                                    <div class="title"><img alt="" src="#SESSION.absoluteUrlTheme#images/ca.png">English<i class="fa fa-caret-down"></i></div>
                                     <div class="list">
-                                        <a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/flag-lang-2.png">French</a>
-                                        <a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/flag-lang-3.png">Spanish</a>
+                                        <a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/fr.png">French</a>
+                                        <a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/cn.png">Chinese</a>
                                     </div>
                                 </div>
                                 <div class="header-top-entry">
