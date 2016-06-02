@@ -65,7 +65,7 @@
 										<div class="list">
 											<cfloop array="#REQUEST.pageData.currencies#" index="currency">
 												<cfif currency.getCurrencyId() NEQ SESSION.currency.id>
-													<a class="list-entry" href="##">#REQUEST.pageData.currency.getSymbolText()# #REQUEST.pageData.currency.getCode()#</a>
+													<a class="list-entry" href="##">#currency.getSymbolText()# #currency.getCode()#</a>
 												</cfif>
 											</cfloop>
 										</div>
