@@ -91,7 +91,7 @@
                             <nav>
                                 <ul>
                                     <li class="full-width">
-                                        <a href="##" class="active">Home</a><i class="fa fa-chevron-down"></i>
+                                        <a href="##" class="active">Deals</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="full-width-menu-items-right">
                                                 <div class="menu-slider-arrows">
@@ -197,9 +197,9 @@
                                             <div class="full-width-menu-items-left">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">Homepages <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
+                                                        <div class="submenu-list-title"><a href="index-wide.html">On Sale <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="index-wide.html"><i class="fa fa-angle-right"></i>Mango - Wide Header</a></li>
+                                                            <li><a href="index-wide.html"><i class="fa fa-angle-right"></i>Mango - <span class="price"><span class="prev">$199,99</span><span class="current">$119,99</span></span></a></li>
                                                             <li><a href="index-electronic.html"><i class="fa fa-angle-right"></i>Mango - Electronic</a></li>
                                                             <li><a href="index-everything.html"><i class="fa fa-angle-right"></i>Mango - Everything</a></li>
                                                             <li><a href="index-fullwidthheader.html"><i class="fa fa-angle-right"></i>Mango - Fullwidth Header</a></li>
@@ -214,7 +214,7 @@
                                                         </ul>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">Homepages <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
+                                                        <div class="submenu-list-title"><a href="index-wide.html">Clearance <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
                                                             <li><a href="index-parallax.html"><i class="fa fa-angle-right"></i>Mango - Parallax</a></li>
                                                             <li><a href="index-grid.html"><i class="fa fa-angle-right"></i>Mango - Grid Light</a></li>
@@ -320,46 +320,6 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="simple-list">
-                                        <a href="shop.html">Products</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <ul class="simple-menu-list-column">
-                                                <li><a href="shop.html"><i class="fa fa-angle-right"></i>Shop</a></li>
-                                                <li><a href="product.html"><i class="fa fa-angle-right"></i>Product</a></li>
-                                                <li><a href="product-nosidebar.html"><i class="fa fa-angle-right"></i>No Sidebar</a></li>
-                                                <li><a href="product-tabnosidebar.html"><i class="fa fa-angle-right"></i>Tab No Sidebar</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="column-1">
-                                        <a href="portfolio-default.html">Portfolio</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <div class="full-width-menu-items-left">
-                                                <img class="submenu-background" src="#SESSION.absoluteUrlTheme#images/product-menu-7.jpg" alt="" />
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="submenu-list-title"><a href="portfolio-default.html">Our Portfolio</a><span class="toggle-list-button"></span></div>
-                                                        <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="portfolio-default.html"><i class="fa fa-angle-right"></i>Portfolio Default</a></li>
-                                                            <li><a href="portfolio-simple.html"><i class="fa fa-angle-right"></i>Portfolio Simple</a></li>
-                                                            <li><a href="portfolio-custom.html"><i class="fa fa-angle-right"></i>Portfolio Custom</a></li>
-                                                            <li><a href="portfolio-customfullwidth.html"><i class="fa fa-angle-right"></i>Fullwidth Custom</a></li>
-                                                            <li><a href="portfolio-simplefullwidth.html"><i class="fa fa-angle-right"></i>Fullwidth Simple</a></li>
-                                                            <li><a href="project-default.html"><i class="fa fa-angle-right"></i>Project Default</a></li>
-                                                            <li><a href="project-fullwidth.html"><i class="fa fa-angle-right"></i>Project Fullwidth</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="submenu-links-line">
-                                                <div class="submenu-links-line-container">
-                                                    <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="shop.html">Blazers</a>, <a href="shop.html">Jackets</a>, <a href="shop.html">Shoes</a>, <a href="shop.html">Bags</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li class="column-1">
                                         <a href="blog.html">Blog</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
@@ -405,7 +365,6 @@
                                         </div>
                                     </li>
                                 </ul>
-
                                 <ul>
                                     <li><a href="##">Buy this theme</a></li>
                                     <li class="fixed-header-visible">
