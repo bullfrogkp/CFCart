@@ -366,7 +366,7 @@
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li><a href="##">Buy this theme</a></li>
+                                    <li><a href="##" style="color:##fff;">Fusion Cloud</a></li>
                                     <li class="fixed-header-visible">
                                         <a class="fixed-header-square-button open-cart-popup"><i class="fa fa-shopping-cart"></i></a>
                                         <a class="fixed-header-square-button open-search-popup"><i class="fa fa-search"></i></a>
