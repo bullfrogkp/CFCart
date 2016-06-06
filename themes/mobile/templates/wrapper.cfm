@@ -56,7 +56,7 @@
                                     <div class="title"><img alt="" src="#SESSION.absoluteUrlTheme#images/ca.png">English<i class="fa fa-caret-down"></i></div>
                                     <div class="list">
                                         <a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/fr.png">French</a>
-                                        <a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/cn.png">Chinese</a>
+										<a class="list-entry" href="##"><img alt="" src="#SESSION.absoluteUrlTheme#images/cn.png">Chinese</a>
                                     </div>
                                 </div>
                                 <div class="header-top-entry">
@@ -76,7 +76,7 @@
                             <div class="line-entry">
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-copy"></i><span>Compare</span></a>
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
-                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> <b>$255,99</b></a>
+                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>$#NumberFormat(REQUEST.pageData.shoppingCartItemTotalAmount,"0.00")#</b></a>
                             </div>
                         </div>
                     </div>
