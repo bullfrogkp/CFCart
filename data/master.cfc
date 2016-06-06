@@ -99,7 +99,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="moduleName" required="true"/>
-		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#getPageName()#.#ARGUMENTS.moduleName#"(pageName = ARGUMENTS.pageName) />
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = ARGUMENTS.pageName) />
 		<cfreturn moduleObj />
 	</cffunction>
 </cfcomponent>
