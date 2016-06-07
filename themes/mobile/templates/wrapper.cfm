@@ -90,8 +90,8 @@
                         <div class="nav-overflow">
                             <nav>
                                 <ul>
-                                    <li class="full-width">
-                                        <a href="##" class="active">Deals</a><i class="fa fa-chevron-down"></i>
+									<li class="full-width">
+                                        <a href="##" class="active">New Arrivals</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="full-width-menu-items-right">
                                                 <div class="menu-slider-arrows">
@@ -194,6 +194,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="submenu-links-line">
+                                                <div class="submenu-links-line-container">
+                                                    <div class="cell-view">
+                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="##">Blazers</a>, <a href="##">Jackets</a>, <a href="##">Shoes</a>, <a href="##">Bags</a>, <a href="##">Special offers</a>, <a href="##">Sales and discounts</a></div>
+                                                    </div>
+                                                    <div class="cell-view">
+                                                        <div class="red-message"><b>-20% sale only this week. Don’t miss buy something!</b></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="full-width">
+                                        <a href="##" class="active">Deals</a><i class="fa fa-chevron-down"></i>
+                                        <div class="submenu">
                                             <div class="full-width-menu-items-left">
                                                 <div class="row">
                                                     <div class="col-lg-6">

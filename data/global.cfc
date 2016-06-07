@@ -31,7 +31,7 @@
 			<cfset LOCAL.pageData.shoppingCartItemTotalAmount += LOCAL.shoppingCartItem.getCount() * LOCAL.shoppingCartItem.getPrice() />
 		</cfloop>
 		
-		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
+		<cfset LOCAL.pageData.menuData = _getMenuData() />
 		<cfset LOCAL.pageData.categories = EntityLoad("category",{isSpecial = false, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		<cfset LOCAL.pageData.currencyNow =  EntityLoad("currency", {currencyId=SESSION.currency.id},true) />
@@ -62,6 +62,24 @@
 				
 		<cfreturn LOCAL.pageData />
 	</cffunction>
+	
+	<cffunction name="_getMenuData" access="public" output="private" returnType="struct">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.menu = {} />
+		<cfset LOCAL.menu.newArrivals = {} />
+		<cfset LOCAL.menu.deals = {} />
+		<cfset LOCAL.menu.products = {} />
+		<cfset LOCAL.menu.blog = {} />
+		<cfset LOCAL.menu.more = {} />
+		
+		<cfset LOCAL.menu.deals.onsale = ArrayNew(1) />
+		<cfset LOCAL.menu.deals.clearance = ArrayNew(1) />
+		
+		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
+		
+		<cfreturn LOCAL.menu />	
+	</cffunction>	
 	
 	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
