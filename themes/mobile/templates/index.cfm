@@ -10,27 +10,15 @@
 
 <div class="information-blocks">
 	<div class="row">
-		<div class="col-sm-4 information-entry">
-			<div class="special-item-entry">
-				<img src="#SESSION.absoluteUrlTheme#images/special-item-1.jpg" alt="" />
-				<h3 class="title">Check out this weekend <span>Jackets</span></h3>
-				<a class="button style-6" href="##">shop now</a>
+		<cfloop array="#REQUEST.pageData.modules.index_s1.categories#" index="category">
+			<div class="col-sm-4 information-entry">
+				<div class="special-item-entry">
+					<img src="#category.image#" alt="" />
+					<h3 class="title">Check out this weekend <span>#category.name#</span></h3>
+					<a class="button style-6" href="##">shop now</a>
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-4 information-entry">
-			<div class="special-item-entry">
-				<img src="#SESSION.absoluteUrlTheme#images/special-item-2.jpg" alt="" />
-				<h3 class="title">Check out this weekend <span>Jackets</span></h3>
-				<a class="button style-6" href="##">shop now</a>
-			</div>
-		</div>
-		<div class="col-sm-4 information-entry">
-			<div class="special-item-entry">
-				<img src="#SESSION.absoluteUrlTheme#images/special-item-3.jpg" alt="" />
-				<h3 class="title">Check out this weekend <span>Jackets</span></h3>
-				<a class="button style-6" href="##">shop now</a>
-			</div>
-		</div>
+		</cfloop>
 	</div>
 </div>
 
