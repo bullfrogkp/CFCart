@@ -197,7 +197,7 @@
                                             <div class="full-width-menu-items-left">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">On Sale <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
+                                                        <div class="submenu-list-title"><a href="index-wide.html">Men <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
                                                             <li><a href="index-wide.html"><i class="fa fa-angle-right"></i>Mango - <span class="price"><span class="prev">$199,99</span><span class="current">$119,99</span></span></a></li>
                                                             <li><a href="index-electronic.html"><i class="fa fa-angle-right"></i>Mango - Electronic</a></li>
@@ -214,7 +214,7 @@
                                                         </ul>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">Clearance <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
+                                                        <div class="submenu-list-title"><a href="index-wide.html">Women <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
                                                             <li><a href="index-parallax.html"><i class="fa fa-angle-right"></i>Mango - Parallax</a></li>
                                                             <li><a href="index-grid.html"><i class="fa fa-angle-right"></i>Mango - Grid Light</a></li>

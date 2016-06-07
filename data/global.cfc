@@ -31,7 +31,7 @@
 			<cfset LOCAL.pageData.shoppingCartItemTotalAmount += LOCAL.shoppingCartItem.getCount() * LOCAL.shoppingCartItem.getPrice() />
 		</cfloop>
 		
-		<cfset LOCAL.pageData.menuData = _getMenuData() />
+		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.categories = EntityLoad("category",{isSpecial = false, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		<cfset LOCAL.pageData.currencyNow =  EntityLoad("currency", {currencyId=SESSION.currency.id},true) />
@@ -62,47 +62,6 @@
 				
 		<cfreturn LOCAL.pageData />
 	</cffunction>
-	
-	<cffunction name="_getMenuData" access="private" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		
-		<cfset LOCAL.menu = {} />
-		<cfset LOCAL.menu.newArrivals = {} />
-		<cfset LOCAL.menu.deals = {} />
-		<cfset LOCAL.menu.products = {} />
-		<cfset LOCAL.menu.blog = {} />
-		<cfset LOCAL.menu.more = {} />
-		<cfset LOCAL.menu.specialCategories = ArrayNew(1) />	
-		
-		<cfset LOCAL.menu.newArrivals.label ="Men" />
-		<cfset LOCAL.menu.newArrivals.men = ArrayNew(1) />
-		<cfset LOCAL.menu.newArrivals.women = ArrayNew(1) />
-		<cfset LOCAL.menu.newArrivals.hot = ArrayNew(1) />
-		
-		<cfset LOCAL.menu.newArrivals.label ="Women" />
-		<cfset LOCAL.menu.deals.onsale = ArrayNew(1) />
-		<cfset LOCAL.menu.deals.clearance = ArrayNew(1) />
-		<cfset LOCAL.menu.deals.hot = ArrayNew(1) />
-		
-		<cfset LOCAL.menu.newArrivals.label ="Products" />
-		<cfset LOCAL.menu.products = ArrayNew(1) />
-		
-		<cfset LOCAL.menu.blog.label ="Blog" />
-		
-		<cfset LOCAL.menu.more.label ="More" />
-		<cfset LOCAL.menu.more.links = ArrayNew(1) />
-		
-		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
-				
-		<cfloop array="#LOCAL.pageData.specialCategories#" index="LOCAL.category">
-			<cfset LOCAL.newMenuItem = {} />
-			<cfset LOCAL.newMenuItem.label = LOCAL.category.getDisplayName() />
-			<cfset LOCAL.newMenuItem.link = "" />
-			<cfset ArrayAppend(LOCAL.menu.specialCategories, LOCAL.newMenuItem) />
-		</cfloop>
-		
-		<cfreturn LOCAL.menu />	
-	</cffunction>	
 	
 	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
