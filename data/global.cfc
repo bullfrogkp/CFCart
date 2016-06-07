@@ -63,7 +63,7 @@
 		<cfreturn LOCAL.pageData />
 	</cffunction>
 	
-	<cffunction name="_getMenuData" access="public" output="private" returnType="struct">
+	<cffunction name="_getMenuData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.menu = {} />
