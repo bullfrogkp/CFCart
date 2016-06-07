@@ -98,7 +98,7 @@
 			<cfset LOCAL.newMenuItem = {} />
 			<cfset LOCAL.newMenuItem.label = LOCAL.category.getDisplayName() />
 			<cfset LOCAL.newMenuItem.link = "" />
-			<cfset ArrayAppend(LOCAL.specialCategories, LOCAL.newMenuItem) />
+			<cfset ArrayAppend(LOCAL.menu.specialCategories, LOCAL.newMenuItem) />
 		</cfloop>
 		
 		<cfreturn LOCAL.menu />	
