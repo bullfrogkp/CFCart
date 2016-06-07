@@ -72,11 +72,34 @@
 		<cfset LOCAL.menu.products = {} />
 		<cfset LOCAL.menu.blog = {} />
 		<cfset LOCAL.menu.more = {} />
+		<cfset LOCAL.menu.specialCategories = ArrayNew(1) />	
 		
+		<cfset LOCAL.menu.newArrivals.label ="Men" />
+		<cfset LOCAL.menu.newArrivals.men = ArrayNew(1) />
+		<cfset LOCAL.menu.newArrivals.women = ArrayNew(1) />
+		<cfset LOCAL.menu.newArrivals.hot = ArrayNew(1) />
+		
+		<cfset LOCAL.menu.newArrivals.label ="Women" />
 		<cfset LOCAL.menu.deals.onsale = ArrayNew(1) />
 		<cfset LOCAL.menu.deals.clearance = ArrayNew(1) />
+		<cfset LOCAL.menu.deals.hot = ArrayNew(1) />
+		
+		<cfset LOCAL.menu.newArrivals.label ="Products" />
+		<cfset LOCAL.menu.products = ArrayNew(1) />
+		
+		<cfset LOCAL.menu.blog.label ="Blog" />
+		
+		<cfset LOCAL.menu.more.label ="More" />
+		<cfset LOCAL.menu.more.links = ArrayNew(1) />
 		
 		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
+				
+		<cfloop array="#LOCAL.pageData.specialCategories#" index="LOCAL.category">
+			<cfset LOCAL.newMenuItem = {} />
+			<cfset LOCAL.newMenuItem.label = LOCAL.category.getDisplayName() />
+			<cfset LOCAL.newMenuItem.link = "" />
+			<cfset ArrayAppend(LOCAL.specialCategories, LOCAL.newMenuItem) />
+		</cfloop>
 		
 		<cfreturn LOCAL.menu />	
 	</cffunction>	
