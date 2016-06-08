@@ -98,7 +98,7 @@
                                                     <a class="left"><i class="fa fa-chevron-left"></i></a>
                                                     <a class="right"><i class="fa fa-chevron-right"></i></a>
                                                 </div>
-                                                <div class="submenu-list-title"><a href="##">Reccomended Products</a><span class="toggle-list-button"></span></div>
+                                                <div class="submenu-list-title"><a href="##">Recommended Products</a><span class="toggle-list-button"></span></div>
                                                 <div class="menu-slider-out">
                                                     <div class="menu-slider-in">
                                                         <div class="menu-slider-entry">
@@ -251,7 +251,7 @@
                                                     <a class="left"><i class="fa fa-chevron-left"></i></a>
                                                     <a class="right"><i class="fa fa-chevron-right"></i></a>
                                                 </div>
-                                                <div class="submenu-list-title"><a href="##">Reccomended Products</a><span class="toggle-list-button"></span></div>
+                                                <div class="submenu-list-title"><a href="##">Recommended Products</a><span class="toggle-list-button"></span></div>
                                                 <div class="menu-slider-out">
                                                     <div class="menu-slider-in">
                                                         <div class="menu-slider-entry">
