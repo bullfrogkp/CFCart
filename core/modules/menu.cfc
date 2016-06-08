@@ -11,6 +11,7 @@
 		<cfset LOCAL.retStruct.menu.more = {} />
 		<cfset LOCAL.retStruct.menu.specialCategories = ArrayNew(1) />	
 		
+		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.newArrivals.label ="Men" />
 		<cfset LOCAL.retStruct.menu.newArrivals.men = ArrayNew(1) />
 		<cfset LOCAL.retStruct.menu.newArrivals.women = ArrayNew(1) />
@@ -20,15 +21,138 @@
 		<cfset LOCAL.retStruct.menu.deals.onsale = ArrayNew(1) />
 		<cfset LOCAL.retStruct.menu.deals.clearance = ArrayNew(1) />
 		<cfset LOCAL.retStruct.menu.deals.recommended = ArrayNew(1) />
-		
+		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.newArrivals.label ="Products" />
 		<cfset LOCAL.retStruct.menu.categories = ArrayNew(1) />
 		
 		<cfset LOCAL.category = {} />
-		<cfset LOCAL.category.label = "" />
+		<cfset LOCAL.category.label = "Clothing" />
+		<cfset LOCAL.category.subCategories = ArrayNew(1) />
 		
-		<cfset LOCAL.retStruct.menu.blog.label ="Blog" />
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset ArrayAppend(LOCAL.retStruct.menu.categories, LOCAL.category) />
+		
+		<cfset LOCAL.category = {} />
+		<cfset LOCAL.category.label = "Makeup" />
+		<cfset LOCAL.category.subCategories = ArrayNew(1) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset ArrayAppend(LOCAL.retStruct.menu.categories, LOCAL.category) />
+		
+		<cfset LOCAL.category = {} />
+		<cfset LOCAL.category.label = "Nutrition" />
+		<cfset LOCAL.category.subCategories = ArrayNew(1) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset ArrayAppend(LOCAL.retStruct.menu.categories, LOCAL.category) />
+		
+		<cfset LOCAL.category = {} />
+		<cfset LOCAL.category.label = "Baby" />
+		<cfset LOCAL.category.subCategories = ArrayNew(1) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset ArrayAppend(LOCAL.retStruct.menu.categories, LOCAL.category) />
+		
+		<cfset LOCAL.category = {} />
+		<cfset LOCAL.category.label = "Food" />
+		<cfset LOCAL.category.subCategories = ArrayNew(1) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset LOCAL.subCategory = {} />
+		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.link = "Cate1"/>
+		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
+		
+		<cfset ArrayAppend(LOCAL.retStruct.menu.categories, LOCAL.category) />
+		<!---------------------------------------------------------------------------------->
+		<cfset LOCAL.retStruct.menu.blog.label = "Blog" />
+		<cfset LOCAL.retStruct.menu.blog.blogs = ArrayNew(1) />
+		
+		<cfset LOCAL.blog = {} />
+		<cfset LOCAL.blog.text = "Blog1"/>
+		<cfset LOCAL.blog.link = "Blog1"/>
+		<cfset ArrayAppend(LOCAL.retStruct.menu.blog.blogs, LOCAL.blog) />
+		
+		<cfset LOCAL.blog = {} />
+		<cfset LOCAL.blog.text = "Blog2"/>
+		<cfset LOCAL.blog.link = "Blog2"/>
+		<cfset ArrayAppend(LOCAL.retStruct.menu.blog.blogs, LOCAL.blog) />
+		
+		<cfset LOCAL.blog = {} />
+		<cfset LOCAL.blog.text = "Blog3"/>
+		<cfset LOCAL.blog.link = "Blog3"/>
+		<cfset ArrayAppend(LOCAL.retStruct.menu.blog.blogs, LOCAL.blog) />
+		
+		<cfset LOCAL.blog = {} />
+		<cfset LOCAL.blog.text = "Blog4"/>
+		<cfset LOCAL.blog.link = "Blog4"/>
+		<cfset ArrayAppend(LOCAL.retStruct.menu.blog.blogs, LOCAL.blog) />
+		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.more.label ="More" />
 		<cfset LOCAL.retStruct.menu.more.links = ArrayNew(1) />
 		
