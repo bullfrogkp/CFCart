@@ -14,15 +14,18 @@
 		<cfset LOCAL.retStruct.menu.newArrivals.label ="Men" />
 		<cfset LOCAL.retStruct.menu.newArrivals.men = ArrayNew(1) />
 		<cfset LOCAL.retStruct.menu.newArrivals.women = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.newArrivals.hot = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.newArrivals.recommended = ArrayNew(1) />
 		
 		<cfset LOCAL.retStruct.menu.newArrivals.label ="Women" />
 		<cfset LOCAL.retStruct.menu.deals.onsale = ArrayNew(1) />
 		<cfset LOCAL.retStruct.menu.deals.clearance = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.deals.hot = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.deals.recommended = ArrayNew(1) />
 		
 		<cfset LOCAL.retStruct.menu.newArrivals.label ="Products" />
-		<cfset LOCAL.retStruct.menu.products = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.categories = ArrayNew(1) />
+		
+		<cfset LOCAL.category = {} />
+		<cfset LOCAL.category.label = "" />
 		
 		<cfset LOCAL.retStruct.menu.blog.label ="Blog" />
 		
