@@ -10,7 +10,6 @@
 		<cfset LOCAL.retStruct.menu.blog = {} />
 		<cfset LOCAL.retStruct.menu.more = {} />
 		<cfset LOCAL.retStruct.menu.specialCategories = ArrayNew(1) />	
-		
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.newArrivals.label ="Men" />
 		<cfset LOCAL.retStruct.menu.newArrivals.men = ArrayNew(1) />
@@ -156,14 +155,22 @@
 		<cfset LOCAL.retStruct.menu.more.label ="More" />
 		<cfset LOCAL.retStruct.menu.more.links = ArrayNew(1) />
 		
-		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.text = "Link1"/>
+		<cfset LOCAL.link.link = "Link1"/>
+		<cfset ArrayAppend(LOCAL.retStruct.menu.more.links, LOCAL.link) />
+		<!---------------------------------------------------------------------------------->
+		<cfset LOCAL.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
+		
+		<cfset LOCAL.retStruct.menu.specialCategories = ArrayNew(1) />
 				
-		<cfloop array="#LOCAL.pageData.specialCategories#" index="LOCAL.category">
+		<cfloop array="#LOCAL.specialCategories#" index="LOCAL.category">
 			<cfset LOCAL.newMenuItem = {} />
 			<cfset LOCAL.newMenuItem.label = LOCAL.category.getDisplayName() />
 			<cfset LOCAL.newMenuItem.link = "" />
 			<cfset ArrayAppend(LOCAL.retStruct.menu.specialCategories, LOCAL.newMenuItem) />
 		</cfloop>
+		<!---------------------------------------------------------------------------------->
 		
 		<cfreturn LOCAL.retStruct />
 	</cffunction>
