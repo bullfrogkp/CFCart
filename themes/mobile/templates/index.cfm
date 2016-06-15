@@ -120,136 +120,58 @@
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-sm-4 information-entry">
-			<h3 class="block-title inline-product-column-title">Featured products</h3>
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
+			<h3 class="block-title inline-product-column-title">#REQUEST.pageData.modules.index_s4.left.name#</h3>
+			<cfloop array="#REQUEST.pageData.modules.index_s4.left.links#" index="link">
+				<div class="inline-product-entry">
+					<a href="#link.href#" class="image"><img alt="" src="#link.image#"></a>
+					<div class="content">
+						<div class="cell-view">
+							<a href="#link.href#" class="title">#link.text#</a>
+							<div class="price">
+								<div class="prev">$#link.previousPrice#</div>
+								<div class="current">$#link.currentPrice#</div>
+							</div>
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
+			</cfloop>
 		</div>
 		<div class="col-sm-4 information-entry">
-			<h3 class="block-title inline-product-column-title">Featured products</h3>
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
+			<h3 class="block-title inline-product-column-title">#REQUEST.pageData.modules.index_s4.middle.name#</h3>
+			<cfloop array="#REQUEST.pageData.modules.index_s4.middle.links#" index="link">
+				<div class="inline-product-entry">
+					<a href="#link.href#" class="image"><img alt="" src="#link.image#"></a>
+					<div class="content">
+						<div class="cell-view">
+							<a href="#link.href#" class="title">#link.text#</a>
+							<div class="price">
+								<div class="prev">$#link.previousPrice#</div>
+								<div class="current">$#link.currentPrice#</div>
+							</div>
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
+			</cfloop>
 		</div>
 		<div class="col-sm-4 information-entry">
-			<h3 class="block-title inline-product-column-title">Featured products</h3>
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
+			<h3 class="block-title inline-product-column-title">#REQUEST.pageData.modules.index_s4.right.name#</h3>
+			<cfloop array="#REQUEST.pageData.modules.index_s4.right.links#" index="link">
+				<div class="inline-product-entry">
+					<a href="#link.href#" class="image"><img alt="" src="#link.image#"></a>
+					<div class="content">
+						<div class="cell-view">
+							<a href="#link.href#" class="title">#link.text#</a>
+							<div class="price">
+								<div class="prev">$#link.previousPrice#</div>
+								<div class="current">$#link.currentPrice#</div>
+							</div>
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="inline-product-entry">
-				<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
-				<div class="content">
-					<div class="cell-view">
-						<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
+			</cfloop>
 		</div>
 	</div>
 </div>   
