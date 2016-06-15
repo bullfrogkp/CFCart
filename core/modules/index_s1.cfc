@@ -2,7 +2,7 @@
     <cffunction name="getFrontEndData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.retStruct.categories = ArrayNew(1) />
+		<cfset LOCAL.retStruct.categories = [] />
 		
 		<cfset LOCAL.category = {} />
 		<cfset LOCAL.category.name = "Jackets" />
