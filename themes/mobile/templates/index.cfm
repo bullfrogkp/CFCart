@@ -87,33 +87,29 @@
 <div class="information-blocks">
 	<div class="row">
 		<div class="information-entry col-md-6">
-			<div class="image-text-widget" style="background-image: url(#SESSION.absoluteUrlTheme#images/image-text-widget-1.jpg);">
+			<div class="image-text-widget" style="background-image: url(#REQUEST.pageData.modules.index_s3.left.image#);">
 				<div class="hot-mark red">hot</div>
-				<h3 class="title">Woman category</h3>
+				<h3 class="title">#REQUEST.pageData.modules.index_s3.left.name#</h3>
 				<div class="article-container style-1">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit, sed do eiusmod tempor incididunt ut labore consectetur.</p>
+					<p>#REQUEST.pageData.modules.index_s3.left.description#</p>
 					<ul>
-						<li><a href="##">Evening dresses</a></li>
-						<li><a href="##">Jackets and coats</a></li>
-						<li><a href="##">Tops and Sweatshirts</a></li>
-						<li><a href="##">Blouses and shirts</a></li>
-						<li><a href="##">Trousers and Shorts</a></li>
+						<cfloop array="#REQUEST.pageData.modules.index_s3.left.links#" index="link">
+							<li><a href="#link.href#">#link.text#</a></li>
+						</cfloop>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="information-entry col-md-6">
-			<div class="image-text-widget" style="background-image: url(#SESSION.absoluteUrlTheme#images/image-text-widget-2.jpg);">
+			<div class="image-text-widget" style="background-image: url(#REQUEST.pageData.modules.index_s3.right.image#);">
 				<div class="hot-mark red">hot</div>
-				<h3 class="title">Man category</h3>
+				<h3 class="title">#REQUEST.pageData.modules.index_s3.right.name#</h3>
 				<div class="article-container style-1">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit, sed do eiusmod tempor incididunt ut labore consectetur.</p>
+					<p>#REQUEST.pageData.modules.index_s3.right.description#</p>
 					<ul>
-						<li><a href="##">Evening dresses</a></li>
-						<li><a href="##">Jackets and coats</a></li>
-						<li><a href="##">Tops and Sweatshirts</a></li>
-						<li><a href="##">Blouses and shirts</a></li>
-						<li><a href="##">Trousers and Shorts</a></li>
+						<cfloop array="#REQUEST.pageData.modules.index_s3.right.links#" index="link">
+							<li><a href="#link.href#">#link.text#</a></li>
+						</cfloop>
 					</ul>
 				</div>
 			</div>

@@ -6,7 +6,7 @@
 		<cfset LOCAL.retStruct.left = {} />
 		<cfset LOCAL.retStruct.left.name = "Woman category" />
 		<cfset LOCAL.retStruct.left.description = "Lorem ipsum dolor sit amet, consectetur adipisc elit, sed do eiusmod tempor incididunt ut labore consectetur." />
-		<cfset LOCAL.retStruct.left.image = "#SESSION.absoluteUrlTheme#images/image-text-widget-1.jpg" />
+		<cfset LOCAL.retStruct.left.image = "#SESSION.absoluteUrlTheme#images/image-text-widget-2.jpg" />
 		<cfset LOCAL.retStruct.left.links = [] />
 		
 		<cfset LOCAL.link = {} />
@@ -34,8 +34,8 @@
 		<cfset LOCAL.link.href = "" />
 		<cfset ArrayAppend(LOCAL.retStruct.left.links, LOCAL.link) />
 		
-		<cfset LOCAL.retStruct.right = [] />
-		<cfset LOCAL.retStruct.right.name = "Woman category" />
+		<cfset LOCAL.retStruct.right = {} />
+		<cfset LOCAL.retStruct.right.name = "Man category" />
 		<cfset LOCAL.retStruct.right.description = "Lorem ipsum dolor sit amet, consectetur adipisc elit, sed do eiusmod tempor incididunt ut labore consectetur." />
 		<cfset LOCAL.retStruct.right.image = "#SESSION.absoluteUrlTheme#images/image-text-widget-1.jpg" />
 		<cfset LOCAL.retStruct.right.links = [] />
