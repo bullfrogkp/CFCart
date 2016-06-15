@@ -41,7 +41,7 @@
                             <a href="##" id="logo"><img alt="" src="#SESSION.absoluteUrlTheme#images/logo-9.png"></a>
                         </div>
                         <div class="product-header-message">
-                            FREE SHIPPING ON ALL US ORDERS this week!
+                            #REQUEST.pageData.slogan#
                         </div>
                         <div class="product-header-content">
                             <div class="line-entry">
@@ -91,7 +91,7 @@
                             <nav>
                                 <ul>
 									<li class="full-width">
-                                        <a href="##" class="active">New Arrivals</a><i class="fa fa-chevron-down"></i>
+                                        <a href="##" class="active">#REQUEST.pageData.slogan#</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="full-width-menu-items-right">
                                                 <div class="menu-slider-arrows">

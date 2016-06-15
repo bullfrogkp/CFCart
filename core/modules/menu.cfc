@@ -4,24 +4,24 @@
 		<cfset LOCAL.retStruct = {} />
 		
 		<cfset LOCAL.retStruct.menu = {} />
-		<cfset LOCAL.retStruct.menu.newArrivals = {} />
-		<cfset LOCAL.retStruct.menu.deals = {} />
-		<cfset LOCAL.retStruct.menu.products = {} />
-		<cfset LOCAL.retStruct.menu.blog = {} />
-		<cfset LOCAL.retStruct.menu.more = {} />
+		<cfset LOCAL.retStruct.menu.section1 = {} />
+		<cfset LOCAL.retStruct.menu.section2 = {} />
+		<cfset LOCAL.retStruct.menu.section3 = {} />
+		<cfset LOCAL.retStruct.menu.section4 = {} />
+		<cfset LOCAL.retStruct.menu.section5 = {} />
 		<cfset LOCAL.retStruct.menu.specialCategories = ArrayNew(1) />	
 		<!---------------------------------------------------------------------------------->
-		<cfset LOCAL.retStruct.menu.newArrivals.label ="Men" />
-		<cfset LOCAL.retStruct.menu.newArrivals.men = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.newArrivals.women = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.newArrivals.recommended = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.label ="Men" />
+		<cfset LOCAL.retStruct.menu.section1.men = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.women = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.recommended = ArrayNew(1) />
 		
-		<cfset LOCAL.retStruct.menu.newArrivals.label ="Women" />
-		<cfset LOCAL.retStruct.menu.deals.onsale = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.deals.clearance = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.deals.recommended = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.label ="Women" />
+		<cfset LOCAL.retStruct.menu.section2.onsale = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section2.clearance = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section2.recommended = ArrayNew(1) />
 		<!---------------------------------------------------------------------------------->
-		<cfset LOCAL.retStruct.menu.newArrivals.label ="Products" />
+		<cfset LOCAL.retStruct.menu.section1.label ="Products" />
 		<cfset LOCAL.retStruct.menu.categories = ArrayNew(1) />
 		
 		<cfset LOCAL.category = {} />
