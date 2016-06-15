@@ -27,7 +27,7 @@
 		<div class="swiper-tabs tabs-switch">
 			<div class="title">Products</div>
 			<div class="list">
-				<cfloop from="1" to=#ArrayLen(REQUEST.pageData.modules.index_s2.tabs)#" index="tabIdx">
+				<cfloop from="1" to="#ArrayLen(REQUEST.pageData.modules.index_s2.tabs)#" index="tabIdx">
 					<a class="block-title tab-switcher <cfif tabIdx EQ 1>active</cfif>">#REQUEST.pageData.modules.index_s2.tabs[tabIdx].name#</a>
 				</cfloop>
 				<div class="clear"></div>

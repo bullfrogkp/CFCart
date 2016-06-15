@@ -17,7 +17,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -27,7 +27,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -37,7 +37,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -47,7 +47,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -57,7 +57,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset ArrayAppend(LOCAL.retStruct.tabs, LOCAL.tab) />
 		
@@ -74,7 +74,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -84,7 +84,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -94,7 +94,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -104,7 +104,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -114,7 +114,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset ArrayAppend(LOCAL.retStruct.tabs, LOCAL.tab) />
 		
@@ -131,7 +131,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -141,7 +141,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -151,7 +151,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -161,7 +161,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
@@ -171,7 +171,7 @@
 		<cfset LOCAL.product.previousPrice = "199,99" />
 		<cfset LOCAL.product.currentPrice = "119,99" />
 		<cfset LOCAL.product.stars = 5 />
-		<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset ArrayAppend(LOCAL.retStruct.tabs, LOCAL.tab) />
 		
