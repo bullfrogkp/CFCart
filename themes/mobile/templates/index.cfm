@@ -72,8 +72,8 @@
 												</div>
 											</div>
 										</div>
-									</cfloop>
-								</div>
+									</div>
+								</cfloop>
 							</div>
 							<div class="pagination"></div>
 						</div>
