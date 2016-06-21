@@ -129,7 +129,7 @@
                                                         <div class="submenu-list-title"><a href="index-wide.html">#REQUEST.pageData.modules.menu.section1.subSection1.label#<span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
 															<cfloop array="#REQUEST.pageData.modules.menu.section1.subSection1.products#" index="product">
-																<li><a href="#product.link#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
+																<li><a href="#product.href#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
 															</cfloop>
                                                         </ul>
                                                     </div>
@@ -137,7 +137,7 @@
                                                         <div class="submenu-list-title"><a href="index-wide.html">#REQUEST.pageData.modules.menu.section1.subSection2.label#<span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
                                                             <cfloop array="#REQUEST.pageData.modules.menu.section1.subSection2.products#" index="product">
-																<li><a href="#product.link#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
+																<li><a href="#product.href#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
 															</cfloop>
                                                         </ul>
                                                     </div>
@@ -194,7 +194,7 @@
                                                         <div class="submenu-list-title"><a href="index-wide.html">#REQUEST.pageData.modules.menu.section2.subSection1.label#<span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
 															<cfloop array="#REQUEST.pageData.modules.menu.section2.subSection1.products#" index="product">
-																<li><a href="#product.link#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
+																<li><a href="#product.href#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
 															</cfloop>
                                                         </ul>
                                                     </div>
@@ -202,7 +202,7 @@
                                                         <div class="submenu-list-title"><a href="index-wide.html">#REQUEST.pageData.modules.menu.section2.subSection2.label#<span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
                                                             <cfloop array="#REQUEST.pageData.modules.menu.section2.subSection2.products#" index="product">
-																<li><a href="#product.link#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
+																<li><a href="#product.href#"><i class="fa fa-angle-right"></i>#product.label#</a></li>
 															</cfloop>
                                                         </ul>
                                                     </div>
@@ -221,80 +221,22 @@
                                         </div>
                                     </li>
                                     <li class="full-width-columns">
-                                        <a href="##">Products</a><i class="fa fa-chevron-down"></i>
+                                        <a href="##">#REQUEST.pageData.modules.menu.section3.label#</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-menu-2.jpg"></div>
-                                                <div class="submenu-list-title"><a href="contact.html">Contact Us</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="contact.html"><i class="fa fa-angle-right"></i>Contact Us 1</a></li>
-                                                        <li><a href="contact-2.html"><i class="fa fa-angle-right"></i>Contact Us 2</a></li>
-                                                        <li><a href="contact-3.html"><i class="fa fa-angle-right"></i>Contact Us 3</a></li>
-                                                        <li><a href="contact-4.html"><i class="fa fa-angle-right"></i>Contact Us 4</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="hot-mark">hot</div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-menu-4.jpg"></div>
-                                                <div class="submenu-list-title"><a href="about-1.html">About Us</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="about-1.html"><i class="fa fa-angle-right"></i>About Us Fullwidth 1</a></li>
-                                                        <li><a href="about-2.html"><i class="fa fa-angle-right"></i>About Us Fullwidth 2</a></li>
-                                                        <li><a href="about-3.html"><i class="fa fa-angle-right"></i>About Us Fullwidth 3</a></li>
-                                                        <li><a href="about-4.html"><i class="fa fa-angle-right"></i>About Us Sidebar 1</a></li>
-                                                        <li><a href="about-5.html"><i class="fa fa-angle-right"></i>About Us Sidebar 2</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="hot-mark yellow">sale</div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-menu-3.jpg"></div>
-                                                <div class="submenu-list-title"><a href="cart.html">Cart</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="cart.html"><i class="fa fa-angle-right"></i>Cart</a></li>
-                                                        <li><a href="cart-traditional.html"><i class="fa fa-angle-right"></i>Cart Traditional</a></li>
-                                                        <li><a href="checkout.html"><i class="fa fa-angle-right"></i>Checkout</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-menu-5.jpg"></div>
-                                                <div class="submenu-list-title"><a href="teaser-background.html">Coming Soon</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="teaser-background.html"><i class="fa fa-angle-right"></i>Coming Soon 1</a></li>
-                                                        <li><a href="teaser-background-2.html"><i class="fa fa-angle-right"></i>Coming Soon 2</a></li>
-                                                        <li><a href="teaser-simple.html"><i class="fa fa-angle-right"></i>Coming Soon 3</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="hot-mark">hot</div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-menu-2.jpg"></div>
-                                                <div class="submenu-list-title"><a href="shop.html">Products</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="shop.html"><i class="fa fa-angle-right"></i>Shop</a></li>
-                                                        <li><a href="product.html"><i class="fa fa-angle-right"></i>Product</a></li>
-                                                        <li><a href="product-nosidebar.html"><i class="fa fa-angle-right"></i>No Sidebar</a></li>
-                                                        <li><a href="product-tabnosidebar.html"><i class="fa fa-angle-right"></i>Tab No Sidebar</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="submenu-links-line">
-                                                <div class="submenu-links-line-container">
-                                                    <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="shop.html">Blazers</a>, <a href="shop.html">Jackets</a>, <a href="shop.html">Shoes</a>, <a href="shop.html">Bags</a>, <a href="shop.html">Special offers</a>, <a href="shop.html">Sales and discounts</a></div>
-                                                    </div>
-                                                    <div class="cell-view">
-                                                        <div class="red-message"><b>-20% sale only this week. Don’t miss buy something!</b></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+											<cfloop array="#REQUEST.pageData.modules.menu.section3.categories#" index="category">
+												<div class="product-column-entry">
+													<div class="image"><img alt="" src="#category.image#"></div>
+													<div class="submenu-list-title"><a href="contact.html">#category.label#</a><span class="toggle-list-button"></span></div>
+													<div class="description toggle-list-container">
+														<ul class="list-type-1">
+															<cfloop array="#category.subCategories#" index="subCategory">
+																<li><a href="#subCategory.href#"><i class="fa fa-angle-right"></i>#subCategory.label#</a></li>
+															</cfloop>
+														</ul>
+													</div>
+													<div class="hot-mark">hot</div>
+												</div>
+											</cfloop>
                                         </div>
                                     </li>
                                     <li class="column-1">
