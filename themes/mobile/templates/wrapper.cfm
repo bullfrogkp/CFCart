@@ -317,10 +317,10 @@
                                 <div class="col-md-3">
                                     <img class="footer-logo" src="#SESSION.absoluteUrlTheme#images/logo-9.png" alt="" />
                                     <div class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
-                                    <div class="footer-address">30 South Avenue San Francisco<br/>
-                                        Phone: +78 123 456 789<br/>
-                                        Email: <a href="mailto:Support@blanco.com">Support@blanco.com</a><br/>
-                                        <a href="www.inmedio.com"><b>www.inmedio.com</b></a>
+                                    <div class="footer-address">30 Yonge St. Toronto<br/>
+                                        Phone: +1 123 456 789<br/>
+                                        Email: <a href="mailto:support@pinmydeals.com">support@pinmydeals.com</a><br/>
+                                        <a href="www.pinmydeals.com"><b>www.pinmydeals.com</b></a>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
