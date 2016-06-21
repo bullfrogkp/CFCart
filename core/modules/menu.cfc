@@ -41,6 +41,42 @@
 		<cfset LOCAL.product.price = 19.99 />
 		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
 		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection3.products,LOCAL.product) />
+		
+		<cfset LOCAL.retStruct.section1.subSection4 ={} />
+		<cfset LOCAL.retStruct.section1.subSection4.links = ArrayNew(1) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Blazers" />
+		<cfset ArrayAppend(LOCAL.retStruct.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Jackets" />
+		<cfset ArrayAppend(LOCAL.retStruct.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Shoes" />
+		<cfset ArrayAppend(LOCAL.retStruct.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Bags" />
+		<cfset ArrayAppend(LOCAL.retStruct.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Special offers" />
+		<cfset ArrayAppend(LOCAL.retStruct.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Sales and discounts" />
+		<cfset ArrayAppend(LOCAL.retStruct.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.retStruct.section1.subSection5 ={} />
+		<cfset LOCAL.retStruct.section1.subSection5.message = "-20% sale only this week. Don’t miss buy something!" />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.section2.label ="Deals" />
 		

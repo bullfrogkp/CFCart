@@ -146,10 +146,10 @@
                                             <div class="submenu-links-line">
                                                 <div class="submenu-links-line-container">
                                                     <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="##">Blazers</a>, <a href="##">Jackets</a>, <a href="##">Shoes</a>, <a href="##">Bags</a>, <a href="##">Special offers</a>, <a href="##">Sales and discounts</a></div>
+                                                        <div class="line-links"><b>Quicklinks:</b>  <cfloop array="#REQUEST.pageData.modules.menu.section4.links#" index="link"><a href="#link.href#">#link.label#</a></cfloop></div>
                                                     </div>
                                                     <div class="cell-view">
-                                                        <div class="red-message"><b>-20% sale only this week. Don’t miss buy something!</b></div>
+                                                        <div class="red-message"><b>#REQUEST.pageData.modules.menu.section5.message#</b></div>
                                                     </div>
                                                 </div>
                                             </div>
