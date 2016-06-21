@@ -258,20 +258,19 @@
                                             <div class="submenu-links-line">
                                                 <div class="submenu-links-line-container">
                                                     <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="shop.html">Blazers</a>, <a href="shop.html">Jackets</a>, <a href="shop.html">Shoes</a>, <a href="shop.html">Bags</a></div>
+                                                        <div class="line-links"><b>Quicklinks:</b>   <cfloop array="#REQUEST.pageData.modules.menu.section4.links#" index="link"><a href="#link.href#">#link.label#</a></cfloop></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
 									<li class="simple-list">
-                                        <a>More</a><i class="fa fa-chevron-down"></i>
+                                        <a>#REQUEST.pageData.modules.menu.section5.label#</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <ul class="simple-menu-list-column">
-                                                <li><a href="login.html"><i class="fa fa-angle-right"></i>Login</a></li>
-                                                <li><a href="faq.html"><i class="fa fa-angle-right"></i>Faq</a></li>
-                                                <li><a href="faq.html"><i class="fa fa-angle-right"></i>Order Tracking</a></li>
-                                                <li><a href="wishlist.html"><i class="fa fa-angle-right"></i>Wishlist</a></li>
+												<cfloop array="#REQUEST.pageData.modules.menu.section5.links#" index="link">
+													<li><a href="#link.href#"><i class="fa fa-angle-right"></i>#link.label#</a></li>
+												</cfloop>
                                             </ul>
                                         </div>
                                     </li>

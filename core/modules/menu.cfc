@@ -313,13 +313,13 @@
 		<cfset LOCAL.link.label = "Sales and discounts" />
 		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
 		<!---------------------------------------------------------------------------------->
-		<cfset LOCAL.retStruct.more.label ="More" />
-		<cfset LOCAL.retStruct.more.links = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section5.label ="More" />
+		<cfset LOCAL.retStruct.section5.links = ArrayNew(1) />
 		
 		<cfset LOCAL.href = {} />
 		<cfset LOCAL.href.label = "Link1"/>
 		<cfset LOCAL.href.href = "Link1"/>
-		<cfset ArrayAppend(LOCAL.retStruct.more.links, LOCAL.href) />
+		<cfset ArrayAppend(LOCAL.retStruct.section5.links, LOCAL.href) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		
