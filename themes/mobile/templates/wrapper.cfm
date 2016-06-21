@@ -91,7 +91,7 @@
                             <nav>
                                 <ul>
 									<li class="full-width">
-                                        <a href="##" class="active">#REQUEST.pageData.slogan#</a><i class="fa fa-chevron-down"></i>
+                                        <a href="##" class="active">#REQUEST.pageData.modules.menu.section1.label#</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="full-width-menu-items-right">
                                                 <div class="menu-slider-arrows">
