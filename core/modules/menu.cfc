@@ -11,15 +11,15 @@
 		<cfset LOCAL.retStruct.menu.section5 = {} />
 		<cfset LOCAL.retStruct.menu.specialCategories = ArrayNew(1) />	
 		<!---------------------------------------------------------------------------------->
-		<cfset LOCAL.retStruct.menu.section1.label ="Men" />
-		<cfset LOCAL.retStruct.menu.section1.men = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.section1.women = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.section1.recommended = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.label ="New Arrival" />
+		<cfset LOCAL.retStruct.menu.section1.subSection1 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.subSection2 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section1.subSection3 = ArrayNew(1) />
 		
-		<cfset LOCAL.retStruct.menu.section1.label ="Women" />
-		<cfset LOCAL.retStruct.menu.section2.onsale = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.section2.clearance = ArrayNew(1) />
-		<cfset LOCAL.retStruct.menu.section2.recommended = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section2.label ="Deals" />
+		<cfset LOCAL.retStruct.menu.section2.subSection1 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section2.subSection2 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.menu.section2.subSection3 = ArrayNew(1) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.section1.label ="Products" />
 		<cfset LOCAL.retStruct.menu.categories = ArrayNew(1) />
