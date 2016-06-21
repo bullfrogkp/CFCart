@@ -46,7 +46,7 @@
 												<div class="product-image">
 													<img src="#product.image1#" alt="" />
 													<img src="#product.image2#" alt="" />
-													<a class="top-line-a right open-product"><i class="fa fa-expand"></i> <span>Quick View</span></a>
+													<a class="top-line-a right open-product" popupid="#product.id#"><i class="fa fa-expand"></i> <span>Quick View</span></a>
 													<div class="bottom-line">
 														<div class="right-align">
 															<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>

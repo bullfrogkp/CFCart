@@ -10,6 +10,7 @@
 		<cfset LOCAL.tab.products = [] />
 		
 		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.id = 1 />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.image2 = "#SESSION.absoluteUrlTheme#images/product-minimal-12.jpg" />
 		<cfset LOCAL.product.name = "Blue Pullover Batwing Sleeve Zigzag" />
@@ -20,6 +21,7 @@
 		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.id = 2 />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.image2 = "#SESSION.absoluteUrlTheme#images/product-minimal-12.jpg" />
 		<cfset LOCAL.product.name = "Blue Pullover Batwing Sleeve Zigzag" />
@@ -30,6 +32,7 @@
 		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.id = 3 />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.image2 = "#SESSION.absoluteUrlTheme#images/product-minimal-12.jpg" />
 		<cfset LOCAL.product.name = "Blue Pullover Batwing Sleeve Zigzag" />
@@ -40,6 +43,7 @@
 		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.id = 4 />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.image2 = "#SESSION.absoluteUrlTheme#images/product-minimal-12.jpg" />
 		<cfset LOCAL.product.name = "Blue Pullover Batwing Sleeve Zigzag" />
@@ -50,6 +54,7 @@
 		<cfset ArrayAppend(LOCAL.tab.products, LOCAL.product) />
 		
 		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.id = 5 />
 		<cfset LOCAL.product.image1 = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.image2 = "#SESSION.absoluteUrlTheme#images/product-minimal-12.jpg" />
 		<cfset LOCAL.product.name = "Blue Pullover Batwing Sleeve Zigzag" />
