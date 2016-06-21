@@ -146,7 +146,7 @@
 		<cfset LOCAL.retStruct.section2.subSection5.message = "-20% sale only this week. Don’t miss buy something!" />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.section3.label ="Products" />
-		<cfset LOCAL.retStruct.categories = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section3.categories = ArrayNew(1) />
 		
 		<cfset LOCAL.category = {} />
 		<cfset LOCAL.category.label = "Clothing" />
@@ -168,7 +168,7 @@
 		<cfset LOCAL.subCategory.href = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
-		<cfset ArrayAppend(LOCAL.retStruct.categories, LOCAL.category) />
+		<cfset ArrayAppend(LOCAL.retStruct.section3.categories, LOCAL.category) />
 		
 		<cfset LOCAL.category = {} />
 		<cfset LOCAL.category.label = "Makeup" />
@@ -190,7 +190,7 @@
 		<cfset LOCAL.subCategory.href = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
-		<cfset ArrayAppend(LOCAL.retStruct.categories, LOCAL.category) />
+		<cfset ArrayAppend(LOCAL.retStruct.section3.categories, LOCAL.category) />
 		
 		<cfset LOCAL.category = {} />
 		<cfset LOCAL.category.label = "Nutrition" />
@@ -212,7 +212,7 @@
 		<cfset LOCAL.subCategory.href = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
-		<cfset ArrayAppend(LOCAL.retStruct.categories, LOCAL.category) />
+		<cfset ArrayAppend(LOCAL.retStruct.section3.categories, LOCAL.category) />
 		
 		<cfset LOCAL.category = {} />
 		<cfset LOCAL.category.label = "Baby" />
@@ -234,7 +234,7 @@
 		<cfset LOCAL.subCategory.href = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
-		<cfset ArrayAppend(LOCAL.retStruct.categories, LOCAL.category) />
+		<cfset ArrayAppend(LOCAL.retStruct.section3.categories, LOCAL.category) />
 		
 		<cfset LOCAL.category = {} />
 		<cfset LOCAL.category.label = "Food" />
@@ -256,7 +256,7 @@
 		<cfset LOCAL.subCategory.href = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
-		<cfset ArrayAppend(LOCAL.retStruct.categories, LOCAL.category) />
+		<cfset ArrayAppend(LOCAL.retStruct.section3.categories, LOCAL.category) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.blog.label = "Blog" />
 		<cfset LOCAL.retStruct.blog.blogs = ArrayNew(1) />
