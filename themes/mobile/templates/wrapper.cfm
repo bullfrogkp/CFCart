@@ -146,10 +146,10 @@
                                             <div class="submenu-links-line">
                                                 <div class="submenu-links-line-container">
                                                     <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <cfloop array="#REQUEST.pageData.modules.menu.section4.links#" index="link"><a href="#link.href#">#link.label#</a></cfloop></div>
+                                                        <div class="line-links"><b>Quicklinks:</b>  <cfloop array="#REQUEST.pageData.modules.menu.section1.subSection4.links#" index="link"><a href="#link.href#">#link.label#</a></cfloop></div>
                                                     </div>
                                                     <div class="cell-view">
-                                                        <div class="red-message"><b>#REQUEST.pageData.modules.menu.section5.message#</b></div>
+                                                        <div class="red-message"><b>#REQUEST.pageData.modules.menu.section1.subSection5.message#</b></div>
                                                     </div>
                                                 </div>
                                             </div>
