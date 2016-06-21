@@ -258,28 +258,60 @@
 		
 		<cfset ArrayAppend(LOCAL.retStruct.section3.categories, LOCAL.category) />
 		<!---------------------------------------------------------------------------------->
-		<cfset LOCAL.retStruct.blog.label = "Blog" />
-		<cfset LOCAL.retStruct.blog.blogs = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section4.label = "Blog" />
+		<cfset LOCAL.retStruct.section4.image = "#SESSION.absoluteUrlTheme#images/product-menu-8.jpg" />
+		<cfset LOCAL.retStruct.section4.blogs = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section4.links = ArrayNew(1) />
 		
 		<cfset LOCAL.blog = {} />
 		<cfset LOCAL.blog.label = "Blog1"/>
 		<cfset LOCAL.blog.href = "Blog1"/>
-		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.blogs, LOCAL.blog) />
 		
 		<cfset LOCAL.blog = {} />
 		<cfset LOCAL.blog.label = "Blog2"/>
 		<cfset LOCAL.blog.href = "Blog2"/>
-		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.blogs, LOCAL.blog) />
 		
 		<cfset LOCAL.blog = {} />
 		<cfset LOCAL.blog.label = "Blog3"/>
 		<cfset LOCAL.blog.href = "Blog3"/>
-		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.blogs, LOCAL.blog) />
 		
 		<cfset LOCAL.blog = {} />
 		<cfset LOCAL.blog.label = "Blog4"/>
 		<cfset LOCAL.blog.href = "Blog4"/>
-		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.blogs, LOCAL.blog) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Blazers" />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Jackets" />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Shoes" />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Bags" />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Special offers" />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Sales and discounts" />
+		<cfset ArrayAppend(LOCAL.retStruct.section4.links,LOCAL.link) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.more.label ="More" />
 		<cfset LOCAL.retStruct.more.links = ArrayNew(1) />

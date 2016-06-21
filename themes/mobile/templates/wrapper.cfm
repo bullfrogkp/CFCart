@@ -240,20 +240,17 @@
                                         </div>
                                     </li>
                                     <li class="column-1">
-                                        <a href="blog.html">Blog</a><i class="fa fa-chevron-down"></i>
+                                        <a href="blog.html">#REQUEST.pageData.modules.menu.section4.label#</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="full-width-menu-items-left">
-                                                <img class="submenu-background" src="#SESSION.absoluteUrlTheme#images/product-menu-8.jpg" alt="" />
+                                                <img class="submenu-background" src="#REQUEST.pageData.modules.menu.section4.image#" alt="" />
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="submenu-list-title"><a href="blog.html">Blog <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
+                                                        <div class="submenu-list-title"><a href="blog.html">#REQUEST.pageData.modules.menu.section4.label# <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="blog.html"><i class="fa fa-angle-right"></i>Blog Default</a></li>
-                                                            <li><a href="blog-grid.html"><i class="fa fa-angle-right"></i>Blog Grid</a></li>
-                                                            <li><a href="blog-timeline.html"><i class="fa fa-angle-right"></i>Blog Timeline</a></li>
-                                                            <li><a href="blog-list.html"><i class="fa fa-angle-right"></i>Blog List</a></li>
-                                                            <li><a href="blog-biggrid.html"><i class="fa fa-angle-right"></i>Blog Big Grid</a></li>
-                                                            <li><a href="blog-detail.html"><i class="fa fa-angle-right"></i>Single Post</a></li>
+															<cfloop array="#REQUEST.pageData.modules.menu.section4.blogs#" index="blog">
+																<li><a href="#blog.href#"><i class="fa fa-angle-right"></i>#blog.label#</a></li>
+															</cfloop>
                                                         </ul>
                                                     </div>
                                                 </div>
