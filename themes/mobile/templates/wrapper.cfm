@@ -102,10 +102,10 @@
                                                 <div class="menu-slider-out">
                                                     <div class="menu-slider-in">
                                                         <div class="menu-slider-entry">
-															<cfloop array="#REQUEST.pageData.modules.menu.section1.subSection3#" index="product">
+															<cfloop array="#REQUEST.pageData.modules.menu.section1.subSection3.products#" index="product">
 																<div class="product-slide-entry">
 																	<div class="product-image">
-																		<img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
+																		<img src="#product.image#" alt="" />
 																		<div class="bottom-line left-attached">
 																			<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
 																			<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -113,10 +113,9 @@
 																			<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
 																		</div>
 																	</div>
-																	<a href="##" class="title">1.Pullover Batwing Sleeve Zigzag</a>
+																	<a href="##" class="title">#product.label#</a>
 																	<div class="price">
-																		<div class="prev">$199,99</div>
-																		<div class="current">$119,99</div>
+																		<div class="current">$#product.price#</div>
 																	</div>
 																</div>
 															</cfloop>
