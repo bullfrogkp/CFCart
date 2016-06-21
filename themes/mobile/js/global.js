@@ -507,7 +507,7 @@ $(function() {
 
     //open product popup
     $('.open-product').on('click', function(){
-		popupid = $(this).attr('popupid');
+		var popupid = $(this).attr('popupid');
     	showPopup($('#product-popup-' + popupid));
     	initSwiper();
     	return false;
