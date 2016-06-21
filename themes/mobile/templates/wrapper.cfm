@@ -98,98 +98,28 @@
                                                     <a class="left"><i class="fa fa-chevron-left"></i></a>
                                                     <a class="right"><i class="fa fa-chevron-right"></i></a>
                                                 </div>
-                                                <div class="submenu-list-title"><a href="##">Recommended Products</a><span class="toggle-list-button"></span></div>
+                                                <div class="submenu-list-title"><a href="##">#REQUEST.pageData.modules.menu.section1.subSection3.label#</a><span class="toggle-list-button"></span></div>
                                                 <div class="menu-slider-out">
                                                     <div class="menu-slider-in">
                                                         <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="##" class="title">1.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="##" class="title">2.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="#SESSION.absoluteUrlTheme#images/product-minimal-3.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="##" class="title">3.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="#SESSION.absoluteUrlTheme#images/product-minimal-4.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="##" class="title">4.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="#SESSION.absoluteUrlTheme#images/product-minimal-5.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="##" class="title">5.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
+															<cfloop array="#REQUEST.pageData.modules.menu.section1.subSection3#" index="product">
+																<div class="product-slide-entry">
+																	<div class="product-image">
+																		<img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
+																		<div class="bottom-line left-attached">
+																			<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
+																			<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
+																			<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
+																			<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
+																		</div>
+																	</div>
+																	<a href="##" class="title">1.Pullover Batwing Sleeve Zigzag</a>
+																	<div class="price">
+																		<div class="prev">$199,99</div>
+																		<div class="current">$119,99</div>
+																	</div>
+																</div>
+															</cfloop>
                                                         </div>
                                                     </div>
                                                 </div>

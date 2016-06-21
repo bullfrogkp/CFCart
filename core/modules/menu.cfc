@@ -13,28 +13,34 @@
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.section1.label ="New Arrival" />
 		
-		<cfset LOCAL.retStruct.section1.subSection1 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section1.subSection1 = {} />
+		<cfset LOCAL.retStruct.section1.subSection1.label = "Men" />
+		<cfset LOCAL.retStruct.section1.subSection1.products = ArrayNew(1) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
-		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
-		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection1,LOCAL.product) />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection1.products,LOCAL.product) />
 
-		<cfset LOCAL.retStruct.section1.subSection2 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section1.subSection2 = {} />
+		<cfset LOCAL.retStruct.section1.subSection2.label = "Women" />
+		<cfset LOCAL.retStruct.section1.subSection2.products = ArrayNew(1) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
-		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
-		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection2,LOCAL.product) />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection2.products,LOCAL.product) />
 		
-		<cfset LOCAL.retStruct.section1.subSection3 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section1.subSection3 ={} />
+		<cfset LOCAL.retStruct.section1.subSection3.label = "Recommended Products" />
+		<cfset LOCAL.retStruct.section1.subSection3.products = ArrayNew(1) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
 		<cfset LOCAL.product.image = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.price = 19.99 />
-		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
-		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection3,LOCAL.product) />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.section1.subSection3.products,LOCAL.product) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.section2.label ="Deals" />
 		
@@ -42,14 +48,14 @@
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
-		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
 		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection1,LOCAL.product) />
 		
 		<cfset LOCAL.retStruct.section2.subSection2 = ArrayNew(1) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
-		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
 		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection2,LOCAL.product) />
 		
 		<cfset LOCAL.retStruct.section2.subSection3 = ArrayNew(1) />
@@ -59,7 +65,7 @@
 		<cfset LOCAL.product.image = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
 		<cfset LOCAL.product.currentPrice = 9.99 />
 		<cfset LOCAL.product.previousPrice = 19.99 />
-		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
 		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection3,LOCAL.product) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.section3.label ="Products" />
@@ -70,17 +76,17 @@
 		<cfset LOCAL.category.subCategories = ArrayNew(1) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
@@ -91,17 +97,17 @@
 		<cfset LOCAL.category.subCategories = ArrayNew(1) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
@@ -112,17 +118,17 @@
 		<cfset LOCAL.category.subCategories = ArrayNew(1) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
@@ -133,17 +139,17 @@
 		<cfset LOCAL.category.subCategories = ArrayNew(1) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
@@ -154,17 +160,17 @@
 		<cfset LOCAL.category.subCategories = ArrayNew(1) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
 		<cfset LOCAL.subCategory = {} />
-		<cfset LOCAL.subCategory.text = "Cate1"/>
+		<cfset LOCAL.subCategory.label = "Cate1"/>
 		<cfset LOCAL.subCategory.link = "Cate1"/>
 		<cfset ArrayAppend(LOCAL.category.subCategories, LOCAL.subCategory) />
 		
@@ -174,22 +180,22 @@
 		<cfset LOCAL.retStruct.blog.blogs = ArrayNew(1) />
 		
 		<cfset LOCAL.blog = {} />
-		<cfset LOCAL.blog.text = "Blog1"/>
+		<cfset LOCAL.blog.label = "Blog1"/>
 		<cfset LOCAL.blog.link = "Blog1"/>
 		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
 		
 		<cfset LOCAL.blog = {} />
-		<cfset LOCAL.blog.text = "Blog2"/>
+		<cfset LOCAL.blog.label = "Blog2"/>
 		<cfset LOCAL.blog.link = "Blog2"/>
 		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
 		
 		<cfset LOCAL.blog = {} />
-		<cfset LOCAL.blog.text = "Blog3"/>
+		<cfset LOCAL.blog.label = "Blog3"/>
 		<cfset LOCAL.blog.link = "Blog3"/>
 		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
 		
 		<cfset LOCAL.blog = {} />
-		<cfset LOCAL.blog.text = "Blog4"/>
+		<cfset LOCAL.blog.label = "Blog4"/>
 		<cfset LOCAL.blog.link = "Blog4"/>
 		<cfset ArrayAppend(LOCAL.retStruct.blog.blogs, LOCAL.blog) />
 		<!---------------------------------------------------------------------------------->
@@ -197,7 +203,7 @@
 		<cfset LOCAL.retStruct.more.links = ArrayNew(1) />
 		
 		<cfset LOCAL.link = {} />
-		<cfset LOCAL.link.text = "Link1"/>
+		<cfset LOCAL.link.label = "Link1"/>
 		<cfset LOCAL.link.link = "Link1"/>
 		<cfset ArrayAppend(LOCAL.retStruct.more.links, LOCAL.link) />
 		<!---------------------------------------------------------------------------------->
