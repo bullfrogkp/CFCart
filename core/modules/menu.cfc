@@ -78,31 +78,72 @@
 		<cfset LOCAL.retStruct.section1.subSection5 ={} />
 		<cfset LOCAL.retStruct.section1.subSection5.message = "-20% sale only this week. Don’t miss buy something!" />
 		<!---------------------------------------------------------------------------------->
-		<cfset LOCAL.retStruct.section2.label ="Deals" />
+		<cfset LOCAL.retStruct.section2.label ="New Arrival" />
 		
-		<cfset LOCAL.retStruct.section2.subSection1 = ArrayNew(1) />
-		
-		<cfset LOCAL.product = {} />
-		<cfset LOCAL.product.link = "" />
-		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
-		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection1,LOCAL.product) />
-		
-		<cfset LOCAL.retStruct.section2.subSection2 = ArrayNew(1) />
+		<cfset LOCAL.retStruct.section2.subSection1 = {} />
+		<cfset LOCAL.retStruct.section2.subSection1.label = "Men" />
+		<cfset LOCAL.retStruct.section2.subSection1.products = ArrayNew(1) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
 		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
-		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection2,LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection1.products,LOCAL.product) />
+
+		<cfset LOCAL.retStruct.section2.subSection2 = {} />
+		<cfset LOCAL.retStruct.section2.subSection2.label = "Women" />
+		<cfset LOCAL.retStruct.section2.subSection2.products = ArrayNew(1) />
 		
-		<cfset LOCAL.retStruct.section2.subSection3 = ArrayNew(1) />
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection2.products,LOCAL.product) />
+		
+		<cfset LOCAL.retStruct.section2.subSection3 ={} />
+		<cfset LOCAL.retStruct.section2.subSection3.label = "Recommended Products" />
+		<cfset LOCAL.retStruct.section2.subSection3.products = ArrayNew(1) />
 		
 		<cfset LOCAL.product = {} />
 		<cfset LOCAL.product.link = "" />
 		<cfset LOCAL.product.image = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
-		<cfset LOCAL.product.currentPrice = 9.99 />
-		<cfset LOCAL.product.previousPrice = 19.99 />
+		<cfset LOCAL.product.price = 19.99 />
 		<cfset LOCAL.product.label = "Pullover Batwing Sleeve Zigzag" />
-		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection3,LOCAL.product) />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection3.products,LOCAL.product) />
+		
+		<cfset LOCAL.retStruct.section2.subSection4 ={} />
+		<cfset LOCAL.retStruct.section2.subSection4.links = ArrayNew(1) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Blazers" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Jackets" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Shoes" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Bags" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Special offers" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.link = {} />
+		<cfset LOCAL.link.href = "" />
+		<cfset LOCAL.link.label = "Sales and discounts" />
+		<cfset ArrayAppend(LOCAL.retStruct.section2.subSection4.links,LOCAL.link) />
+		
+		<cfset LOCAL.retStruct.section2.subSection5 ={} />
+		<cfset LOCAL.retStruct.section2.subSection5.message = "-20% sale only this week. Don’t miss buy something!" />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.section3.label ="Products" />
 		<cfset LOCAL.retStruct.categories = ArrayNew(1) />
