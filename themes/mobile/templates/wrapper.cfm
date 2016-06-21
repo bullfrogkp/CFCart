@@ -432,39 +432,40 @@
 
     <div class="cart-box popup">
         <div class="popup-container">
-            <div class="cart-entry">
-                <a class="image"><img src="#SESSION.absoluteUrlTheme#images/product-menu-1.jpg" alt="" /></a>
-                <div class="content">
-                    <a class="title" href="##">Pullover Batwing Sleeve Zigzag</a>
-                    <div class="quantity">Quantity: 4</div>
-                    <div class="price">$990,00</div>
-                </div>
-                <div class="button-x"><i class="fa fa-close"></i></div>
-            </div>
-            <div class="cart-entry">
-                <a class="image"><img src="#SESSION.absoluteUrlTheme#images/product-menu-1_.jpg" alt="" /></a>
-                <div class="content">
-                    <a class="title" href="##">Pullover Batwing Sleeve Zigzag</a>
-                    <div class="quantity">Quantity: 4</div>
-                    <div class="price">$990,00</div>
-                </div>
-                <div class="button-x"><i class="fa fa-close"></i></div>
-            </div>
-            <div class="summary">
-                <div class="subtotal">Subtotal: $990,00</div>
-                <div class="grandtotal">Grand Total <span>$1029,79</span></div>
-            </div>
-            <div class="cart-buttons">
-                <div class="column">
-                    <a class="button style-3">view cart</a>
-                    <div class="clear"></div>
-                </div>
-                <div class="column">
-                    <a class="button style-4">checkout</a>
-                    <div class="clear"></div>
-                </div>
-                <div class="clear"></div>
-            </div>
+			<cfif ArrayLen(REQUEST.pageData.shoppingCartItems) GT 0>
+				<cfloop array="#REQUEST.pageData.shoppingCartItems#" index="shoppingCartItem">
+					<cfset product = shoppingCartItem.getProduct() />
+					<div class="cart-entry">
+						<a class="image"><img src="#product.getImage()#" alt="" /></a>
+						<div class="content">
+							<a class="title" href="##">#product.getDisplayName()#</a>
+							<div class="quantity">Quantity: #shoppingCartItem.getCount()#</div>
+							<div class="price">$990,00</div>
+						</div>
+						<div class="button-x"><i class="fa fa-close"></i></div>
+					</div>
+				</cfloop>
+				
+				<div class="summary">
+					<div class="subtotal">Subtotal: $990,00</div>
+					<div class="grandtotal">Grand Total <span>$1029,79</span></div>
+				</div>
+				<div class="cart-buttons">
+					<div class="column">
+						<a class="button style-3">view cart</a>
+						<div class="clear"></div>
+					</div>
+					<div class="column">
+						<a class="button style-4">checkout</a>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			<cfelse>
+				<div class="summary">
+					Your cart is empty.
+				</div>
+			</cfif>
         </div>
     </div>
    <div id="product-popup" class="overlay-popup">
