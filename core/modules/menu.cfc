@@ -12,14 +12,55 @@
 		<cfset LOCAL.retStruct.menu.specialCategories = ArrayNew(1) />	
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.section1.label ="New Arrival" />
+		
 		<cfset LOCAL.retStruct.menu.section1.subSection1 = ArrayNew(1) />
+		
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.menu.section1.subSection1,LOCAL.product) />
+
 		<cfset LOCAL.retStruct.menu.section1.subSection2 = ArrayNew(1) />
+		
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.menu.section1.subSection2,LOCAL.product) />
+		
 		<cfset LOCAL.retStruct.menu.section1.subSection3 = ArrayNew(1) />
 		
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.image = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
+		<cfset LOCAL.product.price = 19.99 />
+		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.menu.section1.subSection3,LOCAL.product) />
+		
 		<cfset LOCAL.retStruct.menu.section2.label ="Deals" />
+		
 		<cfset LOCAL.retStruct.menu.section2.subSection1 = ArrayNew(1) />
+		
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.menu.section2.subSection1,LOCAL.product) />
+		
 		<cfset LOCAL.retStruct.menu.section2.subSection2 = ArrayNew(1) />
+		
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.menu.section2.subSection2,LOCAL.product) />
+		
 		<cfset LOCAL.retStruct.menu.section2.subSection3 = ArrayNew(1) />
+		
+		<cfset LOCAL.product = {} />
+		<cfset LOCAL.product.link = "" />
+		<cfset LOCAL.product.image = "#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" />
+		<cfset LOCAL.product.currentPrice = 9.99 />
+		<cfset LOCAL.product.previousPrice = 19.99 />
+		<cfset LOCAL.product.text = "Pullover Batwing Sleeve Zigzag" />
+		<cfset ArrayAppend(LOCAL.retStruct.menu.section2.subSection3,LOCAL.product) />
 		<!---------------------------------------------------------------------------------->
 		<cfset LOCAL.retStruct.menu.section1.label ="Products" />
 		<cfset LOCAL.retStruct.menu.categories = ArrayNew(1) />
