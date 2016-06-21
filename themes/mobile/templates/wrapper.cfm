@@ -440,15 +440,14 @@
 						<div class="content">
 							<a class="title" href="##">#product.getDisplayName()#</a>
 							<div class="quantity">Quantity: #shoppingCartItem.getCount()#</div>
-							<div class="price">$990,00</div>
+							<div class="price">$#NumberFormat(shoppingCartItem.getCount() * shoppingCartItem.getPrice(),"0.00")#</div>
 						</div>
 						<div class="button-x"><i class="fa fa-close"></i></div>
 					</div>
 				</cfloop>
 				
 				<div class="summary">
-					<div class="subtotal">Subtotal: $990,00</div>
-					<div class="grandtotal">Grand Total <span>$1029,79</span></div>
+					<div class="subtotal">Subtotal: $#REQUEST.pageData.shoppingCartItemTotalAmount#</div>
 				</div>
 				<div class="cart-buttons">
 					<div class="column">
