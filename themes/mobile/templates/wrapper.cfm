@@ -297,7 +297,7 @@
                                     <a href="##"><i class="fa fa-pinterest-p"></i></a>
                                     <div class="clear"></div>
                                 </div>
-                                <div class="navigation-copyright">Created by <a href="##">8theme</a>. All rights reserved</div>
+                                <div class="navigation-copyright">Created by <a href="##">FusionCloud</a>. All rights reserved</div>
                             </div>
                         </div>
                     </div>
