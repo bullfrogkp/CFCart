@@ -57,418 +57,11 @@
 				#REQUEST.pageData.category.getCustomDesign()#
 			</cfif>
 			<div class="row shop-grid grid-view">
-
+			
 				<div class="col-md-3 col-sm-4 shop-grid-item">
 					<div class="product-slide-entry shift-image">
 						<div class="product-image">
 							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-3.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-4.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-5.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-6.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-7.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-8.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-9.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-10.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-							</div>
-						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-2.jpg" alt="" />
 							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
 							<div class="bottom-line left-attached">
 								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
@@ -602,82 +195,112 @@
 				</div>
 			</div>
 
-			<div class="information-blocks">
-				<div class="block-title size-2">Sort by sizes</div>
-				<div class="range-wrapper">
-					<div id="prices-range"></div>
-					<div class="range-price">
-						Price: 
-						<div class="min-price"><b>&pound;<span>0</span></b></div>
-						<b>-</b>
-						<div class="max-price"><b>&pound;<span>200</span></b></div>
+			<cfif REQUEST.pageData.category.getDisplayFilter() EQ true>
+				<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
+					<div style="border:1px solid ##CCC;width:692px;padding:10px;">
+						<table id="filters">
+							<cfloop array="#REQUEST.pageData.filterArray#" index="filter">
+								<tr>
+									<td>#filter.filterName#:</td>
+									<td>
+										<ul>
+											<cfloop array="#filter.filterValueArray#" index="filterValue">
+												<a href="#filterValue.link#">
+												<li class="filter-value <cfif filterValue.selected>active-filter</cfif>"
+												<cfif filter.filterName EQ "color">style="background-color:#filterValue.value#;width:20px;height:20px;padding:0;"</cfif>
+												>
+												
+												<cfif filter.filterName NEQ "color">
+													#filterValue.name#
+												</cfif>
+												
+												</li>
+												</a>
+											</cfloop>
+										</ul>
+									</td>
+								</tr>
+							</cfloop>
+						</table>
 					</div>
-					<a class="button style-14">filter</a>
-				</div>
-			</div>
-
-			<div class="information-blocks">
-				<div class="block-title size-2">Sort by sizes</div>
-				<div class="size-selector">
-					<div class="entry active">xs</div>
-					<div class="entry">s</div>
-					<div class="entry">m</div>
-					<div class="entry">l</div>
-					<div class="entry">xl</div>
-					<div class="spacer"></div>
-				</div>
-			</div>
-
-			<div class="information-blocks">
-				<div class="block-title size-2">Sort by brands</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Armani
-						</label>
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Bershka Co
-						</label>
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Nelly.com
-						</label>
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Zigzag Inc
-						</label>  
-					</div>
-					<div class="col-xs-6">
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Armani
-						</label>
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Bershka Co
-						</label>
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Nelly.com
-						</label>
-						<label class="checkbox-entry">
-							<input type="checkbox" /> <span class="check"></span> Zigzag Inc
-						</label> 
+				</cfif>
+				
+				<div class="information-blocks">
+					<div class="block-title size-2">Sort by sizes</div>
+					<div class="range-wrapper">
+						<div id="prices-range"></div>
+						<div class="range-price">
+							Price: 
+							<div class="min-price"><b>&pound;<span>0</span></b></div>
+							<b>-</b>
+							<div class="max-price"><b>&pound;<span>200</span></b></div>
+						</div>
+						<a class="button style-14">filter</a>
 					</div>
 				</div>
-			</div>
 
-			<div class="information-blocks">
-				<div class="block-title size-2">Sort by colours</div>
-				<div class="color-selector detail-info-entry">
-					<div style="background-color: ##cf5d5d;" class="entry active"></div>
-					<div style="background-color: ##c9459f;" class="entry"></div>
-					<div style="background-color: ##689dd4;" class="entry"></div>
-					<div style="background-color: ##68d4aa;" class="entry"></div>
-					<div style="background-color: ##a8d468;" class="entry"></div>
-					<div style="background-color: ##d4c368;" class="entry"></div>
-					<div style="background-color: ##c2c2c2;" class="entry"></div>
-					<div style="background-color: ##000000;" class="entry"></div>
-					<div style="background-color: ##f0f0f0;" class="entry"></div>
-					<div class="spacer"></div>
+				<div class="information-blocks">
+					<div class="block-title size-2">Sort by sizes</div>
+					<div class="size-selector">
+						<div class="entry active">xs</div>
+						<div class="entry">s</div>
+						<div class="entry">m</div>
+						<div class="entry">l</div>
+						<div class="entry">xl</div>
+						<div class="spacer"></div>
+					</div>
 				</div>
-			</div>
-			 
+
+				<div class="information-blocks">
+					<div class="block-title size-2">Sort by brands</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Armani
+							</label>
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Bershka Co
+							</label>
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Nelly.com
+							</label>
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Zigzag Inc
+							</label>  
+						</div>
+						<div class="col-xs-6">
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Armani
+							</label>
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Bershka Co
+							</label>
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Nelly.com
+							</label>
+							<label class="checkbox-entry">
+								<input type="checkbox" /> <span class="check"></span> Zigzag Inc
+							</label> 
+						</div>
+					</div>
+				</div>
+
+				<div class="information-blocks">
+					<div class="block-title size-2">Sort by colours</div>
+					<div class="color-selector detail-info-entry">
+						<div style="background-color: ##cf5d5d;" class="entry active"></div>
+						<div style="background-color: ##c9459f;" class="entry"></div>
+						<div style="background-color: ##689dd4;" class="entry"></div>
+						<div style="background-color: ##68d4aa;" class="entry"></div>
+						<div style="background-color: ##a8d468;" class="entry"></div>
+						<div style="background-color: ##d4c368;" class="entry"></div>
+						<div style="background-color: ##c2c2c2;" class="entry"></div>
+						<div style="background-color: ##000000;" class="entry"></div>
+						<div style="background-color: ##f0f0f0;" class="entry"></div>
+						<div class="spacer"></div>
+					</div>
+				</div>
+			</cfif>
 		</div>
 	</div>
 </div>
