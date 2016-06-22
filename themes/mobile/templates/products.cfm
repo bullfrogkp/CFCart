@@ -56,45 +56,46 @@
 			<cfif REQUEST.pageData.category.getDisplayCustomDesign() EQ true>
 				#REQUEST.pageData.category.getCustomDesign()#
 			</cfif>
-			<div class="row shop-grid grid-view">
-			
-				<div class="col-md-3 col-sm-4 shop-grid-item">
-					<div class="product-slide-entry shift-image">
-						<div class="product-image">
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
-							<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
-							<div class="bottom-line left-attached">
-								<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-								<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
+			<div class="row shop-grid grid-view">	
+				<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="product">
+					<div class="col-md-3 col-sm-4 shop-grid-item">
+						<div class="product-slide-entry shift-image">
+							<div class="product-image">
+								<!--- <img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" /> --->
+								<img src="#SESSION.absoluteUrlTheme#images/product-minimal-1.jpg" alt="" />
+								<img src="#SESSION.absoluteUrlTheme#images/product-minimal-11.jpg" alt="" />
+								<div class="bottom-line left-attached">
+									<a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
+									<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
+									<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
+									<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
+								</div>
+							</div>
+							<a class="tag" href="##">Men clothing</a>
+							<a class="title" href="#product.getDetailPageURL()#">#product.getDisplayName()#</a>
+							<div class="rating-box">
+								<div class="star"><i class="fa fa-star"></i></div>
+								<div class="star"><i class="fa fa-star"></i></div>
+								<div class="star"><i class="fa fa-star"></i></div>
+								<div class="star"><i class="fa fa-star"></i></div>
+								<div class="star"><i class="fa fa-star"></i></div>
+								<div class="reviews-number">25 reviews</div>
+							</div>
+							<div class="article-container style-1">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+							<div class="price">
+								<div class="prev">$#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+								<div class="current">$#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+							</div>
+							<div class="list-buttons">
+								<a class="button style-10">Add to cart</a>
+								<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
 							</div>
 						</div>
-						<a class="tag" href="##">Men clothing</a>
-						<a class="title" href="##">Blue Pullover Batwing Sleeve Zigzag</a>
-						<div class="rating-box">
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="star"><i class="fa fa-star"></i></div>
-							<div class="reviews-number">25 reviews</div>
-						</div>
-						<div class="article-container style-1">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</div>
-						<div class="price">
-							<div class="prev">$199,99</div>
-							<div class="current">$119,99</div>
-						</div>
-						<div class="list-buttons">
-							<a class="button style-10">Add to cart</a>
-							<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-						</div>
+						<div class="clear"></div>
 					</div>
-					<div class="clear"></div>
-				</div>
-
+				</cfloop>
 			</div>
 			<div class="page-selector">
 				<div class="description">Showing: 1-3 of #ArrayLen(REQUEST.pageData.paginationInfo.records)#</div>
