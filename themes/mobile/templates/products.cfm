@@ -112,89 +112,64 @@
 			</div>
 		</div>
 		<div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
-			<div class="information-blocks categories-border-wrapper">
-				<div class="block-title size-3">Categories</div>
-				<div class="accordeon">
-					<div class="accordeon-title">Bags &amp; Accessories</div>
-					<div class="accordeon-entry">
-						<div class="article-container style-1">
-							<ul>
-								<li><a href="##">Bags &amp; Accessories</a></li>
-								<li><a href="##">Man's Products</a></li>
-								<li><a href="##">Woman's Products</a></li>
-								<li><a href="##">Top Brands</a></li>
-								<li><a href="##">Special Offer</a></li>
-								<li><a href="##">Leather's Products</a></li>
-							</ul>
-						</div>
+		
+			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.subCategoryTree)#" index="i">
+				<cfset cat = REQUEST.pageData.categoryTree[i] />
+				<li class=" 
+					<cfif cat.getIsExpanded()>isExpanded</cfif>
+					<cfif cat.getIsActive()>easytree-active</cfif>
+					" title="#cat.getDisplayName()#">
+					<a href="#cat.getDetailPageURL()#">
+						#cat.getDisplayName()#
+					</a>
+					<ul>
+						<cfloop array="#cat.getSubCategories()#" index="subCat">
+							<li class="
+								<cfif subCat.getIsExpanded()>isExpanded</cfif>
+								<cfif subCat.getIsActive()>easytree-active</cfif>
+							">
+								<a href="#subCat.getDetailPageURL()#">
+									#subCat.getDisplayName()#
+								</a>
+								<ul>
+									<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+										<li class="
+											<cfif thirdCat.getIsExpanded()>isExpanded</cfif>
+											<cfif thirdCat.getIsActive()>easytree-active</cfif>
+										">
+											<a href="#thirdCat.getDetailPageURL()#">
+												#thirdCat.getDisplayName()#
+											</a>
+										</li>
+									</cfloop>	
+								</ul>
+							</li>
+						</cfloop>	
+					</ul>
+				</li>
+			</cfloop>
+		
+			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.subCategoryTree)#" index="i">
+				<cfset cat = REQUEST.pageData.categoryTree[i] />
+				<div class="information-blocks categories-border-wrapper">
+					<div class="block-title size-3"><a href="#cat.getDetailPageURL()#">#cat.getDisplayName()#</a></div>
+					<div class="accordeon">
+						<cfloop array="#cat.getSubCategories()#" index="subCat">
+							<div class="accordeon-title">#subCat.getDisplayName()#</div>
+							<div class="accordeon-entry">
+								<div class="article-container style-1">
+									<ul>
+										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
+											<li><a href="#thirdCat.getDetailPageURL()#">#thirdCat.getDisplayName()#</a></li>
+										</cfloop>
+										<li><a href="#subCat.getDetailPageURL()#">View All</a></li>
+									</ul>
+								</div>
+							</div>
+						</cfloop>
 					</div>
-					<div class="accordeon-title">Man's Products</div>
-					<div class="accordeon-entry">
-						<div class="article-container style-1">
-							<ul>
-								<li><a href="##">Bags &amp; Accessories</a></li>
-								<li><a href="##">Man's Products</a></li>
-								<li><a href="##">Woman's Products</a></li>
-								<li><a href="##">Top Brands</a></li>
-								<li><a href="##">Special Offer</a></li>
-								<li><a href="##">Leather's Products</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="accordeon-title">Woman's Products</div>
-					<div class="accordeon-entry">
-						<div class="article-container style-1">
-							<ul>
-								<li><a href="##">Bags &amp; Accessories</a></li>
-								<li><a href="##">Man's Products</a></li>
-								<li><a href="##">Woman's Products</a></li>
-								<li><a href="##">Top Brands</a></li>
-								<li><a href="##">Special Offer</a></li>
-								<li><a href="##">Leather's Products</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="accordeon-title">Top Brands</div>
-					<div class="accordeon-entry">
-						<div class="article-container style-1">
-							<ul>
-								<li><a href="##">Bags &amp; Accessories</a></li>
-								<li><a href="##">Man's Products</a></li>
-								<li><a href="##">Woman's Products</a></li>
-								<li><a href="##">Top Brands</a></li>
-								<li><a href="##">Special Offer</a></li>
-								<li><a href="##">Leather's Products</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="accordeon-title">Special Offer</div>
-					<div class="accordeon-entry">
-						<div class="article-container style-1">
-							<ul>
-								<li><a href="##">Bags &amp; Accessories</a></li>
-								<li><a href="##">Man's Products</a></li>
-								<li><a href="##">Woman's Products</a></li>
-								<li><a href="##">Top Brands</a></li>
-								<li><a href="##">Special Offer</a></li>
-								<li><a href="##">Leather's Products</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="accordeon-title">Leather's Products</div>
-					<div class="accordeon-entry">
-						<div class="article-container style-1">
-							<ul>
-								<li><a href="##">Bags &amp; Accessories</a></li>
-								<li><a href="##">Man's Products</a></li>
-								<li><a href="##">Woman's Products</a></li>
-								<li><a href="##">Top Brands</a></li>
-								<li><a href="##">Special Offer</a></li>
-								<li><a href="##">Leather's Products</a></li>
-							</ul>
-						</div>
-					</div>   
 				</div>
-			</div>
+			</cfloop>
 
 			<cfif REQUEST.pageData.category.getDisplayFilter() EQ true>
 				<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
