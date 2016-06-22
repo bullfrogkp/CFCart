@@ -31,7 +31,6 @@
 			<cfset LOCAL.pageData.shoppingCartItemTotalAmount += LOCAL.shoppingCartItem.getCount() * LOCAL.shoppingCartItem.getProduct().getPrice() />
 		</cfloop>
 		
-		<cfset LOCAL.pageData.specialCategories = EntityLoad("category",{isSpecial = true, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.categories = EntityLoad("category",{isSpecial = false, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		<cfset LOCAL.pageData.currencyNow =  EntityLoad("currency", {currencyId=SESSION.currency.id},true) />

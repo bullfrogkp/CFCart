@@ -1,7 +1,9 @@
 <cfoutput>
 <div class="breadcrumb-box">
-	<a href="##">Home</a>
-	<a href="##">Bags &amp; Accessories</a>
+	<a href="##">Home</a>	
+	<cfloop array="#REQUEST.pageData.categoryArray#" index="category">
+		<a href="#category.getDetailPageURL()#">#category.getDisplayName()#</a>
+	</cfloop>
 </div>
 
 <div class="information-blocks">
@@ -9,11 +11,13 @@
 		<div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
 			<div class="page-selector">
 				<div class="pages-box hidden-xs">
-					<a href="##" class="square-button active">1</a>
-					<a href="##" class="square-button">2</a>
-					<a href="##" class="square-button">3</a>
-					<div class="divider">...</div>
-					<a href="##" class="square-button"><i class="fa fa-angle-right"></i></a>
+					<cfif ArrayLen(REQUEST.pageData.pageArray) GT 1>
+						<cfloop array="#REQUEST.pageData.pageArray#" index="page">
+							<a href="#page.link#" class="square-button <cfif page.selected>active</cfif>">#page.number#</a>
+						</cfloop>
+						<div class="divider">...</div>
+						<a href="##" class="square-button"><i class="fa fa-angle-right"></i></a>
+					</cfif>
 				</div>
 				<div class="shop-grid-controls">
 					<div class="entry">
