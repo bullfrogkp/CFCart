@@ -53,6 +53,9 @@
 				</div>
 				<div class="clear"></div>
 			</div>
+			<cfif REQUEST.pageData.category.getDisplayCustomDesign() EQ true>
+				#REQUEST.pageData.category.getCustomDesign()#
+			</cfif>
 			<div class="row shop-grid grid-view">
 
 				<div class="col-md-3 col-sm-4 shop-grid-item">
@@ -501,13 +504,15 @@
 
 			</div>
 			<div class="page-selector">
-				<div class="description">Showing: 1-3 of 16</div>
+				<div class="description">Showing: 1-3 of #ArrayLen(REQUEST.pageData.paginationInfo.records)#</div>
 				<div class="pages-box">
-					<a href="##" class="square-button active">1</a>
-					<a href="##" class="square-button">2</a>
-					<a href="##" class="square-button">3</a>
-					<div class="divider">...</div>
-					<a href="##" class="square-button"><i class="fa fa-angle-right"></i></a>
+					<cfif ArrayLen(REQUEST.pageData.pageArray) GT 1>
+						<cfloop array="#REQUEST.pageData.pageArray#" index="page">
+							<a href="#page.link#" class="square-button <cfif page.selected>active</cfif>">#page.number#</a>
+						</cfloop>
+						<div class="divider">...</div>
+						<a href="##" class="square-button"><i class="fa fa-angle-right"></i></a>
+					</cfif>
 				</div>
 				<div class="clear"></div>
 			</div>
