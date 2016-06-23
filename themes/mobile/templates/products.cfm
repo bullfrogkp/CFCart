@@ -119,13 +119,18 @@
 					<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
 						<cfset cat = REQUEST.pageData.categoryTree[i] />
 						<div class="accordeon-title">#cat.getDisplayName()#</div>
-						<div class="accordeon-entry">
+						<div class="accordeon-entry" style="
+							<cfif cat.getIsExpanded()>
+							display:block;
+							</cfif>
+							"
+							>
 							<div class="article-container style-1">
 								<ul>
 									<cfloop array="#cat.getSubCategories()#" index="subCat">
-										<li><a href="#subCat.getDetailPageURL()#">#subCat.getDisplayName()#</a></li>
+										<li><a href="#subCat.getDetailPageURL()#" <cfif subCat.getIsActive()>text-color:##fff;background-color:##000;</cfif>>#subCat.getDisplayName()#</a></li>
 									</cfloop>
-									<li><a href="#cat.getDetailPageURL()#">View All</a></li>
+									<li><a href="#cat.getDetailPageURL()#" <cfif cat.getIsActive()>text-color:##fff;background-color:##000;</cfif>>View All</a></li>
 								</ul>
 							</div>
 						</div>
