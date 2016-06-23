@@ -69,11 +69,12 @@
 				<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
 				<h3 class="product-subtitle">SKU:#REQUEST.pageData.product.getSku()#</h3>
 				<div class="rating-box">
-					<div class="star"><i class="fa fa-star"></i></div>
-					<div class="star"><i class="fa fa-star"></i></div>
-					<div class="star"><i class="fa fa-star"></i></div>
-					<div class="star"><i class="fa fa-star-o"></i></div>
-					<div class="star"><i class="fa fa-star-o"></i></div>
+					<cfloop from="1" to="#ArrayLen(REQUEST.pageData.stars)#">
+						<div class="star"><i class="fa fa-star"></i></div>
+					</cfloop>
+					<cfloop from="#ArrayLen(REQUEST.pageData.stars)#" to="#5 - ArrayLen(REQUEST.pageData.stars)#">
+						<div class="star"><i class="fa fa-star-o"></i></div>
+					</cfloop>
 					<div class="rating-number">#ArrayLen(REQUEST.pageData.reviews)# Reviews</div>
 				</div>
 				<div class="product-description detail-info-entry">
