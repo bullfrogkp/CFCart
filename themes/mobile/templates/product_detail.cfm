@@ -199,11 +199,11 @@
 <div class="information-blocks">
 	<div class="tabs-container style-1">
 		<div class="swiper-tabs tabs-switch">
-			<div class="title">Product info</div>
+			<div class="title">Product Information</div>
 			<div class="list">
-				<a class="tab-switcher active">Product description</a>
+				<a class="tab-switcher active">Description</a>
 				<a class="tab-switcher">SHIPPING &amp; RETURNS</a>
-				<a class="tab-switcher">Reviews (25)</a>
+				<a class="tab-switcher">Reviews (#ArrayLen(REQUEST.pageData.reviews)#)</a>
 				<div class="clear"></div>
 			</div>
 		</div>
