@@ -1,12 +1,4 @@
 <cfoutput>
-<div class="breadcrumb-box">
-	<a href="##">Home</a>
-	<a href="##">Shop</a>
-	<a href="##">T-shirts</a>
-	<a href="##">Careers</a>
-	<a href="##">T-shirt Stampata</a>                         
-</div>
-
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-sm-5 col-md-4 col-lg-5 information-entry">
@@ -74,17 +66,19 @@
 		</div>
 		<div class="col-sm-7 col-md-4 information-entry">
 			<div class="product-detail-box">
-				<h1 class="product-title">T-shirt Basic Stampata</h1>
-				<h3 class="product-subtitle">Loremous Clothing</h3>
+				<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
+				<h3 class="product-subtitle">SKU:#REQUEST.pageData.product.getSku()#</h3>
 				<div class="rating-box">
 					<div class="star"><i class="fa fa-star"></i></div>
 					<div class="star"><i class="fa fa-star"></i></div>
 					<div class="star"><i class="fa fa-star"></i></div>
 					<div class="star"><i class="fa fa-star-o"></i></div>
 					<div class="star"><i class="fa fa-star-o"></i></div>
-					<div class="rating-number">25 Reviews</div>
+					<div class="rating-number">#ArrayLen(REQUEST.pageData.reviews)# Reviews</div>
 				</div>
-				<div class="product-description detail-info-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+				<div class="product-description detail-info-entry">
+				#REQUEST.pageData.product.getDetail()#
+				</div>
 				<div class="price detail-info-entry">
 					<div class="prev">$90,00</div>
 					<div class="current">$70,00</div>

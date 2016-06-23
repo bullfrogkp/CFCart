@@ -12,6 +12,7 @@
 	<cfproperty name="shippingFee" column="shipping_fee" ormtype="float"> 
 	<cfproperty name="viewCount" column="view_count" ormtype="integer"> 
 	<cfproperty name="useAdvancedPrices" column="use_advanced_prices" ormtype="boolean"> 
+	<cfproperty name="brand" fieldtype="many-to-one" cfc="brand" fkcolumn="brand_id">
 	<cfproperty name="productType" fieldtype="many-to-one" cfc="product_type" fkcolumn="product_type_id">
 	<cfproperty name="taxCategory" fieldtype="many-to-one" cfc="tax_category" fkcolumn="tax_category_id">
 	<cfproperty name="productAttributeRelas" type="array" fieldtype="one-to-many" cfc="product_attribute_rela" fkcolumn="product_id" singularname="productAttributeRela" cascade="delete-orphan">
