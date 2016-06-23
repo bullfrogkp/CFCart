@@ -113,63 +113,25 @@
 		</div>
 		<div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
 		
-			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.subCategoryTree)#" index="i">
-				<cfset cat = REQUEST.pageData.categoryTree[i] />
-				<li class=" 
-					<cfif cat.getIsExpanded()>isExpanded</cfif>
-					<cfif cat.getIsActive()>easytree-active</cfif>
-					" title="#cat.getDisplayName()#">
-					<a href="#cat.getDetailPageURL()#">
-						#cat.getDisplayName()#
-					</a>
-					<ul>
-						<cfloop array="#cat.getSubCategories()#" index="subCat">
-							<li class="
-								<cfif subCat.getIsExpanded()>isExpanded</cfif>
-								<cfif subCat.getIsActive()>easytree-active</cfif>
-							">
-								<a href="#subCat.getDetailPageURL()#">
-									#subCat.getDisplayName()#
-								</a>
+			<div class="information-blocks categories-border-wrapper">
+				<div class="block-title size-3">Categories</div>
+				<div class="accordeon">
+					<cfloop from="1" to="#ArrayLen(REQUEST.pageData.categoryTree)#" index="i">
+						<cfset cat = REQUEST.pageData.categoryTree[i] />
+						<div class="accordeon-title">#cat.getDisplayName()#</div>
+						<div class="accordeon-entry">
+							<div class="article-container style-1">
 								<ul>
-									<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-										<li class="
-											<cfif thirdCat.getIsExpanded()>isExpanded</cfif>
-											<cfif thirdCat.getIsActive()>easytree-active</cfif>
-										">
-											<a href="#thirdCat.getDetailPageURL()#">
-												#thirdCat.getDisplayName()#
-											</a>
-										</li>
-									</cfloop>	
+									<cfloop array="#cat.getSubCategories()#" index="subCat">
+										<li><a href="#subCat.getDetailPageURL()#">#subCat.getDisplayName()#</a></li>
+									</cfloop>
+									<li><a href="#cat.getDetailPageURL()#">View All</a></li>
 								</ul>
-							</li>
-						</cfloop>	
-					</ul>
-				</li>
-			</cfloop>
-		
-			<cfloop from="1" to="#ArrayLen(REQUEST.pageData.subCategoryTree)#" index="i">
-				<cfset cat = REQUEST.pageData.categoryTree[i] />
-				<div class="information-blocks categories-border-wrapper">
-					<div class="block-title size-3"><a href="#cat.getDetailPageURL()#">#cat.getDisplayName()#</a></div>
-					<div class="accordeon">
-						<cfloop array="#cat.getSubCategories()#" index="subCat">
-							<div class="accordeon-title">#subCat.getDisplayName()#</div>
-							<div class="accordeon-entry">
-								<div class="article-container style-1">
-									<ul>
-										<cfloop array="#subCat.getSubCategories()#" index="thirdCat">
-											<li><a href="#thirdCat.getDetailPageURL()#">#thirdCat.getDisplayName()#</a></li>
-										</cfloop>
-										<li><a href="#subCat.getDetailPageURL()#">View All</a></li>
-									</ul>
-								</div>
 							</div>
-						</cfloop>
-					</div>
+						</div>
+					</cfloop>
 				</div>
-			</cfloop>
+			</div>
 
 			<cfif REQUEST.pageData.category.getDisplayFilter() EQ true>
 				<cfif NOT ArrayIsEmpty(REQUEST.pageData.category.getCategoryFilterRelas())>
