@@ -115,7 +115,7 @@
 				<div class="tags-selector detail-info-entry">
 					<div class="detail-info-entry-title">Tags:</div>
 					<cfloop array="#REQUEST.pageData.product.getProductTags()#" index="tag">
-						<a href="#tag.getLink()#">#tag.getDisplayName()#</a>/
+						<a href="#tag.getTagPageURL()#">#tag.getDisplayName()#</a>/
 					</cfloop>
 				</div>
 				<div class="share-box detail-info-entry">

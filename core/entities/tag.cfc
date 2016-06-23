@@ -4,7 +4,7 @@
 	<cfproperty name="productTags" type="array" fieldtype="one-to-many" cfc="product_tag_rela" fkcolumn="tag_id" singularname="productTag" cascade="delete-orphan">
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">
+	<cffunction name="getTagPageURL" access="public" output="false" returnType="string">
 		<cfreturn "#APPLICATION.absoluteUrlWeb#products.cfm/#URLEncodedFormat(getLabel())#/#getTagId()#/1/1/-/-/" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
