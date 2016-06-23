@@ -43,12 +43,12 @@
 		
 		<cfset LOCAL.recordStruct = LOCAL.productService.getRecords() />
 		<cfset LOCAL.pageData.paginationInfo = _getPaginationInfo(recordStruct = LOCAL.recordStruct, currentPage = LOCAL.pageData.pageNumber) />
-		<cfset LOCAL.pageData.subCategoryTree = LOCAL.categoryService.getCategoryTree(currentCategoryId = LOCAL.pageData.category.getCategoryId(), isSpecial = false) />
+		<cfset LOCAL.pageData.categoryTree = LOCAL.categoryService.getCategoryTree(isSpecial = false) />
 		
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.category.getDisplayName()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.category.getDescription() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.category.getKeywords() />
-		<cfset LOCAL.pageData.categoryArray = _getCategoryArray(category = LOCAL.pageData.category) />
+		<cfset LOCAL.pageData.breadcrumbCategoryArray = _getCategoryArray(category = LOCAL.pageData.category) />
 		
 		<cfif LOCAL.pageData.category.getDisplayCategoryList() EQ true>
 			<cfset LOCAL.pageData.allCategories = EntityLoad("category", {isDeleted = false, isEnabled = true})> 
