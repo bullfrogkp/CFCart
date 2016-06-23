@@ -78,7 +78,7 @@
 					<div class="rating-number">#ArrayLen(REQUEST.pageData.reviews)# Reviews</div>
 				</div>
 				<div class="product-description detail-info-entry">
-				#REQUEST.pageData.product.getDetail()#
+				#REQUEST.pageData.product.getDescription()#
 				</div>
 				<div class="price detail-info-entry">
 					<div class="prev">$90,00</div>
@@ -114,10 +114,9 @@
 				</div>
 				<div class="tags-selector detail-info-entry">
 					<div class="detail-info-entry-title">Tags:</div>
-					<a href="##">bootstrap</a>/
-					<a href="##">collections</a>/
-					<a href="##">color/</a>
-					<a href="##">responsive</a>
+					<cfloop array="#REQUEST.pageData.product.getProductTags()#" index="tag">
+						<a href="#tag.getLink()#">#tag.getDisplayName()#</a>/
+					</cfloop>
 				</div>
 				<div class="share-box detail-info-entry">
 					<div class="title">Share in social media</div>
