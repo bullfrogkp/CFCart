@@ -18,7 +18,7 @@
 					<div class="product-zoom-container">
 						<div class="move-box">
 							<img class="default-image" src="#images[1].getImageLink(type='medium')#" alt="" />
-							<img class="zoomed-image" src="##images[1].getImageLink()#" alt="" />
+							<img class="zoomed-image" src="#images[1].getImageLink()#" alt="" />
 						</div>
 						<div class="zoom-area"></div>
 					</div>
@@ -44,10 +44,10 @@
 				<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
 				<h3 class="product-subtitle">SKU:#REQUEST.pageData.product.getSku()#</h3>
 				<div class="rating-box">
-					<cfloop from="1" to="#ArrayLen(REQUEST.pageData.stars)#">
+					<cfloop from="1" to="#ArrayLen(REQUEST.pageData.stars)#" index="j">
 						<div class="star"><i class="fa fa-star"></i></div>
 					</cfloop>
-					<cfloop from="#ArrayLen(REQUEST.pageData.stars)#" to="#5 - ArrayLen(REQUEST.pageData.stars)#">
+					<cfloop from="#ArrayLen(REQUEST.pageData.stars)#" to="#5 - ArrayLen(REQUEST.pageData.stars)#" index="k">
 						<div class="star"><i class="fa fa-star-o"></i></div>
 					</cfloop>
 					<div class="rating-number">#ArrayLen(REQUEST.pageData.reviews)# Reviews</div>
@@ -60,23 +60,8 @@
 					<div class="current">$70,00</div>
 				</div>
 				
-				<div class="size-selector detail-info-entry">
-					<div class="detail-info-entry-title">Size</div>
-					<div class="entry active">xs</div>
-					<div class="entry">s</div>
-					<div class="entry">m</div>
-					<div class="entry">l</div>
-					<div class="entry">xl</div>
-					<div class="spacer"></div>
-				</div>
-				<div class="color-selector detail-info-entry">
-					<div class="detail-info-entry-title">Color</div>
-					<div class="entry active" style="background-color: ##d23118;">&nbsp;</div>
-					<div class="entry" style="background-color: ##2a84c9;">&nbsp;</div>
-					<div class="entry" style="background-color: ##000;">&nbsp;</div>
-					<div class="entry" style="background-color: ##d1d1d1;">&nbsp;</div>
-					<div class="spacer"></div>
-				</div>
+				#REQUEST.pageData.modules.view.product_detail_size_option#
+				#REQUEST.pageData.modules.view.product_detail_color_option#
 				
 				<div class="quantity-selector detail-info-entry">
 					<div class="detail-info-entry-title">Quantity</div>
