@@ -3,9 +3,10 @@
 	<div class="row">
 		<div class="col-sm-5 col-md-4 col-lg-5 information-entry">
 			<div class="product-preview-box">
+				<cfset images = REQUEST.pageData.product.getImages() />
 				<div class="swiper-container product-preview-swiper" data-autoplay="0" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
 					<div class="swiper-wrapper">
-						<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">
+						<cfloop array="#images#" index="img">
 							<div class="swiper-slide">
 								<div class="product-zoom-image">
 									<img src="#img.getImageLink(type='medium')#" alt="" data-zoom="#img.getImageLink()#" />
@@ -16,8 +17,8 @@
 					<div class="pagination"></div>
 					<div class="product-zoom-container">
 						<div class="move-box">
-							<img class="default-image" src="#SESSION.absoluteUrlTheme#images/product-main-1.jpg" alt="" />
-							<img class="zoomed-image" src="#SESSION.absoluteUrlTheme#images/product-main-1-zoom.jpg" alt="" />
+							<img class="default-image" src="#images[1].getImageLink(type='medium')#" alt="" />
+							<img class="zoomed-image" src="##images[1].getImageLink()#" alt="" />
 						</div>
 						<div class="zoom-area"></div>
 					</div>
@@ -25,7 +26,6 @@
 				<div class="swiper-hidden-edges">
 					<div class="swiper-container product-thumbnails-swiper" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="3" data-int-slides="3" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
 						<div class="swiper-wrapper">
-							<cfset images = REQUEST.pageData.product.getImages() />
 							<cfloop from="1" to ="#ArrayLen(images)#" index="i">
 								<div class="swiper-slide <cfif i EQ 1>selected</cfif>">
 									<div class="paddings-container">
