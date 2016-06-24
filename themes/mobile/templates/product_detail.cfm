@@ -25,10 +25,11 @@
 				<div class="swiper-hidden-edges">
 					<div class="swiper-container product-thumbnails-swiper" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="3" data-int-slides="3" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
 						<div class="swiper-wrapper">
-							<cfloop array="#REQUEST.pageData.product.getImages()#" index="img">
-								<div class="swiper-slide selected">
+							<cfset images = REQUEST.pageData.product.getImages() />
+							<cfloop from="1" to ="#ArrayLen(images)#" index="i">
+								<div class="swiper-slide <cfif i EQ 1>selected</cfif>">
 									<div class="paddings-container">
-										<img src="#img.getImageLink(type='small')#" alt="" />
+										<img src="#images[i].getImageLink(type='small')#" alt="" />
 									</div>
 								</div>
 							</cfloop>
