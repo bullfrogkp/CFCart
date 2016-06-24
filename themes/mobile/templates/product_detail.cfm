@@ -44,10 +44,10 @@
 				<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
 				<h3 class="product-subtitle">SKU:#REQUEST.pageData.product.getSku()#</h3>
 				<div class="rating-box">
-					<cfloop from="1" to="#ArrayLen(REQUEST.pageData.stars)#" index="j">
+					<cfloop from="1" to="#REQUEST.pageData.stars#" index="j">
 						<div class="star"><i class="fa fa-star"></i></div>
 					</cfloop>
-					<cfloop from="#ArrayLen(REQUEST.pageData.stars)#" to="#5 - ArrayLen(REQUEST.pageData.stars)#" index="k">
+					<cfloop from="#REQUEST.pageData.stars#" to="#5 - REQUEST.pageData.stars#" index="k">
 						<div class="star"><i class="fa fa-star-o"></i></div>
 					</cfloop>
 					<div class="rating-number">#ArrayLen(REQUEST.pageData.reviews)# Reviews</div>
