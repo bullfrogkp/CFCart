@@ -9,7 +9,7 @@
 		<cfreturn this />
 	</cffunction>
 	
-	<cffunction name="getFrondendData" access="public" output="false" returnType="struct">
+	<cffunction name="getFrontendData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfreturn LOCAL />
 	</cffunction>
@@ -19,14 +19,12 @@
 		<cfreturn LOCAL />
 	</cffunction>
 	
-	<cffunction name="getFrondendView" access="public" output="false" returnType="string">
-		<cfset var LOCAL = {} />
-		<cfreturn LOCAL />
+	<cffunction name="getFrontendView" access="public" output="false" returnType="string">
+		<cfreturn "" />
 	</cffunction>
 
 	<cffunction name="getBackendView" access="public" output="false" returnType="string">
-		<cfset var LOCAL = {} />
-		<cfreturn LOCAL />
+		<cfreturn "" />
 	</cffunction>
 	
 	<cffunction name="processFrondendFormData" access="public" output="false" returnType="struct">
