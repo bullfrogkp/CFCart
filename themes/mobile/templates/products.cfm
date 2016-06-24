@@ -168,81 +168,13 @@
 					</div>
 				</cfif>
 				
-				<div class="information-blocks">
-					<div class="block-title size-2">Sort by sizes</div>
-					<div class="range-wrapper">
-						<div id="prices-range"></div>
-						<div class="range-price">
-							Price: 
-							<div class="min-price"><b>&pound;<span>0</span></b></div>
-							<b>-</b>
-							<div class="max-price"><b>&pound;<span>200</span></b></div>
-						</div>
-						<a class="button style-14">filter</a>
-					</div>
-				</div>
+				<cfloop
 
-				<div class="information-blocks">
-					<div class="block-title size-2">Sort by sizes</div>
-					<div class="size-selector">
-						<div class="entry active">xs</div>
-						<div class="entry">s</div>
-						<div class="entry">m</div>
-						<div class="entry">l</div>
-						<div class="entry">xl</div>
-						<div class="spacer"></div>
-					</div>
-				</div>
+				
 
-				<div class="information-blocks">
-					<div class="block-title size-2">Sort by brands</div>
-					<div class="row">
-						<div class="col-xs-6">
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Armani
-							</label>
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Bershka Co
-							</label>
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Nelly.com
-							</label>
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Zigzag Inc
-							</label>  
-						</div>
-						<div class="col-xs-6">
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Armani
-							</label>
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Bershka Co
-							</label>
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Nelly.com
-							</label>
-							<label class="checkbox-entry">
-								<input type="checkbox" /> <span class="check"></span> Zigzag Inc
-							</label> 
-						</div>
-					</div>
-				</div>
+				
 
-				<div class="information-blocks">
-					<div class="block-title size-2">Sort by colours</div>
-					<div class="color-selector detail-info-entry">
-						<div style="background-color: ##cf5d5d;" class="entry active"></div>
-						<div style="background-color: ##c9459f;" class="entry"></div>
-						<div style="background-color: ##689dd4;" class="entry"></div>
-						<div style="background-color: ##68d4aa;" class="entry"></div>
-						<div style="background-color: ##a8d468;" class="entry"></div>
-						<div style="background-color: ##d4c368;" class="entry"></div>
-						<div style="background-color: ##c2c2c2;" class="entry"></div>
-						<div style="background-color: ##000000;" class="entry"></div>
-						<div style="background-color: ##f0f0f0;" class="entry"></div>
-						<div class="spacer"></div>
-					</div>
-				</div>
+				
 			</cfif>
 		</div>
 	</div>
