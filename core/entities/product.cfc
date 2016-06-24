@@ -4,7 +4,7 @@
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
 	<cfproperty name="stock" column="stock" ormtype="integer"> 
-	<cfproperty name="description" column="detail" ormtype="string"> 
+	<cfproperty name="description" column="description" ormtype="string"> 
 	<cfproperty name="detail" column="detail" ormtype="text"> 
 	<cfproperty name="length" column="length" ormtype="float"> 
 	<cfproperty name="width" column="width" ormtype="float"> 

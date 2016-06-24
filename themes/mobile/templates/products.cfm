@@ -168,13 +168,9 @@
 					</div>
 				</cfif>
 				
-				<cfloop
-
-				
-
-				
-
-				
+				#REQUEST.pageData.modules.view.products_size_filter#
+				#REQUEST.pageData.modules.view.products_color_filter#
+				#REQUEST.pageData.modules.view.products_brand_filter#
 			</cfif>
 		</div>
 	</div>
