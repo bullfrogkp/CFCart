@@ -60,8 +60,7 @@
 					<div class="current">$70,00</div>
 				</div>
 				
-				#REQUEST.pageData.modules.view.product_detail_size_option#
-				#REQUEST.pageData.modules.view.product_detail_color_option#
+				#REQUEST.pageData.modules.view.product_detail_options#
 				
 				<div class="quantity-selector detail-info-entry">
 					<div class="detail-info-entry-title">Quantity</div>
