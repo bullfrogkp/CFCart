@@ -109,7 +109,7 @@
 					<div class="information-blocks">
 						<div class="information-entry products-list">
 							<h3 class="block-title inline-product-column-title">Related products</h3>
-							<cfloop array="#REQUEST.pageData.modules.data.product_detail_related_products#" index="product">
+							<cfloop array="#REQUEST.pageData.modules.data.product_detail_related_products.products#" index="product">
 								<div class="inline-product-entry">
 									<a href="#product.href#" class="image"><img alt="" src="#product.image#"></a>
 									<div class="content">
