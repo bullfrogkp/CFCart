@@ -91,10 +91,11 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
-		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+		<cfloop array="#LOCAL.pageEntity.getModules(pageName = getPageName())#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
 		</cfloop>
+		
 		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
@@ -102,7 +103,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
-		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+		<cfloop array="#LOCAL.pageEntity.getModules(pageName = getPageName())#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendView()) />
 		</cfloop>
@@ -112,7 +113,7 @@
 	<cffunction name="processModuleData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
-		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+		<cfloop array="#LOCAL.pageEntity.getModules(pageName = getPageName())#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
 			<cfset LOCAL.moduleObj.processFormData() />
 		</cfloop>
