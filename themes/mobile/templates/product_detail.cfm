@@ -108,48 +108,22 @@
 				<div class="col-md-12">
 					<div class="information-blocks">
 						<div class="information-entry products-list">
-							<h3 class="block-title inline-product-column-title">Featured products</h3>
-							<div class="inline-product-entry">
-								<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
-								<div class="content">
-									<div class="cell-view">
-										<a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-										<div class="price">
-											<div class="prev">$199,99</div>
-											<div class="current">$119,99</div>
+							<h3 class="block-title inline-product-column-title">Related products</h3>
+							<cfloop array="#REQUEST.pageData.modules.data.product_detail_related_products#" index="product">
+								<div class="inline-product-entry">
+									<a href="#product.href#" class="image"><img alt="" src="#product.image#"></a>
+									<div class="content">
+										<div class="cell-view">
+											<a href="#product.href#" class="title">#product.name#</a>
+											<div class="price">
+												<div class="prev">$#product.previousPrice#</div>
+												<div class="current">$#product.currentPrice#</div>
+											</div>
 										</div>
 									</div>
+									<div class="clear"></div>
 								</div>
-								<div class="clear"></div>
-							</div>
-
-							<div class="inline-product-entry">
-								<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
-								<div class="content">
-									<div class="cell-view">
-										<a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-										<div class="price">
-											<div class="prev">$199,99</div>
-											<div class="current">$119,99</div>
-										</div>
-									</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-
-							<div class="inline-product-entry">
-								<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
-								<div class="content">
-									<div class="cell-view">
-										<a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-										<div class="price">
-											<div class="prev">$199,99</div>
-											<div class="current">$119,99</div>
-										</div>
-									</div>
-								</div>
-								<div class="clear"></div>
-							</div>
+							</cfloop>
 						</div>
 					</div>
 				</div>
