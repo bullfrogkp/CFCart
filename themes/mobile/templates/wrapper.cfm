@@ -327,39 +327,39 @@
                                 <div class="col-md-2 col-sm-4">
                                     <h3 class="column-title">Our Services</h3>
                                     <ul class="column">
-                                        <li><a href="##">About us</a></li>
-                                        <li><a href="##">Order History</a></li>
-                                        <li><a href="##">Returns</a></li>
-                                        <li><a href="##">Custom Service</a></li>
-                                        <li><a href="##">Terms &amp; Condition</a></li>
-                                        <li><a href="##">Order History</a></li>
-                                        <li><a href="##">Returns</a></li>
+                                        <li><a href="##">FAQ</a></li>
+                                        <li><a href="##">Size Charts</a></li>
+                                        <li><a href="##">Order Help</a></li>
+                                        <li><a href="##">Shipping & Handling</a></li>
+                                        <li><a href="##">Returns & Exchanges</a></li>
+                                        <li><a href="##">Track My Order</a></li>
+                                        <li><a href="##">My Account</a></li>
                                     </ul>
                                     <div class="clear"></div>
                                 </div>
                                 <div class="col-md-2 col-sm-4">
-                                    <h3 class="column-title">Our Services</h3>
+                                    <h3 class="column-title">ABOUT US</h3>
                                     <ul class="column">
-                                        <li><a href="##">About us</a></li>
-                                        <li><a href="##">Order History</a></li>
-                                        <li><a href="##">Returns</a></li>
-                                        <li><a href="##">Custom Service</a></li>
-                                        <li><a href="##">Terms &amp; Condition</a></li>
-                                        <li><a href="##">Order History</a></li>
-                                        <li><a href="##">Returns</a></li>
+                                        <li><a href="##">Brand Protection</a></li>
+                                        <li><a href="##">History</a></li>
+                                        <li><a href="##">Careers</a></li>
+                                        <li><a href="##">Diversity</a></li>
+                                        <li><a href="##">Investors</a></li>
+                                        <li><a href="##">About Us</a></li>
+                                        <li><a href="##">Contact Us</a></li>
                                     </ul>
                                     <div class="clear"></div>
                                 </div>
                                 <div class="col-md-2 col-sm-4">
-                                    <h3 class="column-title">Our Services</h3>
+                                    <h3 class="column-title">PRIVACY & TERMS</h3>
                                     <ul class="column">
-                                        <li><a href="##">About us</a></li>
-                                        <li><a href="##">Order History</a></li>
-                                        <li><a href="##">Returns</a></li>
-                                        <li><a href="##">Custom Service</a></li>
-                                        <li><a href="##">Terms &amp; Condition</a></li>
-                                        <li><a href="##">Order History</a></li>
-                                        <li><a href="##">Returns</a></li>
+                                        <li><a href="##">Privacy</a></li>
+                                        <li><a href="##">Ad Cookies</a></li>
+                                        <li><a href="##">Sale Terms</a></li>
+                                        <li><a href="##">Text Termse</a></li>
+                                        <li><a href="##">Terms of Use</a></li>
+                                        <li><a href="##">Endorsements</a></li>
+                                        <li><a href="##">Site Map</a></li>
                                     </ul>
                                     <div class="clear"></div>
                                 </div>
@@ -386,7 +386,7 @@
                                     <a href="##">Orders and Returns</a>
                                     <a href="##">Contact Us</a>
                                 </div>
-                                <div class="copyright">Created with by <a href="##">8theme</a>. All right reserved</div>
+                                <div class="copyright">Created with by <a href="##">FusionCloud</a>. All right reserved</div>
                             </div>
                             <div class="cell-view">
                                 <div class="payment-methods">
