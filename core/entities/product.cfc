@@ -3,6 +3,7 @@
 	<cfproperty name="sku" column="sku" ormtype="string"> 
 	<cfproperty name="title" column="title" ormtype="string"> 
 	<cfproperty name="keywords" column="keywords" ormtype="string"> 
+	<cfproperty name="logo" column="logo" ormtype="string"> 
 	<cfproperty name="stock" column="stock" ormtype="integer"> 
 	<cfproperty name="description" column="description" ormtype="string"> 
 	<cfproperty name="detail" column="detail" ormtype="text"> 
@@ -494,4 +495,9 @@
 			<cfset ArrayClear(getRelatedProducts()) />
 		</cfif>
 	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getLogoURL" access="public" output="false" returnType="string">
+		<cfreturn "#APPLICATION.absoluteUrlWeb#products/#getProductId()#/logo/#getLogo()#" />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 </cfcomponent>

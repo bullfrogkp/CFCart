@@ -100,7 +100,7 @@
 				<div class="col-md-12">
 					<div class="information-blocks production-logo">
 						<div class="background">
-							<div class="logo"><img src="#SESSION.absoluteUrlTheme#images/production-logo.png" alt="" /></div>
+							<div class="logo"><img src="#REQUEST.pageData.product.getLogoURL()#" alt="" /></div>
 							<a href="##">Review this producent</a>
 						</div>
 					</div>
