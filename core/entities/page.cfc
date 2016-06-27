@@ -7,12 +7,10 @@
 	<cfproperty name="modules" type="array" fieldtype="one-to-many" cfc="page_module" fkcolumn="page_id" singularname="module" cascade="delete-orphan">
 	
 	<cffunction name="getModules" access="public" output="false" returnType="array">
-		<cfargument name="pageName" type="string" required="true" />
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.allModules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
-		<cfset LOCAL.pageModules = EntityLoad("page_module",{name = ARGUMENTS.pageName, isGlobal = false, isDeleted = false, isEnabled = true}) />
-		
+		<cfset LOCAL.pageModules = EntityLoad("page_module",{page = this, isGlobal = false, isDeleted = false, isEnabled = true}) />
 		<cfset ArrayAppend(LOCAL.allModules, LOCAL.pageModules, true) />
 				
 		<cfreturn LOCAL.allModules />
