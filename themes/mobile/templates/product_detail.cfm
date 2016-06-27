@@ -147,28 +147,7 @@
 			<div class="tabs-entry">
 				<div class="article-container style-1">
 					<div class="row">
-						<div class="col-md-6 information-entry">
-							<h4>RETURNS POLICY</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-							<ul>
-								<li>Any Product types that You want - Simple, Configurable</li>
-								<li>Downloadable/Digital Products, Virtual Products</li>
-								<li>Inventory Management with Backordered items</li>
-								<li>Customer Personal Products - upload text for embroidery, monogramming</li>
-								<li>Create Store-specific attributes on the fly</li>
-							</ul>
-						</div>
-						<div class="col-md-6 information-entry">
-							<h4>SHIPPING</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-							<ul>
-								<li>Any Product types that You want - Simple, Configurable</li>
-								<li>Downloadable/Digital Products, Virtual Products</li>
-								<li>Inventory Management with Backordered items</li>
-								<li>Customer Personal Products - upload text for embroidery, monogramming</li>
-								<li>Create Store-specific attributes on the fly</li>
-							</ul>
-						</div>
+						#REQUEST.pageData.product.getDetail()#
 					</div>
 				</div>
 			</div>
@@ -203,27 +182,34 @@
 			<div class="tabs-entry">
 				<div class="article-container style-1">
 					<div class="row">
-						<div class="col-md-6 information-entry">
-							<h4>RETURNS POLICY</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-							<ul>
-								<li>Any Product types that You want - Simple, Configurable</li>
-								<li>Downloadable/Digital Products, Virtual Products</li>
-								<li>Inventory Management with Backordered items</li>
-								<li>Customer Personal Products - upload text for embroidery, monogramming</li>
-								<li>Create Store-specific attributes on the fly</li>
-							</ul>
-						</div>
-						<div class="col-md-6 information-entry">
-							<h4>SHIPPING</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-							<ul>
-								<li>Any Product types that You want - Simple, Configurable</li>
-								<li>Downloadable/Digital Products, Virtual Products</li>
-								<li>Inventory Management with Backordered items</li>
-								<li>Customer Personal Products - upload text for embroidery, monogramming</li>
-								<li>Create Store-specific attributes on the fly</li>
-							</ul>
+						<cfloop array="#REQUEST.pageData.reviews#" index="review">
+							<div class="col-md-6 information-entry">
+								<div style="border-bottom: 1px dashed ##CCCCCC;">
+									<p style="font-weight:bold;">#review.getSubject()# Review by #review.getReviewerName()#</p>
+									<p style="width:200px;height: 13px;
+										background: url(#SESSION.absoluteUrlTheme#images/breadcrub20140512.png);
+										background-position: left -1500px;
+										background-repeat: no-repeat;"></p>
+									<p>#review.getMessage()#</p>
+									<p>(Posted on #DateFormat(review.getCreatedDatetime(),"mmm dd, yyyy")#)</p>
+								</div>
+							</div>
+						</cfloop>
+						<div>
+							<p style="font-weight:bold;">Write Your Own Review</p>
+							<p style="font-weight:bold;">How do you rate this product?</p>
+							<input type="radio" name="review_rating" value="1" /> 1
+							<input type="radio" name="review_rating" value="2" /> 2
+							<input type="radio" name="review_rating" value="3" /> 3
+							<input type="radio" name="review_rating" value="4" /> 4
+							<input type="radio" name="review_rating" value="5" /> 5
+							<p style="font-weight:bold;">Name</p>
+							<p><input name="reviewer_name" type="text" style="width:100%;" /></p>
+							<p style="font-weight:bold;">Subject</p>
+							<p><input name="review_subject" type="text" style="width:100%;" /></p>
+							<p style="font-weight:bold;">Content</p>
+							<p><textarea name="review_message" style="width:100%;height:100px;" /></textarea></p>
+							<p><input name="add_review" type="submit" value="Submit" style="padding:5px 10px;" /></p>
 						</div>
 					</div>
 				</div>
