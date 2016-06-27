@@ -1,6 +1,6 @@
 ﻿<cfcomponent output="false" accessors="true">
 	<cfproperty name="pageName" type="string" required="true"> 
-	<cfproperty name="formData" type="struct" required="false" default="#{}#"> 
+	<cfproperty name="formData" type="struct" required="true"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
@@ -114,7 +114,7 @@
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
-			<cfset LOCAL.moduleObj.processFormData()) />
+			<cfset LOCAL.moduleObj.processFormData() />
 		</cfloop>
 		<cfreturn LOCAL />
 	</cffunction>

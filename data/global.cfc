@@ -1,6 +1,6 @@
 ﻿<cfcomponent output="false" accessors="true">
 	<cfproperty name="pageName" type="string" required="true"> 
-	<cfproperty name="formData" type="struct" required="false" default="#{}#"> 
+	<cfproperty name="formData" type="struct" required="true"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
@@ -84,20 +84,20 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 	
-		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND (Trim(FORM.search_text) NEQ "" OR FORM.search_category_id NEQ 0)>
+		<cfif (StructKeyExists(FORM,"search_product") OR StructKeyExists(FORM,"search_product.x")) AND (Trim(getFormaData().search_text) NEQ "" OR getFormaData().search_category_id NEQ 0)>
 		
-			<cfif Trim(FORM.search_text) EQ "">
+			<cfif Trim(getFormaData().search_text) EQ "">
 				<cfset LOCAL.searchText = "-" />
 			<cfelse>
-				<cfset LOCAL.searchText = URLEncodedFormat(Trim(FORM.search_text)) />
+				<cfset LOCAL.searchText = URLEncodedFormat(Trim(getFormaData().search_text)) />
 			</cfif>
 			
-			<cfif FORM.search_category_id EQ 0>
+			<cfif getFormaData().search_category_id EQ 0>
 				<cfset LOCAL.searchCategoryId = "-" />
 				<cfset LOCAL.searchCategoryName = "-" />
 			<cfelse>
-				<cfset LOCAL.category = EntityLoadByPK("category",FORM.search_category_id) />
-				<cfset LOCAL.searchCategoryId = FORM.search_category_id />
+				<cfset LOCAL.category = EntityLoadByPK("category",getFormaData().search_category_id) />
+				<cfset LOCAL.searchCategoryId = getFormaData().search_category_id />
 				<cfset LOCAL.searchCategoryName = URLEncodedFormat(LOCAL.category.getName()) />
 			</cfif>
 		
@@ -107,7 +107,7 @@
 			
 		<cfelseif StructKeyExists(FORM,"currency_id")>
 		
-			<cfset LOCAL.newCurrency = EntityLoadByPK("currency",FORM.currency_id) />
+			<cfset LOCAL.newCurrency = EntityLoadByPK("currency",getFormaData().currency_id) />
 			<cfset SESSION.currency.id = LOCAL.newCurrency.getCurrencyId() />
 			<cfset SESSION.currency.code = LOCAL.newCurrency.getCode() />
 			<cfset SESSION.currency.locale = LOCAL.newCurrency.getLocale() />
@@ -119,15 +119,15 @@
 		
 		<cfelseif StructKeyExists(FORM,"subscribe_customer")>
 		
-			<cfif IsValid("email",Trim(FORM.subscribe_email))>
+			<cfif IsValid("email",Trim(getFormaData().subscribe_email))>
 				<!--- get the enabled customer with the same email --->
-				<cfset LOCAL.existingActiveCustomer = EntityLoad("customer",{email = Trim(FORM.subscribe_email), isEnabled = true, isDeleted = false}, true) />
+				<cfset LOCAL.existingActiveCustomer = EntityLoad("customer",{email = Trim(getFormaData().subscribe_email), isEnabled = true, isDeleted = false}, true) />
 				<cfif NOT IsNull(LOCAL.existingActiveCustomer)>
 					<cfset LOCAL.existingActiveCustomer.setSubscribed(true) />
 					<cfset EntitySave(LOCAL.existingActiveCustomer) />
 				<cfelse>
 					<!--- get the latest disable customer with the same email --->
-					<cfset LOCAL.existingInActiveCustomerArray = EntityLoad("customer",{email = Trim(FORM.subscribe_email), isEnabled = false, isDeleted = false}, "createdDatetime Desc") />
+					<cfset LOCAL.existingInActiveCustomerArray = EntityLoad("customer",{email = Trim(getFormaData().subscribe_email), isEnabled = false, isDeleted = false}, "createdDatetime Desc") />
 					<cfif NOT ArrayIsEmpty(LOCAL.existingInActiveCustomerArray)>
 						<cfset LOCAL.existingInActiveCustomer = LOCAL.existingInActiveCustomerArray[1] />
 						<cfset LOCAL.existingInActiveCustomer.setSubscribed(true) />
@@ -139,7 +139,7 @@
 						<cfset LOCAL.customer.setIsDeleted(false) />
 						<cfset LOCAL.customer.setIsNew(true) />
 						<cfset LOCAL.customer.setIsEnabled(false) />
-						<cfset LOCAL.customer.setEmail(Trim(FORM.subscribe_email)) />
+						<cfset LOCAL.customer.setEmail(Trim(getFormaData().subscribe_email)) />
 						<cfset LOCAL.customer.setSubscribed(true) />
 						
 						<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault=true},true) />

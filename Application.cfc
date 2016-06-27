@@ -4,9 +4,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.pageName) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.pageName, formData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -15,7 +15,7 @@
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.pageName) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.pageName, formData = {}) />
 		
 		<cfreturn pageObj />
 	</cffunction>
