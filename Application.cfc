@@ -56,9 +56,10 @@
 			
 				<!--- form.file is image upload plugin --->
 				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM) AND NOT StructKeyExists(FORM,"file")>
-					<!--- global data handler --->
 					<cfset globalPageObj.setFormData(FORM) />
 					<cfset pageObj.setFormData(FORM) />
+					
+					<!--- global data handler --->
 					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />

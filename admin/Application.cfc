@@ -156,9 +156,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName, formData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -167,7 +167,7 @@
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName, formData = {}) />
 		
 		<cfreturn pageObj />
 	</cffunction>
@@ -214,6 +214,9 @@
 			
 				<!--- form.file is image upload plugin --->
 				<cfif IsDefined("FORM") AND NOT StructIsEmpty(FORM) AND NOT StructKeyExists(FORM,"file")>
+					<cfset globalPageObj.setFormData(FORM) />
+					<cfset pageObj.setFormData(FORM) />
+					
 					<!--- global data handler --->
 					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
