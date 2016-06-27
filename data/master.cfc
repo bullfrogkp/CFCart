@@ -108,6 +108,16 @@
 		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="processModuleData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset LOCAL.moduleObj.processFormData()) />
+		</cfloop>
+		<cfreturn LOCAL />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="moduleName" required="true"/>
 		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = ARGUMENTS.pageName) />

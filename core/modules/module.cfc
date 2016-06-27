@@ -27,14 +27,14 @@
 		<cfreturn "" />
 	</cffunction>
 	
-	<cffunction name="processFrondendFormData" access="public" output="false" returnType="struct">
+	<cffunction name="processFrontendModuleFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
 	
-	<cffunction name="processBackendFormData" access="public" output="false" returnType="struct">
+	<cffunction name="processBackendModuleFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
