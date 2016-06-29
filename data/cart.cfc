@@ -31,15 +31,6 @@
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
 		
-		<cfset LOCAL.pageData.trackingRecords = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken).getTrackingRecords(trackingRecordType = "shopping cart") />
-		
-		<cfset LOCAL.pageData.subTotal = 0 />
-		
-		<cfloop array="#LOCAL.pageData.trackingRecords#" index="LOCAL.record">
-			<cfset LOCAL.product = LOCAL.record.getProduct() />
-			<cfset LOCAL.pageData.subTotal += LOCAL.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) * LOCAL.record.getCount() />
-		</cfloop>
-		
 		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
 			<cfset LOCAL.pageData.message.messageArray = SESSION.temp.message.messageArray />
 		</cfif>
