@@ -479,4 +479,27 @@
 		
 		<cfreturn LOCAL.trackingRecords />
 	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getTotalCount" access="public" output="false" returnType="numeric">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.count = 0 />
+		<cfset LOCAL.trackingRecords = getCartItems() />
+		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
+			<cfset LOCAL.count += LOCAL.record.getCount() />
+		</cfloop>
+		
+		<cfreturn LOCAL.count />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getSubTotal" access="public" output="false" returnType="numeric">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.subTotal = 0 />
+		<cfset LOCAL.trackingRecords = getCartItems() />
+		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
+			<cfset LOCAL.subTotal += LOCAL.record.getSubTotal() />
+		</cfloop>
+		
+		<cfreturn LOCAL.subTotal />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 </cfcomponent>

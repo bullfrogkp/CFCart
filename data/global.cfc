@@ -21,17 +21,6 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
-		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name="shopping cart"},true) />
-		<cfset LOCAL.pageData.shoppingCartItems = EntityLoad("tracking_record",{trackingEntity = LOCAL.trackingEntity, trackingRecordType = LOCAL.trackingRecordType}) />
-		
-		<cfset LOCAL.pageData.shoppingCartItemTotalCount = 0 />
-		<cfset LOCAL.pageData.shoppingCartItemTotalAmount = 0 />
-		<cfloop array="#LOCAL.pageData.shoppingCartItems#" index="LOCAL.shoppingCartItem">
-			<cfset LOCAL.pageData.shoppingCartItemTotalCount += LOCAL.shoppingCartItem.getCount() />
-			<cfset LOCAL.pageData.shoppingCartItemTotalAmount += LOCAL.shoppingCartItem.getCount() * LOCAL.shoppingCartItem.getProduct().getPrice() />
-		</cfloop>
-		
 		<cfset LOCAL.pageData.categories = EntityLoad("category",{isSpecial = false, isEnabled = true, isDeleted = false},"rank Asc") />
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		<cfset LOCAL.pageData.currencyNow =  EntityLoad("currency", {currencyId=SESSION.currency.id},true) />
