@@ -35,8 +35,12 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSubTotal" access="public" output="false" returnType="string">
+		<cfreturn getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * getCount() />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getSubTotalDisplay" access="public" output="false" returnType="string">
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
-		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * getCount(),"local",LOCAL.currency.getLocale()) />
+		<cfreturn LSCurrencyFormat(getSubTotal(),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getAttributes" access="public" output="false" returnType="array">

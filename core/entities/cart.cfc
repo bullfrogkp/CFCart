@@ -496,7 +496,6 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSubTotal" access="public" output="false" returnType="numeric">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		<cfset LOCAL.subTotal = 0 />
 		<cfset LOCAL.trackingRecords = getCartItems() />
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
@@ -507,12 +506,13 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDisplaySubTotal" access="public" output="false" returnType="string">
+		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		<cfreturn LSCurrencyFormat(getSubTotal(),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getGrandTotal" access="public" output="false" returnType="numeric">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.grandTotal = getSubTotal() + getShippingFee() + getTax() />
+		<cfset LOCAL.grandTotal = getSubTotal() + getTotalShippingFee() + getTotalTax() />
 		
 		<cfreturn LOCAL.grandTotal />
 	</cffunction>

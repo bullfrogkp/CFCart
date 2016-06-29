@@ -76,7 +76,7 @@
                             <div class="line-entry">
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-copy"></i><span>Compare</span></a>
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
-                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>#SESSION.cart.getSubTotal()#</b></a>
+                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>#SESSION.cart.getDisplaySubTotal()#</b></a>
                             </div>
                         </div>
                     </div>
@@ -446,7 +446,7 @@
 				</cfloop>
 				
 				<div class="summary">
-					<div class="subtotal">Subtotal: #SESSION.cart.getSubTotal()#</div>
+					<div class="subtotal">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
 				</div>
 				<div class="cart-buttons">
 					<div class="column">
