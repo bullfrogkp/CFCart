@@ -30,7 +30,14 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getAttributes" access="public" output="false" returnType="array">
-		<cfreturn getProduct().getProductsAttributes() />
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retArray = [] />
+		
+		<cfloop array="#getProduct().getProductAttributeRelas()#" index="LOCAL.rela">
+			<cfset ArrayAppend(LOCAL.retArray,LOCAL.rela.getAttribute()) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retArray />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 </cfcomponent>
