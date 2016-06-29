@@ -1,6 +1,4 @@
 ﻿<cfcomponent output="false" accessors="true">
-	<cfproperty name="cfid" type="string"> 
-	<cfproperty name="cftoken" type="string"> 
     <cfproperty name="isExistingCustomer" type="boolean"> 
     <cfproperty name="registerCustomer" type="boolean"> 
     <cfproperty name="registerCustomerPassword" type="string"> 
@@ -55,8 +53,7 @@
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
 		
-		<cfset LOCAL.trackingService = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = getCfid(), cftoken = getCftoken()) />
-		<cfset LOCAL.trackingRecords = LOCAL.trackingService.getTrackingRecords(trackingRecordType = "shopping cart") />
+		<cfset LOCAL.trackingRecords = getCartItems() />
 		
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		
@@ -449,12 +446,30 @@
 		</cfloop>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="addProduct" access="public" output="false" returnType="any">
+	<cffunction name="addProduct" access="public" output="false" returnType="void">
+		<cfargument name="productId" type="integer" required="true" />
+		<cfargument name="count" type="integer" required="true" />
+		
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.trackingRecord = EntityNew("tracking_record") />
+		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
+		<cfset LOCAL.product = EntityLoadById("product",ARGUMENTS.productId) />
+		
+		<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
+		<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
+		<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
+		<cfset LOCAL.trackingRecord.setCount(ARGUMENTS.count) />
+		<cfset EntitySave(LOCAL.trackingRecord) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeProduct" access="public" output="false" returnType="any">
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getProducts" access="public" output="false" returnType="any">
+	<cffunction name="getCartItems" access="public" output="false" returnType="array">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
+		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record",{trackingRecordType = LOCAL.trackingRecordType, trackingEntity = getTrackingEntity()}) />
+		<cfreturn LOCAL.trackingRecords />
 	</cffunction>
 </cfcomponent>
