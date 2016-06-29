@@ -433,21 +433,20 @@
     <div class="cart-box popup">
         <div class="popup-container">
 			<cfif ArrayLen(REQUEST.pageData.shoppingCartItems) GT 0>
-				<cfloop array="#REQUEST.pageData.shoppingCartItems#" index="shoppingCartItem">
-					<cfset product = shoppingCartItem.getProduct() />
+				<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 					<div class="cart-entry">
-						<a class="image"><img src="#product.getImage()#" alt="" /></a>
+						<a class="image"><img src="#item.getDefaultImageURL()#" alt="" /></a>
 						<div class="content">
-							<a class="title" href="##">#product.getDisplayName()#</a>
-							<div class="quantity">Quantity: #shoppingCartItem.getCount()#</div>
-							<div class="price">$#NumberFormat(shoppingCartItem.getCount() * shoppingCartItem.getPrice(),"0.00")#</div>
+							<a class="title" href="##">#item.getDisplayName()#</a>
+							<div class="quantity">Quantity: #item.getCount()#</div>
+							<div class="price">#item.getPrice()#</div>
 						</div>
 						<div class="button-x"><i class="fa fa-close"></i></div>
 					</div>
 				</cfloop>
 				
 				<div class="summary">
-					<div class="subtotal">Subtotal: $#REQUEST.pageData.shoppingCartItemTotalAmount#</div>
+					<div class="subtotal">Subtotal: #SESSION.cart.getSubTotal()#</div>
 				</div>
 				<div class="cart-buttons">
 					<div class="column">
