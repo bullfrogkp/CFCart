@@ -432,7 +432,7 @@
 
     <div class="cart-box popup">
         <div class="popup-container">
-			<cfif ArrayLen(SESSION.cart.getCount()) GT 0>
+			<cfif SESSION.cart.getCount() GT 0>
 				<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 					<div class="cart-entry">
 						<a class="image"><img src="#item.getDefaultImageURL()#" alt="" /></a>
