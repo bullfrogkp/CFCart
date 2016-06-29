@@ -493,13 +493,14 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSubTotal" access="public" output="false" returnType="numeric">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		<cfset LOCAL.subTotal = 0 />
 		<cfset LOCAL.trackingRecords = getCartItems() />
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
 			<cfset LOCAL.subTotal += LOCAL.record.getSubTotal() />
 		</cfloop>
 		
-		<cfreturn LOCAL.subTotal />
+		<cfreturn LSCurrencyFormat(LOCAL.subTotal,"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 </cfcomponent>
