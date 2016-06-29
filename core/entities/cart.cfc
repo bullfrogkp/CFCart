@@ -33,14 +33,24 @@
     <cfproperty name="totalShippingFeeWCInter" type="string"> 
     <cfproperty name="discountWCInter" type="string"> 
 	
-	 <cfproperty name="customer" type="any">
-	 <cfproperty name="shippingAddress" type="any">
-	 <cfproperty name="billingAddress" type="any">
-	 <cfproperty name="paymentMethod" type="any">
-	 <cfproperty name="coupon" type="any">
-	 <cfproperty name="order" type="any">
-	 <cfproperty name="orderProduct" type="any">
+	<cfproperty name="customer" type="any">
+	<cfproperty name="shippingAddress" type="any">
+	<cfproperty name="billingAddress" type="any">
+	<cfproperty name="paymentMethod" type="any">
+	<cfproperty name="coupon" type="any">
+	<cfproperty name="order" type="any">
+	<cfproperty name="orderProduct" type="any">
+	<cfproperty name="trackingEntity" type="any">
     
+	<!------------------------------------------------------------------------------->
+	<cffunction name="init" access="public" output="false" returntype="any">
+		<cfargument name="cfid" type="string" required="true" />
+		<cfargument name="cftoken" type="string" required="true" />
+		
+		<cfset setTrackingEntity(EntityLoad("tracking_entity", {cfid = ARGUMENTS.cfid, cftoken = ARGUMENTS.cftoken}, true)) />
+		
+		<cfreturn this />
+	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="calculate" access="public" output="false" returnType="void">
 		<cfset var LOCAL = {} />
