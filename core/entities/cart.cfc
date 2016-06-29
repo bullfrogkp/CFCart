@@ -438,4 +438,13 @@
 			<cfset EntitySave(LOCAL.product) /> 
 		</cfloop>
 	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="addProduct" access="public" output="false" returnType="any">
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="removeProduct" access="public" output="false" returnType="any">
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getProducts" access="public" output="false" returnType="any">
+	</cffunction>
 </cfcomponent>
