@@ -23,7 +23,8 @@
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
 		<cfset _setCurrency() />
-		<cfset _setTrackingRecord() />
+		<cfset _setTrackingEntity() />
+		<cfset _setCart() />
 		<cfset _setTheme("mobile") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
@@ -184,7 +185,19 @@
 	</cffunction>
 	
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_setTrackingRecord"  access="private" returnType="void" output="false">
+	<cffunction name="_setTrackingEntity"  access="private" returnType="void" output="false">
+		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+		<cfif IsNull(trackingEntity)>
+			<cfset trackingEntity = EntityNew("tracking_entity") />
+			<cfset trackingEntity.setCfid(COOKIE.cfid) />
+			<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
+			<cfset trackingEntity.setLastAccessDatetime(Now()) />
+			<cfset EntitySave(trackingEntity) />
+			<cfset ORMFlush() />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_setCart"  access="private" returnType="void" output="false">
 		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
 		<cfif IsNull(trackingEntity)>
 			<cfset trackingEntity = EntityNew("tracking_entity") />

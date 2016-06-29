@@ -52,7 +52,7 @@
 							<div class="entry number-plus">&nbsp;</div>
 						</div>
 					</td>
-					<td><div class="subtotal">#item.getSubTotal())#</div></td>
+					<td><div class="subtotal">#item.getSubTotal()#</div></td>
 					<td><a class="remove-button"><i class="fa fa-times"></i></a></td>
 				</tr>
 			</cfloop>
