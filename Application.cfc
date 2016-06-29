@@ -195,17 +195,16 @@
 			<cfset EntitySave(trackingEntity) />
 			<cfset ORMFlush() />
 		</cfif>
+		
+		<cfset SESSION.trackingEntity = trackingEntity />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCart"  access="private" returnType="void" output="false">
-		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
-		<cfif IsNull(trackingEntity)>
-			<cfset trackingEntity = EntityNew("tracking_entity") />
-			<cfset trackingEntity.setCfid(COOKIE.cfid) />
-			<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
-			<cfset trackingEntity.setLastAccessDatetime(Now()) />
-			<cfset EntitySave(trackingEntity) />
-			<cfset ORMFlush() />
+		<cfif IsNull(SESSION.cart)>
+			<cfset SESSION.cart = EntityNew("cart") />
+			<cfset SESSION.cart.init(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken) />
+			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
+			<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
