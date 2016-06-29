@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="header-top-entry">
 									<form method="post">
-										<div class="title">#REQUEST.pageData.currencyNow.getSymbolText()# #REQUEST.pageData.currencyNow.getCode()# <i class="fa fa-caret-down"></i></div>
+										<div class="title">#SESSION.currency.symbol# #SESSION.currency.code# <i class="fa fa-caret-down"></i></div>
 										<div class="list">
 											<cfloop array="#REQUEST.pageData.currencies#" index="currency">
 												<cfif currency.getCurrencyId() NEQ SESSION.currency.id>
