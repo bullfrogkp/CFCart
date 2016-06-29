@@ -7,31 +7,30 @@
 	<cfproperty name="customerGroupName" type="string" persistent="false">
 	<cfproperty name="currencyId" type="integer" persistent="false">
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDetailPageURL" access="public" output="false" returnType="any">		
+	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">		
 		<cfreturn getProduct().getDetailPageURLMV()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDefaultImageURL" access="public" output="false" returnType="any">		
+	<cffunction name="getDefaultImageURL" access="public" output="false" returnType="string">		
 		<cfreturn getProduct().getDefaultImageLinkMV(type='small') />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getDisplayName" access="public" output="false" returnType="any">		
+	<cffunction name="getDisplayName" access="public" output="false" returnType="string">		
 		<cfreturn getProduct().getDisplayName() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getPrice" access="public" output="false" returnType="any">
+	<cffunction name="getPrice" access="public" output="false" returnType="string">
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getSubTotal" access="public" output="false" returnType="any">
+	<cffunction name="getSubTotal" access="public" output="false" returnType="string">
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * getCount(),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getAttributes" access="public" output="false" returnType="any">
-		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
-		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()),"local",LOCAL.currency.getLocale()) />
+	<cffunction name="getAttributes" access="public" output="false" returnType="array">
+		<cfreturn getProduct().getProductsAttributes() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 </cfcomponent>
