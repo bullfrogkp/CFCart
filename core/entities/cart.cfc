@@ -42,10 +42,13 @@
     
 	<!------------------------------------------------------------------------------->
 	<cffunction name="init" access="public" output="false" returntype="any">
-		<cfargument name="cfid" type="string" required="true" />
-		<cfargument name="cftoken" type="string" required="true" />
+		<cfargument name="trackingEntity" type="any" required="true" />
+		<cfargument name="customerGroupName" type="string" required="true" />
+		<cfargument name="currencyId" type="integer" required="true" />
 		
 		<cfset setTrackingEntity(EntityLoad("tracking_entity", {cfid = ARGUMENTS.cfid, cftoken = ARGUMENTS.cftoken}, true)) />
+		<cfset setCustomerGroupName(ARGUMENTS.customerGroupName) />
+		<cfset setCurrencyId(ARGUMENTS.currencyId) />
 		
 		<cfreturn this />
 	</cffunction>
