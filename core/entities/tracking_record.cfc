@@ -6,9 +6,19 @@
 	<cfproperty name="trackingRecordType" fieldtype="many-to-one" cfc="tracking_record_type" fkcolumn="tracking_record_type_id">
 	
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="removeCartItem" access="public" output="false" returnType="any">
-		<cfargument name="trackingRecordId" type="integer" required="true" />
-		
-		<cfset EntityDelete(EntityLoadById("tracking_record",ARGUMENTS.trackingRecordId)) />
+	<cffunction name="getDetailPageURL" access="public" output="false" returnType="any">		
+		<cfreturn getProduct().getDetailPageURLMV()) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getDefaultImageURL" access="public" output="false" returnType="any">		
+		<cfreturn getProduct().getDefaultImageLinkMV(type='small') />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getDisplayName" access="public" output="false" returnType="any">		
+		<cfreturn getProduct().getDisplayName() />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getPrice" access="public" output="false" returnType="any">		
+		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale) />
 	</cffunction>
 </cfcomponent>
