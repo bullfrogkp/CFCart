@@ -19,7 +19,19 @@
 		<cfreturn getProduct().getDisplayName() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getPrice" access="public" output="false" returnType="any">		
-		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale) />
+	<cffunction name="getPrice" access="public" output="false" returnType="any">
+		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getSubTotal" access="public" output="false" returnType="any">
+		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * getCount(),"local",LOCAL.currency.getLocale()) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getAttributes" access="public" output="false" returnType="any">
+		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()),"local",LOCAL.currency.getLocale()) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 </cfcomponent>
