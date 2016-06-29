@@ -29,7 +29,7 @@
 				<th class="column-5"></th>
 			</tr>
 			
-			<cfloop array="#REQUEST.pageData.cart.getCartItems()#" index="item">
+			<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 				<tr>
 					<td>
 						<div class="traditional-cart-entry">
@@ -52,7 +52,7 @@
 							<div class="entry number-plus">&nbsp;</div>
 						</div>
 					</td>
-					<td><div class="subtotal">#item.getSubTotal()#</div></td>
+					<td><div class="subtotal">#item.getDisplaySubTotal()#</div></td>
 					<td><a class="remove-button"><i class="fa fa-times"></i></a></td>
 				</tr>
 			</cfloop>
@@ -97,8 +97,8 @@
 		</div>
 		<div class="col-md-4 information-entry">
 			<div class="cart-summary-box">
-				<div class="sub-total">Subtotal: #cart.getSubTotal()#</div>
-				<div class="grand-total">Grand Total #cart.getGrandTotal()#</div>
+				<div class="sub-total">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
+				<div class="grand-total">Grand Total: #SESSION.cart.getDisplayGrandTotal()#</div>
 				<a class="button style-10" href="##">Proceed To Checkout</a>
 				<a class="simple-link" href="##">Checkout with Multiple Addresses</a>
 			</div>
