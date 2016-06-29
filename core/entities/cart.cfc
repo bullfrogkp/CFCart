@@ -480,7 +480,7 @@
 		<cfreturn LOCAL.trackingRecords />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getTotalCount" access="public" output="false" returnType="numeric">
+	<cffunction name="getCount" access="public" output="false" returnType="numeric">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.count = 0 />
 		<cfset LOCAL.trackingRecords = getCartItems() />
@@ -491,7 +491,7 @@
 		<cfreturn LOCAL.count />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getSubTotal" access="public" output="false" returnType="numeric">
+	<cffunction name="getSubTotal" access="public" output="false" returnType="string">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
 		<cfset LOCAL.subTotal = 0 />

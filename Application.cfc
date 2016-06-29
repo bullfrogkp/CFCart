@@ -201,8 +201,7 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCart"  access="private" returnType="void" output="false">
 		<cfif IsNull(SESSION.cart)>
-			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"() />
-			<cfset SESSION.cart.init(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken) />
+			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken) />
 			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
 			<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
 		</cfif>

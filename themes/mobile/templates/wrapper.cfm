@@ -76,7 +76,7 @@
                             <div class="line-entry">
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-copy"></i><span>Compare</span></a>
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
-                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>$#NumberFormat(REQUEST.pageData.shoppingCartItemTotalAmount,"0.00")#</b></a>
+                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>#SESSION.cart.getSubTotal()#</b></a>
                             </div>
                         </div>
                     </div>
@@ -432,7 +432,7 @@
 
     <div class="cart-box popup">
         <div class="popup-container">
-			<cfif ArrayLen(REQUEST.pageData.shoppingCartItems) GT 0>
+			<cfif ArrayLen(SESSION.cart.getCount()) GT 0>
 				<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 					<div class="cart-entry">
 						<a class="image"><img src="#item.getDefaultImageURL()#" alt="" /></a>
