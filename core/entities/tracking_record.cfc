@@ -4,7 +4,8 @@
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
 	<cfproperty name="trackingEntity" fieldtype="many-to-one" cfc="tracking_entity" fkcolumn="tracking_entity_id">
 	<cfproperty name="trackingRecordType" fieldtype="many-to-one" cfc="tracking_record_type" fkcolumn="tracking_record_type_id">
-	
+	<cfproperty name="customerGroupName" type="string" persistent="false">
+	<cfproperty name="currencyId" type="integer" persistent="false">
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="any">		
 		<cfreturn getProduct().getDetailPageURLMV()) />

@@ -473,6 +473,12 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
 		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record",{trackingRecordType = LOCAL.trackingRecordType, trackingEntity = getTrackingEntity()}) />
+		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
+			<cfset LOCAL.record.setCustomerGroupName(getCustomerGroupName()) />
+			<cfset LOCAL.record.setCurrencyId(getCurrencyId()) />
+			<cfset EntitySave(LOCAL.record) />
+		</cfloop>
+		
 		<cfreturn LOCAL.trackingRecords />
 	</cffunction>
 </cfcomponent>
