@@ -446,7 +446,7 @@
 		</cfloop>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="addProduct" access="public" output="false" returnType="void">
+	<cffunction name="addCartItem" access="public" output="false" returnType="void">
 		<cfargument name="productId" type="integer" required="true" />
 		<cfargument name="count" type="integer" required="true" />
 		
@@ -463,7 +463,7 @@
 		<cfset EntitySave(LOCAL.trackingRecord) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="removeProduct" access="public" output="false" returnType="any">
+	<cffunction name="removeCartItem" access="public" output="false" returnType="any">
 		<cfargument name="trackingRecordId" type="integer" required="true" />
 		
 		<cfset EntityDelete(EntityLoadById("tracking_record",ARGUMENTS.trackingRecordId)) />
