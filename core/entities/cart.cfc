@@ -464,6 +464,9 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeProduct" access="public" output="false" returnType="any">
+		<cfargument name="trackingRecordId" type="integer" required="true" />
+		
+		<cfset EntityDelete(EntityLoadById("tracking_record",ARGUMENTS.trackingRecordId)) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getCartItems" access="public" output="false" returnType="array">
