@@ -474,9 +474,7 @@
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
 		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record",{trackingRecordType = LOCAL.trackingRecordType, trackingEntity = getTrackingEntity()}) />
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
-			<cfset LOCAL.record.setCustomerGroupName(getCustomerGroupName()) />
-			<cfset LOCAL.record.setCurrencyId(getCurrencyId()) />
-			<cfset EntitySave(LOCAL.record) />
+			<cfset LOCAL.record.init(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
 		</cfloop>
 		
 		<cfreturn LOCAL.trackingRecords />

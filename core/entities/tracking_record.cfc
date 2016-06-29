@@ -6,6 +6,16 @@
 	<cfproperty name="trackingRecordType" fieldtype="many-to-one" cfc="tracking_record_type" fkcolumn="tracking_record_type_id">
 	<cfproperty name="customerGroupName" type="string" persistent="false">
 	<cfproperty name="currencyId" type="integer" persistent="false">
+	<!------------------------------------------------------------------------------->
+	<cffunction name="init" access="public" output="false" returntype="any">
+		<cfargument name="customerGroupName" type="string" required="true" />
+		<cfargument name="currencyId" type="integer" required="true" />
+		
+		<cfset setCustomerGroupName(getCustomerGroupName()) />
+		<cfset setCurrencyId(getCurrencyId()) />
+		
+		<cfreturn this />
+	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">		
 		<cfreturn getProduct().getDetailPageURLMV()) />
