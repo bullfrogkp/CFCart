@@ -50,7 +50,7 @@
 					<cfloop from="#REQUEST.pageData.stars#" to="#5 - REQUEST.pageData.stars#" index="k">
 						<div class="star"><i class="fa fa-star-o"></i></div>
 					</cfloop>
-					<div class="rating-number">#ArrayLen(REQUEST.pageData.reviews)# Reviews</div>
+					<div class="rating-number">#ArrayLen(REQUEST.pageData.product.getReviewCountMV())# Reviews</div>
 				</div>
 				<div class="product-description detail-info-entry">
 				#REQUEST.pageData.product.getDescription()#
@@ -138,7 +138,7 @@
 			<div class="list">
 				<a class="tab-switcher active">Description</a>
 				<a class="tab-switcher">SHIPPING &amp; RETURNS</a>
-				<a class="tab-switcher">Reviews (#ArrayLen(REQUEST.pageData.reviews)#)</a>
+				<a class="tab-switcher">Reviews (#REQUEST.pageData.product.getReviewCountMV()#)</a>
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -181,7 +181,7 @@
 			<div class="tabs-entry">
 				<div class="article-container style-1">
 					<div class="row">
-						<cfloop array="#REQUEST.pageData.reviews#" index="review">
+						<cfloop array="#REQUEST.pageData.product.getApprovedReviews()#" index="review">
 							<div class="col-md-6 information-entry">
 								<div style="border-bottom: 1px dashed ##CCCCCC;">
 									<p style="font-weight:bold;">#review.getSubject()# Review by #review.getReviewerName()#</p>
