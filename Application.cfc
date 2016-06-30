@@ -25,6 +25,7 @@
 		<cfset _setCurrency() />
 		<cfset _setTrackingEntity() />
 		<cfset _setCart() />
+		<cfset _setHistory() />
 		<cfset _setTheme("mobile") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
@@ -205,6 +206,12 @@
 			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"(	trackingEntity = SESSION.trackingEntity
 																						, 	customerGroupName = SESSION.user.customerGroupName
 																						, 	currencyId = SESSION.currency.id) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_setHistory"  access="private" returnType="void" output="false">
+		<cfif IsNull(SESSION.history)>
+			<cfset SESSION.history = new "#APPLICATION.componentPathRoot#core.entities.history"(	trackingEntity = SESSION.trackingEntity) />
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->

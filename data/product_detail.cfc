@@ -26,7 +26,6 @@
 		<cfset LOCAL.pageData = {} />
 		
 		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-		<cfset LOCAL.trackingService = new "#APPLICATION.componentPathRoot#core.services.trackingService"(cfid = COOKIE.cfid, cftoken = COOKIE.cftoken) />
 		<cfset LOCAL.productId = ListGetAt(CGI.PATH_INFO,2,"/")> 
 		<cfset LOCAL.productService.setId(LOCAL.productId) />
 		
@@ -48,7 +47,7 @@
 		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescriptionMV() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywordsMV() />
 		
-		<cfset LOCAL.trackingService.addTrackingRecord(productId = LOCAL.productId, trackingRecordType = "history") />
+		<cfset SESSION.history.addHistoryItem(productId = LOCAL.productId) />
 														
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
