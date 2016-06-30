@@ -111,7 +111,6 @@
 											</cfloop>
 										</select>
 									</div>
-									<a class="button style-18">continue</a>
 								</form>
 							</div>
 						</div>
@@ -153,13 +152,13 @@
 							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>Free Shipping</b>
 						</label>
 						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>Standard Shipping</b>
+							<input type="radio" name="custom-name"> <span class="check"></span> <b>Standard Shipping</b>
 						</label>
 						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>1-Day Shipping</b>
+							<input type="radio" name="custom-name"> <span class="check"></span> <b>1-Day Shipping</b>
 						</label>
 						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>2-Days Shipping</b>
+							<input type="radio" name="custom-name"> <span class="check"></span> <b>2-Days Shipping</b>
 						</label>
 					</div>
 				</div>
