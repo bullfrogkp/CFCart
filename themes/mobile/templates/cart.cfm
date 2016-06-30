@@ -4,10 +4,6 @@
 	<a href="##">Shopping Cart</a>
 </div>
 
-<form method="post">
-<input type="hidden" id="tracking_record_id" name="tracking_record_id" value="" />
-<input type="hidden" id="coupon_code_applied" name="coupon_code_applied" value="" />
-
 <cfif IsDefined("REQUEST.pageData.message") AND NOT StructIsEmpty(REQUEST.pageData.message)>
 	<div class="information-blocks">
 		<ul>
@@ -68,22 +64,24 @@
 			<form>
 				<label>Country</label>
 				<div class="simple-drop-down simple-field size-1">
-					<select>
-						<option>United States</option>
-						<option>Great Britain</option>
-						<option>Canada</option>
+					<select name="country_id" id="country-id">
+						<option value="">Please select...</option>
+						<cfloop array="#REQUEST.pageData.countries#" index="country">
+							<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+						</cfloop>
 					</select>
 				</div>
 				<label>State</label>
 				<div class="simple-drop-down simple-field size-1">
-					<select>
-						<option>Alabama</option>
-						<option>Alaska</option>
-						<option>Idaho</option>
+					<select name="province_id" id="province-id">
+						<option value="">Please select...</option>
+						<cfloop array="#REQUEST.pageData.provinces#" index="province">
+							<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
+						</cfloop>
 					</select>
 				</div>
 				<label>Zip Code</label>
-				<input type="text" value="" placeholder="Zip Code" class="simple-field size-1">
+				<input type="text" value="" placeholder="Zip/Postal Code" class="simple-field size-1">
 				<div class="button style-16" style="margin-top: 10px;">calculate shipping<input type="submit"/></div>
 			</form>
 		</div>
@@ -91,18 +89,16 @@
 			<h3 class="cart-column-title">Discount Codes <span class="inline-label red">Promotion</span></h3>
 			<form>
 				<label>Enter your coupon code if you have one.</label>
-				<input type="text" value="" placeholder="" class="simple-field size-1">
+				<input type="text" value="" id="coupon_code" name="coupon_code" placeholder="" class="simple-field size-1">
 				<div class="button style-16" style="margin-top: 10px;">Apply Coupon<input type="submit"/></div>
 			</form>
 		</div>
 		<div class="col-md-4 information-entry">
 			<div class="cart-summary-box">
-				<div class="sub-total">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
+				<div class="grand-total">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
 				<a class="button style-10" href="##">Proceed To Checkout</a>
-				<a class="simple-link" href="##">Checkout with Multiple Addresses</a>
 			</div>
 		</div>
 	</div>
 </div>
-</form>
 </cfoutput>
