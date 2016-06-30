@@ -98,7 +98,6 @@
 		<div class="col-md-4 information-entry">
 			<div class="cart-summary-box">
 				<div class="sub-total">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
-				<div class="grand-total">Grand Total: #SESSION.cart.getDisplayGrandTotal()#</div>
 				<a class="button style-10" href="##">Proceed To Checkout</a>
 				<a class="simple-link" href="##">Checkout with Multiple Addresses</a>
 			</div>
