@@ -35,13 +35,7 @@
 		<cfset LOCAL.reviewStatusType = EntityLoad("review_status_type", {name = "approved"}, true)> 
 		<cfset LOCAL.pageData.reviews = EntityLoad("review", {product = LOCAL.pageData.product, reviewStatusType = LOCAL.reviewStatusType})>
 		
-		<cfset LOCAL.pageData.stars = 0 />
-		<cfif ArrayLen(LOCAL.pageData.reviews) GT 0>
-			<cfloop array="#LOCAL.pageData.reviews#" index="review">
-				<cfset LOCAL.pageData.stars += review.getRating() />
-			</cfloop>
-			<cfset LOCAL.pageData.stars = Ceiling(LOCAL.pageData.stars / ArrayLen(LOCAL.pageData.reviews)) />
-		</cfif>
+		
 
 		<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayNameMV()# | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescriptionMV() />

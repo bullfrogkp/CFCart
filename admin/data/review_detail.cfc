@@ -21,6 +21,13 @@
 				<cfelse>
 					<cfset LOCAL.product.setReviewCountMV(LOCAL.product.getReviewCountMV() + 1) />
 				</cfif>
+				
+				<cfset LOCAL.pageData.stars = 0 />
+				<cfloop array="#LOCAL.product.getReviews()#" index="review">
+					<cfset LOCAL.pageData.stars += review.getRating() />
+				</cfloop>
+				<cfset LOCAL.product.setReviewCountMV(Ceiling(LOCAL.pageData.stars / ArrayLen(LOCAL.product.getReviews()))) />
+				
 				<cfset EntitySave(LOCAL.product) />
 			</cfif>
 			
