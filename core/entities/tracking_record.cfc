@@ -18,7 +18,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDetailPageURL" access="public" output="false" returnType="string">		
-		<cfreturn getProduct().getDetailPageURLMV()) />
+		<cfreturn getProduct().getDetailPageURLMV() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDefaultImageURL" access="public" output="false" returnType="string">		
