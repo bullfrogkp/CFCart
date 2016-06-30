@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>#REQUEST.pageData.modules.data.index_meta.title#</title>
+	<meta name="description" content="#REQUEST.pageData.modules.data.index_meta.description#">
+	<meta name="keywords" content="#REQUEST.pageData.modules.data.index_meta.keywords#">
+	<meta name="author" content="Kevin Pan">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -15,7 +19,6 @@
         <link href="#SESSION.absoluteUrlTheme#css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
     <link rel="shortcut icon" href="#SESSION.absoluteUrlTheme#images/favicon-6.ico" />
-  	<title>PinMyDeals</title>
 </head>
 <body class="style-10">
 
