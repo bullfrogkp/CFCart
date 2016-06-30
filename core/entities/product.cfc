@@ -520,4 +520,13 @@
 		<cfreturn "#APPLICATION.absoluteUrlWeb#products/#getProductId()#/logo/#getLogo()#" />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="getApprovedReviews" access="public" output="false" returnType="array">
+		<cfset var LOCAL = {} />
+		
+		<cfset LOCAL.reviewStatusType = EntityLoad("review_status_type", {name = "approved"}, true)> 
+		<cfset LOCAL.reviews = EntityLoad("review", {product = LOCAL.pageData.product, reviewStatusType = LOCAL.reviewStatusType})>
+		
+		<cfreturn  LOCAL.reviews />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
 </cfcomponent>
