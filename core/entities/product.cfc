@@ -145,13 +145,24 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getTitleMV" access="public" output="false" returnType="any">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.title = "" />
 		
 		<cfif getProductType().getName() EQ "option">
-			<cfreturn getParentProduct().getTitle() />
+			<cfif NOT IsNull(getParentProduct().getTitle())>
+				<cfset LOCAL.title = getParentProduct().getTitle() />
+			<cfelse>
+				<cfset LOCAL.title = "#getParentProduct().getDisplayName()# | #APPLICATION.applicationName#" />
+			</cfif>
 		<cfelse>
-			<cfreturn getTitle() />
+			<cfif NOT IsNull(getTitle())>
+				<cfset LOCAL.title =getTitle() />
+			<cfelse>
+				<cfset LOCAL.title = "#getDisplayName()# | #APPLICATION.applicationName#" />
+			</cfif>
 		</cfif>
 		
+		<cfreturn LOCAL.title />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getKeywordsMV" access="public" output="false" returnType="any">

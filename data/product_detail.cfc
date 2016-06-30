@@ -25,17 +25,12 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.productService = new "#APPLICATION.componentPathRoot#core.services.productService"() />
-		<cfset LOCAL.productId = ListGetAt(CGI.PATH_INFO,2,"/")> 
-		<cfset LOCAL.productService.setId(LOCAL.productId) />
+		<cfset LOCAL.productId = ListGetAt(CGI.PATH_INFO,2,"/")>
 		
 		<cfset LOCAL.pageData.product = EntityLoadByPK("product",LOCAL.productId) />
 		<cfset LOCAL.pageData.product.setViewCount(LOCAL.pageData.product.getViewCount() + 1) />
-		
-		
-		
 
-		<cfset LOCAL.pageData.title = "#LOCAL.pageData.product.getDisplayNameMV()# | #APPLICATION.applicationName#" />
+		<cfset LOCAL.pageData.title = LOCAL.pageData.product.getTitleMV() />
 		<cfset LOCAL.pageData.description = LOCAL.pageData.product.getDescriptionMV() />
 		<cfset LOCAL.pageData.keywords = LOCAL.pageData.product.getKeywordsMV() />
 		
