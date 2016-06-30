@@ -116,6 +116,35 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-4 information-entry">
+							<div class="article-container style-1">
+								Kevin Pan<br/>
+								5940 Yonge St.<br/>
+								North York, Ontario, M2M4M6<br/>
+								Canada<br/><br/>
+								<a class="button style-18">use this address</a>
+							</div>
+						</div>
+						<div class="col-md-4 information-entry">
+							<div class="article-container style-1">
+								Kevin Pan<br/>
+								5940 Yonge St.<br/>
+								North York, Ontario, M2M4M6<br/>
+								Canada<br/><br/>
+								<a class="button style-18">use this address</a>
+							</div>
+						</div>
+						<div class="col-md-4 information-entry">
+							<div class="article-container style-1">
+								Kevin Pan<br/>
+								5940 Yonge St.<br/>
+								North York, Ontario, M2M4M6<br/>
+								Canada<br/><br/>
+								<a class="button style-18">use this address</a>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="accordeon-title"><span class="number">3</span>Shipping Method</div>
 				<div class="accordeon-entry">
