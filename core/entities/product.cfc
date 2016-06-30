@@ -34,6 +34,7 @@
 	<cfproperty name="price" column="price" ormtype="float"> 
 	<cfproperty name="soldCount" column="sold_count" ormtype="integer"> 
 	<cfproperty name="reviewCount" column="review_count" ormtype="integer"> 
+	<cfproperty name="starCount" column="star_count" ormtype="integer"> 
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setPriceMV" access="public" output="false" returnType="void">
@@ -81,6 +82,25 @@
 			<cfreturn getParentProduct().getReviewCount() />
 		<cfelse>
 			<cfreturn getReviewCount() />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="setStarCountMV" access="public" output="false" returnType="void">
+		<cfargument name="starCount" type="numeric" required="true">
+		
+		<cfif getProductType().getName() EQ "option">
+			<cfset getParentProduct().setStarCount(ARGUMENTS.starCount) />
+		<cfelse>
+			<cfset setStarCount(ARGUMENTS.starCount) />
+		</cfif>
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="getStarCountMV" access="public" output="false" returnType="numeric">
+		
+		<cfif getProductType().getName() EQ "option">
+			<cfreturn getParentProduct().getStarCount() />
+		<cfelse>
+			<cfreturn getStarCount() />
 		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
