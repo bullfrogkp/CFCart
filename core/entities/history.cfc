@@ -12,13 +12,13 @@
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="addHistoryItem" access="public" output="false" returnType="void">
-		<cfargument name="productId" type="integer" required="true" />
+		<cfargument name="productId" type="numeric" required="true" />
 		
 		<cfset var LOCAL = {} />
 		
 		<cfset LOCAL.trackingRecord = EntityNew("tracking_record") />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "history"},true) />
-		<cfset LOCAL.product = EntityLoadById("product",ARGUMENTS.productId) />
+		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
 		
 		<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
 		<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />

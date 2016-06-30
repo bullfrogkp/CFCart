@@ -8,11 +8,15 @@
 	<cfproperty name="currencyId" type="integer" persistent="false">
 	<!------------------------------------------------------------------------------->
 	<cffunction name="init" access="public" output="false" returntype="any">
-		<cfargument name="customerGroupName" type="string" required="true" />
-		<cfargument name="currencyId" type="integer" required="true" />
+		<cfargument name="customerGroupName" type="string" required="false" />
+		<cfargument name="currencyId" type="integer" required="false" />
 		
-		<cfset setCustomerGroupName(getCustomerGroupName()) />
-		<cfset setCurrencyId(getCurrencyId()) />
+		<cfif NOT IsNull(ARGUMENTS.customerGroupName)>
+			<cfset setCustomerGroupName(getCustomerGroupName()) />
+		</cfif>
+		<cfif NOT IsNull(ARGUMENTS.currencyId)>
+			<cfset setCurrencyId(getCurrencyId()) />
+		</cfif>
 		
 		<cfreturn this />
 	</cffunction>
