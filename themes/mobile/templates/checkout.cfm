@@ -87,12 +87,31 @@
 							<div class="article-container style-1">
 								<h3>Billing Address</h3>
 								<form>
-									<label>Email Address</label>
-									<input type="text" value="" placeholder="Enter Email Address" class="simple-field">
-									<label>Password</label>
-									<input type="password" value="" placeholder="Enter Password" class="simple-field">
-									<div class="button style-10">Login Page<input type="submit" value=""></div>
-									<a class="forgot-password" href="##">Forgot password?</a>
+									<input type="text" value="" placeholder="Company" class="simple-field">
+									<input type="text" value="" placeholder="Phone" class="simple-field">
+									<input type="text" value="" placeholder="First Name" class="simple-field">
+									<input type="text" value="" placeholder="Middle Name" class="simple-field">
+									<input type="text" value="" placeholder="Unit" class="simple-field">
+									<input type="text" value="" placeholder="Street" class="simple-field">
+									<input type="text" value="" placeholder="City" class="simple-field">
+									<div class="simple-drop-down simple-field">
+										<select name="province_id" id="province-id">
+											<option value="">Province</option>
+											<cfloop array="#REQUEST.pageData.provinces#" index="province">
+												<option value="#province.getProvinceId()#">#province.getDisplayName()#</option>
+											</cfloop>
+										</select>
+									</div>
+									<input type="text" value="" placeholder="Postal Code" class="simple-field">
+									<div class="simple-drop-down simple-field">
+										<select name="country_id" id="country-id">
+											<option value="">Country</option>
+											<cfloop array="#REQUEST.pageData.countries#" index="country">
+												<option value="#country.getCountryId()#">#country.getDisplayName()#</option>
+											</cfloop>
+										</select>
+									</div>
+									<a class="button style-18">continue</a>
 								</form>
 							</div>
 						</div>
