@@ -149,7 +149,18 @@
 				<div class="accordeon-title"><span class="number">3</span>Shipping Method</div>
 				<div class="accordeon-entry">
 					<div class="article-container style-1">
-						<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+						<label class="checkbox-entry radio">
+							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>Free Shipping</b>
+						</label>
+						<label class="checkbox-entry radio">
+							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>Standard Shipping</b>
+						</label>
+						<label class="checkbox-entry radio">
+							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>1-Day Shipping</b>
+						</label>
+						<label class="checkbox-entry radio">
+							<input type="radio" name="custom-name" checked> <span class="check"></span> <b>2-Days Shipping</b>
+						</label>
 					</div>
 				</div>
 				<div class="accordeon-title"><span class="number">4</span>Payment Information</div>
