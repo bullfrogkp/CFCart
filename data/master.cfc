@@ -73,7 +73,7 @@
 		<cfset LOCAL.retStruct.pageView = _loadPageView() />
 		<cfset LOCAL.retStruct.moduleData = _loadModuleData() />
 		<cfset LOCAL.retStruct.moduleView = _loadModuleView() />
-				
+		
 		<cfreturn LOCAL.retStruct />	
 	</cffunction>
 	<!------------------------------------------------------------------------------->	

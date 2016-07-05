@@ -2,7 +2,7 @@
 <div class="parallax-slide fullwidth-block small-slide" style="margin-bottom: 30px; margin-top: -25px;">
 	<div class="swiper-container" data-autoplay="5000" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
 		<div class="swiper-wrapper">
-			#REQUEST.pageData.modules.data.slide.slideSection#
+			#REQUEST.moduleData.slide.slideSection#
 		</div>
 		<div class="pagination"></div>
 	</div>
@@ -10,7 +10,7 @@
 
 <div class="information-blocks">
 	<div class="row">
-		<cfloop array="#REQUEST.pageData.modules.data.index_s1.categories#" index="category">
+		<cfloop array="#REQUEST.moduleData.index_s1.categories#" index="category">
 			<div class="col-sm-4 information-entry">
 				<div class="special-item-entry">
 					<img src="#category.image#" alt="" />
@@ -27,14 +27,14 @@
 		<div class="swiper-tabs tabs-switch">
 			<div class="title">Products</div>
 			<div class="list">
-				<cfloop from="1" to="#ArrayLen(REQUEST.pageData.modules.data.index_s2.tabs)#" index="tabIdx">
-					<a class="block-title tab-switcher <cfif tabIdx EQ 1>active</cfif>">#REQUEST.pageData.modules.data.index_s2.tabs[tabIdx].name#</a>
+				<cfloop from="1" to="#ArrayLen(REQUEST.moduleData.index_s2.tabs)#" index="tabIdx">
+					<a class="block-title tab-switcher <cfif tabIdx EQ 1>active</cfif>">#REQUEST.moduleData.index_s2.tabs[tabIdx].name#</a>
 				</cfloop>
 				<div class="clear"></div>
 			</div>
 		</div>
 		<div>
-			<cfloop array="#REQUEST.pageData.modules.data.index_s2.tabs#" index="tab">
+			<cfloop array="#REQUEST.moduleData.index_s2.tabs#" index="tab">
 				<div class="tabs-entry">
 					<div class="products-swiper">
 						<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
@@ -87,13 +87,13 @@
 <div class="information-blocks">
 	<div class="row">
 		<div class="information-entry col-md-6">
-			<div class="image-text-widget" style="background-image: url(#REQUEST.pageData.modules.data.index_s3.left.image#);">
+			<div class="image-text-widget" style="background-image: url(#REQUEST.moduleData.index_s3.left.image#);">
 				<div class="hot-mark red">hot</div>
-				<h3 class="title">#REQUEST.pageData.modules.data.index_s3.left.name#</h3>
+				<h3 class="title">#REQUEST.moduleData.index_s3.left.name#</h3>
 				<div class="article-container style-1">
-					<p>#REQUEST.pageData.modules.data.index_s3.left.description#</p>
+					<p>#REQUEST.moduleData.index_s3.left.description#</p>
 					<ul>
-						<cfloop array="#REQUEST.pageData.modules.data.index_s3.left.links#" index="link">
+						<cfloop array="#REQUEST.moduleData.index_s3.left.links#" index="link">
 							<li><a href="#link.href#">#link.text#</a></li>
 						</cfloop>
 					</ul>
@@ -101,13 +101,13 @@
 			</div>
 		</div>
 		<div class="information-entry col-md-6">
-			<div class="image-text-widget" style="background-image: url(#REQUEST.pageData.modules.data.index_s3.right.image#);">
+			<div class="image-text-widget" style="background-image: url(#REQUEST.moduleData.index_s3.right.image#);">
 				<div class="hot-mark red">hot</div>
-				<h3 class="title">#REQUEST.pageData.modules.data.index_s3.right.name#</h3>
+				<h3 class="title">#REQUEST.moduleData.index_s3.right.name#</h3>
 				<div class="article-container style-1">
-					<p>#REQUEST.pageData.modules.data.index_s3.right.description#</p>
+					<p>#REQUEST.moduleData.index_s3.right.description#</p>
 					<ul>
-						<cfloop array="#REQUEST.pageData.modules.data.index_s3.right.links#" index="link">
+						<cfloop array="#REQUEST.moduleData.index_s3.right.links#" index="link">
 							<li><a href="#link.href#">#link.text#</a></li>
 						</cfloop>
 					</ul>
@@ -120,8 +120,8 @@
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-sm-4 information-entry">
-			<h3 class="block-title inline-product-column-title">#REQUEST.pageData.modules.data.index_s4.left.name#</h3>
-			<cfloop array="#REQUEST.pageData.modules.data.index_s4.left.links#" index="link">
+			<h3 class="block-title inline-product-column-title">#REQUEST.moduleData.index_s4.left.name#</h3>
+			<cfloop array="#REQUEST.moduleData.index_s4.left.links#" index="link">
 				<div class="inline-product-entry">
 					<a href="#link.href#" class="image"><img alt="" src="#link.image#"></a>
 					<div class="content">
@@ -138,8 +138,8 @@
 			</cfloop>
 		</div>
 		<div class="col-sm-4 information-entry">
-			<h3 class="block-title inline-product-column-title">#REQUEST.pageData.modules.data.index_s4.middle.name#</h3>
-			<cfloop array="#REQUEST.pageData.modules.data.index_s4.middle.links#" index="link">
+			<h3 class="block-title inline-product-column-title">#REQUEST.moduleData.index_s4.middle.name#</h3>
+			<cfloop array="#REQUEST.moduleData.index_s4.middle.links#" index="link">
 				<div class="inline-product-entry">
 					<a href="#link.href#" class="image"><img alt="" src="#link.image#"></a>
 					<div class="content">
@@ -156,8 +156,8 @@
 			</cfloop>
 		</div>
 		<div class="col-sm-4 information-entry">
-			<h3 class="block-title inline-product-column-title">#REQUEST.pageData.modules.data.index_s4.right.name#</h3>
-			<cfloop array="#REQUEST.pageData.modules.data.index_s4.right.links#" index="link">
+			<h3 class="block-title inline-product-column-title">#REQUEST.moduleData.index_s4.right.name#</h3>
+			<cfloop array="#REQUEST.moduleData.index_s4.right.links#" index="link">
 				<div class="inline-product-entry">
 					<a href="#link.href#" class="image"><img alt="" src="#link.image#"></a>
 					<div class="content">
@@ -176,7 +176,7 @@
 	</div>
 </div>   
 
-<cfloop array="#REQUEST.pageData.modules.data.index_s2.tabs#" index="tab">
+<cfloop array="#REQUEST.moduleData.index_s2.tabs#" index="tab">
 	<cfloop array="#tab.products#" index="product">
 		<div id="product-popup-#product.id#" class="overlay-popup">
 			<div class="overflow">
