@@ -1,8 +1,8 @@
 <cfoutput>
 <div class="breadcrumb-box">
 	<a href="##">Home</a>
-	<a href="##">Account</a>
-	<a href="##">Wishlist</a>
+	<a href="##">My Account</a>
+	<a href="##">Profile</a>
 </div>
 
 <div class="information-blocks">
