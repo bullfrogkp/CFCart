@@ -54,7 +54,37 @@
 		<cfreturn LOCAL />	
 	</cffunction>		
 	
+	<cffunction name="loadData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.retStruct.pageData = {} />
+		<cfset LOCAL.retStruct.pageView = {} />
+				
+		<cfreturn LOCAL.retStruct />	
+	</cffunction>
+	
 	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
+				
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="loadPageView" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
+				
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="loadModuleData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
+				
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="loadModuleView" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 				
