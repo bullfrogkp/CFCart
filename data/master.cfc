@@ -114,7 +114,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
 		
-		<cfif getPageName() EQ "">
+		<cfif getPageName() NEQ "">
 			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
 		<cfelse>
