@@ -60,12 +60,12 @@
 					<cfset pageObj.setFormData(FORM) />
 					
 					<!--- global data handler --->
-					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
+					<cfset returnStruct = globalPageObj.processFormDataBeforeValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
-					<cfset returnStruct = globalPageObj.validateGlobalFormData() />
+					<cfset returnStruct = globalPageObj.validateFormData() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					<cfelse>
@@ -74,7 +74,7 @@
 						</cfif>
 					</cfif>
 					
-					<cfset returnStruct = globalPageObj.processGlobalFormDataAfterValidation() />
+					<cfset returnStruct = globalPageObj.processFormDataAfterValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
@@ -102,12 +102,12 @@
 					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
 				</cfif>
 						
-				<cfset returnStruct = globalPageObj.validateGlobalAccessData() />
+				<cfset returnStruct = globalPageObj.validateAccessData() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		
 				
-				<cfset returnStruct = globalPageObj.processGlobalURLDataBeforeValidation() />
+				<cfset returnStruct = globalPageObj.processURLDataBeforeValidation() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		
@@ -122,7 +122,7 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.processGlobalURLDataAfterValidation() />
+				<cfset returnStruct = globalPageObj.processURLDataAfterValidation() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		

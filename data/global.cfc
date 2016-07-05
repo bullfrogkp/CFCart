@@ -1,4 +1,4 @@
-﻿<cfcomponent output="false" accessors="true">
+﻿<cfcomponent extends="master">
 	<cfproperty name="pageName" type="string" required="true"> 
 	<cfproperty name="formData" type="struct" required="true"> 
 	<cfproperty name="urlData" type="struct" required="true"> 
@@ -15,7 +15,7 @@
 		<cfreturn this />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="validateGlobalAccessData" access="public" output="false" returnType="struct">
+	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 				
