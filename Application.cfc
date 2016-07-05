@@ -132,8 +132,8 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.pageData = globalPageObj.loadGlobalData() />
-				<cfset StructAppend(REQUEST.pageData, pageObj.loadData()) />
+				<cfset StructAppend(REQUEST, globalPageObj.loadData()) />
+				<cfset StructAppend(REQUEST, pageObj.loadData()) />
 			
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
