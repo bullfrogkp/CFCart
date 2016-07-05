@@ -5,8 +5,12 @@
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
+		<cfargument name="formData" type="struct" required="true" />
+		<cfargument name="urlData" type="struct" required="true" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
+		<cfset setFormData(ARGUMENTS.formData) />
+		<cfset setUrlData(ARGUMENTS.urlData) />
 		
 		<cfreturn this />
 	</cffunction>
@@ -66,9 +70,9 @@
 	
 	<cffunction name="_loadPageView" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageView = {} />
 				
-		<cfreturn LOCAL.pageData />	
+		<cfreturn LOCAL.pageView />	
 	</cffunction>
 	
 	<cffunction name="_loadModuleData" access="private" output="false" returnType="struct">
@@ -76,7 +80,7 @@
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
-			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
 		</cfloop>
 		

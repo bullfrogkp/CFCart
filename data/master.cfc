@@ -52,7 +52,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
-			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
 			<cfset LOCAL.moduleObj.processFormData() />
 		</cfloop>
 		<cfreturn LOCAL />	
@@ -92,9 +92,9 @@
 	
 	<cffunction name="_loadPageView" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
-		<cfset LOCAL.pageData = {} />
+		<cfset LOCAL.pageView = {} />
 				
-		<cfreturn LOCAL.pageData />	
+		<cfreturn LOCAL.pageView />	
 	</cffunction>
 	
 	<cffunction name="_loadModuleData" access="private" output="false" returnType="struct">
@@ -102,7 +102,7 @@
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
-			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
 		</cfloop>
 		
@@ -114,7 +114,7 @@
 		<cfset LOCAL.retStruct = {} />
 		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
-			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendView()) />
 		</cfloop>
 		<cfreturn LOCAL.retStruct />
@@ -148,7 +148,8 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="moduleName" required="true"/>
-		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = ARGUMENTS.pageName) />
+		
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = getPageName(), formData = getFormData(), urlData = getUrlData()) />
 		<cfreturn moduleObj />
 	</cffunction>
 </cfcomponent>

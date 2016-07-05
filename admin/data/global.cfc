@@ -5,6 +5,8 @@
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
+		<cfargument name="formData" type="struct" required="true" />
+		<cfargument name="urlData" type="struct" required="true" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
 		<cfset setFormData(ARGUMENTS.formData) />
