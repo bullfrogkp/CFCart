@@ -4,9 +4,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.pageName, formData = {}) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -15,7 +15,7 @@
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.pageName, formData = {}) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
 		
 		<cfreturn pageObj />
 	</cffunction>
@@ -192,11 +192,6 @@
 		</cfif>
 		
 		<cfset SESSION.trackingEntity = trackingEntity />
-	</cffunction>
-	
-	<!------------------------------------------------------------------------------->
-	<cffunction name="_setGlobalData"  access="private" returnType="any" output="false">
-		<cfreturn _initGlobalPageObject(argumentCollection = args) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCart"  access="private" returnType="void" output="false">

@@ -1,6 +1,7 @@
 ﻿<cfcomponent output="false" accessors="true">
 	<cfproperty name="pageName" type="string" required="true"> 
 	<cfproperty name="formData" type="struct" required="true"> 
+	<cfproperty name="urlData" type="struct" required="true"> 
 	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />

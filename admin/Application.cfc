@@ -144,7 +144,7 @@
 		<cfset SetEncoding("url","utf-8") />
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
-		<cfset StructInsert(APPLICATION, "globalData", _setGlobalData()) />
+		<cfset StructInsert(APPLICATION, "globalDataObj", _getGlobalDataObj()) />
 		
 		<cfreturn true>
 	</cffunction>
@@ -157,9 +157,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName, formData = {}) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -168,7 +168,7 @@
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName, formData = {}) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
 		
 		<cfreturn pageObj />
 	</cffunction>
@@ -337,4 +337,9 @@
 		<cflocation url="#APPLICATION.absoluteUrlWeb#admin/error.cfm" addtoken="false" />
 	</cffunction>--->
 	<!------------------------------------------------------------------------------->
+	<cffunction name="_getGlobalDataObj"  access="private" returnType="any" output="false">
+		<cfreturn _initGlobalPageObject(argumentCollection = args) />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	
 </cfcomponent>
