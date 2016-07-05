@@ -17,7 +17,18 @@
 		<cfreturn LOCAL />
 	</cffunction>
 	
-	<cffunction name="loadGlobalPageData" access="public" output="false" returnType="struct">
+	<cffunction name="loadGlobalData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.retStruct.pageData = _loadPageData() />
+		<cfset LOCAL.retStruct.pageView = _loadPageView() />
+		<cfset LOCAL.retStruct.moduleData = _loadModuleData() />
+		<cfset LOCAL.retStruct.moduleView = _loadModuleView() />
+				
+		<cfreturn LOCAL.pageData />
+	</cffunction>
+	
+	<cffunction name="_loadPageData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
@@ -48,8 +59,38 @@
 			<cfset LOCAL.pageData.searchText = "" />
 			<cfset LOCAL.pageData.categoryId = 0 />
 		</cfif>
+		
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="_loadPageView" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
 				
-		<cfreturn LOCAL.pageData />
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	
+	<cffunction name="_loadModuleData" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	
+	<cffunction name="_loadModuleView" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj =_initModuleObject(pageName = getPageName(), moduleName = LOCAL.module.getName()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendView()) />
+		</cfloop>
+		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	
 	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">
