@@ -6,7 +6,7 @@
 		<cfset LOCAL.pageData.title = "Profile | #APPLICATION.applicationName#" />
 		<cfset LOCAL.pageData.description = "" />
 		<cfset LOCAL.pageData.keywords = "" />
-		
+		<!---
 		<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",SESSION.user.customerId) />
 		
 		<cfif IsDefined("SESSION.temp.formData")>
@@ -22,7 +22,7 @@
 			<cfset LOCAL.pageData.formData.website = isNull(LOCAL.pageData.customer.getWebsite())?"":LOCAL.pageData.customer.getWebsite() />
 			<cfset LOCAL.pageData.formData.subscribed = isNull(LOCAL.pageData.customer.getSubscribed())?"":LOCAL.pageData.customer.getSubscribed() />
 		</cfif>
-		
+		--->
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!----------------------------------------------------------------------------------------------------------------------------------------------------->
