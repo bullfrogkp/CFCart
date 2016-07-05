@@ -139,9 +139,9 @@
 			</div>
 
 			<cfif REQUEST.pageData.category.getDisplayFilter() EQ true>				
-				#REQUEST.pageData.modules.view.products_size_filter#
-				#REQUEST.pageData.modules.view.products_color_filter#
-				#REQUEST.pageData.modules.view.products_brand_filter#
+				#REQUEST.moduleView.products_size_filter#
+				#REQUEST.moduleView.products_color_filter#
+				#REQUEST.moduleView.products_brand_filter#
 			</cfif>
 		</div>
 	</div>

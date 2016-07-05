@@ -60,7 +60,7 @@
 					<div class="current">$70,00</div>
 				</div>
 				
-				#REQUEST.pageData.modules.view.product_detail_options#
+				#REQUEST.moduleView.product_detail_options#
 				
 				<div class="quantity-selector detail-info-entry">
 					<div class="detail-info-entry-title">Quantity</div>
@@ -108,7 +108,7 @@
 					<div class="information-blocks">
 						<div class="information-entry products-list">
 							<h3 class="block-title inline-product-column-title">Related products</h3>
-							<cfloop array="#REQUEST.pageData.modules.data.product_detail_related_products.products#" index="product">
+							<cfloop array="#REQUEST.moduleData.product_detail_related_products.products#" index="product">
 								<div class="inline-product-entry">
 									<a href="#product.href#" class="image"><img alt="" src="#product.image#"></a>
 									<div class="content">
@@ -222,7 +222,7 @@
 	<div class="products-swiper">
 		<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
 			<div class="swiper-wrapper">
-				<cfloop array="#REQUEST.pageData.modules.data.product_detail_also_bought_products.products#" index="product">
+				<cfloop array="#REQUEST.moduleData.product_detail_also_bought_products.products#" index="product">
 					<div class="swiper-slide"> 
 						<div class="paddings-container">
 							<div class="product-slide-entry shift-image">
