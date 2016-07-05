@@ -94,8 +94,15 @@
 	<cffunction name="_loadModuleData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
-		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+		
+		<cfif getPageName() NEQ "">
+			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
+		<cfelse>
+			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
+		</cfif>
+		
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
 		</cfloop>
@@ -106,11 +113,19 @@
 	<cffunction name="_loadModuleView" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
-		<cfloop array="#LOCAL.pageEntity.getModules()#" index="LOCAL.module">
+		
+		<cfif getPageName() EQ "">
+			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
+		<cfelse>
+			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
+		</cfif>
+		
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
 			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
 			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendView()) />
 		</cfloop>
+		
 		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
