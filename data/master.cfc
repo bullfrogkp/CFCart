@@ -114,6 +114,13 @@
 		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="moduleName" required="true"/>
+		
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = getPageName(), formData = getFormData(), urlData = getUrlData()) />
+		<cfreturn moduleObj />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="_setTempMessage" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.message = {} />
@@ -138,13 +145,6 @@
 		<cfset LOCAL.currentPage = ARGUMENTS.currentPage />
 		
 		<cfreturn LOCAL /> 
-	</cffunction>
-	<!------------------------------------------------------------------------------->	
-	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="moduleName" required="true"/>
-		
-		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = getPageName(), formData = getFormData(), urlData = getUrlData()) />
-		<cfreturn moduleObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 </cfcomponent>

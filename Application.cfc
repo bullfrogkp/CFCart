@@ -13,7 +13,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setGlobalPageObject" output="false" access="private" returnType="any">
-		<cfset APPLICATION.globalPageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = "", formData = {}, urlData = {})) />
+		<cfset APPLICATION.globalPageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = "", formData = {}, urlData = {}) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
