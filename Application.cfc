@@ -12,12 +12,8 @@
 		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="pageName" required="true"/>
-		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = "", formData = {}, urlData = {}) />
-		
-		<cfreturn pageObj />
+	<cffunction name="_setGlobalPageObject" output="false" access="private" returnType="any">
+		<cfset APPLICATION.globalPageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = "", formData = {}, urlData = {})) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
