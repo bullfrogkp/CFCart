@@ -144,7 +144,7 @@
 		<cfset SetEncoding("url","utf-8") />
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
-		<cfset StructInsert(APPLICATION, "globalDataObj", _initGlobalPageObject()) />
+		<cfset StructInsert(APPLICATION, "globalPageObj", _initGlobalPageObject()) />
 		
 		<cfreturn true>
 	</cffunction>
