@@ -7,6 +7,8 @@
 		<cfargument name="pageName" type="string" required="true" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
+		<cfset setFormData(ARGUMENTS.formData) />
+		<cfset setUrlData(ARGUMENTS.urlData) />
 		
 		<cfreturn this />
 	</cffunction>

@@ -144,7 +144,7 @@
 		<cfset SetEncoding("url","utf-8") />
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
-		<cfset StructInsert(APPLICATION, "globalDataObj", _getGlobalDataObj()) />
+		<cfset StructInsert(APPLICATION, "globalDataObj", _initGlobalPageObject()) />
 		
 		<cfreturn true>
 	</cffunction>
@@ -166,9 +166,8 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initGlobalPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="pageName" required="true"/>
 		
-		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
+		<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.global"(formData = {}, urlData = {}) />
 		
 		<cfreturn pageObj />
 	</cffunction>
@@ -337,9 +336,4 @@
 		<cflocation url="#APPLICATION.absoluteUrlWeb#admin/error.cfm" addtoken="false" />
 	</cffunction>--->
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_getGlobalDataObj"  access="private" returnType="any" output="false">
-		<cfreturn _initGlobalPageObject(argumentCollection = args) />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
-	
 </cfcomponent>
