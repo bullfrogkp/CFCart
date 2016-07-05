@@ -52,7 +52,7 @@
 				<cfset var args = {} />
 				<cfset args.pageName = currentPageName />
 				
-				<cfset var globalPageObj = _initGlobalPageObject(argumentCollection = args) />
+				
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />
 				<cfset globalPageObj.setUrlData(URL) />
 				<cfset pageObj.setUrlData(URL) />
@@ -192,6 +192,11 @@
 		</cfif>
 		
 		<cfset SESSION.trackingEntity = trackingEntity />
+	</cffunction>
+	
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_setGlobalData"  access="private" returnType="any" output="false">
+		<cfreturn _initGlobalPageObject(argumentCollection = args) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCart"  access="private" returnType="void" output="false">
