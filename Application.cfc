@@ -98,11 +98,6 @@
 						</cfif>
 					</cfif>
 					
-					<cfset returnStruct = pageObj.processFrontendModuleFormData() />
-					<cfif returnStruct.redirectUrl NEQ "">
-						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
-					</cfif>
-					
 					<cfset returnStruct = pageObj.processFormDataAfterValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
@@ -141,12 +136,8 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
-				<cfset StructAppend(REQUEST.pageData, pageObj.loadPageData()) />
-			
-				<cfset REQUEST.pageData.modules = {} />
-				<cfset REQUEST.pageData.modules.data = pageObj.getModuleData(urlData = URL) />
-				<cfset REQUEST.pageData.modules.view = pageObj.getModuleView(urlData = URL) />
+				<cfset REQUEST.pageData = globalPageObj.loadGlobalData() />
+				<cfset StructAppend(REQUEST.pageData, pageObj.loadData()) />
 			
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />

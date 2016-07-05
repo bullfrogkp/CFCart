@@ -74,14 +74,10 @@
 	<cffunction name="loadData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
-		<cfset LOCAL.retStruct.pageData = {} />
-		<cfset LOCAL.retStruct.pageView = {} />
-		
-		<cfset StructAppend(LOCAL.retStruct.pageData, _loadPageData()) />
-		<cfset StructAppend(LOCAL.retStruct.pageData, _loadModuleData()) />
-		
-		<cfset StructAppend(LOCAL.retStruct.pageView, _loadPageView()) />
-		<cfset StructAppend(LOCAL.retStruct.pageView, _loadModuleView()) />
+		<cfset LOCAL.retStruct.pageData = _loadPageData() />
+		<cfset LOCAL.retStruct.pageView = _loadPageView() />
+		<cfset LOCAL.retStruct.moduleData = _loadModuleData() />
+		<cfset LOCAL.retStruct.moduleView = _loadModuleView() />
 				
 		<cfreturn LOCAL.retStruct />	
 	</cffunction>
