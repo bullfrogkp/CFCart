@@ -5,24 +5,7 @@
 		
 		<cfset LOCAL.messageArray = [] />
 		
-		<cfif StructKeyExists(FORM,"shipto_this_address")>		
-			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
-			<cfset LOCAL.shippingAddress = {} />
-			<cfset LOCAL.shippingAddress.unit = LOCAL.address.getUnit() />
-			<cfset LOCAL.shippingAddress.street = LOCAL.address.getStreet() />
-			<cfset LOCAL.shippingAddress.city = LOCAL.address.getCity() />
-			<cfset LOCAL.shippingAddress.postalCode = LOCAL.address.getPostalCode() />
-			<cfset LOCAL.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
-			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
-			<cfset LOCAL.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
-			<cfset LOCAL.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
-			
-			<cfset LOCAL.addressComponent = new "#APPLICATION.componentPathRoot#core.shipping.address"() />
-			<cfset LOCAL.isValidAddress = LOCAL.addressComponent.isValidAddress(address = LOCAL.shippingAddress) />
-			<cfif LOCAL.isValidAddress EQ false>
-				<cfset ArrayAppend(LOCAL.messageArray,"Sorry we don't support shipping to this address.") />
-			</cfif>
-		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
+		<cfif StructKeyExists(FORM,"shipping_to_new_address")>
 			<cfif Trim(FORM.shipto_first_name) EQ "">
 				<cfset ArrayAppend(LOCAL.messageArray,"Please enter your first name.") />
 			</cfif>
@@ -39,13 +22,22 @@
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping province.") />
 			</cfif>
 			<cfif Trim(FORM.shipto_postal_code) EQ "">
-				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping postal code.") />
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter the shipping postal code / zip.") />
 			</cfif>
 			<cfif NOT IsNumeric(FORM.shipto_country_id)>
 				<cfset ArrayAppend(LOCAL.messageArray,"Please choose your shipping country.") />
 			</cfif>
 			
-			<cfif IsNumeric(FORM.shipto_province_id) AND IsNumeric(FORM.shipto_country_id)>
+			<cfif IsValid("email",Trim(FORM.new_email)) EQ false>
+				<cfset ArrayAppend(LOCAL.messageArray,"Please enter a valid email.") />
+			<cfelseif StructKeyExists(FORM,"register_user")>
+				<cfset LOCAL.existingCustomer = EntityLoad("customer",{email=Trim(FORM.new_email),isDeleted=false,isEnabled=true},true) />
+				<cfif NOT IsNull(LOCAL.existingCustomer)>
+					<cfset ArrayAppend(LOCAL.messageArray,"Customer already exists with email:#Trim(FORM.new_email)#.") />
+				</cfif>
+			</cfif>
+			
+			<cfif IsNumeric(FORM.shipto_country_id) AND IsNumeric(FORM.shipto_province_id)>
 				<cfset LOCAL.shippingAddress = {} />
 				<cfset LOCAL.shippingAddress.unit = Trim(FORM.shipto_unit) />
 				<cfset LOCAL.shippingAddress.street = Trim(FORM.shipto_street) />
@@ -97,42 +89,22 @@
 	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.redirectUrl = "" />
 		
-		<!--- set flags --->
-		<cfset SESSION.cart.setIsExistingCustomer(true) />
-		<cfset SESSION.cart.setSameAddress(true) />
-		<cfset SESSION.cart.setRegisterCustomer(false) />
-
-		<cfset LOCAL.customerStruct = {} />
-		<cfset LOCAL.customerEntity = EntityLoadByPK("customer",SESSION.user.customerId) />
-		<cfset LOCAL.customerStruct.email = LOCAL.customerEntity.getEmail() />
-		<cfset LOCAL.customerStruct.customerId = SESSION.user.customerId />
-		
-		<cfif StructKeyExists(FORM,"shipto_this_address")>		
-			<cfset LOCAL.address = EntityLoadByPK("address",FORM.existing_address_id) />
-			<cfset LOCAL.shippingAddress = {} />
-			<cfset LOCAL.shippingAddress.useExistingAddress = true />
-			<cfset LOCAL.shippingAddress.addressId = LOCAL.address.getAddressId() />
-			<cfset LOCAL.shippingAddress.company = LOCAL.address.getCompany() />
-			<cfset LOCAL.shippingAddress.firstName = LOCAL.address..getFirstName() />
-			<cfset LOCAL.shippingAddress.middleName = LOCAL.address.getMiddleName() />
-			<cfset LOCAL.shippingAddress.lastName = LOCAL.address.getLastName() />
-			<cfset LOCAL.shippingAddress.phone = LOCAL.address.getPhone() />
-			<cfset LOCAL.shippingAddress.unit = LOCAL.address.getUnit() />
-			<cfset LOCAL.shippingAddress.street = LOCAL.address.getStreet() />
-			<cfset LOCAL.shippingAddress.city = LOCAL.address.getCity() />
-			<cfset LOCAL.shippingAddress.postalCode = LOCAL.address.getPostalCode() />
-			<cfset LOCAL.shippingAddress.provinceId = LOCAL.address.getProvince().getProvinceId() />
-			<cfset LOCAL.shippingAddress.provinceCode = LOCAL.address.getProvince().getCode() />
-			<cfset LOCAL.shippingAddress.countryId = LOCAL.address.getCountry().getCountryId() />
-			<cfset LOCAL.shippingAddress.countryCode = LOCAL.address.getCountry().getCode() />
+		<cfif StructKeyExists(FORM,"shipping_to_new_address")>
+			<!--- set flags --->
+			<cfset SESSION.cart.setIsExistingCustomer(false) />
+			<cfset SESSION.cart.setSameAddress(true) />
 			
-			<cfset LOCAL.customerStruct.firstName = LOCAL.address.getFirstName() />
-			<cfset LOCAL.customerStruct.middleName = LOCAL.address.getMiddleName() />
-			<cfset LOCAL.customerStruct.lastName = LOCAL.address.getLastName() />
-			<cfset LOCAL.customerStruct.company = LOCAL.address.getCompany() />
-			<cfset LOCAL.customerStruct.phone = LOCAL.address.getPhone() />
-		<cfelseif StructKeyExists(FORM,"shipping_to_new_address")>
+			<cfif StructKeyExists(FORM,"register_user")>
+				<cfset SESSION.cart.setRegisterCustomer(true) />
+				<cfset SESSION.cart.setRegisterCustomerPassword(Hash(Trim(FORM.new_password))) />
+			<cfelse>
+				<cfset SESSION.cart.setRegisterCustomer(false) />
+				<cfset SESSION.cart.setRegisterCustomerPassword("") />
+			</cfif>
+			
+			<!--- set addresses --->
 			<cfset LOCAL.shippingAddress = {} />
 			<cfset LOCAL.shippingAddress.useExistingAddress = false />
 			<cfset LOCAL.shippingAddress.addressId = "" />
@@ -153,22 +125,23 @@
 			<cfset LOCAL.country = EntityLoadByPK("country",FORM.shipto_country_id) />
 			<cfset LOCAL.shippingAddress.countryId = FORM.shipto_country_id />
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
+			<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 			
+			<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+			<cfset LOCAL.customerStruct.email = Trim(FORM.new_email) />
 			<cfset LOCAL.customerStruct.firstName = Trim(FORM.shipto_first_name) />
 			<cfset LOCAL.customerStruct.middleName = Trim(FORM.shipto_middle_name) />
 			<cfset LOCAL.customerStruct.lastName = Trim(FORM.shipto_last_name) />
 			<cfset LOCAL.customerStruct.company = Trim(FORM.shipto_company) />
 			<cfset LOCAL.customerStruct.phone = Trim(FORM.shipto_phone) />
+			
+			<cfset SESSION.cart.setCustomerStruct(LOCAL.customerStruct) />
+			<cfset SESSION.cart.setShippingAddressStruct(LOCAL.shippingAddress) />
+			<cfset SESSION.cart.setBillingAddressStruct(LOCAL.billingAddress) />
+			<cfset SESSION.cart.calculate() />
+			
+			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
 		</cfif>
-		
-		<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
-		
-		<cfset SESSION.cart.setCustomerStruct(LOCAL.customerStruct) />
-		<cfset SESSION.cart.setShippingAddressStruct(LOCAL.shippingAddress) />
-		<cfset SESSION.cart.setBillingAddressStruct(LOCAL.billingAddress) />
-		<cfset SESSION.cart.calculate() />		
-		
-		<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
