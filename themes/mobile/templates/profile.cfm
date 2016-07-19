@@ -94,16 +94,17 @@
 		<div class="col-sm-3 col-sm-pull-9 blog-sidebar">
 			<div class="information-blocks">
 				<div class="categories-list account-links">
-					<div class="block-title size-3">Client account</div>
+					<div class="block-title size-3">Dashboard</div>
 					<ul>
 						<li><a href="##">Overview</a></li>
-						<li><a href="##">Account/Password </a></li>
+						<li><a href="##">Orders</a></li>
+						<li><a href="##">Account/Password</a></li>
 						<li><a href="##">Address Book</a></li>
-						<li><a href="##">Newsletter</a></li>
-						<li><a href="##">Order History</a></li>
 						<li><a href="##">My Wishlist</a></li>
+						<li><a href="##">My Coupons</a></li>
 						<li><a href="##">My Reviews</a></li>
 						<li><a href="##">My Tags</a></li>
+						<li><a href="#CGI.SCRIPT_NAME#?logout">Logout</a></li>
 					</ul>
 				</div>
 				<div class="article-container">
