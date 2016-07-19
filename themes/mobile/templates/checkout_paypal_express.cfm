@@ -141,7 +141,6 @@
 									<th class="column-2">Unit Price</th>
 									<th class="column-3">Qty</th>
 									<th class="column-4">Subtotal</th>
-									<th class="column-5"></th>
 								</tr>
 								<tr>
 									<td>
@@ -158,15 +157,8 @@
 										</div>
 									</td>
 									<td>$99,00</td>
-									<td>
-										<div class="quantity-selector detail-info-entry">
-											<div class="entry number-minus">&nbsp;</div>
-											<div class="entry number">10</div>
-											<div class="entry number-plus">&nbsp;</div>
-										</div>
-									</td>
+									<td>10</td>
 									<td><div class="subtotal">$990,00</div></td>
-									<td><a class="remove-button"><i class="fa fa-times"></i></a></td>
 								</tr>
 								<tr>
 									<td>
@@ -183,15 +175,8 @@
 										</div>
 									</td>
 									<td>$99,00</td>
-									<td>
-										<div class="quantity-selector detail-info-entry">
-											<div class="entry number-minus">&nbsp;</div>
-											<div class="entry number">10</div>
-											<div class="entry number-plus">&nbsp;</div>
-										</div>
-									</td>
+									<td>10</td>
 									<td><div class="subtotal">$990,00</div></td>
-									<td><a class="remove-button"><i class="fa fa-times"></i></a></td>
 								</tr>
 								<tr>
 									<td>
@@ -208,15 +193,8 @@
 										</div>
 									</td>
 									<td>$99,00</td>
-									<td>
-										<div class="quantity-selector detail-info-entry">
-											<div class="entry number-minus">&nbsp;</div>
-											<div class="entry number">10</div>
-											<div class="entry number-plus">&nbsp;</div>
-										</div>
-									</td>
+									<td>10</td>
 									<td><div class="subtotal">$990,00</div></td>
-									<td><a class="remove-button"><i class="fa fa-times"></i></a></td>
 								</tr>
 							</table>
 						</div>
@@ -225,14 +203,9 @@
 								<div class="cart-summary-box">
 									<div class="sub-total">Subtotal: $990,00</div>
 									<div class="grand-total">Grand Total $1029,79</div>
-									<a class="button style-10" href="##">Proceed To Checkout</a>
-									<a class="simple-link" href="##">Checkout with Multiple Addresses</a>
+									<a class="button style-10" href="##">Place Order</a>
 								</div>
 							</div>
-						</div>
-						<div class="cart-submit-buttons-box">
-							<a class="button style-15">Continue Shopping</a>
-							<a class="button style-15">Update Bag</a>
 						</div>
 					</div>
 				</div>
@@ -241,10 +214,10 @@
 		<div class="col-sm-3 information-entry">
 			<h3 class="cart-column-title size-2">Your Checkout Progress</h3>
 			<div class="checkout-progress-widget">
-				<div class="step-entry">1. Billing Address</div>
-				<div class="step-entry">2. Shipping Address</div>
+				<div class="step-entry">1. Checkout Method</div>
+				<div class="step-entry">2. Shipping Information</div>
 				<div class="step-entry">3. Shipping Method</div>
-				<div class="step-entry">4. Payment Method</div>
+				<div class="step-entry">4. Order Review</div>
 			</div>
 			<div class="article-container style-1">
 				<p>Custom CMS block displayed below the one page checkout progress block. Put your own content here.</p>
