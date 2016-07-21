@@ -102,7 +102,7 @@
 				<div class="categories-list account-links">
 					<div class="block-title size-3">Dashboard</div>
 					<ul>
-						<li><a href="##">Overview</a></li>
+						<li><a href="##" style="color: ##ca1515;font-weight: bold;">Overview</a></li>
 						<li><a href="##">Orders</a></li>
 						<li><a href="##">Account/Password</a></li>
 						<li><a href="##">Address Book</a></li>
