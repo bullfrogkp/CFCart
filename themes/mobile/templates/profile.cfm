@@ -8,87 +8,34 @@
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-sm-9 col-sm-push-3">
-			<div class="wishlist-header hidden-xs">
-				<div class="title-1">Product Name</div>
-				<div class="title-2">Purchase Product</div>
-			</div>
-			<div class="wishlist-box">
-				<div class="wishlist-entry">
-					<div class="column-1">
-						<div class="traditional-cart-entry">
-							<a class="image" href="##"><img alt="" src="img/product-minimal-1.jpg" /></a>
-							<div class="content">
-								<div class="cell-view">
-									<a class="tag" href="##">woman clothing</a>
-									<a class="title" href="##">Pullover Batwing Sleeve Zigzag</a>
-									<div class="inline-description">S / Dirty Pink</div>
-									<div class="inline-description">Zigzag Clothing</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column-2">
-						<a class="button style-14">add to cart</a>
-						<a class="remove-button"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="wishlist-entry">
-					<div class="column-1">
-						<div class="traditional-cart-entry">
-							<a class="image" href="##"><img alt="" src="img/product-minimal-1.jpg" /></a>
-							<div class="content">
-								<div class="cell-view">
-									<a class="tag" href="##">woman clothing</a>
-									<a class="title" href="##">Pullover Batwing Sleeve Zigzag</a>
-									<div class="inline-description">S / Dirty Pink</div>
-									<div class="inline-description">Zigzag Clothing</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column-2">
-						<a class="button style-14">add to cart</a>
-						<a class="remove-button"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="wishlist-entry">
-					<div class="column-1">
-						<div class="traditional-cart-entry">
-							<a class="image" href="##"><img alt="" src="img/product-minimal-1.jpg" /></a>
-							<div class="content">
-								<div class="cell-view">
-									<a class="tag" href="##">woman clothing</a>
-									<a class="title" href="##">Pullover Batwing Sleeve Zigzag</a>
-									<div class="inline-description">S / Dirty Pink</div>
-									<div class="inline-description">Zigzag Clothing</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column-2">
-						<a class="button style-14">add to cart</a>
-						<a class="remove-button"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="wishlist-entry">
-					<div class="column-1">
-						<div class="traditional-cart-entry">
-							<a class="image" href="##"><img alt="" src="img/product-minimal-1.jpg" /></a>
-							<div class="content">
-								<div class="cell-view">
-									<a class="tag" href="##">woman clothing</a>
-									<a class="title" href="##">Pullover Batwing Sleeve Zigzag</a>
-									<div class="inline-description">S / Dirty Pink</div>
-									<div class="inline-description">Zigzag Clothing</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column-2">
-						<a class="button style-14">add to cart</a>
-						<a class="remove-button"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
+			<div class="article-container style-1">
+				<h5>My Account</h5>
+				<table>
+					<tr>
+						<td>Email: </td>
+						<td style="padding-left:10px;">stores@domain.com</td>
+					</tr>
+					<tr>
+						<td>First Name: </td>
+						<td style="padding-left:10px;">stores@domain.com</td>
+					</tr>
+					<tr>
+						<td>Middle Name: </td>
+						<td style="padding-left:10px;">stores@domain.com</td>
+					</tr>
+					<tr>
+						<td>Phone: </td>
+						<td style="padding-left:10px;">(1800) 000 8808</td>
+					</tr>
+					<tr>
+						<td>Company: </td>
+						<td style="padding-left:10px;">(1800) 000 8808</td>
+					</tr>
+					<tr>
+						<td>Website: </td>
+						<td style="padding-left:10px;">(1800) 000 8808</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div class="col-sm-3 col-sm-pull-9 blog-sidebar">
