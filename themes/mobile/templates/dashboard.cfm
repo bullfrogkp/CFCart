@@ -9,9 +9,9 @@
 		<div class="col-sm-9 col-sm-push-3">
 			<div class="row article-container style-1">
 				<div class="col-md-12 information-entry">
-					<h5>My Account</h5>
+					<h5>My Account <a style="margin-left:10px;font-weight:normal">EDIT</a></h5> 
 					<div class="table-responsive">
-                        <table class="profile-table">
+                        <table class="profile-table style-1">
                             <tr>
 								<th>Email: </th>
 								<th>stores@domain.com</th>
@@ -32,12 +32,11 @@
 							</tr>
                         </table>
                     </div>
-					<div style="margin-top:10px;" class="button style-14">Edit Account Settings</div>
 				</div>
 			</div>
 			<div class="row article-container">
 				<div class="col-md-12 information-entry">
-					<h5>Address Information</h5>
+					<h5>Address Information <a style="margin-left:10px;font-weight:normal">EDIT</a></h5>
 				</div>
 				<div class="col-md-4 information-entry">
 					<div class="article-container style-1">
@@ -63,27 +62,29 @@
 						Canada<br/>
 					</div>
 				</div>
-				<div style="margin-top:10px;margin-left:15px;" class="button style-14">Edit Address Book</div>
 			</div>
 			<div class="row article-container style-1">
 				<div class="col-md-12 information-entry">
-					<h5>Recent Orders</h5>
+					<h5>Recent Orders <a style="margin-left:10px;font-weight:normal">VIEW ALL</a></h5>
 					<div class="table-responsive">
                         <table class="profile-table">
                             <tr>
 								<th>Tracking No.</th>
 								<th>Created</th>
 								<th>Status</th>
+								<th></th>
 							</tr>
 							<tr>
 							<td>OR12345</td>
 							<td>Julu 12, 2016</td>
 							<td>Shipped</td>
+							<td><a>View Detail</a></td>
 						</tr>
 						<tr>
 							<td>OR12345</td>
 							<td>Julu 12, 2016</td>
 							<td>Shipped</td>
+							<td><a href="">View Detail</a></td>
 						</tr>
                         </table>
                     </div>

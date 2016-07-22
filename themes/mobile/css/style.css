@@ -2439,7 +2439,7 @@ transform: translateX(-50%); position: relative;}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 27 - PROFILE */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-.profile-table{width: 100%; font-size: 13px; line-height: 28px; color: #2e2e2e; font-weight: 400;}
+.profile-table{width: 100%; }
 .profile-table .column-1{}
 .profile-table .column-2{width: 150px;}
 .profile-table .column-3{width: 180px;}
