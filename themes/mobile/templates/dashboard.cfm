@@ -1,8 +1,7 @@
 <cfoutput>
 <div class="breadcrumb-box">
 	<a href="##">Home</a>
-	<a href="##">My Account</a>
-	<a href="##">Profile</a>
+	<a href="##">Dashboard</a>
 </div>
 
 <div class="information-blocks">
@@ -91,27 +90,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3 col-sm-pull-9 blog-sidebar">
-			<div class="information-blocks">
-				<div class="categories-list account-links">
-					<div class="block-title size-3">Dashboard</div>
-					<ul>
-						<li><a href="##" style="color: ##ca1515;font-weight: bold;">Overview</a></li>
-						<li><a href="##">Orders</a></li>
-						<li><a href="##">Account/Password</a></li>
-						<li><a href="##">Address Book</a></li>
-						<li><a href="##">My Wishlist</a></li>
-						<li><a href="##">My Coupons</a></li>
-						<li><a href="##">My Reviews</a></li>
-						<li><a href="##">My Tags</a></li>
-						<li><a href="#CGI.SCRIPT_NAME#?logout">Logout</a></li>
-					</ul>
-				</div>
-				<div class="article-container">
-					<br/>Custom CMS block displayed below the one page account panel block. Put your own content here.
-				</div>
-			</div>
-		</div>
+		<cfinclude template="nav.cfm" />
 	</div>
 </div>
 </cfoutput>
