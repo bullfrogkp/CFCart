@@ -12,12 +12,12 @@
 				<div class="col-md-12 information-entry">
 					<h5>My Account</h5>
 					<div class="table-responsive">
-                        <table class="cart-table">
+                        <table class="profile-table">
                             <tr>
-								<td style="border-top: 1px ##e6e6e6 solid;">Email: </td>
-								<td style="border-top: 1px ##e6e6e6 solid;">stores@domain.com</td>
-								<td style="border-top: 1px ##e6e6e6 solid;">Phone: </td>
-								<td style="border-top: 1px ##e6e6e6 solid;">(1800) 000 8808</td>
+								<th>Email: </th>
+								<th>stores@domain.com</th>
+								<th>Phone: </th>
+								<th>(1800) 000 8808</th>
 							</tr>
 							<tr>
 								<td>First Name: </td>
@@ -33,6 +33,7 @@
 							</tr>
                         </table>
                     </div>
+					<div style="margin-top:10px;" class="button style-14">Edit Account Settings</div>
 				</div>
 			</div>
 			<div class="row article-container">
@@ -63,18 +64,19 @@
 						Canada<br/>
 					</div>
 				</div>
+				<div style="margin-top:10px;margin-left:15px;" class="button style-14">Edit Address Book</div>
 			</div>
 			<div class="row article-container style-1">
 				<div class="col-md-12 information-entry">
 					<h5>Recent Orders</h5>
-					 <div class="table-responsive">
-					<table>
-						<tr>
-							<th>Tracking No.</th>
-							<th>Created</th>
-							<th>Status</th>
-						</tr>
-						<tr>
+					<div class="table-responsive">
+                        <table class="profile-table">
+                            <tr>
+								<th>Tracking No.</th>
+								<th>Created</th>
+								<th>Status</th>
+							</tr>
+							<tr>
 							<td>OR12345</td>
 							<td>Julu 12, 2016</td>
 							<td>Shipped</td>
@@ -84,8 +86,8 @@
 							<td>Julu 12, 2016</td>
 							<td>Shipped</td>
 						</tr>
-					</table>
-					</div>
+                        </table>
+                    </div>
 				</div>
 			</div>
 		</div>
