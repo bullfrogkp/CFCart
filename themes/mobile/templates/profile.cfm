@@ -14,109 +14,25 @@
 					<div class="table-responsive">
                         <table class="cart-table">
                             <tr>
-                                <th class="column-1">Product Name</th>
-                                <th class="column-2">Unit Price</th>
-                                <th class="column-3">Qty</th>
-                                <th class="column-4">Subtotal</th>
-                                <th class="column-5"></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="traditional-cart-entry">
-                                        <a href="##" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                                        <div class="content">
-                                            <div class="cell-view">
-                                                <a href="##" class="tag">woman clothing</a>
-                                                <a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-                                                <div class="inline-description">S / Dirty Pink</div>
-                                                <div class="inline-description">Zigzag Clothing</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$99,00</td>
-                                <td>
-                                    <div class="quantity-selector detail-info-entry">
-                                        <div class="entry number-minus">&nbsp;</div>
-                                        <div class="entry number">10</div>
-                                        <div class="entry number-plus">&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td><div class="subtotal">$990,00</div></td>
-                                <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="traditional-cart-entry">
-                                        <a href="##" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                                        <div class="content">
-                                            <div class="cell-view">
-                                                <a href="##" class="tag">woman clothing</a>
-                                                <a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-                                                <div class="inline-description">S / Dirty Pink</div>
-                                                <div class="inline-description">Zigzag Clothing</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$99,00</td>
-                                <td>
-                                    <div class="quantity-selector detail-info-entry">
-                                        <div class="entry number-minus">&nbsp;</div>
-                                        <div class="entry number">10</div>
-                                        <div class="entry number-plus">&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td><div class="subtotal">$990,00</div></td>
-                                <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="traditional-cart-entry">
-                                        <a href="##" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                                        <div class="content">
-                                            <div class="cell-view">
-                                                <a href="##" class="tag">woman clothing</a>
-                                                <a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-                                                <div class="inline-description">S / Dirty Pink</div>
-                                                <div class="inline-description">Zigzag Clothing</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$99,00</td>
-                                <td>
-                                    <div class="quantity-selector detail-info-entry">
-                                        <div class="entry number-minus">&nbsp;</div>
-                                        <div class="entry number">10</div>
-                                        <div class="entry number-plus">&nbsp;</div>
-                                    </div>
-                                </td>
-                                <td><div class="subtotal">$990,00</div></td>
-                                <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
-                            </tr>
+								<td style="border-top: 1px ##e6e6e6 solid;">Email: </td>
+								<td style="border-top: 1px ##e6e6e6 solid;">stores@domain.com</td>
+								<td style="border-top: 1px ##e6e6e6 solid;">Phone: </td>
+								<td style="border-top: 1px ##e6e6e6 solid;">(1800) 000 8808</td>
+							</tr>
+							<tr>
+								<td>First Name: </td>
+								<td>stores@domain.com</td>
+								<td>Company: </td>
+								<td>(1800) 000 8808</td>
+							</tr>
+							<tr>
+								<td>Middle Name: </td>
+								<td>stores@domain.com</td>
+								<td>Website: </td>
+								<td>(1800) 000 8808</td>
+							</tr>
                         </table>
                     </div>
-					<table>
-						<tr>
-							<td>Email: </td>
-							<td style="padding-left:10px;">stores@domain.com</td>
-							<td style="padding-left:10px;">Phone: </td>
-							<td style="padding-left:10px;">(1800) 000 8808</td>
-						</tr>
-						<tr>
-							<td>First Name: </td>
-							<td style="padding-left:10px;">stores@domain.com</td>
-							<td style="padding-left:10px;">Company: </td>
-							<td style="padding-left:10px;">(1800) 000 8808</td>
-						</tr>
-						<tr>
-							<td>Middle Name: </td>
-							<td style="padding-left:10px;">stores@domain.com</td>
-							<td style="padding-left:10px;">Website: </td>
-							<td style="padding-left:10px;">(1800) 000 8808</td>
-						</tr>
-					</table>
 				</div>
 			</div>
 			<div class="row article-container">
