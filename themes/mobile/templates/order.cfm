@@ -16,17 +16,20 @@
 								<th>Tracking No.</th>
 								<th>Created</th>
 								<th>Status</th>
+								<th></th>
 							</tr>
 							<tr>
-							<td>OR12345</td>
-							<td>Julu 12, 2016</td>
-							<td>Shipped</td>
-						</tr>
-						<tr>
-							<td>OR12345</td>
-							<td>Julu 12, 2016</td>
-							<td>Shipped</td>
-						</tr>
+								<td>OR12345</td>
+								<td>Julu 12, 2016</td>
+								<td>Shipped</td>
+								<td><a>View Detail</a></td>
+							</tr>
+							<tr>
+								<td>OR12345</td>
+								<td>Julu 12, 2016</td>
+								<td>Shipped</td>
+								<td><a href="">View Detail</a></td>
+							</tr>
                         </table>
                     </div>
 				</div>
