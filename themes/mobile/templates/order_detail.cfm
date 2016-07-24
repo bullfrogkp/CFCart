@@ -1,7 +1,7 @@
 <cfoutput>
 <div class="breadcrumb-box">
 	<a href="##">Home</a>
-	<a href="##">Dashboard</a>
+	<a href="##">Order Detail</a>
 </div>
 
 <div class="information-blocks">
