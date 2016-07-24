@@ -28,22 +28,64 @@
 								<div class="table-responsive">
 									<table class="profile-table">
 										<tr>
-											<th>Tracking No.</th>
-											<th>Created</th>
-											<th>Status</th>
-											<th></th>
+											<th>Product</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Sub Total</th>
+											<th>Tax</th>
+											<th>Shipping</th>
+											<th>Total</th>
 										</tr>
 										<tr>
 											<td>OR12345</td>
 											<td>Julu 12, 2016</td>
 											<td>Shipped</td>
-											<td><a>View Detail</a></td>
+											<td>OR12345</td>
+											<td>Julu 12, 2016</td>
+											<td>Shipped</td>
+											<td>OR12345</td>
+											<td>Julu 12, 2016</td>
 										</tr>
 										<tr>
 											<td>OR12345</td>
 											<td>Julu 12, 2016</td>
 											<td>Shipped</td>
-											<td><a href="">View Detail</a></td>
+											<td>OR12345</td>
+											<td>Julu 12, 2016</td>
+											<td>Shipped</td>
+											<td>OR12345</td>
+											<td>Julu 12, 2016</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align:right;font-weight:bold;">
+												Sub Total
+											</td>
+											<td>11</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align:right;font-weight:bold;">
+												Tax
+											</td>
+											<td>11</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align:right;font-weight:bold;">
+												Shipping
+											</td>
+											<td>11</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align:right;font-weight:bold;">
+												Discount
+											</td>
+											<td>11</td>
+										</tr>
+										<tr>
+											<td colspan="7" style="text-align:right;font-weight:bold;">
+												Grand Total
+											</td>
+											<td>11</td>
 										</tr>
 									</table>
 								</div>
@@ -51,7 +93,36 @@
 						</div>
 					</div>
 					<br/>
-					<div class="button style-14">Save<input type="submit" value=""></div>
+					
+					<div class="row">
+						<div class="col-md-12 information-entry">
+							<div class="article-container style-1">
+								<p><h5>Order Status</h5></p>
+								<div class="table-responsive">
+									<table class="profile-table">
+										<tr>
+											<th>Status</th>
+											<th>Create Datetime</th>
+											<th>End Datetime</th>
+											<th>Comment</th>
+										</tr>
+										<tr>
+											<td>OR12345</td>
+											<td>Julu 12, 2016</td>
+											<td>Shipped</td>
+											<td>OR12345</td>
+										</tr>
+										<tr>
+											<td>OR12345</td>
+											<td>Julu 12, 2016</td>
+											<td>Shipped</td>
+											<td>OR12345</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
