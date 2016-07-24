@@ -93,7 +93,6 @@
 						</div>
 					</div>
 					<br/>
-					
 					<div class="row">
 						<div class="col-md-12 information-entry">
 							<div class="article-container style-1">
