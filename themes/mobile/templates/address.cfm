@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>Address Information <a style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
+							<p><h5>Address Information</h5></p>
 							<div class="row">
 								<div class="col-md-4 information-entry">
 									<div class="article-container style-1">
@@ -19,8 +19,8 @@
 										5940 Yonge St.<br/>
 										North York, Ontario, M2M4M6<br/>
 										Canada<br/>
-										<div class="button style-14">Edit<input type="submit" value=""></div>
 									</div>
+									<div class="button style-14">Edit<input type="submit" value=""></div>
 								</div>
 								<div class="col-md-4 information-entry">
 									<div class="article-container style-1">
@@ -28,8 +28,8 @@
 										5940 Yonge St.<br/>
 										North York, Ontario, M2M4M6<br/>
 										Canada<br/>
-										<div class="button style-14">Edit<input type="submit" value=""></div>
 									</div>
+									<div class="button style-14">Edit<input type="submit" value=""></div>
 								</div>
 								<div class="col-md-4 information-entry">
 									<div class="article-container style-1">
@@ -37,43 +37,34 @@
 										5940 Yonge St.<br/>
 										North York, Ontario, M2M4M6<br/>
 										Canada<br/>
-										<div class="button style-14">Edit<input type="submit" value=""></div>
 									</div>
+									<div class="button style-14">Edit<input type="submit" value=""></div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="information-blocks">
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
 							<p><h5>Add New Address</h5></p>
 							<form>
-								<label>First Name</label>
-								<input type="text" value="" placeholder="Current Password" class="simple-field">
-								<label>Middle Name</label>
-								<input type="password" value="" placeholder="New Password" class="simple-field">
-								<label>Last Name</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>Phone</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>Company</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>Unit</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>Street</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>City</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>Postal Code</label>
-								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
-								<label>Province</label>
+								<input type="text" value="" placeholder="First Name" class="simple-field">
+								<input type="text" value="" placeholder="Middle Name" class="simple-field">
+								<input type="text" value="" placeholder="Last Name" class="simple-field">
+								<input type="text" value="" placeholder="Phone" class="simple-field">
+								<input type="text" value="" placeholder="Company" class="simple-field">
+								<input type="text" value="" placeholder="Unit" class="simple-field">
+								<input type="text" value="" placeholder="Street" class="simple-field">
+								<input type="text" value="" placeholder="City" class="simple-field">
+								<input type="text" value="" placeholder="Postal Code" class="simple-field">
 								<div class="simple-drop-down simple-field">
 									<select name="province_id" id="province-id">
 										<option value="">Province</option>
 									</select>
 								</div>
-								<label>Country</label>
 								<div class="simple-drop-down simple-field">
 									<select name="province_id" id="province-id">
 										<option value="">Country</option>
