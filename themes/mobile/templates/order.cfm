@@ -24,13 +24,13 @@
 										<td>OR12345</td>
 										<td>Julu 12, 2016</td>
 										<td>Shipped</td>
-										<td><a>View Detail</a></td>
+										<td><a href="order_detail.cfm">View Detail</a></td>
 									</tr>
 									<tr>
 										<td>OR12345</td>
 										<td>Julu 12, 2016</td>
 										<td>Shipped</td>
-										<td><a href="">View Detail</a></td>
+										<td><a href="order_detail.cfm">View Detail</a></td>
 									</tr>
 								</table>
 							</div>

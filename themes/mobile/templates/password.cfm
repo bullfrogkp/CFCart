@@ -13,11 +13,8 @@
 						<div class="article-container style-1">
 							<p><h5>Password</h5></p>
 							<form>
-								<label>Current Password</label>
 								<input type="text" value="" placeholder="Current Password" class="simple-field">
-								<label>New Password</label>
 								<input type="password" value="" placeholder="New Password" class="simple-field">
-								<label>Confirm New Password</label>
 								<input type="password" value="" placeholder="Confirm New Password" class="simple-field">
 								<div class="button style-14">Save<input type="submit" value=""></div>
 							</form>
