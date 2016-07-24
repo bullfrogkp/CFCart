@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>Recent Orders <a style="margin-left:10px;font-weight:normal">VIEW ALL</a></h5></p>
+							<p><h5>Orders</h5></p>
 							<div class="table-responsive">
 								<table class="profile-table">
 									<tr>
