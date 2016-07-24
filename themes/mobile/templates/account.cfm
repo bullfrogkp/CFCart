@@ -29,7 +29,7 @@
 								<input type="password" value="" placeholder="Enter Website" class="simple-field">
 								<label class="checkbox-entry checkbox">
 									<input type="checkbox" name="custom-name" checked> <span class="check"></span> <b>Subscribe Newsletters</b>
-								</label>
+								</label><br/>
 								<div class="button style-14">Save<input type="submit" value=""></div>
 							</form>
 						</div>
