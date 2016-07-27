@@ -53,7 +53,7 @@
                                     <div class="title"><i class="fa fa-search"></i> <span>Search</span></div>
                                 </div>
                                 <div class="header-top-entry increase-icon-responsive">
-                                    <div class="title"><i class="fa fa-user"></i> <span>My Account</span></div>
+                                    <div class="title"><i class="fa fa-user"></i> <a href="#APPLICATION.absoluteUrlWeb#myaccount/dashboard.cfm"><span>My Account</span></a></div>
                                 </div>
                                 <div class="header-top-entry">
                                     <div class="title"><img alt="" src="#SESSION.absoluteUrlTheme#images/ca.png">English<i class="fa fa-caret-down"></i></div>
@@ -78,8 +78,8 @@
                             <div class="middle-line"></div>
                             <div class="line-entry">
                                 <a href="##" class="header-functionality-entry"><i class="fa fa-copy"></i><span>Compare</span></a>
-                                <a href="##" class="header-functionality-entry"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
-                                <a href="##" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>#SESSION.cart.getDisplaySubTotal()#</b></a>
+                                <a href="#APPLICATION.absoluteUrlWeb#myaccount/mywishlist.cfm" class="header-functionality-entry"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
+                                <a href="#APPLICATION.absoluteUrlWeb#cart.cfm" class="header-functionality-entry open-cart-popup"><i class="fa fa-shopping-cart"></i><span>My Cart</span> &nbsp;&nbsp;&nbsp;<b>#SESSION.cart.getDisplaySubTotal()#</b></a>
                             </div>
                         </div>
                     </div>
