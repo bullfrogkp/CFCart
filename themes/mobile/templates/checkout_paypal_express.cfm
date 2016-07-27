@@ -203,7 +203,7 @@
 								<div class="cart-summary-box">
 									<div class="sub-total">Subtotal: $990,00</div>
 									<div class="grand-total">Grand Total $1029,79</div>
-									<a class="button style-10" href="##">Place Order</a>
+									<a class="button style-10" href="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm">Place Order</a>
 								</div>
 							</div>
 						</div>
