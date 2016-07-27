@@ -1,9 +1,7 @@
 <cfoutput>
 <div class="breadcrumb-box">
-	<a href="##">Home</a>	
-	<cfloop array="#REQUEST.pageData.breadcrumbCategoryArray#" index="category">
-		<a href="#category.getDetailPageURL()#">#category.getDisplayName()#</a>
-	</cfloop>
+	<a href="##">Home</a>
+	<a href="##">Wishlist</a>
 </div>
 
 <div class="information-blocks">
