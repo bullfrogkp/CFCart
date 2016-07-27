@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div class="article-container">
-			<br/>Custom CMS block displayed below the one page account panel block. Put your own content here.
+			<br/>My Account gives you quick access to settings and tools for managing your shopping experience on products like product wishlist and security settings. 
 		</div>
 	</div>
 </div>
