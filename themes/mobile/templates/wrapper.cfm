@@ -41,7 +41,7 @@
 
                     <div class="header-product">
                         <div class="logo-wrapper">
-                            <a href="##" id="logo"><img alt="" src="#SESSION.absoluteUrlTheme#images/logo-9.png"></a>
+                            <a href="#APPLICATION.absoluteUrlWeb#" id="logo"><img alt="" src="#SESSION.absoluteUrlTheme#images/logo-9.png"></a>
                         </div>
                         <div class="product-header-message">
                             #REQUEST.pageData.slogan#
