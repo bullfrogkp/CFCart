@@ -15,23 +15,25 @@
 							<div class="table-responsive">
 								<table class="profile-table">
 									<tr>
-										<th>Tracking No.</th>
-										<th>Created</th>
-										<th>Status</th>
+										<th>Review No.</th>
+										<th>Product</th>
+										<th>Subject</th>
 										<th></th>
 									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a href="myreview_detail.cfm">View Detail</a></td>
-									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a href="myreview_detail.cfm">View Detail</a></td>
-									</tr>
+									<cfif ArrayLen(REQUEST.pageData.customer.getActiveReviews()) GT 0>
+										<cfloop array="#REQUEST.pageData.customer.getActiveReviews()#" index="review">
+										<tr>
+											<td>#review.getReviewId()#</td>
+											<td>#review.getProduct().getDisplayName()#</td>
+											<td>#review.getSubject()#</td>
+											<td><a href="review_detail.cfm?id=#review.getReviewId()#">Detail</a></td>
+										</tr>
+										</cfloop>
+									<cfelse>
+										<tr>
+											<td colspan="4">No review found.</td>
+										</tr>
+									</cfif>
 								</table>
 							</div>
 						</div>
