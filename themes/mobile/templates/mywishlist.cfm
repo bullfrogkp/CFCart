@@ -9,31 +9,133 @@
 		<div class="col-sm-9 col-sm-push-3">
 			<div class="information-blocks">
 				<div class="row">
-					<div class="col-md-12 information-entry">
-						<div class="article-container style-1">
-							<p><h5>Wishlist</h5></p>
-							<div class="table-responsive">
-								<table class="profile-table">
-									<tr>
-										<th>Tracking No.</th>
-										<th>Created</th>
-										<th>Status</th>
-										<th></th>
-									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a>View Detail</a></td>
-									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a href="">View Detail</a></td>
-									</tr>
-								</table>
+					<div class="col-sm-4 information-entry">
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
 							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="col-sm-4 information-entry">
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="col-sm-4 information-entry">
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-1.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-2.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="inline-product-entry">
+							<a href="##" class="image"><img alt="" src="#SESSION.absoluteUrlTheme#images/product-image-inline-3.jpg"></a>
+							<div class="content">
+								<div class="cell-view">
+									<a href="##" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
+									<div class="price">
+										<div class="prev">$199,99</div>
+										<div class="current">$119,99</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
