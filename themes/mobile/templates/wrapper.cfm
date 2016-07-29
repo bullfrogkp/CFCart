@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>#REQUEST.moduleData.meta.title#</title>
-	<meta name="description" content="#REQUEST.moduleData.meta.description#">
-	<meta name="keywords" content="#REQUEST.moduleData.meta.keywords#">
+	<title>#REQUEST.pageData.title#</title>
+	<meta name="description" content="#REQUEST.pageData.description#">
+	<meta name="keywords" content="#REQUEST.pageData.keywords#">
 	<meta name="author" content="Kevin Pan">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="format-detection" content="telephone=no" />

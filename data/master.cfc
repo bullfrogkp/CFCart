@@ -81,6 +81,10 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 				
+		<cfset LOCAL.pageData.title = "" />
+		<cfset LOCAL.pageData.description = "" />
+		<cfset LOCAL.pageData.keywords = "" />
+				
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
