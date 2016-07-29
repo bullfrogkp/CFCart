@@ -46,7 +46,7 @@
 									<div class="col-md-4 information-entry">
 										<div class="article-container style-1">
 											#addr.getFirstName()# #addr.getMiddleName()# #addr.getLastName()#<br/>
-											#addr.getStreet()#<br/>
+											#addr.getStreet()# #addr.getUnit()#<br/>
 											#addr.getCity()#, #addr.getProvince().getDisplayName()#, #addr.getPostalCode()#<br/>
 											#addr.getCountry().getDisplayName()#<br/>
 										</div>
