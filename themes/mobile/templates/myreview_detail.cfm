@@ -13,10 +13,10 @@
 						<div class="col-md-12 information-entry">
 							<div class="article-container style-1">
 								<p><h5>Review Detail</h5></p>
-									<label>Status: Approved</label>
-									<label>Product: 4168309367</label>
-									<label>Post At: July 27, 2016</label>
-									<label>Message: Kevin Pan, Toronto, Ontario, Canada, M2M 4M6</label>
+								<label>Status: #REQUEST.pageData.review.getStatus().getDisplayName()#</label>
+								<label>Product: #REQUEST.pageData.review.getProduct().getDisplayName()#</label>
+								<label>Post At: #REQUEST.pageData.review.getCreateDatetime()#</label>
+								<label>Message: #REQUEST.pageData.review.getContent()#</label>
 							</div>
 						</div>
 					</div>
