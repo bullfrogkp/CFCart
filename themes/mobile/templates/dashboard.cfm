@@ -11,26 +11,26 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>My Account <a style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
+							<p><h5>My Account <a href="#APPLICATION.absoluteUrlWeb#myaccount/myaccount.cfm" style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
 							<div class="table-responsive">
 								<table class="profile-table style-1">
 									<tr>
 										<th>Email: </th>
-										<th>stores@domain.com</th>
+										<th>#REQUEST.pageData.customer.getEmail()#</th>
 										<th>Phone: </th>
-										<th>(1800) 000 8808</th>
+										<th>#REQUEST.pageData.customer.getPhone()#</th>
 									</tr>
 									<tr>
 										<td>First Name: </td>
-										<td>stores@domain.com</td>
+										<td>#REQUEST.pageData.customer.getFirstName()#</td>
 										<td>Company: </td>
-										<td>(1800) 000 8808</td>
+										<td>#REQUEST.pageData.customer.getCompany()#</td>
 									</tr>
 									<tr>
 										<td>Middle Name: </td>
-										<td>stores@domain.com</td>
+										<td>#REQUEST.pageData.customer.getMiddleName()#</td>
 										<td>Website: </td>
-										<td>(1800) 000 8808</td>
+										<td>#REQUEST.pageData.customer.getWebsite()#</td>
 									</tr>
 								</table>
 							</div>
@@ -40,32 +40,18 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>Address Information <a style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
+							<p><h5>Address Information <a href="#APPLICATION.absoluteUrlWeb#myaccount/addresses.cfm" style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
 							<div class="row">
-								<div class="col-md-4 information-entry">
-									<div class="article-container style-1">
-										Kevin Pan<br/>
-										5940 Yonge St.<br/>
-										North York, Ontario, M2M4M6<br/>
-										Canada<br/>
+								<cfloop array="#REQUEST.pageData.customer.getAddreses()#" index="addr">
+									<div class="col-md-4 information-entry">
+										<div class="article-container style-1">
+											#addr.getFirstName()# #addr.getMiddleName()# #addr.getLastName()#<br/>
+											#addr.getStreet()#<br/>
+											#addr.getCity()#, #addr.getProvince().getDisplayName()#, #addr.getPostalCode()#<br/>
+											#addr.getCountry().getDisplayName()#<br/>
+										</div>
 									</div>
-								</div>
-								<div class="col-md-4 information-entry">
-									<div class="article-container style-1">
-										Kevin Pan<br/>
-										5940 Yonge St.<br/>
-										North York, Ontario, M2M4M6<br/>
-										Canada<br/>
-									</div>
-								</div>
-								<div class="col-md-4 information-entry">
-									<div class="article-container style-1">
-										Kevin Pan<br/>
-										5940 Yonge St.<br/>
-										North York, Ontario, M2M4M6<br/>
-										Canada<br/>
-									</div>
-								</div>
+								</cfloop>
 							</div>
 						</div>
 					</div>
@@ -73,7 +59,7 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>Recent Orders <a style="margin-left:10px;font-weight:normal">VIEW ALL</a></h5></p>
+							<p><h5>Recent Orders <a href="#APPLICATION.absoluteUrlWeb#myaccount/orders.cfm" style="margin-left:10px;font-weight:normal">VIEW ALL</a></h5></p>
 							<div class="table-responsive">
 								<table class="profile-table">
 									<tr>
@@ -82,18 +68,14 @@
 										<th>Status</th>
 										<th></th>
 									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a>View Detail</a></td>
-									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a href="">View Detail</a></td>
-									</tr>
+									<cfloop array="#REQUEST.pageData.customer.getRecentOrders(count = 5)#" index="order">
+										<tr>
+											<td>#order.getOrderNumber()#</td>
+											<td>#order.getCreateDate()#</td>
+											<td>#order.getStatus()#</td>
+											<td><a href="#APPLICATION.absoluteUrlWeb#myaccount/order_detail.cfm?order_id=#order.getOrderId()#">View Detail</a></td>
+										</tr>
+									</cfloop>
 								</table>
 							</div>
 						</div>

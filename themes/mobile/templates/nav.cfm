@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div class="article-container">
-			<br/>My Account gives you quick access to settings and tools for managing your shopping experience on products like product wishlist and security settings. 
+			<br/>My Account gives you quick access to settings and tools for managing your shopping experience on products like product wishlist and security settings. From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information.
 		</div>
 	</div>
 </div>
