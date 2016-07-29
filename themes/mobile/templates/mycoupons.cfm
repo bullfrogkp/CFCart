@@ -15,23 +15,25 @@
 							<div class="table-responsive">
 								<table class="profile-table">
 									<tr>
-										<th>Tracking No.</th>
-										<th>Created</th>
+										<th>Coupon Code</th>
+										<th>Description</th>
 										<th>Status</th>
 										<th></th>
 									</tr>
+									<cfif ArrayLen(REQUEST.pageData.customer.getActiveCoupons()) GT 0>
+										<cfloop array="#REQUEST.pageData.customer.getActiveCoupons()#" index="coupon">
+											<tr>
+												<td>#coupon.getCode()#</td>
+												<td>#coupon.getDescription()#</td>
+												<td>#coupon.getCurrentStatus()#</td>
+												<td><a href="coupon_detail.cfm?id=#coupon.getCouponId()#">Detail</a></td>
+											</tr>
+										</cfloop>
+									<cfelse>
 									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a>View Detail</a></td>
+										<td colspan="4">No coupon found.</td>
 									</tr>
-									<tr>
-										<td>OR12345</td>
-										<td>Julu 12, 2016</td>
-										<td>Shipped</td>
-										<td><a href="">View Detail</a></td>
-									</tr>
+									</cfif>
 								</table>
 							</div>
 						</div>

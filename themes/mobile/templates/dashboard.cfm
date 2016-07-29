@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>My Account <a href="#APPLICATION.absoluteUrlWeb#myaccount/myaccount.cfm" style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
+							<p><h5>My Account <a href="myaccount.cfm" style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
 							<div class="table-responsive">
 								<table class="profile-table style-1">
 									<tr>
@@ -40,7 +40,7 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>Address Information <a href="#APPLICATION.absoluteUrlWeb#myaccount/addresses.cfm" style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
+							<p><h5>Address Information <a href="addresses.cfm" style="margin-left:10px;font-weight:normal">EDIT</a></h5></p>
 							<div class="row">
 								<cfloop array="#REQUEST.pageData.customer.getAddreses()#" index="addr">
 									<div class="col-md-4 information-entry">
@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-md-12 information-entry">
 						<div class="article-container style-1">
-							<p><h5>Recent Orders <a href="#APPLICATION.absoluteUrlWeb#myaccount/orders.cfm" style="margin-left:10px;font-weight:normal">VIEW ALL</a></h5></p>
+							<p><h5>Recent Orders <a href="orders.cfm" style="margin-left:10px;font-weight:normal">VIEW ALL</a></h5></p>
 							<div class="table-responsive">
 								<table class="profile-table">
 									<tr>
@@ -73,7 +73,7 @@
 											<td>#order.getOrderNumber()#</td>
 											<td>#order.getCreateDate()#</td>
 											<td>#order.getStatus()#</td>
-											<td><a href="#APPLICATION.absoluteUrlWeb#myaccount/order_detail.cfm?order_id=#order.getOrderId()#">View Detail</a></td>
+											<td><a href="order_detail.cfm?order_id=#order.getOrderId()#">View Detail</a></td>
 										</tr>
 									</cfloop>
 								</table>
