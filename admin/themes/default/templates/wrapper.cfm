@@ -411,13 +411,12 @@
 						<li class="treeview">
                             <a href="##">
                                 <i class="fa fa-user"></i>
-                                <span>Pages</span>
+                                <span>Contents</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="homepage"><a href="#APPLICATION.absoluteUrlWeb#admin/homepage.cfm"><i class="fa fa-angle-double-right"></i> Home</a></li>
-                                <li class="site_contents"><a href="#APPLICATION.absoluteUrlWeb#admin/site_contents.cfm"><i class="fa fa-angle-double-right"></i> Contents</a></li>
-                                <li class="site_content_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/site_content_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Content</a></li>
+                                <li class="homepage"><a href="#APPLICATION.absoluteUrlWeb#admin/pages.cfm"><i class="fa fa-angle-double-right"></i> Pages</a></li>
+                                <li class="site_content_detail"><a href="#APPLICATION.absoluteUrlWeb#admin/page_detail.cfm"><i class="fa fa-angle-double-right"></i> Add Page</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
