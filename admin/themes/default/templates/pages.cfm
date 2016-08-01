@@ -57,18 +57,18 @@
 						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
 							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="newsletter">
 							<tr>
-								<td>#newsletter.getDisplayName()#</td>
-								<td>#newsletter.getCreatedDatetime()#</td>
-								<td>#newsletter.getUpdatedDatetime()#</td>
-								<td>#newsletter.getSubject()#</td>
-								<td>#newsletter.getType()#</td>
+								<td>#page.getDisplayName()#</td>
+								<td>#page.getTitle()#</td>
+								<td>#page.getKeywords()#</td>
+								<td>#page.getDescription()#</td>
+								<td>#page.getUpdatedDatetime()#</td>
+								<td>#page.getStatus()#</td>
 								<td>
-									<cfswitch expression="#newsletter.getIsEnabled()#">
-										<cfcase value="yes"><span class="label label-success">Enabled</span></cfcase>
-										<cfcase value="no"><span class="label label-danger">Disabled</span></cfcase>
-									</cfswitch>
+									<cfloop array="#page.getModules()#" index="module">
+										<a href="module_detail.cfm?id=#module.getModuleId()#">#module.getDisplayName#</a><br/>
+									</cfloop>
 								</td>
-								<td><a href="#APPLICATION.absoluteUrlWeb#admin/newsletter_detail.cfm?id=#newsletter.getNewsletterId()#">View Detail</a></td>
+								<td><a href="page_detail.cfm?id=#page.getPageId()#">View Detail</a></td>
 							</tr>
 							</cfloop>
 						<cfelse>
@@ -79,12 +79,13 @@
 				
 						<tr class="default">
 							<th>Name</th>
-							<th>Date Added</th>
+							<th>Title</th>
+							<th>Keywords</th>
+							<th>Description</th>
 							<th>Date Updated</th>
-							<th>Subject</th>
-							<th>Type</th>
-							<th>Status</th>
-							<th>Action</th>
+							<th style="width:40px;">Status</th>
+							<th>Module</th>
+							<th style="width:110px;">Action</th>
 						</tr>
 						
 					</table>
