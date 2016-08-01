@@ -55,7 +55,7 @@
 						</tr>
 					
 						<cfif ArrayLen(REQUEST.pageData.paginationInfo.records) NEQ 0>
-							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="newsletter">
+							<cfloop array="#REQUEST.pageData.paginationInfo.records#" index="page">
 							<tr>
 								<td>#page.getDisplayName()#</td>
 								<td>#page.getTitle()#</td>
@@ -65,7 +65,7 @@
 								<td>#page.getStatus()#</td>
 								<td>
 									<cfloop array="#page.getModules()#" index="module">
-										<a href="module_detail.cfm?id=#module.getModuleId()#">#module.getDisplayName#</a><br/>
+										<a href="page_detail.cfm?id=#page.getPageId()#&mid=#module.getModuleId()#">#module.getDisplayName#</a><br/>
 									</cfloop>
 								</td>
 								<td><a href="page_detail.cfm?id=#page.getPageId()#">View Detail</a></td>

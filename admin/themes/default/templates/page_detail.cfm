@@ -8,11 +8,17 @@
 			filebrowserImageBrowseUrl : '#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html',
 			filebrowserFlashBrowseUrl :'#SESSION.absoluteUrlThemeAdmin#js/plugins//ckeditor/filemanager/index.html'}
 		 );
+		 
+		 $('##reservation').datepicker();
+		
+		$(".tab-title").click(function() {
+		  $("##tab_id").val($(this).attr('tabid'));
+		});
 	});
 </script>
 <section class="content-header">
 	<h1>
-		Newsletter Detail
+		Page Detail
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,6 +29,7 @@
 <!-- Main content -->
 <form method="post">
 <input type="hidden" name="id" id="id" value="#REQUEST.pageData.formData.id#" />
+<input type="hidden" name="tab_id" id="tab_id" value="#REQUEST.pageData.tabs.activeTabId#" />
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
@@ -36,53 +43,59 @@
 			</cfif>
 		</div>
 		<div class="col-md-12">
-			<!-- general form elements -->
-			<div class="box box-primary">
-				
-				<div class="box-body">
-					<div class="form-group">
-						<label>Subject</label>&nbsp;&nbsp;(required)
-						<input type="text" name="subject" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.subject#"/>
-					</div>
-					 <div class="form-group">
-						<label>Name</label>&nbsp;&nbsp;(required)
-						<input type="text" name="display_name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.display_name#"/>
-					</div>
-					<div class="form-group">
-						<label>Type</label>
-						<select class="form-control" name="type">
-							<option value="html" <cfif REQUEST.pageData.formData.type EQ "html">selected</cfif>>HTML</option>
-							<option value="plaintext" <cfif REQUEST.pageData.formData.type EQ "plaintext">selected</cfif>>Plaintext</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Status</label>
-						<select class="form-control" name="is_enabled">
-							<option value="1" <cfif REQUEST.pageData.formData.is_enabled EQ 1>selected</cfif>>Enabled</option>
-							<option value="0" <cfif REQUEST.pageData.formData.is_enabled EQ 0>selected</cfif>>Disabled</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Content</label>
-						<textarea name="content" id="content" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid ##dddddd; padding: 10px;">#REQUEST.pageData.formData.content#</textarea>
-					</div>
-					<div class="form-group">
-						<button name="save_item" type="submit" class="btn btn-primary top-nav-button">Save Newsletter</button>
-						<button type="button" class="btn btn-danger pull-right #REQUEST.pageData.deleteButtonClass#" data-toggle="modal" data-target="##delete-current-entity-modal">Delete Newsletter</button>
-					</div>
-				</div><!-- /.box-body -->
-				
-			</div><!-- /.box -->
-		</div><!--/.col (left) -->
-	</div>   <!-- /.row -->
-</section><!-- /.content -->
+			<!-- Custom Tabs -->
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="tab-title #REQUEST.pageData.tabs['tab_1']# tabid="tab_1"><a href="##tab_1" data-toggle="tab">Page Information</a></li>
+					<cfloop array="#REQUEST.page.getModules()#" index="module">
+						<li class="tab-title #REQUEST.pageData.tabs['tab_2']#" tabid="tab_2"><a href="##tab_2" data-toggle="tab">#module.getDisplayName()#</a></li>
+					</cfloop>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane" id="tab_1">
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" name="name" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.name#"/>
+						</div>
+						<div class="form-group">
+							<label>Title</label>
+							<input type="text" name="title" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.title#"/>
+						</div>
+						<div class="form-group">
+							<label>Keywords</label>
+							<input type="text" name="keywords" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.keywords#"/>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<input type="text" name="description" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.description#"/>
+						</div>
+						<div class="form-group">
+							<label>Status</label>
+							<input type="text" name="description" class="form-control" placeholder="Enter ..." value="#REQUEST.pageData.formData.description#"/>
+						</div>
+					</div><!-- /.tab-pane -->
+					<cfloop array="#REQUEST.page.getModules()#" index="module">
+						<div class="tab-pane" id="tab_#i#">
+							#module.getBackendView()#
+						</div>
+					</cfloop>
+				</div>	
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+				<button name="add_new_address" type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Add</button>
+			</div>
+		
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- DELETE ENTITY MODAL -->
 <div class="modal fade" id="delete-current-entity-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Delete this newsletter?</h4>
+				<h4 class="modal-title"> Delete this customer?</h4>
 			</div>
 			<div class="modal-body clearfix">
 				<button type="button" class="btn btn-danger pull-right" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
