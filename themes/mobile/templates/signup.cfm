@@ -24,7 +24,7 @@
 							<input type="password" value="" placeholder="Confirm Password" class="simple-field">
 							
 							<label class="checkbox-entry radio">
-								<input type="checkbox" name="custom-name"> <span class="check"></span> <b>GET EMAILS ABOUT EXCLUSIVE OFFERS & THE HOTTEST NEW LOOKS!</b>
+								<input type="checkbox" name="custom-name"> <span class="check"></span> <b>GET EMAILS ABOUT EXCLUSIVE OFFERS!</b>
 							</label>
 							
 							<p>Please review the <a href="">Website Terms of Use</a>, and the <a href="">Privacy Policy</a>.</p>

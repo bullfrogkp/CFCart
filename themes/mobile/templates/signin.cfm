@@ -27,7 +27,7 @@
 					<h3>New Customers</h3>
 					<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
 				</div>
-				<a class="button style-12">Create An Account</a>
+				<a class="button style-12" href="signup.cfm">Create An Account</a>
 			</div>
 		</div>
 	</div>
