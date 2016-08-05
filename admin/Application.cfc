@@ -7,6 +7,8 @@
 	<cfset this.dataSource = Config().dataSource> 
 	<cfset this.sessionManagement = Config().sessionManagement>
 	<cfset this.sessionTimeout = Config().sessionTimeout>
+	<cfset this.restSettings.cfclocation = Config().restSettings.cfcLocation>
+    <cfset this.restSettings.skipcfcwitherror = Config().restSettings.skipCfcWithError>
 	
 	<cfset this.mappings[ "/modules" ] = Config().env.absolutePathRoot & "core/modules/" />
 
@@ -27,6 +29,9 @@
                 <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
+				<cfset THIS[ "$Config" ].restSettings = {} />
+                <cfset THIS[ "$Config" ].restSettings.skipCfcWithError = false />
+                <cfset THIS[ "$Config" ].restSettings.cfcLocation = "/cfcart/webservice/" />
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com" />
@@ -85,6 +90,9 @@
                 <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
+				<cfset THIS[ "$Config" ].restSettings = {} />
+                <cfset THIS[ "$Config" ].restSettings.skipCfcWithError = false />
+                <cfset THIS[ "$Config" ].restSettings.cfcLocation = "/cfcart/webservice/" />
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com" />
