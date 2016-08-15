@@ -92,7 +92,7 @@
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
 				<cfset THIS[ "$Config" ].restSettings = {} />
                 <cfset THIS[ "$Config" ].restSettings.skipCfcWithError = false />
-                <cfset THIS[ "$Config" ].restSettings.cfcLocation = "/cfcart/webservice/" />
+                <cfset THIS[ "$Config" ].restSettings.cfcLocation = "/webservice/" />
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com" />
