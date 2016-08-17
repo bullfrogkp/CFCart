@@ -168,9 +168,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
+			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
