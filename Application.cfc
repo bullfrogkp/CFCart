@@ -13,9 +13,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new "siteData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
-			<cfset var pageObj = new data.master(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new siteData.master(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
