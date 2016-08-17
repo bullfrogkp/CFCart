@@ -212,6 +212,7 @@
 				<cfset args.pageName = currentPageName />
 				
 				<cfset var globalPageObj = APPLICATION.globalPageObjAdmin />
+				<cfset globalPageObj.setPageName(currentPageName) />
 				<cfset globalPageObj.setUrlData(URL) />
 				<cfset globalPageObj.setCgiData(CGI) />
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />
@@ -297,9 +298,6 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.pageData = globalPageObj.loadPageData() />
-				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
-			
 				<cfset LOCAL.dataStruct = globalPageObj.loadData() />
 				<cfset LOCAL.pageDataStruct = pageObj.loadData() />
 				
