@@ -3,22 +3,28 @@
 	<cfproperty name="formData" type="struct" required="true"> 
 	<cfproperty name="urlData" type="struct" required="true"> 
 	<cfproperty name="cgiData" type="struct" required="true"> 
-	
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="pageName" type="string" required="true" />
+		<cfargument name="formData" type="struct" required="true" />
+		<cfargument name="urlData" type="struct" required="true" />
+		<cfargument name="cgiData" type="struct" required="true" />
 		
 		<cfset setPageName(ARGUMENTS.pageName) />
+		<cfset setFormData(ARGUMENTS.formData) />
+		<cfset setUrlData(ARGUMENTS.urlData) />
+		<cfset setCgiData(ARGUMENTS.cgiData) />
 		
 		<cfreturn this />
 	</cffunction>
-	
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />
 	</cffunction>
-
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="processFormDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
@@ -29,35 +35,35 @@
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
-	
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />
 	</cffunction>
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="processURLDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="processURLDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="_setRedirectURL" access="private" output="false" returnType="string">
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>	
 			<cfif StructKeyExists(URL,"active_tab_id")>	
@@ -71,7 +77,7 @@
 		
 		<cfreturn LOCAL.redirectUrl />	
 	</cffunction>
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="_setActiveTab" access="private" output="false" returnType="struct">
 		<cfargument name="defaultActiveTabId" type="string" required="false">
 		
@@ -103,7 +109,7 @@
 		
 		<cfreturn LOCAL.tabs /> 
 	</cffunction>
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTempMessage" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.message = {} />
@@ -115,7 +121,7 @@
 		
 		<cfreturn LOCAL.message /> 
 	</cffunction>
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="_getPaginationInfo" access="private" output="false" returnType="struct">
 		<cfargument name="recordStruct" type="struct" required="true"> 
 		<cfset var LOCAL = {} />
@@ -139,7 +145,7 @@
 		
 		<cfreturn LOCAL /> 
 	</cffunction>
-	
+	<!------------------------------------------------------------------------------->
 	<cffunction name="_createImages" access="private" output="false" returnType="void">
 		<cfargument name="imagePath" type="string" required="true">
 		<cfargument name="imageNameWithExtension" type="string" required="true">
@@ -257,4 +263,5 @@
 		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#getPageName()#.#ARGUMENTS.moduleName#"(pageName = ARGUMENTS.pageName) />
 		<cfreturn moduleObj />
 	</cffunction>
+	<!------------------------------------------------------------------------------->	
 </cfcomponent>
