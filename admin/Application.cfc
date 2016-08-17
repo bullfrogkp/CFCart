@@ -306,9 +306,7 @@
 				<cfset StructAppend(LOCAL.dataStruct.moduleData, LOCAL.pageDataStruct.moduleData) />
 				<cfset StructAppend(LOCAL.dataStruct.moduleView, LOCAL.pageDataStruct.moduleView) />
 				<cfset StructAppend(REQUEST, LOCAL.dataStruct) />
-			
-			
-			
+						
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
 				</cfif>
