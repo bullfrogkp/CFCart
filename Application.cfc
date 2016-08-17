@@ -1,16 +1,5 @@
 ﻿<cfcomponent extends="admin.application">
-	<!------------------------------------------------------------------------------->
-	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="pageName" required="true"/>
-		
-		<cfif FileExists("#APPLICATION.absolutePathRoot#data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
-		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
-		</cfif>
-		
-		<cfreturn pageObj />
-	</cffunction>
+	<cfset VARIABLES.dataComponentPath = "#APPLICATION.componentPathRoot#.data." />
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
