@@ -8,24 +8,24 @@
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		<cfset LOCAL.pageData.slogan =  "FREE SHIPPING ON ALL US ORDERS this week!" />
 		
-		<cfif 	ListLen(getCgiData()PATH_INFO,"/") EQ 6 
+		<cfif 	ListLen(getCgiData().PATH_INFO,"/") EQ 6 
 				AND
 				(
-					Trim(ListGetAt(getCgiData()PATH_INFO,6,"/")) NEQ "-"
+					Trim(ListGetAt(getCgiData().PATH_INFO,6,"/")) NEQ "-"
 					OR
-					Trim(ListGetAt(getCgiData()PATH_INFO,2,"/")) NEQ "-"
+					Trim(ListGetAt(getCgiData().PATH_INFO,2,"/")) NEQ "-"
 				)>
 				
-			<cfif Trim(ListGetAt(getCgiData()PATH_INFO,6,"/")) EQ "-">
+			<cfif Trim(ListGetAt(getCgiData().PATH_INFO,6,"/")) EQ "-">
 				<cfset LOCAL.pageData.searchText = "" />
 			<cfelse>
-				<cfset LOCAL.pageData.searchText = Trim(ListGetAt(getCgiData()PATH_INFO,6,"/")) />
+				<cfset LOCAL.pageData.searchText = Trim(ListGetAt(getCgiData().PATH_INFO,6,"/")) />
 			</cfif>
 			
-			<cfif Trim(ListGetAt(getCgiData()PATH_INFO,2,"/")) EQ "-">
+			<cfif Trim(ListGetAt(getCgiData().PATH_INFO,2,"/")) EQ "-">
 				<cfset LOCAL.pageData.categoryId = 0 />
 			<cfelse>
-				<cfset LOCAL.pageData.categoryId = ListGetAt(getCgiData()PATH_INFO,2,"/") />
+				<cfset LOCAL.pageData.categoryId = ListGetAt(getCgiData().PATH_INFO,2,"/") />
 			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.searchText = "" />
