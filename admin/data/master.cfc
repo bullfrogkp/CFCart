@@ -58,13 +58,6 @@
 		<cfreturn LOCAL />	
 	</cffunction>	
 	
-	<cffunction name="loadPageData" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.pageData = {} />
-		
-		<cfreturn LOCAL.pageData />	
-	</cffunction>
-	
 	<cffunction name="_setRedirectURL" access="private" output="false" returnType="string">
 		<cfif StructKeyExists(URL,"id") AND IsNumeric(URL.id)>	
 			<cfif StructKeyExists(URL,"active_tab_id")>	
@@ -173,8 +166,81 @@
 		</cfloop>
 		
 	</cffunction>
-	
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="loadData" access="public" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.retStruct.pageData = _loadPageData() />
+		<cfset LOCAL.retStruct.pageView = _loadPageView() />
+		<cfset LOCAL.retStruct.moduleData = _loadModuleData() />
+		<cfset LOCAL.retStruct.moduleView = _loadModuleView() />
+		
+		<cfreturn LOCAL.retStruct />	
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="_loadPageData" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageData = {} />
+				
+		<cfset LOCAL.pageData.title = "" />
+		<cfset LOCAL.pageData.description = "" />
+		<cfset LOCAL.pageData.keywords = "" />
+				
+		<cfreturn LOCAL.pageData />	
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="_loadPageView" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.pageView = {} />
+				
+		<cfreturn LOCAL.pageView />	
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="_loadModuleData" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		
+		<cfif getPageName() NEQ "">
+			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
+		<cfelse>
+			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
+		</cfif>
+		
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="_loadModuleView" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		
+		<cfif getPageName() NEQ "">
+			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
+		<cfelse>
+			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
+		</cfif>
+		
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj =_initModuleObject(moduleName = LOCAL.module.getName()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendView()) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="moduleName" required="true"/>
+		
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = getPageName(), formData = getFormData(), urlData = getUrlData()) />
+		<cfreturn moduleObj />
+	</cffunction>
+	<!------------------------------------------------------------------------------->		
 	<cffunction name="getModuleData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />

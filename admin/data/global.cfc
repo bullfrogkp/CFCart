@@ -26,7 +26,7 @@
 		<cfreturn LOCAL />
 	</cffunction>
 	
-	<cffunction name="loadGlobalPageData" access="public" output="false" returnType="struct">
+	<cffunction name="_loadPageData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
