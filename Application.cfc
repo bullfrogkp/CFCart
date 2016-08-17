@@ -1,5 +1,4 @@
 ﻿<cfcomponent extends="admin.application">
-	<cfproperty name="dataComponentPath" type="string" default="data."> 
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
@@ -8,6 +7,18 @@
 		<cfset _setCart() />
 		<cfset _setHistory() />
 		<cfset _setTheme("mobile") />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="pageName" required="true"/>
+		
+		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
+			<cfset var pageObj = new "data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+		<cfelse>
+			<cfset var pageObj = new data.master(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+		</cfif>
+		
+		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">

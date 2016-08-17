@@ -1,4 +1,4 @@
-﻿<cfcomponent extends="admin.data.master">
+﻿<cfcomponent extends="adminData.master">
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_getPaginationInfo" access="private" output="false" returnType="struct">
 		<cfargument name="recordStruct" type="struct" required="true"> 

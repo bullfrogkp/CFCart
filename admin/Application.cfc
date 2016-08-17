@@ -1,5 +1,4 @@
 ﻿<cfcomponent output="false" accessors="true">
-	<cfproperty name="dataComponentPath" type="string" default="adminData."> 
 	<!------------------------------------------------------------------------------->
 	<cfset this.name = Config().name>
 	<cfset this.ormEnabled = Config().ormEnabled> 
@@ -168,9 +167,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#getDataComponentPath()##ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#getDataComponentPath()#master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new adminData.master(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
