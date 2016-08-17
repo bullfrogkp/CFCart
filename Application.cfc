@@ -12,7 +12,7 @@
 	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
 		
-		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
+		<cfif FileExists("#APPLICATION.absolutePathRoot#data/#ARGUMENTS.pageName#.cfc")>
 			<cfset var pageObj = new "siteData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
 			<cfset var pageObj = new siteData.master(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
