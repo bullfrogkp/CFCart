@@ -1,5 +1,4 @@
 ﻿<cfcomponent output="false">
-	<cfset VARIABLES.dataComponentPath = "#APPLICATION.componentPathRoot#admin.data." />
 	<!------------------------------------------------------------------------------->
 	<cfset this.name = Config().name>
 	<cfset this.ormEnabled = Config().ormEnabled> 
@@ -11,7 +10,10 @@
 	<cfset this.restSettings.cfclocation = Config().restSettings.cfcLocation>
     <cfset this.restSettings.skipcfcwitherror = Config().restSettings.skipCfcWithError>
 	<cfset this.mappings[ "/modules" ] = Config().env.absolutePathRoot & "core/modules/" />
-	<cfset this.mappings[ "/admin" ] = Config().env.absolutePathRoot & "admin/" />
+	<cfset this.mappings[ "/adminData" ] = Config().env.absolutePathRoot & "admin/data/" />
+	<cfset this.mappings[ "/data" ] = Config().env.absolutePathRoot & "data/" />
+	<!------------------------------------------------------------------------------->
+	<cfset VARIABLES.dataComponentPath = "adminData." />
 	<!------------------------------------------------------------------------------->
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
 		<cfargument type="boolean" name="reload" required="false" default="false"/>
