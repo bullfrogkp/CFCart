@@ -155,8 +155,8 @@
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
 		
-		<cfset APPLICATION.globalPageObjAdmin = new "#VARIABLES.dataComponentPath#global"(pageName = "", formData = {}, urlData = {}, cgiData = {}) />
-		<cfset APPLICATION.globalPageObj = new "#VARIABLES.dataComponentPath#global"(pageName = "", formData = {}, urlData = {}, cgiData = {}) />
+		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}) />
+		<cfset APPLICATION.globalPageObj = new data.global(pageName = "", formData = {}, urlData = {}) />
 		
 		<cfreturn true>
 	</cffunction>
