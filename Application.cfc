@@ -1,5 +1,5 @@
 ﻿<cfcomponent extends="admin.application">
-	<cfset VARIABLES.dataComponentPath = "data." />
+	<cfproperty name="dataComponentPath" type="string" default="data."> 
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />

@@ -1,4 +1,5 @@
-﻿<cfcomponent output="false">
+﻿<cfcomponent output="false" accessors="true">
+	<cfproperty name="dataComponentPath" type="string" default="adminData."> 
 	<!------------------------------------------------------------------------------->
 	<cfset this.name = Config().name>
 	<cfset this.ormEnabled = Config().ormEnabled> 
@@ -12,8 +13,6 @@
 	<cfset this.mappings[ "/modules" ] = Config().env.absolutePathRoot & "core/modules/" />
 	<cfset this.mappings[ "/adminData" ] = Config().env.absolutePathRoot & "admin/data/" />
 	<cfset this.mappings[ "/data" ] = Config().env.absolutePathRoot & "data/" />
-	<!------------------------------------------------------------------------------->
-	<cfset VARIABLES.dataComponentPath = "adminData." />
 	<!------------------------------------------------------------------------------->
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
 		<cfargument type="boolean" name="reload" required="false" default="false"/>
@@ -155,9 +154,9 @@
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
 		
-		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}) />
-		<cfset APPLICATION.globalPageObj = new data.global(pageName = "", formData = {}, urlData = {}) />
-		
+		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}) />
+		<cfset APPLICATION.globalPageObj = new data.global(pageName = "", formData = {}, urlData = {}, cgiData = {}) />
+		<cfdump var="#APPLICATION#" abort>
 		<cfreturn true>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
@@ -169,9 +168,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#VARIABLES.dataComponentPath##ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new "#getDataComponentPath()##ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#VARIABLES.dataComponentPath#master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new "#getDataComponentPath()#master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
