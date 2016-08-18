@@ -9,7 +9,14 @@
 	<cfset this.sessionTimeout = Config().sessionTimeout>
 	<cfset this.restSettings.cfclocation = Config().restSettings.cfcLocation>
     <cfset this.restSettings.skipcfcwitherror = Config().restSettings.skipCfcWithError>
+	<!------------------------------------------------------------------------------->
+	<cfset this.mappings[ "/core" ] = Config().env.absolutePathRoot & "core\" />
+	<cfset this.mappings[ "/entities" ] = Config().env.absolutePathRoot & "core\entities\" />
 	<cfset this.mappings[ "/modules" ] = Config().env.absolutePathRoot & "core\modules\" />
+	<cfset this.mappings[ "/services" ] = Config().env.absolutePathRoot & "core\services\" />
+	<cfset this.mappings[ "/utils" ] = Config().env.absolutePathRoot & "core\utils\" />
+	<cfset this.mappings[ "/pages" ] = Config().env.absolutePathRoot & "core\pages\" />
+	<cfset this.mappings[ "/shipping" ] = Config().env.absolutePathRoot & "core\shipping\" />
 	<cfset this.mappings[ "/adminData" ] = Config().env.absolutePathRoot & "admin\data\" />
 	<cfset this.mappings[ "/siteData" ] = Config().env.absolutePathRoot & "data\" />
 	<!------------------------------------------------------------------------------->
