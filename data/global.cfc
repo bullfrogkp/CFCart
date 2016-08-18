@@ -1,4 +1,4 @@
-﻿<cfcomponent extends="master">
+﻿<cfcomponent extends="core.pages.page">
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_loadPageData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
