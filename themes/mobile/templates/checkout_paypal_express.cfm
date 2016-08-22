@@ -7,11 +7,44 @@
 		order.customer = new Object();
 		<cfif IsNumeric(SESSION.user.customerId)>
 			order.customer.firstName = '#REQUEST.pageData.customer.getFirstName()#';
+			order.customer.middleName = '#REQUEST.pageData.customer.getMiddleName()#';
 			order.customer.lastName = '#REQUEST.pageData.customer.getLastName()#';
+			order.customer.company = '#REQUEST.pageData.customer.getCompany()#';
+			order.customer.email = '#REQUEST.pageData.customer.getEmail()#';
+			order.customer.customerGroupName = '#REQUEST.pageData.customer.getCustomerGroup().getName()#';
 		<cfelse>
 			order.customer.firstName = '';
+			order.customer.middleName = '';
 			order.customer.lastName = '';
+			order.customer.company = '';
+			order.customer.customerGroupName = '';
 		</cfif>
+		
+		order.shippingAddress = new Object();
+		order.shippingAddress.firstName = '';
+		order.shippingAddress.middleName = '';
+		order.shippingAddress.lastName = '';
+		order.shippingAddress.company = '';
+		order.shippingAddress.phone = '';
+		order.shippingAddress.unit = '';
+		order.shippingAddress.street = '';
+		order.shippingAddress.city = '';
+		order.shippingAddress.postalCode = '';
+		order.shippingAddress.provinceId = '';
+		order.shippingAddress.countryId = '';
+		
+		order.billingAddress = new Object();
+		order.billingAddress.firstName = '';
+		order.billingAddress.middleName = '';
+		order.billingAddress.lastName = '';
+		order.billingAddress.company = '';
+		order.billingAddress.phone = '';
+		order.billingAddress.unit = '';
+		order.billingAddress.street = '';
+		order.billingAddress.city = '';
+		order.billingAddress.postalCode = '';
+		order.billingAddress.provinceId = '';
+		order.billingAddress.countryId = '';
 		
 		order.products = new Array();
 		
@@ -32,13 +65,24 @@
 			order.coupon = 
 			order.total = 
 		<cfelse>
-			order.subtotal = ''
-			order.tax = ''
-			order.shippingFee = ''
-			order.discount = ''
-			order.coupon = ''
-			order.total = ''
+			order.subtotal = '';
+			order.tax = '';
+			order.shippingFee = '';
+			order.discount = '';
+			order.coupon = '';
+			order.total = '';
 		</cfif>
+		
+		order.comments = '';
+		order.paymentMethod = '';
+		order.currencyId = '';
+		
+		order.coupon = '';
+		order.subTotal = '';
+		order.shippingFee = '';
+		order.tax = '';
+		order.discount = '';
+		order.total = '';
 	});
 </script>
 <div class="breadcrumb-box">
