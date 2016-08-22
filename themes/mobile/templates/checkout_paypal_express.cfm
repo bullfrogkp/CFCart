@@ -1,19 +1,47 @@
 <cfoutput>
 <script>
 	$(document).ready(function() {
-		var cart = {
-			customer: {},
-			shippingAddress: {},
-			billingAddress: {},
-			products: [],
-			paymentMethod:'',
-			couponCode:'',
-			subTotal:'',
-			shippingFee:'',
-			tax:'',
-			discount:'',
-			total:''
-		};
+		var order = new Object();
+		var product = null;
+		
+		order.customer = new Object();
+		<cfif IsNumeric(SESSION.user.customerId)>
+			order.customer.firstName = '#REQUEST.pageData.customer.getFirstName()#';
+			order.customer.lastName = '#REQUEST.pageData.customer.getLastName()#';
+		<cfelse>
+			order.customer.firstName = '';
+			order.customer.lastName = '';
+		</cfif>
+		
+		order.products = new Array();
+		
+		<cfif SESSION.cart.getCount() GT 0>
+			<cfloop array="#SESSION.cart.getCartItems()#" index="item">
+				product = new Object();
+				product.id = '#item.getProductId()#';
+				product.price = '#item.getPrice()#';
+				product.count = '#item.getCount()#';
+				product.subtotal = '#SESSION.cart.getDisplaySubTotal()#';
+				order.products.push(product);
+			</cfloop>
+			
+			order.subtotal = 
+			
+			<div class="summary">
+				<div class="subtotal">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
+			</div>
+			<div class="cart-buttons">
+				<div class="column">
+					<a class="button style-3">view cart</a>
+					<div class="clear"></div>
+				</div>
+				<div class="column">
+					<a class="button style-4">checkout</a>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</cfif>
 	});
 </script>
 <div class="breadcrumb-box">
