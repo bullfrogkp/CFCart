@@ -54,8 +54,10 @@
 			<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 				product = new Object();
 				product.id = '#item.getProductId()#';
+				product.sku = '#item.getSku()#';
 				product.price = '#item.getPrice()#';
 				product.quantity = '#item.getCount()#';
+				product.shippingMethodId = '';
 				product.subtotal = '#SESSION.cart.getDisplaySubTotal()#';
 				order.products.push(product);
 			</cfloop>
@@ -77,7 +79,6 @@
 		
 		order.comments = '';
 		order.paymentMethodId = '';
-		order.shippingMethodId = '';
 		order.currencyId = '';
 		
 		order.coupon = '';
