@@ -1,4 +1,21 @@
 <cfoutput>
+<script>
+	$(document).ready(function() {
+		var cart = {
+			customer: {},
+			shippingAddress: {},
+			billingAddress: {},
+			products: [],
+			paymentMethod:'',
+			couponCode:'',
+			subTotal:'',
+			shippingFee:'',
+			tax:'',
+			discount:'',
+			total:''
+		};
+	});
+</script>
 <div class="breadcrumb-box">
 	<a href="##">Home</a>
 	<a href="##">Checkout</a>

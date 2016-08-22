@@ -13,8 +13,7 @@ $(function() {
 		shippingFee:'',
 		tax:'',
 		discount:'',
-		total:'',
-		
+		total:''
 	};
 	
 	$(window).load(function(){
