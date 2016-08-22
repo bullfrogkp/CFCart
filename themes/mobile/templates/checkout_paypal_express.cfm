@@ -26,21 +26,18 @@
 			</cfloop>
 			
 			order.subtotal = 
-			
-			<div class="summary">
-				<div class="subtotal">Subtotal: #SESSION.cart.getDisplaySubTotal()#</div>
-			</div>
-			<div class="cart-buttons">
-				<div class="column">
-					<a class="button style-3">view cart</a>
-					<div class="clear"></div>
-				</div>
-				<div class="column">
-					<a class="button style-4">checkout</a>
-					<div class="clear"></div>
-				</div>
-				<div class="clear"></div>
-			</div>
+			order.tax = 
+			order.shippingFee = 
+			order.discount = 
+			order.coupon = 
+			order.total = 
+		<cfelse>
+			order.subtotal = ''
+			order.tax = ''
+			order.shippingFee = ''
+			order.discount = ''
+			order.coupon = ''
+			order.total = ''
 		</cfif>
 	});
 </script>
