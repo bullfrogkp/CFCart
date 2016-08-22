@@ -23,7 +23,7 @@
 		<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
 		<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
 		<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
-		<cfset LOCAL.trackingRecord.setCount(1) />
+		<cfset LOCAL.trackingRecord.setQuantity(1) />
 		<cfset EntitySave(LOCAL.trackingRecord) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	

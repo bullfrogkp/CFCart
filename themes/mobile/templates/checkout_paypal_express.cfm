@@ -6,6 +6,7 @@
 		
 		order.customer = new Object();
 		<cfif IsNumeric(SESSION.user.customerId)>
+			order.customer.id = '#SESSION.user.customerId#';
 			order.customer.firstName = '#REQUEST.pageData.customer.getFirstName()#';
 			order.customer.middleName = '#REQUEST.pageData.customer.getMiddleName()#';
 			order.customer.lastName = '#REQUEST.pageData.customer.getLastName()#';
@@ -13,6 +14,7 @@
 			order.customer.email = '#REQUEST.pageData.customer.getEmail()#';
 			order.customer.customerGroupName = '#REQUEST.pageData.customer.getCustomerGroup().getName()#';
 		<cfelse>
+			order.customer.id = '';
 			order.customer.firstName = '';
 			order.customer.middleName = '';
 			order.customer.lastName = '';
@@ -53,7 +55,7 @@
 				product = new Object();
 				product.id = '#item.getProductId()#';
 				product.price = '#item.getPrice()#';
-				product.count = '#item.getCount()#';
+				product.quantity = '#item.getCount()#';
 				product.subtotal = '#SESSION.cart.getDisplaySubTotal()#';
 				order.products.push(product);
 			</cfloop>
@@ -74,7 +76,8 @@
 		</cfif>
 		
 		order.comments = '';
-		order.paymentMethod = '';
+		order.paymentMethodId = '';
+		order.shippingMethodId = '';
 		order.currencyId = '';
 		
 		order.coupon = '';

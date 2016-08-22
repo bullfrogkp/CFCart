@@ -1,6 +1,6 @@
 ﻿<cfcomponent persistent="true"> 
     <cfproperty name="trackingRecordId" column="tracking_record_id" fieldtype="id" generator="native"> 
-	<cfproperty name="count" column="count" ormtype="integer">
+	<cfproperty name="quantity" column="quantity" ormtype="integer">
 	<cfproperty name="product" fieldtype="many-to-one" cfc="product" fkcolumn="product_id">
 	<cfproperty name="trackingEntity" fieldtype="many-to-one" cfc="tracking_entity" fkcolumn="tracking_entity_id">
 	<cfproperty name="trackingRecordType" fieldtype="many-to-one" cfc="tracking_record_type" fkcolumn="tracking_record_type_id">
@@ -39,7 +39,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSubTotal" access="public" output="false" returnType="string">
-		<cfreturn getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * getCount() />
+		<cfreturn getProduct().getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) * getQuantity() />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getSubTotalDisplay" access="public" output="false" returnType="string">
