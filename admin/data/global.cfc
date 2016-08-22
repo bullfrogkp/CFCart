@@ -1,4 +1,4 @@
-﻿<cfcomponent extends="core.page">
+﻿<cfcomponent extends="core.pages.page">
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />

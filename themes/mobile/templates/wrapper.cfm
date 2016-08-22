@@ -477,6 +477,7 @@
     <script src="#SESSION.absoluteUrlTheme#js/jquery-2.1.3.min.js"></script>
     <script src="#SESSION.absoluteUrlTheme#js/idangerous.swiper.min.js"></script>
     <script src="#SESSION.absoluteUrlTheme#js/global.js"></script>
+	<script src="#SESSION.absoluteUrlTheme#js/jquery-ui.min.js"></script>
 
     <!-- custom scrollbar -->
     <script src="#SESSION.absoluteUrlTheme#js/jquery.mousewheel.js"></script>
@@ -486,25 +487,7 @@
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>
 	<script src="#SESSION.absoluteUrlTheme#js/map.js"></script>
 
-	 <!-- range slider -->
-	<script src="#SESSION.absoluteUrlTheme#js/jquery-ui.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			var minVal = parseInt($('.min-price span').text());
-			var maxVal = parseInt($('.max-price span').text());
-			$( "##prices-range" ).slider({
-				range: true,
-				min: minVal,
-				max: maxVal,
-				step: 5,
-				values: [ minVal, maxVal ],
-				slide: function( event, ui ) {
-					$('.min-price span').text(ui.values[ 0 ]);
-					$('.max-price span').text(ui.values[ 1 ]);
-				}
-			});
-		});
-	</script>
+	<script src="#SESSION.absoluteUrlTheme#js/#REQUEST.pageData.currentPageName#.js"></script>
 </body>
 </html>
 </cfoutput>
