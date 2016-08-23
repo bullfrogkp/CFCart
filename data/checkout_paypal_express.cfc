@@ -80,8 +80,8 @@
 		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
 		<cfset LOCAL.pageData.countries = EntityLoad("country") />
 		
-		<cfif IsNumeric(getSessionData()Data().customer.id)>
-			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",getSessionData()Data().customer.id) />
+		<cfif IsNumeric(getSessionData().customer.id)>
+			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",getSessionData().customer.id) />
 		</cfif>
 		
 		<cfif IsDefined("getSessionData().temp.message") AND NOT ArrayIsEmpty(getSessionData().temp.message.messageArray)>

@@ -48,9 +48,11 @@
 				<cfset globalPageObj.setPageName(currentPageName) />
 				<cfset globalPageObj.setUrlData(URL) />
 				<cfset globalPageObj.setCgiData(CGI) />
+				<cfset globalPageObj.setSessionData(SESSION) />
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />
 				<cfset pageObj.setUrlData(URL) />
 				<cfset pageObj.setCgiData(CGI) />
+				<cfset pageObj.setSessionData(SESSION) />
 				<cfset var returnStruct = {} />
 			
 				<!--- form.file is image upload plugin --->
