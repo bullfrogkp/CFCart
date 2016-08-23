@@ -290,9 +290,6 @@
 							</div>
 						</div>
 					</div>
-				
-				
-					
 				</div>
 				<div class="accordeon-title"><span class="number">4</span>Order Review</div>
 				<div class="accordeon-entry">
