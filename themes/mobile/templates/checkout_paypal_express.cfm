@@ -207,19 +207,66 @@
 				</div>
 				<div class="accordeon-title"><span class="number">3</span>Shipping Method</div>
 				<div class="accordeon-entry">
-					<div class="article-container style-1">
-						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping</span>
-						</label>
-						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
-						</label>
-						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
-						</label>
-						<label class="checkbox-entry radio">
-							<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
-						</label>
+				
+					<div class="tabs-container">
+						<div class="swiper-tabs tabs-switch">
+							<div class="list">
+								<a class="block-title tab-switcher active size-1">Product 1</a>
+								<a class="block-title tab-switcher size-1">Product 2</a>
+								<a class="block-title tab-switcher size-1">Product 3</a>
+								<div class="clear"></div>
+							</div>
+						</div>
+						<div>
+							<div class="tabs-entry">
+								<div class="article-container style-1">
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping1</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+									</label>
+								</div>
+							</div>
+							<div class="tabs-entry">
+								<div class="article-container style-1">
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping2</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+									</label>
+								</div>
+							</div>
+							<div class="tabs-entry">
+								<div class="article-container style-1">
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping3</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+									</label>
+									<label class="checkbox-entry radio">
+										<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+									</label>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="accordeon-title"><span class="number">4</span>Order Review</div>
