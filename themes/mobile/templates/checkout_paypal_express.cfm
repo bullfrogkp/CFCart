@@ -19,6 +19,7 @@
 			order.customer.middleName = '';
 			order.customer.lastName = '';
 			order.customer.company = '';
+			order.customer.email = '';
 			order.customer.customerGroupName = '';
 		</cfif>
 		
@@ -50,24 +51,24 @@
 		
 		order.products = new Array();
 		
-		<cfif SESSION.cart.getCount() GT 0>
+		<cfif SESSION.cart.getQuantity() GT 0>
 			<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 				product = new Object();
 				product.id = '#item.getProductId()#';
 				product.sku = '#item.getSku()#';
 				product.price = '#item.getPrice()#';
-				product.quantity = '#item.getCount()#';
+				product.quantity = '#item.getQuantity()#';
 				product.shippingMethodId = '';
-				product.subtotal = '#SESSION.cart.getDisplaySubTotal()#';
+				product.subtotal = '#item.getSubTotal()#';
 				order.products.push(product);
 			</cfloop>
 			
-			order.subtotal = 
-			order.tax = 
-			order.shippingFee = 
-			order.discount = 
-			order.coupon = 
-			order.total = 
+			order.subtotal = '#SESSION.cart.getSubTotal()#';
+			order.tax = '#SESSION.cart.getTax()#';
+			order.shippingFee = '#SESSION.cart.getShippingFee()#';
+			order.discount = '#SESSION.cart.getDiscount()#';
+			order.coupon = '#SESSION.cart.getCoupon()#';
+			order.total = '#SESSION.cart.getTotal()#';
 		<cfelse>
 			order.subtotal = '';
 			order.tax = '';

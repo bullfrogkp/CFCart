@@ -439,13 +439,13 @@
 
     <div class="cart-box popup">
         <div class="popup-container">
-			<cfif SESSION.cart.getCount() GT 0>
+			<cfif SESSION.cart.getQuantity() GT 0>
 				<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 					<div class="cart-entry">
 						<a class="image"><img src="#item.getDefaultImageURL()#" alt="" /></a>
 						<div class="content">
 							<a class="title" href="##">#item.getDisplayName()#</a>
-							<div class="quantity">Quantity: #item.getCount()#</div>
+							<div class="quantity">Quantity: #item.getQuantity()#</div>
 							<div class="price">#item.getPrice()#</div>
 						</div>
 						<div class="button-x"><i class="fa fa-close"></i></div>

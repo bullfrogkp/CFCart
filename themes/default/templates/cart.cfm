@@ -116,13 +116,13 @@
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
 									<button type="button" class="minus" trid="#cartItem.getTrackingRecordId()#">-</button>
-									<input id="product_count_#cartItem.getTrackingRecordId()#" name="product_count_#cartItem.getTrackingRecordId()#" type="text" value="#cartItem.getCount()#" style="width:30px;text-align:center;" size="2" />
+									<input id="product_count_#cartItem.getTrackingRecordId()#" name="product_count_#cartItem.getTrackingRecordId()#" type="text" value="#cartItem.getQuantity()#" style="width:30px;text-align:center;" size="2" />
 									<button type="button" class="plus" trid="#cartItem.getTrackingRecordId()#">+</button>
 									<input type="submit" class="update-count" trid="#cartItem.getTrackingRecordId()#" name="update_count" value="update" />
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">#LSCurrencyFormat(cartItem.getCount() * product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</p>
+								<p class="cart_total_price">#LSCurrencyFormat(cartItem.getQuantity() * product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</p>
 							</td>
 							<td class="cart_delete">
 								<input type="image" name="remove_product" value="#cartItem.getTrackingRecordId()#" src="#SESSION.absoluteUrlTheme#images/delete2.png" style="width:20px;" />
