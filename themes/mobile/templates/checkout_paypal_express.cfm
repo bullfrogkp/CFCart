@@ -80,7 +80,7 @@
 		
 		order.comments = '';
 		order.paymentMethodId = '';
-		order.currencyId = '';
+		order.currencyId = '#SESSION.currency.id#';
 		
 		order.coupon = '';
 		order.subTotal = '';
