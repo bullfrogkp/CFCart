@@ -61,8 +61,8 @@
 		</cfif>
 		
 		<cfif ArrayLen(LOCAL.messageArray) GT 0>
-			<cfset SESSION.temp.message = {} />
-			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
+			<cfset getSessionData().temp.message = {} />
+			<cfset getSessionData().temp.message.messageArray = LOCAL.messageArray />
 			<cfset LOCAL.redirectUrl = getCgiData().SCRIPT_NAME />
 		</cfif>
 		
@@ -80,12 +80,12 @@
 		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
 		<cfset LOCAL.pageData.countries = EntityLoad("country") />
 		
-		<cfif IsNumeric(getSessionData().customer.id)>
-			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",getSessionData().customer.id) />
+		<cfif IsNumeric(getSessionData()Data().customer.id)>
+			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",getSessionData()Data().customer.id) />
 		</cfif>
 		
-		<cfif IsDefined("SESSION.temp.message") AND NOT ArrayIsEmpty(SESSION.temp.message.messageArray)>
-			<cfset LOCAL.pageData.message.messageArray = SESSION.temp.message.messageArray />
+		<cfif IsDefined("getSessionData().temp.message") AND NOT ArrayIsEmpty(getSessionData().temp.message.messageArray)>
+			<cfset LOCAL.pageData.message.messageArray = getSessionData().temp.message.messageArray />
 		</cfif>
 		
 		<cfreturn LOCAL.pageData />	
@@ -97,15 +97,15 @@
 		
 		<cfif StructKeyExists(FORM,"shipping_to_new_address")>
 			<!--- set flags --->
-			<cfset SESSION.cart.setIsExistingCustomer(false) />
-			<cfset SESSION.cart.setSameAddress(true) />
+			<cfset getSessionData().cart.setIsExistingCustomer(false) />
+			<cfset getSessionData().cart.setSameAddress(true) />
 			
 			<cfif StructKeyExists(FORM,"register_user")>
-				<cfset SESSION.cart.setRegisterCustomer(true) />
-				<cfset SESSION.cart.setRegisterCustomerPassword(Hash(Trim(FORM.new_password))) />
+				<cfset getSessionData().cart.setRegisterCustomer(true) />
+				<cfset getSessionData().cart.setRegisterCustomerPassword(Hash(Trim(FORM.new_password))) />
 			<cfelse>
-				<cfset SESSION.cart.setRegisterCustomer(false) />
-				<cfset SESSION.cart.setRegisterCustomerPassword("") />
+				<cfset getSessionData().cart.setRegisterCustomer(false) />
+				<cfset getSessionData().cart.setRegisterCustomerPassword("") />
 			</cfif>
 			
 			<!--- set addresses --->
@@ -131,7 +131,7 @@
 			<cfset LOCAL.shippingAddress.countryCode = LOCAL.country.getCode() />
 			<cfset LOCAL.billingAddress = Duplicate(LOCAL.shippingAddress) />
 			
-			<cfset LOCAL.customerStruct = SESSION.cart.getCustomerStruct() />
+			<cfset LOCAL.customerStruct = getSessionData().cart.getCustomerStruct() />
 			<cfset LOCAL.customerStruct.email = Trim(FORM.new_email) />
 			<cfset LOCAL.customerStruct.firstName = Trim(FORM.shipto_first_name) />
 			<cfset LOCAL.customerStruct.middleName = Trim(FORM.shipto_middle_name) />
@@ -139,10 +139,10 @@
 			<cfset LOCAL.customerStruct.company = Trim(FORM.shipto_company) />
 			<cfset LOCAL.customerStruct.phone = Trim(FORM.shipto_phone) />
 			
-			<cfset SESSION.cart.setCustomerStruct(LOCAL.customerStruct) />
-			<cfset SESSION.cart.setShippingAddressStruct(LOCAL.shippingAddress) />
-			<cfset SESSION.cart.setBillingAddressStruct(LOCAL.billingAddress) />
-			<cfset SESSION.cart.calculate() />
+			<cfset getSessionData().cart.setCustomerStruct(LOCAL.customerStruct) />
+			<cfset getSessionData().cart.setShippingAddressStruct(LOCAL.shippingAddress) />
+			<cfset getSessionData().cart.setBillingAddressStruct(LOCAL.billingAddress) />
+			<cfset getSessionData().cart.calculate() />
 			
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#checkout/checkout_step2.cfm" />
 		</cfif>
