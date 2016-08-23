@@ -80,11 +80,11 @@
 		<cfset LOCAL.pageData.provinces = EntityLoad("province") />
 		<cfset LOCAL.pageData.countries = EntityLoad("country") />
 		
-		<cfif IsNumeric(getSessionData().customer.id)>
-			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",getSessionData().customer.id) />
+		<cfif IsNumeric(getSessionData().user.customerId)>
+			<cfset LOCAL.pageData.customer = EntityLoadByPK("customer",getSessionData().user.customerId) />
 		</cfif>
 		
-		<cfif IsDefined("getSessionData().temp.message") AND NOT ArrayIsEmpty(getSessionData().temp.message.messageArray)>
+		<cfif StructKeyExists(getSessionData(),"temp") AND StructKeyExists(getSessionData().temp,"message") AND NOT ArrayIsEmpty(getSessionData().temp.message.messageArray)>
 			<cfset LOCAL.pageData.message.messageArray = getSessionData().temp.message.messageArray />
 		</cfif>
 		

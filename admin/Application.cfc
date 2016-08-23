@@ -160,8 +160,8 @@
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
 		
-		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}) />
-		<cfset APPLICATION.globalPageObj = new siteData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}) />
+		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
+		<cfset APPLICATION.globalPageObj = new siteData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		
 		<cfreturn true>
 	</cffunction>
