@@ -212,61 +212,87 @@
 						<div class="swiper-tabs tabs-switch">
 							<div class="title">Products</div>
 							<div class="list">
-								<cfloop from="1" to="#ArrayLen(REQUEST.moduleData.index_s2.tabs)#" index="tabIdx">
-									<a class="block-title tab-switcher <cfif tabIdx EQ 1>active</cfif>">#REQUEST.moduleData.index_s2.tabs[tabIdx].name#</a>
-								</cfloop>
+								<a class="block-title tab-switcher">Product 1</a>
+								<a class="block-title tab-switcher active">Product 2</a>
+								<a class="block-title tab-switcher">Product 3</a>
 								<div class="clear"></div>
 							</div>
 						</div>
 						<div>
-							<cfloop array="#REQUEST.moduleData.index_s2.tabs#" index="tab">
-								<div class="tabs-entry">
-									<div class="products-swiper">
-										<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
-											<div class="swiper-wrapper">
-												<cfloop array="#tab.products#" index="product">
-													<div class="swiper-slide"> 
-														<div class="paddings-container">
-															<div class="product-slide-entry shift-image">
-																<div class="product-image">
-																	<img src="#product.image1#" alt="" />
-																	<img src="#product.image2#" alt="" />
-																	<a class="top-line-a right open-product" popupid="#product.id#"><i class="fa fa-expand"></i> <span>Quick View</span></a>
-																	<div class="bottom-line">
-																		<div class="right-align">
-																			<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-																			<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-																		</div>
-																		<div class="left-align">
-																			<a class="bottom-line-a"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-																		</div>
-																	</div>
-																</div>
-																<a class="tag" href="##">#product.categoryName#</a>
-																<a class="title" href="##">#product.name#</a>
-																<div class="rating-box">
-																	<div class="star"><i class="fa fa-star"></i></div>
-																	<div class="star"><i class="fa fa-star"></i></div>
-																	<div class="star"><i class="fa fa-star"></i></div>
-																	<div class="star"><i class="fa fa-star"></i></div>
-																	<div class="star"><i class="fa fa-star"></i></div>
-																</div>
-																<div class="price">
-																	<div class="prev">$#product.previousPrice#</div>
-																	<div class="current">$#product.currentPrice#</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</cfloop>
+							<div class="tabs-entry">
+								<div class="products-swiper">
+									<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
+										<div class="swiper-wrapper">
+											<div class="article-container style-1">
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping1</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+												</label>
 											</div>
-											<div class="pagination"></div>
 										</div>
+										<div class="pagination"></div>
 									</div>
 								</div>
-							</cfloop>
+							</div>
+							<div class="tabs-entry">
+								<div class="products-swiper">
+									<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
+										<div class="swiper-wrapper">
+											<div class="article-container style-1">
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping2</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+												</label>
+											</div>
+										</div>
+										<div class="pagination"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tabs-entry">
+								<div class="products-swiper">
+									<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
+										<div class="swiper-wrapper">
+											<div class="article-container style-1">
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping3</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+												</label>
+												<label class="checkbox-entry radio">
+													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+												</label>
+											</div>
+										</div>
+										<div class="pagination"></div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+				
+				
+					
 				</div>
 				<div class="accordeon-title"><span class="number">4</span>Order Review</div>
 				<div class="accordeon-entry">
