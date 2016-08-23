@@ -288,7 +288,7 @@
 									<td><div class="subtotal">$990,00</div></td>
 								</tr>
 							</table>
-						</div>
+						</div><br/>
 						<div class="row">
 							<div class="col-md-12 information-entry">
 								<div class="cart-summary-box">
