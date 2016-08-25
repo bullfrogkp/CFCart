@@ -402,9 +402,32 @@
 							</table>
 						</div><br/>
 						<div class="row">
+							<div class="col-md-6 information-entry">
+								<div class="cart-summary-box" style="text-align:left;">
+									<h4>Shipping Address</h4>
+									Kevin Pan<br/>
+									5940 Yonge St.<br/>
+									North York, Ontario, M2M4M6<br/>
+									Canada<br/><br/>
+									<a class="button style-18" addressid="1">edit</a>
+								</div>
+							</div>
+							<div class="col-md-6 information-entry">
+								<div class="cart-summary-box" style="text-align:left;">
+									<h4>Payment Information</h4>
+									Card Number: xxxx xxxx xxxx 1980<br/>
+									Expiry Date: 18/19<br/>
+									<br/><br/><br/>
+									<a class="button style-18" addressid="3">edit</a>
+								</div>
+							</div>
+						</div><br/>
+						<div class="row">
 							<div class="col-md-12 information-entry">
 								<div class="cart-summary-box">
 									<div class="sub-total">Subtotal: $990,00</div>
+									<div class="sub-total">Shipping: $990,00</div>
+									<div class="sub-total">Tax: $990,00</div>
 									<div class="grand-total">Grand Total $1029,79</div>
 									<a class="button style-10" href="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm">Place Order</a>
 								</div>
