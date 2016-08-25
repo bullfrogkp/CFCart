@@ -89,7 +89,7 @@
 		order.discount = '';
 		order.total = '';
 		
-		$("##use-this-address").click(function() {
+		$(".use-this-address").click(function() {
 			$.ajax({
 						type: "get",
 						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
@@ -132,6 +132,29 @@
 				alert( "complete" );
 			});
 		});
+		
+		$(".shipping-method").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'cartLogin',
+							username: $("##username").val(),
+							password: $("##password").val()
+						}
+			})
+			.done(function() {
+				$("##login-section").slideUp();
+			})
+			.fail(function() {
+				alert( "error" );
+			})
+			.always(function() {
+				alert( "complete" );
+			});
+		});
+		
 	});
 </script>
 <div class="breadcrumb-box">
@@ -228,16 +251,16 @@
 										<div class="swiper-wrapper">
 											<div class="article-container style-1">
 												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping1</span>
+													<input type="radio" name="shipping_method" productid="1" shippingmethodid="1" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping1</span>
 												</label>
 												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
+													<input class="shipping-method" type="radio" name="shipping_method" productid="1" shippingmethodid="2"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
 												</label>
 												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
+													<input class="shipping-method" type="radio" name="shipping_method" productid="1" shippingmethodid="3"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
 												</label>
 												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
+													<input class="shipping-method" type="radio" name="shipping_method" productid="1" shippingmethodid="4"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
 												</label>
 											</div>
 										</div>
@@ -290,6 +313,23 @@
 										<div class="pagination"></div>
 									</div>
 								</div>
+							</div><br/><br/>
+							<a class="button style-18 payment-info">Continute</a>
+						</div>
+					</div>
+				</div>
+				<div class="accordeon-title"><span class="number">1</span>Payment Information</div>
+				<div class="accordeon-entry">
+					<div class="row">
+						<div class="col-md-12 information-entry">
+							<div class="article-container style-1">
+								<form>
+									<input type="text" value="" placeholder="Credit Card" class="simple-field">
+									<input type="text" value="" placeholder="Expiry Year" class="simple-field">
+									<input type="text" value="" placeholder="Expiry Month" class="simple-field">
+									<input type="text" value="" placeholder="Code" class="simple-field">
+									<a class="button style-18 payment-info">Continute</a>
+								</form>
 							</div>
 						</div>
 					</div>
