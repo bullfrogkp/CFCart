@@ -122,47 +122,7 @@
 	<div class="row">
 		<div class="col-sm-9 information-entry">
 			<div class="accordeon size-1">
-				<div class="accordeon-title active"><span class="number">1</span>Checkout Method</div>
-				<div id="login-section" class="accordeon-entry" style="display: block;">
-					<div class="row">
-						<div class="col-md-6 information-entry">
-							<div class="article-container style-1">
-								<h3>Checkout as a Guest or Register</h3>
-								<p>Lorem ipsum dolor amet, conse adipiscing, eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-								</p>
-								<p>
-									<label class="checkbox-entry radio">
-										<input type="radio" name="custom-name" checked> <span class="check"></span> <b>Checkout as Guest</b>
-									</label>
-									<label class="checkbox-entry radio">
-										<input type="radio" name="custom-name"> <span class="check"></span> <b>Register</b>
-									</label>
-								</p>
-								<p>Register with us for future convenience:</p>                                                
-								<ul>
-									<li>Fast and easy check out</li>
-									<li>Easy access to your order history and status</li>
-								</ul>
-								<a class="button style-18" id="continute">continue</a>
-							</div>
-						</div>
-						<div class="col-md-6 information-entry">
-							<div class="article-container style-1">
-								<h3>Registered Customers</h3>
-								<p>Lorem ipsum dolor amet, conse adipiscing, eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<form>
-									<label>Email Address</label>
-									<input type="text" value="" placeholder="Enter Email Address" class="simple-field">
-									<label>Password</label>
-									<input type="password" value="" placeholder="Enter Password" class="simple-field">
-									<div class="button style-10">Login Page<input type="button" id="login" name="login" value=""></div>
-									<a class="forgot-password" href="#APPLICATION.absoluteUrlWeb#forget_password.cfm">Forgot password?</a>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="accordeon-title"><span class="number">2</span>Shipping Information</div>
+				<div class="accordeon-title"><span class="number">1</span>Shipping Information</div>
 				<div class="accordeon-entry">
 					<div class="row article-container">
 						<div class="col-md-4 information-entry">
@@ -228,7 +188,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="accordeon-title"><span class="number">3</span>Shipping Method</div>
+				<div class="accordeon-title"><span class="number">2</span>Shipping Method</div>
 				<div class="accordeon-entry">
 				
 					<div class="tabs-container">
@@ -314,7 +274,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="accordeon-title"><span class="number">4</span>Order Review</div>
+				<div class="accordeon-title"><span class="number">3</span>Order Review</div>
 				<div class="accordeon-entry">
 					<div class="article-container style-1">
 						<div class="table-responsive">
