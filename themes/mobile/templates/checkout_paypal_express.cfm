@@ -318,7 +318,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="accordeon-title"><span class="number">1</span>Payment Information</div>
+				<div class="accordeon-title"><span class="number">3</span>Payment Information</div>
 				<div class="accordeon-entry">
 					<div class="row">
 						<div class="col-md-12 information-entry">
@@ -334,7 +334,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="accordeon-title"><span class="number">3</span>Order Review</div>
+				<div class="accordeon-title"><span class="number">4</span>Order Review</div>
 				<div class="accordeon-entry">
 					<div class="article-container style-1">
 						<div class="table-responsive">
