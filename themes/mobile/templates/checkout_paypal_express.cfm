@@ -89,7 +89,7 @@
 		order.discount = '';
 		order.total = '';
 		
-		$("##login").click(function() {
+		$("##use-this-address").click(function() {
 			$.ajax({
 						type: "get",
 						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
@@ -111,6 +111,27 @@
 			});
 		});
 		
+		$("##add-new-address").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'cartLogin',
+							username: $("##username").val(),
+							password: $("##password").val()
+						}
+			})
+			.done(function() {
+				$("##login-section").slideUp();
+			})
+			.fail(function() {
+				alert( "error" );
+			})
+			.always(function() {
+				alert( "complete" );
+			});
+		});
 	});
 </script>
 <div class="breadcrumb-box">
@@ -131,7 +152,7 @@
 								5940 Yonge St.<br/>
 								North York, Ontario, M2M4M6<br/>
 								Canada<br/><br/>
-								<a class="button style-18">use this address</a>
+								<a class="button style-18 use-this-address" addressid="1">use this address</a>
 							</div>
 						</div>
 						<div class="col-md-4 information-entry">
@@ -140,7 +161,7 @@
 								5940 Yonge St.<br/>
 								North York, Ontario, M2M4M6<br/>
 								Canada<br/><br/>
-								<a class="button style-18">use this address</a>
+								<a class="button style-18 use-this-address" addressid="2">use this address</a>
 							</div>
 						</div>
 						<div class="col-md-4 information-entry">
@@ -149,7 +170,7 @@
 								5940 Yonge St.<br/>
 								North York, Ontario, M2M4M6<br/>
 								Canada<br/><br/>
-								<a class="button style-18">use this address</a>
+								<a class="button style-18 use-this-address" addressid="3">use this address</a>
 							</div>
 						</div>
 					</div>
@@ -182,7 +203,7 @@
 											</cfloop>
 										</select>
 									</div>
-									<a class="button style-18">continue</a>
+									<a class="button style-18 add-new-address">Add New Address</a>
 								</form>
 							</div>
 						</div>
@@ -190,7 +211,6 @@
 				</div>
 				<div class="accordeon-title"><span class="number">2</span>Shipping Method</div>
 				<div class="accordeon-entry">
-				
 					<div class="tabs-container">
 						<div class="swiper-tabs tabs-switch">
 							<div class="title">Products</div>
