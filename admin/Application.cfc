@@ -176,7 +176,7 @@
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
 			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
-			<cfset var pageObj = new adminData.master(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
