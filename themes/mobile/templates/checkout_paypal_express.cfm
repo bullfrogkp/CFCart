@@ -88,6 +88,29 @@
 		order.tax = '';
 		order.discount = '';
 		order.total = '';
+		
+		$("##login").click(function() {
+			$.ajax({
+						type: "get",
+						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						dataType: 'json',
+						data: {
+							method: 'cartLogin',
+							username: $("##username").val(),
+							password: $("##password").val()
+						}
+			})
+			.done(function() {
+				$("##login-section").slideUp();
+			})
+			.fail(function() {
+				alert( "error" );
+			})
+			.always(function() {
+				alert( "complete" );
+			});
+		});
+		
 	});
 </script>
 <div class="breadcrumb-box">
@@ -100,7 +123,7 @@
 		<div class="col-sm-9 information-entry">
 			<div class="accordeon size-1">
 				<div class="accordeon-title active"><span class="number">1</span>Checkout Method</div>
-				<div class="accordeon-entry" style="display: block;">
+				<div id="login-section" class="accordeon-entry" style="display: block;">
 					<div class="row">
 						<div class="col-md-6 information-entry">
 							<div class="article-container style-1">
@@ -120,7 +143,7 @@
 									<li>Fast and easy check out</li>
 									<li>Easy access to your order history and status</li>
 								</ul>
-								<a class="button style-18">continue</a>
+								<a class="button style-18" id="continute">continue</a>
 							</div>
 						</div>
 						<div class="col-md-6 information-entry">
@@ -132,8 +155,8 @@
 									<input type="text" value="" placeholder="Enter Email Address" class="simple-field">
 									<label>Password</label>
 									<input type="password" value="" placeholder="Enter Password" class="simple-field">
-									<div class="button style-10">Login Page<input type="submit" value=""></div>
-									<a class="forgot-password" href="##">Forgot password?</a>
+									<div class="button style-10">Login Page<input type="button" id="login" name="login" value=""></div>
+									<a class="forgot-password" href="#APPLICATION.absoluteUrlWeb#forget_password.cfm">Forgot password?</a>
 								</form>
 							</div>
 						</div>
