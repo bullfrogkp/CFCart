@@ -281,65 +281,28 @@
 									<th class="column-2">Unit Price</th>
 									<th class="column-3">Qty</th>
 									<th class="column-3">Shipping Method</th>
-									<th class="column-4">Subtotal</th>
-									<th class="column-4">Tax</th>
-									<th class="column-4">Shipping Fee</th>
-									<th class="column-4">Total</th>
 								</tr>
-								<tr>
-									<td>
-										<div class="traditional-cart-entry">
-											<a href="##" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-											<div class="content">
-												<div class="cell-view">
-													<a href="##" class="tag">woman clothing</a>
-													<a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-													<div class="inline-description">S / Dirty Pink</div>
-													<div class="inline-description">Zigzag Clothing</div>
+								<cfloop array="#SESSION.cart.getCartItems()#" index="item">
+									<cfset product = item.getProduct() />
+									<tr>
+										<td>
+											<div class="traditional-cart-entry">
+												<a href="#product.getDetailLink()#" class="image"><img src="#product.getImageLink(size="small")#" alt=""></a>
+												<div class="content">
+													<div class="cell-view">
+														<a href="#product.getCategory().getLink()#" class="tag">#product.getCategory().getDisplayName()#</a>
+														<a href="#product.getLink()#" class="title">#product.getDisplayName()#</a>
+														<div class="inline-description"><cfloop from="1" to="#ArrayLen(product.getAttributes())#" index="i">#product.getAttributes()[i].getDisplayName()# <cfif i NEQ ArrayLen(product.getAttributes())>/</cfif></cfloop></div>
+														<div class="inline-description">#product.getDisplayName()#</div>
+													</div>
 												</div>
 											</div>
-										</div>
-									</td>
-									<td>$99,00</td>
-									<td>10</td>
-									<td><div class="subtotal">$990,00</div></td>
-								</tr>
-								<tr>
-									<td>
-										<div class="traditional-cart-entry">
-											<a href="##" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-											<div class="content">
-												<div class="cell-view">
-													<a href="##" class="tag">woman clothing</a>
-													<a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-													<div class="inline-description">S / Dirty Pink</div>
-													<div class="inline-description">Zigzag Clothing</div>
-												</div>
-											</div>
-										</div>
-									</td>
-									<td>$99,00</td>
-									<td>10</td>
-									<td><div class="subtotal">$990,00</div></td>
-								</tr>
-								<tr>
-									<td>
-										<div class="traditional-cart-entry">
-											<a href="##" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-											<div class="content">
-												<div class="cell-view">
-													<a href="##" class="tag">woman clothing</a>
-													<a href="##" class="title">Pullover Batwing Sleeve Zigzag</a>
-													<div class="inline-description">S / Dirty Pink</div>
-													<div class="inline-description">Zigzag Clothing</div>
-												</div>
-											</div>
-										</div>
-									</td>
-									<td>$99,00</td>
-									<td>10</td>
-									<td><div class="subtotal">$990,00</div></td>
-								</tr>
+										</td>
+										<td>$99,00</td>
+										<td>10</td>
+										<td><div class="subtotal">$990,00</div></td>
+									</tr>
+								</cfloop>
 							</table>
 						</div><br/>
 						<div class="row">
