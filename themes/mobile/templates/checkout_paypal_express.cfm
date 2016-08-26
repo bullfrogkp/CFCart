@@ -298,9 +298,9 @@
 												</div>
 											</div>
 										</td>
-										<td>$99,00</td>
-										<td>10</td>
-										<td><div class="subtotal">$990,00</div></td>
+										<td>#product.getPrice()#</td>
+										<td>#item.getQuantity()#</td>
+										<td>$<span id="subtotal-#product.getProductId()#"></span></td>
 									</tr>
 								</cfloop>
 							</table>
@@ -330,7 +330,7 @@
 							<div class="col-md-12 information-entry">
 								<div class="cart-summary-box">
 									<div class="sub-total">Subtotal: $990,00</div>
-									<div class="sub-total">Shipping: $990,00</div>
+									<div class="sub-total">Shipping & Handling: $990,00</div>
 									<div class="sub-total">Tax: $990,00</div>
 									<div class="grand-total">Grand Total $1029,79</div>
 									<a class="button style-10" href="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm">Place Order</a>
@@ -344,9 +344,9 @@
 		<div class="col-sm-3 information-entry">
 			<h3 class="cart-column-title size-2">Your Checkout Progress</h3>
 			<div class="checkout-progress-widget">
-				<div class="step-entry">1. Checkout Method</div>
-				<div class="step-entry">2. Shipping Information</div>
-				<div class="step-entry">3. Shipping Method</div>
+				<div class="step-entry">1. Shipping Information</div>
+				<div class="step-entry">2. Shipping Method</div>
+				<div class="step-entry">3. Payment Method</div>
 				<div class="step-entry">4. Order Review</div>
 			</div>
 			<div class="article-container style-1">
