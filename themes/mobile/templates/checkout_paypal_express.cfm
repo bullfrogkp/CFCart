@@ -54,7 +54,7 @@
 		<cfif SESSION.cart.getQuantity() GT 0>
 			<cfloop array="#SESSION.cart.getCartItems()#" index="item">
 				product = new Object();
-				product.id = '#item.getProductId()#';
+				product.id = '#item.getProduct().getProductId()#';
 				product.sku = '#item.getSku()#';
 				product.price = '#item.getPrice()#';
 				product.quantity = '#item.getQuantity()#';
@@ -225,83 +225,33 @@
 						<div class="swiper-tabs tabs-switch">
 							<div class="title">Products</div>
 							<div class="list">
-								<a class="block-title tab-switcher">Product 1</a>
-								<a class="block-title tab-switcher active">Product 2</a>
-								<a class="block-title tab-switcher">Product 3</a>
+								<cfloop from="1" to="#ArrayLen(SESSION.cart.getCartItems())#" index="i">
+									<a class="block-title tab-switcher <cfif i EQ 1>active</cfif>">#SESSION.cart.getCartItems()[i].getProduct().getDisplayName()#</a>
+								</cfloop>
 								<div class="clear"></div>
 							</div>
 						</div>
 						<div>
-							<div class="tabs-entry">
-								<div class="products-swiper">
-									<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
-										<div class="swiper-wrapper">
-											<div class="article-container style-1">
-												<label class="checkbox-entry radio">
-													<input type="radio" name="shipping_method" productid="1" shippingmethodid="1" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping1</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input class="shipping-method" type="radio" name="shipping_method" productid="1" shippingmethodid="2"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input class="shipping-method" type="radio" name="shipping_method" productid="1" shippingmethodid="3"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input class="shipping-method" type="radio" name="shipping_method" productid="1" shippingmethodid="4"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
-												</label>
+							<cfloop array="#SESSION.cart.getCartItems()#" index="item">
+								<div class="tabs-entry">
+									<div class="products-swiper">
+										<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
+											<div class="swiper-wrapper">
+												<div class="article-container style-1">
+													<cfloop array="#item.getShippingMethods()#" index="shippingMethod">
+														<label class="checkbox-entry radio">
+															<input type="radio" name="shipping_method_#shippingMethod.getShippingMethodId()#" productid="#item.getProduct().getProductId()#" shippingmethodid="#shippingMethod.getShippingMethodId()#"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">#shippingMethod.getDisplayName()#</span>
+														</label>
+													</cfloop>
+												</div>
 											</div>
+											<div class="pagination"></div>
 										</div>
-										<div class="pagination"></div>
 									</div>
 								</div>
-							</div>
-							<div class="tabs-entry">
-								<div class="products-swiper">
-									<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
-										<div class="swiper-wrapper">
-											<div class="article-container style-1">
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping2</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
-												</label>
-											</div>
-										</div>
-										<div class="pagination"></div>
-									</div>
-								</div>
-							</div>
-							<div class="tabs-entry">
-								<div class="products-swiper">
-									<div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="5">
-										<div class="swiper-wrapper">
-											<div class="article-container style-1">
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name" checked> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Free Shipping3</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">Standard Shipping</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">1-Day Shipping</span>
-												</label>
-												<label class="checkbox-entry radio">
-													<input type="radio" name="custom-name"> <span class="check" style="margin-bottom: 5px;"></span> <span class="article-container style-1">2-Days Shipping</span>
-												</label>
-											</div>
-										</div>
-										<div class="pagination"></div>
-									</div>
-								</div>
-							</div><br/><br/>
-							<a class="button style-18 payment-info">Continute</a>
+							</cfloop>
+							<br/><br/>
+							<a class="button style-18 shipping-info">Continute</a>
 						</div>
 					</div>
 				</div>
