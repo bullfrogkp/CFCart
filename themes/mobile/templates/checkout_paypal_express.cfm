@@ -168,35 +168,21 @@
 			<div class="accordeon size-1">
 				<div class="accordeon-title"><span class="number">1</span>Shipping Information</div>
 				<div class="accordeon-entry">
-					<div class="row article-container">
-						<div class="col-md-4 information-entry">
-							<div class="article-container style-1">
-								Kevin Pan<br/>
-								5940 Yonge St.<br/>
-								North York, Ontario, M2M4M6<br/>
-								Canada<br/><br/>
-								<a class="button style-18 use-this-address" addressid="1">use this address</a>
-							</div>
+					<cfif IsNumeric(SESSION.user.customerId)> AND ArrayLen(REQUEST.pageData.shippingAddresses) GT 0>
+						<div class="row article-container">
+							<cfloop array="#REQUEST.pageData.shippingAddresses#" index="address">
+								<div class="col-md-4 information-entry">
+									<div class="article-container style-1">
+										Kevin Pan<br/>
+										5940 Yonge St.<br/>
+										North York, Ontario, M2M4M6<br/>
+										Canada<br/><br/>
+										<a class="button style-18 use-this-address" addressid="1">use this address</a>
+									</div>
+								</div>
+							</cfloop>
 						</div>
-						<div class="col-md-4 information-entry">
-							<div class="article-container style-1">
-								Kevin Pan<br/>
-								5940 Yonge St.<br/>
-								North York, Ontario, M2M4M6<br/>
-								Canada<br/><br/>
-								<a class="button style-18 use-this-address" addressid="2">use this address</a>
-							</div>
-						</div>
-						<div class="col-md-4 information-entry">
-							<div class="article-container style-1">
-								Kevin Pan<br/>
-								5940 Yonge St.<br/>
-								North York, Ontario, M2M4M6<br/>
-								Canada<br/><br/>
-								<a class="button style-18 use-this-address" addressid="3">use this address</a>
-							</div>
-						</div>
-					</div>
+					</cfif>
 					<div class="row">
 						<div class="col-md-12 information-entry">
 							<div class="article-container style-1">
