@@ -173,11 +173,11 @@
 							<cfloop array="#REQUEST.pageData.shippingAddresses#" index="address">
 								<div class="col-md-4 information-entry">
 									<div class="article-container style-1">
-										Kevin Pan<br/>
-										5940 Yonge St.<br/>
-										North York, Ontario, M2M4M6<br/>
-										Canada<br/><br/>
-										<a class="button style-18 use-this-address" addressid="1">use this address</a>
+										#address.getFirstName()# #address.getMiddleName()# #address.getLastName()#<br/>
+										#address.getUnit()# #address.getStreet()#<br/>
+										#address.getCity()#, #address.getProvince().getDisplayName()#, #address.getPostalCode()#<br/>
+										#address.getCountry().getDisplayName()#<br/><br/>
+										<a class="button style-18 use-this-address" addressid="#address.getAddressId()#">use this address</a>
 									</div>
 								</div>
 							</cfloop>
@@ -187,14 +187,15 @@
 						<div class="col-md-12 information-entry">
 							<div class="article-container style-1">
 								<h3>New Shipping Address</h3>
-								<form>
-									<input type="text" value="" placeholder="Company" class="simple-field">
-									<input type="text" value="" placeholder="Phone" class="simple-field">
-									<input type="text" value="" placeholder="First Name" class="simple-field">
-									<input type="text" value="" placeholder="Middle Name" class="simple-field">
-									<input type="text" value="" placeholder="Unit" class="simple-field">
-									<input type="text" value="" placeholder="Street" class="simple-field">
-									<input type="text" value="" placeholder="City" class="simple-field">
+								<form name="new_address_form">
+									<input type="text" name="company" id="company" value="" placeholder="Company" class="simple-field">
+									<input type="text" name="phone" id="phone" value="" placeholder="Phone" class="simple-field">
+									<input type="text" name="first_name" id="first-name" value="" placeholder="First Name" class="simple-field">
+									<input type="text" name="middle_name" id="middle-name" value="" placeholder="Middle Name" class="simple-field">
+									<input type="text" name="last_name" id="last-name" value="" placeholder="Last Name" class="simple-field">
+									<input type="text" name="unit" id="unit" value="" placeholder="Unit" class="simple-field">
+									<input type="text" name="street" id="street" value="" placeholder="Street" class="simple-field">
+									<input type="text" name="city" id="city" value="" placeholder="City" class="simple-field">
 									<div class="simple-drop-down simple-field">
 										<select name="province_id" id="province-id">
 											<option value="">Province</option>
@@ -203,7 +204,7 @@
 											</cfloop>
 										</select>
 									</div>
-									<input type="text" value="" placeholder="Postal Code" class="simple-field">
+									<input type="text" name="postal_code" id="postal-code" value="" placeholder="Postal Code" class="simple-field">
 									<div class="simple-drop-down simple-field">
 										<select name="country_id" id="country-id">
 											<option value="">Country</option>
