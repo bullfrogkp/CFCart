@@ -261,10 +261,10 @@
 						<div class="col-md-12 information-entry">
 							<div class="article-container style-1">
 								<form>
-									<input type="text" value="" placeholder="Credit Card" class="simple-field">
-									<input type="text" value="" placeholder="Expiry Year" class="simple-field">
-									<input type="text" value="" placeholder="Expiry Month" class="simple-field">
-									<input type="text" value="" placeholder="Code" class="simple-field">
+									<input type="text" name="credit_card" id="credit-card" value="" placeholder="Credit Card" class="simple-field">
+									<input type="text" name="expiry_year" id="expiry-year" value="" placeholder="Expiry Year" class="simple-field">
+									<input type="text" name="expiry_month" id="expiry-month" value="" placeholder="Expiry Month" class="simple-field">
+									<input type="text" name="security_code" id="security-code" value="" placeholder="Security Code" class="simple-field">
 									<a class="button style-18 payment-info">Continute</a>
 								</form>
 							</div>
