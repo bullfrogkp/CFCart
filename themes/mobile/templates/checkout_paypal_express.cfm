@@ -280,7 +280,11 @@
 									<th class="column-1">Product Name</th>
 									<th class="column-2">Unit Price</th>
 									<th class="column-3">Qty</th>
+									<th class="column-3">Shipping Method</th>
 									<th class="column-4">Subtotal</th>
+									<th class="column-4">Tax</th>
+									<th class="column-4">Shipping Fee</th>
+									<th class="column-4">Total</th>
 								</tr>
 								<tr>
 									<td>
