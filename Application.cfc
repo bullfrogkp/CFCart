@@ -1,17 +1,5 @@
 ﻿<cfcomponent extends="admin.application">
 	<!------------------------------------------------------------------------------->
-	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
-		<cfargument type="string" name="pageName" required="true"/>
-		
-		<cfif FileExists("#APPLICATION.absolutePathRoot#data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
-		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
-		</cfif>
-		
-		<cfreturn pageObj />
-	</cffunction>
-	<!------------------------------------------------------------------------------->
 	<cffunction name="onSessionStart" returnType="void">
 		<cfset _setUser() />
 		<cfset _setCurrency() />
@@ -19,6 +7,18 @@
 		<cfset _setCart() />
 		<cfset _setHistory() />
 		<cfset _setTheme("mobile") />
+	</cffunction>
+	<!------------------------------------------------------------------------------->
+	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
+		<cfargument type="string" name="pageName" required="true"/>
+		
+		<cfif FileExists("#APPLICATION.absolutePathRoot#data/#ARGUMENTS.pageName#.cfc")>
+			<cfset var pageObj = new "siteData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
+		<cfelse>
+			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
+		</cfif>
+		
+		<cfreturn pageObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onRequestStart" returntype="boolean" output="false">
@@ -47,8 +47,12 @@
 				<cfset var globalPageObj = APPLICATION.globalPageObj />
 				<cfset globalPageObj.setPageName(currentPageName) />
 				<cfset globalPageObj.setUrlData(URL) />
+				<cfset globalPageObj.setCgiData(CGI) />
+				<cfset globalPageObj.setSessionData(SESSION) />
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />
 				<cfset pageObj.setUrlData(URL) />
+				<cfset pageObj.setCgiData(CGI) />
+				<cfset pageObj.setSessionData(SESSION) />
 				<cfset var returnStruct = {} />
 			
 				<!--- form.file is image upload plugin --->

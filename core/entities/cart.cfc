@@ -72,7 +72,7 @@
 			<cfset LOCAL.productStruct = {} />
 			<cfset LOCAL.product = LOCAL.record.getProduct() />
 			<cfset LOCAL.productStruct.productId = LOCAL.product.getProductId() />
-			<cfset LOCAL.productStruct.count = LOCAL.record.getCount() />
+			<cfset LOCAL.productStruct.count = LOCAL.record.getQuantity() />
 			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
 			<cfset LOCAL.productStruct.singlePriceWCLocal = LSCurrencyFormat(LOCAL.productStruct.singlePrice,"local",LOCAL.currency.getLocale()) />
 			<cfset LOCAL.productStruct.singlePriceWCInter = LSCurrencyFormat(LOCAL.productStruct.singlePrice,"international",LOCAL.currency.getLocale()) />
@@ -483,12 +483,12 @@
 		<cfreturn LOCAL.trackingRecords />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
-	<cffunction name="getCount" access="public" output="false" returnType="numeric">
+	<cffunction name="getQuantity" access="public" output="false" returnType="numeric">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.count = 0 />
 		<cfset LOCAL.trackingRecords = getCartItems() />
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
-			<cfset LOCAL.count += LOCAL.record.getCount() />
+			<cfset LOCAL.count += LOCAL.record.getQuantity() />
 		</cfloop>
 		
 		<cfreturn LOCAL.count />

@@ -1,4 +1,4 @@
-﻿<cfcomponent extends="master">	
+﻿<cfcomponent extends="core.pages.page">	
 	<cffunction name="validateFormData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
@@ -20,7 +20,7 @@
 			<cfset SESSION.temp.message = {} />
 			<cfset SESSION.temp.message.messageArray = LOCAL.messageArray />
 			<cfset SESSION.temp.message.messageType = "alert-danger" />
-			<cfset LOCAL.redirectUrl = CGI.SCRIPT_NAME />
+			<cfset LOCAL.redirectUrl = getCgiData().SCRIPT_NAME />
 		</cfif>
 		
 		<cfreturn LOCAL />

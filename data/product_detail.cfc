@@ -1,4 +1,4 @@
-<cfcomponent extends="master"> 
+<cfcomponent extends="core.pages.page"> 
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
@@ -25,7 +25,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.productId = ListGetAt(CGI.PATH_INFO,2,"/")>
+		<cfset LOCAL.productId = ListGetAt(getCgiData().PATH_INFO,2,"/")>
 		
 		<cfset LOCAL.pageData.product = EntityLoadByPK("product",LOCAL.productId) />
 		<cfset LOCAL.pageData.product.setViewCount(LOCAL.pageData.product.getViewCount() + 1) />

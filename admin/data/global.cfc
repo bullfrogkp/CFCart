@@ -1,21 +1,6 @@
-﻿<cfcomponent output="false" accessors="true">
-	<cfproperty name="pageName" type="string" required="true"> 
-	<cfproperty name="formData" type="struct" required="true"> 
-	<cfproperty name="urlData" type="struct" required="true"> 
-	
-	<cffunction name="init" access="public" output="false" returntype="any">
-		<cfargument name="pageName" type="string" required="true" />
-		<cfargument name="formData" type="struct" required="true" />
-		<cfargument name="urlData" type="struct" required="true" />
-		
-		<cfset setPageName(ARGUMENTS.pageName) />
-		<cfset setFormData(ARGUMENTS.formData) />
-		<cfset setUrlData(ARGUMENTS.urlData) />
-		
-		<cfreturn this />
-	</cffunction>
-	
-	<cffunction name="validateGlobalAccessData" access="public" output="false" returnType="struct">
+﻿<cfcomponent extends="core.pages.page">
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="validateAccessData" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
@@ -25,38 +10,8 @@
 		
 		<cfreturn LOCAL />
 	</cffunction>
-	
-	<cffunction name="loadGlobalPageData" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.pageData = {} />
-		
-		<cfreturn LOCAL.pageData />
-	</cffunction>
-	
-	<cffunction name="processGlobalFormDataBeforeValidation" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "" />
-		
-		<cfset SESSION.temp.formdata = Duplicate(FORM) />
-		
-		<cfreturn LOCAL />	
-	</cffunction>	
-	
-	<cffunction name="validateGlobalFormData" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "" />
-		
-		<cfreturn LOCAL />
-	</cffunction>
-	
-	<cffunction name="processGlobalFormDataAfterValidation" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "" />
-		
-		<cfreturn LOCAL />	
-	</cffunction>	
-	
-	<cffunction name="processGlobalURLDataBeforeValidation" access="public" output="false" returnType="struct">
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="processURLDataBeforeValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 			
@@ -67,11 +22,5 @@
 		
 		<cfreturn LOCAL />	
 	</cffunction>	
-	
-	<cffunction name="processGlobalURLDataAfterValidation" access="public" output="false" returnType="struct">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.redirectUrl = "" />
-		
-		<cfreturn LOCAL />	
-	</cffunction>
+	<!------------------------------------------------------------------------------->	
 </cfcomponent>

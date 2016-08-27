@@ -1,13 +1,13 @@
-<cfcomponent extends="master"> 
+<cfcomponent extends="core.pages.page"> 
 	<cffunction name="_loadPageData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageData = {} />
 		
-		<cfset LOCAL.categoryId = ListGetAt(CGI.PATH_INFO,2,"/")> 
-		<cfset LOCAL.pageData.pageNumber = ListGetAt(CGI.PATH_INFO,3,"/")> 
-		<cfset LOCAL.pageData.sortTypeId = ListGetAt(CGI.PATH_INFO,4,"/") />
-		<cfset LOCAL.filterList = ListGetAt(CGI.PATH_INFO,5,"/") />
-		<cfset LOCAL.searchText = ListGetAt(CGI.PATH_INFO,6,"/") />
+		<cfset LOCAL.categoryId = ListGetAt(getCgiData().PATH_INFO,2,"/")> 
+		<cfset LOCAL.pageData.pageNumber = ListGetAt(getCgiData().PATH_INFO,3,"/")> 
+		<cfset LOCAL.pageData.sortTypeId = ListGetAt(getCgiData().PATH_INFO,4,"/") />
+		<cfset LOCAL.filterList = ListGetAt(getCgiData().PATH_INFO,5,"/") />
+		<cfset LOCAL.searchText = ListGetAt(getCgiData().PATH_INFO,6,"/") />
 		
 		<cfset LOCAL.currentFilterStruct = {} />
 		
@@ -141,7 +141,7 @@
 						<cfset LOCAL.currentFilterStruct["#LOCAL.filter.getFilterId()#"] = LOCAL.filterValue.getFilterValueId() />
 					</cfif>
 					
-					<cfset LOCAL.newFilterValue.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = LOCAL.category.getName()
+					<cfset LOCAL.newFilterValue.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = LOCAL.category.getName()
 																						, categoryId = LOCAL.category.getCategoryId()
 																						, pageNumber = 1
 																						, sortTypeId = ARGUMENTS.sortTypeId
@@ -177,7 +177,7 @@
 		<cfelse>
 			<cfset LOCAL.sortType.selected = false />
 		</cfif>
-		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+		<cfset LOCAL.sortType.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 1
@@ -194,7 +194,7 @@
 		<cfelse>
 			<cfset LOCAL.sortType.selected = false />
 		</cfif>
-		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+		<cfset LOCAL.sortType.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 2
@@ -212,7 +212,7 @@
 			<cfset LOCAL.sortType.selected = false />
 		</cfif>
 		
-		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+		<cfset LOCAL.sortType.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 3
@@ -229,7 +229,7 @@
 		<cfelse>
 			<cfset LOCAL.sortType.selected = false />
 		</cfif>
-		<cfset LOCAL.sortType.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+		<cfset LOCAL.sortType.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 																	, categoryId = ARGUMENTS.categoryId
 																	, pageNumber = 1
 																	, sortTypeId = 4
@@ -296,7 +296,7 @@
 			<cfset LOCAL.pageStruct = {} />
 			<cfset LOCAL.pageStruct.number = "&laquo;" />
 			<cfset LOCAL.pageStruct.selected = false />
-			<cfset LOCAL.pageStruct.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+			<cfset LOCAL.pageStruct.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 														, categoryId = ARGUMENTS.categoryId
 														, pageNumber = 1
 														, sortTypeId = ARGUMENTS.sortTypeId
@@ -329,7 +329,7 @@
 				<cfset LOCAL.pageStruct.selected = false />
 			</cfif>
 			
-			<cfset LOCAL.pageStruct.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+			<cfset LOCAL.pageStruct.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 														, categoryId = ARGUMENTS.categoryId
 														, pageNumber = LOCAL.i
 														, sortTypeId = ARGUMENTS.sortTypeId
@@ -342,7 +342,7 @@
 			<cfset LOCAL.pageStruct = {} />
 			<cfset LOCAL.pageStruct.number = "&raquo;" />
 			<cfset LOCAL.pageStruct.selected = false />
-			<cfset LOCAL.pageStruct.link = CGI.SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
+			<cfset LOCAL.pageStruct.link = getCgiData().SCRIPT_NAME & _buildPathInfo(categoryName = ARGUMENTS.categoryName
 														, categoryId = ARGUMENTS.categoryId
 														, pageNumber = ARGUMENTS.totalPages
 														, sortTypeId = ARGUMENTS.sortTypeId

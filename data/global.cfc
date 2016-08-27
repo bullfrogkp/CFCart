@@ -1,4 +1,4 @@
-﻿<cfcomponent extends="master">
+﻿<cfcomponent extends="core.pages.page">
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="_loadPageData" access="private" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
@@ -8,24 +8,24 @@
 		<cfset LOCAL.pageData.currencies =  EntityLoad("currency", {isEnabled=true}) />
 		<cfset LOCAL.pageData.slogan =  "FREE SHIPPING ON ALL US ORDERS this week!" />
 		
-		<cfif 	ListLen(CGI.PATH_INFO,"/") EQ 6 
+		<cfif 	ListLen(getCgiData().PATH_INFO,"/") EQ 6 
 				AND
 				(
-					Trim(ListGetAt(CGI.PATH_INFO,6,"/")) NEQ "-"
+					Trim(ListGetAt(getCgiData().PATH_INFO,6,"/")) NEQ "-"
 					OR
-					Trim(ListGetAt(CGI.PATH_INFO,2,"/")) NEQ "-"
+					Trim(ListGetAt(getCgiData().PATH_INFO,2,"/")) NEQ "-"
 				)>
 				
-			<cfif Trim(ListGetAt(CGI.PATH_INFO,6,"/")) EQ "-">
+			<cfif Trim(ListGetAt(getCgiData().PATH_INFO,6,"/")) EQ "-">
 				<cfset LOCAL.pageData.searchText = "" />
 			<cfelse>
-				<cfset LOCAL.pageData.searchText = Trim(ListGetAt(CGI.PATH_INFO,6,"/")) />
+				<cfset LOCAL.pageData.searchText = Trim(ListGetAt(getCgiData().PATH_INFO,6,"/")) />
 			</cfif>
 			
-			<cfif Trim(ListGetAt(CGI.PATH_INFO,2,"/")) EQ "-">
+			<cfif Trim(ListGetAt(getCgiData().PATH_INFO,2,"/")) EQ "-">
 				<cfset LOCAL.pageData.categoryId = 0 />
 			<cfelse>
-				<cfset LOCAL.pageData.categoryId = ListGetAt(CGI.PATH_INFO,2,"/") />
+				<cfset LOCAL.pageData.categoryId = ListGetAt(getCgiData().PATH_INFO,2,"/") />
 			</cfif>
 		<cfelse>
 			<cfset LOCAL.pageData.searchText = "" />
@@ -115,7 +115,7 @@
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />
 		
-		<cfif StructKeyExists(URL,"logout")>
+		<cfif StructKeyExists(getUrlData(),"logout")>
 			<cfset SESSION.user.customerId = "" />
 			<cfset LOCAL.redirectUrl = "#APPLICATION.absoluteUrlWeb#index.cfm" />
 		</cfif>

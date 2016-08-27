@@ -44,7 +44,7 @@
 					<td>
 						<div class="quantity-selector detail-info-entry">
 							<div class="entry number-minus">&nbsp;</div>
-							<div class="entry number">#item.getCount()#</div>
+							<div class="entry number">#item.getQuantity()#</div>
 							<div class="entry number-plus">&nbsp;</div>
 						</div>
 					</td>

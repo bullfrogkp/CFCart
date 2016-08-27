@@ -1,4 +1,4 @@
-﻿<cfcomponent output="false">
+﻿<cfcomponent output="false" accessors="true">
 	<!------------------------------------------------------------------------------->
 	<cfset this.name = Config().name>
 	<cfset this.ormEnabled = Config().ormEnabled> 
@@ -7,9 +7,19 @@
 	<cfset this.dataSource = Config().dataSource> 
 	<cfset this.sessionManagement = Config().sessionManagement>
 	<cfset this.sessionTimeout = Config().sessionTimeout>
-	
-	<cfset this.mappings[ "/modules" ] = Config().env.absolutePathRoot & "core/modules/" />
-
+	<cfset this.restSettings.cfclocation = Config().restSettings.cfcLocation>
+    <cfset this.restSettings.skipcfcwitherror = Config().restSettings.skipCfcWithError>
+	<!------------------------------------------------------------------------------->
+	<cfset this.mappings[ "/core" ] = Config().env.absolutePathRoot & "core\" />
+	<cfset this.mappings[ "/entities" ] = Config().env.absolutePathRoot & "core\entities\" />
+	<cfset this.mappings[ "/modules" ] = Config().env.absolutePathRoot & "core\modules\" />
+	<cfset this.mappings[ "/services" ] = Config().env.absolutePathRoot & "core\services\" />
+	<cfset this.mappings[ "/utils" ] = Config().env.absolutePathRoot & "core\utils\" />
+	<cfset this.mappings[ "/pages" ] = Config().env.absolutePathRoot & "core\pages\" />
+	<cfset this.mappings[ "/shipping" ] = Config().env.absolutePathRoot & "core\shipping\" />
+	<cfset this.mappings[ "/adminData" ] = Config().env.absolutePathRoot & "admin\data\" />
+	<cfset this.mappings[ "/siteData" ] = Config().env.absolutePathRoot & "data\" />
+	<!------------------------------------------------------------------------------->
     <cffunction name="Config" access="public" returntype="struct" output="false" hint="Returns the Application.cfc configuration settings struct based on the execution environment (production, staging, development, etc).">
 		<cfargument type="boolean" name="reload" required="false" default="false"/>
 		
@@ -27,6 +37,9 @@
                 <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
+				<cfset THIS[ "$Config" ].restSettings = {} />
+                <cfset THIS[ "$Config" ].restSettings.skipCfcWithError = false />
+                <cfset THIS[ "$Config" ].restSettings.cfcLocation = "/cfcart/webservice/" />
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com" />
@@ -85,6 +98,9 @@
                 <cfset THIS[ "$Config" ].dataSource = "db_eshop" />
                 <cfset THIS[ "$Config" ].sessionManagement = "yes" />
                 <cfset THIS[ "$Config" ].sessionTimeout = CreateTimeSpan(0,12,0,0) /> 
+				<cfset THIS[ "$Config" ].restSettings = {} />
+                <cfset THIS[ "$Config" ].restSettings.skipCfcWithError = false />
+                <cfset THIS[ "$Config" ].restSettings.cfcLocation = "/webservice/" />
 				
 				<cfset THIS[ "$Config" ].env = {} />
 				<cfset THIS[ "$Config" ].env.domain = "pinmydeals.com" />
@@ -137,7 +153,6 @@
 	<!----------------------------------------------------------------------------
 	<cferror type="Exception" template="/error.cfm" >
 	<cferror type="Request" template="/error.cfm" >--->
-
 	<!------------------------------------------------------------------------------->
 	<cffunction name="onApplicationStart" returntype="boolean" output="false">
 		<cfset SetEncoding("form","utf-8") />
@@ -145,8 +160,8 @@
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
 		
-		<cfset APPLICATION.globalPageObjAdmin = new "#APPLICATION.componentPathRoot#admin.data.global"(pageName = "", formData = {}, urlData = {}) />
-		<cfset APPLICATION.globalPageObj = new "#APPLICATION.componentPathRoot#data.global"(pageName = "", formData = {}, urlData = {}) />
+		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
+		<cfset APPLICATION.globalPageObj = new siteData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		
 		<cfreturn true>
 	</cffunction>
@@ -159,9 +174,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
+			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		<cfelse>
-			<cfset var pageObj = new "#APPLICATION.componentPathRoot#admin.data.master"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}) />
+			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -206,8 +221,12 @@
 				<cfset var globalPageObj = APPLICATION.globalPageObjAdmin />
 				<cfset globalPageObj.setPageName(currentPageName) />
 				<cfset globalPageObj.setUrlData(URL) />
+				<cfset globalPageObj.setCgiData(CGI) />
+				<cfset globalPageObj.setSessionData(SESSION) />
 				<cfset var pageObj = _initPageObject(argumentCollection = args) />
 				<cfset pageObj.setUrlData(URL) />
+				<cfset pageObj.setCgiData(CGI) />
+				<cfset pageObj.setSessionData(SESSION) />
 				<cfset var returnStruct = {} />
 			
 				<!--- form.file is image upload plugin --->
@@ -216,12 +235,12 @@
 					<cfset pageObj.setFormData(FORM) />
 					
 					<!--- global data handler --->
-					<cfset returnStruct = globalPageObj.processGlobalFormDataBeforeValidation() />
+					<cfset returnStruct = globalPageObj.processFormDataBeforeValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
 					
-					<cfset returnStruct = globalPageObj.validateGlobalFormData() />
+					<cfset returnStruct = globalPageObj.validateFormData() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					<cfelse>
@@ -230,7 +249,7 @@
 						</cfif>
 					</cfif>
 					
-					<cfset returnStruct = globalPageObj.processGlobalFormDataAfterValidation() />
+					<cfset returnStruct = globalPageObj.processFormDataAfterValidation() />
 					<cfif returnStruct.redirectUrl NEQ "">
 						<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 					</cfif>
@@ -258,7 +277,7 @@
 					<cflocation url = "#_getCurrentURL()#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.processGlobalURLDataBeforeValidation() />
+				<cfset returnStruct = globalPageObj.processURLDataBeforeValidation() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		
@@ -268,7 +287,7 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.validateGlobalAccessData() />
+				<cfset returnStruct = globalPageObj.validateAccessData() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		
@@ -278,7 +297,7 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset returnStruct = globalPageObj.processGlobalURLDataAfterValidation() />
+				<cfset returnStruct = globalPageObj.processURLDataAfterValidation() />
 				<cfif returnStruct.redirectUrl NEQ "">
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>		
@@ -288,9 +307,15 @@
 					<cflocation url = "#returnStruct.redirectUrl#" addToken = "no" />
 				</cfif>
 				
-				<cfset REQUEST.pageData = globalPageObj.loadGlobalPageData() />
-				<cfset StructAppend(REQUEST.pageData,pageObj.loadPageData()) />
-			
+				<cfset LOCAL.dataStruct = globalPageObj.loadData() />
+				<cfset LOCAL.pageDataStruct = pageObj.loadData() />
+				
+				<cfset StructAppend(LOCAL.dataStruct.pageData, LOCAL.pageDataStruct.pageData) />
+				<cfset StructAppend(LOCAL.dataStruct.pageView, LOCAL.pageDataStruct.pageView) />
+				<cfset StructAppend(LOCAL.dataStruct.moduleData, LOCAL.pageDataStruct.moduleData) />
+				<cfset StructAppend(LOCAL.dataStruct.moduleView, LOCAL.pageDataStruct.moduleView) />
+				<cfset StructAppend(REQUEST, LOCAL.dataStruct) />
+						
 				<cfif StructKeyExists(SESSION,"temp")>	
 					<cfset StructDelete(SESSION,"temp") />
 				</cfif>
