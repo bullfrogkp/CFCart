@@ -287,11 +287,11 @@
 									<tr>
 										<td>
 											<div class="traditional-cart-entry">
-												<a href="#product.getDetailLink()#" class="image"><img src="#product.getImageLink(size="small")#" alt=""></a>
+												<a href="#product.getDetailPageURL()#" class="image"><img src="#product.getDefaultImageLink(type="small")#" alt=""></a>
 												<div class="content">
 													<div class="cell-view">
-														<a href="#product.getCategory().getLink()#" class="tag">#product.getCategory().getDisplayName()#</a>
-														<a href="#product.getLink()#" class="title">#product.getDisplayName()#</a>
+														<a href="#product.getCategory().getDetailPageURL()#" class="tag">#product.getCategory().getDisplayName()#</a>
+														<a href="#product.getDetailPageURL()#" class="title">#product.getDisplayName()#</a>
 														<div class="inline-description"><cfloop from="1" to="#ArrayLen(product.getAttributes())#" index="i">#product.getAttributes()[i].getDisplayName()# <cfif i NEQ ArrayLen(product.getAttributes())>/</cfif></cfloop></div>
 														<div class="inline-description">#product.getDisplayName()#</div>
 													</div>
