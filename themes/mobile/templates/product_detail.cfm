@@ -271,55 +271,26 @@
 						</div>
 						<div class="col-sm-6 information-entry">
 							<div class="product-detail-box">
-								<h1 class="product-title">T-shirt Basic Stampata has been added to your cart</h1>
-								<h3 class="product-subtitle">Loremous Clothing</h3>
-								<div class="rating-box">
-									<div class="star"><i class="fa fa-star"></i></div>
-									<div class="star"><i class="fa fa-star"></i></div>
-									<div class="star"><i class="fa fa-star"></i></div>
-									<div class="star"><i class="fa fa-star-o"></i></div>
-									<div class="star"><i class="fa fa-star-o"></i></div>
-									<div class="rating-number">25 Reviews</div>
-								</div>
-								<div class="product-description detail-info-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur.</div>
+								<h1 class="product-title">T-shirt Basic Stampata</h1>
+								<h3 class="product-subtitle">Item successfully added to your cart</h3>
 								<div class="price detail-info-entry">
 									<div class="prev">$90,00</div>
 									<div class="current">$70,00</div>
 								</div>
 								<div class="size-selector detail-info-entry">
 									<div class="detail-info-entry-title">Size</div>
-									<div class="entry active">xs</div>
-									<div class="entry">s</div>
-									<div class="entry">m</div>
-									<div class="entry">l</div>
 									<div class="entry">xl</div>
 									<div class="spacer"></div>
 								</div>
 								<div class="color-selector detail-info-entry">
 									<div class="detail-info-entry-title">Color</div>
-									<div class="entry active" style="background-color: ##d23118;">&nbsp;</div>
-									<div class="entry" style="background-color: ##2a84c9;">&nbsp;</div>
-									<div class="entry" style="background-color: ##000;">&nbsp;</div>
 									<div class="entry" style="background-color: ##d1d1d1;">&nbsp;</div>
 									<div class="spacer"></div>
 								</div>
-								<div class="quantity-selector detail-info-entry">
-									<div class="detail-info-entry-title">Quantity</div>
-									<div class="entry number-minus">&nbsp;</div>
-									<div class="entry number">10</div>
-									<div class="entry number-plus">&nbsp;</div>
-								</div>
 								<div class="detail-info-entry">
-									<a class="button style-10">Add to cart</a>
-									<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
+									<a class="button style-10">Checkout</a>
+									<a class="button style-11">Continue Shopping</a>
 									<div class="clear"></div>
-								</div>
-								<div class="tags-selector detail-info-entry">
-									<div class="detail-info-entry-title">Tags:</div>
-									<a href="##">bootstrap</a>/
-									<a href="##">collections</a>/
-									<a href="##">color/</a>
-									<a href="##">responsive</a>
 								</div>
 							</div>
 						</div>
