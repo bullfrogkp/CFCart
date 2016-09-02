@@ -274,8 +274,8 @@
 								<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
 								<h3 class="product-subtitle">Item successfully added to your cart</h3>
 								<div class="price detail-info-entry">
-									<div class="prev">$90,00</div>
-									<div class="current">$70,00</div>
+									<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+									<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 								</div>
 								<div class="size-selector detail-info-entry">
 									<div class="detail-info-entry-title">Size</div>
