@@ -267,71 +267,11 @@
 				<div class="popup-container">
 					<div class="row">
 						<div class="col-sm-6 information-entry">
-							<div class="product-preview-box">
-								<div class="swiper-container product-preview-swiper" data-autoplay="0" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<div class="product-zoom-image">
-												<img src="#SESSION.absoluteUrlTheme#images/product-main-1.jpg" alt="" data-zoom="#SESSION.absoluteUrlTheme#images/product-main-1-zoom.jpg" />
-											</div>
-										</div>
-										<div class="swiper-slide">
-											<div class="product-zoom-image">
-												<img src="#SESSION.absoluteUrlTheme#images/product-main-2.jpg" alt="" data-zoom="#SESSION.absoluteUrlTheme#images/product-main-2-zoom.jpg" />
-											</div>
-										</div>
-										<div class="swiper-slide">
-											<div class="product-zoom-image">
-												<img src="#SESSION.absoluteUrlTheme#images/product-main-3.jpg" alt="" data-zoom="#SESSION.absoluteUrlTheme#images/product-main-3-zoom.jpg" />
-											</div>
-										</div>
-										<div class="swiper-slide">
-											<div class="product-zoom-image">
-												<img src="#SESSION.absoluteUrlTheme#images/product-main-4.jpg" alt="" data-zoom="#SESSION.absoluteUrlTheme#images/product-main-4-zoom.jpg" />
-											</div>
-										</div>
-									</div>
-									<div class="pagination"></div>
-									<div class="product-zoom-container">
-										<div class="move-box">
-											<img class="default-image" src="#SESSION.absoluteUrlTheme#images/product-main-1.jpg" alt="" />
-											<img class="zoomed-image" src="#SESSION.absoluteUrlTheme#images/product-main-1-zoom.jpg" alt="" />
-										</div>
-										<div class="zoom-area"></div>
-									</div>
-								</div>
-								<div class="swiper-hidden-edges">
-									<div class="swiper-container product-thumbnails-swiper" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="3" data-int-slides="3" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide selected">
-												<div class="paddings-container">
-													<img src="#SESSION.absoluteUrlTheme#images/product-main-1.jpg" alt="" />
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<img src="#SESSION.absoluteUrlTheme#images/product-main-2.jpg" alt="" />
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<img src="#SESSION.absoluteUrlTheme#images/product-main-3.jpg" alt="" />
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<img src="#SESSION.absoluteUrlTheme#images/product-main-4.jpg" alt="" />
-												</div>
-											</div>
-										</div>
-										<div class="pagination"></div>
-									</div>
-								</div>
-							</div>
+							<img src="#SESSION.absoluteUrlTheme#images/product-main-1.jpg" alt="" data-zoom="#SESSION.absoluteUrlTheme#images/product-main-1-zoom.jpg" style="width:100%" />
 						</div>
 						<div class="col-sm-6 information-entry">
 							<div class="product-detail-box">
-								<h1 class="product-title">T-shirt Basic Stampata</h1>
+								<h1 class="product-title">T-shirt Basic Stampata has been added to your cart</h1>
 								<h3 class="product-subtitle">Loremous Clothing</h3>
 								<div class="rating-box">
 									<div class="star"><i class="fa fa-star"></i></div>
