@@ -56,7 +56,7 @@
 				#REQUEST.pageData.product.getDescription()#
 				</div>
 				<div class="price detail-info-entry">
-					<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+					<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 					<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 				</div>
 				

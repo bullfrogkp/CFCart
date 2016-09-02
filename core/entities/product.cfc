@@ -376,6 +376,23 @@
 		<cfreturn NumberFormat(price * currency.getMultiplier(),"0.00") />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="getOriginalPrice" access="public" output="false" returnType="numeric">
+		<cfargument name="customerGroupName" type="string" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
+		
+		<cfset var customerGroup = EntityLoad("customer_group",{name = ARGUMENTS.customerGroupName},true) />
+		<cfset var product = EntityLoadByPK("product",getProductId()) />
+		<cfset var productCustomeGroupRela = EntityLoad("product_customer_group_rela",{customerGroup=customerGroup,product=product},true) />
+		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
+		<cfset var price = 0 />
+		
+		<cfif NOT IsNull(productCustomeGroupRela)>
+				<cfset price = productCustomeGroupRela.getPrice() />
+		</cfif>
+		
+		<cfreturn NumberFormat(price * currency.getMultiplier(),"0.00") />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="getDefaultImageLinkMV" access="public" output="false" returnType="string">
 		<cfargument name="type" type="string" required="false" default="" />
 		
