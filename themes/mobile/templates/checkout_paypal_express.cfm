@@ -317,7 +317,7 @@
 									<div class="sub-total">Shipping & Handling: $990,00</div>
 									<div class="sub-total">Tax: $990,00</div>
 									<div class="grand-total">Grand Total $1029,79</div>
-									<a class="button style-10" href="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm">Place Order</a>
+									<a class="button style-10" href="#APPLICATION.absoluteUrlWeb#checkout/checkout_thankyou.cfm">Pay with PayPal</a>
 								</div>
 							</div>
 						</div>
