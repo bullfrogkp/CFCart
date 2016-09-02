@@ -56,8 +56,8 @@
 				#REQUEST.pageData.product.getDescription()#
 				</div>
 				<div class="price detail-info-entry">
-					<div class="prev">$90,00</div>
-					<div class="current">$70,00</div>
+					<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+					<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 				</div>
 				
 				#REQUEST.moduleView.product_detail_options#
@@ -271,7 +271,7 @@
 						</div>
 						<div class="col-sm-6 information-entry">
 							<div class="product-detail-box">
-								<h1 class="product-title">T-shirt Basic Stampata</h1>
+								<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
 								<h3 class="product-subtitle">Item successfully added to your cart</h3>
 								<div class="price detail-info-entry">
 									<div class="prev">$90,00</div>
