@@ -1784,7 +1784,7 @@ body.style-10 .product-slide-entry .subtitle:hover{color: #ca1515;}
 .product-detail-box .price .current{font-size: 36px; color: #262626!important; font-weight: 700; display: inline-block; vertical-align: middle;}
 .size-selector{font-size: 0;}
 .size-selector .spacer{height: 0; margin-top: -12px;}
-.size-selector .entry{display: inline-block; width: 40px; height: 40px; line-height: 37px; border: 1px #d9d9d9 solid; text-align: center; font-size: 12px; color: #4c4c4c; font-weight: 500; margin-right: 12px; position: relative; text-transform: uppercase; cursor: pointer; margin-bottom: 12px;}
+.size-selector .entry{display: inline-block; padding:0 13px; height: 40px; line-height: 37px; border: 1px #d9d9d9 solid; text-align: center; font-size: 12px; color: #4c4c4c; font-weight: 500; margin-right: 12px; position: relative; text-transform: uppercase; cursor: pointer; margin-bottom: 12px;}
 .size-selector .entry:after{position: absolute; left: -1px; top: -1px; right: -1px; bottom: -1px; border: 3px #d9d9d9 solid; content: ""; opacity: 0;}
 .size-selector .entry.active:after{opacity: 1; border: 3px #262626 solid;}
 .size-selector .entry:hover:after{opacity: 1;}
