@@ -18,8 +18,8 @@
 			</cfif>
 			<cfset LOCAL.retVal &= ' detail-info-entry"><div class="detail-info-entry-title">' & LOCAL.attribute.getDisplayName() & '</div>' />
 			
-			<cfloop from="1" to="#ArrayLen(LOCAL.attribute.getAttributeValues())#" index="LOCAL.idx">
-				<cfset LOCAL.attrValue = LOCAL.attribute.getAttributeValues()[LOCAL.idx] />
+			<cfloop from="1" to="#ArrayLen(LOCAL.rela.getAttributeValues())#" index="LOCAL.idx">
+				<cfset LOCAL.attrValue = LOCAL.rela.getAttributeValues()[LOCAL.idx] />
 				
 				<cfset LOCAL.retVal &= '<div class="entry' />
 				<cfif LOCAL.idx EQ 1>
