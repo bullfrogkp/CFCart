@@ -21,7 +21,7 @@
 			<cfloop from="1" to="#ArrayLen(LOCAL.rela.getAttributeValues())#" index="LOCAL.idx">
 				<cfset LOCAL.attrValue = LOCAL.rela.getAttributeValues()[LOCAL.idx] />
 				
-				<cfset LOCAL.retVal &= '<div class="entry' />
+				<cfset LOCAL.retVal &= '<div aid="#LOCAL.attribute.getAttributeId()#" avid="#LOCAL.attrValue.getAttributeValueId()#" id="attr-val-#LOCAL.attrValue.getAttributeValueId()#" class="entry attr-#LOCAL.attribute.getAttributeId()#' />
 				<cfif LOCAL.idx EQ 1>
 					<cfset LOCAL.retVal &= ' active' />
 				</cfif>

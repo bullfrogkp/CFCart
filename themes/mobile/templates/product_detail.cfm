@@ -1,4 +1,15 @@
 <cfoutput>
+<script>
+	$(document).ready(function() {
+		$(".entry").click(function() {
+			var aid = $(this).attr('aid');
+			var avid = $(this).attr('avid');
+			
+			$(".overlay-popup .attr-" + aid).hide();
+			$(".overlay-popup ##attr-val-" + avid).show();
+		});
+	});
+</script>	
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-sm-5 col-md-4 col-lg-5 information-entry">
@@ -277,16 +288,7 @@
 									<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 									<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 								</div>
-								<div class="size-selector detail-info-entry">
-									<div class="detail-info-entry-title">Size</div>
-									<div class="entry">xl</div>
-									<div class="spacer"></div>
-								</div>
-								<div class="color-selector detail-info-entry">
-									<div class="detail-info-entry-title">Color</div>
-									<div class="entry" style="background-color: ##d1d1d1;">&nbsp;</div>
-									<div class="spacer"></div>
-								</div>
+								#REQUEST.moduleView.product_detail_options#
 								<div class="detail-info-entry">
 									<a class="button style-10">Checkout</a>
 									<a class="button style-11">Continue Shopping</a>
