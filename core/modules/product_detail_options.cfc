@@ -1,6 +1,9 @@
 ﻿<cfcomponent extends="modules.module">	
     <cffunction name="getFrontendView" access="public" output="false" returnType="string">
 		<cfset var LOCAL = {} />
+		
+		
+		
 		<cfset LOCAL.retVal = '<div class="color-selector detail-info-entry">
 					<div class="detail-info-entry-title">Color</div>
 					<div class="entry active" style="background-color: ##d23118;">&nbsp;</div>

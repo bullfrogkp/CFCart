@@ -246,7 +246,7 @@
 	<cffunction name="_initModuleObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="moduleName" required="true"/>
 		
-		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = getPageName(), formData = getFormData(), urlData = getUrlData()) />
+		<cfset var moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#ARGUMENTS.moduleName#"(pageName = getPageName(), formData = getFormData(), urlData = getUrlData(), cgiData = getCgiData(), sessionData = getSessionData()) />
 		<cfreturn moduleObj />
 	</cffunction>
 	<!------------------------------------------------------------------------------->		
