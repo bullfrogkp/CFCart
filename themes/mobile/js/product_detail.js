@@ -12,7 +12,7 @@ $(function() {
 			$(".overlay-popup .detail-info-entry .entry").removeClass('active');
 			
 			$(".overlay-popup .detail-info-entry").each(function( index ) {
-				  $( this ).children(".entry").first().show();
+				$( this ).children(".entry").first().show();
 			});
 			
 			$(".entry").click(function() {
@@ -32,7 +32,7 @@ $(function() {
 						dataType: 'json',
 						data: {
 							method: 'addProductToCart',
-							productid: $("#selected-product-id").val(),
+							productid: selectedProductId,
 							quantity: $("#quantity").html();
 						}
 				})
