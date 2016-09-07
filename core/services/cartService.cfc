@@ -79,14 +79,22 @@
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.retStruct = {} />
+		<cfset LOCAL.retStruct.products = [] />
+		
 		<cfset getSessionData().cart.addCartItem(argumentCollection = ARGUMENTS) />
 		<cfset getSessionData().cart.calculate() />
 		
-		<cfloop array="#getCartItems#" index="LOCAL.item"> 
-		
+		<cfloop array="#getSessionData().cart.getCartItems()#" index="LOCAL.item"> 
+			<cfset LOCAL.product = {} />
+			<cfset LOCAL.product.price = LOCAL.item.getPrice() />
+			<cfset LOCAL.product.quantity = LOCAL.item.getQuantity() />
+			<cfset LOCAL.product.name = LOCAL.item.getProduct().getDisplayName() />
+			<cfset LOCAL.product.image = LOCAL.item.getProduct().getDefaultImageLink(type = "small") />
+			<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
 		</cfloop>
 		
-		<cfset LOCAL.retValue = getSessionData().cart.getTotalPriceWCInter() />
+		<cfset LOCAL.retStruct.subTotal = getSessionData().cart.getSubTotalPriceWCInter() />
+		<cfset LOCAL.retStruct.total = getSessionData().cart.getTotalPriceWCInter() />
 		
 		<cfreturn LOCAL.retStruct />
 	</cffunction>
