@@ -62,7 +62,7 @@
 		<cfargument name="username" type="string" required="true">
 		<cfargument name="password" type="string" required="true">
 		
-		<cfset LOCAL = {} />
+		<cfset var LOCAL = {} />
 		<cfset LOCAL.retValue = false />
 		
 		<cfset LOCAL.customer = EntityLoad("customer",{email = ARGUMNENTS.username, password = Hash(ARGUMNENTS.password),isDeleted=false,isEnabled=true},true) />
@@ -77,14 +77,12 @@
 		<cfargument name="productid" type="string" required="true">
 		<cfargument name="quantity" type="string" required="true">
 		
-		<cfset LOCAL = {} />
-		<cfset LOCAL.retValue = false />
+		<cfset var LOCAL = {} />
+		<cfset getSessionData().cart.addCartItem(argumentCollection = ARGUMENTS) />
+		<cfset getSessionData().cart.calculate() />
 		
-		<cfset LOCAL.customer = EntityLoad("customer",{email = ARGUMNENTS.username, password = Hash(ARGUMNENTS.password),isDeleted=false,isEnabled=true},true) />
-		<cfif NOT IsNull(LOCAL.customer)>
-			<cfset LOCAL.retValue = true />
-		</cfif>
-	
+		<cfset LOCAL.retValue = getSessionData().cart.getTotalPriceWCInter() />
+		
 		<cfreturn LOCAL.retValue />
 	</cffunction>
 	<!------------------------------------------------------------------------------------------------------------>

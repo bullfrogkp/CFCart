@@ -161,40 +161,45 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setUser"  access="private" returnType="void" output="false">
-		<cfset var LOCAL = {} />
-		<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
-		
-		<cfset SESSION.user = {} />
-		<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
-		<cfset SESSION.user.customerId = "" />
-		<cfset SESSION.user.customerGroupName = LOCAL.defaultCustomerGroup.getName() />
-		<cfset SESSION.user.ip = CGI.REMOTE_ADDR />
+		<cfif IsNull(SESSION.user)>
+			<cfset var LOCAL = {} />
+			<cfset LOCAL.defaultCustomerGroup = EntityLoad("customer_group",{isDefault = true},true) />
+			
+			<cfset SESSION.user = {} />
+			<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
+			<cfset SESSION.user.customerId = "" />
+			<cfset SESSION.user.customerGroupName = LOCAL.defaultCustomerGroup.getName() />
+			<cfset SESSION.user.ip = CGI.REMOTE_ADDR />
+		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCurrency"  access="private" returnType="void" output="false">
-	
-		<cfset var defaultCurrency = EntityLoad("currency",{isDefault=true},true) />
-	
-		<cfset SESSION.currency = {} />
-		<cfset SESSION.currency.id = defaultCurrency.getCurrencyId() />
-		<cfset SESSION.currency.code = defaultCurrency.getCode() />
-		<cfset SESSION.currency.symbol = defaultCurrency.getSymbolText() />
-		<cfset SESSION.currency.locale = defaultCurrency.getLocale() />
+		<cfif IsNull(SESSION.currency)>
+			<cfset var defaultCurrency = EntityLoad("currency",{isDefault=true},true) />
+		
+			<cfset SESSION.currency = {} />
+			<cfset SESSION.currency.id = defaultCurrency.getCurrencyId() />
+			<cfset SESSION.currency.code = defaultCurrency.getCode() />
+			<cfset SESSION.currency.symbol = defaultCurrency.getSymbolText() />
+			<cfset SESSION.currency.locale = defaultCurrency.getLocale() />
+		</cfif>
 	</cffunction>
 	
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setTrackingEntity"  access="private" returnType="void" output="false">
-		<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
-		<cfif IsNull(trackingEntity)>
-			<cfset trackingEntity = EntityNew("tracking_entity") />
-			<cfset trackingEntity.setCfid(COOKIE.cfid) />
-			<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
-			<cfset trackingEntity.setLastAccessDatetime(Now()) />
-			<cfset EntitySave(trackingEntity) />
-			<cfset ORMFlush() />
+		<cfif IsNull(SESSION.trackingEntity)>
+			<cfset var trackingEntity = EntityLoad("tracking_entity",{cfid = COOKIE.cfid, cftoken = COOKIE.cftoken}, true) />
+			<cfif IsNull(trackingEntity)>
+				<cfset trackingEntity = EntityNew("tracking_entity") />
+				<cfset trackingEntity.setCfid(COOKIE.cfid) />
+				<cfset trackingEntity.setCftoken(COOKIE.cftoken) />
+				<cfset trackingEntity.setLastAccessDatetime(Now()) />
+				<cfset EntitySave(trackingEntity) />
+				<cfset ORMFlush() />
+			</cfif>
+			
+			<cfset SESSION.trackingEntity = trackingEntity />
 		</cfif>
-		
-		<cfset SESSION.trackingEntity = trackingEntity />
 	</cffunction>
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_setCart"  access="private" returnType="void" output="false">

@@ -451,7 +451,7 @@
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="addCartItem" access="public" output="false" returnType="void">
 		<cfargument name="productId" type="integer" required="true" />
-		<cfargument name="count" type="integer" required="true" />
+		<cfargument name="quantity" type="integer" required="true" />
 		
 		<cfset var LOCAL = {} />
 		
@@ -462,7 +462,7 @@
 		<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
 		<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
 		<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
-		<cfset LOCAL.trackingRecord.setCount(ARGUMENTS.count) />
+		<cfset LOCAL.trackingRecord.setCount(ARGUMENTS.quantity) />
 		<cfset EntitySave(LOCAL.trackingRecord) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
