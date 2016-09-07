@@ -21,13 +21,17 @@ $(function() {
 					quantity: $("#quantity").html();
 				}
 		})
-		.done(function() {
-			$("##login-section").slideUp();
+		.done(function(data) {
+			if(data.products.length === 0) {
+				
+			} else {
+				
+			}
 		})
-		.fail(function() {
+		.fail(function(data) {
 			alert( "error" );
 		})
-		.always(function() {
+		.always(function(data) {
 			alert( "complete" );
 		});
 	});
