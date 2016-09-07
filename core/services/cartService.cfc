@@ -88,8 +88,9 @@
 			<cfset LOCAL.product = {} />
 			<cfset LOCAL.product.price = LOCAL.item.getPrice() />
 			<cfset LOCAL.product.quantity = LOCAL.item.getQuantity() />
-			<cfset LOCAL.product.name = LOCAL.item.getProduct().getDisplayName() />
-			<cfset LOCAL.product.image = LOCAL.item.getProduct().getDefaultImageLink(type = "small") />
+			<cfset LOCAL.product.name = LOCAL.item.getProduct().getDisplayNameMV() />
+			<cfset LOCAL.product.href = LOCAL.item.getProduct().getDetailPageURLMV() />
+			<cfset LOCAL.product.image = LOCAL.item.getProduct().getDefaultImageLinkMV(type = "small") />
 			<cfset ArrayAppend(LOCAL.retStruct.products, LOCAL.product) />
 		</cfloop>
 		
