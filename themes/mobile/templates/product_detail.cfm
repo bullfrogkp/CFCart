@@ -1,4 +1,12 @@
 <cfoutput>
+<cfsavecontent variable="htmlhead">
+	<script language="javascript" type="text/javascript">
+		var productMatrix = [];
+		var selectedProductId = 0;
+	</script>
+</cfsavecontent>
+<cfhtmlhead text="#htmlhead#">
+
 <div class="information-blocks">
 	<div class="row">
 		<div class="col-sm-5 col-md-4 col-lg-5 information-entry">
