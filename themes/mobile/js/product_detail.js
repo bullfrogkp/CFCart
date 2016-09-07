@@ -9,6 +9,28 @@ $(function() {
 		$(".overlay-popup .attr-" + aid).hide();
 		$(".overlay-popup #attr-val-" + avid).show();
 	});
+
+	$("#add-to-cart").click(function() {
+		$.ajax({
+				type: "post",
+				url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+				dataType: 'json',
+				data: {
+					method: 'addProductToCart',
+					productid: $("##username").val(),
+					quantity: 
+				}
+		})
+		.done(function() {
+			$("##login-section").slideUp();
+		})
+		.fail(function() {
+			alert( "error" );
+		})
+		.always(function() {
+			alert( "complete" );
+		});
+	});
 	
 	(function main(){
 		$(function() {

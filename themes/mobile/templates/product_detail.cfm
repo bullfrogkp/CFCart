@@ -69,7 +69,7 @@
 					<div class="entry number-plus">&nbsp;</div>
 				</div>
 				<div class="detail-info-entry">
-					<a class="button style-10 open-product" popupid="#REQUEST.pageData.product.getProductId()#">Add to cart</a>
+					<a class="button style-10 open-product" id="add-to-cart" popupid="#REQUEST.pageData.product.getProductId()#">Add to cart</a>
 					<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
 					<div class="clear"></div>
 				</div>

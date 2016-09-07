@@ -72,4 +72,20 @@
 	
 		<cfreturn LOCAL.retValue />
 	</cffunction>
+	<!------------------------------------------------------------------------------------------------------------>
+	<cffunction name="addProductToCart" access="remote" returntype="struct" returnformat="json" output="false">
+		<cfargument name="productid" type="string" required="true">
+		<cfargument name="quantity" type="string" required="true">
+		
+		<cfset LOCAL = {} />
+		<cfset LOCAL.retValue = false />
+		
+		<cfset LOCAL.customer = EntityLoad("customer",{email = ARGUMNENTS.username, password = Hash(ARGUMNENTS.password),isDeleted=false,isEnabled=true},true) />
+		<cfif NOT IsNull(LOCAL.customer)>
+			<cfset LOCAL.retValue = true />
+		</cfif>
+	
+		<cfreturn LOCAL.retValue />
+	</cffunction>
+	<!------------------------------------------------------------------------------------------------------------>
 </cfcomponent>
