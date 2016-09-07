@@ -520,7 +520,7 @@ $(function() {
     	return false;
     });
 
-    $('.close-popup, .overlay-popup .close-layer').on('click', function(){
+    $('.close-popup, .close-window, .overlay-popup .close-layer').on('click', function(){
     	$('.overlay-popup.visible').removeClass('active');
     	setTimeout(function(){$('.overlay-popup.visible').removeClass('visible');}, 500);
     });

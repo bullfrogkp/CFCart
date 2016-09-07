@@ -279,8 +279,8 @@
 								</div>
 								#REQUEST.moduleView.product_detail_options#
 								<div class="detail-info-entry">
-									<a class="button style-10">Checkout</a>
-									<a class="button style-11">Continue Shopping</a>
+									<a class="button style-10" href="#APPLICATION.absoluteUrlWeb#cart.cfm">Checkout</a>
+									<a class="button style-11 close-window">Continue Shopping</a>
 									<div class="clear"></div>
 								</div>
 							</div>
