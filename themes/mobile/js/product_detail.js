@@ -53,6 +53,117 @@ $(function() {
 					alert( "complete" );
 				});
 			});
+			
+			$(".filter-options div").click(function() {
+				$(this).closest('.filter-options').css("border-color","red");
+				$(this).closest('.filter-options').siblings().css("border-color","##CCC");
+				
+				var index = $(this).closest('.filter-options').attr('attributevalueid');
+				var value = optionStruct[index];
+				var insert = true;
+				
+				for (var i = 0; i < optionArray.length; i++) {
+					if(optionArray[i].attributeid == value)
+					{
+						optionArray[i].attributevalueid = index;
+						insert = false;
+						break;
+					}
+				}
+				
+				if(insert == true)
+				{
+					var option = new Object();
+					option.attributeid = value;
+					option.attributevalueid = index;
+					optionArray.push(option);
+				}
+				
+				if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
+				{
+					var optionList = '';
+					for (var i = 0; i < optionArray.length; i++) {
+						optionList = optionList + optionArray[i].attributevalueid + ',';
+					}
+					
+					$.ajax({
+							type: "get",
+							url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
+							dataType: 'json',
+							data: {
+								method: 'getProduct',
+								parentProductId: #REQUEST.pageData.product.getProductId()#,
+								attributeValueIdList: optionList,
+								customerGroupName: '#SESSION.user.customerGroupName#'
+							},		
+							success: function(result) {
+								var price = result.PRICE;
+								var stock = result.STOCK;
+								var productid = result.PRODUCTID;
+							
+							
+								if(price > 0)
+								{
+									$("##price-amount").html('$' + price.toFixed(2));
+								}
+								else
+								{
+									$("##price-amount").html('Price is not available');
+								}
+								
+								if(stock > 0)
+								{
+									$("##stock-count").html(stock + ' in stock');
+								}
+								else
+								{
+									$("##stock-count").html('Stock is not available');
+								}
+								
+								if(price > 0 && stock > 0)
+								{
+									$("##selected_product_id").val(productid);
+									$("##add-current-to-cart").show();
+									$("##add-current-to-cart-disabled").hide();
+									$("##add-current-to-wishlist").show();
+									$("##add-current-to-wishlist-disabled").hide();
+								}
+								else
+								{
+									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
+									$("##add-current-to-cart").hide();
+									$("##add-current-to-cart-disabled").show();
+									$("##add-current-to-wishlist").hide();
+									$("##add-current-to-wishlist-disabled").show();
+								}
+							}
+					});
+				}
+			});
+			/*
+			$("##add-current-to-wishlist").click(function() {
+				$.ajax({
+							type: "get",
+							url: "#APPLICATION.absoluteUrlWeb#core/services/trackingService.cfc",
+							dataType: 'json',
+							data: {
+								method: 'addTrackingRecord',
+								productId: $("##selected_product_id").val(),
+								trackingRecordType: 'wishlist'
+							},		
+							success: function(result) {
+								if(result.TRACKINGRECORDID)
+								{
+									wishlistdialog.dialog( "open" );			
+								}
+								else
+								{
+									console.log('Fail to add record');
+								}
+							}
+				});
+			});
+			*/
 		});
 	})();
 });

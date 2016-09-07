@@ -3,6 +3,16 @@
 	<script language="javascript" type="text/javascript">
 		var productMatrix = [];
 		var selectedProductId = 0;
+		
+		
+		var optionStruct = new Object();
+		var optionArray = new Array();
+		
+		<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+				optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
+			</cfloop>
+		</cfloop>
 	</script>
 </cfsavecontent>
 <cfhtmlhead text="#htmlhead#">
