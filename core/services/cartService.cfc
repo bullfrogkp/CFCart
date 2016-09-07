@@ -78,12 +78,17 @@
 		<cfargument name="quantity" type="string" required="true">
 		
 		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
 		<cfset getSessionData().cart.addCartItem(argumentCollection = ARGUMENTS) />
 		<cfset getSessionData().cart.calculate() />
 		
+		<cfloop array="#getCartItems#" index="LOCAL.item"> 
+		
+		</cfloop>
+		
 		<cfset LOCAL.retValue = getSessionData().cart.getTotalPriceWCInter() />
 		
-		<cfreturn LOCAL.retValue />
+		<cfreturn LOCAL.retStruct />
 	</cffunction>
 	<!------------------------------------------------------------------------------------------------------------>
 </cfcomponent>
