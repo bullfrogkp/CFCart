@@ -17,8 +17,8 @@ $(function() {
 				dataType: 'json',
 				data: {
 					method: 'addProductToCart',
-					productid: $("##username").val(),
-					quantity: 
+					productid: $("#username").val(),
+					quantity: $("#quantity").html();
 				}
 		})
 		.done(function() {

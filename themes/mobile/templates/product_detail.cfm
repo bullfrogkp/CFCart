@@ -65,7 +65,7 @@
 				<div class="quantity-selector detail-info-entry">
 					<div class="detail-info-entry-title">Quantity</div>
 					<div class="entry number-minus">&nbsp;</div>
-					<div class="entry number">1</div>
+					<div class="entry number" id="quantity">1</div>
 					<div class="entry number-plus">&nbsp;</div>
 				</div>
 				<div class="detail-info-entry">
