@@ -91,9 +91,9 @@
 						</cfif>
 						<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
 					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
-						<div class="prev">-</div>
-						<div class="current">-</div>
-						<div class="price-detail"></div>
+						<div class="prev" style="display:none;"></div>
+						<div class="current" style="display:none;">-</div>
+						<div class="price-detail">Please select your option.</div>
 						<div class="stock-detail"></div>
 					</cfif>
 				</div>
