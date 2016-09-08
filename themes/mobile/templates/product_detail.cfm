@@ -107,7 +107,12 @@
 					<div class="entry number-plus">&nbsp;</div>
 				</div>
 				<div class="detail-info-entry">
-					<a class="button style-10 open-product" id="add-to-cart" popupid="#REQUEST.pageData.product.getProductId()#">Add to cart</a>
+					<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
+						<a class="button style-10 open-product" id="add-to-cart" popupid="#REQUEST.pageData.product.getProductId()#">Add to cart</a>
+					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
+						<a class="button style-10 open-product" id="add-to-cart" popupid="#REQUEST.pageData.product.getProductId()#" style="display:none;">Add to cart</a>
+						<a class="button style-10 disabled" id="add-to-cart-disabled"  style="display:none;cursor:not-allowed;">Add to cart</a>
+					</cfif>
 					<a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
 					<div class="clear"></div>
 				</div>
