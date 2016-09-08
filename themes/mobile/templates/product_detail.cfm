@@ -90,11 +90,11 @@
 							<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
 						</cfif>
 						<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
+						<div class="stock-detail"><cfif REQUEST.pageData.product.getStock() GT 0>#REQUEST.pageData.product.getStock()# in stock<cfelse>Stock is not available</div>
 					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 						<div class="prev" style="display:none;"></div>
 						<div class="current" style="display:none;"></div>
-						<div class="price-detail">Please select your option.</div>
-						<div class="stock-detail"></div>
+						<div class="stock-detail" style="display:none;"></div>
 					</cfif>
 				</div>
 				
@@ -317,8 +317,17 @@
 								<h1 class="product-title">#REQUEST.pageData.product.getDisplayName()#</h1>
 								<h3 class="product-subtitle">Item successfully added to your cart</h3>
 								<div class="price detail-info-entry">
-									<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
-									<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+									<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
+										<cfset oriPrice = (REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+										<cfset curPrice = (REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+										<cfif oriPrice GT curPrice>
+											<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
+										</cfif>
+										<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
+									<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
+										<div class="prev" style="display:none;"></div>
+										<div class="current" style="display:none;"></div>
+									</cfif>
 								</div>
 								#REQUEST.moduleView.product_detail_options#
 								<div class="detail-info-entry">
@@ -329,7 +338,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="close-popup"></div>
 				</div>
 			</div>

@@ -89,23 +89,15 @@ $(function() {
 								var stock = result.STOCK;
 								var productid = result.PRODUCTID;
 								
-								if(curPrice > 0) {
-									$(".price-detail").hide();
-									if(oriPrice > curPrice) {
-										$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice);
-										$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice);
-										$(".detail-info-entry .prev").show();
-										$(".detail-info-entry .current").show();
-									} else {
-										$(".detail-info-entry .prev").hide();
-										$(".detail-info-entry .current").show();
-										$(".detail-info-entry .current").html(result.CURRENTPRICE);
-									}
+								if(oriPrice > curPrice) {
+									$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice);
+									$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice);
+									$(".detail-info-entry .prev").show();
+									$(".detail-info-entry .current").show();
 								} else {
 									$(".detail-info-entry .prev").hide();
-									$(".detail-info-entry .current").hide();
-									$(".price-detail").html('Price is not available');
-									$(".price-detail").show();
+									$(".detail-info-entry .current").show();
+									$(".detail-info-entry .current").html(result.CURRENTPRICE);
 								}
 								
 								if(stock > 0)
