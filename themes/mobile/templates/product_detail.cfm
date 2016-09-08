@@ -1,7 +1,7 @@
 <cfoutput>
 <cfsavecontent variable="htmlhead">
 	<script language="javascript" type="text/javascript">
-		var productType = '#pageData.product.getProductType().getName()#';
+		var productType = '#REQUEST.pageData.product.getProductType().getName()#';
 		
 		if(productType == 'configurable') {
 			var selectedProductId = 0;
@@ -20,7 +20,7 @@
 			var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
 			var currencySymbol = '#SESSION.currency.symbol#';
 		} else {
-		
+			
 		}
 	</script>
 </cfsavecontent>
@@ -83,10 +83,19 @@
 				#REQUEST.pageData.product.getDescription()#
 				</div>
 				<div class="price detail-info-entry">
-					<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
-					<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
-					<div class="price-detail"></div>
-					<div class="stock-detail"></div>
+					<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
+						<cfset oriPrice = (REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+						<cfset curPrice = (REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+						<cfif oriPrice GT curPrice>
+							<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
+						</cfif>
+						<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
+					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
+						<div class="prev">-</div>
+						<div class="current">-</div>
+						<div class="price-detail"></div>
+						<div class="stock-detail"></div>
+					</cfif>
 				</div>
 				
 				#REQUEST.moduleView.product_detail_options#

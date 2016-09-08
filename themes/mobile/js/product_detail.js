@@ -125,7 +125,6 @@ $(function() {
 								}
 								else
 								{
-									selectedProductId = parentProductId;
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
 								}
