@@ -98,7 +98,9 @@
 					</cfif>
 				</div>
 				
-				#REQUEST.moduleView.product_detail_options#
+				<cfif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
+					#REQUEST.moduleView.product_detail_options#
+				</cfif>
 				
 				<div class="quantity-selector detail-info-entry">
 					<div class="detail-info-entry-title">Quantity</div>

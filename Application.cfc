@@ -168,6 +168,7 @@
 			<cfset SESSION.user = {} />
 			<cfset SESSION.user.userName = CGI.REMOTE_ADDR />
 			<cfset SESSION.user.customerId = "" />
+			<cfset SESSION.user.customerGroupId = LOCAL.defaultCustomerGroup.getCustomerGroupId() />
 			<cfset SESSION.user.customerGroupName = LOCAL.defaultCustomerGroup.getName() />
 			<cfset SESSION.user.ip = CGI.REMOTE_ADDR />
 		</cfif>

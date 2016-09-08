@@ -35,6 +35,8 @@
 	<cfproperty name="soldCount" column="sold_count" ormtype="integer"> 
 	<cfproperty name="reviewCount" column="review_count" ormtype="integer"> 
 	<cfproperty name="starCount" column="star_count" ormtype="integer"> 
+	<cfproperty name="customerGroupId" type="integer"> 
+	<cfproperty name="currencyId" type="integer"> 
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setPriceMV" access="public" output="false" returnType="void">
@@ -334,10 +336,8 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getPrice" access="public" output="false" returnType="numeric">
-		<cfargument name="customerGroupName" type="string" required="true">
-		<cfargument name="currencyId" type="numeric" required="true">
 		
-		<cfset var customerGroup = EntityLoad("customer_group",{name = ARGUMENTS.customerGroupName},true) />
+		<cfset var customerGroup = EntityLoadByPK("customer_group",getCustomerGroupId) />
 		<cfset var product = EntityLoadByPK("product",getProductId()) />
 		<cfset var productCustomeGroupRela = EntityLoad("product_customer_group_rela",{customerGroup=customerGroup,product=product},true) />
 		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
