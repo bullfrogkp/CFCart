@@ -1,10 +1,7 @@
 <cfoutput>
 <cfsavecontent variable="htmlhead">
 	<script language="javascript" type="text/javascript">
-		var productMatrix = [];
 		var selectedProductId = 0;
-		
-		
 		var optionStruct = new Object();
 		var optionArray = new Array();
 		
@@ -13,6 +10,11 @@
 				optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
 			</cfloop>
 		</cfloop>
+		
+		var optionArrayLength = #ArrayLen(REQUEST.pageData.product.getProductAttributeRelas())#;
+		var parentProductId = '#REQUEST.pageData.product.getProductId()#';
+		var customerGroupName = '#SESSION.user.customerGroupName#';
+		var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
 	</script>
 </cfsavecontent>
 <cfhtmlhead text="#htmlhead#">

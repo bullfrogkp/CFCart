@@ -1,10 +1,6 @@
 $(function() {
 
 	"use strict";
-
-	function getProductId(){
-		$( "#results-num" ).html(str);
-	}
 	
 	(function main(){
 		$(function() {
@@ -15,16 +11,6 @@ $(function() {
 				$( this ).children(".entry").first().show();
 			});
 			
-			$(".entry").click(function() {
-				var aid = $(this).attr('aid');
-				var avid = $(this).attr('avid');
-				
-				$(".overlay-popup .attr-" + aid).hide();
-				$(".overlay-popup #attr-val-" + avid).show();
-				
-				selectedProductId = getProductId();
-			});
-
 			$("#add-to-cart").click(function() {
 				$.ajax({
 						type: "post",
@@ -54,18 +40,19 @@ $(function() {
 				});
 			});
 			
-			$(".filter-options div").click(function() {
-				$(this).closest('.filter-options').css("border-color","red");
-				$(this).closest('.filter-options').siblings().css("border-color","##CCC");
+			$(".entry").click(function() {
+				var aid = $(this).attr('aid');
+				var avid = $(this).attr('avid');
 				
-				var index = $(this).closest('.filter-options').attr('attributevalueid');
-				var value = optionStruct[index];
+				$(".overlay-popup .attr-" + aid).hide();
+				$(".overlay-popup #attr-val-" + avid).show();
+								
 				var insert = true;
 				
 				for (var i = 0; i < optionArray.length; i++) {
-					if(optionArray[i].attributeid == value)
+					if(optionArray[i].attributeid == aid)
 					{
-						optionArray[i].attributevalueid = index;
+						optionArray[i].attributevalueid = avid;
 						insert = false;
 						break;
 					}
@@ -74,12 +61,12 @@ $(function() {
 				if(insert == true)
 				{
 					var option = new Object();
-					option.attributeid = value;
-					option.attributevalueid = index;
+					option.attributeid = aid;
+					option.attributevalueid = avid;
 					optionArray.push(option);
 				}
 				
-				if(optionArray.length == #REQUEST.pageData.requiredAttributeCount#)
+				if(optionArray.length == optionArrayLength)
 				{
 					var optionList = '';
 					for (var i = 0; i < optionArray.length; i++) {
@@ -88,13 +75,13 @@ $(function() {
 					
 					$.ajax({
 							type: "get",
-							url: "#APPLICATION.absoluteUrlWeb#core/services/productService.cfc",
+							url: requestUrl,
 							dataType: 'json',
 							data: {
 								method: 'getProduct',
-								parentProductId: #REQUEST.pageData.product.getProductId()#,
+								parentProductId: parentProductId,
 								attributeValueIdList: optionList,
-								customerGroupName: '#SESSION.user.customerGroupName#'
+								customerGroupName: customerGroupName
 							},		
 							success: function(result) {
 								var price = result.PRICE;
