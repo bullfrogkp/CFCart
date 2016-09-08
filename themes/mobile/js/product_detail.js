@@ -89,36 +89,29 @@ $(function() {
 								var stock = result.STOCK;
 								var productid = result.PRODUCTID;
 								
-								if(result.ORIGINALPRICE > result.CURRENTPRICE) {
-									$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice.toFixed(2));
-									$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice.toFixed(2));
-									$(".detail-info-entry .prev").show();
+								if(curPrice > 0) {
+									if(oriPrice > curPrice) {
+										$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice);
+										$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice);
+										$(".detail-info-entry .prev").show();
+										$(".detail-info-entry .current").show();
+									} else {
+										$(".detail-info-entry .prev").hide();
+										$(".detail-info-entry .current").show();
+										$(".detail-info-entry .current").html(result.CURRENTPRICE);
+									}
 								} else {
 									$(".detail-info-entry .prev").hide();
-									$(".detail-info-entry .current").html(result.CURRENTPRICE);
-								}
-								
-								
-								
-								
-							
-							
-								if(price > 0)
-								{
-									$("##price-amount").html('$' + price.toFixed(2));
-								}
-								else
-								{
-									$("##price-amount").html('Price is not available');
+									$(".detail-info-entry .current").hide();
 								}
 								
 								if(stock > 0)
 								{
-									$("##stock-count").html(stock + ' in stock');
+									$("#stock-count").html(stock + ' in stock');
 								}
 								else
 								{
-									$("##stock-count").html('Stock is not available');
+									$("#stock-count").html('Stock is not available');
 								}
 								
 								if(price > 0 && stock > 0)
