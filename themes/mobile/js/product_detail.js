@@ -84,10 +84,14 @@ $(function() {
 								customerGroupName: customerGroupName
 							},		
 							success: function(result) {
+								var oriPrice = result.ORIGINALPRICE;
+								var curPrice = result.CURRENTPRICE;
+								var stock = result.STOCK;
+								var productid = result.PRODUCTID;
 								
 								if(result.ORIGINALPRICE > result.CURRENTPRICE) {
-									$(".detail-info-entry .prev").html(result.ORIGINALPRICE);
-									$(".detail-info-entry .current").html(result.CURRENTPRICE);
+									$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice.toFixed(2));
+									$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice.toFixed(2));
 									$(".detail-info-entry .prev").show();
 								} else {
 									$(".detail-info-entry .prev").hide();
@@ -96,9 +100,7 @@ $(function() {
 								
 								
 								
-								var price = result.PRICE;
-								var stock = result.STOCK;
-								var productid = result.PRODUCTID;
+								
 							
 							
 								if(price > 0)

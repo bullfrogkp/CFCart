@@ -15,6 +15,7 @@
 		var parentProductId = '#REQUEST.pageData.product.getProductId()#';
 		var customerGroupName = '#SESSION.user.customerGroupName#';
 		var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
+		var currencySymbol = '#SESSION.currency.symbol#';
 	</script>
 </cfsavecontent>
 <cfhtmlhead text="#htmlhead#">
