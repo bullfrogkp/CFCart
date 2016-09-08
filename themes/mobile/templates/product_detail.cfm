@@ -1,4 +1,5 @@
 <cfoutput>
+<cfif 
 <cfsavecontent variable="htmlhead">
 	<script language="javascript" type="text/javascript">
 		var selectedProductId = 0;

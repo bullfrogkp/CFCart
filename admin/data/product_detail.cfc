@@ -40,7 +40,7 @@
 			<cfset LOCAL.tab_id = FORM.tab_id />
 		<cfelse>
 			<cfset LOCAL.product = EntityNew("product") />
-			<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="simple"},true)) />
+			<cfset LOCAL.product.setProductType(EntityLoad("product_type",{name="single"},true)) />
 			<cfset LOCAL.product.setSoldCount(0) />
 			<cfset LOCAL.product.setReviewCount(0) />
 			<cfset LOCAL.product.setCreatedUser(SESSION.adminUser) />
