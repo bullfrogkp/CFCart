@@ -1,22 +1,27 @@
 <cfoutput>
-<cfif 
 <cfsavecontent variable="htmlhead">
 	<script language="javascript" type="text/javascript">
-		var selectedProductId = 0;
-		var optionStruct = new Object();
-		var optionArray = new Array();
+		var productType = '#pageData.product.getProductType().getName()#';
 		
-		<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
-			<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
-				optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
+		if(productType == 'configurable') {
+			var selectedProductId = 0;
+			var optionStruct = new Object();
+			var optionArray = new Array();
+			
+			<cfloop array="#REQUEST.pageData.product.getProductAttributeRelas()#" index="productAttributeRela">
+				<cfloop array="#productAttributeRela.getAttributeValues()#" index="attributeValue">
+					optionStruct['#attributeValue.getAttributeValueId()#'] = #productAttributeRela.getAttribute().getAttributeId()#;
+				</cfloop>
 			</cfloop>
-		</cfloop>
+			
+			var optionArrayLength = #ArrayLen(REQUEST.pageData.product.getProductAttributeRelas())#;
+			var parentProductId = '#REQUEST.pageData.product.getProductId()#';
+			var customerGroupName = '#SESSION.user.customerGroupName#';
+			var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
+			var currencySymbol = '#SESSION.currency.symbol#';
+		} else {
 		
-		var optionArrayLength = #ArrayLen(REQUEST.pageData.product.getProductAttributeRelas())#;
-		var parentProductId = '#REQUEST.pageData.product.getProductId()#';
-		var customerGroupName = '#SESSION.user.customerGroupName#';
-		var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
-		var currencySymbol = '#SESSION.currency.symbol#';
+		}
 	</script>
 </cfsavecontent>
 <cfhtmlhead text="#htmlhead#">
