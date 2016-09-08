@@ -20,7 +20,7 @@
 			var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
 			var currencySymbol = '#SESSION.currency.symbol#';
 		} else {
-			
+			selectedProductId = #REQUEST.pageData.product.getProductId()#;
 		}
 	</script>
 </cfsavecontent>
@@ -92,7 +92,7 @@
 						<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
 					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 						<div class="prev" style="display:none;"></div>
-						<div class="current" style="display:none;">-</div>
+						<div class="current" style="display:none;"></div>
 						<div class="price-detail">Please select your option.</div>
 						<div class="stock-detail"></div>
 					</cfif>
