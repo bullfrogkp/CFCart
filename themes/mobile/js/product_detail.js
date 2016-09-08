@@ -90,6 +90,7 @@ $(function() {
 								var productid = result.PRODUCTID;
 								
 								if(curPrice > 0) {
+									$(".price-detail").hide();
 									if(oriPrice > curPrice) {
 										$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice);
 										$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice);
@@ -103,32 +104,30 @@ $(function() {
 								} else {
 									$(".detail-info-entry .prev").hide();
 									$(".detail-info-entry .current").hide();
+									$(".price-detail").html('Price is not available');
+									$(".price-detail").show();
 								}
 								
 								if(stock > 0)
 								{
-									$("#stock-count").html(stock + ' in stock');
+									$("#stock-detail").html(stock + ' in stock');
 								}
 								else
 								{
-									$("#stock-count").html('Stock is not available');
+									$("#stock-detail").html('Stock is not available');
 								}
 								
-								if(price > 0 && stock > 0)
+								if(curPrice > 0 && stock > 0)
 								{
-									$("##selected_product_id").val(productid);
-									$("##add-current-to-cart").show();
-									$("##add-current-to-cart-disabled").hide();
-									$("##add-current-to-wishlist").show();
-									$("##add-current-to-wishlist-disabled").hide();
+									selectedProductId = productid;
+									$("##add-to-cart").show();
+									$("##add-to-cart-disabled").hide();
 								}
 								else
 								{
-									$("##selected_product_id").val(#REQUEST.pageData.product.getProductId()#);
+									selectedProductId = parentProductId;
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
-									$("##add-current-to-wishlist").hide();
-									$("##add-current-to-wishlist-disabled").show();
 								}
 							}
 					});

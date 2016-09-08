@@ -79,6 +79,8 @@
 				<div class="price detail-info-entry">
 					<div class="prev">#LSCurrencyFormat(REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 					<div class="current">#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+					<div class="price-detail"></div>
+					<div class="stock-detail"></div>
 				</div>
 				
 				#REQUEST.moduleView.product_detail_options#
