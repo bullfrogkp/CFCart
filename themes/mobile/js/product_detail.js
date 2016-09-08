@@ -84,6 +84,18 @@ $(function() {
 								customerGroupName: customerGroupName
 							},		
 							success: function(result) {
+								
+								if(result.ORIGINALPRICE > result.CURRENTPRICE) {
+									$(".detail-info-entry .prev").html(result.ORIGINALPRICE);
+									$(".detail-info-entry .current").html(result.CURRENTPRICE);
+									$(".detail-info-entry .prev").show();
+								} else {
+									$(".detail-info-entry .prev").hide();
+									$(".detail-info-entry .current").html(result.CURRENTPRICE);
+								}
+								
+								
+								
 								var price = result.PRICE;
 								var stock = result.STOCK;
 								var productid = result.PRODUCTID;
