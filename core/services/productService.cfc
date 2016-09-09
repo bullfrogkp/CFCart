@@ -141,7 +141,7 @@
 	<cffunction name="getProduct" access="remote" returntype="struct" returnformat="json" output="false">
 		<cfargument name="parentProductId" type="numeric" required="true">
 		<cfargument name="attributeValueIdList" type="string" required="true">
-		<cfargument name="customerGroupName" type="string" required="false">
+		<cfargument name="customerGroupId" type="numeric" required="true">
 		
 		<cfset var LOCAL = {} />
 		<cfset var retStruct = {} />
@@ -186,16 +186,14 @@
 				<cfset retStruct.stock = 0 />
 			</cfif>
 			<cfset LOCAL.currency = EntityLoad("currency",{isDefault=true},true) />
-			<cfif StructKeyExists(ARGUMENTS, "customerGroupName")>
-				<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = ARGUMENTS.customerGroupName, currencyId = LOCAL.currency.getCurrencyId()) />
-			<cfelse>
-				<cfset LOCAL.defaultCutomerGroup = EntityLoad("customer_group", {isDefault = true}, true) />
-				<cfset retStruct.price = LOCAL.product.getPrice(customerGroupName = LOCAL.defaultCutomerGroup.getName(), currencyId = LOCAL.currency.getCurrencyId()) />
-			</cfif>
+			
+			<cfset retStruct.currentPrice = LOCAL.product.getPrice(customerGroupId = ARGUMENTS.customerGroupId, currencyId = LOCAL.currency.getCurrencyId()) />
+			<cfset retStruct.originalPrice = LOCAL.product.getOriginalPrice(customerGroupId = ARGUMENTS.customerGroupId, currencyId = LOCAL.currency.getCurrencyId()) />
 		<cfelse>
 			<cfset retStruct.productid = "" />
 			<cfset retStruct.stock = 0 />
-			<cfset retStruct.price = 0 />
+			<cfset retStruct.currentPrice = 0 />
+			<cfset retStruct.originalPrice = 0 />
 		</cfif>
 		
 		<cfreturn retStruct>
