@@ -84,8 +84,8 @@ $(function() {
 							customerGroupId: customerGroupId
 						},		
 						success: function(result) {
-							var oriPrice = result.ORIGINALPRICE;
-							var curPrice = result.CURRENTPRICE;
+							var oriPrice = result.ORIGINALPRICE.toFixed(2);
+							var curPrice = result.CURRENTPRICE.toFixed(2);
 							var stock = result.STOCK;
 							var productid = result.PRODUCTID;
 							
@@ -111,6 +111,8 @@ $(function() {
 									$("#add-current-to-cart").hide();
 									$("#add-current-to-cart-disabled").show();
 								}
+								
+								$("#stock-detail").show();
 							} else {
 								$("#add-current-to-cart").hide();
 								$("#add-current-to-cart-disabled").show();

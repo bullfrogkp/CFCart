@@ -90,11 +90,11 @@
 							<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
 						</cfif>
 						<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
-						<div class="stock-detail"><cfif REQUEST.pageData.product.getStock() GT 0>#REQUEST.pageData.product.getStock()# in stock<cfelse>Stock is not available</cfif></div>
+						<div id="stock-detail"><cfif REQUEST.pageData.product.getStock() GT 0>#REQUEST.pageData.product.getStock()# in stock<cfelse>Stock is not available</cfif></div>
 					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 						<div class="prev" style="display:none;"></div>
 						<div class="current" style="display:none;"></div>
-						<div class="stock-detail" style="display:none;"></div>
+						<div id="stock-detail" style="display:none;"></div>
 					</cfif>
 				</div>
 				
