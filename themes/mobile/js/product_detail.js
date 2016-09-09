@@ -19,7 +19,7 @@ $(function() {
 						data: {
 							method: 'addProductToCart',
 							productid: selectedProductId,
-							quantity: $("#quantity").html();
+							quantity: $("#quantity").html()
 						}
 				})
 				.done(function(data) {		
@@ -74,52 +74,48 @@ $(function() {
 					}
 					
 					$.ajax({
-							type: "get",
-							url: requestUrl,
-							dataType: 'json',
-							data: {
-								method: 'getProduct',
-								parentProductId: parentProductId,
-								attributeValueIdList: optionList,
-								customerGroupId: customerGroupId
-							},		
-							success: function(result) {
-								var oriPrice = result.ORIGINALPRICE;
-								var curPrice = result.CURRENTPRICE;
-								var stock = result.STOCK;
-								var productid = result.PRODUCTID;
+						type: "get",
+						url: requestUrl,
+						dataType: 'json',
+						data: {
+							method: 'getProduct',
+							parentProductId: parentProductId,
+							attributeValueIdList: optionList,
+							customerGroupId: customerGroupId
+						},		
+						success: function(result) {
+							var oriPrice = result.ORIGINALPRICE;
+							var curPrice = result.CURRENTPRICE;
+							var stock = result.STOCK;
+							var productid = result.PRODUCTID;
+							
+							selectedProductId = productid;
+							
+							if(curPrice > 0) {
+								$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice);
+								$(".detail-info-entry .current").show();
 								
 								if(oriPrice > curPrice) {
 									$(".detail-info-entry .prev").html(currencySymbol + ' ' + oriPrice);
-									$(".detail-info-entry .current").html(currencySymbol + ' ' + curPrice);
 									$(".detail-info-entry .prev").show();
-									$(".detail-info-entry .current").show();
 								} else {
 									$(".detail-info-entry .prev").hide();
-									$(".detail-info-entry .current").html(result.CURRENTPRICE);
-									$(".detail-info-entry .current").show();
 								}
 								
 								if(stock > 0) {
-									
-								} else {
-									
-								}
-								
-								if(curPrice > 0 && stock > 0) {
-									selectedProductId = productid;
 									$("#stock-detail").html(stock + ' in stock');
-									$("##add-to-cart").show();
-									$("##add-to-cart-disabled").hide();
-								} else if(curPrice > 0 && stock == 0) {
-									$("#stock-detail").html('Stock is not available');
-									$("##add-current-to-cart").hide();
-									$("##add-current-to-cart-disabled").show();
+									$("#add-to-cart").show();
+									$("#add-to-cart-disabled").hide();
 								} else {
-									$("##add-current-to-cart").hide();
-									$("##add-current-to-cart-disabled").show();
+									$("#stock-detail").html('Stock is not available');
+									$("#add-current-to-cart").hide();
+									$("#add-current-to-cart-disabled").show();
 								}
+							} else {
+								$("#add-current-to-cart").hide();
+								$("#add-current-to-cart-disabled").show();
 							}
+						}
 					});
 				}
 			});
