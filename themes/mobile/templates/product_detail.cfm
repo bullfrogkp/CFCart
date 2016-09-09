@@ -94,7 +94,7 @@
 					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 						<div class="prev" style="display:none;"></div>
 						<div class="current" style="display:none;"></div>
-						<div id="stock-detail" style="display:none;"></div>
+						<div id="stock-detail" style="display:none;letter-spacing:0px;"></div>
 					</cfif>
 				</div>
 				
