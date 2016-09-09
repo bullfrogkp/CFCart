@@ -16,7 +16,7 @@
 			
 			var optionArrayLength = #ArrayLen(REQUEST.pageData.product.getProductAttributeRelas())#;
 			var parentProductId = '#REQUEST.pageData.product.getProductId()#';
-			var customerGroupName = '#SESSION.user.customerGroupName#';
+			var customerGroupId = '#SESSION.user.customerGroupId#';
 			var requestUrl = '#APPLICATION.absoluteUrlWeb#core/services/productService.cfc';
 			var currencySymbol = '#SESSION.currency.symbol#';
 		} else {
@@ -84,8 +84,8 @@
 				</div>
 				<div class="price detail-info-entry">
 					<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
-						<cfset oriPrice = REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
-						<cfset curPrice = REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+						<cfset oriPrice = REQUEST.pageData.product.getOriginalPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
+						<cfset curPrice = REQUEST.pageData.product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
 						<cfif oriPrice GT curPrice>
 							<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
 						</cfif>
@@ -320,8 +320,8 @@
 								<h3 class="product-subtitle">Item successfully added to your cart</h3>
 								<div class="price detail-info-entry">
 									<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
-										<cfset oriPrice = (REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
-										<cfset curPrice = (REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+										<cfset oriPrice = (REQUEST.pageData.product.getOriginalPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
+										<cfset curPrice = (REQUEST.pageData.product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
 										<cfif oriPrice GT curPrice>
 											<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
 										</cfif>

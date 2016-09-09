@@ -81,7 +81,7 @@ $(function() {
 								method: 'getProduct',
 								parentProductId: parentProductId,
 								attributeValueIdList: optionList,
-								customerGroupName: customerGroupName
+								customerGroupId: customerGroupId
 							},		
 							success: function(result) {
 								var oriPrice = result.ORIGINALPRICE;
