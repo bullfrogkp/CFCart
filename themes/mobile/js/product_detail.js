@@ -13,8 +13,8 @@ $(function() {
 			
 			$("#add-to-cart").click(function() {
 				$.ajax({
-						type: "post",
-						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						type: "get",
+						url: cartRequestUrl,
 						dataType: 'json',
 						data: {
 							method: 'addProductToCart',
