@@ -22,10 +22,11 @@
 				<cfset LOCAL.attrValue = LOCAL.rela.getAttributeValues()[LOCAL.idx] />
 				
 				<cfset LOCAL.retVal &= '<div aid="#LOCAL.attribute.getAttributeId()#" avid="#LOCAL.attrValue.getAttributeValueId()#" id="attr-val-#LOCAL.attrValue.getAttributeValueId()#" class="entry attr-#LOCAL.attribute.getAttributeId()#' />
+				<!---
 				<cfif LOCAL.idx EQ 1>
 					<cfset LOCAL.retVal &= ' active' />
 				</cfif>
-				
+				--->
 				<cfif LOCAL.attribute.getName() EQ "color">
 					<cfset LOCAL.retVal &= '" style="background-color: ' & LOCAL.attrValue.getValue() & ';">&nbsp;</div>' />
 				<cfelse>

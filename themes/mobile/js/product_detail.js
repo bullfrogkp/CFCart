@@ -96,27 +96,26 @@ $(function() {
 									$(".detail-info-entry .current").show();
 								} else {
 									$(".detail-info-entry .prev").hide();
-									$(".detail-info-entry .current").show();
 									$(".detail-info-entry .current").html(result.CURRENTPRICE);
+									$(".detail-info-entry .current").show();
 								}
 								
-								if(stock > 0)
-								{
-									$("#stock-detail").html(stock + ' in stock');
-								}
-								else
-								{
-									$("#stock-detail").html('Stock is not available');
+								if(stock > 0) {
+									
+								} else {
+									
 								}
 								
-								if(curPrice > 0 && stock > 0)
-								{
+								if(curPrice > 0 && stock > 0) {
 									selectedProductId = productid;
+									$("#stock-detail").html(stock + ' in stock');
 									$("##add-to-cart").show();
 									$("##add-to-cart-disabled").hide();
-								}
-								else
-								{
+								} else if(curPrice > 0 && stock == 0) {
+									$("#stock-detail").html('Stock is not available');
+									$("##add-current-to-cart").hide();
+									$("##add-current-to-cart-disabled").show();
+								} else {
 									$("##add-current-to-cart").hide();
 									$("##add-current-to-cart-disabled").show();
 								}

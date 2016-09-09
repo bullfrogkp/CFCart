@@ -84,13 +84,13 @@
 				</div>
 				<div class="price detail-info-entry">
 					<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
-						<cfset oriPrice = (REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
-						<cfset curPrice = (REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+						<cfset oriPrice = REQUEST.pageData.product.getOriginalPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
+						<cfset curPrice = REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id) />
 						<cfif oriPrice GT curPrice>
 							<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
 						</cfif>
 						<div class="current">#LSCurrencyFormat(curPrice,"local",SESSION.currency.locale)#</div>
-						<div class="stock-detail"><cfif REQUEST.pageData.product.getStock() GT 0>#REQUEST.pageData.product.getStock()# in stock<cfelse>Stock is not available</div>
+						<div class="stock-detail"><cfif REQUEST.pageData.product.getStock() GT 0>#REQUEST.pageData.product.getStock()# in stock<cfelse>Stock is not available</cfif></div>
 					<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "configurable">
 						<div class="prev" style="display:none;"></div>
 						<div class="current" style="display:none;"></div>
