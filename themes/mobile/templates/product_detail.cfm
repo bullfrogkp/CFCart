@@ -320,8 +320,8 @@
 								<h3 class="product-subtitle">Item successfully added to your cart</h3>
 								<div class="price detail-info-entry">
 									<cfif REQUEST.pageData.product.getProductType().getName() EQ "single">
-										<cfset oriPrice = (REQUEST.pageData.product.getOriginalPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
-										<cfset curPrice = (REQUEST.pageData.product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
+										<cfset oriPrice = REQUEST.pageData.product.getOriginalPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
+										<cfset curPrice = REQUEST.pageData.product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
 										<cfif oriPrice GT curPrice>
 											<div class="prev">#LSCurrencyFormat(oriPrice,"local",SESSION.currency.locale)#</div>
 										</cfif>
