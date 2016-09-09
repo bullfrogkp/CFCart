@@ -35,9 +35,6 @@
 	<cfproperty name="soldCount" column="sold_count" ormtype="integer"> 
 	<cfproperty name="reviewCount" column="review_count" ormtype="integer"> 
 	<cfproperty name="starCount" column="star_count" ormtype="integer"> 
-	<cfproperty name="customerGroupId" type="integer"> 
-	<cfproperty name="provinceId" type="integer"> 
-	<cfproperty name="currencyId" type="integer"> 
 	
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="setPriceMV" access="public" output="false" returnType="void">
@@ -337,11 +334,13 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getPrice" access="public" output="false" returnType="numeric">
+		<cfargument name="customerGroupId" type="numeric" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
 		
-		<cfset var customerGroup = EntityLoadByPK("customer_group",getCustomerGroupId()) />
+		<cfset var customerGroup = EntityLoadByPK("customer_group",ARGUMENTS.customerGroupId) />
 		<cfset var product = EntityLoadByPK("product",getProductId()) />
 		<cfset var productCustomeGroupRela = EntityLoad("product_customer_group_rela",{customerGroup=customerGroup,product=product},true) />
-		<cfset var currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		<cfset var price = 0 />
 		
 		<cfif NOT IsNull(productCustomeGroupRela)>
@@ -378,11 +377,13 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getOriginalPrice" access="public" output="false" returnType="numeric">
+		<cfargument name="customerGroupId" type="numeric" required="true">
+		<cfargument name="currencyId" type="numeric" required="true">
 		
-		<cfset var customerGroup = EntityLoadByPK("customer_group",getCustomerGroupName()) />
+		<cfset var customerGroup = EntityLoadByPK("customer_group",ARGUMENTS.customerGroupId) />
 		<cfset var product = EntityLoadByPK("product",getProductId()) />
 		<cfset var productCustomeGroupRela = EntityLoad("product_customer_group_rela",{customerGroup=customerGroup,product=product},true) />
-		<cfset var currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
 		<cfset var price = 0 />
 		
 		<cfif NOT IsNull(productCustomeGroupRela)>
@@ -498,7 +499,7 @@
 	<cffunction name="getShippingFeeMV" access="public" output="false" returnType="numeric">
 		<cfargument name="address" type="struct" required="true" />
 		<cfargument name="shippingMethodId" type="numeric" required="true" />
-		<cfargument name="customerGroupName" type="string" required="true" />
+		<cfargument name="customerGroupId" type="numeric" required="true" />
 		<cfargument name="currencyId" type="numeric" required="true">
 		
 		<cfset var currency = EntityLoadByPK("currency",ARGUMENTS.currencyId) />
@@ -515,7 +516,7 @@
 	<cffunction name="getShippingFee" access="public" output="false" returnType="numeric">
 		<cfargument name="address" type="struct" required="true" />
 		<cfargument name="shippingMethodId" type="numeric" required="true" />
-		<cfargument name="customerGroupName" type="string" required="true" />
+		<cfargument name="customerGroupId" type="numeric" required="true" />
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.shippingMethod = EntityLoadByPK("shipping_method",ARGUMENTS.shippingMethodId) />
