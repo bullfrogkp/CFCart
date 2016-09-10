@@ -13,8 +13,8 @@ $(function() {
 			
 			$("#add-to-cart").click(function() {
 				$.ajax({
-						type: "post",
-						url: "#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc",
+						type: "get",
+						url: requestCartUrl,
 						dataType: 'json',
 						data: {
 							method: 'addProductToCart',
@@ -36,7 +36,6 @@ $(function() {
 					alert( "error" );
 				})
 				.always(function(data) {
-					alert( "complete" );
 				});
 			});
 			

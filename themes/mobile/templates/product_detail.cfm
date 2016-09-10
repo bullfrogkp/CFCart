@@ -2,6 +2,7 @@
 <cfsavecontent variable="htmlhead">
 	<script language="javascript" type="text/javascript">
 		var productType = '#REQUEST.pageData.product.getProductType().getName()#';
+		var requestCartUrl = '#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc';
 		
 		if(productType == 'configurable') {
 			var selectedProductId = 0;
