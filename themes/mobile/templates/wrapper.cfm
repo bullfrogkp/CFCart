@@ -446,7 +446,7 @@
 						<div class="content">
 							<a class="title" href="##">#item.getDisplayName()#</a>
 							<div class="quantity">Quantity: #item.getQuantity()#</div>
-							<div class="price">#item.getPrice()#</div>
+							<div class="price">#item.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id)#</div>
 						</div>
 						<div class="button-x"><i class="fa fa-close"></i></div>
 					</div>
