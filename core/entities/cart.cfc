@@ -459,11 +459,18 @@
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
 		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
 		
-		<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
-		<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
-		<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
-		<cfset LOCAL.trackingRecord.setQuantity(ARGUMENTS.quantity) />
-		<cfset EntitySave(LOCAL.trackingRecord) />
+		<cfset LOCAL.existingRecord = EntityLoad("tracking_record",{product = LOCAL.product, trackingEntity = getTrackingEntity()},true) />
+		
+		<cfif IsNull(LOCAL.existingRecord)>
+			<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
+			<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
+			<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
+			<cfset LOCAL.trackingRecord.setQuantity(ARGUMENTS.quantity) />
+			<cfset EntitySave(LOCAL.trackingRecord) />
+		<cfelse>
+			<cfset LOCAL.existingRecord.setQuantity(LOCAL.existingRecord.getQuantity() + ARGUMENTS.quantity) />
+			<cfset EntitySave(LOCAL.existingRecord) />
+		</cfif>
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeCartItem" access="public" output="false" returnType="any">
