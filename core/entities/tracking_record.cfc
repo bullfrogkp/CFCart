@@ -21,7 +21,7 @@
 		<cfargument name="customerGroupId" type="numeric" required="true">
 		<cfargument name="currencyId" type="numeric" required="true">
 		
-		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfset LOCAL.currency = EntityLoadByPK("currency", ARGUMENTS.currencyId) />
 		<cfreturn LSCurrencyFormat(getProduct().getPrice(customerGroupId = ARGUMENTS.customerGroupId, currencyId = ARGUMENTS.currencyId),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
@@ -36,7 +36,7 @@
 		<cfargument name="customerGroupId" type="numeric" required="true">
 		<cfargument name="currencyId" type="numeric" required="true">
 		
-		<cfset LOCAL.currency = EntityLoadByPK("currency",getCurrencyId()) />
+		<cfset LOCAL.currency = EntityLoadByPK("currency", ARGUMENTS.currencyId) />
 		<cfreturn LSCurrencyFormat(getSubTotal(argumentCollection = ARGUMENTS),"local",LOCAL.currency.getLocale()) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	

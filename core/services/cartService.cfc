@@ -86,7 +86,7 @@
 		
 		<cfloop array="#SESSION.cart.getCartItems()#" index="LOCAL.item"> 
 			<cfset LOCAL.product = {} />
-			<cfset LOCAL.product.price = LOCAL.item.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.currencyId) />
+			<cfset LOCAL.product.price = LOCAL.item.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
 			<cfset LOCAL.product.quantity = LOCAL.item.getQuantity() />
 			<cfset LOCAL.product.name = LOCAL.item.getProduct().getDisplayNameMV() />
 			<cfset LOCAL.product.href = LOCAL.item.getProduct().getDetailPageURLMV() />
