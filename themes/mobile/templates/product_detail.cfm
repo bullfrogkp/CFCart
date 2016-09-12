@@ -3,6 +3,7 @@
 	<script language="javascript" type="text/javascript">
 		var productType = '#REQUEST.pageData.product.getProductType().getName()#';
 		var cartRequestUrl = '#APPLICATION.absoluteUrlWeb#core/services/cartService.cfc';
+		var absoluteUrlWeb = '#APPLICATION.absoluteUrlWeb#';
 		
 		if(productType == 'configurable') {
 			var selectedProductId = 0;
