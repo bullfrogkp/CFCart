@@ -90,6 +90,7 @@
 		
 		<cfset SESSION.user.userName = LOCAL.customer.getEmail() />
 		<cfset SESSION.user.customerId = LOCAL.customer.getCustomerId() />
+		<cfset SESSION.user.customerGroupId = LOCAL.customer.getCustomerGroup().getCustomerGroupId() />
 		<cfset SESSION.user.customerGroupName = LOCAL.customer.getCustomerGroup().getName() />
 		
 		<cfif StructKeyExists(SESSION,"cart")>

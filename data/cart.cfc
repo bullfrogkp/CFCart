@@ -51,7 +51,7 @@
 			<cfset SESSION.cart.setCfId(COOKIE.cfid) />
 			<cfset SESSION.cart.setCfToken(COOKIE.cftoken) />
 			<cfset SESSION.cart.setCurrencyId(SESSION.currency.id) />
-			<cfset SESSION.cart.setCustomerGroupName(SESSION.user.customerGroupName) />
+			<cfset SESSION.cart.setCustomerGroupId(SESSION.user.customerGroupId) />
 			
 			<cfset LOCAL.customerStruct = {} />
 			<cfset LOCAL.customerStruct.customerId = SESSION.user.customerId />

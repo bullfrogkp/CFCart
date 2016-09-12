@@ -206,7 +206,7 @@
 	<cffunction name="_setCart"  access="private" returnType="void" output="false">
 		<cfif IsNull(SESSION.cart)>
 			<cfset SESSION.cart = new "#APPLICATION.componentPathRoot#core.entities.cart"(	trackingEntity = SESSION.trackingEntity
-																						, 	customerGroupName = SESSION.user.customerGroupName
+																						, 	customerGroupId = SESSION.user.customerGroupId
 																						, 	currencyId = SESSION.currency.id) />
 		</cfif>
 	</cffunction>

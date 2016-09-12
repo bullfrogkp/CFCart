@@ -99,7 +99,7 @@
 							<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 						</a>
 						<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-						<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+						<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 						<cfif product.isFreeShipping()>
 						<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 						</cfif>
@@ -187,7 +187,7 @@ margin-top: -1px;padding: 2px 5px 3px 3px;">
 									#product.getDisplayName()#
 								</a>
 							</div>
-							<div class="recommendation-list-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+							<div class="recommendation-list-price">#LSCurrencyFormat(product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 							<div class="recommendation-list-review"></div>
 							<div><a href="">(#product.getReviewCountMV()# Reviews)</a></div>
 						</div>

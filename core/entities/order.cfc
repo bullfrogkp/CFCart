@@ -9,7 +9,7 @@
 	<cfproperty name="customerCompany" column="customer_company" ormtype="string"> 
 	<cfproperty name="customerPhone" column="customer_phone" ormtype="string"> 
 	<cfproperty name="customerEmail" column="customer_email" ormtype="string">
-	<cfproperty name="customerGroupName" column="customer_group_name" ormtype="string">
+	<cfproperty name="customerGroupId" column="customer_group_id" ormtype="string">
 	
 	<cfproperty name="paymentMethodName" column="payment_method_name" ormtype="string"> 
 	<cfproperty name="isComplete" column="is_complete" ormtype="boolean"> 

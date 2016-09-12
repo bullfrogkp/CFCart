@@ -12,7 +12,7 @@
 			order.customer.lastName = '#REQUEST.pageData.customer.getLastName()#';
 			order.customer.company = '#REQUEST.pageData.customer.getCompany()#';
 			order.customer.email = '#REQUEST.pageData.customer.getEmail()#';
-			order.customer.customerGroupName = '#REQUEST.pageData.customer.getCustomerGroup().getName()#';
+			order.customer.customerGroupId = '#REQUEST.pageData.customer.getCustomerGroup().getName()#';
 		<cfelse>
 			order.customer.id = '';
 			order.customer.firstName = '';
@@ -20,7 +20,7 @@
 			order.customer.lastName = '';
 			order.customer.company = '';
 			order.customer.email = '';
-			order.customer.customerGroupName = '';
+			order.customer.customerGroupId = '';
 		</cfif>
 		
 		order.shippingAddress = new Object();

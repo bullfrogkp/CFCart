@@ -5,6 +5,7 @@
 		
 		<cfset LOCAL.userName = CGI.REMOTE_ADDR />
 		<cfset LOCAL.customerGroupName = defaultCustomerGroup.getName() />
+		<cfset LOCAL.customerGroupId = defaultCustomerGroup.getCustomerGroupId() />
 	   
 		<cfreturn LOCAL />
 	</cffunction>

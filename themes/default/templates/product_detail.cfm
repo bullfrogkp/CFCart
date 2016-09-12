@@ -216,7 +216,7 @@
 							method: 'getProduct',
 							parentProductId: #REQUEST.pageData.product.getProductId()#,
 							attributeValueIdList: optionList,
-							customerGroupName: '#SESSION.user.customerGroupName#'
+							customerGroupId: '#SESSION.user.customerGroupId#'
 						},		
 						success: function(result) {
 							var price = result.PRICE;
@@ -487,7 +487,7 @@
 				<span id="price-amount">Please choose your options</span>
 				<div id="stock-count" style="color:##8F8F8F;margin-top:10px;font-size:14px;">In stock</div>
 			<cfelseif REQUEST.pageData.product.getProductType().getName() EQ "single">
-				#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#
+				#LSCurrencyFormat(REQUEST.pageData.product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#
 				<div style="color:##8F8F8F;margin-top:10px;font-size:14px;">
 					#REQUEST.pageData.product.getStock()# in stock
 				</div>
@@ -563,7 +563,7 @@
 								<img class="thumbnail-img" src="#product.getDefaultImageLink(type='small')#" />
 							</a>
 							<div class="thumbnail-name"><a href="#product.getDetailPageURL()#">#product.getDisplayName()#</a></div>
-							<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupName = SESSION.user.customerGroupName, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
+							<div class="thumbnail-price">#LSCurrencyFormat(product.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id),"local",SESSION.currency.locale)#</div>
 							<cfif product.isFreeShipping()>
 							<img class="free-shipping-icon" src="#APPLICATION.absoluteUrlWeb#images/freeshipping.jpg" style="width:120px;margin-top:7px;" />
 							</cfif>
