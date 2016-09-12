@@ -502,7 +502,7 @@
 		<cfset LOCAL.subTotal = 0 />
 		<cfset LOCAL.trackingRecords = getCartItems() />
 		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
-			<cfset LOCAL.subTotal += LOCAL.record.getSubTotal() />
+			<cfset LOCAL.subTotal += LOCAL.record.getSubTotal(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
 		</cfloop>
 		
 		<cfreturn LOCAL.subTotal />
