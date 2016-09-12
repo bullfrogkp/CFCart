@@ -88,6 +88,7 @@
 			<cfset LOCAL.product = {} />
 			<cfset LOCAL.product.price = LOCAL.item.getPrice(customerGroupId = SESSION.user.customerGroupId, currencyId = SESSION.currency.id) />
 			<cfset LOCAL.product.quantity = LOCAL.item.getQuantity() />
+			<cfset LOCAL.product.id = LOCAL.item.getProduct().getProductId() />
 			<cfset LOCAL.product.name = LOCAL.item.getProduct().getDisplayNameMV() />
 			<cfset LOCAL.product.href = LOCAL.item.getProduct().getDetailPageURLMV() />
 			<cfset LOCAL.product.image = LOCAL.item.getProduct().getDefaultImageLinkMV(type = "small") />
