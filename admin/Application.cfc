@@ -174,9 +174,9 @@
 		<cfargument type="string" name="pageName" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		<cfelse>
-			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}) />
+			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />

@@ -7,7 +7,7 @@
 	<cfproperty name="currencyId" type="numeric"> 
 	<cfproperty name="paymentMethodId" type="numeric"> 
     <cfproperty name="couponId" type="string"> 
-    <cfproperty name="customerGroupName" type="string"> 
+    <cfproperty name="customerGroupId" type="numeric"> 
 	
     <cfproperty name="customerStruct" type="struct"> 
     <cfproperty name="shippingAddressStruct" type="struct"> 
@@ -43,11 +43,11 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="trackingEntity" type="any" required="true" />
-		<cfargument name="customerGroupName" type="string" required="true" />
+		<cfargument name="customerGroupId" type="numeric" required="true" />
 		<cfargument name="currencyId" type="numeric" required="true" />
 		
 		<cfset setTrackingEntity(ARGUMENTS.trackingEntity) />
-		<cfset setCustomerGroupName(ARGUMENTS.customerGroupName) />
+		<cfset setCustomerGroupId(ARGUMENTS.customerGroupId) />
 		<cfset setCurrencyId(ARGUMENTS.currencyId) />
 		
 		<cfreturn this />
@@ -73,7 +73,7 @@
 			<cfset LOCAL.product = LOCAL.record.getProduct() />
 			<cfset LOCAL.productStruct.productId = LOCAL.product.getProductId() />
 			<cfset LOCAL.productStruct.count = LOCAL.record.getQuantity() />
-			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
+			<cfset LOCAL.productStruct.singlePrice = LOCAL.product.getPrice(customerGroupId = getCustomerGroupId(), currencyId = getCurrencyId()) />
 			<cfset LOCAL.productStruct.singlePriceWCLocal = LSCurrencyFormat(LOCAL.productStruct.singlePrice,"local",LOCAL.currency.getLocale()) />
 			<cfset LOCAL.productStruct.singlePriceWCInter = LSCurrencyFormat(LOCAL.productStruct.singlePrice,"international",LOCAL.currency.getLocale()) />
 			<cfset LOCAL.productStruct.totalPrice = LOCAL.productStruct.singlePrice * LOCAL.productStruct.count />
@@ -365,7 +365,7 @@
 		<cfset LOCAL.order.setCustomerCompany(getCustomer().getCompany()) />
 		<cfset LOCAL.order.setCustomerPhone(getCustomer().getPhone()) />
 		<cfset LOCAL.order.setCustomerEmail(getCustomer().getEmail()) />
-		<cfset LOCAL.order.setCustomerGroupName(getCustomerGroupName()) />
+		<cfset LOCAL.order.setCustomerGroupId(getCustomerGroupId()) />
 		
 		<cfset LOCAL.order.setCustomer(getCustomer()) />
 		
@@ -457,29 +457,25 @@
 		
 		<cfset LOCAL.trackingRecord = EntityNew("tracking_record") />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
-		<cfset LOCAL.product = EntityLoadById("product",ARGUMENTS.productId) />
+		<cfset LOCAL.product = EntityLoadByPK("product",ARGUMENTS.productId) />
 		
 		<cfset LOCAL.trackingRecord.setTrackingEntity(getTrackingEntity()) />
 		<cfset LOCAL.trackingRecord.setTrackingRecordType(LOCAL.trackingRecordType) />
 		<cfset LOCAL.trackingRecord.setProduct(LOCAL.product) />
-		<cfset LOCAL.trackingRecord.setCount(ARGUMENTS.quantity) />
+		<cfset LOCAL.trackingRecord.setQuantity(ARGUMENTS.quantity) />
 		<cfset EntitySave(LOCAL.trackingRecord) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeCartItem" access="public" output="false" returnType="any">
 		<cfargument name="trackingRecordId" type="integer" required="true" />
 		
-		<cfset EntityDelete(EntityLoadById("tracking_record",ARGUMENTS.trackingRecordId)) />
+		<cfset EntityDelete(EntityLoadByPK("tracking_record",ARGUMENTS.trackingRecordId)) />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="getCartItems" access="public" output="false" returnType="array">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.trackingRecordType = EntityLoad("tracking_record_type",{name = "shopping cart"},true) />
 		<cfset LOCAL.trackingRecords = EntityLoad("tracking_record",{trackingRecordType = LOCAL.trackingRecordType, trackingEntity = getTrackingEntity()}) />
-		<cfloop array="#LOCAL.trackingRecords#" index="LOCAL.record">
-			<cfset LOCAL.record.init(customerGroupName = getCustomerGroupName(), currencyId = getCurrencyId()) />
-		</cfloop>
-		
 		<cfreturn LOCAL.trackingRecords />
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
