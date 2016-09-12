@@ -74,7 +74,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------------------------------------>
 	<cffunction name="addProductToCart" access="remote" returntype="struct" returnformat="json" output="false">
-		<cfargument name="productid" type="string" required="true">
+		<cfargument name="productid" type="numeric" required="true">
 		<cfargument name="quantity" type="string" required="true">
 		
 		<cfset var LOCAL = {} />

@@ -36,7 +36,6 @@ $(function() {
 					alert( "error" );
 				})
 				.always(function(data) {
-					alert( "complete" );
 				});
 			});
 			

@@ -450,8 +450,8 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="addCartItem" access="public" output="false" returnType="void">
-		<cfargument name="productId" type="integer" required="true" />
-		<cfargument name="quantity" type="integer" required="true" />
+		<cfargument name="productId" type="numeric" required="true" />
+		<cfargument name="quantity" type="numeric" required="true" />
 		
 		<cfset var LOCAL = {} />
 		
@@ -467,7 +467,7 @@
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
 	<cffunction name="removeCartItem" access="public" output="false" returnType="any">
-		<cfargument name="trackingRecordId" type="integer" required="true" />
+		<cfargument name="trackingRecordId" type="numeric" required="true" />
 		
 		<cfset EntityDelete(EntityLoadByPK("tracking_record",ARGUMENTS.trackingRecordId)) />
 	</cffunction>
