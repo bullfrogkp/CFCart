@@ -1,4 +1,5 @@
 ﻿<cfcomponent output="false" accessors="true">
+	<cfproperty name="section" type="string" required="true"> 
 	<cfproperty name="pageName" type="string" required="true"> 
 	<cfproperty name="formData" type="struct" required="true"> 
 	<cfproperty name="urlData" type="struct" required="true"> 
@@ -211,6 +212,7 @@
 		
 		<cfif getPageName() NEQ "">
 			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
+			<cfset LOCAL.pageEntity.setSection(getSection()) />
 			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
 		<cfelse>
 			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />

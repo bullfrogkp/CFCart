@@ -1,6 +1,7 @@
 ﻿<cfcomponent persistent="true"> 
     <cfproperty name="pageModuleId" column="page_module_id" fieldtype="id" generator="native">
     <cfproperty name="name" column="name" ormtype="string">  
+    <cfproperty name="section" column="section" ormtype="string">  
     <cfproperty name="isGlobal" column="is_global" ormtype="boolean">  
     <cfproperty name="isDeleted" column="is_deleted" ormtype="boolean">  
     <cfproperty name="isEnabled" column="is_enabled" ormtype="boolean">  
