@@ -160,8 +160,8 @@
 		
 		<cfset StructAppend(APPLICATION, Config().env) />
 		
-		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}, section="frontend") />
-		<cfset APPLICATION.globalPageObj = new siteData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}, section = "backend") />
+		<cfset APPLICATION.globalPageObjAdmin = new adminData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
+		<cfset APPLICATION.globalPageObj = new siteData.global(pageName = "", formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		
 		<cfreturn true>
 	</cffunction>
@@ -172,12 +172,11 @@
 	<!------------------------------------------------------------------------------->
 	<cffunction name="_initPageObject" output="false" access="private" returnType="any">
 		<cfargument type="string" name="pageName" required="true"/>
-		<cfargument type="string" name="section" required="true"/>
 		
 		<cfif FileExists("#APPLICATION.absolutePathRoot#admin/data/#ARGUMENTS.pageName#.cfc")>
-			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}, section = ARGUMENTS.section) />
+			<cfset var pageObj = new "adminData.#ARGUMENTS.pageName#"(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		<cfelse>
-			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}, section = ARGUMENTS.section) />
+			<cfset var pageObj = new core.pages.page(pageName = ARGUMENTS.pageName, formData = {}, urlData = {}, cgiData = {}, sessionData = {}) />
 		</cfif>
 		
 		<cfreturn pageObj />
@@ -218,7 +217,6 @@
 			--->
 				<cfset var args = {} />
 				<cfset args.pageName = currentPageName />
-				<cfset args.section = "backend" />
 				
 				<cfset var globalPageObj = APPLICATION.globalPageObjAdmin />
 				<cfset globalPageObj.setPageName(currentPageName) />
