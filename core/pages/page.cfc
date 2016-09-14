@@ -215,7 +215,7 @@
 			<cfset LOCAL.pageEntity.setSection(getSection()) />
 			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
 		<cfelse>
-			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
+			<cfset LOCAL.modules = EntityLoad("site_module",{isDeleted = false, isEnabled = true}) />
 		</cfif>
 		
 		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
@@ -234,7 +234,7 @@
 			<cfset LOCAL.pageEntity = EntityLoad("page",{name = getPageName()},true) />
 			<cfset LOCAL.modules = LOCAL.pageEntity.getModules() />
 		<cfelse>
-			<cfset LOCAL.modules = EntityLoad("page_module",{isGlobal = true, isDeleted = false, isEnabled = true}) />
+			<cfset LOCAL.modules = EntityLoad("site_module",{isDeleted = false, isEnabled = true}) />
 		</cfif>
 		
 		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
