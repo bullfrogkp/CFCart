@@ -35,6 +35,34 @@
 		<cfreturn LOCAL.pageData />	
 	</cffunction>
 	<!------------------------------------------------------------------------------->	
+	<cffunction name="_loadModuleData" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		
+		<cfset LOCAL.modules = EntityLoad("site_module",{isDeleted = false, isEnabled = true}) />
+		
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#LOCAL.module.getName()#"(formData = getFormData(), urlData = getUrlData(), cgiData = getCgiData(), sessionData = getSessionData()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendData()) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
+	<cffunction name="_loadModuleView" access="private" output="false" returnType="struct">
+		<cfset var LOCAL = {} />
+		<cfset LOCAL.retStruct = {} />
+		
+		<cfset LOCAL.modules = EntityLoad("site_module",{isDeleted = false, isEnabled = true}) />
+		
+		<cfloop array="#LOCAL.modules#" index="LOCAL.module">
+			<cfset LOCAL.moduleObj = new "#APPLICATION.componentPathRoot#core.modules.#LOCAL.module.getName()#"(formData = getFormData(), urlData = getUrlData(), cgiData = getCgiData(), sessionData = getSessionData()) />
+			<cfset StructInsert(LOCAL.retStruct, LOCAL.module.getName(), LOCAL.moduleObj.getFrontendView()) />
+		</cfloop>
+		
+		<cfreturn LOCAL.retStruct />
+	</cffunction>
+	<!------------------------------------------------------------------------------->	
 	<cffunction name="processFormDataAfterValidation" access="public" output="false" returnType="struct">
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.redirectUrl = "" />

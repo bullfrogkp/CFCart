@@ -11,8 +11,7 @@
 		
 		<cfset var LOCAL = {} />
 		<cfset LOCAL.pageModules = EntityLoad("page_module",{page = this, isDeleted = false, isEnabled = true}) />
-		<cfset ArrayAppend(LOCAL.allModules, LOCAL.pageModules, true) />
 				
-		<cfreturn LOCAL.allModules />
+		<cfreturn LOCAL.pageModules />
 	</cffunction>
 </cfcomponent>

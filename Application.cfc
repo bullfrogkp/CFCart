@@ -45,7 +45,6 @@
 				<cfset args.pageName = currentPageName />
 				
 				<cfset var globalPageObj = APPLICATION.globalPageObj />
-				<cfset globalPageObj.setPageName(currentPageName) />
 				<cfset globalPageObj.setUrlData(URL) />
 				<cfset globalPageObj.setCgiData(CGI) />
 				<cfset globalPageObj.setSessionData(SESSION) />
